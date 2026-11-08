@@ -17,6 +17,7 @@
     <label class="chk"><input id="c_mirror" type="checkbox"> Tylko odczyt (blokuje wszystkie zapisy do kotła)</label>
     <label class="chk"><input id="c_write" type="checkbox"> Zapisy włączone (nastawy, tryby, harmonogramy)</label>
     <label class="chk"><input id="c_two" type="checkbox"> Dwa obiegi CO (CO1 i CO2)</label>
+    <label class="chk"><input id="c_ant" type="checkbox"> Antena zewnętrzna U.FL (XIAO ESP32-C6; gdy podłączona antena na kablu)</label>
     <label class="chk"><input id="c_demo" type="checkbox"> Tryb demo (symulator kotła, bez CAN)</label>
     <div class="row"><button id="cfgsave">Zapisz i uruchom ponownie</button></div>
     <div class="hint">Po pierwszym wgraniu urządzenie startuje w trybie „tylko odczyt”. Zapisy włączaj dopiero po sprawdzeniu, że odczyty zgadzają się z panelem.</div>
@@ -105,7 +106,7 @@ async function load() {
   if (!i.password_set) { location.href = '/portal.html'; return; }
   kv($('status'), { 'ID': i.id, 'Wersja': i.fw, 'Czas pracy': Math.floor(i.uptime_s / 60) + ' min', 'CAN': i.can_ok ? 'kocioł odpowiada' : 'brak odpowiedzi', 'Zapis': i.writable ? 'włączony' : 'zablokowany (tylko odczyt)',
     'Wi-Fi': (w.ssid || '-') + (w.ip ? ' · ' + w.ip : ''), 'Sygnał': w.rssi ? w.rssi + ' dBm' : '-', 'Klienci': i.clients, 'Klucz OTA': i.dev_key ? 'testowy (deweloperski)' : 'produkcyjny' });
-  $('c_mirror').checked = c.mirror; $('c_write').checked = c.write_enabled; $('c_two').checked = c.two_circuits; $('c_demo').checked = c.demo;
+  $('c_mirror').checked = c.mirror; $('c_write').checked = c.write_enabled; $('c_two').checked = c.two_circuits; $('c_demo').checked = c.demo; $('c_ant').checked = !!c.external_antenna;
   loadLog(); loadClients();
 }
 async function loadLog() { try { const t = await fetch('/api/v1/log').then(r => r.text()); const p = $('log'); p.textContent = t.split('\n').slice(-120).join('\n') || '(pusty)'; p.scrollTop = p.scrollHeight; } catch (e) { $('log').textContent = 'błąd: ' + e.message; } }
@@ -124,7 +125,7 @@ $('logrefresh').onclick = loadLog;
 $('logcopy').onclick = async () => { try { await navigator.clipboard.writeText($('log').textContent); msg('Skopiowano dziennik do schowka.', 'ok'); } catch (e) { msg('Nie można skopiować – użyj „Pobierz dziennik”.', 'err'); } };
 $('logclear').onclick = async () => { try { await api('DELETE', '/api/v1/log'); loadLog(); } catch (e) { msg('Błąd: ' + e.message, 'err'); } };
 $('cfgsave').onclick = async () => {
-  try { await api('POST', '/api/v1/config', { mirror: $('c_mirror').checked, write_enabled: $('c_write').checked, two_circuits: $('c_two').checked, demo: $('c_demo').checked });
+  try { await api('POST', '/api/v1/config', { mirror: $('c_mirror').checked, write_enabled: $('c_write').checked, two_circuits: $('c_two').checked, external_antenna: $('c_ant').checked, demo: $('c_demo').checked });
     await api('POST', '/api/v1/restart', {}); msg('Zapisano. Urządzenie uruchamia się ponownie…', 'ok'); setTimeout(() => location.reload(), 9000); } catch (e) { msg('Błąd: ' + e.message, 'err'); }
 };
 $('scan').onclick = async () => {

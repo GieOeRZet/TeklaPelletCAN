@@ -47,8 +47,9 @@ void log_init() {
     g_prev = esp_log_set_vprintf(hook);
     // Bufor RTC jest mały (8 KB): wycisz gadatliwe komponenty, żeby zmieściło się to, co ważne
     esp_log_level_set("*", ESP_LOG_INFO);
-    for (const char* t : {"wifi", "wifi_init", "phy_init", "esp_netif_handlers", "net80211", "pp", "esp_image", "boot", "cpu_start"})
-        esp_log_level_set(t, ESP_LOG_WARN);
+    esp_log_level_set("wifi", ESP_LOG_ERROR);   // sterownik Wi-Fi zalewa log wieloliniowymi ostrzeżeniami
+    for (const char* t : {"wifi_init", "phy_init", "esp_netif_handlers", "net80211", "pp", "esp_image", "boot", "cpu_start", "httpd_txrx"})
+        esp_log_level_set(t, ESP_LOG_ERROR);
 }
 
 void log_add(const std::string& line) { ESP_LOGI("tpc", "%s", line.c_str()); }   // hak vprintf zapisuje też do bufora

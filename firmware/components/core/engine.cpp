@@ -1,4 +1,5 @@
 #include "engine.h"
+#include <algorithm>
 #include <cmath>
 #include <cstdio>
 #include <cstdarg>
@@ -122,6 +123,7 @@ void Engine::on_done(const SdoResult& r) {
         if (fl & F_WRITE) logf("ABORT zapisu 0x%04X kod 0x%08X", index, (unsigned)r.abort_code);
     } else if (r.outcome == SdoOutcome::Timeout) {
         sdo_timeout_++;
+        if (timeouts_.size() < 64 || timeouts_.count(index)) timeouts_[index]++;
         if (fl & F_WRITE) logf("BRAK ODPOWIEDZI na zapis 0x%04X", index);
     }
     if (fl & F_WRITE) {
@@ -741,6 +743,14 @@ std::string Engine::diag_json(uint32_t now) const {
     w.kv("last_abort_code", b);
     snprintf(b, sizeof b, "0x%04X", (unsigned)last_abort_index_);
     w.kv("last_abort_index", b);
+    w.key("timeouts").begin_obj();
+    {   // 8 rejestrów z największą liczbą timeoutów
+        std::vector<std::pair<uint32_t, uint16_t>> v;
+        for (auto& kv : timeouts_) v.push_back({kv.second, kv.first});
+        std::sort(v.rbegin(), v.rend());
+        for (size_t i = 0; i < v.size() && i < 8; i++) { snprintf(b, sizeof b, "0x%04X", (unsigned)v[i].second); w.key(b).num(v[i].first); }
+    }
+    w.end_obj();
     w.key("queue").num(queue_.pending()).key("level").num(access_.level());
     w.kvb("mirror", cfg_.access.mirror).kvb("write_enabled", cfg_.access.write_enabled);
     w.kvb("pdo_feeder_seen", pdo_seen_feeder_).kvb("pdo_blower_seen", pdo_seen_blower_);

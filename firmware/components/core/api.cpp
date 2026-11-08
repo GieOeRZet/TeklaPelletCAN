@@ -210,7 +210,7 @@ HttpResponse Api::platform(const HttpRequest& r, bool& handled) {
         DeviceConfig cfg = hooks_.config_get ? hooks_.config_get() : DeviceConfig();
         JsonWriter w;
         w.begin_obj().kvb("mirror", cfg.mirror).kvb("write_enabled", cfg.write_enabled).kvb("demo", cfg.demo)
-            .kvb("two_circuits", cfg.two_circuits).end_obj();
+            .kvb("two_circuits", cfg.two_circuits).kvb("external_antenna", cfg.external_antenna).end_obj();
         HttpResponse res; res.body = w.out(); return res;
     }
     if (r.path == "/api/v1/config" && r.method == "POST") {
@@ -219,7 +219,7 @@ HttpResponse Api::platform(const HttpRequest& r, bool& handled) {
         if (!json_parse(r.body, j)) return err(400, "bad_json");
         DeviceConfig cfg = hooks_.config_get ? hooks_.config_get() : DeviceConfig();
         auto b = [&](const char* k, bool& dst) { const Json* v = j.get(k); if (v && v->type == Json::Bool) dst = v->b; };
-        b("mirror", cfg.mirror); b("write_enabled", cfg.write_enabled); b("demo", cfg.demo); b("two_circuits", cfg.two_circuits);
+        b("mirror", cfg.mirror); b("write_enabled", cfg.write_enabled); b("demo", cfg.demo); b("two_circuits", cfg.two_circuits); b("external_antenna", cfg.external_antenna);
         if (hooks_.config_set) hooks_.config_set(cfg);
         JsonWriter w; w.begin_obj().kvb("ok", true).kvb("restart_required", true).end_obj();
         HttpResponse res; res.body = w.out(); return res;

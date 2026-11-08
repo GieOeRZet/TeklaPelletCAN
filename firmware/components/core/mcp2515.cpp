@@ -105,6 +105,8 @@ bool Mcp2515::receive(CanFrame& f) {
     return !extended;
 }
 
+void Mcp2515::clear_error_flags() { write_reg(REG_EFLG, 0x00); }
+
 uint8_t Mcp2515::error_flags() {
     uint8_t v = 0;
     read_reg(REG_EFLG, v);

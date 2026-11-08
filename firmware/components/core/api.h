@@ -43,6 +43,7 @@ struct DeviceConfig {
     bool write_enabled = true;
     bool demo = false;        // symulator kotła (bez CAN)
     bool two_circuits = false;
+    bool external_antenna = false;   // XIAO ESP32-C6: antena zewnętrzna U.FL (GPIO3/GPIO14)
 };
 struct ApiHooks {
     std::function<std::vector<WifiNet>()> scan;

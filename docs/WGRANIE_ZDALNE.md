@@ -46,7 +46,7 @@ Po ok. 30–60 s:
 ## 5. Gdy coś nie wyjdzie
 | Objaw | Co zrobić |
 |---|---|
-| Brak strony pod adresem | Poczekaj 60 s. Jeśli sieć nie zadziała (zła nazwa/hasło), po ~30 s urządzenie włączy własną sieć **`TeklaPelletCAN-XXXX`** (hasło `qwerty123`) z portalem na 192.168.4.1 – potrzebujesz być w zasięgu. Wpiszesz wtedy sieć ponownie. |
+| Brak strony pod adresem | Poczekaj 60 s. Jeśli sieć nie zadziała (zła nazwa/hasło), po ~30 s urządzenie włączy własną sieć **`TeklaPelletCAN-XXXX`** (hasło `qwerty123`) z portalem na 10.77.77.1 – potrzebujesz być w zasięgu. Wpiszesz wtedy sieć ponownie. |
 | Karta „-” przy temperaturach | Ustawienia → **Dziennik**: szukaj `MCP2515` i `CAN: kociol odpowiada`. Pobierz raport (**Pobierz raport**) i wklej mi. |
 | Chcesz wrócić do ESPHome | Ustawienia → Aktualizacja → **Wróć do poprzedniego firmware** (działa do czasu pierwszej własnej aktualizacji OTA, która nadpisuje drugą partycję). |
 | Nowa wersja się zawiesza | Własne OTA uruchamia nową wersję „na próbę” i bez potwierdzenia po 25 s wraca do poprzedniej (przy bootloaderze z włączonym rollbackiem – patrz niżej). |

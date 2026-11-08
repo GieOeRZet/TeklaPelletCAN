@@ -42,7 +42,7 @@ Kocioł ─CAN 125k─ MCP2515 ─SPI─ ESP32-C6 (ESP-IDF)
 Sprzęt domyślny: Seeed XIAO ESP32-C6, MCP2515 16 MHz; SCK=GPIO19, MISO=GPIO20, MOSI=GPIO18, CS=GPIO17 (jak w PelletCAN). Piny i prędkość CAN konfigurowalne. Węzeł ESP w CAN: 90.
 
 ## 5. Pierwsze uruchomienie i sieć
-1. Brak zapisanej sieci → AP `TeklaPelletCAN-XXXX` z hasłem domyślnym `qwerty123` (decyzja właściciela; jawne w dokumentacji i zmienialne w portalu/WWW) + portal captive (DNS przekierowuje na 192.168.4.1). AP działa tylko do czasu skonfigurowania sieci, a portal wymusza ustawienie hasła urządzenia; do tego czasu zapis na kocioł jest zablokowany.
+1. Brak zapisanej sieci → AP `TeklaPelletCAN-XXXX` z hasłem domyślnym `qwerty123` (decyzja właściciela; jawne w dokumentacji i zmienialne w portalu/WWW) + portal captive (DNS przekierowuje na 10.77.77.1). AP działa tylko do czasu skonfigurowania sieci, a portal wymusza ustawienie hasła urządzenia; do tego czasu zapis na kocioł jest zablokowany.
 2. Portal: skan sieci 2,4 GHz, wybór, hasło, opcjonalnie IP/maska/brama/DNS (domyślnie DHCP), ustawienie hasła urządzenia, nazwa urządzenia.
 3. Zapis do NVS, próba połączenia; sukces → AP wyłączony, adres IP pokazany w portalu; błąd → AP zostaje.
 4. Utrata sieci → po ok. 1 min AP awaryjny ponownie (bez kasowania danych). Reset fabryczny: przytrzymanie przycisku BOOT 10 s lub z WWW.

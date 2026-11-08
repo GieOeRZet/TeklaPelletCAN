@@ -18,6 +18,7 @@
 static const char* TAG = "wifi";
 WifiMgr g_wifi;
 static esp_netif_t *g_sta = nullptr, *g_ap = nullptr;
+static const char* kApIpStr = "10.77.77.1";   // podsieć AP inna niż typowe sieci domowe (192.168.x.x)
 static const char* kApPassword = "qwerty123";     // domyślne hasło AP (decyzja właściciela; AP działa tylko do skonfigurowania sieci)
 
 static uint32_t now_ms() { return (uint32_t)(esp_timer_get_time() / 1000); }
@@ -68,6 +69,18 @@ void WifiMgr::start(const Settings& s, NvsStore& store) {
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     g_sta = esp_netif_create_default_wifi_sta();
     g_ap = esp_netif_create_default_wifi_ap();
+    {   // AP w podsieci 10.77.77.0/24 (domyślne 192.168.4.x kolidowało z siecią IoT użytkownika)
+        esp_netif_dhcps_stop(g_ap);
+        esp_netif_ip_info_t ii = {};
+        ii.ip.addr = esp_ip4addr_aton(kApIpStr); ii.gw.addr = ii.ip.addr; ii.netmask.addr = esp_ip4addr_aton("255.255.255.0");
+        esp_netif_set_ip_info(g_ap, &ii);
+        esp_netif_dns_info_t d = {};
+        d.ip.type = ESP_IPADDR_TYPE_V4; d.ip.u_addr.ip4.addr = ii.ip.addr;
+        esp_netif_set_dns_info(g_ap, ESP_NETIF_DNS_MAIN, &d);
+        uint8_t offer = 1;
+        esp_netif_dhcps_option(g_ap, ESP_NETIF_OP_SET, ESP_NETIF_DOMAIN_NAME_SERVER, &offer, sizeof offer);
+        esp_netif_dhcps_start(g_ap);
+    }
     esp_netif_set_hostname(g_sta, hostname_.c_str());
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
@@ -133,7 +146,7 @@ void WifiMgr::connect_sta(const Settings& s) {
 }
 
 void WifiMgr::run() {
-    // serwer DNS portalu (UDP 53): w trybie AP kieruje każdą nazwę na 192.168.4.1
+    // serwer DNS portalu (UDP 53): w trybie AP kieruje każdą nazwę na 10.77.77.1
     int dns = socket(AF_INET, SOCK_DGRAM, 0);
     sockaddr_in a = {};
     a.sin_family = AF_INET; a.sin_port = htons(53); a.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -148,7 +161,7 @@ void WifiMgr::run() {
             sockaddr_in from; socklen_t fl = sizeof from;
             int n = recvfrom(dns, qbuf, sizeof qbuf, 0, (sockaddr*)&from, &fl);
             if (n > 0 && ap_active_) {
-                auto resp = tpc::dns_captive_response(qbuf, (size_t)n, (192u << 24) | (168u << 16) | (4u << 8) | 1u);
+                auto resp = tpc::dns_captive_response(qbuf, (size_t)n, (10u << 24) | (77u << 16) | (77u << 8) | 1u);
                 if (!resp.empty()) sendto(dns, resp.data(), resp.size(), 0, (sockaddr*)&from, fl);
             }
         } else {

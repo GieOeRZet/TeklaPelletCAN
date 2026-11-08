@@ -166,6 +166,7 @@ private:
     uint8_t scan_sub_ = 1, scan_node_ = 4;
     uint32_t sdo_ok_ = 0, sdo_abort_ = 0, sdo_timeout_ = 0, rx_frames_ = 0, rx_sdo_ = 0, last_abort_code_ = 0;
     uint16_t last_abort_index_ = 0;
+    std::map<uint16_t, uint32_t> timeouts_;       // rejestr -> liczba timeoutów (diagnostyka)
     bool was_can_ok_ = false;
     std::function<void(const std::string&)> log_;
     void logf(const char* fmt, ...) __attribute__((format(printf, 2, 3)));

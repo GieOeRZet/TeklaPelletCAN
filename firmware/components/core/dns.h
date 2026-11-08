@@ -1,5 +1,5 @@
 #pragma once
-// Prosty serwer DNS dla portalu (captive portal): każde zapytanie A dostaje adres urządzenia (192.168.4.1).
+// Prosty serwer DNS dla portalu (captive portal): każde zapytanie A dostaje adres urządzenia (10.77.77.1).
 // Czysta funkcja budująca odpowiedź – gniazdo UDP obsługuje warstwa platformy.
 #include <cstddef>
 #include <cstdint>

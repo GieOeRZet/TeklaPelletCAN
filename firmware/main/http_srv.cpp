@@ -50,7 +50,7 @@ static esp_err_t send_json(httpd_req_t* req, int code, const std::string& body) 
 
 static esp_err_t redirect_portal(httpd_req_t* req) {
     httpd_resp_set_status(req, status_text(302));
-    httpd_resp_set_hdr(req, "Location", "http://192.168.4.1/portal.html");
+    httpd_resp_set_hdr(req, "Location", "http://10.77.77.1/portal.html");
     httpd_resp_set_hdr(req, "Cache-Control", "no-store");
     return httpd_resp_send(req, nullptr, 0);
 }
@@ -77,7 +77,7 @@ static esp_err_t handle(httpd_req_t* req) {
 
     const tpc::WifiStatus ws = g_wifi.status();
     const std::string host = hdr(req, "Host");
-    const bool our_host = host.rfind("192.168.4.", 0) == 0 || host.rfind(g_wifi.hostname(), 0) == 0 || host == g_wifi.ip() ||
+    const bool our_host = host.rfind("10.77.77.", 0) == 0 || host.rfind(g_wifi.hostname(), 0) == 0 || host == g_wifi.ip() ||
                           host.rfind(g_wifi.ip() + ":", 0) == 0;
 
     if (path.rfind("/api/", 0) == 0) {

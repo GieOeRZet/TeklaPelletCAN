@@ -33,6 +33,7 @@ public:
 
     // Flagi błędów EFLG (0x2D); 0 = brak błędów.
     uint8_t error_flags();
+    void clear_error_flags();          // zeruje flagi przepełnienia (RX0OVR/RX1OVR) – są „lepkie”, bez tego pokazują stary błąd
 
     // Niskopoziomowe (publiczne dla testów).
     bool write_reg(uint8_t addr, uint8_t value);
