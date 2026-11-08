@@ -169,4 +169,6 @@ jobs:
             echo "### Zmiany"
             git log --pretty='- %s' $RANGE | head -40
           } > notes.md
-          gh release create "$TAG" --target "$GITHUB_SHA" --title "TeklaPelletCAN $TAG" --notes-file notes.md art/teklapelletcan.bin art/teklapelletcan.bin.sig art/teklapelletcan-factory.bin
+          mapfile -t FILES < <(find art -type f \( -name 'teklapelletcan*.bin' -o -name 'teklapelletcan*.sig' \) | sort)
+          echo "zalaczniki: ${FILES[*]}"
+          gh release create "$TAG" --target "$GITHUB_SHA" --title "TeklaPelletCAN $TAG" --notes-file notes.md "${FILES[@]}"
