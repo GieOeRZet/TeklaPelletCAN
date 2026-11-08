@@ -9,3 +9,14 @@ jobs:
         run: python3 tools/gen_points.py --check
       - name: Testy rdzenia (host)
         run: cmake -S firmware/test -B build-host && cmake --build build-host && ctest --test-dir build-host --output-on-failure
+  idf-build:
+    runs-on: ubuntu-latest
+    container: espressif/idf:v5.4.1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kompilacja ESP-IDF (esp32c6)
+        run: |
+          . $IDF_PATH/export.sh
+          cd firmware
+          idf.py set-target esp32c6
+          idf.py build

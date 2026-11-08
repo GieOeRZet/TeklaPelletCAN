@@ -148,7 +148,7 @@ ESP **nie ma internetu**, więc nie sprawdza wersji samo. Robi to klient, który
 - `firmware/components/core` (bez zależności od ESP, testy na hoście, `ctest`): ramka CAN, klient SDO (odczyt/zapis expedited, abort), kodowanie wartości rejestrów, sterownik MCP2515 przez interfejs `ISpi`.
 - Dodano: `version` (porównywanie wersji, ukrywanie wydań beta), `net_fsm` (automat AP/STA z awaryjnym AP i testem nowych danych) – z testami.
 - Dodano: `point` + `points_table.cpp` (81 nastaw wygenerowanych z `rejestry/punkty.csv` przez `tools/gen_points.py`, CI pilnuje aktualności), `access` (poziomy 0/1/2, PIN, autoblokada 5 min, `mirror`, walidacja zakresu i kodowanie zapisu), `sdo_queue` (jedno zapytanie w locie, priorytet zapisów, limit czasu 200 ms, 2 ponowienia, abort), kodowanie wartości ze znakiem (int16) – z testami.
-- `firmware/main`: warstwa ESP-IDF (SPI, `app_main` z próbnym odczytem). **Jeszcze niezbudowane w ESP-IDF** – to kod do pierwszej kompilacji na sprzęcie.
+- `firmware/main`: warstwa ESP-IDF (SPI, `app_main` z próbnym odczytem). **Kompiluje się w ESP-IDF 5.4.1 dla ESP32-C6** (obraz ok. 166 KB), ale nie był jeszcze uruchamiany na sprzęcie. Zobacz [BUDOWANIE.md](BUDOWANIE.md).
 
 ## 16. Jak przenosić nowości z ESPHome (PelletCAN)
 W ESPHome każdy rejestr siedzi w kilku równoległych tablicach C++ w lambdach (`ix/lo/hi/lv`, listy odczytu `l0/l1/l2`, kodowanie w łańcuchu `if/else`) i w kluczach numerycznych zaszytych w karcie. Ręczny transfer jest żmudny i podatny na błędy, dlatego:
