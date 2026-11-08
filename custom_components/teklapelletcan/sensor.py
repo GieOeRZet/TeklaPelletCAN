@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from homeassistant.components.sensor import SensorDeviceClass, SensorEntity
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import EntityCategory
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -31,7 +32,7 @@ class TeklaSensor(TeklaEntity, SensorEntity):
             except ValueError:
                 pass
         if item["id"] in ("sdo_last", "diag_rep", "snap_txt", "conf_txt", "stat_txt", "fw_ver", "sig_txt"):
-            self._attr_entity_category = "diagnostic"
+            self._attr_entity_category = EntityCategory.DIAGNOSTIC
 
     @property
     def native_value(self):

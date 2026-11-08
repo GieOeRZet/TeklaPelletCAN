@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Tabela punktow aktualna
-        run: python3 tools/gen_points.py --check
+      - name: Tabele wygenerowane aktualne
+        run: python3 tools/gen_points.py --check && python3 tools/sync_web.py --check
       - name: Testy rdzenia (host)
         run: cmake -S firmware/test -B build-host && cmake --build build-host && ctest --test-dir build-host --output-on-failure
   idf-build:
@@ -20,3 +20,17 @@ jobs:
           cd firmware
           idf.py set-target esp32c6
           idf.py build
+  ha-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: sudo apt-get update && sudo apt-get install -y libmbedtls-dev
+      - name: Symulator urzadzenia (host)
+        run: cmake -S firmware/test -B build-host && cmake --build build-host
+      - name: Testy integracji Home Assistant
+        run: |
+          pip install pytest-homeassistant-custom-component
+          python -m pytest -q

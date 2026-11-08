@@ -3,6 +3,7 @@
   "name": "TeklaPelletCAN",
   "codeowners": ["@GieOeRZet"],
   "config_flow": true,
+  "after_dependencies": ["frontend"],
   "dependencies": ["http"],
   "documentation": "https://github.com/GieOeRZet/TeklaPelletCan",
   "integration_type": "device",

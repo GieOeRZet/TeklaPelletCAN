@@ -21,7 +21,8 @@ def _free_port() -> int:
 
 
 @pytest.fixture(autouse=True)
-def auto_enable_custom_integrations(enable_custom_integrations):
+def auto_enable_custom_integrations(enable_custom_integrations, socket_enabled):
+    """Włącza własne integracje i gniazda (symulator urządzenia działa na localhost)."""
     yield
 
 
@@ -39,7 +40,18 @@ def sim():
                 break
             except Exception:
                 time.sleep(0.1)
-        time.sleep(7)  # czas na pierwszy cykl odczytu
+        # czekamy, aż silnik przeczyta stany z atrapy kotła (pierwszy pełny cykl ok. 15-20 s)
+        import json
+
+        for _ in range(240):
+            try:
+                st = json.load(urllib.request.urlopen(f"http://127.0.0.1:{port}/api/v1/states?prefix=tekla", timeout=1))
+                got = {x["id"]: x["state"] for x in st["states"]}
+                if all(got.get(k) not in (None, "unknown") for k in ("burner_state_text", "boiler_on", "co_mode_text", "cwu_mode_text")):
+                    break
+            except Exception:
+                pass
+            time.sleep(0.25)
         yield "127.0.0.1", port
     finally:
         proc.terminate()

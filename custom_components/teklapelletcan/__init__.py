@@ -63,7 +63,10 @@ async def async_setup(hass: HomeAssistant, config: dict[str, Any]) -> bool:
     www = Path(__file__).parent / "www"
     if www.is_dir():
         await hass.http.async_register_static_paths([StaticPathConfig(f"/{DOMAIN}_static", str(www), False)])
-        frontend.add_extra_js_url(hass, CARD_URL)
+        try:
+            frontend.add_extra_js_url(hass, CARD_URL)
+        except KeyError:   # frontend niezaładowany (np. instalacja bez interfejsu) – kartę można dodać ręcznie jako zasób
+            _LOGGER.debug("frontend niedostępny, karta nie została dodana automatycznie")
     return True
 
 

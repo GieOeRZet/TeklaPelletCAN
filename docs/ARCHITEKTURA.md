@@ -166,3 +166,15 @@ Cel: oryginalna karta działa **bez zmian zachowania**, z tym samym interfejsem 
 - integracja HA tworzy encje o tych samych nazwach i usługi o tych samych nazwach akcji, więc karta działa w HA tak samo.
 
 Status silnika: odczyt cykliczny, stan 126 punktów (sensory/binarne/enumy), nastawy (87 kluczy) z walidacją zakresu i poziomu dostępu, zapis z odczytem zwrotnym, autoblokada PIN – z testami z atrapą kotła (`test_engine`). Do przeniesienia z ESPHome: encje tekstowe i obliczane (historia alarmów 20 wpisów, harmonogramy, test wyjść, statystyki/konfiguracja, moc kW/spalanie/prognoza paliwa, przyciski podajnika/dmuchawy, Snap, raport) oraz pozostałe akcje (`set_schedule`, `set_output`, `sdo_*`, ...).
+
+## 19. Stan implementacji (aktualny)
+Zweryfikowane automatycznie (host, w CI):
+- **Silnik** (`engine`): odczyt cykliczny, nastawy z poziomami PIN 0/1/2, warstwa obliczana (moc kW, spalanie, zbiornik, prognoza paliwa, PDO podajnik/dmuchawa), historia alarmów (20 wpisów, potwierdzanie), harmonogramy, test wyjść (klucz 2, autopowrót), konfiguracja i statystyki, 18 usług, przyciski, selecty i przełącznik kotła, skaner rejestrów. Katalog **190 encji** o nazwach jak w ESPHome (`rejestry/encje.csv`).
+- **API REST** (`api`): stany w formacie HA, usługi, parowanie z hasłem urządzenia i tokenem; ponowne parowanie tego samego klienta nie tworzy duplikatu, wiele różnych klientów (HA) może używać jednego urządzenia.
+- **Karta** (`web/`): oryginalna karta PelletCAN z cienką warstwą zgodności (`shim.js`) – sprawdzona w prawdziwej przeglądarce (ekrany, zapis z PIN-em, parowanie).
+- **Integracja HA** (`custom_components/teklapelletcan`): config flow (ręczny IP + zeroconf), encje z tymi samymi `entity_id` co w ESPHome, usługi `<węzeł>_<akcja>`, karta w pakiecie – 7 testów na prawdziwym symulatorze urządzenia.
+
+Jeszcze nie zrobione / niezweryfikowane na sprzęcie:
+- warstwa ESP: serwer HTTP na `esp_http_server`, Wi-Fi + portal AP (automat `net_fsm` gotowy), NVS (hasło, tokeny, Wi-Fi), mDNS (komponent `mdns` nie jest w ESP-IDF 5.4 – własny responder), OTA z podpisem, osadzenie karty w obrazie;
+- Snap A/B (migawki rejestrów), pełny edytor karty w HA po stronie integracji (poza tym, co robi oryginalna karta), aplikacja Android;
+- uruchomienie na prawdziwym ESP, MCP2515 i kotle.
