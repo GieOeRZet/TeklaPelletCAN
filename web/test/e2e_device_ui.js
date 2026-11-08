@@ -69,7 +69,7 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   await p.click('#upgo');
   await p.waitForFunction(() => /zweryfikowano podpis/.test(document.getElementById('upmsg').textContent), null, { timeout: 15000 });
   check('aktualizacja pobrana z "internetu" i przyjeta przez urzadzenie (podpis OK)', true);
-  const idx = await (async () => { const pg = await b.newPage(); await pg.route(u => !u.href.startsWith(BASE), r => r.abort());   // symulacja: przeglądarka bez internetu (blokuj wszystko poza urządzeniem) await pg.goto(BASE + '/index.html'); await pg.waitForTimeout(3000); const t = await pg.locator('#setlink').innerText(); await pg.close(); return t; })();
+  const idx = await (async () => { const pg = await b.newPage(); await pg.route(u => !u.href.startsWith(BASE), r => r.abort()); /* przeglądarka bez internetu: blokuj wszystko poza urządzeniem */ await pg.goto(BASE + '/index.html'); await pg.waitForTimeout(3000); const t = await pg.locator('#setlink').innerText(); await pg.close(); return t; })();
   check('brak internetu w przegladarce: strona dziala bez wskaznika', /Ustawienia, aktualizacja, dziennik/.test(idx), idx);
 
   // 4. OTA: poprawny podpis
