@@ -148,3 +148,9 @@ ESP **nie ma internetu**, więc nie sprawdza wersji samo. Robi to klient, który
 - `firmware/components/core` (bez zależności od ESP, testy na hoście, `ctest`): ramka CAN, klient SDO (odczyt/zapis expedited, abort), kodowanie wartości rejestrów, sterownik MCP2515 przez interfejs `ISpi`.
 - Dodano: `version` (porównywanie wersji, ukrywanie wydań beta), `net_fsm` (automat AP/STA z awaryjnym AP i testem nowych danych) – z testami.
 - `firmware/main`: warstwa ESP-IDF (SPI, `app_main` z próbnym odczytem). **Jeszcze niezbudowane w ESP-IDF** – to kod do pierwszej kompilacji na sprzęcie.
+
+## 16. Jak przenosić nowości z ESPHome (PelletCAN)
+W ESPHome każdy rejestr siedzi w kilku równoległych tablicach C++ w lambdach (`ix/lo/hi/lv`, listy odczytu `l0/l1/l2`, kodowanie w łańcuchu `if/else`) i w kluczach numerycznych zaszytych w karcie. Ręczny transfer jest żmudny i podatny na błędy, dlatego:
+1. **Jedno źródło prawdy:** tabela punktów w `rejestry/` (indeks, kodowanie, zakres, poziom, nazwa). Firmware (generowana tablica C++), karta i integracja HA biorą z niej wszystko; integracja i karta czytają ją z urządzenia (`/points`), więc nowy punkt nie wymaga zmian w HA ani w karcie.
+2. **Import:** `python3 tools/import_pelletcan.py <PelletCAN_packages.yaml>` odtwarza z ESPHome tablicę nastaw (`rejestry/punkty.csv`, 81 pozycji: indeks, kodowanie, zakres, poziom). Po dodaniu nastawy w ESPHome uruchamiasz skrypt i widzisz w `git diff` tylko nowe wiersze.
+3. **Czego skrypt nie przeniesie:** logiki w lambdach (moc kW, spalanie, prognoza, harmonogramy, test wyjść, PDO) – te elementy przepisujemy ręcznie w module `calc`.

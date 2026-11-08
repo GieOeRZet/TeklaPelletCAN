@@ -1,0 +1,82 @@
+klucz,indeks,nazwa,kodowanie,ze_znakiem,min,max,poziom
+0,0x2270,Moc min [%],FlagByte,0,30.0,100.0,0
+1,0x2271,Moc max [%],FlagByte,0,30.0,100.0,0
+2,0x2292,Wartość opałowa [kWh/kg],FlagTenths,0,2.0,10.0,0
+3,0x2273,Korekta powietrza [%],Plain,1,-10.0,40.0,0
+4,0x2272,Ilość paliwa test [kg/h],Tenths,0,5.0,100.0,0
+5,0x2261,Krzywa dmuchawy – obroty dmuchawy [%] przy mocy kotła 20 %,Plain,0,0.0,100.0,1
+6,0x2262,Krzywa dmuchawy – obroty dmuchawy [%] przy mocy kotła 40 %,Plain,0,0.0,100.0,1
+7,0x2263,Krzywa dmuchawy – obroty dmuchawy [%] przy mocy kotła 60 %,Plain,0,0.0,100.0,1
+8,0x2264,Krzywa dmuchawy – obroty dmuchawy [%] przy mocy kotła 80 %,Plain,0,0.0,100.0,1
+9,0x2265,Krzywa dmuchawy – obroty dmuchawy [%] przy mocy kotła 100 %,Plain,0,0.0,100.0,1
+10,0x2208,Histereza załączenia kotła [°C],Plain,0,0.0,20.0,0
+11,0x2291,Histereza wyłączenia kotła [°C],Plain,0,0.0,20.0,0
+12,0x22BD,CO 1 – histereza [°C],FlagTenths,0,0.0,5.0,0
+13,0x22C1,CO 1 – kalibracja czujnika [°C],Tenths,1,-3.0,3.0,0
+14,0x2142,CO 1 – tryb pracy (ręczny/pogodowy),FlagByte,0,0.0,1.0,0
+15,0x2146,CO 1 – temperatura zadana ręczna [°C],FlagByte,0,20.0,80.0,0
+16,0x22C5,"CO 1 – krzywa pogodowa, temperatura zewnętrzna −20 °C [°C zasilania]",FlagByte,0,20.0,80.0,0
+17,0x22C9,"CO 1 – krzywa pogodowa, temperatura zewnętrzna 0 °C [°C zasilania]",FlagByte,0,20.0,80.0,0
+18,0x22CD,"CO 1 – krzywa pogodowa, temperatura zewnętrzna +10 °C [°C zasilania]",FlagByte,0,20.0,80.0,0
+19,0x2212,CWU – histereza [°C],Plain,0,0.0,20.0,0
+20,0x2210,CWU – zagrzej teraz,FlagByte,0,0.0,1.0,0
+21,0x300D,CWU – priorytet,FlagByte,0,0.0,1.0,0
+22,0x2256,Wstępna dawka paliwa [s],Plain,0,0.0,200.0,1
+23,0x2257,Podawanie max [s],Tenths,0,1.0,15.0,1
+24,0x226A,Próg foto,FlagByte,0,5.0,100.0,1
+25,0x2289,Moc dmuchawy rozpalanie [%],FlagByte,0,0.0,100.0,1
+26,0x3704,Moc dmuchawy rozżarzanie [%],FlagByte,0,0.0,100.0,1
+27,0x300C,Moc dmuchawy wygaszanie [%],FlagByte,0,0.0,100.0,1
+28,0x2290,Czas rozżarzania [min],FlagByte,0,0.0,20.0,1
+29,0x299A,Rozżarzanie paliwo [%],FlagByte,0,20.0,100.0,1
+30,0x226B,Czas wygaszania [min],FlagByte,0,1.0,15.0,1
+31,0x3605,Sterowanie Lambda (0/1),FlagByte,0,0.0,1.0,1
+32,0x214E,Tlen dla mocy 30 % [%],FlagTenths,0,5.0,15.0,1
+33,0x2152,Tlen dla mocy 100 % [%],FlagTenths,0,5.0,15.0,1
+34,0x2258,Liczba czyszczeń rusztu,FlagByte,0,0.0,10.0,1
+35,0x2999,Odstęp czyszczenia [h],Plain,0,1.0,12.0,1
+36,0x3715,Czas pauzy [min],FlagByte,0,0.0,60.0,1
+37,0x3716,Moc w pauzie [%],FlagByte,0,5.0,30.0,1
+38,0x3717,Dmuchawa w pauzie [%],FlagByte,0,10.0,50.0,1
+39,0x2153,Bezwładność palnika [min],FlagByte,0,1.0,60.0,2
+40,0x3003,Czas ruchu rusztu [s],Tenths,0,0.0,60.0,2
+41,0x370B,Pod. palnika [% pod. zasobnika],Plain,0,50.0,300.0,2
+42,0x3700,Okres podajnika zasobnika [s],Plain,0,5.0,180.0,2
+43,0x300E,Minimalne obroty dmuchawy [*100],Plain,0,0.0,5.0,2
+44,0x2214,CWU – źródło ciepła,FlagByte,0,0.0,1.0,1
+45,0x2216,CWU – zwiększenie temperatury źródła,FlagByte,0,5.0,20.0,1
+46,0x2218,CWU – delta załączenia pompy,FlagByte,0,2.0,20.0,1
+47,0x3601,Zbiornik – ilość paliwa [kg],Plain,0,0.0,1500.0,0
+48,0x2207,Kociol – minimalna temperatura pomp [°C],Plain,0,20.0,70.0,1
+49,0x216C,Kociol – minimalna temperatura powrotu [°C],Plain,0,35.0,75.0,1
+50,0x216E,Kociol – czas mieszacza [s],Plain,0,60.0,360.0,1
+51,0x22B1,CO1 – zwiekszenie temperatury zrodla [°C],FlagByte,0,0.0,30.0,1
+52,0x22D5,CO1 – temperatura maksymalna [°C],FlagByte,0,30.0,80.0,1
+53,0x22D9,CO1 – wspolczynnik korekcji t. CO,FlagByte,0,0.0,20.0,1
+54,0x22DD,CO1 – MAX Tzew pomp komfort [°C],FlagByte,0,0.0,30.0,1
+55,0x22E1,CO1 – MAX Tzew pomp ekonomiczny [°C],FlagByte,0,0.0,30.0,1
+56,0x22E5,CO1 – obnizenie temperatury CO [°C],FlagByte,0,0.0,40.0,1
+57,0x22E9,CO1 – MIN temperatura CO pomp [°C],FlagByte,0,20.0,60.0,1
+58,0x22B5,CO1 – czas mieszacza [s],Plain,0,60.0,360.0,1
+59,0x22F1,CO1 – stala pompa (0/1),FlagByte,0,0.0,1.0,1
+60,0x22F9,CO1 – obnizenie Tco dla ochrony powrotu (0/1),FlagByte,0,0.0,1.0,1
+61,0x22D1,CO1 – zrodlo (0 Kociol / 1 Bufor),FlagByte,0,0.0,1.0,1
+62,0x22A5,CO1 – czujnik CO (0/1),FlagByte,0,0.0,1.0,1
+63,0x22A1,CO1 – czujnik pokojowy,FlagByte,0,0.0,5.0,1
+64,0x3708,Kociol – wybieg pompy [min],FlagByte,0,0.0,120.0,1
+65,0x3604,Kociol – rezerwa paliwa stop [kg],Plain,0,0.0,100.0,1
+66,0x201C,Hot water 1 temperature max (FW panela),FlagByte,0,40.0,80.0,1
+67,0x2297,HW1 anti legionella (FW panela),FlagByte,0,0.0,1.0,0
+68,0x2268,Wartość 20 (kandydat: moc min?),Plain,0,0.0,100.0,1
+69,0x226E,exh. fan char. 2 (FW panela),Plain,0,0.0,100.0,1
+70,0x0226,,Plain,0,0.0,100.0,1
+71,0x2275,Wartość 50 (kandydat: moc?),Plain,0,0.0,100.0,1
+72,0x227A,Wartość 60 (kandydat: moc?),Plain,0,0.0,100.0,1
+73,0x3506,Sound alarm activation (FW panela),FlagByte,0,0.0,1.0,1
+74,0x3508,Silence hours from (FW panela),FlagByte,0,0.0,24.0,1
+75,0x3509,Silence hours to (FW panela),FlagByte,0,0.0,24.0,1
+76,0x3709,Nominal power [kW] (FW panela),Plain,0,4.0,200.0,2
+77,0x370E,Pellet predose [g] (FW panela),Plain,0,0.0,500.0,1
+78,0x3701,Min EGT required [C] (FW panela),Plain,0,70.0,120.0,1
+79,0x3703,Max exhaust gas temp. [C] (FW panela),Plain,0,180.0,280.0,1
+80,0x3122,Exchanger cleaning interval [min] (FW panela),Plain,0,10.0,600.0,1
