@@ -757,7 +757,7 @@ std::string Engine::states_json(const std::string& prefix, uint32_t now) const {
             auto it = computed_.find(en.id);
             if (it != computed_.end()) state = it->second;
         }
-        w.begin_obj().kv("entity_id", entity_id(en, prefix)).kv("state", state);
+        w.begin_obj().kv("entity_id", entity_id(en, prefix)).kv("state", state).kv("id", en.id).kv("domain", en.domain);
         w.key("attributes").begin_obj().kv("friendly_name", en.name);
         if (en.unit[0]) w.kv("unit_of_measurement", en.unit);
         if (en.dclass[0]) w.kv("device_class", en.dclass);

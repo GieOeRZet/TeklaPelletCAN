@@ -1,0 +1,35 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "TeklaPelletCAN",
+        "description": "Device IP address (automatic discovery works via mDNS).",
+        "data": {
+          "host": "IP address",
+          "port": "Port"
+        }
+      },
+      "confirm": {
+        "title": "Device found",
+        "description": "Add device {id} ({host})?"
+      },
+      "auth": {
+        "title": "Pairing",
+        "description": "Enter the device password. On first setup you will set it now (min. 4 characters).",
+        "data": {
+          "password": "Device password",
+          "name": "Name (entity prefix)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the device",
+      "invalid_auth": "Wrong password"
+    },
+    "abort": {
+      "already_configured": "This device is already added to this Home Assistant",
+      "cannot_connect": "Cannot connect to the device"
+    }
+  }
+}

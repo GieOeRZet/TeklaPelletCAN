@@ -1,0 +1,14 @@
+{
+  "domain": "teklapelletcan",
+  "name": "TeklaPelletCAN",
+  "codeowners": ["@GieOeRZet"],
+  "config_flow": true,
+  "dependencies": ["http"],
+  "documentation": "https://github.com/GieOeRZet/TeklaPelletCan",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/GieOeRZet/TeklaPelletCan/issues",
+  "requirements": [],
+  "version": "0.1.0",
+  "zeroconf": ["_teklapelletcan._tcp.local."]
+}
