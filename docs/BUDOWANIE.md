@@ -28,3 +28,14 @@ cmake -S firmware/test -B build-host && cmake --build build-host && ctest --test
 esphome upload --file build/teklapelletcan.bin --device <IP> --ota-password <ota_pass>
 ```
 Zadziała, jeśli obraz mieści się w partycji aplikacji ESPHome (ok. 1,7 MB na 4 MB flash). Układ partycji ESPHome pozostaje (chyba że wgrasz też tablicę partycji nowszym ESPHome). Na wszelki wypadek miej kabel USB i kopię starego firmware.
+
+## Test karty w przeglądarce (bez sprzętu)
+Karta z `web/` (oryginalna karta PelletCAN + `shim.js`) jest sprawdzana w prawdziwej przeglądarce na danych z silnika:
+```bash
+cmake -S firmware/test -B build-host && cmake --build build-host
+build-host/sim_dump web/test/states.json            # silnik + atrapa kotła -> stany encji
+python3 web/test/mock_server.py 8099 &              # atrapa urządzenia (API + pliki web/)
+node web/test/e2e_card.js http://127.0.0.1:8099/index.html /tmp/karta.png
+node web/test/e2e_screens.js                        # ekrany: palnik, CO, CWU, menu, alarmy, info
+```
+(wymaga Node z pakietem `playwright`).

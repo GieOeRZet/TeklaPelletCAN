@@ -3,38 +3,9 @@
 #include <map>
 #include <string>
 #include <vector>
-#include "../components/core/engine.h"
+#include "fake_boiler.h"
 
 using namespace tpc;
-
-// Atrapa kotła: odpowiada na SDO jak prawdziwy (cs=0x42, 4 bajty danych), zapisuje zapisy.
-struct FakeBoiler {
-    std::map<uint16_t, uint32_t> reg;
-    std::vector<std::pair<uint16_t, uint32_t>> writes;
-    std::vector<CanFrame> to_engine;
-    std::vector<uint16_t> reads_seen;
-    bool abort_all = false;
-
-    bool on_can(const CanFrame& f) {
-        if (f.id != 0x604) return true;
-        const uint16_t idx = f.data[1] | (f.data[2] << 8);
-        CanFrame r; r.id = 0x584; r.dlc = 8; r.data[1] = f.data[1]; r.data[2] = f.data[2]; r.data[3] = f.data[3];
-        if (abort_all) { r.data[0] = 0x80; r.data[7] = 0x06; to_engine.push_back(r); return true; }
-        if (f.data[0] == 0x40) {
-            reads_seen.push_back(idx);
-            auto it = reg.find(idx);
-            if (it == reg.end()) { r.data[0] = 0x80; r.data[4] = 0x00; r.data[5] = 0x00; r.data[6] = 0x02; r.data[7] = 0x06; }
-            else { r.data[0] = 0x42; for (int i = 0; i < 4; i++) r.data[4 + i] = (it->second >> (8 * i)) & 0xFF; }
-        } else {
-            uint32_t v = f.data[4] | (f.data[5] << 8);
-            writes.push_back({idx, v});
-            reg[idx] = v;
-            r.data[0] = 0x60;
-        }
-        to_engine.push_back(r);
-        return true;
-    }
-};
 
 static uint32_t run(Engine& e, FakeBoiler& b, uint32_t from, uint32_t ms) {
     uint32_t t = from;
@@ -59,10 +30,22 @@ int main() {
     b.reg[0x2261] = 55;             // krzywa dmuchawy (poziom 1)
     b.reg[0x2002] = 2;              // tryb kotła: Auto
     b.reg[0x3601] = 120;            // paliwo 120 kg
+    b.reg[0x3600] = 300;            // zbiornik 300 kg
+    b.reg[0x3604] = 20;             // rezerwa paliwa 20 kg
+    b.reg[0x2272] = 100; b.reg[0x2257] = 256 + 50; b.reg[0x3700] = 40; b.reg[0x2292] = 256 + 46; b.reg[0x4005] = 60;  // do mocy kW
+    b.reg[0x404C] = 256 + 2;                              // alarm: następna pozycja 2 -> ostatni slot 1
+    b.reg[0x4011] = 0x00010000 | 140;                     // slot 1: kod 140 (brak ognia), aktywny
+    b.reg[0x4025] = 1700000000; b.reg[0x4039] = 0;       // początek, koniec (otwarty)
+    b.reg[0x4010] = 0x00020000 | 2;                       // slot 0: przegrzanie, oczekuje
+    b.reg[0x2154] = 0x00FF00;                             // harmonogram CWU pon
+    b.reg[0x2259] = 256; b.reg[0x2283] = 256;             // podajnik/dmuchawa: Automat
+    b.reg[0x2005 + 0] = 257;
 
     const uint8_t dev[6] = {0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6};
     EngineConfig cfg;
     cfg.boot_delay_ms = 100;
+    cfg.boot_guard_ms = 0;
+    cfg.test_revert_s = 0;
     Engine e(cfg, [&](const CanFrame& f) { return b.on_can(f); }, dev);
 
     uint32_t t = run(e, b, 0, 60000);   // 60 s: pełny cykl odczytów
@@ -118,6 +101,95 @@ int main() {
     assert(b.writes.back().first == 0x2270 && b.writes.back().second == 256 + 100);
     assert(e.write("power_max", 30, t) == WriteStatus::Rejected);   // moc max < moc min
 
+
+    // ---- warstwa obliczana i encje dodatkowe
+    t = run(e, b, t, 40000);
+    assert(e.text_of("burner_state_code") == "5");
+    assert(e.text_of("tank_pct") == "40");                         // 120/300
+    assert(e.text_of("fuel_low") == "off");
+    assert(e.text_of("burner_kw") != "" && e.text_of("burner_fuel_rate") != "");
+    // test=10,0 kg; tmax=30,6; per=40; cv=4,6; p=60 -> kgh100=7,65; kW = 7,65*4,6*0,90*0,60 = 19,0; spalanie 19,0026/(4,6*0,85) = 4,9
+    assert(e.text_of("burner_kw") == "19");
+    assert(e.text_of("burner_fuel_rate") == "4.9");
+    assert(e.text_of("can_ok") == "on" && e.text_of("mirror_mode") == "off");
+    assert(e.text_of("fw_ver") == "0.1.0");
+    assert(e.text_of("alarm_last_text") == "kod 140 (Brak ognia/opalu), aktywny" ||
+           e.text_of("alarm_last_text").rfind("kod 140", 0) == 0);
+    assert(e.text_of("alarm_active") == "on");
+    assert(e.text_of("alarm_start_text") == "1700000000");
+    assert(e.text_of("ah_0").rfind("kod 2", 0) == 0 && e.text_of("ah_0").find(", oczekuje") != std::string::npos);
+    assert(e.text_of("ah_5") == "-");
+    assert(e.text_of("sch_cwu_txt").rfind("00FF00 ", 0) == 0);
+    // PDO modułu 86
+    CanFrame pdo; pdo.id = 0x456; pdo.dlc = 1; pdo.data[0] = 1; e.on_frame(pdo, t);
+    CanFrame pdo2; pdo2.id = 0x356; pdo2.dlc = 3; pdo2.data[0] = 0; pdo2.data[2] = 1; e.on_frame(pdo2, t);
+    t = run(e, b, t, 1000);
+    assert(e.text_of("feeder_running") == "on" && e.text_of("blower_running") == "off" && e.text_of("feeder2_running") == "on");
+
+    // ---- usługi
+    assert(e.call("set_setpoint", {{"which", 4}, {"value", 72}}, t) == Svc::Ok);
+    t = run(e, b, t, 1000);
+    assert(b.writes.back().first == 0x2003 && b.writes.back().second == 72);
+    assert(e.call("set_setpoint", {{"which", 2}, {"value", 21.5}}, t) == Svc::Ok);     // CO komfort: raw = 215
+    t = run(e, b, t, 1000);
+    assert(b.writes.back().first == 0x2032 && b.writes.back().second == 215);
+    assert(e.call("set_setpoint", {{"which", 2}, {"value", 99}}, t) == Svc::Range);
+    assert(e.call("set_boiler_mode", {{"mode", 3}}, t) == Svc::Ok);
+    t = run(e, b, t, 1000);
+    assert(b.writes.back().first == 0x2002 && b.writes.back().second == 3);
+    assert(e.call("set_param", {{"key", 0}, {"value", 45}}, t) == Svc::Ok);
+    assert(e.call("set_param", {{"key", 99}, {"value", 1}}, t) == Svc::BadArgs);
+    assert(e.call("nie_ma", {}, t) == Svc::UnknownAction);
+    // harmonogram: 24 bity, zapis 4-bajtowy
+    assert(e.call("set_schedule", {{"kind", 0}, {"day", 0}, {"bits", 0x0FF0F0}}, t) == Svc::Ok);
+    t = run(e, b, t, 1000);
+    assert(b.writes.back().first == 0x2154 && b.writes.back().second == 0x0FF0F0);
+    // test wyjść wymaga klucza 2
+    e.call("unlock", {{"pin", 900}}, t);
+    assert(e.call("set_output", {{"out", 1}, {"mode", 2}}, t) == Svc::Level);
+    e.call("unlock", {{"pin", 999}}, t);
+    assert(e.call("set_output", {{"out", 1}, {"mode", 2}}, t) == Svc::Ok);
+    assert(e.call("set_output", {{"out", 18}, {"mode", 2}}, t) == Svc::BadArgs);
+    t = run(e, b, t, 1000);
+    assert(b.writes.back().first == 0x2283 && b.writes.back().second == 0x0102);
+    assert(e.call("test_reset", {}, t) == Svc::Ok);
+    t = run(e, b, t, 1000);
+    assert(b.writes.back().first == 0x2283 && b.writes.back().second == 0x0100);
+    // przyciski i przełączniki
+    assert(e.press("podajnik_podaj_paliwo_30_s", t) == Svc::Ok);
+    t = run(e, b, t, 1000);
+    assert(b.writes.back().first == 0x2259 && (b.writes.back().second & 0xFF) == 2);
+    assert(e.press("podajnik_podaj_paliwo_30_s", t) == Svc::Blocked);      // już trwa podawanie -> blokada powtórzenia
+    t = run(e, b, t, 32000);                                                // po 30 s wraca do Automatu
+    assert(b.writes.back().first == 0x2259 && (b.writes.back().second & 0xFF) == 0);
+    assert(e.set_switch("boiler_power_sw", false, t) == Svc::Ok);
+    t = run(e, b, t, 1000);
+    assert(b.writes.back().first == 0x2005 && (b.writes.back().second & 0xFF) == 0);
+    assert(e.select("cwu_mode_sel", "Komfort", t) == Svc::Ok);
+    t = run(e, b, t, 1000);
+    assert(b.writes.back().first == 0x2014 && b.writes.back().second == 0x0103);
+    assert(e.select("cwu_mode_sel", "zly", t) == Svc::BadArgs);
+    // potwierdzenie alarmu: odczytany rejestr | bit 18, zapis 32-bitowy
+    assert(e.press("potwierdz_alarm", t) == Svc::Ok);
+    t = run(e, b, t, 1000);
+    assert(b.writes.back().first == 0x4011 && (b.writes.back().second & (1u << 18)) != 0);   // zapis 4-bajtowy z bitem 18
+    assert(e.press("raport_diagnostyczny_utworz", t) == Svc::Ok && e.text_of("diag_rep").rfind("TeklaPelletCAN", 0) == 0);
+    // skaner rejestrów
+    assert(e.call("sdo_scan", {{"from_index", 0x2001}, {"to_index", 0x2003}}, t) == Svc::Ok);
+    t = run(e, b, t, 2000);
+    assert(e.text_of("sdo_last").find("0x2003") == 0 || e.text_of("sdo_last") == "Skan zakonczony");
+    assert(e.call("sdo_scan_stop", {}, t) == Svc::Ok);
+    // sdo_read -> wynik w "SDO ostatni odczyt"
+    assert(e.call("sdo_read", {{"index", 0x2001}}, t) == Svc::Ok);
+    t = run(e, b, t, 1500);
+    assert(e.text_of("sdo_last").rfind("0x2001.1 = ", 0) == 0);
+
+    // ---- tryb mirror blokuje usługi
+    EngineConfig mc2; mc2.access.mirror = true; mc2.boot_guard_ms = 0;
+    Engine m2(mc2, [&](const CanFrame& f) { return b.on_can(f); }, dev);
+    assert(m2.call("set_setpoint", {{"which", 4}, {"value", 70}}, 0) == Svc::Mirror);
+    assert(m2.press("podajnik_automat", 0) == Svc::Mirror);
+
     // tryb mirror blokuje zapisy
     EngineConfig mc; mc.access.mirror = true;
     Engine m(mc, [&](const CanFrame& f) { return b.on_can(f); }, dev);
@@ -128,6 +200,17 @@ int main() {
     Engine d(cfg, [&](const CanFrame& f) { return dead.on_can(f); }, dev);
     uint32_t td = run(d, dead, 0, 20000);
     assert(d.state_json(td).find("\"boiler_temp\":null") != std::string::npos);
+
+    // stany w formacie HA (dla karty i integracji)
+    std::string hs = e.states_json("tekla", t);
+    assert(contains(hs, "\"entity_id\":\"sensor.tekla_kociol_temperatura\",\"state\":\"65.3\""));
+    assert(contains(hs, "\"unit_of_measurement\":\"\xC2\xB0" "C\""));
+    assert(contains(hs, "\"entity_id\":\"sensor.tekla_palnik_stan\",\"state\":\"Modulacja\""));
+    assert(contains(hs, "\"entity_id\":\"binary_sensor.tekla_kociol_wlaczony\",\"state\":\"off\""));
+    assert(contains(hs, "\"entity_id\":\"sensor.tekla_alarm_wpis_1\",\"state\":\"kod 2"));
+    assert(contains(hs, "\"entity_id\":\"sensor.tekla_palnik_kod_stanu\",\"state\":\"5\""));
+    assert(contains(hs, "\"entity_id\":\"binary_sensor.tekla_alarm_aktywny\",\"state\":\"on\""));
+    assert(slugify("Podajnik: Podaj paliwo (30 s)") == "podajnik_podaj_paliwo_30_s");
 
     std::string info = e.info_json(InfoExtras{"0.1.0", 12, 1, false}, t);
     assert(contains(info, "\"id\":\"A1B2C3D4E5F6\"") && contains(info, "\"fw\":\"0.1.0\""));

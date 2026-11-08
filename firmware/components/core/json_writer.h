@@ -16,9 +16,9 @@ public:
     JsonWriter& str(const std::string& v) { sep(); str_raw(v.c_str()); return *this; }
     JsonWriter& boolean(bool v) { sep(); s_ += v ? "true" : "false"; return *this; }
     JsonWriter& null() { sep(); s_ += "null"; return *this; }
-    JsonWriter& num(double v) {
-        sep();
-        if (!std::isfinite(v)) { s_ += "null"; return *this; }
+    // Liczba w zwartej postaci: całkowite bez ułamka, reszta max 4 miejsca bez zer na końcu.
+    static std::string fmt(double v) {
+        if (!std::isfinite(v)) return "null";
         char b[40];
         if (v == std::floor(v) && std::fabs(v) < 1e12) snprintf(b, sizeof b, "%.0f", v);
         else {
@@ -27,9 +27,9 @@ public:
             while (n > 0 && b[n - 1] == '0') b[--n] = 0;
             if (n > 0 && b[n - 1] == '.') b[--n] = 0;
         }
-        s_ += b;
-        return *this;
+        return b;
     }
+    JsonWriter& num(double v) { sep(); s_ += fmt(v); return *this; }
     // skróty: klucz + wartość
     JsonWriter& kv(const char* k, const std::string& v) { return key(k).str(v); }
     JsonWriter& kv(const char* k, const char* v) { return key(k).str(v); }
