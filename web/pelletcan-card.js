@@ -983,8 +983,8 @@
         .tr .tb{background:url(${U(19)}) 0 0/100% 100% no-repeat!important;border:0!important;border-radius:0!important;width:6.25cqw!important;height:6.46cqw!important}.tr .tb.ck{background-image:url(${U(20)})!important}.tr .tb svg{display:none!important}
         .sl i{background:url(${U(70)}) center/100% 100% no-repeat!important;box-shadow:none!important;border-radius:0!important;width:6.5cqw!important;height:6.5cqw!important;top:-2.15cqw!important;margin-left:-3.25cqw!important}` : '');
       };
-      // domyslnie z pakietu tylko zbiornik paliwa (48, 49, 50, 54); reszta grafik dopiero z grafiki: pelne
-      const FULL = t => !!(t && t._cfg && t._cfg.grafiki === 'pelne');
+      // grafiki: domyslne = z pakietu tylko zbiornik paliwa (48, 49, 50, 54); bez ustawienia (albo pelne) = wszystkie grafiki panelu
+      const FULL = t => !!(t && t._cfg && t._cfg.grafiki !== 'domyslne');   // domyślnie pełne grafiki panelu; 'domyslne' = tylko zbiornik paliwa
       const gate = (name, fn) => { const o = C.prototype[name]; C.prototype[name] = function (...a) { return FULL(this) ? fn.apply(this, a) : o.apply(this, a); }; };
       gate('_fan', function (spin) { return seq([8, 9, 10], 34, 27, spin); });
       gate('_augSvg', function (anim = true) { return seq([36, 37, 38], 34, 27, anim); });
@@ -1103,7 +1103,7 @@
         const c = this._cfg, ids = this._ids(), pf = pfOf(c, ids), keys = keysAll(), ex = c.entities || {};
         const d = {
           screen: c.screen || 'main', language: ({ dk: 'da', se: 'sv', cz: 'cs', est: 'et' }[String(c.language || 'pl').toLowerCase()] || c.language || 'pl'), device: c.entity_prefix ? String(c.entity_prefix) : 'auto',
-          esphome_node: c.esphome_node || '', grafiki: c.grafiki === 'pelne' ? 'pelne' : 'domyslne', boiler_image: [11, 12, 13].includes(+c.boiler_image) ? String(c.boiler_image) : '13', lite: !!c.lite, demo: !!c.demo, mirror_mode: typeof c.mirror === 'boolean' ? (c.mirror ? 'on' : 'off') : 'auto',
+          esphome_node: c.esphome_node || '', grafiki: c.grafiki === 'domyslne' ? 'domyslne' : 'pelne', boiler_image: [11, 12, 13].includes(+c.boiler_image) ? String(c.boiler_image) : '13', lite: !!c.lite, demo: !!c.demo, mirror_mode: typeof c.mirror === 'boolean' ? (c.mirror ? 'on' : 'off') : 'auto',
         };
         Object.keys(keys).forEach(r => { d['e_' + r] = ex[r] || (ids.length ? findRole(ids, r, keys[r], pf, this._hass.states) : ''); });   // pola od razu pokazuja wykryte encje
         return d;
@@ -1174,7 +1174,7 @@
         else Object.keys(keys).forEach(r => { const x = v['e_' + r]; if (x) entities[r] = x; });
         if (Object.keys(entities).length) cfg.entities = entities; else delete cfg.entities;
         const nd = (v.esphome_node || '').trim(); if (nd) cfg.esphome_node = nd; else delete cfg.esphome_node;
-        if (v.grafiki === 'pelne') cfg.grafiki = 'pelne'; else delete cfg.grafiki;
+        if (v.grafiki === 'domyslne') cfg.grafiki = 'domyslne'; else delete cfg.grafiki;   // pelne = domyślne w karcie
         if (v.boiler_image && v.boiler_image !== '13') cfg.boiler_image = +v.boiler_image; else delete cfg.boiler_image;
         if (v.lite) cfg.lite = true; else delete cfg.lite;
         if (v.demo) cfg.demo = true; else delete cfg.demo;

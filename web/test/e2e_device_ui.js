@@ -54,6 +54,13 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   await p.waitForFunction(() => /Nie udało się połączyć/.test(document.getElementById('msg').textContent), null, { timeout: 20000 });
   check('zmiana Wi-Fi: komunikat przy zlym hasle', true);
 
+  // 3a. grafiki panelu: domyslnie PELNE (bez ustawienia w konfiguracji karty); 'domyslne' wylacza. Czerwony kociol = img/panel/013.png
+  const panelFiles = async q => { const pg = await b.newPage({ viewport: { width: 520, height: 420 } }); const f = new Set(); pg.on('request', r => { if (r.url().includes('/img/panel/')) f.add(r.url().split('/img/panel/')[1].split('?')[0]); });
+    await pg.goto(BASE + '/index.html' + q); await pg.waitForTimeout(7000); await pg.close(); return f; };
+  const fDefault = await panelFiles(''), fBasic = await panelFiles('?grafiki=domyslne');
+  check('grafiki pelne domyslnie (karta bez ustawienia): oryginalny kociol Estyma', fDefault.has('013.png'), [...fDefault].join(','));
+  check('grafiki: domyslne wylacza pelne (bez kotla Estyma)', !fBasic.has('013.png'), [...fBasic].join(','));
+
   // 3b2. karta: ekran "Informacje o programie" pokazuje nowa wersje modulu i changelog z manifestu
   const mf = { channels: { beta: { version: '0.3.0', build: 99, full: '0.3.0+99', date: '2026-11-08 20:00 UTC', notes: 'x', changelog: ['Pierwsza zmiana testowa', 'Druga zmiana testowa'] } } };
   const ip2 = await b.newPage({ viewport: { width: 520, height: 420 } });

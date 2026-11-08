@@ -127,3 +127,37 @@ jobs:
           git add -A
           git commit -q -m "Aktualizacja $CHANNEL: $FULL"
           git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" snapshot:updates --force
+
+  # GitHub Release przy tagu v*: HACS instaluje integrację z wydania; w załącznikach firmware do ręcznego wgrania.
+  github-release:
+    needs: [host-tests, idf-build, web-ui, ha-integration]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: teklapelletcan-firmware
+          path: art
+      - name: Utworz wydanie
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          PREV="$(git describe --tags --abbrev=0 "${TAG}^" 2>/dev/null || true)"
+          if [ -n "$PREV" ]; then RANGE="$PREV..$TAG"; else RANGE="$TAG"; fi
+          {
+            echo "## TeklaPelletCAN $TAG"
+            echo
+            echo "- **Firmware:** \`teklapelletcan.bin\` (podpis ECDSA wbudowany w plik; osobny \`.sig\` tylko dla zgodności), \`teklapelletcan-factory.bin\` (pełny obraz do wgrania kablem od adresu 0x0)."
+            echo "- **Integracja Home Assistant:** HACS → Integracje → ⋮ → Własne repozytoria → \`https://github.com/${GITHUB_REPOSITORY}\` (Integracja)."
+            echo "- **Aktualizacja urządzenia:** strona urządzenia → Ustawienia → Aktualizacja oprogramowania → kanał stabilny."
+            echo
+            echo "### Zmiany"
+            git log --pretty='- %s' $RANGE | head -40
+          } > notes.md
+          gh release create "$TAG" --title "TeklaPelletCAN $TAG" --notes-file notes.md art/teklapelletcan.bin art/teklapelletcan.bin.sig art/teklapelletcan-factory.bin

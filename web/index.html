@@ -25,7 +25,7 @@ await customElements.whenDefined('pelletcan-card');
 const hass = new DeviceHass('');
 const card = document.createElement('pelletcan-card');
 const q = new URLSearchParams(location.search);
-card.setConfig({ type: 'custom:pelletcan-card', entity_prefix: 'tekla', screen: q.get('screen') || 'main', grafiki: q.get('grafiki') || 'pelne', language: q.get('lang') || 'pl' });
+card.setConfig(Object.assign({ type: 'custom:pelletcan-card', entity_prefix: 'tekla', screen: q.get('screen') || 'main', language: q.get('lang') || 'pl' }, q.get('grafiki') ? { grafiki: q.get('grafiki') } : {}));
 document.getElementById('root').appendChild(card);
 hass.onUpdate(h => {
   document.getElementById('offline').style.display = h.online ? 'none' : 'block';
