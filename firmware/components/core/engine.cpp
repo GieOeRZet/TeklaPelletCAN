@@ -668,6 +668,7 @@ std::string Engine::info_json(const InfoExtras& x, uint32_t now) const {
     w.key("uptime_s").num(x.uptime_s);
     w.key("clients").num(x.clients);
     w.kvb("dev_key", x.dev_key);
+    w.kvb("password_set", x.password_set);
     w.end_obj();
     return w.out();
 }

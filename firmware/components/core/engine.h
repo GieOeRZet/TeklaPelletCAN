@@ -44,6 +44,7 @@ struct InfoExtras {                    // dane spoza silnika, dokładane do /inf
     uint32_t uptime_s = 0;
     uint32_t clients = 0;
     bool dev_key = false;
+    bool password_set = false;
 };
 
 class Engine {

@@ -41,13 +41,53 @@ export class DeviceHass {
     this._t = setInterval(() => this.refresh(), periodMs);
   }
 
+  get clientId() {
+    let id = '';
+    try { id = localStorage.getItem('tpc_client_id') || ''; } catch (e) { /* brak localStorage */ }
+    if (!id) {
+      id = 'web-' + Math.random().toString(16).slice(2) + Date.now().toString(16);
+      try { localStorage.setItem('tpc_client_id', id); } catch (e) { /* ignoruj */ }
+    }
+    return id;
+  }
+
+  get token() { try { return localStorage.getItem('tpc_token') || ''; } catch (e) { return ''; } }
+  set token(v) { try { localStorage.setItem('tpc_token', v); } catch (e) { /* ignoruj */ } }
+
+  async _post(path, body, withToken = true) {
+    const headers = { 'Content-Type': 'application/json' };
+    if (withToken && this.token) headers.Authorization = 'Bearer ' + this.token;
+    const r = await fetch(this.base + path, { method: 'POST', headers, body: JSON.stringify(body) });
+    return { status: r.status, json: await r.json().catch(() => ({})) };
+  }
+
+  // Parowanie przeglądarki z urządzeniem: hasło urządzenia -> token (pamiętany w tej przeglądarce).
+  async pair() {
+    const info = await (await fetch(this.base + '/api/v1/info', { cache: 'no-store' })).json();
+    let pw;
+    if (!info.password_set) {
+      pw = (window.prompt('Ustaw hasło urządzenia (min. 4 znaki). Będzie potrzebne do sterowania kotłem:') || '').trim();
+      if (!pw) throw new Error('anulowano');
+      const r = await this._post('/api/v1/password', { password: pw }, false);
+      if (r.status !== 200) throw new Error('hasło: ' + (r.json.error || r.status));
+    } else {
+      pw = window.prompt('Hasło urządzenia:') || '';
+      if (!pw) throw new Error('anulowano');
+    }
+    const r = await this._post('/api/v1/pair', { password: pw, client_id: this.clientId, name: 'Przeglądarka' }, false);
+    if (r.status !== 200) throw new Error('parowanie: ' + (r.json.error || r.status));
+    this.token = r.json.token;
+  }
+
   async callService(domain, service, data = {}) {
-    const r = await fetch(this.base + '/api/v1/call', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ domain, service, data }),
-    });
+    // Zapisy wymagają tokenu; odczyty (stany) są otwarte. Przy braku/nieważnym tokenie – jednorazowo sparuj i ponów.
+    let r = await this._post('/api/v1/call', { domain, service, data });
+    if (r.status === 401 || (r.status === 403 && r.json.error === 'setup_required')) {
+      try { await this.pair(); } catch (e) { return Promise.reject(e); }
+      r = await this._post('/api/v1/call', { domain, service, data });
+    }
     setTimeout(() => this.refresh(), 400);   // szybkie odświeżenie po akcji
-    return r.ok ? r.json().catch(() => ({})) : Promise.reject(new Error('HTTP ' + r.status));
+    return r.status < 300 ? r.json : Promise.reject(Object.assign(new Error(r.json.result || r.json.error || ('HTTP ' + r.status)), { status: r.status }));
   }
 
   // Historia (używana przez kartę tylko jako zapas dla alarmów) – urządzenie nie ma historii; karta czyta wpisy z encji.
