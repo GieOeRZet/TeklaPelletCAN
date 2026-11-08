@@ -21,7 +21,7 @@ jobs:
           cd firmware
           idf.py set-target esp32c6
           idf.py build
-          python -m esptool --chip esp32c6 merge_bin -o teklapelletcan-factory.bin @build/flash_args
+          (cd build && python -m esptool --chip esp32c6 merge_bin -o ../teklapelletcan-factory.bin @flash_args)
       - name: Podpis OTA (klucz z sekretu OTA_SIGNING_KEY, a bez niego klucz testowy)
         env:
           KEY: ${{ secrets.OTA_SIGNING_KEY }}
