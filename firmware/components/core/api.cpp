@@ -220,7 +220,7 @@ HttpResponse Api::platform(const HttpRequest& r, bool& handled) {
         DeviceConfig cfg = hooks_.config_get ? hooks_.config_get() : DeviceConfig();
         JsonWriter w;
         w.begin_obj().kvb("mirror", cfg.mirror).kvb("write_enabled", cfg.write_enabled).kvb("demo", cfg.demo)
-            .kvb("two_circuits", cfg.two_circuits).kvb("external_antenna", cfg.external_antenna).kvb("web_open", cfg.web_open).end_obj();
+            .kvb("two_circuits", cfg.two_circuits).kvb("external_antenna", cfg.external_antenna).kvb("web_open", cfg.web_open).key("boiler_image").num(cfg.boiler_image).end_obj();
         HttpResponse res; res.body = w.out(); return res;
     }
     if (r.path == "/api/v1/config" && r.method == "POST") {
@@ -228,10 +228,15 @@ HttpResponse Api::platform(const HttpRequest& r, bool& handled) {
         Json j;
         if (!json_parse(r.body, j)) return err(400, "bad_json");
         DeviceConfig cfg = hooks_.config_get ? hooks_.config_get() : DeviceConfig();
+        const DeviceConfig before = cfg;
         auto b = [&](const char* k, bool& dst) { const Json* v = j.get(k); if (v && v->type == Json::Bool) dst = v->b; };
         b("mirror", cfg.mirror); b("write_enabled", cfg.write_enabled); b("demo", cfg.demo); b("two_circuits", cfg.two_circuits); b("external_antenna", cfg.external_antenna); b("web_open", cfg.web_open);
+        if (j.has_num("boiler_image")) { const int v = (int)j.num("boiler_image"); if (v >= 11 && v <= 14) cfg.boiler_image = (uint8_t)v; }
         if (hooks_.config_set) hooks_.config_set(cfg);
-        JsonWriter w; w.begin_obj().kvb("ok", true).kvb("restart_required", true).end_obj();
+        // restart tylko dla ustawień czytanych przy starcie; wygląd (grafika kotła) i panel WWW działają od razu
+        const bool restart = cfg.mirror != before.mirror || cfg.write_enabled != before.write_enabled || cfg.demo != before.demo ||
+                             cfg.two_circuits != before.two_circuits || cfg.external_antenna != before.external_antenna;
+        JsonWriter w; w.begin_obj().kvb("ok", true).kvb("restart_required", restart).end_obj();
         HttpResponse res; res.body = w.out(); return res;
     }
     if (r.path == "/api/v1/log" && r.method == "GET") {

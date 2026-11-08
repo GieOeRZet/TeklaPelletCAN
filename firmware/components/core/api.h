@@ -45,6 +45,7 @@ struct DeviceConfig {
     bool demo = false;        // symulator kotła (bez CAN)
     bool two_circuits = false;
     bool external_antenna = false;   // XIAO ESP32-C6: antena zewnętrzna U.FL (GPIO3/GPIO14)
+    uint8_t boiler_image = 13;       // grafika kotła na karcie: 11, 12, 13 lub 14 (img/panel/0NN.png)
     bool web_open = true;            // panel WWW (strony urządzenia) bez hasła w sieci lokalnej; hasło służy do parowania HA/aplikacji
 };
 struct ApiHooks {

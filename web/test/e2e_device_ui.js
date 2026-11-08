@@ -61,6 +61,26 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   check('grafiki pelne domyslnie (karta bez ustawienia): oryginalny kociol Estyma', fDefault.has('013.png'), [...fDefault].join(','));
   check('grafiki: domyslne wylacza pelne (bez kotla Estyma)', !fBasic.has('013.png'), [...fBasic].join(','));
 
+  // 3a2. grafika kotla: wybor w ustawieniach (bez restartu) i geometria na karcie (ta sama podstawa i srodek dla kazdego typu)
+  await p.reload(); await p.waitForTimeout(2500);
+  check('ustawienia: cztery miniatury kotla', (await p.locator('#boilers .net').count()) === 4);
+  await p.locator('#boilers .net').nth(1).click(); await p.waitForTimeout(800);      // typ 12
+  check('wybor grafiki kotla zapisany (typ 12)', (await (await fetch(BASE + '/api/v1/config')).json()).boiler_image === 12);
+  const rr = await (await fetch(BASE + '/api/v1/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ boiler_image: 14 }) })).json();
+  check('zmiana samej grafiki nie wymaga restartu', rr.restart_required === false, JSON.stringify(rr));
+  const geo = {};
+  for (const w of [360, 520, 900]) for (const n of [11, 12, 13, 14]) {
+    const pg = await b.newPage({ viewport: { width: w, height: Math.round(w * 0.8) } });
+    await pg.goto(BASE + '/index.html?boiler=' + n); await pg.waitForTimeout(4500);
+    const r = await pg.evaluate(() => { let o = null; const f = x => { if (o) return; if (x.shadowRoot) { const e = x.shadowRoot.querySelector('.boil'); if (e) { o = e; return; } f(x.shadowRoot); } x.childNodes && x.childNodes.forEach(f); }; f(document.body); if (!o) return null; const bb = o.getBoundingClientRect(); return { cx: Math.round(bb.x + bb.width / 2), bottom: Math.round(bb.bottom), h: Math.round(bb.height) }; });
+    (geo[w] = geo[w] || {})[n] = r; await pg.close();
+  }
+  for (const w of [360, 520, 900]) {
+    const v = Object.values(geo[w]);
+    check('kociol: kazdy typ ma ta sama podstawe i srodek (szer. ' + w + ')', v.every(x => x) && v.every(x => Math.abs(x.bottom - v[0].bottom) <= 2 && Math.abs(x.cx - v[0].cx) <= 2), JSON.stringify(geo[w]));
+    const hs = v.map(x => x.h); check('kociol: wysokosci porownywalne (szer. ' + w + ')', Math.max(...hs) / Math.min(...hs) < 1.25, hs.join(','));
+  }
+
   // 3b2. karta: ekran "Informacje o programie" pokazuje nowa wersje modulu i changelog z manifestu
   const mf = { channels: { beta: { version: '0.3.0', build: 99, full: '0.3.0+99', date: '2026-11-08 20:00 UTC', notes: 'x', changelog: ['Pierwsza zmiana testowa', 'Druga zmiana testowa'] } } };
   const ip2 = await b.newPage({ viewport: { width: 520, height: 420 } });
