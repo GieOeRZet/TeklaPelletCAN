@@ -1,0 +1,449 @@
+id,id_hex,count,name,type,min,max,default,access,ram,code
+3,0x0003,1,Language,u8,0,30,0,3,0x20021FAA,0x8011d6c
+4,0x0004,1,Parameters set Number,u16,0,65535,10,3,0x20021FBA,0x8011dd8
+5,0x0005,1,Default settings request,u8,0,1,1,3,0x20021FA7,0x801d6f0
+8193,0x2001,1,Boiler temp[dC],s16,0,1500,0,0,0x20020F50,0x801262a
+8194,0x2002,1,Boiler program,u16,0,3,3,3,0x200210B8,0x80129f6
+8195,0x2003,1,Boiler set manual temp[C],u16,60,80,65,3,0x200210B6,0x8012986
+8196,0x2004,1,Boiler set result temp[C],u16,60,150,7,0,0x200210FA,0x8012918
+8197,0x2005,1,Boiler on/off,u8,0,1,1,3,0x20020F5B,0x8012a5e
+8198,0x2006,1,Burner external permission,u8,0,1,0,0,0x20020F80,0x8013338
+8199,0x2007,1,Burner state,u8,0,100,0,0,0x20020F6C,0x8013afa
+8202,0x200A,1,Remote boiler 1 temp[dC],s16,0,1500,0,0,0x20024420,0x801269e
+8203,0x200B,1,Remote boiler 2 temp[dC],s16,0,1500,0,0,0x2002444C,0x8012708
+8204,0x200C,1,Remote boiler 3 temp[dC],s16,0,1500,0,0,0x20024478,0x8012772
+8205,0x200D,1,Remote boiler 1 requested temp[C],u16,0,255,0,0,0x20024414,0x80127dc
+8206,0x200E,1,Remote boiler 2 requested temp[C],u16,0,255,0,0,0x20024440,0x8012842
+8207,0x200F,1,Remote boiler 3 requested temp[C],u16,0,255,0,0,0x2002446C,0x80128a8
+8208,0x2010,1,Hot water 1 comfort temperature,u16,20,70,45,3,0x2002219C,0x8016aee
+8210,0x2012,1,Hot water 1 economical temperature,u16,20,70,30,3,0x2002219E,0x8016b56
+8212,0x2014,1,Hot water 1 program,u8,0,3,1,3,0x200221A0,0x8016c36
+8214,0x2016,4,Room measured temp,s16,-100,1500,0,0,0x20020914,0x8018432
+8218,0x201A,1,Hot water 1 result temperature,u16,0,500,0,0,0x200221D4,0x8016bce
+8220,0x201C,1,Hot water 1 temperature max,u8,40,80,70,3,0x200221A9,0x8016cae
+8242,0x2032,4,CH comf temp set [dC],u16,150,300,210,3,0x20020964,0x801825e
+8264,0x2048,4,CH eco temp set [dC],u16,100,300,180,3,0x20020966,0x80182d8
+8292,0x2064,4,CH program,u8,0,3,0,3,0x2002096E,0x80183c4
+8449,0x2101,1,Solar power [W],u16,0,10000,,0,0x20022228,0x801a0b2
+8450,0x2102,1,Solar temperature 2 [C],s16,0,1500,,0,0x2002221E,0x8019f8c
+8451,0x2103,1,Solar temperature 3 [C],s16,0,1500,,0,0x20022220,0x8019fec
+8452,0x2104,1,Solar temperature 4 [C],s16,0,1500,,0,0x20022222,0x801a054
+8453,0x2105,1,Heating configuration,u8,0,4,1,3,0x20021FAF,0x801a5b0
+8454,0x2106,1,Hot water configuration,u8,0,1,0,3,0x20021FB0,0x801a60e
+8455,0x2107,1,Buffer configuration,u8,0,1,0,3,0x20021FB1,0x801a678
+8456,0x2108,1,Solar configuration,u8,0,1,0,3,0x20021FB2,0x801a6d6
+8457,0x2109,1,Solar temperature 1 [C],s16,0,1500,,0,0x2002221C,0x8019f22
+8464,0x2110,1,Hot water 1 measured temperature,s16,-100,1500,0,0,0x200221D2,0x8016a68
+8465,0x2111,1,Hot water 1 needed temp. [C],u16,0,150,0,0,0x20022150,0x8017246
+8466,0x2112,1,Buffer top measured temperature,s16,0,1500,0,0,0x2002213C,0x801997c
+8467,0x2113,1,Buffer bottom measured temperature,s16,0,1500,0,0,0x2002213E,0x80199f8
+8468,0x2114,1,Buffer top set temperature,u16,7,80,45,3,0x2002212C,0x8019a62
+8469,0x2115,1,Buffer bottom set temperature,u16,7,80,65,3,0x2002212E,0x8019aca
+8470,0x2116,1,Solar flow [l/min],s16,7,200,40,3,0x2002222A,0x801a11c
+8473,0x2119,1,Exhaust gas temperature (2) [C],s16,-50,350,0,0,,0x801372c
+8480,0x2120,1,Lambda oxygen [%],u16,0,65535,0,0,0x200242E0,0x8016168
+8482,0x2122,1,Compatibility igneo solar pump state,u32,0,4294967295,,0,0x20008D24,0x801b792
+8483,0x2123,1,Lambda module presence,u8,0,1,0,3,0x20021FB3,0x801a740
+8484,0x2124,1,Total fuel counter[hg],u32,0,4294967295,0,3,0x20022318,0x801b6c6
+8485,0x2125,1,Device type,u32,0,4294967295,1000070001,0,0x20022088,0x801b2ee
+8486,0x2126,4,CH schedule monday,u32,0,16777215,4194240,3,0x200209A8,0x80187d0
+8490,0x212A,4,CH schedule tuesday,u32,0,16777215,4194240,3,0x200209AC,0x8018844
+8494,0x212E,4,CH schedule wednesday,u32,0,16777215,4194240,3,0x200209B0,0x80188b8
+8498,0x2132,4,CH schedule thursday,u32,0,16777215,4194240,3,0x200209B4,0x801892c
+8502,0x2136,4,CH schedule friday,u32,0,16777215,4194240,3,0x200209B8,0x80189a0
+8506,0x213A,4,CH schedule saturday,u32,0,16777215,4194240,3,0x200209BC,0x8018a0c
+8510,0x213E,4,CH schedule sunday,u32,0,16777215,4194240,3,0x200209C0,0x8018a84
+8514,0x2142,4,CH mode,u8,0,1,0,3,0x20020976,0x8018af8
+8518,0x2146,4,Tch set manual [C],u8,20,80,60,3,0x20020977,0x8018b62
+8522,0x214A,4,CH mixer test,u8,0,2,0,1,0x20020956,0x8018be4
+8526,0x214E,1,Oxygen for 30% of power [%],u8,50,150,120,3,0x20020D78,0x8014e8c
+8529,0x2151,1,Grate silence mode,u8,0,1,0,3,0x20020D92,0x80150ac
+8530,0x2152,1,Oxygen for 100% of power [%],u8,50,150,80,3,0x20020D79,0x8014efc
+8531,0x2153,1,Burner inertia [min],u8,1,60,5,3,0x20020D5C,0x801503a
+8532,0x2154,1,Hot water 1 schedule monday,u32,0,16777215,4194240,3,0x200221B4,0x801731c
+8533,0x2155,1,Hot water 1 schedule tuesday,u32,0,16777215,4194240,3,0x200221B8,0x801738c
+8534,0x2156,1,Hot water 1 schedule wednesday,u32,0,16777215,4194240,3,0x200221BC,0x80173fc
+8535,0x2157,1,Hot water 1 schedule thursday,u32,0,16777215,4194240,3,0x200221C0,0x801746c
+8536,0x2158,1,Hot water 1 schedule friday,u32,0,16777215,4194240,3,0x200221C4,0x80174dc
+8537,0x2159,1,Hot water 1 schedule saturday,u32,0,16777215,4194240,3,0x200221C8,0x801754c
+8538,0x215A,1,Airflow speed for 30% of power [m/s],u16,5,500,50,3,0x20020D7A,0x8014f62
+8539,0x215B,1,Airflow speed for 100% of power [m/s],u16,10,500,150,3,0x20020D7C,0x8014fd6
+8543,0x215F,1,Outside temperature,s16,-500,1000,0,0,0x2002463C,0x8011e3e
+8544,0x2160,1,Hot water 1 schedule sunday,u32,0,16777215,4194240,3,0x200221CC,0x80175bc
+8545,0x2161,1,Weather forecast 0,u16,0,65535,,1,0x20024644,0x80122ce
+8546,0x2162,1,Weather forecast 1,u16,0,65535,,1,0x20024646,0x8012336
+8547,0x2163,1,Weather forecast 2,u16,0,65535,,1,0x20024648,0x801239e
+8548,0x2164,1,Weather validity left time [min],u8,0,255,,1,0x20024643,0x8012404
+8549,0x2165,1,Compatibility timestamp,u32,0,4294967295,,1,0x20008D28,0x801b80e
+8550,0x2166,4,CH res [dC],s16,0,500,,1,0x20020968,0x8018348
+8554,0x216A,1,Exchanger cleaning request,u8,0,1,0,0,0x20024657,0x8013034
+8555,0x216B,1,Exchanger silence mode,u8,0,1,0,3,0x200210F6,0x801309c
+8556,0x216C,1,Boiler minimal return temperature,u16,35,75,50,3,0x200210D8,0x8013110
+8557,0x216D,1,Boiler return mixer test,u8,0,2,0,1,0x20020FDE,0x801317c
+8558,0x216E,1,Boiler mixer opening time [s],u16,15,360,180,3,0x20020FE6,0x80131f0
+8559,0x216F,1,CH mixer state,u8,0,2,0,0,0x20020FEA,0x8013258
+8560,0x2170,1,VideRoom PIN,u16,0,65535,,0,0x2002208C,0x801b358
+8586,0x218A,1,Is grate cleaning on,u8,0,1,0,3,0x20020D0A,0x8014180
+8711,0x2207,1,Boiler minimal pump temperature,u16,20,70,45,3,0x20020F6E,0x8012470
+8712,0x2208,1,Boiler on histeresis,u16,0,20,2,3,0x200210DA,0x80124de
+8713,0x2209,1,Boiler schedule monday,u32,0,16777215,507967,3,0x200210BC,0x8012b26
+8714,0x220A,1,Boiler schedule tuesday,u32,0,16777215,507967,3,0x200210C0,0x8012b8c
+8715,0x220B,1,Boiler schedule wednesday,u32,0,16777215,131071,3,0x200210C4,0x8012bf0
+8716,0x220C,1,Boiler schedule thursday,u32,0,16777215,131071,3,0x200210C8,0x8012c68
+8717,0x220D,1,Boiler schedule friday,u32,0,16777215,131071,3,0x200210CC,0x8012ccc
+8718,0x220E,1,Boiler schedule saturday,u32,0,16777215,131071,3,0x200210D0,0x8012d34
+8719,0x220F,1,Boiler schedule sunday,u32,0,16777215,131071,3,0x200210D4,0x8012da6
+8720,0x2210,1,Hot water 1 heat now,u8,0,1,0,3,0x200221A6,0x8016d16
+8721,0x2211,1,,u16,0,150,0,0,0x200220FA,0x8019c5c
+8722,0x2212,1,Hot water 1 histeresis,u16,0,20,5,3,0x200221A4,0x8016d86
+8724,0x2214,1,Hot water 1 source,u8,0,1,0,3,0x200221A7,0x8016dee
+8726,0x2216,1,Hot water 1 delta source,u8,2,30,5,3,0x200221A8,0x8016e5e
+8728,0x2218,1,Hot water 1 delta min temperature,u8,2,20,5,3,0x200221AA,0x8016eca
+8784,0x2250,1,Burner brightness,u16,0,100,0,0,,0x8015488
+8785,0x2251,1,Burner storage feeder,u8,0,100,0,0,0x20020C5A,0x8013b60
+8786,0x2252,1,Burner burner feeder,u8,0,100,0,0,0x20020C7A,0x8013bcc
+8787,0x2253,1,Burner igniter,u16,0,100,0,0,0x20020D64,0x8013c46
+8788,0x2254,1,Burner blower,u8,0,100,0,0,0x20020C9E,0x8013cb2
+8790,0x2256,1,Pellet predose [s],u16,0,200,30,3,0x20020D40,0x8013eec
+8791,0x2257,1,Max Feeding [s],u16,10,150,80,3,0x20020D46,0x8013fc8
+8792,0x2258,1,Grate cleaning number,u8,0,10,1,3,0x20020D76,0x801432a
+8793,0x2259,1,Burner storage feeder test,u8,0,2,0,1,0x20020C6B,0x8014468
+8794,0x225A,1,Pwr reg. speed,u8,2,30,10,3,0x20021000,0x801653a
+8800,0x2260,1,Burner storage feeder work time during refuling [s],u16,0,3600,30,0,0x20020D50,0x80147c6
+8801,0x2261,1,blower char. 1,u16,0,100,20,3,0x20020D6C,0x801489c
+8802,0x2262,1,blower char. 2,u16,0,100,30,3,0x20020D6E,0x801490c
+8803,0x2263,1,blower char. 3,u16,0,100,40,3,0x20020D70,0x8014972
+8804,0x2264,1,blower char. 4,u16,0,100,50,3,0x20020D72,0x80149e4
+8805,0x2265,1,blower char. 5,u16,0,100,60,3,0x20020D74,0x8014a4c
+8806,0x2266,1,Refueling need request,u8,0,1,0,1,0x20020D4D,0x8014760
+8807,0x2267,1,Burner storage feeder left time during refuling [s],u16,0,3600,0,0,0x20020D52,0x8014834
+8808,0x2268,1,exh. fan char. 1,u16,0,100,20,3,0x200210EC,0x8014ac2
+8810,0x226A,1,Brightness threshold,u8,5,100,10,3,,0x8015410
+8811,0x226B,1,Burning off time [min],u8,0,15,5,3,0x20020D5D,0x80154ec
+8812,0x226C,1,Burner feeder temperature [dC],s16,0,1500,0,0,0x20020D5E,0x8015564
+8813,0x226D,1,Burner storage feeding time [dS],u16,0,1000,0,0,0x20020C5E,0x8013d24
+8814,0x226E,1,exh. fan char. 2,u16,0,100,30,3,0x200210EE,0x8014b2a
+8815,0x226F,1,exh. fan char. 3,u16,0,100,40,3,0x200210F0,0x8014b9c
+8816,0x2270,1,Min power,u8,30,100,30,3,0x20020FF2,0x80161d4
+8817,0x2271,1,Max power,u8,30,100,100,3,0x20020FF3,0x801623c
+8818,0x2272,1,Feeder rate [dkg/h],u16,50,300,100,3,0x20020D4A,0x8014400
+8819,0x2273,1,Burner blower corretion,s16,-10,40,0,3,0x20020D94,0x8013e78
+8821,0x2275,1,exh. fan char. 4,u16,0,100,50,3,0x200210F2,0x8014c04
+8822,0x2276,1,Grate move indicator,u8,0,2,0,0,0x20020D07,0x80142c4
+8823,0x2277,1,Boiler pump state,u8,0,1,0,0,0x20020FAA,0x8012e0c
+8824,0x2278,1,Hot water pump state,u8,0,1,0,0,0x20022172,0x8016f42
+8825,0x2279,1,Burner grate test,u8,0,2,0,1,0x20020D18,0x80144d4
+8826,0x227A,1,exh. fan char. 5,u16,0,100,60,3,0x200210F4,0x8014c78
+8827,0x227B,1,Pwr reg. Kp,u16,0,2000,60,3,0x20020FF4,0x80162b2
+8828,0x227C,1,Pwr reg. Ki,u16,0,2000,8,3,0x20020FF6,0x8016316
+8829,0x227D,1,Pwr reg. Kd,u16,0,10000,400,3,0x20020FF8,0x801638c
+8830,0x227E,1,Pwr reg. Ki 2,u16,0,2000,40,3,0x20020FFC,0x801645e
+8831,0x227F,1,Pwr reg. Kd 2,u16,0,10000,1400,3,0x20020FFE,0x80164ca
+8832,0x2280,1,Buffer top set temperature,u16,25,80,0,0,0x2002213A,0x8019b2c
+8833,0x2281,1,Buffer minimal pump temperature,u8,15,60,25,3,0x20022133,0x8019b9e
+8834,0x2282,1,Buffer is automatic top temperature,u8,0,1,0,3,0x20022134,0x8019bfc
+8835,0x2283,1,Blower test,u8,0,2,0,1,0x20020CF9,0x8014684
+8836,0x2284,1,Igniter test,u8,0,2,0,1,,0x80145b0
+8837,0x2285,1,Exchanger cleaner test,u8,0,2,0,1,0x20024656,0x8012e84
+8838,0x2286,1,Boiler pump test,u8,0,2,0,1,0x20020FB0,0x8012ac6
+8840,0x2288,1,Blower test power,u8,0,100,100,1,0x20020C9D,0x80146ec
+8841,0x2289,1,Blower power during fire up,u8,5,100,40,3,0x20020D56,0x8014cdc
+8842,0x228A,1,Pwr reg. Kp 2,u16,0,2000,150,3,0x20020FFA,0x80163f0
+8843,0x228B,1,Grate full move time [s],u16,3,500,120,3,0x20020D08,0x801410e
+8844,0x228C,1,Exhaust fan power,u8,0,100,0,0,0x2002104E,0x8012fc2
+8848,0x2290,1,Incandescing time [min],u8,0,20,2,3,0x20020D5A,0x8014d4c
+8849,0x2291,1,Boiler off histeresis,u16,0,20,8,3,0x200210DC,0x801254c
+8850,0x2292,1,Fuel calorific [kWh/kg],u8,20,100,48,3,0x20020D77,0x8014db2
+8851,0x2293,1,Exhaust fan test,u8,0,2,0,1,0x200210AD,0x8012eea
+8852,0x2294,1,User fuel counter[kg],u16,0,65535,0,3,0x2002231C,0x801b72c
+8853,0x2295,1,Burner feeder test,u8,0,2,0,1,0x20020D4C,0x8014618
+8854,0x2296,1,HW1 pump test,u8,0,2,0,1,0x20022178,0x8016faa
+8855,0x2297,1,HW1 anti legionella,u8,0,1,0,3,0x200221A1,0x80170f6
+8856,0x2298,1,Exhaust fan test power,u8,0,100,50,1,0x20021051,0x8012f5c
+8857,0x2299,4,CH pump state,u8,0,1,,0,0x20020922,0x80184a8
+8861,0x229D,4,CH pump test,u8,0,2,0,1,0x20020928,0x8018516
+8865,0x22A1,4,Room temp sensor type,u8,0,5,0,3,0x20020974,0x8018590
+8869,0x22A5,4,CH sensor use,u8,0,1,0,3,0x20020975,0x80185fa
+8877,0x22AD,4,CH temp calc,s16,10,90,0,0,0x2002096C,0x80186e8
+8881,0x22B1,4,CH delta source [C],u8,0,30,5,3,0x20020987,0x801875c
+8885,0x22B5,4,CH mixer opening time [s],u16,60,360,180,3,0x2002095E,0x8018c52
+8889,0x22B9,4,CH mixer state,u8,0,2,0,0,0x20020962,0x8018cd0
+8893,0x22BD,4,Room temp hysteresis [C],u8,0,50,5,3,0x2002096A,0x8018d3a
+8897,0x22C1,4,Room sensor cal [C],s16,-30,30,0,3,0x20020970,0x8018dbc
+8901,0x22C5,4,CH temp for -20C [C],u8,20,80,55,3,0x2002097A,0x8018e26
+8905,0x22C9,4,CH temp for 0C [C],u8,20,80,45,3,0x2002097C,0x8018f0e
+8909,0x22CD,4,CH temp for -20C [C],u8,20,80,30,3,0x2002097D,0x8018f8c
+8913,0x22D1,4,CH source,u8,0,1,0,3,0x20020986,0x8018ff6
+8917,0x22D5,4,CH max temp [C],u8,30,80,70,3,0x2002097E,0x8019078
+8921,0x22D9,4,CH correction factor [C],u8,0,20,6,3,0x2002097F,0x80190e2
+8933,0x22E5,4,CH temp lowering [C],u8,0,40,15,3,0x20020982,0x8019158
+8937,0x22E9,4,Min CH temp for pump [C],u8,20,60,20,3,0x20020983,0x80191c2
+8945,0x22F1,4,Permament pump,u8,0,1,0,3,0x20020985,0x8019238
+8949,0x22F5,4,CH needed temp. [C],u16,0,150,,0,0x200208F4,0x80192a0
+8953,0x22F9,4,Tch lowering for energ. consumption reduction,u8,0,1,0,3,0x20020990,0x8019314
+8957,0x22FD,4,CH status,u8,0,255,,0,0x200209A0,0x801937e
+8961,0x2301,4,CH thermostat state,u8,0,1,,0,0x2002096F,0x80193f4
+8965,0x2305,4,CH room set temp. adjustment [dC],s16,-110,40,,1,0x20020972,0x8019462
+8969,0x2309,4,Room temp. radio sensor batt. volt [mV],u16,0,65535,,0,,0x80194e0
+8973,0x230D,4,Room temp. radio sensor signal [%],u8,0,255,,0,,0x8019554
+8977,0x2311,4,Room temp. radio sensor time since lasr rec.,u16,0,65535,,0,,0x80195d8
+8981,0x2315,4,Automatic summer recognition,u8,0,1,1,3,0x20020991,0x801973c
+8985,0x2319,4,Room temp. radio sensor soft. ver. before dot,u8,0,255,,0,,0x801964c
+8989,0x231D,1,Room temp. radio sensor soft. ver. after dot,u8,0,255,,0,,0x80196d2
+8993,0x2321,4,CH circuit name part1,u32,0,4294967295,0,3,0x20020994,0x80197b0
+8997,0x2325,4,CH circuit name part2,u32,0,4294967295,0,3,0x20020998,0x8019818
+9001,0x2329,4,CH circuit name part3,u32,0,4294967295,0,3,0x2002099C,0x801988c
+10649,0x2999,1,Burner max continuous work time [h],u16,1,12,3,3,0x20020D88,0x8015650
+10650,0x299A,1,Incandenscing fuel [%],u8,0,100,20,3,0x20020DC5,0x80156ba
+10651,0x299B,1,,u8,0,30,20,3,0x20022131,0x8019cb4
+10652,0x299C,1,Burner blower RPM,u16,0,65535,0,0,0x20020CA0,0x80155d2
+10653,0x299D,1,HALL Activated,u8,0,1,0,3,0x20020CA6,0x80151f0
+10654,0x299E,1,Boiler pump work mode,u8,0,2,0,3,0x200210B0,0x8013946
+10655,0x299F,1,Burning type,u8,0,2,0,3,0x20020E10,0x8015728
+12288,0x3000,1,Modulation blower power on wood [%],u8,10,100,70,3,0x20020E15,0x8015e02
+12289,0x3001,1,Start burning wood,u8,0,1,,1,0x20021FB9,0x8015874
+12291,0x3003,1,Grate move in modulation [0.1s],u16,0,600,0,3,0x20020D96,0x80159c0
+12292,0x3004,1,Virt. energy consumer requested temp [C],u8,7,150,7,1,0x20008CE4,0x801769a
+12293,0x3005,1,Fireup blower power on wood [%],u8,5,100,20,3,0x20020E13,0x8015e70
+12294,0x3006,1,Incandescing blower power on wood [%],u8,1,100,30,3,0x20020E14,0x8015ed6
+12295,0x3007,1,Pause blower power on wood [%],u8,0,100,20,3,0x20020E16,0x8015f48
+12296,0x3008,1,Sec. air modulation MIN [%],u8,1,100,20,3,0x20020DAA,0x801601e
+12297,0x3009,1,Sec. air modulation MAX [%],u8,1,100,80,3,0x20020DAB,0x8016084
+12298,0x300A,1,Sec. air mixer position [%],u8,0,100,0,0,0x20020DAC,0x80160ee
+12299,0x300B,1,Stop burning wood,u8,0,1,,1,0x20020E17,0x80158e4
+12300,0x300C,1,Blower power in burning off [%],u8,1,100,50,3,0x20020D57,0x8015fae
+12301,0x300D,1,Hot water priority,u8,0,1,0,3,0x2002215A,0x80172b0
+12302,0x300E,1,Burner blower minimal RPM [*100],u16,0,5,5,3,0x20020CA2,0x8015260
+12303,0x300F,1,Virt. consumer maximal power,u8,0,100,100,1,0x20008CDB,0x8017706
+12304,0x3010,1,Grate move interval in modulation [kg],u8,1,20,5,3,0x20020D98,0x8015a24
+12305,0x3011,1,Burner pwr. depend of buf. energy level,u8,0,1,0,3,0x20022135,0x8019910
+12306,0x3012,1,Grate move interval in modulation [min],u16,1,720,10,3,0x20020D9A,0x8015a98
+12307,0x3013,1,Burner blower max RPM,u16,500,5000,2750,3,0x20020CA4,0x80152d0
+12566,0x3116,1,Solar delta on [C],u8,0,20,3,3,0x2002222C,0x801a17a
+12567,0x3117,1,Solar delta off [C],u8,0,10,2,3,0x2002222D,0x801a1e2
+12568,0x3118,1,Solar liquid specific heat [kJ/(kg * C)],u16,15,60,25,3,0x2002222E,0x801a23e
+12569,0x3119,1,Solar temperature water max [C],s16,70,95,70,3,0x20022230,0x801a2a6
+12570,0x311A,1,Solar temperature alarm max[C],s16,90,145,90,3,0x20022232,0x801a304
+12571,0x311B,1,Solar temperature alarm min[C],s16,-40,0,-34,3,0x20022234,0x801a36c
+12572,0x311C,1,Solar pump state,u8,0,1,,0,0x2002220A,0x801a3c8
+12575,0x311F,1,Solar pump test,u8,0,2,0,1,0x20022210,0x801a42e
+12576,0x3120,1,Solar status,u8,0,1,,0,0x20022200,0x801a486
+12577,0x3121,1,Exchanger cleaning duration [s],u16,5,30,15,3,0x20024668,0x80133b8
+12578,0x3122,1,Exchanger cleaning interval [min],u16,10,600,180,3,0x20020F70,0x8013422
+12579,0x3123,1,,u8,0,1,0,3,0x200210DF,0x80134e8
+12580,0x3124,1,,u8,0,1,0,3,0x200210DE,0x8013484
+12581,0x3125,1,,u32,0,4294967295,0,2,0x200210E8,0x8013640
+12582,0x3126,1,,u32,0,4294967295,0,2,0x200210E4,0x80136a2
+12583,0x3127,1,Clean burner monit period [kg],u16,0,65535,300,0,0x200210E0,0x8013570
+12584,0x3128,1,Clean exchanger monit period [kg],u16,0,65535,1500,0,0x200210E2,0x80135dc
+12585,0x3129,1,Boiler min hydraulic pressure [0.1bar],u8,1,20,5,3,0x200210F7,0x80137f2
+12586,0x312A,1,Boiler max hydraulic pressure [0.1bar],u8,5,40,15,3,0x200210F8,0x8013858
+12656,0x3170,1,Buffer pump delta min temperature,u8,2,20,5,3,0x20022132,0x8019d20
+12657,0x3171,1,Buffer T1 measured temperature,s16,-300,1500,,0,0x20022140,0x8019d82
+12658,0x3172,1,Buffer T2 measured temperature,s16,-300,1500,,0,0x20022142,0x8019dec
+12659,0x3173,1,Buffer T3 measured temperature,s16,-300,1500,,0,0x20022144,0x8019e4e
+12660,0x3174,1,Buffer internal energy [%],s16,-100,200,,0,0x20022146,0x8019ebc
+13107,0x3333,1,Boiler pressure[mbar],u16,0,65535,0,0,0x20020F54,0x80125be
+13568,0x3500,1,Main module type,u8,0,1,0,3,0x20021FAB,0x8011b52
+13569,0x3501,1,Autoconfig activation,u8,0,1,1,3,0x20021FA9,0x801a4ec
+13570,0x3502,1,CH expansion module type,u8,0,1,0,3,0x20021FAC,0x8011bba
+13573,0x3505,1,Outside temperature sensor configuration,u8,0,2,0,3,0x20021FAD,0x801a546
+13574,0x3506,1,Sound alarm activation,u8,0,1,1,3,0x20021FB4,0x801a79e
+13575,0x3507,1,Total fuel counter[kg],u32,0,4294967295,0,3,0x20022314,0x801b668
+13576,0x3508,1,Silence hours from,u8,0,24,22,3,0x20021FB6,0x801a866
+13577,0x3509,1,Silence hours to,u8,0,24,6,3,0x20021FB7,0x801a8cc
+13578,0x350A,1,Return to boiler temperature sensor,u8,0,1,0,3,0x20021FB5,0x801a808
+13579,0x350B,1,Profile number,u8,1,3,1,3,0x20021FB8,0x8011c20
+13580,0x350C,1,Is this device cascade master,u8,0,1,0,3,0x20024362,0x801a92a
+13581,0x350D,1,Pressure sensor,u8,0,1,0,3,0x20021FBF,0x801a990
+13585,0x3511,1,Cascade master power level,u8,1,4,1,3,0x2002436F,0x8017d02
+13586,0x3512,1,Cascade slave 1 power level,u8,1,4,2,3,0x20024370,0x8017d72
+13587,0x3513,1,Cascade slave 2 power level,u8,1,4,3,3,0x20024371,0x8017de2
+13588,0x3514,1,Cascade slave 3 power level,u8,1,4,4,3,0x20024372,0x8017e52
+13589,0x3515,1,Cascade minimal energy [%],u8,0,100,50,3,0x20024373,0x8017ec2
+13590,0x3516,1,Cascade maximal energy [%],u8,0,100,80,3,0x20024374,0x8017f32
+13591,0x3517,1,Cascade time to inc power lvel [min],u8,0,240,30,3,0x20024375,0x8017fa2
+13592,0x3518,1,Cascade time to dec power lvel [min],u8,0,240,30,3,0x20024376,0x8018012
+13593,0x3519,1,Cascade current power lvel,u8,0,255,,0,0x20024377,0x8018168
+13594,0x351A,1,Cascade slaves number,u8,1,3,1,3,0x20024364,0x80181da
+13595,0x351B,1,Cascade timer to inc power lvel [s],u16,0,65535,,0,0x2002437A,0x8018086
+13596,0x351C,1,Cascade timer to dec power lvel [s],u16,0,65535,,0,0x2002437C,0x80180fe
+13598,0x351E,1,External fuel storage motor 1 test,u8,0,2,0,1,0x20024518,0x8017776
+13599,0x351F,1,External fuel storage motor 2 test,u8,0,2,0,1,0x20022263,0x80177e4
+13600,0x3520,1,Ext. fuel storage motor 1 transport. time [s],u16,5,60,30,3,0x20024522,0x8017998
+13601,0x3521,1,Ext. fuel storage time [s] to empty transport. hose,u16,0,30,15,3,0x20024526,0x8017a6c
+13602,0x3522,1,External fuel storage motor 1 state,u8,0,1,,0,0x20024512,0x801785c
+13603,0x3523,1,External fuel storage motor 2 state,u8,0,1,,0,0x20022253,0x80178c0
+13604,0x3524,1,External fuel storage level sens. state,u8,0,1,,0,0x20022281,0x8017934
+13605,0x3525,1,Additional fuel storage,u8,0,1,0,3,0x20021FBE,0x801a9ee
+13606,0x3526,1,Ext. fuel storage motor 1 overrun time [s],u16,3,15,5,3,0x20024524,0x8017a06
+13607,0x3527,1,Ext. fuel storage feeder work time [s],u16,1,60,10,3,0x2002226C,0x8017adc
+13608,0x3528,1,Ext. fuel storage feeder pause time [s],u16,0,30,10,3,0x2002226E,0x8017b46
+13609,0x3529,1,Ext. fuel storage reserve sensor,u8,0,1,0,3,0x20022270,0x8017bbc
+13610,0x352A,1,Ext. fuel stor. reserve sens. state,u8,0,1,,0,0x20022282,0x8017c26
+13611,0x352B,1,Ext. fuel storage max cycles no.,u8,5,100,15,3,0x20022283,0x8017c94
+13824,0x3600,1,Tank capacity [kg],u16,10,500,180,3,0x20022310,0x801b3bc
+13825,0x3601,1,How much fuel left in tank [kg],u16,0,65535,180,3,0x20022312,0x801b42c
+13826,0x3602,1,Is fuel reserve,u8,0,1,,0,0x20022322,0x801b4e2
+13827,0x3603,1,Fuel reserve [kg],u16,0,100,40,3,0x2002231E,0x801b484
+13828,0x3604,1,Fuel reserve [kg],u16,0,100,0,3,0x20022320,0x801b53a
+13829,0x3605,1,Lambda oxygen control,u8,0,1,0,3,0x20020D9C,0x8014e26
+13830,0x3606,1,Input IN17 config,u8,0,2,0,3,0x20022306,0x801b5a2
+13831,0x3607,1,Reserve sensor state,u8,0,1,,0,0x20022325,0x801b5fe
+13832,0x3608,1,Statistics - Ignition cnt,u16,0,65535,,0,0x40024002,0x801b868
+13833,0x3609,1,Statistics - Avg ignition time [s],u16,0,65535,,0,0x4002404E,0x801b8d0
+13834,0x360A,1,State on closing actuator out in stop,u8,0,1,0,3,0x20020D25,0x80141e6
+13840,0x3610,1,Statistics - Avg burner power [%],u8,0,100,,0,0x40024018,0x801b936
+13841,0x3611,1,Feeder 1 total work time [h],u32,0,4294967295,,0,0x40024050,0x801b998
+13842,0x3612,1,Feeder 2 total work time [h],u32,0,4294967295,,0,0x40024058,0x801b9fc
+13843,0x3613,1,Average oxygen for 30% pwr [%],u8,0,255,,0,0x40024060,0x801ba5c
+13844,0x3614,1,Average oxygen for 50% pwr [%],u8,0,255,,0,0x40024061,0x801bac0
+13845,0x3615,1,Average oxygen for 70% pwr [%],u8,0,255,,0,0x40024062,0x801bb22
+13846,0x3616,1,Average oxygen for 90% pwr [%],u8,0,255,,0,0x40024063,0x801bb84
+13847,0x3617,1,Statistics - Grate cleaning count,u32,0,4294967295,,0,0x40024064,0x801bbe8
+13848,0x3618,1,Statistics - Exchanger cleaning count,u32,0,65535,,0,0x40024068,0x801bc4c
+13849,0x3619,1,Statistics - Boiler overheat count,u16,0,65535,,0,0x4002406E,0x801bcb0
+13856,0x3620,1,Inside temp [C] CAN IO 5,s16,-32768,32767,,0,0x20021BAE,0x801c064
+13857,0x3621,1,Inside temp [C] CAN IO 6,s16,-32768,32767,,0,0x20021D1E,0x801c0d0
+13858,0x3622,1,Inside temp [C] CAN IO 7,s16,-32768,32767,,0,0x20021E8E,0x801c144
+13859,0x3623,1,Inside temp [C] CAN IO 4,s16,-32768,32767,,0,0x20021A3E,0x801bff2
+13860,0x3624,1,Inside temp [C] CAN IO 3,s16,-32768,32767,,0,0x200218CE,0x801bf86
+13861,0x3625,1,Inside temp [C] CAN IO 2,s16,-32768,32767,,0,0x2002175E,0x801bf1a
+13862,0x3626,1,Inside temp [C] CAN IO 1,s16,-32768,32767,,0,0x200215EE,0x801beae
+13863,0x3627,1,Inside temp [C] CAN IO 0,s16,-32768,32767,,0,0x2002147E,0x801be44
+13864,0x3628,1,Statistics - total energy produced [kWh],u32,0,4294967295,,0,0x4002414C,0x801bd14
+13865,0x3629,1,Energy meter type,u8,0,2,0,3,0x20021FC1,0x801aab6
+13866,0x362A,1,Statistics - reset count,u16,0,65535,,0,0x40024150,0x801bd7c
+13867,0x362B,1,Airflow meter,u8,0,1,0,3,0x20021FC2,0x801ab20
+13868,0x362C,1,Total grate unblock try count,u16,0,65535,,0,0x4002406C,0x801bdde
+13872,0x3630,1,CAN IO 0 sw. ver. before dot,u8,0,255,,0,0x20021326,0x801c19c
+13873,0x3631,1,CAN IO 1 sw. ver. before dot,u8,0,255,,0,0x20021496,0x801c200
+13874,0x3632,1,CAN IO 2 sw. ver. before dot,u8,0,255,,0,0x20021606,0x801c25c
+13875,0x3633,1,CAN IO 3 sw. ver. before dot,u8,0,255,,0,0x20021776,0x801c2c4
+13876,0x3634,1,CAN IO 4 sw. ver. before dot,u8,0,255,,0,0x200218E6,0x801c320
+13877,0x3635,1,CAN IO 5 sw. ver. before dot,u8,0,255,,0,0x20021A56,0x801c37e
+13878,0x3636,1,CAN IO 6 sw. ver. before dot,u8,0,255,,0,0x20021BC6,0x801c3e2
+13879,0x3637,1,CAN IO 7 sw. ver. before dot,u8,0,255,,0,0x20021D36,0x801c440
+13880,0x3638,1,CAN IO 0 sw. ver. after dot,u8,0,255,,0,0x20021327,0x801c4a4
+13881,0x3639,1,CAN IO 1 sw. ver. after dot,u8,0,255,,0,0x20021497,0x801c4fe
+13882,0x363A,1,CAN IO 2 sw. ver. after dot,u8,0,255,,0,0x20021607,0x801c564
+13883,0x363B,1,CAN IO 3 sw. ver. after dot,u8,0,255,,0,0x20021777,0x801c5c0
+13884,0x363C,1,CAN IO 4 sw. ver. after dot,u8,0,255,,0,0x200218E7,0x801c634
+13885,0x363D,1,CAN IO 5 sw. ver. after dot,u8,0,255,,0,0x20021A57,0x801c692
+13886,0x363E,1,CAN IO 6 sw. ver. after dot,u8,0,255,,0,0x20021BC7,0x801c702
+13887,0x363F,1,CAN IO 7 sw. ver. after dot,u8,0,255,,0,0x20021D37,0x801c760
+13888,0x3640,1,Inside temp [C] CAN IO Mini 0,s16,-32768,32767,,0,0x20024184,0x801c7d2
+13896,0x3648,1,CAN IO Mini 0 sw. ver. before dot,u8,0,255,,0,0x20024186,0x801c83c
+13904,0x3650,1,CAN IO Mini 0 sw. ver. after dot,u8,0,255,,0,0x20024187,0x801c896
+13912,0x3658,1,CAN IO Big sw. ver. before dot,u8,0,255,,0,0x20023F6A,0x801c906
+13913,0x3659,1,CAN IO Big sw. ver. after dot,u8,0,255,,0,0x20023F6B,0x801c96c
+13914,0x365A,1,Lambda module sw. ver. before dot,u8,0,255,,0,0x200242DE,0x801c9ca
+13915,0x365B,1,Lambda module sw. ver. after dot,u8,0,255,,0,0x200242DF,0x801ca3e
+13916,0x365C,1,Vide room 1 sw. ver. before dot,u8,0,255,,0,0x200241F4,0x801d04e
+13917,0x365D,1,Vide room 2 sw. ver. before dot,u8,0,255,,0,0x200114D8,0x801d0a8
+13918,0x365E,1,Vide room 3 sw. ver. before dot,u8,0,255,,0,0x200246AC,0x801d102
+13919,0x365F,1,Vide room 4 sw. ver. before dot,u8,0,255,,0,0x200246C4,0x801d166
+13920,0x3660,1,Vide room 1 sw. ver. after dot,u8,0,255,,0,0x200241F5,0x801d1e0
+13921,0x3661,1,Vide room 2 sw. ver. after dot,u8,0,255,,0,0x200114D9,0x801d23a
+13922,0x3662,1,Vide room 3 sw. ver. after dot,u8,0,255,,0,0x200246AD,0x801d294
+13923,0x3663,1,Vide room 4 sw. ver. after dot,u8,0,255,,0,0x200246C5,0x801d2fc
+13924,0x3664,1,soft. version,u16,0,65535,2213,0,0x200114E8,0x801d35a
+13925,0x3665,1,igneTouch boiler short name,u32,0,4294967295,,0,0x20008D4C,0x801d3e6
+13926,0x3666,1,Airflowmeter 1 sw. ver. before dot,u8,0,255,,0,0x200222F4,0x801cb70
+13927,0x3667,1,Airflowmeter 1 sw. ver. after dot,u8,0,255,,0,0x200222F5,0x801cc04
+13930,0x366A,1,RadioGateway sw. ver. before dot,u8,0,255,,0,0x200114E4,0x801cab0
+13931,0x366B,1,RadioGateway sw. ver. after dot,u8,0,255,,0,0x200114E5,0x801cb0a
+14080,0x3700,1,Storage feeder period [s],u16,5,180,20,3,0x20020EBE,0x8014390
+14081,0x3701,1,Min EGT required [C],u16,70,120,90,3,,0x80138d4
+14082,0x3702,1,Nominal exhaust gas temp. [C],u16,90,240,120,3,0x20020D9E,0x8015114
+14083,0x3703,1,Max exhaust gas temp. [C],u16,180,280,220,3,0x20020DA0,0x8015188
+14084,0x3704,1,Blower power in incandescing [%],u8,0,100,50,3,0x20020DC6,0x8015804
+14085,0x3705,1,Blower power in hold/pause [%],u8,10,100,20,3,0x20020DC7,0x801594c
+14086,0x3706,1,Current burner power [dkW],u16,0,65535,0,0,0x20020D7E,0x8015b00
+14087,0x3707,1,EGT sensor type,u8,0,1,1,3,0x20021FC0,0x801aa58
+14088,0x3708,1,Boiler pump overrun [min],u8,0,120,20,3,0x20020F3A,0x80139ac
+14089,0x3709,1,Nominal power [kW],u16,4,200,16,3,0x20020D48,0x801425c
+14090,0x370A,1,Boiler image selector,u8,1,3,1,3,0x20021FA6,0x801ab7e
+14091,0x370B,1,Burner feeder % of stor. feeder,u16,50,999,150,3,0x20020D60,0x8015ccc
+14092,0x370C,1,Min fire up time [min],u8,1,6,1,3,0x20020D5B,0x801659e
+14093,0x370D,1,Igniter preheat time [s],u16,0,300,0,3,0x20020D66,0x8016614
+14094,0x370E,1,Pellet predose [g],u16,0,500,100,3,0x20020D44,0x8013f56
+14095,0x370F,1,Burning off burner feeder work time [s],u16,0,180,60,3,0x20020D58,0x801667a
+14096,0x3710,1,Fuel consumption [Dkg/h],u16,0,65535,0,0,0x20020D8E,0x8014032
+14097,0x3711,1,Time to grate cleaning [min],u16,0,65535,0,0,0x20020D90,0x80140a8
+14098,0x3712,1,Blower type,u8,0,255,3,2,0x20020CFC,0x801453e
+14099,0x3713,1,,u16,30,240,60,3,0x20020DB8,0x8015336
+14100,0x3714,1,,u8,1,30,5,3,0x20020DBA,0x80153a0
+14101,0x3715,1,Burner pause time [min],u8,0,120,0,3,0x20020DB2,0x80166e2
+14102,0x3716,1,Burner pause power [%],u8,0,30,10,3,0x20020DB3,0x8016756
+14103,0x3717,1,Burner pause blower power [%],u8,0,50,20,3,0x20020DB4,0x80167c0
+14104,0x3718,1,Next service date timestamp,u32,0,4294967295,0,3,0x20021FC4,0x801abe8
+14105,0x3719,1,Confirm. service date timestamp,u32,0,4294967295,0,3,0x20021FC8,0x801ac54
+14106,0x371A,1,Airflowmeter 1 flow,u16,0,65535,0,0,0x200222D4,0x8016976
+14107,0x371B,1,Min airflow (blower 100%) [dm/s],u16,10,1000,20,3,0x20020DC0,0x8016898
+14108,0x371C,1,Boiler efficiency [d%],u16,0,65535,0,0,0x20020DB6,0x8013a2e
+14109,0x371D,1,Oxygen target [0.1%],s16,-32768,32767,0,0,0x20020DA4,0x8015b6e
+14110,0x371E,1,Airflowmeter 2 flow,u16,0,65535,0,0,0x20008CF0,0x80169f6
+14111,0x371F,1,Lambda oxygen averaged [%],s16,-32768,32767,0,0,0x200242C8,0x8015be4
+14112,0x3720,1,Outside temp. averaging period [h],u8,0,48,12,3,0x20021FAE,0x801acb2
+14113,0x3721,1,Outside temperature averaged,s16,-500,1000,0,0,0x2002463E,0x8011ea4
+14114,0x3722,1,Start settings recovery,u8,0,1,0,1,0x20024674,0x801ad72
+14115,0x3723,1,Settings recovered count,u16,0,65535,0,1,0x20024672,0x801add8
+14116,0x3724,1,Out temp. radio sensor batt. volt [mV],u16,0,65535,,0,0x200222A4,0x8011ff0
+14117,0x3725,1,Out temp. radio sensor signal [%],u8,0,255,,0,0x200222B8,0x8012060
+14118,0x3726,1,Out temp. radio sensor time since lasr rec.,u16,0,65535,,0,0x200222B6,0x80120c8
+14119,0x3727,1,Burner feeder absolut work time [s],u8,0,60,10,3,0x20020D62,0x8015d30
+14120,0x3728,1,Is reset required,u8,0,1,0,0,0x20021FA8,0x801d694
+14121,0x3729,1,Is summer time,u8,0,1,,0,0x2002464C,0x8012202
+14122,0x372A,1,Summer time threshold temp. [C],u8,5,25,18,3,0x2002464D,0x8012266
+14123,0x372B,1,Out temp. radio sensor sw. ver. before dot,u8,0,255,,0,0x200222C8,0x8012132
+14124,0x372C,1,Out temp. radio sensor sw. ver. after dot,u8,0,255,,0,0x200222C9,0x801219c
+14125,0x372D,1,,u8,0,1,0,0,0x20020D63,0x801682e
+14126,0x372E,1,[m%],s32,70000,130000,,0,0x20020D84,0x8015c54
+14127,0x372F,1,Is automatic time synchronization,u8,0,1,0,3,0x20021FD0,0x801ad18
+14128,0x3730,1,SSID part 1,u32,0,4294967295,0,3,0x20021FD4,0x801ae36
+14129,0x3731,1,SSID part 2,u32,0,4294967295,0,3,0x20021FD8,0x801aea0
+14130,0x3732,1,SSID part 3,u32,0,4294967295,0,3,0x20021FDC,0x801aefe
+14131,0x3733,1,SSID part 4,u32,0,4294967295,0,3,0x20021FE0,0x801af68
+14132,0x3734,1,SSID part 5,u32,0,4294967295,0,3,0x20021FE4,0x801afc6
+14133,0x3735,1,SSID part 6,u32,0,4294967295,0,3,0x20021FE8,0x801b030
+14134,0x3736,1,KEY part 1,u32,0,4294967295,0,3,0x20021FEC,0x801b08e
+14135,0x3737,1,KEY part 2,u32,0,4294967295,0,3,0x20021FF0,0x801b0f8
+14136,0x3738,1,KEY part 3,u32,0,4294967295,0,3,0x20021FF4,0x801b156
+14137,0x3739,1,KEY part 4,u32,0,4294967295,0,3,0x20021FF8,0x801b1c0
+14138,0x373A,1,KEY part 5,u32,0,4294967295,0,3,0x20021FFC,0x801b21e
+14139,0x373B,1,KEY part 6,u32,0,4294967295,0,3,0x20022000,0x801b27c
+14140,0x373C,1,,u8,0,255,,0,0x20024534,0x801cc5c
+14141,0x373D,1,,u8,0,255,,0,0x20024535,0x801ccb4
+14142,0x373E,1,,u8,0,255,0,3,0x20024539,0x801cf20
+14143,0x373F,1,,u32,0,4294967295,0,0,0x20024540,0x801ce16
+14144,0x3740,1,,u32,0,4294967295,0,0,0x20024544,0x801ce70
+14145,0x3741,1,,u8,0,255,0,3,0x2002453A,0x801cec8
+14146,0x3742,1,,u8,0,255,0,1,0x20024537,0x801cf7c
+14147,0x3743,1,,u8,0,255,0,1,0x20024538,0x801cfe4
+14148,0x3744,1,,u8,0,255,,0,0x2002453B,0x801cd64
+14149,0x3745,1,,u8,0,255,,0,0x2002453C,0x801cdbc
+14150,0x3746,1,,u8,0,255,,0,0x20024536,0x801cd0c
+14151,0x3747,1,Outside calibration [dC],s16,-30,30,0,3,0x20024640,0x8011f10
+14152,0x3748,1,Storage feeder pause in predose[s],u8,1,8,2,3,0x20020D42,0x8015d9c
+14153,0x3749,1,Hot water circular pump state,u8,0,1,0,0,0x2002218A,0x801701c
+14154,0x374A,1,HW1 circular pump test,u8,0,2,0,1,0x20022190,0x8017084
+14155,0x374B,1,Hot water 1 circular pump fork time,u8,0,10,2,3,0x200221AC,0x8017160
+14156,0x374C,1,Hot water 1 circular pump pause time,u8,0,60,10,3,0x200221AD,0x80171d6
+14157,0x374D,1,Burner plug disc. possible,u8,0,1,0,3,0x20020DC9,0x801690a
+14160,0x3750,1,Sweep mode,u8,0,1,0,1,0x20021104,0x8013a96
+16384,0x4000,1,Boiler return temp [dC],s16,0,1500,0,0,,0x80132d0
+16385,0x4001,4,CH temp measured,s16,-100,1500,0,0,,0x801867c
+16389,0x4005,1,Burner power [%],u16,0,100,0,0,0x20020D3C,0x8013e06
+16390,0x4006,1,Power regulator [%],s16,0,65535,,0,0x20021002,0x8011f7e
+16391,0x4007,1,Blower power [%],u8,0,255,0,0,0x20020C9A,0x8013d8e
+16392,0x4008,1,Burning type active,u8,0,2,0,0,0x20020E11,0x801578e
+16393,0x4009,1,Exhaust gas temperature (2) [C],s16,-50,350,0,0,,0x801378e
+16394,0x400A,1,Virt. energy consumer set temp [C],u16,7,150,7,1,0x20008CD8,0x801762a
+16396,0x400C,4,CH temp for -10C [C],u8,20,80,50,3,0x2002097B,0x8018ea4
+16400,0x4010,1,Alarm register,u32,0,4294967295,0,3,0x20021E9C,0x801d44c
+16420,0x4024,20,Alarm date timestamp,u32,0,4294967295,0,2,0x20021EA0,0x801d4b0
+16440,0x4038,20,Alarm confirm timestamp,u32,0,4294967295,,2,0x20021EA4,0x801d518
+16460,0x404C,1,Alarm next index,u8,0,19,1,2,0x20021F8C,0x801d57a
+16461,0x404D,1,Number of alarms,u8,0,20,0,0,0x20021F8D,0x801d5d8
+16462,0x404E,1,Request reset alarm memory,u8,0,1,0,1,0x20021F94,0x801d636

@@ -1,0 +1,198 @@
+index;wartosc_surowa_2026-11-06;nazwa_z_firmware_panela;typ;min;max;dostep(0=live,1=komenda,2/3=nastawa)
+0x299E;256;Boiler pump work mode;u8;0;2;3
+0x3628;0;Statistics - total energy produced [kWh];u32;0;4294967295;0
+0x2277;257;Boiler pump state;u8;0;1;0
+0x216A;256;Exchanger cleaning request;u8;0;1;0
+0x216B;256;Exchanger silence mode;u8;0;1;3
+0x2298;275;Exhaust fan test power;u8;0;100;1
+0x228C;256;Exhaust fan power;u8;0;100;0
+0x216F;256;CH mixer state;u8;0;2;0
+0x3122;180;Exchanger cleaning interval [min];u16;10;600;3
+0x3121;0;Exchanger cleaning duration [s];u16;5;30;3
+0x200A;19990;Remote boiler 1 temp[dC];s16;0;1500;0
+0x200C;19990;Remote boiler 3 temp[dC];s16;0;1500;0
+0x200D;0;Remote boiler 1 requested temp[C];u16;0;255;0
+0x200E;0;Remote boiler 2 requested temp[C];u16;0;255;0
+0x200F;0;Remote boiler 3 requested temp[C];u16;0;255;0
+0x400A;7;Virt. energy consumer set temp [C];u16;7;150;1
+0x3123;256;;u8;0;1;3
+0x3124;256;;u8;0;1;3
+0x3701;90;Min EGT required [C];u16;70;120;3
+0x3703;220;Max exhaust gas temp. [C];u16;180;280;3
+0x2119;0;Exhaust gas temperature (2) [C];s16;-50;350;0
+0x2253;0;Burner igniter;u16;0;100;0
+0x2251;256;Burner storage feeder;u8;0;100;0
+0x2266;256;Refueling need request;u8;0;1;1
+0x2252;256;Burner burner feeder;u8;0;100;0
+0x2268;20;exh. fan char. 1;u16;0;100;3
+0x226E;30;exh. fan char. 2;u16;0;100;3
+0x226F;40;exh. fan char. 3;u16;0;100;3
+0x2275;50;exh. fan char. 4;u16;0;100;3
+0x370E;100;Pellet predose [g];u16;0;500;3
+0x3709;18;Nominal power [kW];u16;4;200;3
+0x2276;256;Grate move indicator;u8;0;2;0
+0x3706;0;Current burner power [dkW];u16;0;65535;0
+0x299F;256;Burning type;u8;0;2;3
+0x3000;326;Modulation blower power on wood [%];u8;10;100;3
+0x3005;276;Fireup blower power on wood [%];u8;5;100;3
+0x3006;286;Incandescing blower power on wood [%];u8;1;100;3
+0x3007;276;Pause blower power on wood [%];u8;0;100;3
+0x3705;276;Blower power in hold/pause [%];u8;10;100;3
+0x3001;256;Start burning wood;u8;0;1;1
+0x3727;266;Burner feeder absolut work time [s];u8;0;60;3
+0x3710;0;Fuel consumption [Dkg/h];u16;0;65535;0
+0x3711;180;Time to grate cleaning [min];u16;0;65535;0
+0x2120;0;Lambda oxygen [%];u16;0;65535;0
+0x3010;261;Grate move interval in modulation [kg];u8;1;20;3
+0x3012;10;Grate move interval in modulation [min];u16;1;720;3
+0x370F;60;Burning off burner feeder work time [s];u16;0;180;3
+0x2151;256;Grate silence mode;u8;0;1;3
+0x299D;256;HALL Activated;u8;0;1;3
+0x299C;0;Burner blower RPM;u16;0;65535;0
+0x3008;276;Sec. air modulation MIN [%];u8;1;100;3
+0x3009;336;Sec. air modulation MAX [%];u8;1;100;3
+0x300A;256;Sec. air mixer position [%];u8;0;100;0
+0x300B;257;Stop burning wood;u8;0;1;1
+0x370C;257;Min fire up time [min];u8;1;6;3
+0x3714;261;;u8;1;30;3
+0x201C;316;Hot water 1 temperature max;u8;40;80;3
+0x2297;256;HW1 anti legionella;u8;0;1;3
+0x2111;60;Hot water 1 needed temp. [C];u16;0;150;0
+0x3011;256;Burner pwr. depend of buf. energy level;u8;0;1;3
+0x2112;0;Buffer top measured temperature;s16;0;1500;0
+0x2113;0;Buffer bottom measured temperature;s16;0;1500;0
+0x2114;45;Buffer top set temperature;u16;7;80;3
+0x2115;65;Buffer bottom set temperature;u16;7;80;3
+0x2280;0;Buffer top set temperature;u16;25;80;0
+0x2282;256;Buffer is automatic top temperature;u8;0;1;3
+0x2281;281;Buffer minimal pump temperature;u8;15;60;3
+0x3171;19990;Buffer T1 measured temperature;s16;-300;1500;0
+0x3172;19990;Buffer T2 measured temperature;s16;-300;1500;0
+0x3173;19990;Buffer T3 measured temperature;s16;-300;1500;0
+0x3174;0;Buffer internal energy [%];s16;-100;200;0
+0x2211;7;;u16;0;150;0
+0x299B;276;;u8;0;30;3
+0x3170;261;Buffer pump delta min temperature;u8;2;20;3
+0x3120;256;Solar status;u8;0;1;0
+0x2109;0;Solar temperature 1 [C];s16;0;1500;0
+0x2104;0;Solar temperature 4 [C];s16;0;1500;0
+0x2116;40;Solar flow [l/min];s16;7;200;3
+0x3116;259;Solar delta on [C];u8;0;20;3
+0x3117;258;Solar delta off [C];u8;0;10;3
+0x3119;70;Solar temperature water max [C];s16;70;95;3
+0x311A;90;Solar temperature alarm max[C];s16;90;145;3
+0x311B;65502;Solar temperature alarm min[C];s16;-40;0;3
+0x311C;256;Solar pump state;u8;0;1;0
+0x3721;30;Outside temperature averaged;s16;-500;1000;0
+0x3724;0;Out temp. radio sensor batt. volt [mV];u16;0;65535;0
+0x3725;256;Out temp. radio sensor signal [%];u8;0;255;0
+0x3726;65535;Out temp. radio sensor time since lasr rec.;u16;0;65535;0
+0x2164;256;Weather validity left time [min];u8;0;255;1
+0x2279;256;Burner grate test;u8;0;2;1
+0x2288;260;Blower test power;u8;0;100;1
+0x2285;367;Exchanger cleaner test;u8;0;2;1
+0x2293;256;Exhaust fan test;u8;0;2;1
+0x351E;256;External fuel storage motor 1 test;u8;0;2;1
+0x351F;256;External fuel storage motor 2 test;u8;0;2;1
+0x3522;256;External fuel storage motor 1 state;u8;0;1;0
+0x3523;256;External fuel storage motor 2 state;u8;0;1;0
+0x3524;256;External fuel storage level sens. state;u8;0;1;0
+0x3520;30;Ext. fuel storage motor 1 transport. time [s];u16;5;60;3
+0x3526;5;Ext. fuel storage motor 1 overrun time [s];u16;3;15;3
+0x3521;15;Ext. fuel storage time [s] to empty transport. hose;u16;0;30;3
+0x3527;10;Ext. fuel storage feeder work time [s];u16;1;60;3
+0x3528;10;Ext. fuel storage feeder pause time [s];u16;0;30;3
+0x3529;256;Ext. fuel storage reserve sensor;u8;0;1;3
+0x352A;256;Ext. fuel stor. reserve sens. state;u8;0;1;0
+0x352B;271;Ext. fuel storage max cycles no.;u8;5;100;3
+0x3511;257;Cascade master power level;u8;1;4;3
+0x3512;258;Cascade slave 1 power level;u8;1;4;3
+0x3513;259;Cascade slave 2 power level;u8;1;4;3
+0x3514;260;Cascade slave 3 power level;u8;1;4;3
+0x3515;306;Cascade minimal energy [%];u8;0;100;3
+0x3516;336;Cascade maximal energy [%];u8;0;100;3
+0x3517;286;Cascade time to inc power lvel [min];u8;0;240;3
+0x3518;286;Cascade time to dec power lvel [min];u8;0;240;3
+0x351B;0;Cascade timer to inc power lvel [s];u16;0;65535;0
+0x351C;0;Cascade timer to dec power lvel [s];u16;0;65535;0
+0x3519;256;Cascade current power lvel;u8;0;255;0
+0x351A;257;Cascade slaves number;u8;1;3;3
+0x3505;257;Outside temperature sensor configuration;u8;0;2;3
+0x2105;257;Heating configuration;u8;0;4;3
+0x2106;257;Hot water configuration;u8;0;1;3
+0x2107;256;Buffer configuration;u8;0;1;3
+0x2108;256;Solar configuration;u8;0;1;3
+0x3501;256;Autoconfig activation;u8;0;1;3
+0x2123;256;Lambda module presence;u8;0;1;3
+0x3506;257;Sound alarm activation;u8;0;1;3
+0x3606;256;Input IN17 config;u8;0;2;3
+0x370A;259;Boiler image selector;u8;1;3;3
+0x3508;278;Silence hours from;u8;0;24;3
+0x3509;262;Silence hours to;u8;0;24;3
+0x350A;257;Return to boiler temperature sensor;u8;0;1;3
+0x350B;258;Profile number;u8;1;3;3
+0x350C;256;Is this device cascade master;u8;0;1;3
+0x350D;256;Pressure sensor;u8;0;1;3
+0x3707;257;EGT sensor type;u8;0;1;3
+0x3629;256;Energy meter type;u8;0;2;3
+0x3525;256;Additional fuel storage;u8;0;1;3
+0x3718;0;Next service date timestamp;u32;0;4294967295;3
+0x3719;0;Confirm. service date timestamp;u32;0;4294967295;3
+0x3720;256;Outside temp. averaging period [h];u8;0;48;3
+0x3722;256;Start settings recovery;u8;0;1;1
+0x3723;0;Settings recovered count;u16;0;65535;1
+0x3728;256;Is reset required;u8;0;1;0
+0x3603;0;Fuel reserve [kg];u16;0;100;3
+0x3602;256;Is fuel reserve;u8;0;1;0
+0x3607;256;Reserve sensor state;u8;0;1;0
+0x3627;0;Inside temp [C] CAN IO 0;s16;-32768;32767;0
+0x3626;0;Inside temp [C] CAN IO 1;s16;-32768;32767;0
+0x3625;0;Inside temp [C] CAN IO 2;s16;-32768;32767;0
+0x3624;0;Inside temp [C] CAN IO 3;s16;-32768;32767;0
+0x3623;0;Inside temp [C] CAN IO 4;s16;-32768;32767;0
+0x3620;0;Inside temp [C] CAN IO 5;s16;-32768;32767;0
+0x3621;0;Inside temp [C] CAN IO 6;s16;-32768;32767;0
+0x3622;0;Inside temp [C] CAN IO 7;s16;-32768;32767;0
+0x3630;256;CAN IO 0 sw. ver. before dot;u8;0;255;0
+0x3631;256;CAN IO 1 sw. ver. before dot;u8;0;255;0
+0x3633;256;CAN IO 3 sw. ver. before dot;u8;0;255;0
+0x3634;256;CAN IO 4 sw. ver. before dot;u8;0;255;0
+0x3635;256;CAN IO 5 sw. ver. before dot;u8;0;255;0
+0x3636;256;CAN IO 6 sw. ver. before dot;u8;0;255;0
+0x3637;256;CAN IO 7 sw. ver. before dot;u8;0;255;0
+0x3638;256;CAN IO 0 sw. ver. after dot;u8;0;255;0
+0x3639;256;CAN IO 1 sw. ver. after dot;u8;0;255;0
+0x363A;256;CAN IO 2 sw. ver. after dot;u8;0;255;0
+0x363B;256;CAN IO 3 sw. ver. after dot;u8;0;255;0
+0x363C;256;CAN IO 4 sw. ver. after dot;u8;0;255;0
+0x363D;256;CAN IO 5 sw. ver. after dot;u8;0;255;0
+0x363E;256;CAN IO 6 sw. ver. after dot;u8;0;255;0
+0x363F;256;CAN IO 7 sw. ver. after dot;u8;0;255;0
+0x3640;0;Inside temp [C] CAN IO Mini 0;s16;-32768;32767;0
+0x3648;256;CAN IO Mini 0 sw. ver. before dot;u8;0;255;0
+0x3650;256;CAN IO Mini 0 sw. ver. after dot;u8;0;255;0
+0x3658;260;CAN IO Big sw. ver. before dot;u8;0;255;0
+0x3659;256;CAN IO Big sw. ver. after dot;u8;0;255;0
+0x365A;256;Lambda module sw. ver. before dot;u8;0;255;0
+0x365B;256;Lambda module sw. ver. after dot;u8;0;255;0
+0x365C;256;Vide room 1 sw. ver. before dot;u8;0;255;0
+0x365D;256;Vide room 2 sw. ver. before dot;u8;0;255;0
+0x365E;256;Vide room 3 sw. ver. before dot;u8;0;255;0
+0x365F;256;Vide room 4 sw. ver. before dot;u8;0;255;0
+0x3660;256;Vide room 1 sw. ver. after dot;u8;0;255;0
+0x3662;256;Vide room 3 sw. ver. after dot;u8;0;255;0
+0x3663;256;Vide room 4 sw. ver. after dot;u8;0;255;0
+0x3664;2118;soft. version;u16;0;65535;0
+0x3665;1413808128;igneTouch boiler short name;u32;0;4294967295;0
+0x3610;299;Statistics - Avg burner power [%];u8;0;100;0
+0x3613;256;Average oxygen for 30% pwr [%];u8;0;255;0
+0x3614;256;Average oxygen for 50% pwr [%];u8;0;255;0
+0x3615;256;Average oxygen for 70% pwr [%];u8;0;255;0
+0x3616;256;Average oxygen for 90% pwr [%];u8;0;255;0
+0x3617;12467;Statistics - Grate cleaning count;u32;0;4294967295;0
+0x2166;300;CH res [dC];s16;0;500;1
+0x2016;0;Room measured temp;s16;-100;1500;0
+0x214A;256;CH mixer test;u8;0;2;1
+0x22F5;29;CH needed temp. [C];u16;0;150;0
+0x230D;256;Room temp. radio sensor signal [%];u8;0;255;0
+0x2309;0;Room temp. radio sensor batt. volt [mV];u16;0;65535;0

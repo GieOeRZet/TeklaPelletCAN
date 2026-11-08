@@ -1,0 +1,55 @@
+﻿kod,kod hex,"opis (firmware, bez polskich znaków)",opis (karta),zrodlo
+1,0x0001,Czujnik kotla,Czujnik kotła,firmware + karta
+2,0x0002,Przegrzanie kotla,Przegrzanie kotła,firmware + karta
+3,0x0003,Czujnik powrotu,Czujnik powrotu,firmware + karta
+4,0x0004,Czujnik temp. podajnika,Czujnik temp. podajnika,firmware + karta
+5,0x0005,STB,STB,firmware + karta
+6,0x0006,Przegrzanie podajnika,Przegrzanie podajnika,firmware + karta
+7,0x0007,Lancuch bezpieczenstwa,Łańcuch bezpieczeństwa,firmware + karta
+8,0x0008,Czujnik spalin,Czujnik spalin,firmware + karta
+20,0x0014,Czujnik pokojowy CO1,Czujnik pokojowy CO1,firmware + karta
+21,0x0015,Czujnik pokojowy CO2,Czujnik pokojowy CO2,firmware + karta
+22,0x0016,Czujnik pokojowy CO3,,firmware
+23,0x0017,Czujnik pokojowy CO4,,firmware
+24,0x0018,Czujnik CO1,Czujnik CO1,firmware + karta
+25,0x0019,Czujnik CO2,Czujnik CO2,firmware + karta
+26,0x001A,Czujnik CO3,,firmware
+27,0x001B,Czujnik CO4,,firmware
+30,0x001E,Czujnik CWU,Czujnik CWU,firmware + karta
+31,0x001F,Czujnik bufora gora,Czujnik bufora góra,firmware + karta
+32,0x0020,Czujnik bufora dol,Czujnik bufora dół,firmware + karta
+40,0x0028,Czujnik solar 1,,firmware
+41,0x0029,Czujnik solar 2,,firmware
+42,0x002A,Czujnik solar 3,,firmware
+43,0x002B,Czujnik solar 4,,firmware
+50,0x0032,Rezerwa paliwa,Rezerwa paliwa,firmware + karta
+51,0x0033,Brak paliwa w zasobniku,Brak paliwa w zasobniku,firmware + karta
+100,0x0064,Brak komunikacji z modulem 0,,firmware
+101,0x0065,Brak komunikacji z modulem 1,,firmware
+102,0x0066,Brak komunikacji z modulem 2,,firmware
+103,0x0067,Brak komunikacji z modulem 3,,firmware
+104,0x0068,Brak komunikacji z modulem 4,,firmware
+105,0x0069,Brak komunikacji z modulem 5,,firmware
+106,0x006A,Brak komunikacji z modulem 6,,firmware
+107,0x006B,Brak komunikacji z modulem 7,,firmware
+110,0x006E,Brak komunikacji z modulem BIG,Brak komunikacji z modułem BIG,firmware + karta
+115,0x0073,Brak komunikacji z modulem lambda,Brak komunikacji z modułem lambda,firmware + karta
+116,0x0074,Brak komunikacji z modulem MINI 0,,firmware
+117,0x0075,Brak komunikacji z modulem MINI 1,,firmware
+118,0x0076,Brak komunikacji z modulem MINI 2,,firmware
+119,0x0077,Brak komunikacji z modulem MINI 3,,firmware
+120,0x0078,Brak komunikacji z modulem MINI 4,,firmware
+121,0x0079,Brak komunikacji z modulem MINI 5,,firmware
+122,0x007A,Brak komunikacji z modulem MINI 6,,firmware
+123,0x007B,Brak komunikacji z modulem MINI 7,,firmware
+130,0x0082,Faza czyszczenia,Faza czyszczenia,firmware + karta
+131,0x0083,Blad wygaszania,Błąd wygaszania,firmware + karta
+140,0x008C,Brak ognia/opalu,Brak ognia/opału,firmware + karta
+150,0x0096,Dodatkowy magazyn: brak paliwa/max,Dodatkowy magazyn: brak paliwa/max,firmware + karta
+151,0x0097,Dodatkowy magazyn: rezerwa,Dodatkowy magazyn: rezerwa,firmware + karta
+160,0x00A0,Wymiennik do czyszczenia,Wymiennik do czyszczenia,firmware + karta
+161,0x00A1,Palnik do czyszczenia,Palnik do czyszczenia,firmware + karta
+200,0x00C8,Ruszt,Ruszt,firmware + karta
+201,0x00C9,Awaria dmuchawy,Awaria dmuchawy,firmware + karta
+202,0x00CA,Drzwi kotla otwarte,Drzwi kotła otwarte,firmware + karta
+203,0x00CB,Bardzo niski poziom tlenu,Bardzo niski poziom tlenu,firmware + karta

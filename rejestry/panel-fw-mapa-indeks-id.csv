@@ -1,0 +1,421 @@
+id_panelu;index;status_w_katalogu;nazwa_w_katalogu;odpowiada_na_kotle_2026-11-06
+11;0x2002;POTW;Tryb zadawania temperatury kotła;NIE
+12;0x2005;POTW;Włącz / wyłącz kocioł;TAK
+13;0x2001;POTW;Temperatura kotła;TAK
+14;0x3333;NIEZ;?;NIE
+15;0x2004;POTW;Temperatura zadana kotła (wynikowa);TAK
+16;0x2003;POTW;Temperatura zadana kotła (ręczna);TAK
+17;0x2002;POTW;Tryb zadawania temperatury kotła;NIE
+18;0x2207;POTW;Kociol – minimalna temperatura pomp [°C];TAK
+20;0x299E;NIEZ;?;TAK
+21;0x2208;POTW;Histereza załączenia kotła [°C];TAK
+19;0x2291;POTW;Histereza wyłączenia kotła [°C];TAK
+22;0x3750;BRAK;;NIE
+23;0x3708;POTW;Kociol – wybieg pompy [min];TAK
+24;0x3628;NIEZ;?;TAK
+25;0x2209;POTW;Harmonogram kotła – poniedziałek (maska 24 bit);NIE
+26;0x220A;POTW;Harmonogram kotła – wtorek (maska 24 bit);NIE
+27;0x220B;POTW;Harmonogram kotła – środa (maska 24 bit);NIE
+28;0x220C;POTW;Harmonogram kotła – czwartek (maska 24 bit);NIE
+29;0x220D;POTW;Harmonogram kotła – piątek (maska 24 bit);NIE
+30;0x220E;POTW;Harmonogram kotła – sobota (maska 24 bit);NIE
+31;0x220F;POTW;Harmonogram kotła – niedziela (maska 24 bit);NIE
+35;0x2277;NIEZ;?;TAK
+36;0x216A;NIEZ;?;TAK
+38;0x216B;NIEZ;?;TAK
+33;0x216C;POTW;Kociol – minimalna temperatura powrotu [°C];TAK
+34;0x2298;POTW;WentWyc – suwak (wydajność 0–100 %);TAK
+39;0x228C;NIEZ;?;TAK
+40;0x216D;POTW;Mieszacz powrotu – tryb testowy (A/CLOSE/OPEN);TAK
+41;0x216E;POTW;Kociol – czas mieszacza [s];TAK
+42;0x216F;ODNA;Znacznik trybu testowego (dawniej błędnie: antylegionella);TAK
+43;0x4000;POTW;Temperatura powrotu (pomiar);TAK
+37;0x3122;NIEZ;?;TAK
+44;0x3121;NIEZ;?;TAK
+46;0x211A;BRAK;;NIE
+47;0x3129;BRAK;;NIE
+49;0x312A;BRAK;;NIE
+50;0x200A;NIEZ;?;TAK
+51;0x200B;NIEZ;?;NIE
+52;0x200C;NIEZ;?;TAK
+53;0x200D;NIEZ;?;TAK
+54;0x200E;NIEZ;?;TAK
+55;0x200F;NIEZ;?;TAK
+45;0x400A;NIEZ;?;TAK
+48;0x3123;NIEZ;?;TAK
+56;0x3124;NIEZ;?;TAK
+143;0x3701;NIEZ;?;TAK
+57;0x3703;NIEZ;?;TAK
+62;0x2007;POTW;Stan palnika;TAK
+63;0x2250;ODNA;Jasność płomienia (ekran Palnik: jasność=);TAK
+64;0x2119;NIEZ;?;TAK
+70;0x4009;BRAK;;NIE
+71;0x2253;NIEZ;?;TAK
+73;0x2254;POTW;Dmuchawa – obroty [%];TAK
+65;0x3002;BRAK;;NIE
+66;0x2251;NIEZ;?;TAK
+67;0x2266;NIEZ;?;TAK
+68;0x2267;ODNA;Podawanie ręczne – licznik;TAK
+69;0x226D;POTW;Czas podawania paliwa – bieżący [s×10];TAK
+74;0x2252;NIEZ;?;TAK
+75;0x2261;POTW;Krzywa dmuchawy – obroty dmuchawy [%] przy mocy kotła 20 %;TAK
+76;0x2262;POTW;Krzywa dmuchawy – obroty dmuchawy [%] przy mocy kotła 40 %;TAK
+77;0x2263;POTW;Krzywa dmuchawy – obroty dmuchawy [%] przy mocy kotła 60 %;TAK
+78;0x2264;POTW;Krzywa dmuchawy – obroty dmuchawy [%] przy mocy kotła 80 %;TAK
+79;0x2265;POTW;Krzywa dmuchawy – obroty dmuchawy [%] przy mocy kotła 100 %;TAK
+80;0x2268;ODNA;Wartość 20 (kandydat: moc min?);TAK
+81;0x226E;NIEZ;?;TAK
+82;0x226F;NIEZ;?;TAK
+83;0x2275;ODNA;Wartość 50 (kandydat: moc?);TAK
+87;0x227A;ODNA;Wartość 60 (kandydat: moc?);NIE
+88;0x2256;POTW;Wstępna dawka paliwa [s];TAK
+85;0x370E;NIEZ;?;TAK
+86;0x2257;POTW;Podawanie max [s];TAK
+115;0x3709;NIEZ;?;TAK
+116;0x2258;POTW;Liczba czyszczeń rusztu;TAK
+117;0x2269;BRAK;;NIE
+58;0x2276;NIEZ;?;TAK
+59;0x4005;POTW;Moc palnika [%];NIE
+60;0x3706;NIEZ;?;TAK
+61;0x371F;BRAK;;NIE
+84;0x372E;BRAK;;NIE
+93;0x2273;POTW;Korekta powietrza [%];TAK
+94;0x2292;POTW;Wartość opałowa [kWh/kg];TAK
+95;0x299F;NIEZ;?;TAK
+96;0x4008;BRAK;;NIE
+97;0x3000;NIEZ;?;TAK
+99;0x3005;NIEZ;?;TAK
+98;0x3704;POTW;Moc dmuchawy rozżarzanie [%];TAK
+100;0x3006;NIEZ;?;TAK
+101;0x3007;NIEZ;?;TAK
+102;0x300C;POTW;Moc dmuchawy wygaszanie [%];TAK
+103;0x3705;NIEZ;?;TAK
+146;0x3001;NIEZ;?;TAK
+145;0x3748;BRAK;;NIE
+147;0x370B;POTW;Pod. palnika [% pod. zasobnika];TAK
+162;0x3727;NIEZ;?;TAK
+163;0x3710;NIEZ;?;TAK
+164;0x3711;NIEZ;?;TAK
+106;0x371D;BRAK;;NIE
+107;0x2120;NIEZ;?;TAK
+108;0x371A;BRAK;;NIE
+109;0x371E;BRAK;;NIE
+110;0x371C;BRAK;;NIE
+105;0x372D;BRAK;;NIE
+111;0x3605;POTW;Sterowanie Lambda (0/1);TAK
+112;0x214E;POTW;Tlen dla mocy 30 % [%];TAK
+113;0x2152;POTW;Tlen dla mocy 100 % [%];TAK
+114;0x215A;BRAK;;NIE
+92;0x215B;BRAK;;NIE
+89;0x2272;ODNA;Ilość paliwa test [kg/h];TAK
+90;0x2270;POTW;Moc min [%];TAK
+91;0x2271;POTW;Moc max [%];TAK
+118;0x225A;BRAK;;NIE
+119;0x2289;POTW;Moc dmuchawy rozpalanie [%];TAK
+120;0x2290;POTW;Czas rozżarzania [min];TAK
+121;0x299A;POTW;Rozżarzanie paliwo [%];NIE
+122;0x3003;POTW;Czas ruchu rusztu [s];TAK
+123;0x3010;NIEZ;?;TAK
+124;0x3012;NIEZ;?;TAK
+125;0x370D;ODNA;Podawanie ręczne – czas;TAK
+165;0x370F;NIEZ;?;TAK
+166;0x3715;POTW;Czas pauzy [min];TAK
+167;0x3716;POTW;Moc w pauzie [%];TAK
+135;0x3717;POTW;Dmuchawa w pauzie [%];TAK
+136;0x2153;POTW;Bezwładność palnika [min];TAK
+161;0x2151;NIEZ;?;TAK
+144;0x3700;POTW;Okres podajnika zasobnika [s];TAK
+137;0x299D;NIEZ;?;TAK
+138;0x226A;POTW;Próg foto;TAK
+139;0x226B;POTW;Czas wygaszania [min];TAK
+140;0x226C;ODNA;Temperatura palnika;TAK
+141;0x299C;NIEZ;?;TAK
+142;0x2999;POTW;Odstęp czyszczenia [h];TAK
+158;0x3702;NIEZ;?;NIE
+159;0x3008;NIEZ;?;TAK
+160;0x3009;NIEZ;?;TAK
+104;0x300A;NIEZ;?;TAK
+151;0x300B;NIEZ;?;TAK
+152;0x370C;NIEZ;?;TAK
+153;0x300E;POTW;Minimalne obroty dmuchawy [*100];TAK
+154;0x3713;NIEZ;?;NIE
+129;0x3714;NIEZ;?;TAK
+130;0x228E;BRAK;;NIE
+148;0x228F;BRAK;;NIE
+149;0x218A;BRAK;;NIE
+150;0x218B;BRAK;;NIE
+221;0x218C;BRAK;;NIE
+216;0x2210;POTW;CWU – zagrzej teraz;TAK
+217;0x2110;POTW;CWU – temperatura (pomiar);TAK
+218;0x2010;POTW;CWU – temperatura komfort (zadana);TAK
+219;0x2012;POTW;CWU – temperatura eko (zadana);TAK
+220;0x201A;POTW;CWU – temperatura zadana (wynikowa);TAK
+225;0x2014;POTW;Tryb CWU;TAK
+222;0x201C;NIEZ;?;TAK
+224;0x2212;POTW;CWU – histereza [°C];TAK
+226;0x2216;POTW;CWU – zwiększenie temperatury źródła;TAK
+223;0x2218;POTW;CWU – delta załączenia pompy;TAK
+227;0x2214;POTW;CWU – źródło ciepła;NIE
+228;0x2297;NIEZ;?;TAK
+229;0x2111;NIEZ;?;TAK
+230;0x374B;BRAK;;NIE
+231;0x374C;BRAK;;NIE
+232;0x300D;POTW;CWU – priorytet;TAK
+233;0x2154;POTW;Harmonogram CWU – poniedziałek (maska 24 bit);NIE
+234;0x2155;POTW;Harmonogram CWU – wtorek (maska 24 bit);NIE
+235;0x2156;POTW;Harmonogram CWU – środa (maska 24 bit);NIE
+236;0x2157;POTW;Harmonogram CWU – czwartek (maska 24 bit);NIE
+237;0x2158;POTW;Harmonogram CWU – piątek (maska 24 bit);NIE
+238;0x2159;POTW;Harmonogram CWU – sobota (maska 24 bit);NIE
+239;0x2160;POTW;Harmonogram CWU – niedziela (maska 24 bit);NIE
+240;0x2278;POTW;Pompa CWU – stan pracy;TAK
+252;0x3749;BRAK;;NIE
+241;0x3011;NIEZ;?;TAK
+242;0x2112;NIEZ;?;TAK
+243;0x2113;NIEZ;?;TAK
+244;0x2114;NIEZ;?;TAK
+245;0x2115;NIEZ;?;TAK
+247;0x2280;NIEZ;?;TAK
+246;0x2282;NIEZ;?;TAK
+248;0x2281;NIEZ;?;TAK
+249;0x3171;NIEZ;?;TAK
+250;0x3172;NIEZ;?;TAK
+251;0x3173;NIEZ;?;TAK
+155;0x3174;NIEZ;?;TAK
+156;0x2211;NIEZ;?;TAK
+157;0x299B;NIEZ;?;TAK
+253;0x3170;NIEZ;?;TAK
+254;0x3120;NIEZ;?;TAK
+255;0x2109;NIEZ;?;TAK
+256;0x2102;NIEZ;?;NIE
+257;0x2103;NIEZ;?;NIE
+258;0x2104;NIEZ;?;TAK
+259;0x2101;NIEZ;?;NIE
+260;0x2116;NIEZ;?;TAK
+261;0x3116;NIEZ;?;TAK
+262;0x3117;NIEZ;?;TAK
+263;0x3118;NIEZ;?;NIE
+264;0x3119;NIEZ;?;TAK
+265;0x311A;NIEZ;?;TAK
+266;0x311B;NIEZ;?;TAK
+267;0x311C;NIEZ;?;TAK
+1;0x215F;POTW;Temperatura zewnętrzna;TAK
+2;0x3721;NIEZ;?;TAK
+3;0x3747;BRAK;;NIE
+4;0x3724;NIEZ;?;TAK
+5;0x3725;NIEZ;?;TAK
+7;0x3726;NIEZ;?;TAK
+8;0x3729;BRAK;;NIE
+6;0x372A;BRAK;;NIE
+9;0x2164;NIEZ;?;TAK
+10;0x372B;BRAK;;NIE
+126;0x372C;BRAK;;NIE
+127;0x2259;POTW;Podajnik – tryb testowy;TAK
+128;0x2279;POTW;Ruszt – tryb testowy (A/CLOSE/OPEN);TAK
+133;0x228D;BRAK;;NIE
+134;0x2283;POTW;Dmuchawa – tryb testowy;TAK
+131;0x2288;NIEZ;?;TAK
+132;0x2285;NIEZ;?;TAK
+32;0x2284;POTW;Zapalarka – tryb testowy;TAK
+321;0x2286;POTW;Pompa kotłowa – tryb testowy;NIE
+322;0x2293;POTW;WentWyc – tryb testowy;TAK
+323;0x2295;POTW;Podajnik palnika – tryb testowy;TAK
+324;0x2296;POTW;Test wyjsc – Pompa CWU;TAK
+345;0x374A;BRAK;;NIE
+346;0x351E;POTW;Magazyn paliwa, transporter – tryb testowy;TAK
+347;0x351F;POTW;Magazyn paliwa, podajnik – tryb testowy;TAK
+348;0x3522;NIEZ;?;TAK
+349;0x3523;NIEZ;?;TAK
+350;0x3524;NIEZ;?;TAK
+351;0x3520;NIEZ;?;TAK
+352;0x3526;NIEZ;?;TAK
+355;0x3521;NIEZ;?;TAK
+356;0x3527;NIEZ;?;TAK
+353;0x3528;NIEZ;?;TAK
+354;0x3529;NIEZ;?;TAK
+357;0x352A;NIEZ;?;TAK
+333;0x352B;NIEZ;?;TAK
+334;0x3511;NIEZ;?;TAK
+335;0x3512;NIEZ;?;TAK
+336;0x3513;NIEZ;?;TAK
+337;0x3514;NIEZ;?;TAK
+338;0x3515;NIEZ;?;TAK
+339;0x3516;NIEZ;?;TAK
+340;0x3517;NIEZ;?;TAK
+341;0x3518;NIEZ;?;TAK
+342;0x351B;NIEZ;?;TAK
+343;0x351C;NIEZ;?;TAK
+344;0x3519;NIEZ;?;TAK
+274;0x351A;NIEZ;?;TAK
+275;0x3500;NIEZ;?;NIE
+269;0x3502;BRAK;;NIE
+270;0x3505;NIEZ;?;TAK
+271;0x2105;NIEZ;?;TAK
+273;0x2106;NIEZ;?;TAK
+272;0x2107;NIEZ;?;TAK
+276;0x2108;NIEZ;?;TAK
+277;0x3501;NIEZ;?;TAK
+279;0x2123;NIEZ;?;TAK
+278;0x3506;NIEZ;?;TAK
+289;0x3606;NIEZ;?;TAK
+280;0x370A;NIEZ;?;TAK
+281;0x3508;NIEZ;?;TAK
+282;0x3509;NIEZ;?;TAK
+283;0x350A;NIEZ;?;TAK
+284;0x350B;NIEZ;?;TAK
+285;0x350C;NIEZ;?;TAK
+286;0x350D;NIEZ;?;TAK
+287;0x3707;NIEZ;?;TAK
+288;0x3629;NIEZ;?;TAK
+290;0x362B;BRAK;;NIE
+291;0x3525;NIEZ;?;TAK
+292;0x3718;NIEZ;?;TAK
+293;0x3719;NIEZ;?;TAK
+294;0x3720;NIEZ;?;TAK
+295;0x372F;BRAK;;NIE
+296;0x3730;BRAK;;NIE
+297;0x3731;BRAK;;NIE
+298;0x3732;BRAK;;NIE
+299;0x3733;BRAK;;NIE
+300;0x3734;BRAK;;NIE
+301;0x3735;BRAK;;NIE
+302;0x3736;BRAK;;NIE
+303;0x3737;BRAK;;NIE
+304;0x3738;BRAK;;NIE
+305;0x3739;BRAK;;NIE
+306;0x373A;BRAK;;NIE
+307;0x373B;BRAK;;NIE
+308;0x3722;NIEZ;?;TAK
+309;0x3723;NIEZ;?;TAK
+310;0x3728;NIEZ;?;TAK
+311;0x373C;BRAK;;NIE
+312;0x373D;BRAK;;NIE
+313;0x3746;BRAK;;NIE
+314;0x3744;BRAK;;NIE
+315;0x3745;BRAK;;NIE
+320;0x373E;BRAK;;NIE
+316;0x3741;BRAK;;NIE
+317;0x3742;BRAK;;NIE
+318;0x3743;BRAK;;NIE
+319;0x373F;BRAK;;NIE
+327;0x3740;BRAK;;NIE
+328;0x3601;ODNA;Zbiornik – ilość paliwa [kg];TAK
+329;0x3600;ODNA;Zbiornik – pojemność [kg];TAK
+330;0x3603;NIEZ;?;TAK
+332;0x3602;NIEZ;?;TAK
+331;0x3607;NIEZ;?;TAK
+363;0x3604;POTW;Kociol – rezerwa paliwa stop [kg];TAK
+364;0x3627;NIEZ;?;TAK
+365;0x3626;NIEZ;?;TAK
+366;0x3625;NIEZ;?;TAK
+367;0x3624;NIEZ;?;TAK
+368;0x3623;NIEZ;?;TAK
+369;0x3620;NIEZ;?;TAK
+370;0x3621;NIEZ;?;TAK
+371;0x3622;NIEZ;?;TAK
+372;0x3630;NIEZ;?;TAK
+373;0x3631;NIEZ;?;TAK
+374;0x3632;NIEZ;?;NIE
+375;0x3633;NIEZ;?;TAK
+376;0x3634;NIEZ;?;TAK
+377;0x3635;NIEZ;?;TAK
+378;0x3636;NIEZ;?;TAK
+379;0x3637;NIEZ;?;TAK
+380;0x3638;NIEZ;?;TAK
+381;0x3639;NIEZ;?;TAK
+382;0x363A;NIEZ;?;TAK
+383;0x363B;NIEZ;?;TAK
+384;0x363C;NIEZ;?;TAK
+385;0x363D;NIEZ;?;TAK
+386;0x363E;NIEZ;?;TAK
+387;0x363F;NIEZ;?;TAK
+388;0x3640;NIEZ;?;TAK
+389;0x3648;NIEZ;?;TAK
+390;0x3650;NIEZ;?;TAK
+391;0x3658;NIEZ;?;TAK
+392;0x3659;NIEZ;?;TAK
+393;0x3666;BRAK;;NIE
+394;0x3667;BRAK;;NIE
+395;0x3668;BRAK;;NIE
+396;0x3669;BRAK;;NIE
+397;0x365A;NIEZ;?;TAK
+398;0x365B;NIEZ;?;TAK
+399;0x365C;NIEZ;?;TAK
+400;0x365D;NIEZ;?;TAK
+401;0x365E;NIEZ;?;TAK
+402;0x365F;NIEZ;?;TAK
+403;0x3660;NIEZ;?;TAK
+404;0x3661;NIEZ;?;NIE
+405;0x3662;NIEZ;?;TAK
+408;0x3663;NIEZ;?;TAK
+409;0x3664;NIEZ;?;TAK
+406;0x3665;NIEZ;?;TAK
+407;0x366A;BRAK;;NIE
+410;0x366B;BRAK;;NIE
+411;0x3608;ODNA;Statystyki: licznik rozpaleń;TAK
+415;0x3609;ODNA;Statystyki: średni czas rozpalania [s];TAK
+412;0x3507;ODNA;Statystyki: całkowite zużycie paliwa [kg];TAK
+413;0x3610;NIEZ;?;TAK
+414;0x3611;ODNA;Statystyki: czas pracy podajnika 1 [h];TAK
+416;0x3612;ODNA;Statystyki: czas pracy podajnika 2 [h];TAK
+417;0x3613;NIEZ;?;TAK
+418;0x3614;NIEZ;?;TAK
+419;0x3615;NIEZ;?;TAK
+420;0x3616;NIEZ;?;TAK
+421;0x3617;NIEZ;?;TAK
+422;0x3618;ODNA;Statystyki: liczba czyszczeń wymiennika;TAK
+423;0x3619;ODNA;Statystyki: liczba przegrzań kotła;TAK
+424;0x362A;ODNA;Statystyki: liczba zaników zasilania;NIE
+360;0x362C;BRAK;;NIE
+361;0x404C;POTW;Alarmy: następna pozycja bufora;NIE
+362;0x404D;ODNA;Alarmy: liczba alarmów;TAK
+215;0x404E;BRAK;;NIE
+168;0x2065;ODNA;Tryb CO 2;TAK
+169;0x22FD;NIEZ;?;NIE
+170;0x2032;POTW;CO – temperatura komfort (zadana);TAK
+171;0x2048;POTW;CO – temperatura eko (zadana);NIE
+172;0x2166;NIEZ;?;TAK
+191;0x2064;POTW;Tryb CO 1;TAK
+192;0x2126;POTW;Harmonogram CO 1 – poniedziałek (maska 24 bit);NIE
+193;0x212A;POTW;Harmonogram CO 1 – wtorek (maska 24 bit);NIE
+194;0x212E;POTW;Harmonogram CO 1 – środa (maska 24 bit);NIE
+195;0x2132;POTW;Harmonogram CO 1 – czwartek (maska 24 bit);NIE
+196;0x2136;POTW;Harmonogram CO 1 – piątek (maska 24 bit);NIE
+197;0x213A;POTW;Harmonogram CO 1 – sobota (maska 24 bit);NIE
+201;0x213E;POTW;Harmonogram CO 1 – niedziela (maska 24 bit);NIE
+202;0x2299;POTW;Pompa CO1 – stan pracy;TAK
+198;0x22B9;POTW;Mieszacz CO1 – tryb testowy (A/CLOSE/OPEN);TAK
+199;0x2016;NIEZ;?;TAK
+178;0x4001;POTW;CO 1 – temperatura (pomiar);TAK
+176;0x22A5;POTW;CO1 – czujnik CO (0/1);TAK
+200;0x22A1;POTW;CO1 – czujnik pokojowy;TAK
+174;0x22AD;POTW;CO 1 – temperatura zadana (wynikowa);TAK
+188;0x22B1;POTW;CO1 – zwiekszenie temperatury zrodla [°C];TAK
+175;0x2146;POTW;CO 1 – temperatura zadana ręczna [°C];TAK
+325;0x2142;POTW;CO 1 – tryb pracy (ręczny/pogodowy);TAK
+326;0x229D;POTW;Pompa CO1 – tryb testowy;NIE
+190;0x214A;NIEZ;?;TAK
+177;0x22BD;POTW;CO 1 – histereza [°C];TAK
+180;0x22C1;POTW;CO 1 – kalibracja czujnika [°C];TAK
+181;0x22C5;POTW;CO 1 – krzywa pogodowa, temperatura zewnętrzna −20 °C [°C za;TAK
+182;0x400C;BRAK;;NIE
+183;0x22C9;POTW;CO 1 – krzywa pogodowa, temperatura zewnętrzna 0 °C [°C zasi;TAK
+173;0x22CD;POTW;CO 1 – krzywa pogodowa, temperatura zewnętrzna +10 °C [°C za;TAK
+179;0x22D1;POTW;CO1 – zrodlo (0 Kociol / 1 Bufor);TAK
+184;0x22D5;POTW;CO1 – temperatura maksymalna [°C];NIE
+186;0x22D9;POTW;CO1 – wspolczynnik korekcji t. CO;TAK
+185;0x22E5;POTW;CO1 – obnizenie temperatury CO [°C];TAK
+187;0x22E9;POTW;CO1 – MIN temperatura CO pomp [°C];TAK
+189;0x22B5;POTW;CO1 – czas mieszacza [s];TAK
+203;0x22F1;POTW;CO1 – stala pompa (0/1);TAK
+204;0x22F5;NIEZ;?;TAK
+205;0x22F9;POTW;CO1 – obnizenie Tco dla ochrony powrotu (0/1);TAK
+206;0x2301;POTW;Wejście: zgoda regulatora (IN3);NIE
+207;0x230D;NIEZ;?;TAK
+208;0x2309;NIEZ;?;TAK
+209;0x2311;NIEZ;?;NIE
+210;0x2319;BRAK;;NIE
+211;0x231D;BRAK;;NIE
+212;0x2315;BRAK;;NIE
+213;0x2321;BRAK;;NIE
+214;0x2325;BRAK;;NIE
