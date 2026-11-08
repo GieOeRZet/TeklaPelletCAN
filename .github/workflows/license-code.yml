@@ -1,0 +1,77 @@
+name: Kod odblokowujący (generator)
+
+# Uruchamiasz ręcznie: Actions → "Kod odblokowujący (generator)" → Run workflow.
+# Wymagane sekrety repozytorium:
+#   LICENSE_SIGNING_KEY       – klucz prywatny ECDSA P-256 (PEM), z `python3 tools/license.py init`
+#   LICENSE_OUTPUT_PASSPHRASE – hasło do zaszyfrowania wyniku (kod nie trafia jawnie do logów)
+# Wynik: zaszyfrowany artefakt "kod-<serial>"; odszyfrowanie opisane w podsumowaniu zadania.
+on:
+  workflow_dispatch:
+    inputs:
+      device_id:
+        description: "ID urządzenia (12 znaków hex, pokazane w Informacje o programie) albo 'any' = kod dla dowolnego urządzenia"
+        required: true
+        default: "any"
+      serial:
+        description: "Numer seryjny kodu (0-65535) – do własnej ewidencji"
+        required: true
+        default: "1"
+      tier:
+        description: "Poziom"
+        required: true
+        default: "full"
+        type: choice
+        options: [full]
+
+permissions:
+  contents: read
+
+jobs:
+  issue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install cryptography
+      - name: Sprawdź sekrety
+        env:
+          K: ${{ secrets.LICENSE_SIGNING_KEY }}
+          P: ${{ secrets.LICENSE_OUTPUT_PASSPHRASE }}
+        run: |
+          [ -n "$K" ] || { echo "Brak sekretu LICENSE_SIGNING_KEY"; exit 1; }
+          [ -n "$P" ] || { echo "Brak sekretu LICENSE_OUTPUT_PASSPHRASE"; exit 1; }
+      - name: Wystaw kod
+        env:
+          KEY: ${{ secrets.LICENSE_SIGNING_KEY }}
+          PASS: ${{ secrets.LICENSE_OUTPUT_PASSPHRASE }}
+          DEVICE: ${{ inputs.device_id }}
+          SERIAL: ${{ inputs.serial }}
+          TIER: ${{ inputs.tier }}
+        run: |
+          umask 077
+          printf '%s\n' "$KEY" > "$RUNNER_TEMP/key.pem"
+          CODE=$(python3 tools/license.py issue --key "$RUNNER_TEMP/key.pem" --device "$DEVICE" --tier "$TIER" --serial "$SERIAL")
+          echo "::add-mask::$CODE"
+          # sprawdzenie krzyżowe: kod musi przejść weryfikację tym samym kluczem
+          DEVARG=(); [ "$DEVICE" != "any" ] && DEVARG=(--device "$DEVICE")
+          python3 tools/license.py verify --key "$RUNNER_TEMP/key.pem" --code "$CODE" "${DEVARG[@]}" >/dev/null
+          mkdir -p out
+          printf '%s\n' "$CODE" | openssl enc -aes-256-cbc -pbkdf2 -salt -pass env:PASS -out "out/kod-$SERIAL.enc"
+          rm -f "$RUNNER_TEMP/key.pem"
+          {
+            echo "### Kod wystawiony"
+            echo "- Urządzenie: \`$DEVICE\`"
+            echo "- Poziom: \`$TIER\`, numer seryjny: \`$SERIAL\`"
+            echo
+            echo "Kod jest zaszyfrowany w artefakcie **kod-$SERIAL**. Pobierz i odszyfruj:"
+            echo '```'
+            echo "openssl enc -d -aes-256-cbc -pbkdf2 -in kod-$SERIAL.enc -pass pass:<LICENSE_OUTPUT_PASSPHRASE>"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kod-${{ inputs.serial }}
+          path: out/
+          retention-days: 7

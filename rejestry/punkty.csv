@@ -80,3 +80,9 @@ klucz,indeks,nazwa,kodowanie,ze_znakiem,min,max,poziom
 78,0x3701,Min EGT required [C] (FW panela),Plain,0,70.0,120.0,1
 79,0x3703,Max exhaust gas temp. [C] (FW panela),Plain,0,180.0,280.0,1
 80,0x3122,Exchanger cleaning interval [min] (FW panela),Plain,0,10.0,600.0,1
+100,0x2010,CWU zadana komfort,Plain,0,20.0,70.0,0
+101,0x2012,CWU zadana eko,Plain,0,20.0,70.0,0
+102,0x2032,CO zadana komfort,Tenths,0,15.0,30.0,0
+103,0x2048,CO zadana eko,Tenths,0,10.0,30.0,0
+104,0x2003,Kociol zadana reczna,Plain,0,60.0,80.0,0
+106,0x2002,"Kociol tryb zadawania (0 czasowy auto, 1 czasowy reczny, 2 auto, 3 reczny)",Plain,0,0.0,3.0,0

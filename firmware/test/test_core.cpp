@@ -10,6 +10,8 @@
 #include "../components/core/access.h"
 #include "../components/core/point.h"
 #include "../components/core/sdo_queue.h"
+#include "../components/core/license.h"
+#include "license_vectors.h"
 
 using namespace tpc;
 
@@ -204,7 +206,7 @@ static void test_signed_codec() {
 }
 
 static void test_points() {
-    assert(kPointCount == 81);
+    assert(kPointCount == 87);
     const Point* p = find_point_by_key(0);
     assert(p && p->index == 0x2270 && p->encoding == Encoding::FlagByte && p->level == 0);
     p = find_point_by_key(3);                       // korekta powietrza, ze znakiem
@@ -279,6 +281,30 @@ static void test_queue() {
     assert(done[3].outcome == SdoOutcome::Ok && done[3].value == 269);
 }
 
+static void test_license() {
+    const uint8_t dev[6] = {0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6};
+    const uint8_t other[6] = {0, 0, 0, 0, 0, 1};
+    LicenseInfo info;
+    assert(license_verify(kCodeAny, dev, kLicensePubKey, info) == LicenseResult::Ok);
+    assert(info.tier == Tier::Full && info.serial == 1);
+    assert(license_verify(kCodeAny, other, kLicensePubKey, info) == LicenseResult::Ok);   // dla dowolnego
+    assert(license_verify(kCodeBound, dev, kLicensePubKey, info) == LicenseResult::Ok);
+    assert(info.serial == 7 && info.device[0] == 0xA1);
+    assert(license_verify(kCodeBound, other, kLicensePubKey, info) == LicenseResult::Device);
+    assert(license_verify(kCodeTampered, dev, kLicensePubKey, info) == LicenseResult::Signature);
+    // tolerancja zapisu: małe litery, spacje
+    std::string lower = kCodeBound;
+    for (auto& ch : lower) ch = (char)tolower((unsigned char)ch);
+    assert(license_verify(" " + lower + " ", dev, kLicensePubKey, info) == LicenseResult::Ok);
+    assert(license_verify("", dev, kLicensePubKey, info) == LicenseResult::Format);
+    assert(license_verify("TPC1-AAAA", dev, kLicensePubKey, info) == LicenseResult::Format);
+    assert(license_verify(std::string("XXXX") + std::string(kCodeBound).substr(4), dev, kLicensePubKey, info) == LicenseResult::Format);
+    // inny klucz publiczny -> podpis nie pasuje
+    uint8_t wrong[65]; memcpy(wrong, kLicensePubKey, 65); wrong[64] ^= 1;
+    assert(license_verify(kCodeBound, dev, wrong, info) == LicenseResult::Signature);
+    assert(kLicenseDevKey);  // w repo jest klucz testowy
+}
+
 int main() {
     test_sdo();
     test_codec();
@@ -289,6 +315,7 @@ int main() {
     test_points();
     test_access();
     test_queue();
+    test_license();
     puts("OK: wszystkie testy przeszly");
     return 0;
 }

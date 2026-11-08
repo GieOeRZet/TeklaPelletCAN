@@ -52,6 +52,17 @@ def main():
     if not (len(lo) == len(hi) == len(lv) == n):
         raise SystemExit(f"rozne dlugosci tablic: {n} {len(lo)} {len(hi)} {len(lv)}")
 
+    # Zadane temperatury (akcja set_setpoint) i tryb kotla (set_boiler_mode) jako dodatkowe klucze 100+.
+    sp = src[src.index("action: set_setpoint"):src.index("action: set_boiler_mode")]
+    sp_ix = [num(x) for x in re.search(r"ix\[\] = \{([^}]*)\}", sp).group(1).replace(" ", "").split(",")]
+    sp_lo = [num(x) for x in re.search(r"lo\[\] = \{([^}]*)\}", sp).group(1).replace(" ", "").split(",")]
+    sp_hi = [num(x) for x in re.search(r"hi\[\] = \{([^}]*)\}", sp).group(1).replace(" ", "").split(",")]
+    sp_mul = [num(x) for x in re.search(r"mul\[\] = \{([^}]*)\}", sp).group(1).replace(" ", "").split(",")]
+    extra = [(100 + i, sp_ix[i], "Plain" if sp_mul[i] == 1 else "Tenths", sp_lo[i], sp_hi[i], 0,
+              ["CWU zadana komfort", "CWU zadana eko", "CO zadana komfort", "CO zadana eko", "Kociol zadana reczna"][i])
+             for i in range(len(sp_ix))]
+    extra.append((106, 0x2002, "Plain", 0, 3, 0, "Kociol tryb zadawania (0 czasowy auto, 1 czasowy reczny, 2 auto, 3 reczny)"))
+
     names = {}
     cat = Path(__file__).parent.parent / "rejestry/katalog-rejestrow.csv"
     with open(cat, encoding="utf-8-sig") as f:
@@ -67,7 +78,9 @@ def main():
             idx = num(ix[k])
             w.writerow([k, f"0x{idx:04X}", names.get(idx, ""), e, int(signed),
                         num(lo[k]), num(hi[k]), int(num(lv[k]))])
-    print(f"zapisano {n} nastaw do {out}")
+        for key, idx, e, mn, mx, lv_, nm in extra:
+            w.writerow([key, f"0x{idx:04X}", nm, e, 0, float(mn), float(mx), lv_])
+    print(f"zapisano {n + len(extra)} nastaw do {out}")
 
 
 if __name__ == "__main__":

@@ -155,3 +155,14 @@ W ESPHome każdy rejestr siedzi w kilku równoległych tablicach C++ w lambdach 
 1. **Jedno źródło prawdy:** tabela punktów w `rejestry/` (indeks, kodowanie, zakres, poziom, nazwa). Firmware (generowana tablica C++), karta i integracja HA biorą z niej wszystko; integracja i karta czytają ją z urządzenia (`/points`), więc nowy punkt nie wymaga zmian w HA ani w karcie.
 2. **Import:** `python3 tools/import_pelletcan.py <PelletCAN_packages.yaml>` odtwarza z ESPHome tablicę nastaw (`rejestry/punkty.csv`, 81 pozycji: indeks, kodowanie, zakres, poziom). Po dodaniu nastawy w ESPHome uruchamiasz skrypt i widzisz w `git diff` tylko nowe wiersze.
 3. **Czego skrypt nie przeniesie:** logiki w lambdach (moc kW, spalanie, prognoza, harmonogramy, test wyjść, PDO) – te elementy przepisujemy ręcznie w module `calc`.
+
+## 17. Decyzja: bez poziomów odblokowania (na razie)
+Wersja podstawowa/pełna z kodem odblokowującym jest **wstrzymana** – urządzenie od razu daje pełną funkcjonalność, a dostęp do nastaw reguluje tak jak w PelletCAN poziom menu (poziom 0, klucz 1 – PIN 0900, klucz 2 – PIN 0999). Kod licencji (`license.*`, `tools/license.py`, workflow `license-code.yml`, klucz testowy) zostaje w repo jako nieużywany moduł do ewentualnego włączenia później; silnik (`engine`) go nie wywołuje.
+
+## 18. Zgodność z kartą i encjami PelletCAN
+Cel: oryginalna karta działa **bez zmian zachowania**, z tym samym interfejsem i filtrowaniem encji. Karta czyta `hass.states[...]` (encje wykrywane po prefiksie i nazwie) i woła usługi `esphome.<węzeł>_<akcja>`. Dlatego:
+- urządzenie wystawia **te same encje o tych samych nazwach** (190 w ESPHome: 119 sensorów, 42 tekstowe, 13 binarnych, 11 przycisków, 3 selecty, 2 przełączniki) – katalog w `rejestry/`;
+- strona na urządzeniu ładuje kartę z cienką warstwą zgodności, która z API urządzenia buduje obiekt `hass` (stany + `callService`);
+- integracja HA tworzy encje o tych samych nazwach i usługi o tych samych nazwach akcji, więc karta działa w HA tak samo.
+
+Status silnika: odczyt cykliczny, stan 126 punktów (sensory/binarne/enumy), nastawy (87 kluczy) z walidacją zakresu i poziomu dostępu, zapis z odczytem zwrotnym, autoblokada PIN – z testami z atrapą kotła (`test_engine`). Do przeniesienia z ESPHome: encje tekstowe i obliczane (historia alarmów 20 wpisów, harmonogramy, test wyjść, statystyki/konfiguracja, moc kW/spalanie/prognoza paliwa, przyciski podajnika/dmuchawy, Snap, raport) oraz pozostałe akcje (`set_schedule`, `set_output`, `sdo_*`, ...).

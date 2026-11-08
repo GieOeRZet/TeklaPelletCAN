@@ -1,0 +1,127 @@
+id,indeks,dekodowanie,rodzaj,jednostka,klasa,nazwa,opcje,poziom_podgladu,odczyt,klucz_zapisu,poziom_zapisu
+boiler_temp,0x2001,S16_10,sensor,°C,temperature,Kociol temperatura,,basic,live,,
+boiler_set_manual,0x2003,S16,sensor,°C,temperature,Kociol zadana reczna,,basic,live,104,0
+boiler_set_result,0x2004,S16,sensor,°C,temperature,Kociol zadana wynikowa,,basic,live,,
+ch1_temp,0x4001,S16_10,sensor,°C,temperature,CO temperatura,,basic,live,,
+ch1_set_manual,0x2146,LOW,sensor,°C,temperature,CO zadana reczna,,basic,live,15,0
+ch1_set_result,0x22AD,S16,sensor,°C,temperature,CO zadana wynikowa,,basic,live,,
+ch1_pump,0x2299,FLAG_LOW,binary_sensor,,running,CO pompa,,basic,live,,
+mixer_co1_state,0x22B9,LOW,sensor,,,Mieszacz CO1 stan,,full,live,,
+mixer_ret_state,0x216D,LOW,sensor,,,Mieszacz powrotu stan,,full,live,,
+ch2_temp,0x4002,S16_10,sensor,°C,temperature,CO2 temperatura,,basic,live,,
+ch2_set_manual,0x2147,S16_10,sensor,°C,temperature,CO2 zadana reczna,,basic,live,,
+ch2_set_result,0x22AE,S16,sensor,°C,temperature,CO2 zadana wynikowa,,basic,live,,
+ch2_pump,0x229A,FLAG_LOW,binary_sensor,,running,CO2 pompa,,basic,live,,
+hw_temp,0x2110,S16_10,sensor,°C,temperature,CWU temperatura,,basic,live,,
+hw_set_comfort,0x2010,S16,sensor,°C,temperature,CWU zadana komfort,,basic,live,100,0
+co_set_comfort,0x2032,S16_10,sensor,°C,temperature,CO zadana komfort,,basic,live,102,0
+co_set_eco,0x2048,S16_10,sensor,°C,temperature,CO zadana ekonomiczna,,basic,live,103,0
+hw_set_eco,0x2012,S16,sensor,°C,temperature,CWU zadana ekonomiczna,,basic,live,101,0
+hw_set_result,0x201A,S16,sensor,°C,temperature,CWU zadana wynikowa,,basic,live,,
+hw_pump,0x2278,FLAG_LOW,binary_sensor,,running,CWU pompa,,basic,live,,
+outside_temp,0x215F,S16_10,sensor,°C,temperature,Temperatura zewnetrzna,,basic,live,,
+burner_temp,0x226C,S16_10,sensor,°C,temperature,Temperatura palnika,,basic,live,,
+fuel_test,0x2272,U16_10,sensor,kg/h,,Ilosc paliwa test,,basic,live,4,0
+air_corr,0x2273,S16,sensor,%,,Korekta powietrza,,basic,live,3,0
+power_min,0x2270,U8,sensor,%,,Moc min,,basic,live,0,0
+power_max,0x2271,U8,sensor,%,,Moc max,,basic,live,1,0
+fan_mod_1,0x2261,U16,sensor,%,,Dmuchawa modulacja 20 %,,full,l1,5,1
+fan_mod_2,0x2262,U16,sensor,%,,Dmuchawa modulacja 40 %,,full,l1,6,1
+fan_mod_3,0x2263,U16,sensor,%,,Dmuchawa modulacja 60 %,,full,l1,7,1
+fan_mod_4,0x2264,U16,sensor,%,,Dmuchawa modulacja 80 %,,full,l1,8,1
+fan_mod_5,0x2265,U16,sensor,%,,Dmuchawa modulacja 100 %,,full,l1,9,1
+ret_temp,0x4000,S16_10,sensor,°C,temperature,Temperatura powrotu,,basic,live,,
+boiler_hyst_on,0x2208,U16,sensor,°C,,Histereza zalaczenia kotla,,basic,l1,10,0
+boiler_hyst_off,0x2291,U16,sensor,°C,,Histereza wylaczenia kotla,,basic,l1,11,0
+co1_hyst,0x22BD,LOW_10,sensor,°C,,CO1 histereza,,basic,l1,12,0
+co1_calib,0x22C1,S16_10,sensor,°C,,CO1 kalibracja czujnika,,basic,l1,13,0
+co1_mode,0x2142,LOW,sensor,,,CO1 tryb pracy (0 reczny / 1 pogodowy),,basic,l1,14,0
+co1_curve_m20,0x22C5,LOW,sensor,°C,,CO1 krzywa pogodowa -20 C,,basic,l1,16,0
+co1_curve_0,0x22C9,LOW,sensor,°C,,CO1 krzywa pogodowa 0 C,,basic,l1,17,0
+co1_curve_10,0x22CD,LOW,sensor,°C,,CO1 krzywa pogodowa +10 C,,basic,l1,18,0
+cwu_hyst,0x2212,U16,sensor,°C,,CWU histereza,,basic,live,19,0
+cwu_boost,0x2210,LOW,sensor,,,CWU zagrzej teraz (0/1),,basic,live,20,0
+cwu_src,0x2214,LOW,sensor,,,CWU zrodlo,,full,l1,44,1
+cwu_src_inc,0x2216,LOW,sensor,°C,,CWU zwiekszenie temp. zrodla,,full,l1,45,1
+cwu_delta,0x2218,LOW,sensor,°C,,CWU delta zalaczenia pompy,,full,l1,46,1
+boiler_pump_min,0x2207,U16,sensor,°C,,Kociol minimalna temp. pomp,,full,l1,48,1
+boiler_ret_min,0x216C,U16,sensor,°C,,Kociol minimalna temp. powrotu,,full,l1,49,1
+boiler_mixer_time,0x216E,U16,sensor,s,,Kociol czas mieszacza,,full,l1,50,1
+co1_src_inc,0x22B1,LOW,sensor,°C,,CO1 zwiekszenie temp. zrodla,,full,l1,51,1
+co1_tmax,0x22D5,LOW,sensor,°C,,CO1 temperatura maksymalna,,full,l1,52,1
+co1_corr,0x22D9,LOW,sensor,,,CO1 wspolczynnik korekcji t. CO,,full,l1,53,1
+co1_out_comf,0x22DD,LOW,sensor,°C,,CO1 MAX Tzew pomp komfort,,full,l1,54,1
+co1_out_eco,0x22E1,LOW,sensor,°C,,CO1 MAX Tzew pomp ekon.,,full,l1,55,1
+co1_lower,0x22E5,LOW,sensor,°C,,CO1 obnizenie temperatury CO,,full,l1,56,1
+co1_pump_min,0x22E9,LOW,sensor,°C,,CO1 MIN temperatura CO pomp,,full,l1,57,1
+co1_mixer_time,0x22B5,U16,sensor,s,,CO1 czas mieszacza,,full,l1,58,1
+co1_const_pump,0x22F1,LOW,sensor,,,CO1 stala pompa (0/1),,full,l1,59,1
+co1_ret_protect,0x22F9,LOW,sensor,,,CO1 obnizenie Tco ochrona powrotu (0/1),,full,l1,60,1
+co1_source,0x22D1,LOW,sensor,,,CO1 zrodlo (0 kociol / 1 bufor),,full,l1,61,1
+co1_co_sensor,0x22A5,LOW,sensor,,,CO1 czujnik CO (0/1),,full,l1,62,1
+co1_room_sensor,0x22A1,LOW,sensor,,,"CO1 czujnik pokojowy (0 brak,1 CTP1,2 CTP2,3 videROOM,4 termostat,5 CAN)",,full,l1,63,1
+boil_pump_run,0x3708,LOW,sensor,,,Kociol wybieg pompy,,full,l1,64,1
+cwu_tmax,0x201C,LOW,sensor,,,CWU temperatura maksymalna,,full,l1,66,1
+cwu_legion,0x2297,LOW,sensor,,,CWU antylegionella,,basic,l1,67,0
+exh_c1,0x2268,LOW,sensor,,,Wentylator spalin krzywa 1,,full,l1,68,1
+exh_c2,0x226E,LOW,sensor,,,Wentylator spalin krzywa 2,,full,l1,69,1
+exh_c3,0x226F,LOW,sensor,,,Wentylator spalin krzywa 3,,full,l1,,
+exh_c4,0x2275,LOW,sensor,,,Wentylator spalin krzywa 4,,full,l1,71,1
+exh_c5,0x227A,LOW,sensor,,,Wentylator spalin krzywa 5,,full,l1,72,1
+alarm_snd,0x3506,LOW,sensor,,,Alarm dzwiekowy,,full,l1,73,1
+alarm_sil_from,0x3508,LOW,sensor,,,Alarm cisza od,,full,l1,74,1
+alarm_sil_to,0x3509,LOW,sensor,,,Alarm cisza do,,full,l1,75,1
+k_nominal,0x3709,U16,sensor,kW,,Kociol moc nominalna,,full,l1,76,2
+k_predose_g,0x370E,U16,sensor,g,,Palnik dawka wstepna g,,full,l1,77,1
+k_egt_min,0x3701,S16,sensor,°C,,Palnik temp spalin min,,full,l1,78,1
+k_egt_max,0x3703,U16,sensor,°C,,Palnik temp spalin max,,full,l1,79,1
+k_exch_int,0x3122,U16,sensor,min,,Wymiennik interwal czyszczenia,,full,l1,80,1
+k_pwr,0x3706,U16_10,sensor,kW,,Kociol moc palnika,,full,l1,,
+k_cons,0x3710,U16_10,sensor,kg/h,,Kociol zuzycie paliwa,,full,l1,,
+k_grate_t,0x3711,U16,sensor,min,,Kociol czas do czyszczenia rusztu,,full,l1,,
+k_exh_pct,0x228C,LOW,sensor,%,,Kociol wentylator spalin moc,,full,l1,,
+boil_fuel_reserve,0x3604,U16,sensor,,,Kociol rezerwa paliwa stop,,full,l1,65,1
+cwu_prio,0x300D,LOW,sensor,,,CWU priorytet (0/1),,basic,live,21,0
+fuel_heat,0x2292,U8_10,sensor,kWh/kg,,Wartosc opalowa,,basic,live,2,0
+burner_power,0x4005,RAW,sensor,%,,Moc palnika,,full,live,,
+p_prefeed,0x2256,U16,sensor,s,,Palnik wstepna dawka paliwa,,full,l1,22,1
+p_feed_max,0x2257,U16_10,sensor,s,,Palnik podawanie max,,full,live,23,1
+p_photo,0x226A,LOW,sensor,,,Palnik prog foto,,full,l1,24,1
+p_blow_ign,0x2289,LOW,sensor,%,,Palnik moc dmuchawy rozpalanie,,full,live,25,1
+p_blow_glow,0x3704,LOW,sensor,%,,Palnik moc dmuchawy rozzarzanie,,full,l1,26,1
+p_blow_stop,0x300C,LOW,sensor,%,,Palnik moc dmuchawy wygaszanie,,full,l1,27,1
+p_glow_time,0x2290,LOW,sensor,min,,Palnik czas rozzarzania,,full,l1,28,1
+p_glow_fuel,0x299A,LOW,sensor,%,,Palnik rozzarzanie paliwo,,full,l1,29,1
+p_stop_time,0x226B,LOW,sensor,min,,Palnik czas wygaszania,,full,l1,30,1
+p_lambda,0x3605,LOW,sensor,,,Palnik sterowanie lambda,,full,l1,31,1
+p_o2_30,0x214E,LOW_10,sensor,%,,Palnik tlen dla mocy 30 %,,full,l1,32,1
+p_o2_100,0x2152,LOW_10,sensor,%,,Palnik tlen dla mocy 100 %,,full,l1,33,1
+p_cleans,0x2258,LOW,sensor,,,Palnik liczba czyszczen rusztu,,full,l1,34,1
+p_clean_gap,0x2999,U16,sensor,h,,Palnik odstep czyszczenia,,full,l1,35,1
+p_pause_time,0x3715,LOW,sensor,min,,Palnik czas pauzy,,full,l1,36,1
+p_pause_power,0x3716,LOW,sensor,%,,Palnik moc w pauzie,,full,l1,37,1
+p_pause_blow,0x3717,LOW,sensor,%,,Palnik dmuchawa w pauzie,,full,l1,38,1
+p_inertia,0x2153,LOW,sensor,min,,Palnik bezwladnosc,,full,l2,39,2
+p_grate_time,0x3003,U16_10,sensor,s,,Palnik czas ruchu rusztu,,full,l2,40,2
+p_burner_feed,0x370B,U16,sensor,%,,Palnik podawanie palnika (% podajnika zasobnika),,full,l2,41,2
+p_feeder_period,0x3700,U16,sensor,s,,Palnik okres podajnika zasobnika,,full,live,42,2
+p_min_rpm,0x300E,U16,sensor,x100,,Palnik minimalne obroty dmuchawy,,full,l2,43,2
+burner_flame,0x2250,LOW,sensor,%,,Palnik jasnosc plomienia,,full,live,,
+burner_feed_time,0x226D,U16_10,sensor,s,,Palnik czas podawania paliwa,,full,live,,
+in_zakaz,0x2006,NBIT0,binary_sensor,,,Zakaz rozpalenia,,full,live,,
+in_regulator,0x2301,BIT0,binary_sensor,,,Regulator pokojowy zgoda,,full,live,,
+blower_pct,0x2254,U8,sensor,%,,Dmuchawa obroty,,full,live,,
+burn_ign,0x2253,U16,sensor,%,,Palnik zapalarka,,full,live,,
+feed_manual_off,0x2267,U16,sensor,s,,Podawanie reczne czas 0x2267 (do weryfikacji),,full,live,,
+feed_manual_run,0x370D,U16,sensor,s,,Podawanie reczne czas 0x370D (do weryfikacji),,full,live,,
+burner_state,0x2007,LOW,enum,,,Palnik stan,"0:Wylaczony,1:Rozpalanie,2:Zarzenie,5:Modulacja,6:Wygaszanie / czyszczenie,7:Czyszczenie,8:Pauza,9:Stop,10:Alarm",basic,live,,
+boiler_mode,0x2002,RAW,enum,,,Kociol tryb pracy,"0:Czasowy auto,1:Czasowy reczny,2:Auto,3:Reczny",basic,live,106,0
+co_mode,0x2064,LOW,enum,,,CO tryb,"0:Off,1:Eko,2:Harmonogram,3:Komfort",basic,live,,
+co2_mode,0x2065,LOW,enum,,,CO2 tryb,"0:Off,1:Eko,2:Harmonogram,3:Komfort",basic,live,,
+cwu_mode,0x2014,LOW,enum,,,CWU tryb,"0:Off,1:Eko,2:Harmonogram,3:Komfort",basic,live,,
+feeder_mode,0x2259,LOW,enum,,,Podajnik tryb,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,,
+blower_mode,0x2283,LOW,enum,,,Dmuchawa tryb,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,,
+boiler_on,0x2005,FLAG_LOW,binary_sensor,,running,Kociol wlaczony,,basic,live,,
+tank_cap,0x3600,U16,sensor,kg,weight,Zbiornik pojemnosc,,basic,live,,
+tank_kg,0x3601,U16,sensor,kg,weight,Zbiornik paliwo,,basic,live,47,0
+param_70,0x0226,U16,sensor,,,Parametr 0x0226 (nieopisany),,full,l1,70,1

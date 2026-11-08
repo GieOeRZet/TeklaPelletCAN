@@ -85,8 +85,14 @@ const Point kPoints[] = {
     {78, 0x3701, Encoding::Plain, 70.0f, 120.0f, 1, "Min EGT required [C] (FW panela)"},
     {79, 0x3703, Encoding::Plain, 180.0f, 280.0f, 1, "Max exhaust gas temp. [C] (FW panela)"},
     {80, 0x3122, Encoding::Plain, 10.0f, 600.0f, 1, "Exchanger cleaning interval [min] (FW panela)"},
+    {100, 0x2010, Encoding::Plain, 20.0f, 70.0f, 0, "CWU zadana komfort"},
+    {101, 0x2012, Encoding::Plain, 20.0f, 70.0f, 0, "CWU zadana eko"},
+    {102, 0x2032, Encoding::Tenths, 15.0f, 30.0f, 0, "CO zadana komfort"},
+    {103, 0x2048, Encoding::Tenths, 10.0f, 30.0f, 0, "CO zadana eko"},
+    {104, 0x2003, Encoding::Plain, 60.0f, 80.0f, 0, "Kociol zadana reczna"},
+    {106, 0x2002, Encoding::Plain, 0.0f, 3.0f, 0, "Kociol tryb zadawania (0 czasowy auto, 1 czasowy reczny, 2 auto, 3 reczny)"},
 };
 
-const unsigned kPointCount = 81;
+const unsigned kPointCount = 87;
 
 }  // namespace tpc
