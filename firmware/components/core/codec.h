@@ -6,6 +6,8 @@ namespace tpc {
 
 enum class Encoding : uint8_t {
     Plain,     // raw = wartość
+    PlainS16,  // raw = wartość jako int16 (U16 w kodzie uzupełnień do 2)
+    TenthsS16, // raw = wartość * 10 jako int16
     FlagByte,  // raw = 256 + wartość (młodszy bajt = wartość, bit 8 = flaga)
     Tenths,    // raw = wartość * 10
     FlagTenths,// raw = 256 + wartość * 10 (wartość 0..25.5)

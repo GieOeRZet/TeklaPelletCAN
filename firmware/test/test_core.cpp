@@ -7,6 +7,9 @@
 #include "../components/core/sdo.h"
 #include "../components/core/version.h"
 #include "../components/core/net_fsm.h"
+#include "../components/core/access.h"
+#include "../components/core/point.h"
+#include "../components/core/sdo_queue.h"
 
 using namespace tpc;
 
@@ -191,12 +194,101 @@ static void test_net() {
     assert(o.trial_failed && !o.use_previous_credentials && k.state() == NetState::Provisioning && o.ap_on);
 }
 
+static void test_signed_codec() {
+    assert(encode(Encoding::PlainS16, -10).raw == 0xFFF6);
+    assert(decode(Encoding::PlainS16, 0xFFF6).value == -10);
+    assert(decode(Encoding::PlainS16, 5).value == 5);
+    assert(encode(Encoding::TenthsS16, -1.5).raw == 0xFFF1);
+    assert(decode(Encoding::TenthsS16, 0xFFF1).value == -1.5);
+    assert(!encode(Encoding::PlainS16, 40000).ok);
+}
+
+static void test_points() {
+    assert(kPointCount == 81);
+    const Point* p = find_point_by_key(0);
+    assert(p && p->index == 0x2270 && p->encoding == Encoding::FlagByte && p->level == 0);
+    p = find_point_by_key(3);                       // korekta powietrza, ze znakiem
+    assert(p && p->index == 0x2273 && p->encoding == Encoding::PlainS16 && p->min == -10);
+    assert(find_point_by_index(0x2261)->level == 1);
+    assert(find_point_by_key(200) == nullptr);
+    // zakresy muszą być kodowalne na krańcach
+    for (unsigned i = 0; i < kPointCount; i++) {
+        assert(encode(kPoints[i].encoding, kPoints[i].min).ok);
+        assert(encode(kPoints[i].encoding, kPoints[i].max).ok);
+    }
+}
+
+static void test_access() {
+    Access a;
+    uint32_t raw = 0;
+    const Point* lvl0 = find_point_by_key(0);   // Moc min, poziom 0
+    const Point* lvl1 = find_point_by_key(5);   // krzywa dmuchawy, poziom 1
+    assert(a.check_write(*lvl0, 50, 0, raw) == WriteResult::Ok && raw == 256 + 50);
+    assert(a.check_write(*lvl0, 20, 0, raw) == WriteResult::Range);   // poniżej 30
+    assert(a.check_write(*lvl1, 50, 0, raw) == WriteResult::Level);
+    assert(a.unlock(1234, 0) == 0);                                    // zły PIN
+    assert(a.unlock(900, 1000) == 1);
+    assert(a.check_write(*lvl1, 50, 2000, raw) == WriteResult::Ok);
+    assert(a.tick(2000 + 299999) == 1);
+    assert(a.tick(2000 + 300000) == 0);                                // autoblokada po 5 min
+    assert(a.unlock(999, 0) == 2);
+
+    AccessConfig c; c.mirror = true;
+    Access m(c);
+    assert(m.check_write(*lvl0, 50, 0, raw) == WriteResult::Mirror);
+}
+
+static void test_queue() {
+    std::vector<CanFrame> sent;
+    std::vector<SdoResult> done;
+    SdoQueue q(4, [&](const CanFrame& f) { sent.push_back(f); return true; },
+               [&](const SdoResult& r) { done.push_back(r); });
+    SdoJob rd; rd.index = 0x2207; rd.tag = 1;
+    SdoJob wr; wr.write = true; wr.index = 0x2270; wr.value = 300; wr.tag = 2;
+    q.push(rd);
+    q.push(wr);                       // zapis wyprzedza odczyt
+    q.tick(0);
+    assert(sent.size() == 1 && sent[0].data[0] == 0x2B);              // pierwszy poszedł zapis
+    CanFrame ack; ack.id = 0x584; ack.dlc = 8; ack.data[0] = 0x60; ack.data[1] = 0x70; ack.data[2] = 0x22; ack.data[3] = 1;
+    q.on_frame(ack, 5);
+    assert(done.size() == 1 && done[0].outcome == SdoOutcome::Ok && done[0].job.tag == 2);
+
+    q.tick(10);                       // odczyt
+    assert(sent.size() == 2 && sent[1].data[0] == 0x40);
+    CanFrame other = ack; other.data[1] = 0x01;                        // inna odpowiedź – ignorowana
+    q.on_frame(other, 12);
+    assert(done.size() == 1);
+    q.tick(10 + 200);                                                  // limit czasu -> ponowienie
+    assert(sent.size() == 3);
+    q.tick(10 + 400);
+    assert(sent.size() == 4);
+    q.tick(10 + 600);                                                  // po 2 ponowieniach: Timeout
+    assert(done.size() == 2 && done[1].outcome == SdoOutcome::Timeout && q.pending() == 0);
+
+    // abort
+    q.push(rd); q.tick(1000);
+    CanFrame ab; ab.id = 0x584; ab.dlc = 8; ab.data[0] = 0x80; ab.data[1] = 0x07; ab.data[2] = 0x22; ab.data[3] = 1; ab.data[7] = 0x06;
+    q.on_frame(ab, 1010);
+    assert(done.size() == 3 && done[2].outcome == SdoOutcome::Abort);
+
+    // odczyt z wartością
+    q.push(rd); q.tick(2000);
+    CanFrame ok; ok.id = 0x584; ok.dlc = 8; ok.data[0] = 0x4B; ok.data[1] = 0x07; ok.data[2] = 0x22; ok.data[3] = 1;
+    ok.data[4] = 0x0D; ok.data[5] = 0x01;
+    q.on_frame(ok, 2005);
+    assert(done[3].outcome == SdoOutcome::Ok && done[3].value == 269);
+}
+
 int main() {
     test_sdo();
     test_codec();
     test_mcp();
     test_version();
     test_net();
+    test_signed_codec();
+    test_points();
+    test_access();
+    test_queue();
     puts("OK: wszystkie testy przeszly");
     return 0;
 }

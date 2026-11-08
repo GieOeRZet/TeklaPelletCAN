@@ -15,6 +15,10 @@ Decoded decode(Encoding enc, uint32_t raw) {
             d.value = raw & 0xFF; d.ok = true; break;
         case Encoding::Tenths:
             d.value = raw / 10.0; d.ok = true; break;
+        case Encoding::PlainS16:
+            d.value = static_cast<int16_t>(raw & 0xFFFF); d.ok = true; break;
+        case Encoding::TenthsS16:
+            d.value = static_cast<int16_t>(raw & 0xFFFF) / 10.0; d.ok = true; break;
         case Encoding::FlagTenths:
             d.value = (raw & 0xFF) / 10.0; d.ok = true; break;
         case Encoding::Switch:
@@ -43,6 +47,15 @@ Encoded encode(Encoding enc, double value) {
             break;
         case Encoding::Tenths:
             set(value * 10.0); break;
+        case Encoding::PlainS16:
+        case Encoding::TenthsS16: {
+            const double v = enc == Encoding::TenthsS16 ? value * 10.0 : value;
+            if (v >= -32768 && v <= 32767) {
+                e.raw = static_cast<uint16_t>(static_cast<int16_t>(std::lround(v)));
+                e.ok = true;
+            }
+            break;
+        }
         case Encoding::FlagTenths:
             if (value >= 0 && value <= 25.5) set(256 + std::lround(value * 10.0));
             break;
