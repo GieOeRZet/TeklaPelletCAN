@@ -31,8 +31,18 @@ struct Lock {
 
 void WifiMgr::on_event(void* arg, const char* base, int32_t id, void* data) {
     WifiMgr* w = (WifiMgr*)arg;
-    if (base == WIFI_EVENT && id == WIFI_EVENT_STA_DISCONNECTED) {
+    if (base == WIFI_EVENT && id == WIFI_EVENT_STA_CONNECTED) {
         Lock l(w->mu_);
+        w->assoc_ = true;
+        if (!w->static_ip_.empty()) {      // stały IP: GOT_IP bywa zgłaszany jeszcze przed skojarzeniem, więc „online" ustalamy tutaj
+            w->connected_ = true;
+            w->ip_str_ = w->static_ip_;
+            w->fsm_.on_sta_connected(now_ms());
+            log_add("Wi-Fi: polaczono, IP " + w->static_ip_ + " (stale)");
+        }
+    } else if (base == WIFI_EVENT && id == WIFI_EVENT_STA_DISCONNECTED) {
+        Lock l(w->mu_);
+        w->assoc_ = false;
         if (w->connected_) log_add("Wi-Fi: rozlaczono z siecia");
         w->connected_ = false;
         w->ip_str_.clear();
@@ -42,6 +52,7 @@ void WifiMgr::on_event(void* arg, const char* base, int32_t id, void* data) {
         char b[16];
         esp_ip4addr_ntoa(&ev->ip_info.ip, b, sizeof b);
         Lock l(w->mu_);
+        if (!w->assoc_ || !w->static_ip_.empty()) return;   // tylko po prawdziwym skojarzeniu (DHCP); przy stałym IP obsłużone wyżej
         w->connected_ = true;
         w->ip_str_ = b;
         w->fsm_.on_sta_connected(now_ms());
@@ -87,6 +98,7 @@ void WifiMgr::start(const Settings& s, NvsStore& store) {
     esp_wifi_set_storage(WIFI_STORAGE_RAM);          // dane sieci trzymamy w NVS aplikacji, nie w sterowniku
     ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &WifiMgr::on_event, this));
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &WifiMgr::on_event, this));
+    ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_CONNECTED, &WifiMgr::on_event, this));
 
     wifi_config_t ap = {};
     strncpy((char*)ap.ap.ssid, ap_ssid_.c_str(), sizeof ap.ap.ssid - 1);
@@ -119,6 +131,8 @@ void WifiMgr::set_mode(bool ap_on) {
 
 void WifiMgr::connect_sta(const Settings& s) {
     if (s.ssid.empty()) return;
+    static_ip_ = (!s.dhcp && !s.ip.empty()) ? s.ip : "";
+    assoc_ = false;
     wifi_config_t sta = {};
     strncpy((char*)sta.sta.ssid, s.ssid.c_str(), sizeof sta.sta.ssid - 1);
     strncpy((char*)sta.sta.password, s.pass.c_str(), sizeof sta.sta.password - 1);
@@ -171,6 +185,11 @@ void WifiMgr::run() {
         if (t - last_fsm < 500) continue;
         last_fsm = t;
 
+        if (connect_pending_ && t >= connect_at_) {
+            Settings s;
+            { Lock l(mu_); s = pending_; connect_pending_ = false; }
+            connect_sta(s);
+        }
         tpc::NetOutput o;
         {
             Lock l(mu_);
@@ -225,7 +244,9 @@ void WifiMgr::apply(const tpc::WifiSettings& w) {
     has_pending_ = true;
     trial_.clear();
     fsm_.on_new_credentials(!prev_.ssid.empty(), now_ms());
-    connect_sta(pending_);
+    connect_pending_ = true;                 // połączymy za ~1,5 s: najpierw musi wyjść odpowiedź HTTP, bo zmiana sieci zrywa łączność
+    connect_at_ = now_ms() + 1500;
+    log_add("Wi-Fi: nowe dane przyjete, laczenie za chwile");
 }
 
 tpc::WifiStatus WifiMgr::status() {

@@ -32,6 +32,10 @@ private:
     tpc::NetFsm fsm_;
     std::string ap_ssid_, hostname_, mac_hex_, ip_str_, trial_;
     bool connected_ = false, ap_active_ = false, started_ = false;
+    bool assoc_ = false;                 // czy jest skojarzenie z AP routera (zdarzenie STA_CONNECTED)
+    bool connect_pending_ = false;       // próba połączenia odroczona, żeby odpowiedź HTTP zdążyła wyjść
+    uint32_t connect_at_ = 0;
+    std::string static_ip_;              // niepusty = bieżąca próba ze stałym IP
     int rssi_ = 0;
     uint32_t last_try_ms_ = 0;
     void* mu_ = nullptr;

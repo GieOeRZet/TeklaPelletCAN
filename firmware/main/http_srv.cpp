@@ -95,7 +95,7 @@ static esp_err_t handle(httpd_req_t* req) {
         }
         tpc::HttpRequest r;
         r.method = m; r.path = path; r.query = query; r.body = body;
-        for (const char* h : {"Authorization", "X-Token", "X-Signature"}) {
+        for (const char* h : {"Authorization", "X-Token", "X-Signature", "Origin", "Host"}) {
             std::string v = hdr(req, h);
             if (!v.empty()) { std::string k = h; for (auto& c : k) c = (char)tolower((unsigned char)c); r.headers[k] = v; }
         }
@@ -131,7 +131,7 @@ static esp_err_t handle(httpd_req_t* req) {
 static esp_err_t ota_handler(httpd_req_t* req) {
     tpc::HttpRequest r;
     r.method = "POST"; r.path = "/api/v1/ota";
-    for (const char* h : {"Authorization", "X-Token", "X-Signature"}) {
+    for (const char* h : {"Authorization", "X-Token", "X-Signature", "Origin", "Host"}) {
         std::string v = hdr(req, h);
         if (!v.empty()) { std::string k = h; for (auto& c : k) c = (char)tolower((unsigned char)c); r.headers[k] = v; }
     }

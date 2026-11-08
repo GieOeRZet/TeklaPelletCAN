@@ -14,13 +14,14 @@
 
   <div class="card">
     <h2>Tryb pracy</h2>
-    <label class="chk"><input id="c_mirror" type="checkbox"> Tylko odczyt (blokuje wszystkie zapisy do kotła)</label>
-    <label class="chk"><input id="c_write" type="checkbox"> Zapisy włączone (nastawy, tryby, harmonogramy)</label>
+    <label class="chk"><input id="c_write" type="checkbox"> Zezwalaj na zapis do kotła (nastawy, tryby, harmonogramy, sterowanie)</label>
+    <div class="hint" style="margin:-4px 0 8px 26px">Odznaczone = tylko odczyt: urządzenie niczego nie wysyła do kotła. Po pierwszym wgraniu jest odznaczone – włącz po sprawdzeniu, że odczyty zgadzają się z panelem kotła.</div>
     <label class="chk"><input id="c_two" type="checkbox"> Dwa obiegi CO (CO1 i CO2)</label>
+    <label class="chk"><input id="c_web" type="checkbox"> Panel WWW bez hasła w sieci lokalnej (hasło tylko dla Home Assistant i aplikacji)</label>
+    <div class="hint" style="margin:-4px 0 8px 26px">Włączone: każdy w Twojej sieci może otworzyć panel i sterować kotłem (nastawy poziomu 1/2 nadal wymagają PIN-u w menu karty). Wyłącz, jeśli sieć współdzielisz z osobami, którym nie ufasz – wtedy przeglądarka zapyta o hasło urządzenia (jednorazowo).</div>
     <label class="chk"><input id="c_ant" type="checkbox"> Antena zewnętrzna U.FL (XIAO ESP32-C6; gdy podłączona antena na kablu)</label>
     <label class="chk"><input id="c_demo" type="checkbox"> Tryb demo (symulator kotła, bez CAN)</label>
     <div class="row"><button id="cfgsave">Zapisz i uruchom ponownie</button></div>
-    <div class="hint">Po pierwszym wgraniu urządzenie startuje w trybie „tylko odczyt”. Zapisy włączaj dopiero po sprawdzeniu, że odczyty zgadzają się z panelem.</div>
   </div>
 
   <div class="card">
@@ -106,7 +107,7 @@ async function load() {
   if (!i.password_set) { location.href = '/portal.html'; return; }
   kv($('status'), { 'ID': i.id, 'Wersja': i.fw, 'Czas pracy': Math.floor(i.uptime_s / 60) + ' min', 'CAN': i.can_ok ? 'kocioł odpowiada' : 'brak odpowiedzi', 'Zapis': i.writable ? 'włączony' : 'zablokowany (tylko odczyt)',
     'Wi-Fi': (w.ssid || '-') + (w.ip ? ' · ' + w.ip : ''), 'Sygnał': w.rssi ? w.rssi + ' dBm' : '-', 'Klienci': i.clients, 'Klucz OTA': i.dev_key ? 'testowy (deweloperski)' : 'produkcyjny' });
-  $('c_mirror').checked = c.mirror; $('c_write').checked = c.write_enabled; $('c_two').checked = c.two_circuits; $('c_demo').checked = c.demo; $('c_ant').checked = !!c.external_antenna;
+  $('c_write').checked = !c.mirror && c.write_enabled; $('c_two').checked = c.two_circuits; $('c_demo').checked = c.demo; $('c_ant').checked = !!c.external_antenna; $('c_web').checked = c.web_open !== false;
   loadLog(); loadClients();
 }
 async function loadLog() { try { const t = await fetch('/api/v1/log').then(r => r.text()); const p = $('log'); p.textContent = t.split('\n').slice(-120).join('\n') || '(pusty)'; p.scrollTop = p.scrollHeight; } catch (e) { $('log').textContent = 'błąd: ' + e.message; } }
@@ -125,7 +126,7 @@ $('logrefresh').onclick = loadLog;
 $('logcopy').onclick = async () => { try { await navigator.clipboard.writeText($('log').textContent); msg('Skopiowano dziennik do schowka.', 'ok'); } catch (e) { msg('Nie można skopiować – użyj „Pobierz dziennik”.', 'err'); } };
 $('logclear').onclick = async () => { try { await api('DELETE', '/api/v1/log'); loadLog(); } catch (e) { msg('Błąd: ' + e.message, 'err'); } };
 $('cfgsave').onclick = async () => {
-  try { await api('POST', '/api/v1/config', { mirror: $('c_mirror').checked, write_enabled: $('c_write').checked, two_circuits: $('c_two').checked, external_antenna: $('c_ant').checked, demo: $('c_demo').checked });
+  try { await api('POST', '/api/v1/config', { mirror: !$('c_write').checked, write_enabled: true, two_circuits: $('c_two').checked, external_antenna: $('c_ant').checked, web_open: $('c_web').checked, demo: $('c_demo').checked });
     await api('POST', '/api/v1/restart', {}); msg('Zapisano. Urządzenie uruchamia się ponownie…', 'ok'); setTimeout(() => location.reload(), 9000); } catch (e) { msg('Błąd: ' + e.message, 'err'); }
 };
 $('scan').onclick = async () => {
@@ -138,7 +139,31 @@ $('wifisave').onclick = async () => {
   const b = { ssid: $('ssid').value.trim(), wifi_password: $('wpw').value, dhcp: !$('static').checked };
   if ($('static').checked) Object.assign(b, { ip: $('ip').value, mask: $('mask').value, gateway: $('gw').value, dns: $('dns').value });
   if (!b.ssid) return msg('Podaj SSID.', 'err');
-  try { await api('POST', '/api/v1/wifi', b); msg('Łączenie z nową siecią… Jeśli się powiedzie, urządzenie zmieni adres IP.', 'info'); } catch (e) { msg('Błąd: ' + e.message, 'err'); }
+  const btn = $('wifisave'); btn.disabled = true;
+  const target = b.dhcp ? '' : 'http://' + b.ip + '/';
+  try { await api('POST', '/api/v1/wifi', b); }
+  catch (e) {
+    // połączenie z urządzeniem mogło zostać zerwane przy przełączaniu sieci – to normalne, sprawdzamy wynik niżej
+    if (!/Failed to fetch|NetworkError|Load failed/i.test(e.message)) { btn.disabled = false; return msg('Błąd: ' + e.message, 'err'); }
+  }
+  msg('Wysłano dane sieci „' + b.ssid + '”. Urządzenie łączy się z nową siecią (do ok. 40 s)…', 'info');
+  let lastErr = 0;
+  for (let i = 0; i < 30; i++) {
+    await new Promise(r => setTimeout(r, 1500));
+    try {
+      const s = await (await fetch('/api/v1/wifi/status', { cache: 'no-store' })).json();
+      if (s.trial === 'ok') {
+        btn.disabled = false;
+        msg('Połączono z siecią „' + s.ssid + '”. Adres urządzenia: ' + s.ip + (s.ip && location.hostname !== s.ip ? ' – otwórz http://' + s.ip + '/ (zmienił się).' : '.'), 'ok');
+        return;
+      }
+      if (s.trial === 'failed') { btn.disabled = false; return msg('Nie udało się połączyć z „' + b.ssid + '” (złe hasło lub brak zasięgu). Urządzenie zostało przy poprzedniej sieci.', 'err'); }
+    } catch (e) { lastErr++; }
+  }
+  btn.disabled = false;
+  msg(lastErr > 20
+    ? 'Brak odpowiedzi – urządzenie najpewniej zmieniło adres (inna sieć). ' + (target ? 'Spróbuj: ' + target : 'Sprawdź nowy adres w routerze lub w Home Assistant.') + ' Jeśli się nie pojawi, po ok. 30 s włączy własną sieć TeklaPelletCAN-XXXX.'
+    : 'Nie potwierdzono wyniku. Odśwież stronę i sprawdź sekcję „Urządzenie” (Wi-Fi).', 'info');
 };
 $('otasigf').onchange = async e => { const f = e.target.files[0]; if (f) $('otasig').value = (await f.text()).trim(); };
 $('otago').onclick = () => {

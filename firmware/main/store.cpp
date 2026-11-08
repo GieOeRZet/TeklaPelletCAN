@@ -64,6 +64,7 @@ Settings NvsStore::load() {
     s.cfg.demo = get_u8(n.h, "demo", 0) != 0;
     s.cfg.two_circuits = get_u8(n.h, "two", 0) != 0;
     s.cfg.external_antenna = get_u8(n.h, "ant", 0) != 0;
+    s.cfg.web_open = get_u8(n.h, "web", 1) != 0;          // domyślnie panel WWW otwarty w LAN
     s.firstboot_done = get_u8(n.h, "fb_done", 0) != 0;
     nvs_get_u32(n.h, "fb_serial", &s.fb_serial);
     return s;
@@ -76,7 +77,7 @@ void NvsStore::save(const Settings& s) {
     nvs_set_u8(n.h, "dhcp", s.dhcp); nvs_set_str(n.h, "ip", s.ip.c_str()); nvs_set_str(n.h, "gw", s.gw.c_str());
     nvs_set_str(n.h, "mask", s.mask.c_str()); nvs_set_str(n.h, "dns", s.dns.c_str());
     nvs_set_u8(n.h, "mirror", s.cfg.mirror); nvs_set_u8(n.h, "write", s.cfg.write_enabled);
-    nvs_set_u8(n.h, "demo", s.cfg.demo); nvs_set_u8(n.h, "two", s.cfg.two_circuits); nvs_set_u8(n.h, "ant", s.cfg.external_antenna);
+    nvs_set_u8(n.h, "demo", s.cfg.demo); nvs_set_u8(n.h, "two", s.cfg.two_circuits); nvs_set_u8(n.h, "ant", s.cfg.external_antenna); nvs_set_u8(n.h, "web", s.cfg.web_open);
     nvs_set_u8(n.h, "fb_done", s.firstboot_done);
     nvs_commit(n.h);
 }
@@ -94,7 +95,7 @@ void NvsStore::save_cfg(const tpc::DeviceConfig& c, bool firstboot_done) {
     Nvs n(true);
     if (!n) return;
     nvs_set_u8(n.h, "mirror", c.mirror); nvs_set_u8(n.h, "write", c.write_enabled);
-    nvs_set_u8(n.h, "demo", c.demo); nvs_set_u8(n.h, "two", c.two_circuits); nvs_set_u8(n.h, "ant", c.external_antenna);
+    nvs_set_u8(n.h, "demo", c.demo); nvs_set_u8(n.h, "two", c.two_circuits); nvs_set_u8(n.h, "ant", c.external_antenna); nvs_set_u8(n.h, "web", c.web_open);
     nvs_set_u8(n.h, "fb_done", firstboot_done);
     nvs_commit(n.h);
 }

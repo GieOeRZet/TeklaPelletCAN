@@ -40,9 +40,19 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   await p.goto(BASE + '/settings.html'); await p.waitForTimeout(2000);
   const status = await p.locator('#status').innerText();
   check('ustawienia pokazuja ID urzadzenia', status.includes('A1B2C3D4E5F6'), status);
-  await p.check('#c_mirror'); await p.click('#cfgsave'); await p.waitForTimeout(1200);
+  await p.uncheck('#c_write'); await p.click('#cfgsave'); await p.waitForTimeout(1200);
   const cfg = await (await fetch(BASE + '/api/v1/config')).json();
-  check('konfiguracja zapisana (tylko odczyt)', cfg.mirror === true, JSON.stringify(cfg));
+  check('konfiguracja zapisana (zapis wylaczony = tylko odczyt)', cfg.mirror === true, JSON.stringify(cfg));
+
+  // 3b. zmiana Wi-Fi z potwierdzeniem (sim: sukces po ~1,5 s; zle haslo 'zle' -> niepowodzenie)
+  await p.fill('#ssid', 'NowaSiec'); await p.fill('#wpw', 'ok-haslo'); await p.click('#wifisave');
+  await p.waitForFunction(() => /Wysłano dane sieci/.test(document.getElementById('msg').textContent), null, { timeout: 4000 });
+  check('zmiana Wi-Fi: od razu potwierdzenie wyslania', true);
+  await p.waitForFunction(() => /Połączono z siecią/.test(document.getElementById('msg').textContent), null, { timeout: 20000 });
+  check('zmiana Wi-Fi: potwierdzenie polaczenia z adresem', true);
+  await p.fill('#wpw', 'zle'); await p.click('#wifisave');
+  await p.waitForFunction(() => /Nie udało się połączyć/.test(document.getElementById('msg').textContent), null, { timeout: 20000 });
+  check('zmiana Wi-Fi: komunikat przy zlym hasle', true);
 
   // 4. OTA: poprawny podpis
   await p.setInputFiles('#otabin', OTA + '/good.bin'); await p.setInputFiles('#otasigf', OTA + '/good.sig');
@@ -68,6 +78,18 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   // 5b. powrot do poprzedniego firmware
   await p.click('#rollback'); await p.waitForFunction(() => /poprzedni firmware/.test(document.getElementById('msg').textContent), null, { timeout: 8000 });
   check('powrot do poprzedniego firmware (rollback)', true);
+
+  // 5c. panel WWW otwarty: zapis bez tokenu z tego samego origin dziala, z obcego origin jest odrzucany; po wylaczeniu wymaga hasla
+  const http = require('http');
+  const post = (path, body, headers) => new Promise(res => { const u = new URL(BASE); const rq = http.request({ host: u.hostname, port: u.port, path, method: 'POST', headers: Object.assign({ 'Content-Type': 'application/json', Host: u.host }, headers) }, r => { let d = ''; r.on('data', c => d += c); r.on('end', () => res({ s: r.statusCode, b: d })); }); rq.end(JSON.stringify(body)); });
+  const call = { domain: 'teklapelletcan', service: 'tekla_estyma_unlock', data: { pin: 900 } };
+  check('panel otwarty: zapis bez hasla z tego samego origin', (await post('/api/v1/call', call, { Origin: BASE })).s === 200);
+  check('panel otwarty: zapis bez przegladarki (bez Origin)', (await post('/api/v1/call', call, {})).s === 200);
+  check('obca strona w przegladarce (inny Origin) odrzucona', (await post('/api/v1/call', call, { Origin: 'https://zla-strona.example' })).s === 401);
+  await p.uncheck('#c_web'); await p.click('#cfgsave'); await p.waitForTimeout(1200);
+  check('po wylaczeniu panelu otwartego zapis wymaga hasla', (await post('/api/v1/call', call, { Origin: BASE })).s === 401);
+  await p.check('#c_web'); await p.click('#cfgsave'); await p.waitForTimeout(1200);
+  check('ponowne wlaczenie panelu otwartego', (await post('/api/v1/call', call, { Origin: BASE })).s === 200);
 
   // 6. logi i raport
   await p.click('#logrefresh'); await p.waitForTimeout(600);

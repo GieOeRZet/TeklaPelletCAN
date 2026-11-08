@@ -44,6 +44,7 @@ struct DeviceConfig {
     bool demo = false;        // symulator kotła (bez CAN)
     bool two_circuits = false;
     bool external_antenna = false;   // XIAO ESP32-C6: antena zewnętrzna U.FL (GPIO3/GPIO14)
+    bool web_open = true;            // panel WWW (strony urządzenia) bez hasła w sieci lokalnej; hasło służy do parowania HA/aplikacji
 };
 struct ApiHooks {
     std::function<std::vector<WifiNet>()> scan;
@@ -81,7 +82,8 @@ public:
     const ApiConfig& config() const { return cfg_; }
 
 private:
-    bool authorized(const HttpRequest& r) const;
+    bool authorized(const HttpRequest& r) const;      // token sparowanego klienta ALBO otwarty panel WWW (ten sam origin)
+    bool web_open() const { return hooks_.config_get && hooks_.config_get().web_open; }
     HttpResponse err(int status, const std::string& code) const;
     HttpResponse call(const HttpRequest& r);
     HttpResponse pair(const HttpRequest& r);

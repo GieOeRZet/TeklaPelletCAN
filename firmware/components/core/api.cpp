@@ -63,7 +63,17 @@ bool Api::authorized(const HttpRequest& r) const {
     if (a != r.headers.end() && a->second.rfind("Bearer ", 0) == 0) tok = a->second.substr(7);
     auto x = r.headers.find("x-token");
     if (tok.empty() && x != r.headers.end()) tok = x->second;
-    return c_.valid_token(tok);
+    if (c_.valid_token(tok)) return true;
+    if (!web_open()) return false;
+    // Otwarty panel WWW: bez tokenu wolno tylko stronom serwowanym przez samo urządzenie. Przeglądarka dołącza Origin do żądań
+    // zmieniających stan – inny origin (obca strona w Twojej przeglądarce) odrzucamy. Klienci spoza przeglądarki (curl) nie mają Origin.
+    auto o = r.headers.find("origin");
+    if (o == r.headers.end() || o->second.empty()) return true;
+    std::string host_of_origin = o->second;
+    const size_t sch = host_of_origin.find("://");
+    if (sch != std::string::npos) host_of_origin = host_of_origin.substr(sch + 3);
+    auto h = r.headers.find("host");
+    return h != r.headers.end() && h->second == host_of_origin;
 }
 
 std::string Api::find_entity(const std::string& domain, const std::string& raw) const {
@@ -210,7 +220,7 @@ HttpResponse Api::platform(const HttpRequest& r, bool& handled) {
         DeviceConfig cfg = hooks_.config_get ? hooks_.config_get() : DeviceConfig();
         JsonWriter w;
         w.begin_obj().kvb("mirror", cfg.mirror).kvb("write_enabled", cfg.write_enabled).kvb("demo", cfg.demo)
-            .kvb("two_circuits", cfg.two_circuits).kvb("external_antenna", cfg.external_antenna).end_obj();
+            .kvb("two_circuits", cfg.two_circuits).kvb("external_antenna", cfg.external_antenna).kvb("web_open", cfg.web_open).end_obj();
         HttpResponse res; res.body = w.out(); return res;
     }
     if (r.path == "/api/v1/config" && r.method == "POST") {
@@ -219,7 +229,7 @@ HttpResponse Api::platform(const HttpRequest& r, bool& handled) {
         if (!json_parse(r.body, j)) return err(400, "bad_json");
         DeviceConfig cfg = hooks_.config_get ? hooks_.config_get() : DeviceConfig();
         auto b = [&](const char* k, bool& dst) { const Json* v = j.get(k); if (v && v->type == Json::Bool) dst = v->b; };
-        b("mirror", cfg.mirror); b("write_enabled", cfg.write_enabled); b("demo", cfg.demo); b("two_circuits", cfg.two_circuits); b("external_antenna", cfg.external_antenna);
+        b("mirror", cfg.mirror); b("write_enabled", cfg.write_enabled); b("demo", cfg.demo); b("two_circuits", cfg.two_circuits); b("external_antenna", cfg.external_antenna); b("web_open", cfg.web_open);
         if (hooks_.config_set) hooks_.config_set(cfg);
         JsonWriter w; w.begin_obj().kvb("ok", true).kvb("restart_required", true).end_obj();
         HttpResponse res; res.body = w.out(); return res;
