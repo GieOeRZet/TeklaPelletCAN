@@ -50,7 +50,7 @@ inline void populate_demo(FakeBoiler& b) {
             case Decode::LOW: case Decode::U8: raw = 256 + 30; break;
             case Decode::LOW_10: case Decode::U8_10: raw = 256 + 45; break;
             case Decode::FLAG_LOW: raw = 257; break;
-            case Decode::BIT0: case Decode::NBIT0: raw = 257; break;
+            case Decode::B0_SET: case Decode::B0_CLEAR: raw = 257; break;
             default: raw = 60; break;
         }
         b.reg[p.index] = raw;
