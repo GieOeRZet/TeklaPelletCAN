@@ -20,6 +20,14 @@ jobs:
           cd firmware
           idf.py set-target esp32c6
           idf.py build
+          python -m esptool --chip esp32c6 merge-bin -o teklapelletcan-factory.bin @build/flash_args
+      - uses: actions/upload-artifact@v4
+        with:
+          name: teklapelletcan-firmware
+          path: |
+            firmware/teklapelletcan-factory.bin
+            firmware/build/teklapelletcan.bin
+          retention-days: 30
   ha-integration:
     runs-on: ubuntu-latest
     steps:

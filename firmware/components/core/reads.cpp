@@ -17,8 +17,8 @@ double decode_value(Decode d, uint32_t raw) {
         case Decode::LOW_10:   return low / 10.0;
         case Decode::RAW:      return raw;
         case Decode::FLAG_LOW: return low != 0 ? 1 : 0;
-        case Decode::BIT0:     return (raw & 1) == 1 ? 1 : 0;
-        case Decode::NBIT0:    return (raw & 1) == 0 ? 1 : 0;
+        case Decode::B0_SET:     return (raw & 1) == 1 ? 1 : 0;
+        case Decode::B0_CLEAR:   return (raw & 1) == 0 ? 1 : 0;
     }
     return 0;
 }

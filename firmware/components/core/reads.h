@@ -7,7 +7,7 @@
 namespace tpc {
 
 enum class Decode : uint8_t {
-    S16, S16_10, U16, U16_10, U8, U8_10, LOW, LOW_10, RAW, FLAG_LOW, BIT0, NBIT0,
+    S16, S16_10, U16, U16_10, U8, U8_10, LOW, LOW_10, RAW, FLAG_LOW, B0_SET, B0_CLEAR,
 };
 enum class Kind : uint8_t { Sensor, Binary, Enum };
 enum class Poll : uint8_t { Live, L0, L1, L2 };  // Live = cyklicznie; L0/L1/L2 = nastawy wg poziomu

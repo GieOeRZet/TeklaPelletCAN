@@ -24,12 +24,12 @@ DECODE = {  # wyrazenie z ESPHome -> kod dekodowania
     "(float) low": "LOW",
     "(float) low / 10.0f": "LOW_10",
     "(float) raw": "RAW",
-    "(raw & 1) == 0": "NBIT0",
-    "(raw & 1) == 1": "BIT0",
+    "(raw & 1) == 0": "B0_CLEAR",
+    "(raw & 1) == 1": "B0_SET",
     "low != 0": "FLAG_LOW",
 }
 TEMP_DIV1 = {0x2003, 0x2004, 0x2010, 0x2012, 0x201A, 0x22AD, 0x22AE}  # zadane: pelne stopnie
-BINARY = {"NBIT0", "BIT0", "FLAG_LOW"}
+BINARY = {"B0_CLEAR", "B0_SET", "FLAG_LOW"}
 
 BASIC_IDS = {
     "boiler_temp", "boiler_set_manual", "boiler_set_result", "ch1_temp", "ch1_set_manual", "ch1_set_result",
