@@ -1,0 +1,8 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  host-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S firmware/test -B build-host && cmake --build build-host && ctest --test-dir build-host --output-on-failure

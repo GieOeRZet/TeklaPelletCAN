@@ -42,7 +42,7 @@ Kocioł ─CAN 125k─ MCP2515 ─SPI─ ESP32-C6 (ESP-IDF)
 Sprzęt domyślny: Seeed XIAO ESP32-C6, MCP2515 16 MHz; SCK=GPIO19, MISO=GPIO20, MOSI=GPIO18, CS=GPIO17 (jak w PelletCAN). Piny i prędkość CAN konfigurowalne. Węzeł ESP w CAN: 90.
 
 ## 5. Pierwsze uruchomienie i sieć
-1. Brak zapisanej sieci → AP `TeklaPelletCAN-XXXX` (otwarty lub hasło drukowane w dokumentacji – do decyzji) + portal captive (DNS przekierowuje na 192.168.4.1).
+1. Brak zapisanej sieci → AP `TeklaPelletCAN-XXXX` z hasłem domyślnym `qwerty123` (decyzja właściciela; jawne w dokumentacji i zmienialne w portalu/WWW) + portal captive (DNS przekierowuje na 192.168.4.1). AP działa tylko do czasu skonfigurowania sieci, a portal wymusza ustawienie hasła urządzenia; do tego czasu zapis na kocioł jest zablokowany.
 2. Portal: skan sieci 2,4 GHz, wybór, hasło, opcjonalnie IP/maska/brama/DNS (domyślnie DHCP), ustawienie hasła urządzenia, nazwa urządzenia.
 3. Zapis do NVS, próba połączenia; sukces → AP wyłączony, adres IP pokazany w portalu; błąd → AP zostaje.
 4. Utrata sieci → po ok. 1 min AP awaryjny ponownie (bez kasowania danych). Reset fabryczny: przytrzymanie przycisku BOOT 10 s lub z WWW.
@@ -94,7 +94,16 @@ Partycje: bootloader, NVS, 2 × OTA (ok. 1,3 MB każda), LittleFS na kartę i gr
 6. Integracja HA.
 7. Aplikacja Android.
 
-## 13. Otwarte
-- Hasło AP w pierwszym uruchomieniu (otwarty vs hasło z naklejki).
-- Czy odczyt bez parowania ma być domyślnie włączony.
-- Dokładny format opisu punktów (generator z CSV).
+## 13. Decyzje
+- Hasło AP: `qwerty123` (domyślne, zmienialne).
+- Odczyt bez parowania: domyślnie włączony (wyłączalny); zapis tylko z tokenem.
+- Sprzęt: XIAO ESP32-C6; interfejs w 11 językach (z `pelletcan-lang.js`).
+- Czas od klienta, bez internetu na ESP.
+
+## 14. Otwarte
+- Dokładny format opisu punktów (generator z CSV w `rejestry/`).
+- Hasło AP jest wspólne dla wszystkich egzemplarzy – rozważyć losowe hasło wyświetlane na naklejce/w logu.
+
+## 15. Stan implementacji
+- `firmware/components/core` (bez zależności od ESP, testy na hoście, `ctest`): ramka CAN, klient SDO (odczyt/zapis expedited, abort), kodowanie wartości rejestrów, sterownik MCP2515 przez interfejs `ISpi`.
+- `firmware/main`: warstwa ESP-IDF (SPI, `app_main` z próbnym odczytem). **Jeszcze niezbudowane w ESP-IDF** – to kod do pierwszej kompilacji na sprzęcie.
