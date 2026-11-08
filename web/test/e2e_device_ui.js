@@ -50,6 +50,10 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   await p.waitForFunction(() => /odrzucona/.test(document.getElementById('msg').textContent), null, { timeout: 10000 });
   check('OTA z podmienionym plikiem odrzucone', /bad_signature/.test(await p.locator('#msg').innerText()));
 
+  // 5b. powrot do poprzedniego firmware
+  await p.click('#rollback'); await p.waitForFunction(() => /poprzedni firmware/.test(document.getElementById('msg').textContent), null, { timeout: 8000 });
+  check('powrot do poprzedniego firmware (rollback)', true);
+
   // 6. logi i raport
   await p.click('#logrefresh'); await p.waitForTimeout(600);
   const log = await p.locator('#log').innerText();

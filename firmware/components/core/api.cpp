@@ -254,6 +254,13 @@ HttpResponse Api::platform(const HttpRequest& r, bool& handled) {
         res.headers["Content-Disposition"] = "attachment; filename=\"teklapelletcan-" + e_.device_id_hex() + "-raport.txt\"";
         return res;
     }
+    if (r.path == "/api/v1/ota/rollback" && r.method == "POST") {
+        if (!authorized(r)) return err(401, "unauthorized");
+        if (!hooks_.ota_rollback) return err(501, "unsupported");
+        const std::string e = hooks_.ota_rollback();
+        if (!e.empty()) return err(409, e);
+        return ok();
+    }
     if (r.path == "/api/v1/factory_reset" && r.method == "POST") {
         if (!authorized(r)) return err(401, "unauthorized");
         Json j;

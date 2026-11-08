@@ -21,13 +21,51 @@ jobs:
           idf.py set-target esp32c6
           idf.py build
           python -m esptool --chip esp32c6 merge-bin -o teklapelletcan-factory.bin @build/flash_args
+      - name: Podpis OTA (klucz z sekretu OTA_SIGNING_KEY, a bez niego klucz testowy)
+        env:
+          KEY: ${{ secrets.OTA_SIGNING_KEY }}
+        run: |
+          . $IDF_PATH/export.sh
+          pip install -q cryptography
+          if [ -n "$KEY" ]; then printf '%s\n' "$KEY" > /tmp/ota.pem; else cp tools/dev-keys/ota-dev-private.pem /tmp/ota.pem; echo "UWAGA: podpis kluczem TESTOWYM"; fi
+          python3 tools/ota_sign.py sign --key /tmp/ota.pem --bin firmware/build/teklapelletcan.bin
+          cp firmware/build/teklapelletcan.bin firmware/build/teklapelletcan.bin.sig .
+          rm -f /tmp/ota.pem
       - uses: actions/upload-artifact@v4
         with:
           name: teklapelletcan-firmware
           path: |
             firmware/teklapelletcan-factory.bin
-            firmware/build/teklapelletcan.bin
+            teklapelletcan.bin
+            teklapelletcan.bin.sig
           retention-days: 30
+  web-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y libmbedtls-dev
+      - run: cmake -S firmware/test -B build-host && cmake --build build-host
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Playwright
+        run: |
+          cd web/test && npm init -y >/dev/null && npm i playwright >/dev/null && npx playwright install --with-deps chromium
+      - name: Test UI urzadzenia (portal, ustawienia, OTA, logi) w przegladarce
+        run: |
+          pip install -q cryptography
+          mkdir -p /tmp/ota && python3 - <<'PY'
+          import sys; sys.path.insert(0,'tools')
+          from pathlib import Path
+          import ota_sign as O
+          key=O.load('tools/dev-keys/ota-dev-private.pem')
+          h=bytearray(24); h[0]=0xE9; h[12]=13
+          img=bytes(h)+bytes((i*7+3)&0xFF for i in range(20000))
+          Path('/tmp/ota/good.bin').write_bytes(img); Path('/tmp/ota/good.sig').write_text(O.sign_image(key,img)+"\n")
+          bad=bytearray(img); bad[5000]^=1; Path('/tmp/ota/tampered.bin').write_bytes(bytes(bad))
+          PY
+          build-host/sim_server 8102 web & sleep 15
+          cd web/test && NODE_PATH=$PWD/node_modules node e2e_device_ui.js http://127.0.0.1:8102 /tmp/ota
   ha-integration:
     runs-on: ubuntu-latest
     steps:

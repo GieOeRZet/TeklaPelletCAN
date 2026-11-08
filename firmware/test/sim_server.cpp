@@ -92,6 +92,7 @@ int main(int argc, char** argv) {
     hk.config_set = [&](const DeviceConfig& c) { devcfg = c; ring.append("Konfiguracja zapisana"); };
     hk.log_get = [&](size_t n) { return n ? ring.tail(n) : ring.dump(); };
     hk.log_clear = [&] { ring.clear(); };
+    hk.ota_rollback = [&] { ring.append("ROLLBACK (symulator)"); return std::string(); };
     hk.diag_extra = [] { return std::string("{\"heap_free\":123456,\"reset_reason\":\"power-on\",\"wifi_rssi\":-57,\"partition\":\"ota_0\"}"); };
     hk.factory_reset = [&] { ring.append("Reset fabryczny"); clients = MemoryClientStore(); };
     api.set_hooks(hk);

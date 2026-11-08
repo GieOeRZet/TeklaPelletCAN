@@ -13,6 +13,7 @@
 #include "../components/core/license.h"
 #include "../components/core/ota.h"
 #include "../components/core/dns.h"
+#include "../components/core/logring.h"
 #include "ota_vectors.h"
 #include "license_vectors.h"
 
@@ -373,6 +374,33 @@ static void test_dns() {
     assert(dns_captive_response(qa, 5, 0).empty());               // śmieci
 }
 
+static void test_logring() {
+    uint8_t mem[256];
+    memset(mem, 0xAB, sizeof mem);                       // "śmieci" jak w RTC po włączeniu zasilania
+    {
+        LogRing r(mem, sizeof mem);
+        assert(!r.survived() && r.size() == 0);
+        r.append("pierwsza"); r.append("druga\n");
+        assert(r.dump() == "pierwsza\ndruga\n");
+    }
+    {
+        LogRing r2(mem, sizeof mem);                      // "po restarcie": zawartość przeżywa
+        assert(r2.survived() && r2.dump() == "pierwsza\ndruga\n");
+        for (int i = 0; i < 100; i++) r2.append("linia numer " + std::to_string(i));   // zawinięcie bufora
+        std::string d = r2.dump();
+        assert(d.size() < sizeof mem && d.find("linia numer 99\n") != std::string::npos);
+        assert(d.find("pierwsza") == std::string::npos);  // najstarsze nadpisane
+        assert(d[0] != '\n' && d.rfind("linia", 0) == 0);  // ucięta pierwsza linia pominięta
+        assert(r2.tail(40).size() <= 40);
+        r2.clear();
+        assert(r2.dump().empty());
+    }
+    uint8_t bad[256]; memset(bad, 0, sizeof bad);
+    bad[0] = 0x52; bad[1] = 0x47; bad[2] = 0x4F; bad[3] = 0x4C;   // poprawny magic, zły checksum -> reset
+    LogRing r3(bad, sizeof bad);
+    assert(!r3.survived() && r3.size() == 0);
+}
+
 int main() {
     test_sdo();
     test_codec();
@@ -386,6 +414,7 @@ int main() {
     test_license();
     test_ota();
     test_dns();
+    test_logring();
     puts("OK: wszystkie testy przeszly");
     return 0;
 }

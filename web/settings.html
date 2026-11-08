@@ -44,6 +44,7 @@
     <input id="otasigf" type="file" accept=".sig,.txt"><input id="otasig" type="text" placeholder="…lub wklej podpis" style="margin-top:6px">
     <div class="row" style="margin-top:10px"><button id="otago" class="acc">Wgraj i zaktualizuj</button></div>
     <progress id="otaprog" value="0" max="100" style="display:none"></progress>
+    <div class="row" style="margin-top:10px"><button class="sec" id="rollback">Wróć do poprzedniego firmware (np. ESPHome)</button></div>
     <div class="hint">Plik musi być podpisany kluczem wydawcy – urządzenie odrzuci obcy firmware i zostanie na obecnej wersji. Po wgraniu uruchomi się ponownie; jeśli nowa wersja nie zadziała, wraca poprzednia.</div>
   </div>
 
@@ -143,6 +144,11 @@ $('otago').onclick = () => {
     else msg('Aktualizacja odrzucona: ' + (j.error || x.status) + (j.error === 'bad_signature' ? ' (zły podpis – plik nie pochodzi od wydawcy)' : ''), 'err'); };
   x.onerror = () => msg('Błąd połączenia podczas wgrywania.', 'err');
   x.send(f);
+};
+$('rollback').onclick = async () => {
+  if (!confirm('Uruchomić ponownie z poprzedniego firmware (zapisanego w drugiej partycji)? Ta wersja przestanie działać do ponownego wgrania.')) return;
+  try { await api('POST', '/api/v1/ota/rollback', {}); await api('POST', '/api/v1/restart', {}); msg('Przełączono na poprzedni firmware. Urządzenie uruchamia się ponownie…', 'ok'); }
+  catch (e) { msg(e.message === 'no_valid_image' ? 'Brak poprzedniego firmware w drugiej partycji.' : 'Błąd: ' + e.message, 'err'); }
 };
 $('restart').onclick = async () => { try { await api('POST', '/api/v1/restart', {}); msg('Restart…', 'ok'); setTimeout(() => location.reload(), 9000); } catch (e) { msg('Błąd: ' + e.message, 'err'); } };
 $('reset').onclick = async () => { if (!confirm('Skasować hasło, sieć Wi-Fi i wszystkie ustawienia?')) return; try { await api('POST', '/api/v1/factory_reset', { confirm: true }); msg('Przywrócono ustawienia fabryczne. Urządzenie uruchomi punkt dostępu TeklaPelletCAN-XXXX.', 'ok'); } catch (e) { msg('Błąd: ' + e.message, 'err'); } };

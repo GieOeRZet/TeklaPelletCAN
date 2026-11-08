@@ -54,6 +54,7 @@ struct ApiHooks {
     std::function<void()> log_clear;
     std::function<std::string()> diag_extra;                 // obiekt JSON z danymi platformy (heap, reset, Wi-Fi...)
     std::function<void()> factory_reset;
+    std::function<std::string()> ota_rollback;               // zwraca "" gdy OK albo komunikat błędu (powrót do poprzedniej partycji)
 };
 
 struct ApiConfig {
