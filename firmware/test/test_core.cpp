@@ -5,6 +5,8 @@
 #include "../components/core/codec.h"
 #include "../components/core/mcp2515.h"
 #include "../components/core/sdo.h"
+#include "../components/core/version.h"
+#include "../components/core/net_fsm.h"
 
 using namespace tpc;
 
@@ -117,10 +119,84 @@ static void test_mcp() {
     assert(!can.send(f));
 }
 
+static void test_version() {
+    Version a = parse_version("1.4.23"), b = parse_version("v1.5.0");
+    assert(a.valid && b.valid && a.minor == 4 && b.major == 1);
+    assert(compare_versions(a, b) < 0 && compare_versions(b, a) > 0 && compare_versions(a, a) == 0);
+    assert(!parse_version("1.4").valid && !parse_version("x.y.z").valid && !parse_version("1.2.3-").valid);
+    assert(parse_version("1.10.0").minor == 10 && compare_versions(parse_version("1.10.0"), parse_version("1.9.9")) > 0);
+    Version beta = parse_version("1.5.0-beta1");
+    assert(beta.valid && beta.prerelease && compare_versions(beta, b) < 0);
+    assert(is_update(a, b, false));
+    assert(!is_update(a, a, false));
+    assert(!is_update(b, a, false));            // starsza nie jest aktualizacją
+    assert(!is_update(a, beta, false));         // beta ukryta
+    assert(is_update(a, beta, true));
+    assert(!is_update(a, parse_version("śmieci"), true));
+}
+
+static void test_net() {
+    NetFsm f;
+    f.begin(false, 0);                          // pierwsze uruchomienie
+    NetOutput o = f.tick(0);
+    assert(f.state() == NetState::Provisioning && o.ap_on && !o.sta_on);
+
+    f.on_new_credentials(false, 1000);          // portal: nowe dane
+    o = f.tick(1000);
+    assert(o.ap_on && o.sta_on && f.state() == NetState::Trial);
+    f.on_sta_connected(5000);
+    o = f.tick(5000);
+    assert(o.trial_ok && o.ap_on);              // AP jeszcze trwa (portal pokazuje IP)
+    o = f.tick(16000);
+    assert(f.state() == NetState::Online && !o.ap_on && o.sta_on);
+
+    // utrata sieci: najpierw cicha próba, po 30 s wraca AP
+    f.on_sta_disconnected(20000);
+    o = f.tick(20000);
+    assert(f.state() == NetState::Connecting && !o.ap_on && o.sta_on);
+    o = f.tick(49000);
+    assert(!o.ap_on);
+    o = f.tick(50001);
+    assert(f.state() == NetState::Fallback && o.ap_on && o.sta_on);
+    // sieć wraca: AP znika dopiero po ustabilizowaniu
+    f.on_sta_connected(60000);
+    o = f.tick(61000);
+    assert(o.ap_on);
+    o = f.tick(70001);
+    assert(f.state() == NetState::Online && !o.ap_on);
+
+    // start z danymi, ale sieć niedostępna
+    NetFsm g;
+    g.begin(true, 0);
+    assert(!g.tick(10000).ap_on);
+    o = g.tick(30000);
+    assert(g.state() == NetState::Fallback && o.ap_on);
+
+    // zły test nowych danych przy istniejących starych
+    NetFsm h;
+    h.begin(true, 0);
+    h.on_sta_connected(1000); h.tick(1000);
+    h.on_new_credentials(true, 5000);
+    h.on_sta_disconnected(5000);
+    o = h.tick(36000);
+    assert(o.trial_failed && o.use_previous_credentials && h.state() == NetState::Connecting);
+    o = h.tick(36001);
+    assert(!o.trial_failed && !o.use_previous_credentials);   // zdarzenie jednorazowe
+
+    // zły test bez starych danych: wracamy do portalu
+    NetFsm k;
+    k.begin(false, 0);
+    k.on_new_credentials(false, 0);
+    o = k.tick(30000);
+    assert(o.trial_failed && !o.use_previous_credentials && k.state() == NetState::Provisioning && o.ap_on);
+}
+
 int main() {
     test_sdo();
     test_codec();
     test_mcp();
+    test_version();
+    test_net();
     puts("OK: wszystkie testy przeszly");
     return 0;
 }

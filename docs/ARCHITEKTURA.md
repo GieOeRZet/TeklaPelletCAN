@@ -83,7 +83,7 @@ Wersja `v1`, JSON, `http://<ip>/api/v1/...`.
 Jeden kod, dwa tryby: **urządzenie** (rozmawia z API ESP, serwowana z LittleFS) i **HA** (rozmawia przez integrację). Tłumaczenia (11 języków), tryb demo, edytor wizualny w HA. Kod startowy przeniesiony z `dist/` projektu PelletCAN i przepięty z encji ESPHome na model punktów.
 
 ## 11. Pamięć flash (XIAO C6, 4 MB)
-Partycje: bootloader, NVS, 2 × OTA (ok. 1,3 MB każda), LittleFS na kartę i grafiki (ok. 700 KB, gzip). Grafiki panela (opcja „pełne”) osobno i opcjonalnie.
+Partycje (`firmware/partitions.csv`): NVS, otadata, 2 × OTA po 1,8 MB, `storage` 256 KB (opcjonalne grafiki panela). **Karta WWW jest wbudowana w obraz firmware** (gzip), więc jedna paczka = jedna atomowa aktualizacja firmware i karty.
 
 ## 12. Plan
 1. Szkielet repo + dokument (ten) ✔
@@ -93,6 +93,46 @@ Partycje: bootloader, NVS, 2 × OTA (ok. 1,3 MB każda), LittleFS na kartę i gr
 5. Zapis, poziomy dostępu, parowanie.
 6. Integracja HA.
 7. Aplikacja Android.
+
+## 12a. Aktualizacje (OTA) i awaryjny AP
+
+### Skąd urządzenie wie o nowej wersji
+ESP **nie ma internetu**, więc nie sprawdza wersji samo. Robi to klient, który internet ma:
+1. **Manifest** `manifest.json` publikuje CI przy wydaniu (GitHub Pages, nagłówek CORS `*`): `{version, notes, url, size, sha256, signature, min_version}`. Plik `.bin` leży obok manifestu (na Pages/raw, nie na `objects.githubusercontent.com`, bo ten nie ma CORS).
+2. Klient porównuje `manifest.version` z `/api/v1/info.version` (logika `version.h`, wydania `-beta` ukryte, chyba że włączono kanał testowy).
+3. Jeśli jest nowsza – **komunikat „Dostępna aktualizacja X.Y.Z” + lista zmian + przycisk „Zaktualizuj”**:
+   - **Karta (na stronie ESP i w HA):** baner w menu, przeglądarka pobiera `.bin` i wgrywa go do ESP (`POST /api/v1/ota`).
+   - **Integracja HA:** natywna encja `update` (HA pokazuje „Aktualizacja dostępna” i przycisk Zainstaluj), integracja pobiera `.bin` i wysyła do ESP, pokazując postęp.
+   - **Aplikacja Android:** to samo co karta.
+   - Ręcznie: wgranie pliku `.bin` na stronie urządzenia (gdy nie ma internetu nigdzie).
+
+### Bezpieczeństwo aktualizacji
+- Wgranie wymaga tokenu **właściciela** (nie zwykłego klienta).
+- ESP sprawdza `sha256` i **podpis ECDSA P-256** obrazu kluczem publicznym wbudowanym w firmware (klucz prywatny tylko w sekretach CI). Obcy plik jest odrzucony przed przełączeniem partycji.
+- Odrzucane są obrazy dla innego układu, starsze od `min_version` oraz z innym ID projektu.
+
+### Przebieg i odporność na awarie
+1. Obraz jest zapisywany do **nieaktywnej** partycji OTA (druga działa dalej, kocioł nie traci obsługi).
+2. Po weryfikacji restart na nową partycję; kocioł nie jest zapisywany w trakcie aktualizacji.
+3. Nowa wersja musi w ciągu 60 s zgłosić „zdrowie”: Wi-Fi działa lub AP wystawiony, MCP2515 odpowiada, API słucha. Dopiero wtedy `esp_ota_mark_app_valid`. W przeciwnym razie (lub po 3 nieudanych startach) **automatyczny powrót** do poprzedniej wersji (`CONFIG_APP_ROLLBACK_ENABLE`).
+4. Aktualizacja nie kasuje NVS (sieć, hasło, sparowani klienci); zmiany formatu NVS są wersjonowane z migracją.
+
+### Awaryjny punkt dostępu (automat sieci, `net_fsm`, testy na hoście)
+| Sytuacja | Zachowanie |
+|---|---|
+| Pierwsze uruchomienie, brak sieci | tylko AP `TeklaPelletCAN-XXXX` + portal |
+| Dane są, łączenie | próba 30 s bez AP |
+| Nie połączono po 30 s (zła sieć/hasło/router wyłączony) | **AP wraca** (AP+STA), STA dalej próbuje w tle |
+| Utrata działającej sieci | 30 s cichej próby, potem AP wraca |
+| Sieć wróciła | AP znika dopiero po 10 s stabilnego połączenia |
+| Nowe dane wpisane w portalu | AP zostaje do końca testu; po sukcesie portal pokazuje IP; po porażce wracają **poprzednie** dane i portal pokazuje błąd |
+| Reset fabryczny (BOOT 10 s) | czyści sieć, hasło i klientów, wraca portal |
+
+### „Od strzała” – lista kontrolna jakości
+- Test na hoście logiki: SDO, kodowanie, MCP2515, wersje, automat sieci (CI przy każdym pushu).
+- Release: CI buduje `.bin`, podpisuje, generuje `manifest.json`, publikuje na Pages i w Releases.
+- Pierwsza instalacja z kabla USB (`idf.py flash` lub gotowy plik `*.factory.bin` + skrypt), każda kolejna – z przycisku.
+- Wersja firmware widoczna w `/info`, na karcie, w HA i na panelu kotła (węzeł 90, jak w PelletCAN).
 
 ## 13. Decyzje
 - Hasło AP: `qwerty123` (domyślne, zmienialne).
@@ -106,4 +146,5 @@ Partycje: bootloader, NVS, 2 × OTA (ok. 1,3 MB każda), LittleFS na kartę i gr
 
 ## 15. Stan implementacji
 - `firmware/components/core` (bez zależności od ESP, testy na hoście, `ctest`): ramka CAN, klient SDO (odczyt/zapis expedited, abort), kodowanie wartości rejestrów, sterownik MCP2515 przez interfejs `ISpi`.
+- Dodano: `version` (porównywanie wersji, ukrywanie wydań beta), `net_fsm` (automat AP/STA z awaryjnym AP i testem nowych danych) – z testami.
 - `firmware/main`: warstwa ESP-IDF (SPI, `app_main` z próbnym odczytem). **Jeszcze niezbudowane w ESP-IDF** – to kod do pierwszej kompilacji na sprzęcie.
