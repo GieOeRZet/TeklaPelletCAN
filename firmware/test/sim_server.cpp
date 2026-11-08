@@ -13,6 +13,8 @@
 #include <random>
 #include <sstream>
 #include "../components/core/api.h"
+#include "../components/core/logring.h"
+#include "../components/core/ota.h"
 #include "fake_boiler.h"
 
 using namespace tpc;
@@ -63,6 +65,36 @@ int main(int argc, char** argv) {
         return s;
     });
     api.on_restart([] { fprintf(stderr, "[sim] restart\n"); });
+
+    // --- hooki platformy (symulacja ESP): Wi-Fi, konfiguracja, dziennik, diagnostyka
+    static uint8_t ring_mem[8192];
+    LogRing ring(ring_mem, sizeof ring_mem);
+    engine.set_logger([&](const std::string& l) { char b[32]; snprintf(b, sizeof b, "[%7.1f] ", now_ms() / 1000.0); ring.append(std::string(b) + l); });
+    ring.append("[    0.0] BOOT (symulator)");
+    DeviceConfig devcfg; devcfg.mirror = false;
+    WifiStatus wst; wst.state = "online"; wst.ssid = "SymulowanaSiec"; wst.ip = "127.0.0.1"; wst.ap_ssid = "TeklaPelletCAN-SIM"; wst.rssi = -57;
+    uint32_t trial_at = 0; bool trial_pending = false; std::string trial_ssid;
+    ApiHooks hk;
+    hk.scan = [] { return std::vector<WifiNet>{{"Dom-2.4G", -48, true}, {"Sasiad", -77, true}, {"Otwarta", -85, false}}; };
+    hk.wifi_apply = [&](const WifiSettings& w) {
+        ring.append("Wi-Fi: proba polaczenia z '" + w.ssid + "'" + (w.dhcp ? " (DHCP)" : " (stale IP " + w.ip + ")"));
+        trial_pending = true; trial_at = now_ms() + 1500; trial_ssid = w.ssid; wst.trial = "";
+        if (w.password == "zle") trial_ssid = "!";
+    };
+    hk.wifi_status = [&] {
+        if (trial_pending && now_ms() >= trial_at) {
+            trial_pending = false;
+            if (trial_ssid == "!") wst.trial = "failed"; else { wst.trial = "ok"; wst.ssid = trial_ssid; }
+        }
+        return wst;
+    };
+    hk.config_get = [&] { return devcfg; };
+    hk.config_set = [&](const DeviceConfig& c) { devcfg = c; ring.append("Konfiguracja zapisana"); };
+    hk.log_get = [&](size_t n) { return n ? ring.tail(n) : ring.dump(); };
+    hk.log_clear = [&] { ring.clear(); };
+    hk.diag_extra = [] { return std::string("{\"heap_free\":123456,\"reset_reason\":\"power-on\",\"wifi_rssi\":-57,\"partition\":\"ota_0\"}"); };
+    hk.factory_reset = [&] { ring.append("Reset fabryczny"); clients = MemoryClientStore(); };
+    api.set_hooks(hk);
 
     int srv = socket(AF_INET, SOCK_STREAM, 0);
     int one = 1; setsockopt(srv, SOL_SOCKET, SO_REUSEADDR, &one, sizeof one);
@@ -121,6 +153,26 @@ int main(int argc, char** argv) {
         const std::string cors = "Access-Control-Allow-Origin: *\r\nAccess-Control-Allow-Headers: Authorization, X-Token, Content-Type\r\n"
                                  "Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS\r\n";
         if (req.method == "OPTIONS") { res.status = 204; res.body = ""; }
+        else if (req.path == "/api/v1/ota" && req.method == "POST") {
+            struct MemTarget : OtaTarget {
+                size_t n = 0; bool ended = false;
+                bool begin(size_t) override { return true; }
+                bool write(const uint8_t*, size_t l) override { n += l; return true; }
+                bool end() override { ended = true; return true; }
+                void abort() override {}
+            } target;
+            if (!api.is_authorized(req)) { res.status = 401; res.body = "{\"ok\":false,\"error\":\"unauthorized\"}"; }
+            else {
+                OtaSession os(target, kOtaPubKey, 1 << 20);
+                std::string sig = req.headers.count("x-signature") ? req.headers["x-signature"] : "";
+                OtaResult rr = os.begin(req.body.size(), sig);
+                if (rr == OtaResult::Ok) rr = os.feed((const uint8_t*)req.body.data(), req.body.size());
+                if (rr == OtaResult::Ok) rr = os.finish();
+                ring.append(std::string("OTA: ") + ota_result_name(rr) + " (" + std::to_string(req.body.size()) + " B)");
+                res.status = rr == OtaResult::Ok ? 200 : 400;
+                res.body = std::string("{\"ok\":") + (rr == OtaResult::Ok ? "true" : "false") + ",\"error\":\"" + ota_result_name(rr) + "\"}";
+            }
+        }
         else if (req.path.rfind("/api/", 0) == 0) { res = api.handle(req); }
         else {
             std::string p = req.path == "/" ? "/index.html" : req.path;
@@ -131,7 +183,9 @@ int main(int argc, char** argv) {
         }
         std::ostringstream out;
         out << "HTTP/1.1 " << res.status << " X\r\nContent-Type: " << res.ctype << "\r\nContent-Length: " << res.body.size()
-            << "\r\n" << cors << "Cache-Control: no-store\r\nConnection: close\r\n\r\n" << res.body;
+            << "\r\n" << cors;
+        for (auto& h : res.headers) out << h.first << ": " << h.second << "\r\n";
+        out << "Cache-Control: no-store\r\nConnection: close\r\n\r\n" << res.body;
         send_all(fd, out.str());
         close(fd);
     }

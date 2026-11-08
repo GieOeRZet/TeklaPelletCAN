@@ -56,6 +56,10 @@ public:
     void on_frame(const CanFrame& f, uint32_t now_ms);
     void tick(uint32_t now_ms);
 
+    // Dziennik zdarzeń (zapisy, PIN-y, utrata/odzyskanie CAN) – wstrzykiwany przez platformę.
+    void set_logger(std::function<void(const std::string&)> fn) { log_ = std::move(fn); }
+    std::string diag_json(uint32_t now_ms) const;
+
     // Poziomy dostępu menu (PIN): 0 użytkownik, 1 klucz 1, 2 klucz 2.
     uint8_t unlock(uint16_t pin, uint32_t now_ms);
     uint8_t level() const { return access_.level(); }
@@ -160,7 +164,11 @@ private:
     bool scan_on_ = false;
     uint32_t scan_cur_ = 0, scan_end_ = 0, scan_last_ms_ = 0;
     uint8_t scan_sub_ = 1, scan_node_ = 4;
-    uint32_t sdo_ok_ = 0, sdo_abort_ = 0;
+    uint32_t sdo_ok_ = 0, sdo_abort_ = 0, sdo_timeout_ = 0, rx_frames_ = 0, rx_sdo_ = 0, last_abort_code_ = 0;
+    uint16_t last_abort_index_ = 0;
+    bool was_can_ok_ = false;
+    std::function<void(const std::string&)> log_;
+    void logf(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
 };
 
 }  // namespace tpc

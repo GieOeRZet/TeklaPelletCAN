@@ -13,9 +13,11 @@
 </head>
 <body>
 <div id="offline">Brak połączenia z urządzeniem</div>
+<div style="text-align:center;padding:6px"><a href="/settings.html" style="color:#9aa1b2;font-size:13px;text-decoration:none">⚙ Ustawienia, aktualizacja, dziennik</a></div>
 <div id="root"></div>
 <script type="module">
 import { DeviceHass } from './shim.js';
+try { const i = await (await fetch('/api/v1/info')).json(); if (!i.password_set) { location.replace('/portal.html'); } } catch (e) { /* offline */ }
 await import('./pelletcan-card.js');
 await customElements.whenDefined('pelletcan-card');
 const hass = new DeviceHass('');

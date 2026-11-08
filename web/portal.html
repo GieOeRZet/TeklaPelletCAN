@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TeklaPelletCAN – konfiguracja</title>
+<link rel="stylesheet" href="ui.css">
+</head>
+<body>
+<main>
+  <h1>Tekla<span>PelletCAN</span></h1>
+  <p class="sub">Pierwsza konfiguracja urządzenia · <span id="devid">…</span></p>
+
+  <div class="card" id="c1">
+    <h2>1. Hasło urządzenia</h2>
+    <label for="pw">Hasło (min. 4 znaki) – będzie potrzebne do sterowania kotłem</label>
+    <input id="pw" type="password" autocomplete="new-password">
+  </div>
+
+  <div class="card" id="c2">
+    <h2>2. Sieć Wi-Fi (2,4 GHz)</h2>
+    <div class="row"><button class="sec" id="scan">Szukaj sieci</button></div>
+    <div id="nets"></div>
+    <label for="ssid">Nazwa sieci (SSID)</label>
+    <input id="ssid" type="text" autocapitalize="none" autocorrect="off">
+    <label for="wpw">Hasło sieci</label>
+    <input id="wpw" type="password" autocomplete="off">
+    <label class="chk"><input id="static" type="checkbox"> Stały adres IP (zamiast DHCP)</label>
+    <div id="staticbox" style="display:none">
+      <label for="ip">Adres IP</label><input id="ip" type="text" placeholder="192.168.10.250">
+      <label for="mask">Maska</label><input id="mask" type="text" placeholder="255.255.255.0">
+      <label for="gw">Brama</label><input id="gw" type="text" placeholder="192.168.10.1">
+      <label for="dns">DNS (opcjonalnie)</label><input id="dns" type="text" placeholder="192.168.10.1">
+    </div>
+  </div>
+
+  <button class="acc" id="save" style="width:100%">Zapisz i połącz</button>
+  <div class="msg" id="msg"></div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const msg = (t, c) => { const m = $('msg'); m.className = 'msg ' + c; m.textContent = t; };
+$('static').onchange = () => { $('staticbox').style.display = $('static').checked ? 'block' : 'none'; };
+fetch('/api/v1/info').then(r => r.json()).then(i => { $('devid').textContent = i.id; if (i.password_set) { msg('Urządzenie jest już skonfigurowane. Ustawienia: /settings.html', 'info'); } }).catch(() => {});
+
+async function scan() {
+  $('scan').disabled = true; $('scan').textContent = 'Szukam…';
+  try {
+    const r = await fetch('/api/v1/wifi/scan'); const j = await r.json();
+    const box = $('nets'); box.innerHTML = '';
+    (j.networks || []).sort((a, b) => b.rssi - a.rssi).forEach(n => {
+      const d = document.createElement('div'); d.className = 'net';
+      d.innerHTML = '<span></span><small></small>'; d.firstChild.textContent = n.ssid; d.lastChild.textContent = n.rssi + ' dBm' + (n.secure ? ' 🔒' : '');
+      d.onclick = () => { $('ssid').value = n.ssid; [...box.children].forEach(x => x.classList.remove('sel')); d.classList.add('sel'); $('wpw').focus(); };
+      box.appendChild(d);
+    });
+    if (!(j.networks || []).length) msg('Nie znaleziono sieci – wpisz nazwę ręcznie.', 'info');
+  } catch (e) { msg('Skanowanie nie powiodło się: ' + e.message, 'err'); }
+  $('scan').disabled = false; $('scan').textContent = 'Szukaj sieci';
+}
+$('scan').onclick = scan;
+
+$('save').onclick = async () => {
+  const pw = $('pw').value, ssid = $('ssid').value.trim();
+  if (pw.length < 4) return msg('Hasło urządzenia musi mieć co najmniej 4 znaki.', 'err');
+  if (!ssid) return msg('Wybierz lub wpisz nazwę sieci Wi-Fi.', 'err');
+  const body = { password: pw, client_id: 'portal-' + Math.random().toString(16).slice(2), name: 'Portal', ssid, wifi_password: $('wpw').value, dhcp: !$('static').checked };
+  if ($('static').checked) Object.assign(body, { ip: $('ip').value.trim(), mask: $('mask').value.trim(), gateway: $('gw').value.trim(), dns: $('dns').value.trim() });
+  $('save').disabled = true; msg('Zapisuję i łączę z siecią…', 'info');
+  let r;
+  try { r = await fetch('/api/v1/setup', { method: 'POST', body: JSON.stringify(body) }); } catch (e) { $('save').disabled = false; return msg('Błąd: ' + e.message, 'err'); }
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) { $('save').disabled = false; return msg('Błąd: ' + (j.error || r.status), 'err'); }
+  try { localStorage.setItem('tpc_token', j.token); } catch (e) {}
+  poll();
+};
+
+async function poll() {
+  for (let i = 0; i < 40; i++) {
+    await new Promise(r => setTimeout(r, 1500));
+    try {
+      const s = await (await fetch('/api/v1/wifi/status')).json();
+      if (s.trial === 'ok' || s.state === 'online') {
+        const url = 'http://' + s.ip + '/';
+        $('msg').className = 'msg ok';
+        $('msg').innerHTML = 'Połączono z siecią <b></b>. Adres urządzenia: <b></b><br>Połącz telefon z tą samą siecią i otwórz: <a style="color:#8fb3f5"></a>';
+        const b = $('msg').querySelectorAll('b'); b[0].textContent = s.ssid; b[1].textContent = s.ip;
+        const a = $('msg').querySelector('a'); a.href = url; a.textContent = url;
+        return;
+      }
+      if (s.trial === 'failed') { $('save').disabled = false; return msg('Nie udało się połączyć z siecią (złe hasło lub brak zasięgu). Sprawdź dane i spróbuj ponownie.', 'err'); }
+    } catch (e) { /* telefon mógł zmienić sieć – to normalne */ }
+  }
+  msg('Brak potwierdzenia. Jeśli telefon przełączył się na sieć domową, otwórz adres urządzenia w tej sieci (sprawdź w routerze lub w Home Assistant).', 'info');
+}
+scan();
+</script>
+</body>
+</html>

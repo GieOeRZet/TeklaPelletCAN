@@ -1,6 +1,7 @@
 #include "engine.h"
 #include <cmath>
 #include <cstdio>
+#include <cstdarg>
 #include <cstdlib>
 #include <cstring>
 #include "alarms.h"
@@ -78,6 +79,13 @@ bool Engine::skipped(const ReadPoint& p) const {
     }
 }
 
+void Engine::logf(const char* fmt, ...) {
+    if (!log_) return;
+    char b[200];
+    va_list ap; va_start(ap, fmt); vsnprintf(b, sizeof b, fmt, ap); va_end(ap);
+    log_(b);
+}
+
 // ---------------------------------------------------------------- zadania SDO
 
 void Engine::read_index(uint16_t index, uint32_t flags) {
@@ -86,13 +94,15 @@ void Engine::read_index(uint16_t index, uint32_t flags) {
 }
 
 void Engine::write_index(uint16_t index, uint32_t value, uint8_t size) {
+    logf("ZAPIS 0x%04X <- %u (%u B)", index, (unsigned)value, (unsigned)size);
     SdoJob j; j.write = true; j.index = index; j.sub = 1; j.value = value; j.size = size; j.tag = index | F_WRITE;
     queue_.push(j);
 }
 
 void Engine::on_frame(const CanFrame& f, uint32_t now) {
     now_ = now;
-    if (f.id == COB_SDO_RESP + cfg_.node) { rx_seen_ = true; last_rx_ms_ = now; }
+    rx_frames_++;
+    if (f.id == COB_SDO_RESP + cfg_.node) { rx_seen_ = true; last_rx_ms_ = now; rx_sdo_++; }
     // PDO modułu wejść/wyjść (węzeł 86): podajnik 0x456 b0.0, dmuchawa 0x356 b0.0, podajnik palnika 0x356 b2.0
     if (f.id == 0x456 && f.dlc >= 1) { pdo_feeder_ = f.data[0] & 1; pdo_seen_feeder_ = true; }
     if (f.id == 0x356 && f.dlc >= 1) {
@@ -106,7 +116,14 @@ void Engine::on_frame(const CanFrame& f, uint32_t now) {
 void Engine::on_done(const SdoResult& r) {
     const uint16_t index = r.job.tag & 0xFFFF;
     const uint32_t fl = r.job.tag & 0xFFFF0000u;
-    if (r.outcome == SdoOutcome::Ok) sdo_ok_++; else if (r.outcome == SdoOutcome::Abort) sdo_abort_++;
+    if (r.outcome == SdoOutcome::Ok) sdo_ok_++;
+    else if (r.outcome == SdoOutcome::Abort) {
+        sdo_abort_++; last_abort_code_ = r.abort_code; last_abort_index_ = index;
+        if (fl & F_WRITE) logf("ABORT zapisu 0x%04X kod 0x%08X", index, (unsigned)r.abort_code);
+    } else if (r.outcome == SdoOutcome::Timeout) {
+        sdo_timeout_++;
+        if (fl & F_WRITE) logf("BRAK ODPOWIEDZI na zapis 0x%04X", index);
+    }
     if (fl & F_WRITE) {
         if (r.outcome == SdoOutcome::Ok) after(300, [this, index]() { read_index(index); });   // odczyt zwrotny
         return;
@@ -236,6 +253,7 @@ uint8_t Engine::unlock(uint16_t pin, uint32_t now_ms) {
     now_ = now_ms;
     const uint8_t before = access_.level();
     const uint8_t lvl = access_.unlock(pin, now_ms);
+    logf("PIN: poziom dostepu %d", (int)lvl);
     if (lvl > before) queue_all_params();   // po PIN-ie odśwież nastawy wyższych poziomów
     return lvl;
 }
@@ -243,6 +261,8 @@ uint8_t Engine::unlock(uint16_t pin, uint32_t now_ms) {
 void Engine::tick(uint32_t now) {
     now_ = now;
     access_.tick(now);
+    const bool cok = can_ok(now);
+    if (cok != was_can_ok_) { was_can_ok_ = cok; logf(cok ? "CAN: kociol odpowiada" : "CAN: brak odpowiedzi kotla"); }
     // timery jednorazowe
     for (size_t i = 0; i < timers_.size();) {
         if (now >= timers_[i].when) { auto fn = std::move(timers_[i].fn); timers_.erase(timers_.begin() + i); fn(); }
@@ -709,6 +729,22 @@ std::string Engine::points_json() const {
         w.end_obj();
     }
     w.end_arr().end_obj();
+    return w.out();
+}
+
+std::string Engine::diag_json(uint32_t now) const {
+    JsonWriter w;
+    w.begin_obj().kvb("can_ok", can_ok(now)).key("rx_frames").num(rx_frames_).key("rx_sdo").num(rx_sdo_);
+    w.key("sdo_ok").num(sdo_ok_).key("sdo_abort").num(sdo_abort_).key("sdo_timeout").num(sdo_timeout_);
+    char b[24];
+    snprintf(b, sizeof b, "0x%08X", (unsigned)last_abort_code_);
+    w.kv("last_abort_code", b);
+    snprintf(b, sizeof b, "0x%04X", (unsigned)last_abort_index_);
+    w.kv("last_abort_index", b);
+    w.key("queue").num(queue_.pending()).key("level").num(access_.level());
+    w.kvb("mirror", cfg_.access.mirror).kvb("write_enabled", cfg_.access.write_enabled);
+    w.kvb("pdo_feeder_seen", pdo_seen_feeder_).kvb("pdo_blower_seen", pdo_seen_blower_);
+    w.end_obj();
     return w.out();
 }
 

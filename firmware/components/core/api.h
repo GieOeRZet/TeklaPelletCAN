@@ -3,6 +3,7 @@
 #include <functional>
 #include <map>
 #include <string>
+#include <vector>
 #include "clients.h"
 #include "engine.h"
 
@@ -20,6 +21,39 @@ struct HttpResponse {
     int status = 200;
     std::string ctype = "application/json";
     std::string body;
+    std::map<std::string, std::string> headers;      // dodatkowe nagłówki (np. Content-Disposition)
+};
+
+// Dane z platformy (ESP / symulator) – Api zostaje czystym C++.
+struct WifiNet { std::string ssid; int rssi = 0; bool secure = true; };
+struct WifiSettings {
+    std::string ssid, password;
+    bool dhcp = true;
+    std::string ip, gateway, mask, dns;
+};
+struct WifiStatus {
+    std::string state;        // provisioning | connecting | online | fallback | trial
+    std::string ssid, ip, ap_ssid;
+    int rssi = 0;
+    bool ap_active = false;
+    std::string trial;        // "" | "ok" | "failed" (wynik ostatniego testu nowych danych)
+};
+struct DeviceConfig {
+    bool mirror = true;       // domyślnie TYLKO ODCZYT (bezpiecznie po pierwszym wgraniu)
+    bool write_enabled = true;
+    bool demo = false;        // symulator kotła (bez CAN)
+    bool two_circuits = false;
+};
+struct ApiHooks {
+    std::function<std::vector<WifiNet>()> scan;
+    std::function<void(const WifiSettings&)> wifi_apply;
+    std::function<WifiStatus()> wifi_status;
+    std::function<DeviceConfig()> config_get;
+    std::function<void(const DeviceConfig&)> config_set;     // zapis do pamięci trwałej; zmiana wymaga restartu
+    std::function<std::string(size_t)> log_get;              // ostatnie N bajtów dziennika (0 = całość)
+    std::function<void()> log_clear;
+    std::function<std::string()> diag_extra;                 // obiekt JSON z danymi platformy (heap, reset, Wi-Fi...)
+    std::function<void()> factory_reset;
 };
 
 struct ApiConfig {
@@ -40,6 +74,9 @@ public:
 
     HttpResponse handle(const HttpRequest& r);
     void on_restart(Hook h) { restart_ = std::move(h); }
+    void set_hooks(ApiHooks h) { hooks_ = std::move(h); }
+    bool is_authorized(const HttpRequest& r) const { return authorized(r); }   // dla strumieniowego OTA
+    const ApiConfig& config() const { return cfg_; }
 
 private:
     bool authorized(const HttpRequest& r) const;
@@ -54,6 +91,8 @@ private:
     Clock clock_;
     Random rnd_;
     Hook restart_;
+    ApiHooks hooks_;
+    HttpResponse platform(const HttpRequest& r, bool& handled);
 };
 
 }  // namespace tpc

@@ -120,12 +120,20 @@ HttpResponse Api::handle(const HttpRequest& r) {
     }
     if (r.path.rfind("/api/v1/clients/", 0) == 0 && r.method == "DELETE") {
         if (!authorized(r)) return err(401, "unauthorized");
-        return c_.remove(r.path.substr(16)) ? HttpResponse{200, "application/json", "{\"ok\":true}"} : err(404, "not_found");
+        {
+            if (!c_.remove(r.path.substr(16))) return err(404, "not_found");
+            HttpResponse res; res.body = "{\"ok\":true}"; return res;
+        }
     }
     if (r.path == "/api/v1/restart" && r.method == "POST") {
         if (!authorized(r)) return err(401, "unauthorized");
         if (restart_) restart_();
         HttpResponse res; res.body = "{\"ok\":true}"; return res;
+    }
+    {
+        bool handled = false;
+        HttpResponse pr = platform(r, handled);
+        if (handled) return pr;
     }
     if (r.path == "/api/v1/call" && r.method == "POST") return call(r);
     if (r.path == "/api/v1/write" && r.method == "POST") {
@@ -145,6 +153,116 @@ HttpResponse Api::handle(const HttpRequest& r) {
         }
     }
     return err(404, "not_found");
+}
+
+HttpResponse Api::platform(const HttpRequest& r, bool& handled) {
+    handled = true;
+    auto ok = [] { HttpResponse res; res.body = "{\"ok\":true}"; return res; };
+    auto wifi_from = [](const Json& j, WifiSettings& w) {
+        w.ssid = j.str("ssid"); w.password = j.str("wifi_password", j.str("password"));
+        const Json* d = j.get("dhcp");
+        w.dhcp = !(d && d->type == Json::Bool && !d->b);
+        w.ip = j.str("ip"); w.gateway = j.str("gateway"); w.mask = j.str("mask"); w.dns = j.str("dns");
+    };
+    const uint32_t now = clock_();
+
+    if (r.path == "/api/v1/wifi/status" && r.method == "GET") {
+        if (!hooks_.wifi_status) return err(501, "unsupported");
+        WifiStatus s = hooks_.wifi_status();
+        JsonWriter w;
+        w.begin_obj().kv("state", s.state).kv("ssid", s.ssid).kv("ip", s.ip).kv("ap_ssid", s.ap_ssid).key("rssi").num(s.rssi);
+        w.kvb("ap_active", s.ap_active).kv("trial", s.trial).end_obj();
+        HttpResponse res; res.body = w.out(); return res;
+    }
+    if (r.path == "/api/v1/wifi/scan" && r.method == "GET") {
+        if (!hooks_.scan) return err(501, "unsupported");
+        if (c_.has_password() && !authorized(r)) return err(401, "unauthorized");   // przed ustawieniem hasła skan dostępny dla portalu
+        JsonWriter w; w.begin_obj().key("networks").begin_arr();
+        for (auto& n : hooks_.scan()) w.begin_obj().kv("ssid", n.ssid).key("rssi").num(n.rssi).kvb("secure", n.secure).end_obj();
+        w.end_arr().end_obj();
+        HttpResponse res; res.body = w.out(); return res;
+    }
+    if (r.path == "/api/v1/setup" && r.method == "POST") {   // pierwsza konfiguracja: hasło urządzenia + Wi-Fi
+        if (c_.has_password()) return err(403, "already_configured");
+        Json j;
+        if (!json_parse(r.body, j)) return err(400, "bad_json");
+        const std::string pw = j.str("password"), cid = j.str("client_id", "portal");
+        if (pw.size() < 4) return err(400, "password_too_short");
+        c_.set_password(pw);
+        ClientInfo ci; ci.id = cid; ci.name = j.str("name", "Portal"); ci.token = rnd_(32);
+        c_.put(ci);
+        WifiSettings w;
+        if (!j.str("ssid").empty()) { wifi_from(j, w); if (hooks_.wifi_apply) hooks_.wifi_apply(w); }
+        JsonWriter out; out.begin_obj().kvb("ok", true).kv("token", ci.token).end_obj();
+        HttpResponse res; res.body = out.out(); return res;
+    }
+    if (r.path == "/api/v1/wifi" && r.method == "POST") {
+        if (!authorized(r)) return err(401, "unauthorized");
+        Json j;
+        if (!json_parse(r.body, j) || j.str("ssid").empty()) return err(400, "bad_json");
+        WifiSettings w; wifi_from(j, w);
+        if (hooks_.wifi_apply) hooks_.wifi_apply(w);
+        return ok();
+    }
+    if (r.path == "/api/v1/config" && r.method == "GET") {
+        DeviceConfig cfg = hooks_.config_get ? hooks_.config_get() : DeviceConfig();
+        JsonWriter w;
+        w.begin_obj().kvb("mirror", cfg.mirror).kvb("write_enabled", cfg.write_enabled).kvb("demo", cfg.demo)
+            .kvb("two_circuits", cfg.two_circuits).end_obj();
+        HttpResponse res; res.body = w.out(); return res;
+    }
+    if (r.path == "/api/v1/config" && r.method == "POST") {
+        if (!authorized(r)) return err(401, "unauthorized");
+        Json j;
+        if (!json_parse(r.body, j)) return err(400, "bad_json");
+        DeviceConfig cfg = hooks_.config_get ? hooks_.config_get() : DeviceConfig();
+        auto b = [&](const char* k, bool& dst) { const Json* v = j.get(k); if (v && v->type == Json::Bool) dst = v->b; };
+        b("mirror", cfg.mirror); b("write_enabled", cfg.write_enabled); b("demo", cfg.demo); b("two_circuits", cfg.two_circuits);
+        if (hooks_.config_set) hooks_.config_set(cfg);
+        JsonWriter w; w.begin_obj().kvb("ok", true).kvb("restart_required", true).end_obj();
+        HttpResponse res; res.body = w.out(); return res;
+    }
+    if (r.path == "/api/v1/log" && r.method == "GET") {
+        if (!hooks_.log_get) return err(501, "unsupported");
+        HttpResponse res; res.ctype = "text/plain; charset=utf-8";
+        res.body = hooks_.log_get(0);
+        if (r.query.find("download=1") != std::string::npos)
+            res.headers["Content-Disposition"] = "attachment; filename=\"teklapelletcan-" + e_.device_id_hex() + "-log.txt\"";
+        return res;
+    }
+    if (r.path == "/api/v1/log" && r.method == "DELETE") {
+        if (!authorized(r)) return err(401, "unauthorized");
+        if (hooks_.log_clear) hooks_.log_clear();
+        return ok();
+    }
+    if (r.path == "/api/v1/diag" && r.method == "GET") {
+        JsonWriter w;
+        w.begin_obj().kv("id", e_.device_id_hex()).kv("fw", cfg_.fw).key("uptime_s").num(now / 1000);
+        std::string out = w.out();
+        out.pop_back();   // zdejmij zamykające '}', dopisz pola
+        out += ",\"engine\":" + e_.diag_json(now);
+        out += ",\"platform\":" + (hooks_.diag_extra ? hooks_.diag_extra() : std::string("{}")) + "}";
+        HttpResponse res; res.body = out; return res;
+    }
+    if (r.path == "/api/v1/export" && r.method == "GET") {   // raport do wklejenia/wysłania: diagnostyka + dziennik
+        HttpResponse res; res.ctype = "text/plain; charset=utf-8";
+        std::string rep = "=== TeklaPelletCAN raport ===\nid: " + e_.device_id_hex() + "\nfw: " + cfg_.fw + "\nuptime_s: " +
+                          std::to_string(now / 1000) + "\n\n--- silnik ---\n" + e_.diag_json(now) + "\n";
+        if (hooks_.diag_extra) rep += "\n--- platforma ---\n" + hooks_.diag_extra() + "\n";
+        if (hooks_.log_get) rep += "\n--- dziennik ---\n" + hooks_.log_get(0);
+        res.body = rep;
+        res.headers["Content-Disposition"] = "attachment; filename=\"teklapelletcan-" + e_.device_id_hex() + "-raport.txt\"";
+        return res;
+    }
+    if (r.path == "/api/v1/factory_reset" && r.method == "POST") {
+        if (!authorized(r)) return err(401, "unauthorized");
+        Json j;
+        if (!json_parse(r.body, j) || !j.get("confirm")) return err(400, "confirm_required");
+        if (hooks_.factory_reset) hooks_.factory_reset();
+        return ok();
+    }
+    handled = false;
+    return HttpResponse();
 }
 
 HttpResponse Api::pair(const HttpRequest& r) {

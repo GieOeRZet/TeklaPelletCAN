@@ -11,6 +11,9 @@
 #include "../components/core/point.h"
 #include "../components/core/sdo_queue.h"
 #include "../components/core/license.h"
+#include "../components/core/ota.h"
+#include "../components/core/dns.h"
+#include "ota_vectors.h"
 #include "license_vectors.h"
 
 using namespace tpc;
@@ -305,6 +308,71 @@ static void test_license() {
     assert(kLicenseDevKey);  // w repo jest klucz testowy
 }
 
+struct MemTarget : OtaTarget {
+    std::vector<uint8_t> data; bool began = false, ended = false, aborted = false;
+    bool begin(size_t) override { began = true; return true; }
+    bool write(const uint8_t* d, size_t n) override { data.insert(data.end(), d, d + n); return true; }
+    bool end() override { ended = true; return true; }
+    void abort() override { aborted = true; }
+};
+
+static void test_ota() {
+    const size_t n = sizeof kOtaGood;
+    {   // poprawny obraz, podawany kawałkami
+        MemTarget t; OtaSession s(t, kOtaPubKey, 1 << 20);
+        assert(s.begin(n, kOtaGoodSig) == OtaResult::Ok);
+        for (size_t off = 0; off < n; off += 37) assert(s.feed(kOtaGood + off, std::min<size_t>(37, n - off)) == OtaResult::Ok);
+        assert(!t.ended);                                   // przed podpisem nic nie jest aktywowane
+        assert(s.finish() == OtaResult::Ok && t.ended && t.data.size() == n);
+    }
+    {   // zmieniony bajt -> zły podpis, partycja NIE jest aktywowana
+        MemTarget t; OtaSession s(t, kOtaPubKey, 1 << 20);
+        assert(s.begin(n, kOtaGoodSig) == OtaResult::Ok);
+        assert(s.feed(kOtaTampered, n) == OtaResult::Ok);
+        assert(s.finish() == OtaResult::BadSignature && !t.ended && t.aborted);
+    }
+    {   // zły chip_id (np. obraz dla ESP32) -> odrzucony od razu
+        MemTarget t; OtaSession s(t, kOtaPubKey, 1 << 20);
+        assert(s.begin(sizeof kOtaWrongChip, kOtaWrongChipSig) == OtaResult::Ok);
+        assert(s.feed(kOtaWrongChip, sizeof kOtaWrongChip) == OtaResult::BadImage && !t.ended && t.aborted);
+    }
+    {   // brak magic 0xE9
+        MemTarget t; OtaSession s(t, kOtaPubKey, 1 << 20);
+        uint8_t junk[200] = {0};
+        assert(s.begin(sizeof junk, kOtaGoodSig) == OtaResult::Ok);
+        assert(s.feed(junk, sizeof junk) == OtaResult::BadImage);
+    }
+    {   // za duży, zły format podpisu, podpis od innego obrazu
+        MemTarget t; OtaSession s(t, kOtaPubKey, 500);
+        assert(s.begin(n, kOtaGoodSig) == OtaResult::TooBig);
+        MemTarget t2; OtaSession s2(t2, kOtaPubKey, 1 << 20);
+        assert(s2.begin(n, "zzzz") == OtaResult::BadSignature);
+        MemTarget t3; OtaSession s3(t3, kOtaPubKey, 1 << 20);
+        assert(s3.begin(n, kOtaWrongChipSig) == OtaResult::Ok);
+        assert(s3.feed(kOtaGood, n) == OtaResult::Ok && s3.finish() == OtaResult::BadSignature && !t3.ended);
+    }
+    {   // przerwane przesyłanie (za mało bajtów)
+        MemTarget t; OtaSession s(t, kOtaPubKey, 1 << 20);
+        assert(s.begin(n, kOtaGoodSig) == OtaResult::Ok);
+        assert(s.feed(kOtaGood, n - 10) == OtaResult::Ok && s.finish() == OtaResult::BadImage && !t.ended);
+    }
+}
+
+static void test_dns() {
+    // zapytanie A o "example.com"
+    const uint8_t qa[] = {0x12, 0x34, 0x01, 0x00, 0, 1, 0, 0, 0, 0, 0, 0,
+                          7, 'e','x','a','m','p','l','e', 3, 'c','o','m', 0, 0, 1, 0, 1};
+    auto r = dns_captive_response(qa, sizeof qa, (192u << 24) | (168u << 16) | (4u << 8) | 1u);
+    assert(r.size() == sizeof qa + 16);
+    assert(r[0] == 0x12 && r[1] == 0x34 && (r[2] & 0x80) && r[7] == 1);
+    assert(r[r.size() - 4] == 192 && r[r.size() - 3] == 168 && r[r.size() - 2] == 4 && r[r.size() - 1] == 1);
+    // AAAA -> pusta odpowiedź (bez rekordu), też poprawna
+    uint8_t qaaaa[sizeof qa]; memcpy(qaaaa, qa, sizeof qa); qaaaa[sizeof qa - 4] = 0; qaaaa[sizeof qa - 3] = 28;
+    auto r2 = dns_captive_response(qaaaa, sizeof qaaaa, 0);
+    assert(r2.size() == sizeof qa && r2[7] == 0);
+    assert(dns_captive_response(qa, 5, 0).empty());               // śmieci
+}
+
 int main() {
     test_sdo();
     test_codec();
@@ -316,6 +384,8 @@ int main() {
     test_access();
     test_queue();
     test_license();
+    test_ota();
+    test_dns();
     puts("OK: wszystkie testy przeszly");
     return 0;
 }

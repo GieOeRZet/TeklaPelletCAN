@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TeklaPelletCAN – ustawienia</title>
+<link rel="stylesheet" href="ui.css">
+</head>
+<body>
+<main>
+  <h1>Tekla<span>PelletCAN</span> · ustawienia</h1>
+  <div class="tabs"><a href="/index.html">Panel kotła</a><a class="on" href="/settings.html">Ustawienia</a></div>
+
+  <div class="card"><h2>Urządzenie</h2><div class="kv" id="status"></div></div>
+
+  <div class="card">
+    <h2>Tryb pracy</h2>
+    <label class="chk"><input id="c_mirror" type="checkbox"> Tylko odczyt (blokuje wszystkie zapisy do kotła)</label>
+    <label class="chk"><input id="c_write" type="checkbox"> Zapisy włączone (nastawy, tryby, harmonogramy)</label>
+    <label class="chk"><input id="c_two" type="checkbox"> Dwa obiegi CO (CO1 i CO2)</label>
+    <label class="chk"><input id="c_demo" type="checkbox"> Tryb demo (symulator kotła, bez CAN)</label>
+    <div class="row"><button id="cfgsave">Zapisz i uruchom ponownie</button></div>
+    <div class="hint">Po pierwszym wgraniu urządzenie startuje w trybie „tylko odczyt”. Zapisy włączaj dopiero po sprawdzeniu, że odczyty zgadzają się z panelem.</div>
+  </div>
+
+  <div class="card">
+    <h2>Sieć Wi-Fi</h2>
+    <div class="row"><button class="sec" id="scan">Szukaj sieci</button></div>
+    <div id="nets"></div>
+    <label for="ssid">SSID</label><input id="ssid" type="text" autocapitalize="none">
+    <label for="wpw">Hasło sieci</label><input id="wpw" type="password" autocomplete="off">
+    <label class="chk"><input id="static" type="checkbox"> Stały adres IP</label>
+    <div id="staticbox" style="display:none">
+      <label>Adres IP</label><input id="ip" type="text"><label>Maska</label><input id="mask" type="text">
+      <label>Brama</label><input id="gw" type="text"><label>DNS</label><input id="dns" type="text">
+    </div>
+    <div class="row"><button id="wifisave">Połącz z tą siecią</button></div>
+    <div class="hint">Jeśli nowa sieć nie zadziała, urządzenie wróci do poprzedniej i uruchomi własny punkt dostępu „TeklaPelletCAN-XXXX”.</div>
+  </div>
+
+  <div class="card">
+    <h2>Aktualizacja oprogramowania (OTA)</h2>
+    <label for="otabin">Plik firmware (teklapelletcan.bin)</label><input id="otabin" type="file" accept=".bin">
+    <label for="otasig">Podpis (plik .sig albo 128 znaków hex)</label>
+    <input id="otasigf" type="file" accept=".sig,.txt"><input id="otasig" type="text" placeholder="…lub wklej podpis" style="margin-top:6px">
+    <div class="row" style="margin-top:10px"><button id="otago" class="acc">Wgraj i zaktualizuj</button></div>
+    <progress id="otaprog" value="0" max="100" style="display:none"></progress>
+    <div class="hint">Plik musi być podpisany kluczem wydawcy – urządzenie odrzuci obcy firmware i zostanie na obecnej wersji. Po wgraniu uruchomi się ponownie; jeśli nowa wersja nie zadziała, wraca poprzednia.</div>
+  </div>
+
+  <div class="card">
+    <h2>Dziennik i diagnostyka</h2>
+    <div class="row">
+      <button class="sec" id="logrefresh">Odśwież</button>
+      <button class="sec" id="logcopy">Kopiuj</button>
+      <a class="btn sec" href="/api/v1/log?download=1">Pobierz dziennik</a>
+      <a class="btn sec" href="/api/v1/export">Pobierz raport</a>
+      <button class="sec" id="logclear">Wyczyść</button>
+    </div>
+    <pre id="log">…</pre>
+    <div class="hint">Raport zawiera diagnostykę (CAN, SDO, Wi-Fi, pamięć) i dziennik – bez haseł. Można go wysłać lub wkleić w zgłoszeniu.</div>
+  </div>
+
+  <div class="card"><h2>Sparowani klienci</h2><div id="clients">…</div></div>
+
+  <div class="card">
+    <h2>Serwis</h2>
+    <div class="row"><button class="sec" id="restart">Uruchom ponownie</button><button class="warn" id="reset">Przywróć ustawienia fabryczne</button></div>
+  </div>
+  <div class="msg" id="msg"></div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const msg = (t, c) => { const m = $('msg'); m.className = 'msg ' + c; m.textContent = t; window.scrollTo(0, document.body.scrollHeight); };
+const tok = () => { try { return localStorage.getItem('tpc_token') || ''; } catch (e) { return ''; } };
+async function api(method, path, body, raw) {
+  const h = { 'Content-Type': 'application/json' }; if (tok()) h.Authorization = 'Bearer ' + tok();
+  const r = await fetch(path, { method, headers: h, body: body ? JSON.stringify(body) : undefined });
+  if (r.status === 401) { await pair(); return api(method, path, body, raw); }
+  if (raw) return r.text();
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || j.result || r.status);
+  return j;
+}
+async function pair() {
+  const pw = prompt('Hasło urządzenia:'); if (!pw) throw new Error('anulowano');
+  let id = ''; try { id = localStorage.getItem('tpc_client_id') || ''; } catch (e) {}
+  if (!id) { id = 'web-' + Math.random().toString(16).slice(2); try { localStorage.setItem('tpc_client_id', id); } catch (e) {} }
+  const r = await fetch('/api/v1/pair', { method: 'POST', body: JSON.stringify({ password: pw, client_id: id, name: 'Przeglądarka' }) });
+  const j = await r.json(); if (!r.ok) throw new Error(j.error || r.status);
+  try { localStorage.setItem('tpc_token', j.token); } catch (e) {}
+}
+const kv = (el, o) => { el.innerHTML = ''; for (const [k, v] of Object.entries(o)) { const a = document.createElement('div'), b = document.createElement('div'); a.textContent = k; b.textContent = v; el.append(a, b); } };
+
+async function load() {
+  const [i, w, c] = await Promise.all([fetch('/api/v1/info').then(r => r.json()), fetch('/api/v1/wifi/status').then(r => r.json()).catch(() => ({})), fetch('/api/v1/config').then(r => r.json())]);
+  if (!i.password_set) { location.href = '/portal.html'; return; }
+  kv($('status'), { 'ID': i.id, 'Wersja': i.fw, 'Czas pracy': Math.floor(i.uptime_s / 60) + ' min', 'CAN': i.can_ok ? 'kocioł odpowiada' : 'brak odpowiedzi', 'Zapis': i.writable ? 'włączony' : 'zablokowany (tylko odczyt)',
+    'Wi-Fi': (w.ssid || '-') + (w.ip ? ' · ' + w.ip : ''), 'Sygnał': w.rssi ? w.rssi + ' dBm' : '-', 'Klienci': i.clients, 'Klucz OTA': i.dev_key ? 'testowy (deweloperski)' : 'produkcyjny' });
+  $('c_mirror').checked = c.mirror; $('c_write').checked = c.write_enabled; $('c_two').checked = c.two_circuits; $('c_demo').checked = c.demo;
+  loadLog(); loadClients();
+}
+async function loadLog() { try { const t = await fetch('/api/v1/log').then(r => r.text()); const p = $('log'); p.textContent = t.split('\n').slice(-120).join('\n') || '(pusty)'; p.scrollTop = p.scrollHeight; } catch (e) { $('log').textContent = 'błąd: ' + e.message; } }
+async function loadClients() {
+  try {
+    const j = await api('GET', '/api/v1/clients'); const box = $('clients'); box.innerHTML = '';
+    j.clients.forEach(c => { const d = document.createElement('div'); d.className = 'row'; d.style.margin = '6px 0';
+      const s = document.createElement('span'); s.textContent = c.name + ' (' + c.id.slice(0, 14) + ')'; const b = document.createElement('button'); b.className = 'sec'; b.textContent = 'Odwołaj';
+      b.style.flex = '0 0 auto'; b.onclick = async () => { await api('DELETE', '/api/v1/clients/' + encodeURIComponent(c.id)); loadClients(); };
+      d.append(s, b); box.appendChild(d); });
+    if (!j.clients.length) box.textContent = 'brak';
+  } catch (e) { $('clients').textContent = 'Wymaga parowania (hasło urządzenia).'; }
+}
+$('static').onchange = () => { $('staticbox').style.display = $('static').checked ? 'block' : 'none'; };
+$('logrefresh').onclick = loadLog;
+$('logcopy').onclick = async () => { try { await navigator.clipboard.writeText($('log').textContent); msg('Skopiowano dziennik do schowka.', 'ok'); } catch (e) { msg('Nie można skopiować – użyj „Pobierz dziennik”.', 'err'); } };
+$('logclear').onclick = async () => { try { await api('DELETE', '/api/v1/log'); loadLog(); } catch (e) { msg('Błąd: ' + e.message, 'err'); } };
+$('cfgsave').onclick = async () => {
+  try { await api('POST', '/api/v1/config', { mirror: $('c_mirror').checked, write_enabled: $('c_write').checked, two_circuits: $('c_two').checked, demo: $('c_demo').checked });
+    await api('POST', '/api/v1/restart', {}); msg('Zapisano. Urządzenie uruchamia się ponownie…', 'ok'); setTimeout(() => location.reload(), 9000); } catch (e) { msg('Błąd: ' + e.message, 'err'); }
+};
+$('scan').onclick = async () => {
+  try { const j = await api('GET', '/api/v1/wifi/scan'); const box = $('nets'); box.innerHTML = '';
+    j.networks.sort((a, b) => b.rssi - a.rssi).forEach(n => { const d = document.createElement('div'); d.className = 'net'; d.innerHTML = '<span></span><small></small>';
+      d.firstChild.textContent = n.ssid; d.lastChild.textContent = n.rssi + ' dBm'; d.onclick = () => { $('ssid').value = n.ssid; }; box.appendChild(d); });
+  } catch (e) { msg('Błąd skanowania: ' + e.message, 'err'); }
+};
+$('wifisave').onclick = async () => {
+  const b = { ssid: $('ssid').value.trim(), wifi_password: $('wpw').value, dhcp: !$('static').checked };
+  if ($('static').checked) Object.assign(b, { ip: $('ip').value, mask: $('mask').value, gateway: $('gw').value, dns: $('dns').value });
+  if (!b.ssid) return msg('Podaj SSID.', 'err');
+  try { await api('POST', '/api/v1/wifi', b); msg('Łączenie z nową siecią… Jeśli się powiedzie, urządzenie zmieni adres IP.', 'info'); } catch (e) { msg('Błąd: ' + e.message, 'err'); }
+};
+$('otasigf').onchange = async e => { const f = e.target.files[0]; if (f) $('otasig').value = (await f.text()).trim(); };
+$('otago').onclick = () => {
+  const f = $('otabin').files[0], sig = $('otasig').value.trim();
+  if (!f) return msg('Wybierz plik firmware (.bin).', 'err');
+  if (!/^[0-9a-fA-F]{128}$/.test(sig)) return msg('Podpis musi mieć 128 znaków hex (plik .sig).', 'err');
+  const x = new XMLHttpRequest(); x.open('POST', '/api/v1/ota'); x.setRequestHeader('Authorization', 'Bearer ' + tok()); x.setRequestHeader('X-Signature', sig);
+  x.upload.onprogress = e => { $('otaprog').style.display = 'block'; $('otaprog').value = e.loaded * 100 / e.total; };
+  x.onload = () => { let j = {}; try { j = JSON.parse(x.responseText); } catch (e) {}
+    if (x.status === 200) { msg('Wgrano i zweryfikowano podpis. Urządzenie uruchamia się ponownie…', 'ok'); setTimeout(() => location.reload(), 15000); }
+    else if (x.status === 401) { pair().then(() => msg('Sparowano – kliknij „Wgraj” ponownie.', 'info')).catch(e => msg(e.message, 'err')); }
+    else msg('Aktualizacja odrzucona: ' + (j.error || x.status) + (j.error === 'bad_signature' ? ' (zły podpis – plik nie pochodzi od wydawcy)' : ''), 'err'); };
+  x.onerror = () => msg('Błąd połączenia podczas wgrywania.', 'err');
+  x.send(f);
+};
+$('restart').onclick = async () => { try { await api('POST', '/api/v1/restart', {}); msg('Restart…', 'ok'); setTimeout(() => location.reload(), 9000); } catch (e) { msg('Błąd: ' + e.message, 'err'); } };
+$('reset').onclick = async () => { if (!confirm('Skasować hasło, sieć Wi-Fi i wszystkie ustawienia?')) return; try { await api('POST', '/api/v1/factory_reset', { confirm: true }); msg('Przywrócono ustawienia fabryczne. Urządzenie uruchomi punkt dostępu TeklaPelletCAN-XXXX.', 'ok'); } catch (e) { msg('Błąd: ' + e.message, 'err'); } };
+load();
+</script>
+</body>
+</html>
