@@ -3,6 +3,7 @@
 #include <cmath>
 #include <cstdio>
 #include <string>
+#include <utility>
 
 namespace tpc {
 
@@ -36,6 +37,8 @@ public:
     JsonWriter& kv(const char* k, double v) { return key(k).num(v); }
     JsonWriter& kvb(const char* k, bool v) { return key(k).boolean(v); }
     const std::string& out() const { return s_; }
+    std::string take() { return std::move(s_); }      // bez kopiowania dużych odpowiedzi
+    void reserve(size_t n) { s_.reserve(n); }
 
 private:
     static size_t strlen_(const char* p) { size_t n = 0; while (p[n]) n++; return n; }

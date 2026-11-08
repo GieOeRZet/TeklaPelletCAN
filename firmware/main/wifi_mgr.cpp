@@ -85,6 +85,7 @@ void WifiMgr::start(const Settings& s, NvsStore& store) {
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_APSTA));
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_AP, &ap));
     ESP_ERROR_CHECK(esp_wifi_start());
+    esp_wifi_set_ps(WIFI_PS_NONE);                   // bez oszczędzania energii: stabilny serwer HTTP/mDNS
     ap_active_ = true;
 
     fsm_.begin(!cur_.ssid.empty(), now_ms());
@@ -108,7 +109,7 @@ void WifiMgr::connect_sta(const Settings& s) {
     wifi_config_t sta = {};
     strncpy((char*)sta.sta.ssid, s.ssid.c_str(), sizeof sta.sta.ssid - 1);
     strncpy((char*)sta.sta.password, s.pass.c_str(), sizeof sta.sta.password - 1);
-    sta.sta.threshold.authmode = s.pass.empty() ? WIFI_AUTH_OPEN : WIFI_AUTH_WPA_WPA2_PSK;
+    sta.sta.threshold.authmode = s.pass.empty() ? WIFI_AUTH_OPEN : WIFI_AUTH_WPA_PSK;   // akceptuj WPA/WPA2/WPA3
     sta.sta.pmf_cfg.capable = true;
     if (!s.dhcp && !s.ip.empty()) {
         esp_netif_dhcpc_stop(g_sta);
@@ -163,7 +164,7 @@ void WifiMgr::run() {
             o = fsm_.tick(t);
             if (o.trial_ok && has_pending_) {           // nowe dane zadziałały – zapisz na stałe
                 cur_ = pending_; has_pending_ = false; trial_ = "ok";
-                if (store_) store_->save(cur_);
+                if (store_) store_->save_wifi(cur_);
                 log_add("Wi-Fi: nowe dane sieci zapisane");
             }
             if (o.trial_failed) {

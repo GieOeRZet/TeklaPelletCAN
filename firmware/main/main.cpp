@@ -76,7 +76,7 @@ extern "C" void app_main(void) {
             log_add("PIERWSZY START: ustawiono haslo urzadzenia z danych wgranych w pliku");
         }
         g_set.firstboot_done = true;
-        g_store.save(g_set);
+        g_store.save(g_set);                       // pierwszy zapis kompletu (przed uruchomieniem zarządcy Wi-Fi)
     }
 
     g_dev_mu = xSemaphoreCreateMutex();
@@ -127,7 +127,7 @@ extern "C" void app_main(void) {
     hk.config_get = [] { return g_set.cfg; };
     hk.config_set = [](const tpc::DeviceConfig& c) {
         g_set.cfg = c;
-        g_store.save(g_set);
+        g_store.save_cfg(c, g_set.firstboot_done);
         log_add(std::string("Konfiguracja zapisana: mirror=") + (c.mirror ? "1" : "0") + " write=" + (c.write_enabled ? "1" : "0") +
                 " demo=" + (c.demo ? "1" : "0") + " two_circuits=" + (c.two_circuits ? "1" : "0") + " (wymaga restartu)");
     };

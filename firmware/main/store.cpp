@@ -79,6 +79,24 @@ void NvsStore::save(const Settings& s) {
     nvs_commit(n.h);
 }
 
+void NvsStore::save_wifi(const Settings& s) {
+    Nvs n(true);
+    if (!n) return;
+    nvs_set_str(n.h, "ssid", s.ssid.c_str()); nvs_set_str(n.h, "wpass", s.pass.c_str());
+    nvs_set_u8(n.h, "dhcp", s.dhcp); nvs_set_str(n.h, "ip", s.ip.c_str()); nvs_set_str(n.h, "gw", s.gw.c_str());
+    nvs_set_str(n.h, "mask", s.mask.c_str()); nvs_set_str(n.h, "dns", s.dns.c_str());
+    nvs_commit(n.h);
+}
+
+void NvsStore::save_cfg(const tpc::DeviceConfig& c, bool firstboot_done) {
+    Nvs n(true);
+    if (!n) return;
+    nvs_set_u8(n.h, "mirror", c.mirror); nvs_set_u8(n.h, "write", c.write_enabled);
+    nvs_set_u8(n.h, "demo", c.demo); nvs_set_u8(n.h, "two", c.two_circuits);
+    nvs_set_u8(n.h, "fb_done", firstboot_done);
+    nvs_commit(n.h);
+}
+
 void NvsStore::factory_reset() {
     Nvs n(true);
     if (n) { nvs_erase_all(n.h); nvs_commit(n.h); }

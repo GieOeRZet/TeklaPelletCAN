@@ -17,7 +17,9 @@ class NvsStore : public tpc::ClientStore {
 public:
     bool init();                       // nvs_flash_init (z kasowaniem przy uszkodzeniu)
     Settings load();
-    void save(const Settings& s);
+    void save(const Settings& s);                 // wszystko (używane tylko przy pierwszym starcie)
+    void save_wifi(const Settings& s);            // tylko dane sieci (nie rusza konfiguracji)
+    void save_cfg(const tpc::DeviceConfig& c, bool firstboot_done);   // tylko konfiguracja
     void factory_reset();
 
     // ClientStore

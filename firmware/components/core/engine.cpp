@@ -690,7 +690,7 @@ std::string Engine::info_json(const InfoExtras& x, uint32_t now) const {
     w.kvb("dev_key", x.dev_key);
     w.kvb("password_set", x.password_set);
     w.end_obj();
-    return w.out();
+    return w.take();
 }
 
 std::string Engine::points_json() const {
@@ -729,7 +729,7 @@ std::string Engine::points_json() const {
         w.end_obj();
     }
     w.end_arr().end_obj();
-    return w.out();
+    return w.take();
 }
 
 std::string Engine::diag_json(uint32_t now) const {
@@ -745,7 +745,7 @@ std::string Engine::diag_json(uint32_t now) const {
     w.kvb("mirror", cfg_.access.mirror).kvb("write_enabled", cfg_.access.write_enabled);
     w.kvb("pdo_feeder_seen", pdo_seen_feeder_).kvb("pdo_blower_seen", pdo_seen_blower_);
     w.end_obj();
-    return w.out();
+    return w.take();
 }
 
 std::string Engine::state_json(uint32_t now) const {
@@ -768,11 +768,12 @@ std::string Engine::state_json(uint32_t now) const {
         else w.kv(p.id, "nieznany (" + std::to_string((int)st_[i].value) + ")");
     }
     w.end_obj().end_obj();
-    return w.out();
+    return w.take();
 }
 
 std::string Engine::states_json(const std::string& prefix, uint32_t now) const {
     JsonWriter w;
+    w.reserve(32768);   // jedna alokacja zamiast dublowania bufora (oszczędza stertę ESP)
     w.begin_obj().key("t").num(now).kvb("can_ok", can_ok(now)).key("level").num(access_.level());
     w.key("states").begin_arr();
     for (unsigned e = 0; e < kEntityCount; e++) {
@@ -803,7 +804,7 @@ std::string Engine::states_json(const std::string& prefix, uint32_t now) const {
         w.end_obj().end_obj();
     }
     w.end_arr().end_obj();
-    return w.out();
+    return w.take();
 }
 
 }  // namespace tpc
