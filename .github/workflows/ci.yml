@@ -1,5 +1,13 @@
 name: CI
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Nazwa wydania (np. v0.3.0): publikuje kanał STABILNY i tworzy GitHub Release (tag powstaje po stronie GitHuba). Puste = zwykły przebieg."
+        required: false
+        default: ""
 jobs:
   host-tests:
     runs-on: ubuntu-latest
@@ -91,7 +99,7 @@ jobs:
   # Pliki trafiają na gałąź `updates` (serwowane przez raw.githubusercontent.com z CORS *): tag v* = kanał stable, reszta = beta.
   publish-updates:
     needs: [host-tests, idf-build, web-ui, ha-integration]
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     concurrency: publish-updates
     permissions:
@@ -109,8 +117,9 @@ jobs:
           RUN_NUMBER: ${{ github.run_number }}
           REF: ${{ github.ref }}
           SHA: ${{ github.sha }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
-          CHANNEL=beta; case "$REF" in refs/tags/v*) CHANNEL=stable;; esac
+          CHANNEL=beta; case "$REF" in refs/tags/v*) CHANNEL=stable;; esac; [ -n "$RELEASE_TAG" ] && CHANNEL=stable
           git fetch origin updates:updates 2>/dev/null && git worktree add /tmp/upd updates || { mkdir -p /tmp/upd && git -C /tmp/upd init -q -b updates && git -C /tmp/upd remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"; }
           mkdir -p /tmp/upd/$CHANNEL
           cp art/teklapelletcan.bin /tmp/upd/$CHANNEL/teklapelletcan.bin
@@ -131,7 +140,7 @@ jobs:
   # GitHub Release przy tagu v*: HACS instaluje integrację z wydania; w załącznikach firmware do ręcznego wgrania.
   github-release:
     needs: [host-tests, idf-build, web-ui, ha-integration]
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') || inputs.release_tag != ''
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -146,10 +155,10 @@ jobs:
       - name: Utworz wydanie
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ inputs.release_tag || github.ref_name }}
         run: |
-          PREV="$(git describe --tags --abbrev=0 "${TAG}^" 2>/dev/null || true)"
-          if [ -n "$PREV" ]; then RANGE="$PREV..$TAG"; else RANGE="$TAG"; fi
+          PREV="$(git describe --tags --abbrev=0 HEAD 2>/dev/null || true)"
+          if [ -n "$PREV" ] && [ "$PREV" != "$TAG" ]; then RANGE="$PREV..HEAD"; else RANGE="HEAD"; fi
           {
             echo "## TeklaPelletCAN $TAG"
             echo
@@ -160,4 +169,4 @@ jobs:
             echo "### Zmiany"
             git log --pretty='- %s' $RANGE | head -40
           } > notes.md
-          gh release create "$TAG" --title "TeklaPelletCAN $TAG" --notes-file notes.md art/teklapelletcan.bin art/teklapelletcan.bin.sig art/teklapelletcan-factory.bin
+          gh release create "$TAG" --target "$GITHUB_SHA" --title "TeklaPelletCAN $TAG" --notes-file notes.md art/teklapelletcan.bin art/teklapelletcan.bin.sig art/teklapelletcan-factory.bin
