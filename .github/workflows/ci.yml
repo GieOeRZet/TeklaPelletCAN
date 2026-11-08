@@ -7,6 +7,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Tabele wygenerowane aktualne
         run: python3 tools/gen_points.py --check && python3 tools/sync_web.py --check
+      - run: sudo apt-get update && sudo apt-get install -y libmbedtls-dev
       - name: Testy rdzenia (host)
         run: cmake -S firmware/test -B build-host && cmake --build build-host && ctest --test-dir build-host --output-on-failure
   idf-build:
@@ -20,7 +21,7 @@ jobs:
           cd firmware
           idf.py set-target esp32c6
           idf.py build
-          python -m esptool --chip esp32c6 merge-bin -o teklapelletcan-factory.bin @build/flash_args
+          python -m esptool --chip esp32c6 merge_bin -o teklapelletcan-factory.bin @build/flash_args
       - name: Podpis OTA (klucz z sekretu OTA_SIGNING_KEY, a bez niego klucz testowy)
         env:
           KEY: ${{ secrets.OTA_SIGNING_KEY }}
