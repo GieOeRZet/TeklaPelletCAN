@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "api.h"
+#include "antenna.h"
 #include "net_fsm.h"
 #include "store.h"
 
@@ -30,6 +31,8 @@ private:
     Settings cur_, pending_, prev_;
     bool has_pending_ = false;
     tpc::NetFsm fsm_;
+    tpc::AntennaFailover ant_{false};
+    static void set_antenna_hw(bool external);
     std::string ap_ssid_, hostname_, mac_hex_, ip_str_, trial_;
     bool connected_ = false, ap_active_ = false, started_ = false;
     bool assoc_ = false;                 // czy jest skojarzenie z AP routera (zdarzenie STA_CONNECTED)

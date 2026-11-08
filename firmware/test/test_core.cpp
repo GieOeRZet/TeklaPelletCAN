@@ -14,6 +14,7 @@
 #include "../components/core/ota.h"
 #include "../components/core/dns.h"
 #include "../components/core/logring.h"
+#include "../components/core/antenna.h"
 #include "ota_vectors.h"
 #include "license_vectors.h"
 
@@ -401,6 +402,33 @@ static void test_logring() {
     assert(!r3.survived() && r3.size() == 0);
 }
 
+static void test_antenna() {
+    {   // antena zewnętrzna działa: nic się nie zmienia
+        AntennaFailover a(true);
+        for (auto st : {NetState::Connecting, NetState::Online, NetState::Online}) { AntennaOut o = a.tick(st); assert(o.external && !o.changed); }
+        assert(a.using_external() && !a.auto_fallback());
+    }
+    {   // brak połączenia (Fallback) na antenie zewnętrznej -> przełącz na wewnętrzną dokładnie raz
+        AntennaFailover a(true);
+        assert(!a.tick(NetState::Connecting).changed);
+        AntennaOut o = a.tick(NetState::Fallback);
+        assert(o.changed && !o.external && a.auto_fallback());
+        o = a.tick(NetState::Fallback);                  // kolejne wywołania: bez zmian
+        assert(!o.changed && !o.external);
+        o = a.tick(NetState::Online);
+        assert(!o.changed && !o.external);               // zostaje na wewnętrznej do restartu
+    }
+    {   // antena wewnętrzna wybrana od początku: nigdy nie „przełącza"
+        AntennaFailover a(false);
+        AntennaOut o = a.tick(NetState::Fallback);
+        assert(!o.changed && !o.external && !a.auto_fallback());
+    }
+    {   // brak zapisanej sieci (Provisioning) to nie awaria anteny
+        AntennaFailover a(true);
+        assert(!a.tick(NetState::Provisioning).changed && a.using_external());
+    }
+}
+
 int main() {
     test_sdo();
     test_codec();
@@ -415,6 +443,7 @@ int main() {
     test_ota();
     test_dns();
     test_logring();
+    test_antenna();
     puts("OK: wszystkie testy przeszly");
     return 0;
 }

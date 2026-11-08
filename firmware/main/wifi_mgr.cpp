@@ -1,6 +1,7 @@
 #include "wifi_mgr.h"
 #include <algorithm>
 #include <cstring>
+#include "driver/gpio.h"
 #include "esp_event.h"
 #include "esp_log.h"
 #include "esp_mac.h"
@@ -62,10 +63,22 @@ void WifiMgr::on_event(void* arg, const char* base, int32_t id, void* data) {
     }
 }
 
+// XIAO ESP32-C6: GPIO3 = zasilanie przełącznika RF (niski = aktywny), GPIO14 = wybór anteny (wysoki = zewnętrzna U.FL, niski = wewnętrzna)
+void WifiMgr::set_antenna_hw(bool external) {
+    gpio_config_t ac = {};
+    ac.pin_bit_mask = (1ULL << 3) | (1ULL << 14); ac.mode = GPIO_MODE_OUTPUT;
+    gpio_config(&ac);
+    gpio_set_level(GPIO_NUM_3, 0);
+    vTaskDelay(pdMS_TO_TICKS(100));
+    gpio_set_level(GPIO_NUM_14, external ? 1 : 0);
+}
+
 void WifiMgr::start(const Settings& s, NvsStore& store) {
     store_ = store_ ? store_ : &store;
     cur_ = s;
     mu_ = xSemaphoreCreateMutex();
+    ant_ = tpc::AntennaFailover(s.cfg.external_antenna);
+    if (s.cfg.external_antenna) { set_antenna_hw(true); log_add("Antena: zewnetrzna (U.FL)"); }
     uint8_t mac[6];
     esp_read_mac(mac, ESP_MAC_WIFI_STA);
     char b[16];
@@ -205,6 +218,16 @@ void WifiMgr::run() {
             }
         }
         if (o.trial_failed && o.use_previous_credentials) connect_sta(prev_);
+        {   // antena zewnętrzna bez efektu (brak połączenia po całym czasie oczekiwania): przełącz na wewnętrzną i połącz ponownie
+            tpc::NetState st; { Lock l(mu_); st = fsm_.state(); }
+            tpc::AntennaOut ao = ant_.tick(st);
+            if (ao.changed) {
+                set_antenna_hw(false);
+                log_add("Antena: zewnetrzna nie polaczyla z siecia - przelaczam na wewnetrzna (awaryjnie, do restartu). Sprawdz antene/kabel U.FL");
+                Settings s; { Lock l(mu_); s = cur_; }
+                if (!s.ssid.empty()) connect_sta(s);
+            }
+        }
         set_mode(o.ap_on);
         if (connected_) {
             wifi_ap_record_t ap;
@@ -265,6 +288,7 @@ tpc::WifiStatus WifiMgr::status() {
     s.rssi = rssi_;
     s.ap_active = ap_active_;
     s.trial = trial_;
+    s.antenna = ant_.using_external() ? "zewnetrzna" : (ant_.auto_fallback() ? "wewnetrzna (awaryjnie)" : "wewnetrzna");
     return s;
 }
 

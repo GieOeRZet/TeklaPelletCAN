@@ -182,7 +182,7 @@ HttpResponse Api::platform(const HttpRequest& r, bool& handled) {
         WifiStatus s = hooks_.wifi_status();
         JsonWriter w;
         w.begin_obj().kv("state", s.state).kv("ssid", s.ssid).kv("ip", s.ip).kv("ap_ssid", s.ap_ssid).key("rssi").num(s.rssi);
-        w.kvb("ap_active", s.ap_active).kv("trial", s.trial).end_obj();
+        w.kvb("ap_active", s.ap_active).kv("trial", s.trial).kv("antenna", s.antenna).end_obj();
         HttpResponse res; res.body = w.out(); return res;
     }
     if (r.path == "/api/v1/wifi/scan" && r.method == "GET") {

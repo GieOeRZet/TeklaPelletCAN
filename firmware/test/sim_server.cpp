@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
     engine.set_logger([&](const std::string& l) { char b[32]; snprintf(b, sizeof b, "[%7.1f] ", now_ms() / 1000.0); ring.append(std::string(b) + l); });
     ring.append("[    0.0] BOOT (symulator)");
     DeviceConfig devcfg; devcfg.mirror = false;
-    WifiStatus wst; wst.state = "online"; wst.ssid = "SymulowanaSiec"; wst.ip = "127.0.0.1"; wst.ap_ssid = "TeklaPelletCAN-SIM"; wst.rssi = -57;
+    WifiStatus wst; wst.state = "online"; wst.ssid = "SymulowanaSiec"; wst.ip = "127.0.0.1"; wst.ap_ssid = "TeklaPelletCAN-SIM"; wst.rssi = -57; wst.antenna = "wewnetrzna";
     uint32_t trial_at = 0; bool trial_pending = false; std::string trial_ssid;
     ApiHooks hk;
     hk.scan = [] { return std::vector<WifiNet>{{"Dom-2.4G", -48, true}, {"Sasiad", -77, true}, {"Otwarta", -85, false}}; };

@@ -37,6 +37,7 @@ struct WifiStatus {
     int rssi = 0;
     bool ap_active = false;
     std::string trial;        // "" | "ok" | "failed" (wynik ostatniego testu nowych danych)
+    std::string antenna;      // "wewnetrzna" | "zewnetrzna" | "wewnetrzna (awaryjnie)"
 };
 struct DeviceConfig {
     bool mirror = true;       // domyślnie TYLKO ODCZYT (bezpiecznie po pierwszym wgraniu)

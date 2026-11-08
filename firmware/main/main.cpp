@@ -86,15 +86,6 @@ extern "C" void app_main(void) {
     }
 
     g_dev_mu = xSemaphoreCreateMutex();
-    if (g_set.cfg.external_antenna) {   // XIAO ESP32-C6: GPIO3 = zasilanie przełącznika RF (niski), GPIO14 = wybór anteny (wysoki = zewnętrzna U.FL)
-        gpio_config_t ac = {};
-        ac.pin_bit_mask = (1ULL << 3) | (1ULL << 14); ac.mode = GPIO_MODE_OUTPUT;
-        gpio_config(&ac);
-        gpio_set_level(GPIO_NUM_3, 0);
-        vTaskDelay(pdMS_TO_TICKS(100));
-        gpio_set_level(GPIO_NUM_14, 1);
-        log_add("Antena: zewnetrzna (U.FL)");
-    }
     g_wifi.start(g_set, g_store);
 
     uint8_t mac[6];

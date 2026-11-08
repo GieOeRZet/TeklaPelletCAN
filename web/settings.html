@@ -20,6 +20,7 @@
     <label class="chk"><input id="c_web" type="checkbox"> Panel WWW bez hasła w sieci lokalnej (hasło tylko dla Home Assistant i aplikacji)</label>
     <div class="hint" style="margin:-4px 0 8px 26px">Włączone: każdy w Twojej sieci może otworzyć panel i sterować kotłem (nastawy poziomu 1/2 nadal wymagają PIN-u w menu karty). Wyłącz, jeśli sieć współdzielisz z osobami, którym nie ufasz – wtedy przeglądarka zapyta o hasło urządzenia (jednorazowo).</div>
     <label class="chk"><input id="c_ant" type="checkbox"> Antena zewnętrzna U.FL (XIAO ESP32-C6; gdy podłączona antena na kablu)</label>
+    <div class="hint" style="margin:-4px 0 8px 26px">Jeśli z zewnętrzną anteną urządzenie nie połączy się z siecią w 30 s, samo przełączy się na wewnętrzną (do restartu) i zapisze to w dzienniku. Wtedy sprawdź antenę i kabel.</div>
     <label class="chk"><input id="c_demo" type="checkbox"> Tryb demo (symulator kotła, bez CAN)</label>
     <div class="row"><button id="cfgsave">Zapisz i uruchom ponownie</button></div>
   </div>
@@ -117,7 +118,7 @@ async function load() {
   const [i, w, c] = await Promise.all([fetch('/api/v1/info').then(r => r.json()), fetch('/api/v1/wifi/status').then(r => r.json()).catch(() => ({})), fetch('/api/v1/config').then(r => r.json())]);
   if (!i.password_set) { location.href = '/portal.html'; return; }
   kv($('status'), { 'ID': i.id, 'Wersja': i.fw, 'Czas pracy': Math.floor(i.uptime_s / 60) + ' min', 'CAN': i.can_ok ? 'kocioł odpowiada' : 'brak odpowiedzi', 'Zapis': i.writable ? 'włączony' : 'zablokowany (tylko odczyt)',
-    'Wi-Fi': (w.ssid || '-') + (w.ip ? ' · ' + w.ip : ''), 'Sygnał': w.rssi ? w.rssi + ' dBm' : '-', 'Klienci': i.clients, 'Klucz OTA': i.dev_key ? 'testowy (deweloperski)' : 'produkcyjny' });
+    'Wi-Fi': (w.ssid || '-') + (w.ip ? ' · ' + w.ip : ''), 'Sygnał': w.rssi ? w.rssi + ' dBm' : '-', 'Antena': w.antenna || '-', 'Klienci': i.clients, 'Klucz OTA': i.dev_key ? 'testowy (deweloperski)' : 'produkcyjny' });
   $('c_write').checked = !c.mirror && c.write_enabled; $('c_two').checked = c.two_circuits; $('c_demo').checked = c.demo; $('c_ant').checked = !!c.external_antenna; $('c_web').checked = c.web_open !== false;
   installedFw = i.fw || '';
   $('upchan').value = lsGet('tpc_channel') || 'beta'; $('manifest').value = lsGet('tpc_manifest_url');
