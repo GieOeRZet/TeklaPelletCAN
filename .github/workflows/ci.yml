@@ -16,8 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Kompilacja ESP-IDF (esp32c6)
+        env:
+          RUN_NUMBER: ${{ github.run_number }}
         run: |
           . $IDF_PATH/export.sh
+          export TPC_VERSION="$(cat VERSION)+${RUN_NUMBER}"
           cd firmware
           idf.py set-target esp32c6
           idf.py build
@@ -81,3 +84,39 @@ jobs:
         run: |
           pip install pytest-homeassistant-custom-component
           python -m pytest -q
+
+  # Publikacja aktualizacji OTA dla przycisku „Sprawdź aktualizacje” w ustawieniach urządzenia.
+  # Pliki trafiają na gałąź `updates` (serwowane przez raw.githubusercontent.com z CORS *): tag v* = kanał stable, reszta = beta.
+  publish-updates:
+    needs: [host-tests, idf-build, web-ui, ha-integration]
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    concurrency: publish-updates
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: teklapelletcan-firmware
+          path: art
+      - name: Publikuj na galezi updates
+        env:
+          RUN_NUMBER: ${{ github.run_number }}
+          REF: ${{ github.ref }}
+          SHA: ${{ github.sha }}
+        run: |
+          CHANNEL=beta; case "$REF" in refs/tags/v*) CHANNEL=stable;; esac
+          git fetch origin updates:updates 2>/dev/null && git worktree add /tmp/upd updates || { mkdir -p /tmp/upd && git -C /tmp/upd init -q -b updates && git -C /tmp/upd remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"; }
+          mkdir -p /tmp/upd/$CHANNEL
+          cp art/teklapelletcan.bin /tmp/upd/$CHANNEL/teklapelletcan.bin
+          cp art/teklapelletcan.bin.sig /tmp/upd/$CHANNEL/teklapelletcan.bin.sig
+          NOTES="$(git log -1 --pretty=%s "$SHA")"
+          python3 tools/make_manifest.py --dir /tmp/upd --channel $CHANNEL --version "$(cat VERSION)" --build "$RUN_NUMBER" --commit "$SHA" --notes "$NOTES"
+          cd /tmp/upd
+          FULL="$(python3 -c "import json;print(json.load(open('manifest.json'))['channels']['$CHANNEL']['full'])")"
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          git checkout -q --orphan snapshot          # jedna migawka bez historii: gałąź nie rośnie o kolejne pliki 1,4 MB
+          git add -A
+          git commit -q -m "Aktualizacja $CHANNEL: $FULL"
+          git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" snapshot:updates --force

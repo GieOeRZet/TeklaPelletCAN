@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="offline">Brak połączenia z urządzeniem</div>
-<div style="text-align:center;padding:6px"><a href="/settings.html" style="color:#9aa1b2;font-size:13px;text-decoration:none">⚙ Ustawienia, aktualizacja, dziennik</a></div>
+<div style="text-align:center;padding:6px"><a id="setlink" href="/settings.html" style="color:#9aa1b2;font-size:13px;text-decoration:none">⚙ Ustawienia, aktualizacja, dziennik</a></div>
 <div id="root"></div>
 <script type="module">
 import './ha-icon.js';
@@ -31,6 +31,15 @@ hass.onUpdate(h => {
   if (h.online) card.hass = h;
 });
 hass.start(2000);
+// cichy wskaźnik: czy w kanale jest nowsza wersja (przeglądarka ma internet; urządzenie nie)
+(async () => {
+  try {
+    const U = await import('./update.js');
+    const info = await (await fetch('/api/v1/info')).json();
+    const r = await U.checkUpdate(info.fw);
+    if (r.newer) { const a = document.getElementById('setlink'); a.textContent = '⬆ Dostępna aktualizacja ' + r.remoteFull + ' – Ustawienia'; a.style.color = '#ff7a1a'; a.style.fontWeight = '700'; }
+  } catch (e) { /* brak internetu w przeglądarce – bez wskaźnika */ }
+})();
 </script>
 </body>
 </html>

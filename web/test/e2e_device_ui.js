@@ -54,11 +54,30 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   await p.waitForFunction(() => /Nie udało się połączyć/.test(document.getElementById('msg').textContent), null, { timeout: 20000 });
   check('zmiana Wi-Fi: komunikat przy zlym hasle', true);
 
+  // 3c. aktualizacja jednym kliknieciem: manifest + plik + podpis "z internetu" (przechwycone), wgranie do urzadzenia
+  const fs = require('fs');
+  const good = fs.readFileSync(OTA + '/good.bin'), goodSig = fs.readFileSync(OTA + '/good.sig', 'utf8').trim();
+  const manifest = { channels: { beta: { version: '0.3.0', build: 99, full: '0.3.0+99', file: 'beta/teklapelletcan.bin', sig: 'beta/teklapelletcan.bin.sig',
+    sha256: 'ab'.repeat(32), size: good.length, notes: 'Test aktualizacji', date: '2026-11-08 20:00 UTC' } } };
+  await p.route('**/fake-updates/manifest.json*', r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(manifest) }));
+  await p.route('**/fake-updates/beta/teklapelletcan.bin*', r => r.fulfill({ status: 200, contentType: 'application/octet-stream', headers: { 'access-control-allow-origin': '*' }, body: good }));
+  await p.route('**/fake-updates/beta/teklapelletcan.bin.sig*', r => r.fulfill({ status: 200, contentType: 'text/plain', headers: { 'access-control-allow-origin': '*' }, body: goodSig }));
+  await p.evaluate(u => localStorage.setItem('tpc_manifest_url', u), BASE + '/fake-updates/manifest.json');
+  await p.reload(); await p.waitForTimeout(2500);
+  check('ustawienia: automatyczna kontrola pokazuje nowa wersje', /0\.3\.0\+99/.test(await p.locator('#upmsg').innerText()) && /Test aktualizacji/.test(await p.locator('#upmsg').innerText()));
+  check('przycisk "Pobierz i zainstaluj" widoczny', await p.locator('#upgo').isVisible());
+  await p.click('#upgo');
+  await p.waitForFunction(() => /zweryfikowano podpis/.test(document.getElementById('upmsg').textContent), null, { timeout: 15000 });
+  check('aktualizacja pobrana z "internetu" i przyjeta przez urzadzenie (podpis OK)', true);
+  const idx = await (async () => { const pg = await b.newPage(); await pg.route('**/fake-updates/**', r => r.abort()); await pg.goto(BASE + '/index.html'); await pg.waitForTimeout(3000); const t = await pg.locator('#setlink').innerText(); await pg.close(); return t; })();
+  check('brak internetu w przegladarce: strona dziala bez wskaznika', /Ustawienia, aktualizacja, dziennik/.test(idx), idx);
+
   // 4. OTA: poprawny podpis
+  await p.evaluate(() => document.querySelector('details').open = true);
   await p.setInputFiles('#otabin', OTA + '/good.bin'); await p.setInputFiles('#otasigf', OTA + '/good.sig');
   await p.waitForTimeout(500);
   check('podpis wczytany z pliku .sig', (await p.inputValue('#otasig')).length === 128);
-  await p.click('#otago'); await p.waitForFunction(() => /zweryfikowano podpis/.test(document.getElementById('msg').textContent), null, { timeout: 10000 });
+  await p.click('#otago'); await p.waitForFunction(() => /zweryfikowano podpis/.test(document.getElementById('upmsg').textContent), null, { timeout: 10000 });
   check('OTA z poprawnym podpisem przyjete', true);
   // 4b. zmiana hasla w ustawieniach (rozne hasla -> blad; poprawne -> zmiana, klient nadal sparowany)
   await p.fill('#np1', 'nowe-haslo-1'); await p.fill('#np2', 'nowe-haslo-2'); await p.click('#pwsave'); await p.waitForTimeout(300);
@@ -72,8 +91,8 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
 
   // 5. OTA: podmieniony plik
   await p.setInputFiles('#otabin', OTA + '/tampered.bin'); await p.click('#otago');
-  await p.waitForFunction(() => /odrzucona/.test(document.getElementById('msg').textContent), null, { timeout: 10000 });
-  check('OTA z podmienionym plikiem odrzucone', /bad_signature/.test(await p.locator('#msg').innerText()));
+  await p.waitForFunction(() => /odrzucona/.test(document.getElementById('upmsg').textContent), null, { timeout: 10000 });
+  check('OTA z podmienionym plikiem odrzucone', /bad_signature/.test(await p.locator('#upmsg').innerText()));
 
   // 5b. powrot do poprzedniego firmware
   await p.click('#rollback'); await p.waitForFunction(() => /poprzedni firmware/.test(document.getElementById('msg').textContent), null, { timeout: 8000 });

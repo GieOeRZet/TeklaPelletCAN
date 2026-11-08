@@ -40,14 +40,25 @@
   </div>
 
   <div class="card">
-    <h2>Aktualizacja oprogramowania (OTA)</h2>
-    <label for="otabin">Plik firmware (teklapelletcan.bin)</label><input id="otabin" type="file" accept=".bin">
-    <label for="otasig">Podpis (plik .sig albo 128 znaków hex)</label>
-    <input id="otasigf" type="file" accept=".sig,.txt"><input id="otasig" type="text" placeholder="…lub wklej podpis" style="margin-top:6px">
-    <div class="row" style="margin-top:10px"><button id="otago" class="acc">Wgraj i zaktualizuj</button></div>
-    <progress id="otaprog" value="0" max="100" style="display:none"></progress>
-    <div class="row" style="margin-top:10px"><button class="sec" id="rollback">Wróć do poprzedniego firmware (np. ESPHome)</button></div>
-    <div class="hint">Plik musi być podpisany kluczem wydawcy – urządzenie odrzuci obcy firmware i zostanie na obecnej wersji. Po wgraniu uruchomi się ponownie; jeśli nowa wersja nie zadziała, wraca poprzednia.</div>
+    <h2>Aktualizacja oprogramowania</h2>
+    <div class="row">
+      <select id="upchan" style="flex:1 1 140px"><option value="beta">Kanał: beta (testowy)</option><option value="stable">Kanał: stabilny</option></select>
+      <button id="upcheck" style="flex:1 1 160px">Sprawdź aktualizacje</button>
+    </div>
+    <div class="msg" id="upmsg"></div>
+    <div class="row" style="margin-top:8px"><button id="upgo" class="acc" style="display:none">Pobierz i zainstaluj</button></div>
+    <progress id="otaprog" value="0" max="100" style="display:none;margin-top:8px"></progress>
+    <details style="margin-top:12px">
+      <summary style="cursor:pointer;color:var(--dim)">Wgraj plik ręcznie</summary>
+      <label for="otabin">Plik firmware (teklapelletcan.bin)</label><input id="otabin" type="file" accept=".bin">
+      <label for="otasig">Podpis (plik .sig albo 128 znaków hex)</label>
+      <input id="otasigf" type="file" accept=".sig,.txt"><input id="otasig" type="text" placeholder="…lub wklej podpis" style="margin-top:6px">
+      <div class="row" style="margin-top:10px"><button id="otago">Wgraj wskazany plik</button></div>
+      <label for="manifest" style="margin-top:14px">Adres manifestu aktualizacji (zaawansowane)</label>
+      <input id="manifest" type="text" placeholder="https://raw.githubusercontent.com/…/updates/manifest.json">
+    </details>
+    <div class="row" style="margin-top:12px"><button class="sec" id="rollback">Wróć do poprzedniego firmware (np. ESPHome)</button></div>
+    <div class="hint">Przeglądarka pobiera wydanie z internetu i wgrywa je do urządzenia (urządzenie samo nie łączy się z internetem). Plik musi być podpisany kluczem wydawcy – urządzenie odrzuci obcy firmware i zostanie na obecnej wersji.</div>
   </div>
 
   <div class="card">
@@ -108,7 +119,9 @@ async function load() {
   kv($('status'), { 'ID': i.id, 'Wersja': i.fw, 'Czas pracy': Math.floor(i.uptime_s / 60) + ' min', 'CAN': i.can_ok ? 'kocioł odpowiada' : 'brak odpowiedzi', 'Zapis': i.writable ? 'włączony' : 'zablokowany (tylko odczyt)',
     'Wi-Fi': (w.ssid || '-') + (w.ip ? ' · ' + w.ip : ''), 'Sygnał': w.rssi ? w.rssi + ' dBm' : '-', 'Klienci': i.clients, 'Klucz OTA': i.dev_key ? 'testowy (deweloperski)' : 'produkcyjny' });
   $('c_write').checked = !c.mirror && c.write_enabled; $('c_two').checked = c.two_circuits; $('c_demo').checked = c.demo; $('c_ant').checked = !!c.external_antenna; $('c_web').checked = c.web_open !== false;
-  loadLog(); loadClients();
+  installedFw = i.fw || '';
+  $('upchan').value = lsGet('tpc_channel') || 'beta'; $('manifest').value = lsGet('tpc_manifest_url');
+  loadLog(); loadClients(); doCheck(true);
 }
 async function loadLog() { try { const t = await fetch('/api/v1/log').then(r => r.text()); const p = $('log'); p.textContent = t.split('\n').slice(-120).join('\n') || '(pusty)'; p.scrollTop = p.scrollHeight; } catch (e) { $('log').textContent = 'błąd: ' + e.message; } }
 async function loadClients() {
@@ -166,18 +179,57 @@ $('wifisave').onclick = async () => {
     : 'Nie potwierdzono wyniku. Odśwież stronę i sprawdź sekcję „Urządzenie” (Wi-Fi).', 'info');
 };
 $('otasigf').onchange = async e => { const f = e.target.files[0]; if (f) $('otasig').value = (await f.text()).trim(); };
-$('otago').onclick = () => {
+
+// ---- aktualizacje: sprawdzanie, pobieranie i wgrywanie jednym kliknięciem ----
+let U = null, found = null, installedFw = '';
+const lsGet = k => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+function upmsg(t, c) { const m = $('upmsg'); m.className = 'msg ' + c; m.textContent = t; }
+async function doCheck(silent) {
+  U = U || await import('./update.js');
+  lsSet('tpc_channel', $('upchan').value);
+  if ($('manifest').value.trim()) lsSet('tpc_manifest_url', $('manifest').value.trim());
+  if (!silent) upmsg('Sprawdzam…', 'info');
+  try {
+    found = await U.checkUpdate(installedFw, $('upchan').value, $('manifest').value.trim() || U.manifestUrl());
+    const e = found.entry;
+    const when = e.date ? ' · ' + e.date : '';
+    const notes = e.notes ? '\nZmiany: ' + e.notes : '';
+    if (found.newer) { upmsg('Dostępna nowa wersja ' + e.full + ' (zainstalowana: ' + (installedFw || '?') + ')' + when + notes, 'ok'); $('upgo').textContent = 'Pobierz i zainstaluj ' + e.full; }
+    else { upmsg('Masz najnowszą wersję (' + (installedFw || e.full) + ').' + when, 'info'); $('upgo').textContent = 'Zainstaluj ponownie ' + e.full; }
+    $('upgo').style.display = 'inline-block';
+    $('upmsg').style.whiteSpace = 'pre-line';
+  } catch (e) {
+    found = null; $('upgo').style.display = 'none';
+    if (!silent) upmsg('Nie można sprawdzić aktualizacji: ' + e.message + '. Jeśli ta przeglądarka nie ma internetu, wgraj plik ręcznie (poniżej).', 'err');
+  }
+}
+async function afterUpload(r) {
+  if (r.status === 200) { upmsg('Wgrano i zweryfikowano podpis. Urządzenie uruchamia się ponownie…', 'ok'); setTimeout(() => location.reload(), 15000); }
+  else if (r.status === 401) { try { await pair(); upmsg('Sparowano – kliknij ponownie.', 'info'); } catch (e) { upmsg(e.message, 'err'); } }
+  else upmsg('Aktualizacja odrzucona: ' + (r.body.error || r.status) + (r.body.error === 'bad_signature' ? ' (zły podpis – plik nie pochodzi od wydawcy)' : ''), 'err');
+}
+$('upchan').onchange = () => doCheck(false);
+$('upcheck').onclick = () => doCheck(false);
+$('upgo').onclick = async () => {
+  if (!found) return;
+  const btn = $('upgo'); btn.disabled = true;
+  try {
+    upmsg('Pobieram ' + found.entry.full + '…', 'info');
+    const prog = $('otaprog'); prog.style.display = 'block'; prog.value = 0;
+    const { blob, sig } = await U.downloadFirmware(found.entry, found.base, f => { prog.value = f * 50; });
+    upmsg('Wgrywam do urządzenia (' + Math.round(blob.size / 1024) + ' KB)…', 'info');
+    await afterUpload(await U.uploadFirmware(blob, sig, lsGet('tpc_token'), f => { prog.value = 50 + f * 50; }));
+  } catch (e) { upmsg('Błąd: ' + e.message, 'err'); }
+  btn.disabled = false;
+};
+$('otago').onclick = async () => {
   const f = $('otabin').files[0], sig = $('otasig').value.trim();
-  if (!f) return msg('Wybierz plik firmware (.bin).', 'err');
-  if (!/^[0-9a-fA-F]{128}$/.test(sig)) return msg('Podpis musi mieć 128 znaków hex (plik .sig).', 'err');
-  const x = new XMLHttpRequest(); x.open('POST', '/api/v1/ota'); x.setRequestHeader('Authorization', 'Bearer ' + tok()); x.setRequestHeader('X-Signature', sig);
-  x.upload.onprogress = e => { $('otaprog').style.display = 'block'; $('otaprog').value = e.loaded * 100 / e.total; };
-  x.onload = () => { let j = {}; try { j = JSON.parse(x.responseText); } catch (e) {}
-    if (x.status === 200) { msg('Wgrano i zweryfikowano podpis. Urządzenie uruchamia się ponownie…', 'ok'); setTimeout(() => location.reload(), 15000); }
-    else if (x.status === 401) { pair().then(() => msg('Sparowano – kliknij „Wgraj” ponownie.', 'info')).catch(e => msg(e.message, 'err')); }
-    else msg('Aktualizacja odrzucona: ' + (j.error || x.status) + (j.error === 'bad_signature' ? ' (zły podpis – plik nie pochodzi od wydawcy)' : ''), 'err'); };
-  x.onerror = () => msg('Błąd połączenia podczas wgrywania.', 'err');
-  x.send(f);
+  if (!f) return upmsg('Wybierz plik firmware (.bin).', 'err');
+  if (!/^[0-9a-fA-F]{128}$/.test(sig)) return upmsg('Podpis musi mieć 128 znaków hex (plik .sig).', 'err');
+  U = U || await import('./update.js');
+  $('otaprog').style.display = 'block';
+  try { await afterUpload(await U.uploadFirmware(f, sig, lsGet('tpc_token'), p => { $('otaprog').value = p * 100; })); } catch (e) { upmsg(e.message, 'err'); }
 };
 $('rollback').onclick = async () => {
   if (!confirm('Uruchomić ponownie z poprzedniego firmware (zapisanego w drugiej partycji)? Ta wersja przestanie działać do ponownego wgrania.')) return;
