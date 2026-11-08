@@ -21,14 +21,21 @@ python3 patch_firstboot.py --show teklapelletcan-moj.bin  # podgląd (hasła zam
 ```
 - Stały IP: te same wartości co w dotychczasowym ESPHome (`device_ip`, `device_gateway`, `device_subnet`). DHCP: pomiń `--ip`.
 - Sieć **2,4 GHz** (ESP32-C6 nie widzi 5 GHz).
-- `--device-password` (min. 4 znaki): hasło do sterowania kotłem; bez niego ustawisz je przy pierwszym wejściu na stronę (ryzyko: zrobi to pierwszy, kto wejdzie).
+- `--device-password` (min. 4 znaki): hasło do sterowania kotłem. Wygodniej i bezpieczniej: `--ask-device-password` – skrypt zapyta **dwa razy** (bez echa) i odmówi, jeśli się różnią. Bez hasła w pliku ustawisz je przy pierwszym wejściu na stronę (portal ma pole powtórzenia).
+- Każdy plik dostaje **numer wsadu** (domyślnie czas). Urządzenie stosuje dane z pliku (sieć + hasło), gdy numer jest **nowy** – patrz „Zapomniane hasło”.
 
 ## 3. Wgraj przez OTA ESPHome
+Nasz firmware **nie używa ESPHome** – ESPHome jest tu tylko „kurierem”, bo to on teraz działa na urządzeniu i odbiera nowy plik.
+Plik to zwykły obraz aplikacji ESP32-C6 (~1,0 MB), mieści się w partycji ESPHome (1,75 MB). Poprzedni firmware zostaje w drugiej partycji.
+
+**Sposób A – portal OTA ESPHome (strona urządzenia):** jeśli pod `http://192.168.10.250/` widzisz stronę ESPHome z polem aktualizacji
+(*OTA update / Choose file*), wybierz `teklapelletcan-moj.bin` (nie plik „factory”) i wyślij.
+
+**Sposób B – dashboard ESPHome / linia poleceń:**
 ```bash
 esphome upload TWOJ.yaml --device 192.168.10.250 --file teklapelletcan-moj.bin
 ```
-(`TWOJ.yaml` to dotychczasowy plik urządzenia, używany do hasła OTA; nowsze ESPHome pozwala też `esphome upload --file … --device … --ota-password …` bez YAML.)
-Plik ma ok. 1,0 MB i mieści się w partycji ESPHome (1,75 MB). Poprzedni firmware zostaje w drugiej partycji.
+(`TWOJ.yaml` to dotychczasowy plik urządzenia, potrzebny do hasła OTA; nowsze ESPHome pozwala też `esphome upload --file … --device … --ota-password …` bez YAML.)
 
 ## 4. Co zobaczysz
 Po ok. 30–60 s:
@@ -43,6 +50,13 @@ Po ok. 30–60 s:
 | Karta „-” przy temperaturach | Ustawienia → **Dziennik**: szukaj `MCP2515` i `CAN: kociol odpowiada`. Pobierz raport (**Pobierz raport**) i wklej mi. |
 | Chcesz wrócić do ESPHome | Ustawienia → Aktualizacja → **Wróć do poprzedniego firmware** (działa do czasu pierwszej własnej aktualizacji OTA, która nadpisuje drugą partycję). |
 | Nowa wersja się zawiesza | Własne OTA uruchamia nową wersję „na próbę” i bez potwierdzenia po 25 s wraca do poprzedniej (przy bootloaderze z włączonym rollbackiem – patrz niżej). |
+
+## Hasło urządzenia: literówka, zmiana, zapomniane
+- **Literówka:** portal, Home Assistant (przy pierwszej konfiguracji) i skrypt (`--ask-device-password`) pytają o hasło **dwa razy**.
+- **Zmiana:** Ustawienia → *Hasło urządzenia* (nowe + powtórzenie). Sparowani klienci (HA, przeglądarka) zostają połączeni.
+- **Zapomniane, ale HA jest sparowany:** usługa `teklapelletcan.set_device_password` (Narzędzia deweloperskie → Akcje) ustawia nowe hasło tokenem HA.
+- **Zapomniane, nic sparowanego, brak fizycznego dostępu:** wgraj ponownie plik przygotowany skryptem z **nowym** hasłem (nowy numer wsadu → hasło i sieć zostaną nadpisane). Gdy nasze OTA nie przyjmie pliku (jest podpisane tylko wydanie), użyj drogi ESPHome: ustawienia → *Wróć do poprzedniego firmware* (jeśli jeszcze jest), potem krok 3.
+- **Z dostępem fizycznym:** przytrzymaj przycisk **BOOT 10 s** (GPIO9 na XIAO ESP32-C6) – reset fabryczny (hasło, sieć, ustawienia), uruchomi się portal `TeklaPelletCAN-XXXX`.
 
 ## 6. Aktualizacje później (jedno kliknięcie w przeglądarce)
 Ustawienia → **Aktualizacja oprogramowania**: wybierz `teklapelletcan.bin` i plik `.sig` z artefaktu CI → *Wgraj*.

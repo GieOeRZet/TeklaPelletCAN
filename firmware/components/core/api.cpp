@@ -106,7 +106,8 @@ HttpResponse Api::handle(const HttpRequest& r) {
         if (!json_parse(r.body, j)) return err(400, "bad_json");
         const std::string pw = j.str("password");
         if (pw.size() < 4) return err(400, "password_too_short");
-        if (c_.has_password() && !authorized(r)) return err(401, "unauthorized");   // zmiana hasła wymaga tokenu
+        if (j.get("confirm") && j.str("confirm") != pw) return err(400, "password_mismatch");   // literówka w haśle
+        if (c_.has_password() && !authorized(r)) return err(401, "unauthorized");   // zmiana hasła wymaga tokenu sparowanego klienta
         c_.set_password(pw);
         HttpResponse res; res.body = "{\"ok\":true}"; return res;
     }
@@ -188,6 +189,7 @@ HttpResponse Api::platform(const HttpRequest& r, bool& handled) {
         if (!json_parse(r.body, j)) return err(400, "bad_json");
         const std::string pw = j.str("password"), cid = j.str("client_id", "portal");
         if (pw.size() < 4) return err(400, "password_too_short");
+        if (j.get("confirm") && j.str("confirm") != pw) return err(400, "password_mismatch");
         c_.set_password(pw);
         ClientInfo ci; ci.id = cid; ci.name = j.str("name", "Portal"); ci.token = rnd_(32);
         c_.put(ci);

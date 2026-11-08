@@ -64,6 +64,7 @@ Settings NvsStore::load() {
     s.cfg.demo = get_u8(n.h, "demo", 0) != 0;
     s.cfg.two_circuits = get_u8(n.h, "two", 0) != 0;
     s.firstboot_done = get_u8(n.h, "fb_done", 0) != 0;
+    nvs_get_u32(n.h, "fb_serial", &s.fb_serial);
     return s;
 }
 
@@ -94,6 +95,13 @@ void NvsStore::save_cfg(const tpc::DeviceConfig& c, bool firstboot_done) {
     nvs_set_u8(n.h, "mirror", c.mirror); nvs_set_u8(n.h, "write", c.write_enabled);
     nvs_set_u8(n.h, "demo", c.demo); nvs_set_u8(n.h, "two", c.two_circuits);
     nvs_set_u8(n.h, "fb_done", firstboot_done);
+    nvs_commit(n.h);
+}
+
+void NvsStore::save_fb_serial(uint32_t serial) {
+    Nvs n(true);
+    if (!n) return;
+    nvs_set_u32(n.h, "fb_serial", serial);
     nvs_commit(n.h);
 }
 

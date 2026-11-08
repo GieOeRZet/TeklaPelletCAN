@@ -61,6 +61,14 @@
     <div class="hint">Raport zawiera diagnostykę (CAN, SDO, Wi-Fi, pamięć) i dziennik – bez haseł. Można go wysłać lub wkleić w zgłoszeniu.</div>
   </div>
 
+  <div class="card">
+    <h2>Hasło urządzenia</h2>
+    <label for="np1">Nowe hasło (min. 4 znaki)</label><input id="np1" type="password" autocomplete="new-password">
+    <label for="np2">Powtórz nowe hasło</label><input id="np2" type="password" autocomplete="new-password">
+    <div class="row" style="margin-top:10px"><button id="pwsave">Zmień hasło</button></div>
+    <div class="hint">Sparowani klienci (Home Assistant, ta przeglądarka) zostają połączeni – zmiana dotyczy tylko parowania nowych klientów. Zapomniałeś hasła? Zmienisz je stąd z przeglądarki albo z Home Assistant (usługa <code>teklapelletcan.set_device_password</code>), o ile choć jeden klient jest sparowany. Inaczej: przycisk BOOT 10 s lub ponowne wgranie pliku z nowymi danymi.</div>
+  </div>
+
   <div class="card"><h2>Sparowani klienci</h2><div id="clients">…</div></div>
 
   <div class="card">
@@ -149,6 +157,13 @@ $('rollback').onclick = async () => {
   if (!confirm('Uruchomić ponownie z poprzedniego firmware (zapisanego w drugiej partycji)? Ta wersja przestanie działać do ponownego wgrania.')) return;
   try { await api('POST', '/api/v1/ota/rollback', {}); await api('POST', '/api/v1/restart', {}); msg('Przełączono na poprzedni firmware. Urządzenie uruchamia się ponownie…', 'ok'); }
   catch (e) { msg(e.message === 'no_valid_image' ? 'Brak poprzedniego firmware w drugiej partycji.' : 'Błąd: ' + e.message, 'err'); }
+};
+$('pwsave').onclick = async () => {
+  const a = $('np1').value, b = $('np2').value;
+  if (a.length < 4) return msg('Hasło musi mieć co najmniej 4 znaki.', 'err');
+  if (a !== b) return msg('Hasła się różnią – wpisz to samo w obu polach.', 'err');
+  try { await api('POST', '/api/v1/password', { password: a, confirm: b }); $('np1').value = ''; $('np2').value = ''; msg('Hasło zmienione.', 'ok'); }
+  catch (e) { msg('Błąd: ' + e.message, 'err'); }
 };
 $('restart').onclick = async () => { try { await api('POST', '/api/v1/restart', {}); msg('Restart…', 'ok'); setTimeout(() => location.reload(), 9000); } catch (e) { msg('Błąd: ' + e.message, 'err'); } };
 $('reset').onclick = async () => { if (!confirm('Skasować hasło, sieć Wi-Fi i wszystkie ustawienia?')) return; try { await api('POST', '/api/v1/factory_reset', { confirm: true }); msg('Przywrócono ustawienia fabryczne. Urządzenie uruchomi punkt dostępu TeklaPelletCAN-XXXX.', 'ok'); } catch (e) { msg('Błąd: ' + e.message, 'err'); } };

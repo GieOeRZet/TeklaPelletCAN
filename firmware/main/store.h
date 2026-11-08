@@ -11,6 +11,7 @@ struct Settings {
     std::string ip, gw, mask, dns;
     tpc::DeviceConfig cfg;     // domyślnie: tylko odczyt
     bool firstboot_done = false;
+    uint32_t fb_serial = 0;   // numer ostatnio zastosowanych danych pierwszego uruchomienia
 };
 
 class NvsStore : public tpc::ClientStore {
@@ -20,6 +21,7 @@ public:
     void save(const Settings& s);                 // wszystko (używane tylko przy pierwszym starcie)
     void save_wifi(const Settings& s);            // tylko dane sieci (nie rusza konfiguracji)
     void save_cfg(const tpc::DeviceConfig& c, bool firstboot_done);   // tylko konfiguracja
+    void save_fb_serial(uint32_t serial);
     void factory_reset();
 
     // ClientStore

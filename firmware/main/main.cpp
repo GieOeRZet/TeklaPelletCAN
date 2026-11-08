@@ -14,6 +14,7 @@
 #include "esp_system.h"
 #include "esp_timer.h"
 #include "firstboot.h"
+#include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 #include "freertos/task.h"
@@ -62,21 +63,25 @@ extern "C" void app_main(void) {
     if (!g_store.init()) log_add("NVS: BLAD inicjalizacji");
     g_set = g_store.load();
 
-    // Dane pierwszego uruchomienia wpisane w plik .bin skryptem patch_firstboot.py (Wi-Fi + hasło) – tylko raz
-    if (g_firstboot.valid && !g_set.firstboot_done) {
-        if (g_set.ssid.empty() && g_firstboot.ssid[0]) {
+    // Dane wpisane w plik .bin skryptem patch_firstboot.py (Wi-Fi + hasło). Stosowane, gdy numer wsadu jest NOWY – czyli przy
+    // pierwszym starcie albo po ponownym wgraniu pliku z innymi danymi (zdalne odzyskanie po zapomnianym haśle lub zmianie sieci).
+    const uint32_t fb_serial = (uint32_t)g_firstboot.serial[0] | ((uint32_t)g_firstboot.serial[1] << 8) |
+                               ((uint32_t)g_firstboot.serial[2] << 16) | ((uint32_t)g_firstboot.serial[3] << 24);
+    if (g_firstboot.valid && fb_serial != g_set.fb_serial) {
+        if (g_firstboot.ssid[0]) {
             g_set.ssid = (const char*)g_firstboot.ssid; g_set.pass = (const char*)g_firstboot.pass;
             g_set.dhcp = g_firstboot.dhcp != 0;
             g_set.ip = (const char*)g_firstboot.ip; g_set.gw = (const char*)g_firstboot.gw;
             g_set.mask = (const char*)g_firstboot.mask; g_set.dns = (const char*)g_firstboot.dns;
-            log_add(std::string("PIERWSZY START: siec Wi-Fi '") + g_set.ssid + "' z danych wgranych w pliku");
+            log_add(std::string("DANE Z PLIKU: siec Wi-Fi '") + g_set.ssid + "' (wsad " + std::to_string(fb_serial) + ")");
+            g_store.save_wifi(g_set);
         }
-        if (g_firstboot.dev_pass[0] && !g_store.has_password()) {
+        if (g_firstboot.dev_pass[0]) {
             g_store.set_password((const char*)g_firstboot.dev_pass);
-            log_add("PIERWSZY START: ustawiono haslo urzadzenia z danych wgranych w pliku");
+            log_add("DANE Z PLIKU: ustawiono haslo urzadzenia");
         }
-        g_set.firstboot_done = true;
-        g_store.save(g_set);                       // pierwszy zapis kompletu (przed uruchomieniem zarządcy Wi-Fi)
+        g_set.fb_serial = fb_serial;
+        g_store.save_fb_serial(fb_serial);
     }
 
     g_dev_mu = xSemaphoreCreateMutex();
@@ -153,6 +158,12 @@ extern "C" void app_main(void) {
     mdns_start(g_wifi.hostname(), std::string("TeklaPelletCAN ") + g_wifi.mac_hex().substr(8), engine.device_id_hex(), fw);
     ota_health_start();
 
+    // Przycisk BOOT (GPIO9 na XIAO ESP32-C6) trzymany 10 s = reset fabryczny (hasło, sieć, ustawienia) – gdy masz fizyczny dostęp.
+    gpio_config_t bc = {};
+    bc.pin_bit_mask = 1ULL << 9; bc.mode = GPIO_MODE_INPUT; bc.pull_up_en = GPIO_PULLUP_ENABLE;
+    gpio_config(&bc);
+    uint32_t boot_pressed_at = 0;
+
     uint32_t last_can_try = 0, last_sum = 0, rx = 0;
     for (;;) {
         const uint32_t t = now_ms();
@@ -188,6 +199,10 @@ extern "C" void app_main(void) {
             log_add(b);
         }
         xSemaphoreGive(g_dev_mu);
+        if (gpio_get_level(GPIO_NUM_9) == 0) {
+            if (!boot_pressed_at) boot_pressed_at = t;
+            if (t - boot_pressed_at > 10000) { log_add("RESET FABRYCZNY (przycisk BOOT 10 s)"); g_store.factory_reset(); vTaskDelay(pdMS_TO_TICKS(300)); esp_restart(); }
+        } else boot_pressed_at = 0;
         vTaskDelay(pdMS_TO_TICKS(2));
     }
 }

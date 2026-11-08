@@ -14,6 +14,10 @@
     <h2>1. Hasło urządzenia</h2>
     <label for="pw">Hasło (min. 4 znaki) – będzie potrzebne do sterowania kotłem</label>
     <input id="pw" type="password" autocomplete="new-password">
+    <label for="pw2">Powtórz hasło</label>
+    <input id="pw2" type="password" autocomplete="new-password">
+    <label class="chk"><input id="showpw" type="checkbox"> Pokaż hasła</label>
+    <div class="hint">Zapamiętaj je: potrzebujesz go do sterowania kotłem i do dodania urządzenia w Home Assistant. Później zmienisz je w Ustawieniach.</div>
   </div>
 
   <div class="card" id="c2">
@@ -39,6 +43,7 @@
 <script>
 const $ = id => document.getElementById(id);
 const msg = (t, c) => { const m = $('msg'); m.className = 'msg ' + c; m.textContent = t; };
+$('showpw').onchange = () => { for (const id of ['pw', 'pw2']) $(id).type = $('showpw').checked ? 'text' : 'password'; };
 $('static').onchange = () => { $('staticbox').style.display = $('static').checked ? 'block' : 'none'; };
 fetch('/api/v1/info').then(r => r.json()).then(i => { $('devid').textContent = i.id; if (i.password_set) { msg('Urządzenie jest już skonfigurowane. Ustawienia: /settings.html', 'info'); } }).catch(() => {});
 
@@ -62,8 +67,9 @@ $('scan').onclick = scan;
 $('save').onclick = async () => {
   const pw = $('pw').value, ssid = $('ssid').value.trim();
   if (pw.length < 4) return msg('Hasło urządzenia musi mieć co najmniej 4 znaki.', 'err');
+  if (pw !== $('pw2').value) return msg('Hasła się różnią – wpisz to samo hasło w obu polach.', 'err');
   if (!ssid) return msg('Wybierz lub wpisz nazwę sieci Wi-Fi.', 'err');
-  const body = { password: pw, client_id: 'portal-' + Math.random().toString(16).slice(2), name: 'Portal', ssid, wifi_password: $('wpw').value, dhcp: !$('static').checked };
+  const body = { password: pw, confirm: $('pw2').value, client_id: 'portal-' + Math.random().toString(16).slice(2), name: 'Portal', ssid, wifi_password: $('wpw').value, dhcp: !$('static').checked };
   if ($('static').checked) Object.assign(body, { ip: $('ip').value.trim(), mask: $('mask').value.trim(), gateway: $('gw').value.trim(), dns: $('dns').value.trim() });
   $('save').disabled = true; msg('Zapisuję i łączę z siecią…', 'info');
   let r;

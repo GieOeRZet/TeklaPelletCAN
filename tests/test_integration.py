@@ -19,7 +19,14 @@ async def _pair_flow(hass: HomeAssistant, host: str, port: int, password: str = 
 async def test_config_flow_pairs_and_creates_entry(hass: HomeAssistant, sim):
     host, port = sim
     r = await _pair_flow(hass, host, port)
-    r = await hass.config_entries.flow.async_configure(r["flow_id"], {"password": "qwerty123", "name": "Tekla"})
+    # literówka w powtórzeniu hasła -> błąd i ponowny formularz (urządzenie nie dostaje złego hasła)
+    bad = await hass.config_entries.flow.async_configure(
+        r["flow_id"], {"password": "qwerty123", "password_confirm": "qwerty124", "name": "Tekla"}
+    )
+    assert bad["type"] is FlowResultType.FORM and bad["errors"]["base"] == "password_mismatch"
+    r = await hass.config_entries.flow.async_configure(
+        r["flow_id"], {"password": "qwerty123", "password_confirm": "qwerty123", "name": "Tekla"}
+    )
     assert r["type"] is FlowResultType.CREATE_ENTRY
     assert r["data"]["token"] and r["data"]["host"] == host
     assert r["result"].unique_id == "A1B2C3D4E5F6"
@@ -28,7 +35,7 @@ async def test_config_flow_pairs_and_creates_entry(hass: HomeAssistant, sim):
 async def test_same_device_cannot_be_added_twice(hass: HomeAssistant, sim):
     host, port = sim
     r = await _pair_flow(hass, host, port)
-    await hass.config_entries.flow.async_configure(r["flow_id"], {"password": "qwerty123", "name": "Tekla"})
+    await hass.config_entries.flow.async_configure(r["flow_id"], {"password": "qwerty123", "password_confirm": "qwerty123", "name": "Tekla"})
     r2 = await hass.config_entries.flow.async_init(DOMAIN, context={"source": config_entries.SOURCE_USER})
     r2 = await hass.config_entries.flow.async_configure(r2["flow_id"], {"host": host, "port": port})
     assert r2["type"] is FlowResultType.ABORT and r2["reason"] == "already_configured"
@@ -37,7 +44,7 @@ async def test_same_device_cannot_be_added_twice(hass: HomeAssistant, sim):
 async def test_wrong_password_rejected(hass: HomeAssistant, sim):
     host, port = sim
     r = await _pair_flow(hass, host, port)
-    await hass.config_entries.flow.async_configure(r["flow_id"], {"password": "qwerty123", "name": "Tekla"})
+    await hass.config_entries.flow.async_configure(r["flow_id"], {"password": "qwerty123", "password_confirm": "qwerty123", "name": "Tekla"})
     # drugi HA (inny client_id) próbuje sparować ze złym hasłem – nowe urządzenie z hasłem ustawionym
     from custom_components.teklapelletcan.api import TeklaAuthError, TeklaClient
     from homeassistant.helpers.aiohttp_client import async_get_clientsession
@@ -53,7 +60,7 @@ async def test_wrong_password_rejected(hass: HomeAssistant, sim):
 async def entry(hass: HomeAssistant, sim):
     host, port = sim
     r = await _pair_flow(hass, host, port)
-    r = await hass.config_entries.flow.async_configure(r["flow_id"], {"password": "qwerty123", "name": "Tekla"})
+    r = await hass.config_entries.flow.async_configure(r["flow_id"], {"password": "qwerty123", "password_confirm": "qwerty123", "name": "Tekla"})
     await hass.async_block_till_done()
     return r["result"]
 
@@ -102,3 +109,17 @@ async def test_button_and_select_work(hass: HomeAssistant, entry):
     await hass.services.async_call(
         "select", "select_option", {"entity_id": "select.tekla_cwu_tryb_ustaw", "option": "Eko"}, blocking=True
     )
+
+
+async def test_forgotten_password_can_be_changed_from_ha(hass: HomeAssistant, entry):
+    """Zapomniane hasło: HA (ma token) zmienia je usługą; nowy klient paruje się już nowym hasłem."""
+    from custom_components.teklapelletcan.api import TeklaAuthError, TeklaClient
+    from homeassistant.helpers.aiohttp_client import async_get_clientsession
+
+    await hass.services.async_call(DOMAIN, "set_device_password", {"password": "nowe-haslo"}, blocking=True)
+    c = TeklaClient(async_get_clientsession(hass), entry.data["host"], entry.data["port"])
+    with pytest.raises(TeklaAuthError):
+        await c.pair("qwerty123", "ktos-inny", "x")
+    assert (await c.pair("nowe-haslo", "ktos-inny", "x"))["token"]
+    # HA nadal działa dotychczasowym tokenem
+    await hass.services.async_call(DOMAIN, "tekla_unlock", {"pin": 900}, blocking=True)

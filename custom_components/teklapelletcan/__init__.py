@@ -93,6 +93,19 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.services.async_register(
             DOMAIN, f"{coordinator.node}_{action}", _handler(action), schema=vol.Schema({}, extra=vol.ALLOW_EXTRA)
         )
+    async def _set_password(call: ServiceCall) -> None:
+        """Zmiana hasła urządzenia z HA (token tego HA) – ratunek, gdy hasło zostało zapomniane."""
+        try:
+            await client.set_password(call.data["password"], call.data.get("confirm", call.data["password"]), auth=True)
+        except TeklaError as err:
+            raise HomeAssistantError(f"zmiana hasla: {err}") from err
+
+    hass.services.async_register(
+        DOMAIN,
+        "set_device_password",
+        _set_password,
+        schema=vol.Schema({vol.Required("password"): vol.All(str, vol.Length(min=4)), vol.Optional("confirm"): str}),
+    )
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     return True
 
@@ -103,5 +116,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     if ok:
         for action in ACTIONS:
             hass.services.async_remove(DOMAIN, f"{coordinator.node}_{action}")
+        hass.services.async_remove(DOMAIN, "set_device_password")
         hass.data[DOMAIN].pop(entry.entry_id)
     return ok

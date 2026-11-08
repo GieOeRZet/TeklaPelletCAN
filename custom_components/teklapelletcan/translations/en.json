@@ -19,13 +19,15 @@
         "description": "Enter the device password. On first setup you will set it now (min. 4 characters).",
         "data": {
           "password": "Device password",
-          "name": "Name (entity prefix)"
+          "name": "Name (entity prefix)",
+          "password_confirm": "Repeat password (first setup only)"
         }
       }
     },
     "error": {
       "cannot_connect": "Cannot connect to the device",
-      "invalid_auth": "Wrong password"
+      "invalid_auth": "Wrong password",
+      "password_mismatch": "Passwords do not match"
     },
     "abort": {
       "already_configured": "This device is already added to this Home Assistant",

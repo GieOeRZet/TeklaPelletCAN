@@ -2,11 +2,36 @@
   "config": {
     "flow_title": "{name}",
     "step": {
-      "user": {"title": "TeklaPelletCAN", "description": "Adres IP urządzenia (wyszukiwanie automatyczne działa przez mDNS).", "data": {"host": "Adres IP", "port": "Port"}},
-      "confirm": {"title": "Znaleziono urządzenie", "description": "Dodać urządzenie {id} ({host})?"},
-      "auth": {"title": "Parowanie", "description": "Podaj hasło urządzenia. Jeśli to pierwsza konfiguracja, ustawisz je teraz (min. 4 znaki).", "data": {"password": "Hasło urządzenia", "name": "Nazwa (prefiks encji)"}}
+      "user": {
+        "title": "TeklaPelletCAN",
+        "description": "Adres IP urządzenia (wyszukiwanie automatyczne działa przez mDNS).",
+        "data": {
+          "host": "Adres IP",
+          "port": "Port"
+        }
+      },
+      "confirm": {
+        "title": "Znaleziono urządzenie",
+        "description": "Dodać urządzenie {id} ({host})?"
+      },
+      "auth": {
+        "title": "Parowanie",
+        "description": "Podaj hasło urządzenia. Jeśli to pierwsza konfiguracja, ustawisz je teraz (min. 4 znaki).",
+        "data": {
+          "password": "Hasło urządzenia",
+          "name": "Nazwa (prefiks encji)",
+          "password_confirm": "Powtórz hasło (przy pierwszej konfiguracji)"
+        }
+      }
     },
-    "error": {"cannot_connect": "Nie można połączyć się z urządzeniem", "invalid_auth": "Błędne hasło"},
-    "abort": {"already_configured": "To urządzenie jest już dodane w tym Home Assistant", "cannot_connect": "Nie można połączyć się z urządzeniem"}
+    "error": {
+      "cannot_connect": "Nie można połączyć się z urządzeniem",
+      "invalid_auth": "Błędne hasło",
+      "password_mismatch": "Hasła się różnią"
+    },
+    "abort": {
+      "already_configured": "To urządzenie jest już dodane w tym Home Assistant",
+      "cannot_connect": "Nie można połączyć się z urządzeniem"
+    }
   }
 }

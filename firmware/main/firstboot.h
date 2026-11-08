@@ -13,6 +13,6 @@ struct FirstBoot {
     char pass[65];
     char ip[16], gw[16], mask[16], dns[16];
     char dev_pass[33];     // hasło urządzenia (opcjonalne)
-    char pad[3];
+    uint8_t serial[4];     // numer wsadu (little-endian): nowy numer = dane zostaną zastosowane ponownie (odzyskanie po zapomnianym haśle)
 };
 extern volatile FirstBoot g_firstboot;

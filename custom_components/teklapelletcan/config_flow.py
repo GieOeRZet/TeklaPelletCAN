@@ -69,9 +69,12 @@ class TeklaPelletCanConfigFlow(ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             client = TeklaClient(async_get_clientsession(self.hass), self._host, self._port)
             password = user_input["password"]
+            if first_setup and user_input.get("password_confirm") != password:
+                errors["base"] = "password_mismatch"
+                return self._auth_form(errors, first_setup)
             try:
                 if first_setup:
-                    await client.set_password(password)
+                    await client.set_password(password, user_input.get("password_confirm"))
                 res = await client.pair(password, await instance_id.async_get(self.hass), self.hass.config.location_name or "HA")
             except TeklaAuthError:
                 errors["base"] = "invalid_auth"
@@ -87,9 +90,13 @@ class TeklaPelletCanConfigFlow(ConfigFlow, domain=DOMAIN):
                         CONF_NAME: user_input.get(CONF_NAME) or DEFAULT_NAME,
                     },
                 )
-        schema = vol.Schema(
-            {vol.Required("password"): str, vol.Optional(CONF_NAME, default=DEFAULT_NAME): str}
-        )
+        return self._auth_form(errors, first_setup)
+
+    def _auth_form(self, errors: dict[str, str], first_setup: bool) -> ConfigFlowResult:
+        fields: dict = {vol.Required("password"): str}
+        if first_setup:  # pierwsze ustawienie hasła: powtórzenie chroni przed literówką
+            fields[vol.Required("password_confirm")] = str
+        fields[vol.Optional(CONF_NAME, default=DEFAULT_NAME)] = str
         return self.async_show_form(
-            step_id="auth", data_schema=schema, errors=errors, description_placeholders={"first_setup": str(first_setup)}
+            step_id="auth", data_schema=vol.Schema(fields), errors=errors, description_placeholders={"first_setup": str(first_setup)}
         )

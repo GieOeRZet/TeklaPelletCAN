@@ -19,7 +19,12 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   check('skan pokazuje sieci', (await p.locator('.net').count()) === 3);
   await p.locator('.net', { hasText: 'Dom-2.4G' }).click();
   check('klik w siec wpisuje SSID', (await p.inputValue('#ssid')) === 'Dom-2.4G');
-  await p.fill('#pw', 'qwerty123'); await p.fill('#wpw', 'haslo-wifi');
+  // literowka w powtorzeniu hasla jest wychwycona zanim cokolwiek trafi do urzadzenia
+  await p.fill('#pw', 'qwerty123'); await p.fill('#pw2', 'qwerty124'); await p.fill('#wpw', 'haslo-wifi');
+  await p.click('#save'); await p.waitForTimeout(400);
+  check('rozne hasla w portalu odrzucone', /różnią/.test(await p.locator('#msg').innerText()));
+  check('urzadzenie nadal bez hasla po literowce', (await (await fetch(BASE + '/api/v1/info')).json()).password_set === false);
+  await p.fill('#pw2', 'qwerty123');
   await p.check('#static'); await p.fill('#ip', '192.168.10.250'); await p.fill('#mask', '255.255.254.0'); await p.fill('#gw', '192.168.10.1');
   await p.screenshot({ path: '/tmp/claude-0/ui_portal.png', fullPage: true });
   await p.click('#save');
@@ -45,6 +50,16 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   check('podpis wczytany z pliku .sig', (await p.inputValue('#otasig')).length === 128);
   await p.click('#otago'); await p.waitForFunction(() => /zweryfikowano podpis/.test(document.getElementById('msg').textContent), null, { timeout: 10000 });
   check('OTA z poprawnym podpisem przyjete', true);
+  // 4b. zmiana hasla w ustawieniach (rozne hasla -> blad; poprawne -> zmiana, klient nadal sparowany)
+  await p.fill('#np1', 'nowe-haslo-1'); await p.fill('#np2', 'nowe-haslo-2'); await p.click('#pwsave'); await p.waitForTimeout(300);
+  check('zmiana hasla: rozne hasla odrzucone', /różnią/.test(await p.locator('#msg').innerText()));
+  await p.fill('#np2', 'nowe-haslo-1'); await p.click('#pwsave'); await p.waitForFunction(() => /Hasło zmienione/.test(document.getElementById('msg').textContent), null, { timeout: 5000 });
+  check('zmiana hasla zadziałała', true);
+  const pr = await fetch(BASE + '/api/v1/pair', { method: 'POST', body: JSON.stringify({ password: 'nowe-haslo-1', client_id: 'nowy-klient' }) });
+  const po = await fetch(BASE + '/api/v1/pair', { method: 'POST', body: JSON.stringify({ password: 'qwerty123', client_id: 'nowy-klient2' }) });
+  check('nowe haslo dziala przy parowaniu, stare juz nie', pr.status === 200 && po.status === 401);
+  check('sparowana przegladarka dziala dalej po zmianie hasla', (await (await fetch(BASE + '/api/v1/clients', { headers: { Authorization: 'Bearer ' + await p.evaluate(() => localStorage.getItem('tpc_token')) } })).json()).clients.length >= 1);
+
   // 5. OTA: podmieniony plik
   await p.setInputFiles('#otabin', OTA + '/tampered.bin'); await p.click('#otago');
   await p.waitForFunction(() => /odrzucona/.test(document.getElementById('msg').textContent), null, { timeout: 10000 });

@@ -12,5 +12,5 @@ set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${WEB_FILES} ${CM
 idf_component_register(
     SRCS main.cpp spi_idf.cpp firstboot.cpp logging.cpp store.cpp wifi_mgr.cpp http_srv.cpp mdns_srv.cpp ota_idf.cpp ${WEB_GEN}
     INCLUDE_DIRS "." 
-    REQUIRES core driver esp_timer esp_hw_support esp_system esp_wifi esp_netif esp_event nvs_flash esp_http_server
+    REQUIRES core driver esp_driver_gpio esp_timer esp_hw_support esp_system esp_wifi esp_netif esp_event nvs_flash esp_http_server
              app_update esp_partition lwip mbedtls)

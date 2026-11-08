@@ -50,8 +50,12 @@ class TeklaClient:
         data = await self._request("GET", f"/api/v1/states?prefix={prefix}", auth=False)
         return data["states"]
 
-    async def set_password(self, password: str) -> None:
-        await self._request("POST", "/api/v1/password", {"password": password}, auth=False)
+    async def set_password(self, password: str, confirm: str | None = None, auth: bool = False) -> None:
+        """Ustawia hasło (pierwsza konfiguracja) albo zmienia je (auth=True, token sparowanego klienta)."""
+        body = {"password": password}
+        if confirm is not None:
+            body["confirm"] = confirm
+        await self._request("POST", "/api/v1/password", body, auth=auth)
 
     async def pair(self, password: str, client_id: str, name: str) -> dict:
         return await self._request(

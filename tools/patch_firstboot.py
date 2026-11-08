@@ -10,13 +10,13 @@ Przyklad (stale IP jak w dotychczasowym ESPHome):
       --ip 192.168.10.250 --mask 255.255.254.0 --gateway 192.168.10.1 --device-password 'haslo-urzadzenia'
 DHCP: pomin --ip. Podglad zawartosci pliku: --show.
 """
-import argparse, getpass, hashlib, ipaddress, struct, sys
+import argparse, getpass, hashlib, ipaddress, struct, sys, time
 from pathlib import Path
 
 MAGIC = b"TPC-FIRSTBOOT-v1"
 # uklad struktury FirstBoot (firmware/main/firstboot.h)
-OFF = dict(valid=16, dhcp=17, ssid=20, ssid_n=33, pass_=53, pass_n=65, ip=118, gw=134, mask=150, dns=166, dev=182, dev_n=33)
-SIZE = 218
+OFF = dict(valid=16, dhcp=17, ssid=20, ssid_n=33, pass_=53, pass_n=65, ip=118, gw=134, mask=150, dns=166, dev=182, dev_n=33, serial=215)
+SIZE = 219
 
 
 def fix_image(b: bytearray) -> None:
@@ -62,6 +62,8 @@ def main():
     p.add_argument("--ssid"); p.add_argument("--password")
     p.add_argument("--ip"); p.add_argument("--mask", default="255.255.255.0"); p.add_argument("--gateway"); p.add_argument("--dns", default="")
     p.add_argument("--device-password", dest="dev")
+    p.add_argument("--ask-device-password", action="store_true", help="zapytaj o haslo urzadzenia (dwa razy, bez echa)")
+    p.add_argument("--serial", type=int, help="numer wsadu (domyslnie czas); nowy numer = urzadzenie zastosuje dane ponownie")
     p.add_argument("--show", action="store_true", help="tylko pokaz zawartosc pola (haslo zamaskowane)")
     a = p.parse_args()
 
@@ -74,7 +76,7 @@ def main():
         v = data[base:base + SIZE]
         print("wypelnione:", bool(v[OFF['valid']]), "| DHCP:", bool(v[OFF['dhcp']]), "| SSID:", get_str(v, OFF['ssid'], 33) or "-",
               "| haslo Wi-Fi:", "***" if get_str(v, OFF['pass_'], 65) else "-", "| IP:", get_str(v, OFF['ip'], 16) or "-",
-              "| haslo urzadzenia:", "***" if get_str(v, OFF['dev'], 33) else "-")
+              "| haslo urzadzenia:", "***" if get_str(v, OFF['dev'], 33) else "-", "| wsad:", struct.unpack_from("<I", v, OFF['serial'])[0])
         return
     if not a.outfile or not a.ssid:
         p.error("podaj plik wyjsciowy i --ssid")
@@ -91,14 +93,22 @@ def main():
         put_str(s, OFF['gw'], 15, check_ip(a.gateway, "gateway"), "gateway")
         put_str(s, OFF['mask'], 15, check_ip(a.mask, "mask"), "mask")
         put_str(s, OFF['dns'], 15, check_ip(a.dns, "dns") if a.dns else "", "dns")
+    if a.ask_device_password:
+        p1 = getpass.getpass("Haslo urzadzenia (min. 4 znaki): ")
+        p2 = getpass.getpass("Powtorz haslo urzadzenia: ")
+        if p1 != p2:
+            raise SystemExit("hasla sie roznia – nic nie zapisano")
+        a.dev = p1
     if a.dev:
         if len(a.dev) < 4:
             raise SystemExit("haslo urzadzenia: min. 4 znaki")
         put_str(s, OFF['dev'], 32, a.dev, "haslo urzadzenia")
+    serial = a.serial if a.serial is not None else int(time.time()) & 0xFFFFFFFF
+    s[OFF['serial']:OFF['serial'] + 4] = struct.pack("<I", serial)
     data[base:base + SIZE] = s
     fix_image(data)
     Path(a.outfile).write_bytes(data)
-    print(f"zapisano {a.outfile}: siec '{a.ssid}', {'stale IP ' + a.ip if a.ip else 'DHCP'}" + (", haslo urzadzenia ustawione" if a.dev else ""))
+    print(f"zapisano {a.outfile} (wsad {serial}): siec '{a.ssid}', {'stale IP ' + a.ip if a.ip else 'DHCP'}" + (", haslo urzadzenia ustawione" if a.dev else ""))
     print("Sprawdz plik:  python -m esptool image-info " + a.outfile)
 
 
