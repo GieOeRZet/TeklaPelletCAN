@@ -51,9 +51,9 @@
     <progress id="otaprog" value="0" max="100" style="display:none;margin-top:8px"></progress>
     <details style="margin-top:12px">
       <summary style="cursor:pointer;color:var(--dim)">Wgraj plik ręcznie</summary>
-      <label for="otabin">Plik firmware (teklapelletcan.bin)</label><input id="otabin" type="file" accept=".bin">
-      <label for="otasig">Podpis (plik .sig albo 128 znaków hex)</label>
-      <input id="otasigf" type="file" accept=".sig,.txt"><input id="otasig" type="text" placeholder="…lub wklej podpis" style="margin-top:6px">
+      <label for="otabin">Plik firmware (teklapelletcan.bin – podpis jest w środku)</label><input id="otabin" type="file" accept=".bin">
+      <details style="margin-top:8px"><summary style="cursor:pointer;color:var(--dim);font-size:13px">Starszy plik z osobnym podpisem (.sig)</summary>
+      <label for="otasigf">Plik podpisu</label><input id="otasigf" type="file" accept=".sig,.txt"><input id="otasig" type="text" placeholder="…lub wklej podpis (128 znaków hex)" style="margin-top:6px"></details>
       <div class="row" style="margin-top:10px"><button id="otago">Wgraj wskazany plik</button></div>
       <label for="manifest" style="margin-top:14px">Adres manifestu aktualizacji (zaawansowane)</label>
       <input id="manifest" type="text" placeholder="https://raw.githubusercontent.com/…/updates/manifest.json">
@@ -208,7 +208,7 @@ async function doCheck(silent) {
 async function afterUpload(r) {
   if (r.status === 200) { upmsg('Wgrano i zweryfikowano podpis. Urządzenie uruchamia się ponownie…', 'ok'); setTimeout(() => location.reload(), 15000); }
   else if (r.status === 401) { try { await pair(); upmsg('Sparowano – kliknij ponownie.', 'info'); } catch (e) { upmsg(e.message, 'err'); } }
-  else upmsg('Aktualizacja odrzucona: ' + (r.body.error || r.status) + (r.body.error === 'bad_signature' ? ' (zły podpis – plik nie pochodzi od wydawcy)' : ''), 'err');
+  else upmsg('Aktualizacja odrzucona: ' + (r.body.error || r.status) + (r.body.error === 'bad_signature' ? ' (zły podpis – plik nie pochodzi od wydawcy)' : r.body.error === 'bad_image' ? ' (to nie jest pakiet z podpisem od wydawcy ani poprawny obraz dla ESP32-C6)' : ''), 'err');
 }
 $('upchan').onchange = () => doCheck(false);
 $('upcheck').onclick = () => doCheck(false);
@@ -227,7 +227,7 @@ $('upgo').onclick = async () => {
 $('otago').onclick = async () => {
   const f = $('otabin').files[0], sig = $('otasig').value.trim();
   if (!f) return upmsg('Wybierz plik firmware (.bin).', 'err');
-  if (!/^[0-9a-fA-F]{128}$/.test(sig)) return upmsg('Podpis musi mieć 128 znaków hex (plik .sig).', 'err');
+  if (sig && !/^[0-9a-fA-F]{128}$/.test(sig)) return upmsg('Podpis musi mieć 128 znaków hex (plik .sig) albo zostaw puste, gdy podpis jest w pliku.', 'err');
   U = U || await import('./update.js');
   $('otaprog').style.display = 'block';
   try { await afterUpload(await U.uploadFirmware(f, sig, lsGet('tpc_token'), p => { $('otaprog').value = p * 100; })); } catch (e) { upmsg(e.message, 'err'); }

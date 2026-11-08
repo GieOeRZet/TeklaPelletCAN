@@ -42,8 +42,11 @@ void OtaSession::abort() {
 
 OtaResult OtaSession::begin(size_t total, const std::string& sig_hex) {
     if (active_) return OtaResult::Busy;
-    if (total < 64 || total > max_) return OtaResult::TooBig;
-    if (!hex_to_bytes(sig_hex, sig_, 64)) return OtaResult::BadSignature;
+    embedded_ = sig_hex.empty();
+    if (total < 64 + (embedded_ ? kSigTrailer : 0) || total > max_ + (embedded_ ? kSigTrailer : 0)) return OtaResult::TooBig;
+    if (!embedded_ && !hex_to_bytes(sig_hex, sig_, 64)) return OtaResult::BadSignature;
+    image_len_ = embedded_ ? total - kSigTrailer : total;
+    trailer_got_ = 0;
     if (!t_.begin(total)) return OtaResult::WriteFailed;
     mbedtls_sha256_init(&sha_);
     sha_start(&sha_);
@@ -56,9 +59,20 @@ OtaResult OtaSession::begin(size_t total, const std::string& sig_hex) {
 OtaResult OtaSession::feed(const uint8_t* data, size_t len) {
     if (!active_) return OtaResult::NotStarted;
     if (got_ + len > total_) { abort(); return OtaResult::TooBig; }
+    const size_t base = got_;                 // pozycja pierwszego bajtu tego kawałka w pliku
+    // Pakiet z podpisem wbudowanym: bajty od image_len_ to trailer (znacznik + podpis) – nie trafiają na partycję ani do skrótu.
+    if (embedded_ && base + len > image_len_) {
+        const size_t img_part = base < image_len_ ? image_len_ - base : 0;
+        const size_t tr_part = len - img_part;
+        memcpy(trailer_ + trailer_got_, data + img_part, tr_part);
+        trailer_got_ += tr_part;
+        got_ += tr_part;
+        len = img_part;
+        if (len == 0) return OtaResult::Ok;
+    }
     // nagłówek obrazu ESP: bajt 0 = 0xE9, bajty 12..13 = chip_id
-    for (size_t i = 0; i < len && got_ + i < sizeof head_; i++) head_[got_ + i] = data[i];
-    if (got_ < sizeof head_ && got_ + len >= sizeof head_) {
+    for (size_t i = 0; i < len && base + i < sizeof head_; i++) head_[base + i] = data[i];
+    if (base < sizeof head_ && base + len >= sizeof head_) {
         const uint16_t chip = (uint16_t)(head_[12] | (head_[13] << 8));
         if (head_[0] != 0xE9 || chip != chip_) { abort(); return OtaResult::BadImage; }
     }
@@ -71,6 +85,10 @@ OtaResult OtaSession::feed(const uint8_t* data, size_t len) {
 OtaResult OtaSession::finish() {
     if (!active_) return OtaResult::NotStarted;
     if (got_ != total_) { abort(); return OtaResult::BadImage; }
+    if (embedded_) {   // podpis z końca pliku
+        if (memcmp(trailer_, kSigMagic, 8) != 0) { abort(); return OtaResult::BadImage; }   // plik bez podpisu
+        memcpy(sig_, trailer_ + 8, 64);
+    }
     uint8_t hash[32];
     sha_finish(&sha_, hash);
     mbedtls_sha256_free(&sha_); sha_init_ = false;

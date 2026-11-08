@@ -54,14 +54,28 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   await p.waitForFunction(() => /Nie udało się połączyć/.test(document.getElementById('msg').textContent), null, { timeout: 20000 });
   check('zmiana Wi-Fi: komunikat przy zlym hasle', true);
 
+  // 3b2. karta: ekran "Informacje o programie" pokazuje nowa wersje modulu i changelog z manifestu
+  const mf = { channels: { beta: { version: '0.3.0', build: 99, full: '0.3.0+99', date: '2026-11-08 20:00 UTC', notes: 'x', changelog: ['Pierwsza zmiana testowa', 'Druga zmiana testowa'] } } };
+  const ip2 = await b.newPage({ viewport: { width: 520, height: 420 } });
+  await ip2.route('**/updates/manifest.json*', r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(mf) }));
+  await ip2.goto(BASE + '/index.html?screen=info'); await ip2.waitForTimeout(8000);
+  const infoText = await ip2.evaluate(() => { const o = []; const w = n => { if (n.nodeType === 3) o.push(n.textContent.trim()); if (n.shadowRoot) w(n.shadowRoot); n.childNodes && n.childNodes.forEach(w); }; w(document.body); return o.filter(Boolean).join(' | '); });
+  check('INFO karty: wersja modulu z urzadzenia', /TeklaPelletCAN 0\.3\.0\+1\b/.test(infoText), infoText.slice(0, 200));
+  check('INFO karty: dostepna aktualizacja 0.3.0+99 z data', /Dostępna aktualizacja: 0\.3\.0\+99/.test(infoText) && /2026-11-08/.test(infoText));
+  check('INFO karty: changelog z manifestu', /Pierwsza zmiana testowa/.test(infoText) && /Druga zmiana testowa/.test(infoText));
+  check('INFO karty: link do instalacji w Ustawieniach', /Zainstaluj w Ustawieniach/.test(infoText));
+  await ip2.screenshot({ path: '/tmp/claude-0/ui_info.png' });
+  await ip2.close();
+
   // 3c. aktualizacja jednym kliknieciem: manifest + plik + podpis "z internetu" (przechwycone), wgranie do urzadzenia
   const fs = require('fs');
-  const good = fs.readFileSync(OTA + '/good.bin'), goodSig = fs.readFileSync(OTA + '/good.sig', 'utf8').trim();
+  const good = fs.readFileSync(OTA + '/good.bin'), goodSig = fs.readFileSync(OTA + '/good.sig', 'utf8').trim(), pkg = fs.readFileSync(OTA + '/good.pkg.bin');
   const manifest = { channels: { beta: { version: '0.3.0', build: 99, full: '0.3.0+99', file: 'beta/teklapelletcan.bin', sig: 'beta/teklapelletcan.bin.sig',
-    sha256: 'ab'.repeat(32), size: good.length, notes: 'Test aktualizacji', date: '2026-11-08 20:00 UTC' } } };
+    sha256: 'ab'.repeat(32), embedded: true, size: pkg.length, notes: 'Test aktualizacji', date: '2026-11-08 20:00 UTC' } } };
   await p.route('**/fake-updates/manifest.json*', r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(manifest) }));
-  await p.route('**/fake-updates/beta/teklapelletcan.bin*', r => r.fulfill({ status: 200, contentType: 'application/octet-stream', headers: { 'access-control-allow-origin': '*' }, body: good }));
-  await p.route('**/fake-updates/beta/teklapelletcan.bin.sig*', r => r.fulfill({ status: 200, contentType: 'text/plain', headers: { 'access-control-allow-origin': '*' }, body: goodSig }));
+  await p.route('**/fake-updates/beta/teklapelletcan.bin*', r => r.fulfill({ status: 200, contentType: 'application/octet-stream', headers: { 'access-control-allow-origin': '*' }, body: pkg }));
+  let sigFetched = false;
+  await p.route('**/fake-updates/beta/teklapelletcan.bin.sig*', r => { sigFetched = true; r.fulfill({ status: 200, contentType: 'text/plain', headers: { 'access-control-allow-origin': '*' }, body: goodSig }); });
   await p.evaluate(u => localStorage.setItem('tpc_manifest_url', u), BASE + '/fake-updates/manifest.json');
   await p.reload(); await p.waitForTimeout(2500);
   check('ustawienia: automatyczna kontrola pokazuje nowa wersje', /0\.3\.0\+99/.test(await p.locator('#upmsg').innerText()) && /Test aktualizacji/.test(await p.locator('#upmsg').innerText()));
@@ -69,6 +83,7 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   await p.click('#upgo');
   await p.waitForFunction(() => /zweryfikowano podpis/.test(document.getElementById('upmsg').textContent), null, { timeout: 15000 });
   check('aktualizacja pobrana z "internetu" i przyjeta przez urzadzenie (podpis OK)', true);
+  check('pakiet z wbudowanym podpisem: osobny plik .sig NIE jest pobierany', sigFetched === false);
   const idx = await (async () => { const pg = await b.newPage(); await pg.route(u => !u.href.startsWith(BASE), r => r.abort()); /* przeglądarka bez internetu: blokuj wszystko poza urządzeniem */ await pg.goto(BASE + '/index.html'); await pg.waitForTimeout(3000); const t = await pg.locator('#setlink').innerText(); await pg.close(); return t; })();
   check('brak internetu w przegladarce: strona dziala bez wskaznika', /Ustawienia, aktualizacja, dziennik/.test(idx), idx);
 
@@ -89,7 +104,18 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   check('nowe haslo dziala przy parowaniu, stare juz nie', pr.status === 200 && po.status === 401);
   check('sparowana przegladarka dziala dalej po zmianie hasla', (await (await fetch(BASE + '/api/v1/clients', { headers: { Authorization: 'Bearer ' + await p.evaluate(() => localStorage.getItem('tpc_token')) } })).json()).clients.length >= 1);
 
+  // 4b. reczne wgranie: sam plik pakietu (podpis w srodku), bez pola podpisu
+  await p.evaluate(() => { document.getElementById('otasig').value = ''; });
+  await p.setInputFiles('#otabin', OTA + '/good.pkg.bin'); await p.click('#otago');
+  await p.waitForFunction(() => /zweryfikowano podpis/.test(document.getElementById('upmsg').textContent), null, { timeout: 10000 });
+  check('reczne wgranie samego pliku z wbudowanym podpisem (bez .sig)', true);
+  await p.setInputFiles('#otabin', OTA + '/good.bin'); await p.click('#otago');   // goly obraz bez podpisu
+  await p.waitForFunction(() => /odrzucona/.test(document.getElementById('upmsg').textContent), null, { timeout: 10000 });
+  check('goly obraz bez podpisu odrzucony', /bad_image/.test(await p.locator('#upmsg').innerText()));
+  await p.evaluate(() => { document.getElementById('otasig').value = ''; });
+
   // 5. OTA: podmieniony plik
+  await p.evaluate(s => { document.getElementById('otasig').value = s; document.getElementById('upmsg').textContent = ''; }, goodSig);   // stary tryb: osobny podpis od INNEGO pliku
   await p.setInputFiles('#otabin', OTA + '/tampered.bin'); await p.click('#otago');
   await p.waitForFunction(() => /odrzucona/.test(document.getElementById('upmsg').textContent), null, { timeout: 10000 });
   check('OTA z podmienionym plikiem odrzucone', /bad_signature/.test(await p.locator('#upmsg').innerText()));

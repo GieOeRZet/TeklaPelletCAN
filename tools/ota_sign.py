@@ -5,6 +5,8 @@
   pubkey --key klucz.pem [--dev]         zapisuje klucz publiczny do firmware (ota_pubkey.cpp)
   sign   --key klucz.pem --bin plik.bin  wypisuje podpis (128 znakow hex, r||s) i zapisuje plik.bin.sig
   verify --key klucz.pem --bin plik.bin --sig HEX
+  package --key klucz.pem --bin plik.bin --out pakiet.bin   plik z podpisem WBUDOWANYM (obraz + "TPCSIG01" + podpis 64 B):
+                                                            do aktualizacji z przegladarki nie trzeba osobnego pliku .sig
 """
 import argparse, hashlib, os
 from pathlib import Path
@@ -14,6 +16,7 @@ from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives.asymmetric.utils import decode_dss_signature, encode_dss_signature, Prehashed
 
 ROOT = Path(__file__).resolve().parent.parent
+TRAILER_MAGIC = b"TPCSIG01"
 PUBKEY_CPP = ROOT / "firmware/components/core/ota_pubkey.cpp"
 
 
@@ -40,6 +43,7 @@ def main():
     s = sp.add_parser("init"); s.add_argument("--out", required=True)
     s = sp.add_parser("pubkey"); s.add_argument("--key", required=True); s.add_argument("--dev", action="store_true")
     s = sp.add_parser("sign"); s.add_argument("--key", required=True); s.add_argument("--bin", required=True)
+    s = sp.add_parser("package"); s.add_argument("--key", required=True); s.add_argument("--bin", required=True); s.add_argument("--out", required=True)
     s = sp.add_parser("verify"); s.add_argument("--key", required=True); s.add_argument("--bin", required=True); s.add_argument("--sig", required=True)
     a = p.parse_args()
     if a.cmd == "init":
@@ -56,6 +60,13 @@ def main():
             f"const uint8_t kOtaPubKey[65] = {{{','.join(f'0x{b:02X}' for b in pub)}}};\n"
             f"const bool kOtaDevKey = {'true' if a.dev else 'false'};\n\n}}  // namespace tpc\n", encoding="utf-8")
         print(f"zapisano {PUBKEY_CPP} ({'KLUCZ TESTOWY' if a.dev else 'produkcyjny'})")
+    elif a.cmd == "package":
+        data = Path(a.bin).read_bytes()
+        if data.endswith(b"") and TRAILER_MAGIC in data[-72:-64]:
+            data = data[:-72]                      # nie dubluj trailera
+        sig = bytes.fromhex(sign_image(load(a.key), data))
+        Path(a.out).write_bytes(data + TRAILER_MAGIC + sig)
+        print(f"zapisano {a.out}: {len(data)} B obrazu + 72 B podpisu")
     elif a.cmd == "sign":
         data = Path(a.bin).read_bytes()
         sig = sign_image(load(a.key), data)

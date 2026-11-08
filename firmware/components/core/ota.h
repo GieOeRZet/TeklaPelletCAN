@@ -23,6 +23,9 @@ public:
 enum class OtaResult : uint8_t { Ok, Busy, BadSignature, BadImage, WriteFailed, TooBig, NotStarted };
 
 constexpr uint16_t kChipEsp32C6 = 13;   // pole chip_id w nagłówku obrazu ESP
+// Pakiet z podpisem: obraz aplikacji + 8 B znacznika "TPCSIG01" + 64 B podpisu (r||s). Trailer nie jest zapisywany na partycję.
+constexpr size_t kSigTrailer = 72;
+constexpr char kSigMagic[9] = "TPCSIG01";
 
 class OtaSession {
 public:
@@ -30,7 +33,8 @@ public:
         : t_(target), pub_(pubkey), max_(max_size), chip_(chip_id) {}
     ~OtaSession();
 
-    // sig_hex = 128 znaków hex (r||s). Zwraca Ok albo przyczynę odmowy (wtedy nic nie zostało aktywowane).
+    // sig_hex = 128 znaków hex (r||s) albo PUSTY = podpis jest w ostatnich 72 bajtach pliku (pakiet). Zwraca Ok albo
+    // przyczynę odmowy (wtedy nic nie zostało aktywowane).
     OtaResult begin(size_t total_size, const std::string& sig_hex);
     OtaResult feed(const uint8_t* data, size_t len);
     OtaResult finish();      // sprawdza podpis i dopiero wtedy aktywuje obraz
@@ -45,6 +49,9 @@ private:
     uint16_t chip_;
     mbedtls_sha256_context sha_;
     uint8_t sig_[64];
+    uint8_t trailer_[kSigTrailer];
+    bool embedded_ = false;
+    size_t image_len_ = 0, trailer_got_ = 0;
     size_t total_ = 0, got_ = 0;
     uint8_t head_[16];
     bool active_ = false, sha_init_ = false;

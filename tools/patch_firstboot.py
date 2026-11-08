@@ -68,6 +68,9 @@ def main():
     a = p.parse_args()
 
     data = bytearray(Path(a.infile).read_bytes())
+    if data[-72:-64] == b"TPCSIG01":            # pakiet z podpisem: po wpisaniu danych podpis przestaje pasowac, wiec go zdejmujemy
+        del data[-72:]
+        print("uwaga: zdjeto podpis z pakietu (plik z wpisanymi danymi jest do wgrania przez ESPHome, nie przez nasze OTA)")
     if data.count(MAGIC) != 1:
         raise SystemExit(f"znacznik pola firstboot wystepuje {data.count(MAGIC)} razy (powinien raz) – zly plik?")
     base = data.index(MAGIC)

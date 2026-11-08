@@ -41,6 +41,7 @@ export async function downloadFirmware(entry, base, onProgress) {
   for (;;) { const { done, value } = await reader.read(); if (done) break; parts.push(value); got += value.length; if (onProgress && total) onProgress(got / total); }
   const blob = new Blob(parts, { type: 'application/octet-stream' });
   if (entry.size && blob.size !== entry.size) throw new Error('rozmiar pliku się nie zgadza (' + blob.size + ' ≠ ' + entry.size + ')');
+  if (entry.embedded) return { blob, sig: '' };   // podpis jest w pliku – bez osobnego pobierania
   const rs = await fetch(base + entry.sig + '?t=' + entry.sha256.slice(0, 8));
   if (!rs.ok) throw new Error('podpis: HTTP ' + rs.status);
   return { blob, sig: (await rs.text()).trim() };
@@ -52,7 +53,7 @@ export function uploadFirmware(blob, sig, token, onProgress) {
     const x = new XMLHttpRequest();
     x.open('POST', '/api/v1/ota');
     if (token) x.setRequestHeader('Authorization', 'Bearer ' + token);
-    x.setRequestHeader('X-Signature', sig);
+    if (sig) x.setRequestHeader('X-Signature', sig);   // pusty = podpis wbudowany w plik
     x.upload.onprogress = e => { if (onProgress && e.lengthComputable) onProgress(e.loaded / e.total); };
     x.onload = () => { let b = {}; try { b = JSON.parse(x.responseText); } catch (e) { /* pusty */ } resolve({ status: x.status, body: b }); };
     x.onerror = () => reject(new Error('błąd połączenia podczas wgrywania'));

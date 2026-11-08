@@ -1311,26 +1311,34 @@
     if (C.prototype.__v93) return;
     C.prototype.__v93 = true;
     const CARD_VER = '1.40';
-    const MAN = 'https://raw.githubusercontent.com/GieOeRZet/PelletCAN/main/version.json';
+    const MAN = (() => { try { return localStorage.getItem('tpc_manifest_url'); } catch (e) { return ''; } })() || 'https://raw.githubusercontent.com/GieOeRZet/TeklaPelletCan/updates/manifest.json';   // manifest wydań firmware TeklaPelletCAN
+    const CHAN = () => { try { return localStorage.getItem('tpc_channel') || 'beta'; } catch (e) { return 'beta'; } };
     const SK = 'igneo_upd_skip';
     const U = window.__igneoUpd = window.__igneoUpd || { m: null, t: 0 };
-    const cmp = (a, b) => { const x = String(a).split('.').map(Number), y = String(b).split('.').map(Number); for (let i = 0; i < Math.max(x.length, y.length); i++) { const d = (x[i] || 0) - (y[i] || 0); if (d) return d; } return 0; };
+    const cmp = (a, b) => { const x = String(a).split(/[.+]/).map(Number), y = String(b).split(/[.+]/).map(Number); for (let i = 0; i < Math.max(x.length, y.length); i++) { const d = (x[i] || 0) - (y[i] || 0); if (d) return d; } return 0; };
     const esc = t => String(t).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
     const skipped = () => { try { return JSON.parse(localStorage.getItem(SK) || '{}'); } catch (e) { return U.skipMem || {}; } };
     const load = async () => {
       if (Date.now() - U.t < 6 * 3600e3 && U.m) return;
       U.t = Date.now();
-      try { const r = await fetch(MAN + '?_=' + Date.now(), { cache: 'no-store' }); if (r.ok) { U.m = await r.json(); window.dispatchEvent(new Event('tekla-img')); } } catch (e) { /* brak sieci = brak informacji o aktualizacji */ }
+      try {
+        const r = await fetch(MAN + (MAN.includes('?') ? '&' : '?') + '_=' + Date.now(), { cache: 'no-store' });
+        if (r.ok) {
+          const j = await r.json(), en = (j.channels || {})[CHAN()];
+          // manifest wydań -> kształt używany przez kartę: { firmware: { version, changelog[] } } (karta jest częścią firmware, więc osobnej wersji karty nie ma)
+          U.m = en ? { firmware: { version: en.full || en.version, changelog: (en.changelog && en.changelog.length ? en.changelog : (en.notes ? [en.notes] : [])), date: en.date || '' } } : null;
+          window.dispatchEvent(new Event('tekla-img'));
+        }
+      } catch (e) { /* brak sieci = brak informacji o aktualizacji */ }
     };
     load(); setInterval(load, 6 * 3600e3);
 
-    C.prototype._fwVer = function () { const m = /^\s*(\d+(?:\.\d+)*)/.exec(String(this._t('fw_ver', ''))); return m ? m[1] : ''; };
+    C.prototype._fwVer = function () { const m = /^\s*v?(\d+(?:\.\d+)*(?:\+\d+)?)/.exec(String(this._t('fw_ver', ''))); return m ? m[1] : ''; };
     // lista dostepnych (i nieodrzuconych) aktualizacji: [{n, v, log}]
     C.prototype._upd = function () {
       const m = U.m, out = []; if (!m) return out;
       const sk = skipped(), fw = this._fwVer();
-      if (m.firmware && fw && cmp(m.firmware.version, fw) > 0 && sk.fw !== m.firmware.version) out.push({ k: 'fw', n: 'Firmware ESP', v: m.firmware.version, log: m.firmware.changelog || [] });
-      if (m.card && cmp(m.card.version, CARD_VER) > 0 && sk.card !== m.card.version) out.push({ k: 'card', n: 'Karta', v: m.card.version, log: m.card.changelog || [] });
+      if (m.firmware && fw && cmp(m.firmware.version, fw) > 0 && sk.fw !== m.firmware.version) out.push({ k: 'fw', n: 'Oprogramowanie modułu TeklaPelletCAN', v: m.firmware.version, log: m.firmware.changelog || [], date: m.firmware.date || '' });
       return out;
     };
 
@@ -1370,10 +1378,12 @@
       let b = '<div class="inf">';
       if (up.length) b += '<div class="updbtn" data-act="updskip">Odrzuć aktualizację</div>';
       b += '<div class="dim auth"><span>Stworzone przez: <span class="wh">Gorz Roman</span></span><span class="zq" data-act="zq"><i><svg viewBox="0 0 24 24"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z" fill="#fff"/><path d="M16 9.5h1.6a2 2 0 0 1 0 4H16" fill="none" stroke="#fff" stroke-width="1.6"/><rect x="5" y="18.2" width="11" height="1.6" rx=".8" fill="#fff"/></svg></i>Postaw kawę</span></div>'
-        + '<div class="dim">Oprogramowanie: <span class="wh">firmware ' + (fw || '-') + ' · karta ' + CARD_VER + '</span></div>';
+        + '<div class="dim">Oprogramowanie modułu: <span class="wh">TeklaPelletCAN ' + (fw || '-') + '</span></div>';
       up.forEach(u => {
-        b += '<div class="gn upt">Aktualizacja: ' + u.n + ' do wersji ' + esc(u.v) + '</div>'
-          + u.log.map(l => '<div class="chg">• ' + esc(l) + '</div>').join('');
+        b += '<div class="gn upt">Dostępna aktualizacja: ' + esc(u.v) + (u.date ? ' (' + esc(u.date) + ')' : '') + '</div>'
+          + (window.__tpcDevice ? '<a class="updbtn" href="/settings.html" style="display:block;text-decoration:none;margin:1cqw 0">Zainstaluj w Ustawieniach</a>' : '<div class="dim">Zainstaluj na stronie urządzenia: Ustawienia → Aktualizacja.</div>')
+          + (u.log.length ? '<div class="dim">Zmiany:</div>' : '') + u.log.slice(0, 5).map(l => '<div class="chg">• ' + esc(l) + '</div>').join('')
+          + (u.log.length > 5 ? '<div class="dim">… i ' + (u.log.length - 5) + ' więcej (pełna lista na stronie urządzenia)</div>' : '');
       });
       return this._page('INFO', 'menu', b + '</div>');
     };

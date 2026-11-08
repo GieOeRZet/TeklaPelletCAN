@@ -32,8 +32,9 @@ jobs:
           . $IDF_PATH/export.sh
           pip install -q cryptography
           if [ -n "$KEY" ]; then printf '%s\n' "$KEY" > /tmp/ota.pem; else cp tools/dev-keys/ota-dev-private.pem /tmp/ota.pem; echo "UWAGA: podpis kluczem TESTOWYM"; fi
-          python3 tools/ota_sign.py sign --key /tmp/ota.pem --bin firmware/build/teklapelletcan.bin
-          cp firmware/build/teklapelletcan.bin firmware/build/teklapelletcan.bin.sig .
+          python3 tools/ota_sign.py sign --key /tmp/ota.pem --bin firmware/build/teklapelletcan.bin       # .sig (zgodność wsteczna)
+          cp firmware/build/teklapelletcan.bin.sig .
+          python3 tools/ota_sign.py package --key /tmp/ota.pem --bin firmware/build/teklapelletcan.bin --out teklapelletcan.bin   # plik z podpisem w środku
           rm -f /tmp/ota.pem
       - uses: actions/upload-artifact@v4
         with:
@@ -66,6 +67,7 @@ jobs:
           h=bytearray(24); h[0]=0xE9; h[12]=13
           img=bytes(h)+bytes((i*7+3)&0xFF for i in range(20000))
           Path('/tmp/ota/good.bin').write_bytes(img); Path('/tmp/ota/good.sig').write_text(O.sign_image(key,img)+"\n")
+          Path('/tmp/ota/good.pkg.bin').write_bytes(img + O.TRAILER_MAGIC + bytes.fromhex(O.sign_image(key,img)))
           bad=bytearray(img); bad[5000]^=1; Path('/tmp/ota/tampered.bin').write_bytes(bytes(bad))
           PY
           build-host/sim_server 8102 web & sleep 15
@@ -96,6 +98,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/download-artifact@v4
         with:
           name: teklapelletcan-firmware
@@ -112,7 +116,10 @@ jobs:
           cp art/teklapelletcan.bin /tmp/upd/$CHANNEL/teklapelletcan.bin
           cp art/teklapelletcan.bin.sig /tmp/upd/$CHANNEL/teklapelletcan.bin.sig
           NOTES="$(git log -1 --pretty=%s "$SHA")"
-          python3 tools/make_manifest.py --dir /tmp/upd --channel $CHANNEL --version "$(cat VERSION)" --build "$RUN_NUMBER" --commit "$SHA" --notes "$NOTES"
+          # changelog = komunikaty commitów od poprzedniego opublikowanego wydania tego kanału (max 15)
+          PREV="$(python3 -c "import json;print(json.load(open('/tmp/upd/manifest.json'))['channels']['$CHANNEL']['commit'])" 2>/dev/null || true)"
+          if [ -n "$PREV" ] && git cat-file -e "$PREV^{commit}" 2>/dev/null; then CHG="$(git log --pretty=%s "$PREV..$SHA" | head -15)"; else CHG="$(git log --pretty=%s -n 10 "$SHA")"; fi
+          python3 tools/make_manifest.py --dir /tmp/upd --channel $CHANNEL --version "$(cat VERSION)" --build "$RUN_NUMBER" --commit "$SHA" --notes "$NOTES" --changelog "$CHG" --embedded
           cd /tmp/upd
           FULL="$(python3 -c "import json;print(json.load(open('manifest.json'))['channels']['$CHANNEL']['full'])")"
           git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"

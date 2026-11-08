@@ -353,6 +353,25 @@ static void test_ota() {
         assert(s3.begin(n, kOtaWrongChipSig) == OtaResult::Ok);
         assert(s3.feed(kOtaGood, n) == OtaResult::Ok && s3.finish() == OtaResult::BadSignature && !t3.ended);
     }
+    {   // pakiet z podpisem wbudowanym w plik: bez osobnego .sig, podawany kawałkami o różnych rozmiarach (też przez granicę trailera)
+        for (size_t chunk : {1u, 37u, 71u, 72u, 73u, 500u, 5000u}) {
+            MemTarget t; OtaSession s(t, kOtaPubKey, 1 << 20);
+            assert(s.begin(sizeof kOtaPackage, "") == OtaResult::Ok);
+            for (size_t off = 0; off < sizeof kOtaPackage; off += chunk) assert(s.feed(kOtaPackage + off, std::min<size_t>(chunk, sizeof kOtaPackage - off)) == OtaResult::Ok);
+            assert(!t.ended);
+            assert(s.finish() == OtaResult::Ok && t.ended);
+            assert(t.data.size() == sizeof kOtaGood && memcmp(t.data.data(), kOtaGood, sizeof kOtaGood) == 0);   // na partycję trafia sam obraz, bez trailera
+        }
+        MemTarget t2; OtaSession s2(t2, kOtaPubKey, 1 << 20);      // zmieniony obraz z poprawnym trailerem -> zły podpis
+        assert(s2.begin(sizeof kOtaPackageTampered, "") == OtaResult::Ok);
+        assert(s2.feed(kOtaPackageTampered, sizeof kOtaPackageTampered) == OtaResult::Ok && s2.finish() == OtaResult::BadSignature && !t2.ended);
+        MemTarget t3; OtaSession s3(t3, kOtaPubKey, 1 << 20);      // plik bez podpisu (trailer pusty)
+        assert(s3.begin(sizeof kOtaPackageNoSig, "") == OtaResult::Ok);
+        assert(s3.feed(kOtaPackageNoSig, sizeof kOtaPackageNoSig) == OtaResult::Ok && s3.finish() == OtaResult::BadImage && !t3.ended);
+        MemTarget t4; OtaSession s4(t4, kOtaPubKey, 1 << 20);      // zwykły obraz bez trailera podany bez podpisu
+        assert(s4.begin(sizeof kOtaGood, "") == OtaResult::Ok);
+        assert(s4.feed(kOtaGood, sizeof kOtaGood) == OtaResult::Ok && s4.finish() == OtaResult::BadImage && !t4.ended);
+    }
     {   // przerwane przesyłanie (za mało bajtów)
         MemTarget t; OtaSession s(t, kOtaPubKey, 1 << 20);
         assert(s.begin(n, kOtaGoodSig) == OtaResult::Ok);

@@ -7,7 +7,7 @@ bez wysyłania gdziekolwiek.
 
 ## 1. Pobierz plik
 GitHub → **Actions** → ostatni przebieg „CI” na gałęzi → artefakt **teklapelletcan-firmware**:
-`teklapelletcan.bin` (aplikacja) i `teklapelletcan.bin.sig` (podpis do późniejszych aktualizacji z przeglądarki).
+`teklapelletcan.bin` – **jeden plik z podpisem w środku** (do skryptu poniżej i do późniejszych aktualizacji z przeglądarki). `teklapelletcan.bin.sig` jest tylko dla zgodności ze starszymi wersjami – nie jest potrzebny.
 
 ## 2. Wpisz w plik swoją sieć (lokalnie)
 Wymaga Pythona 3 (bez żadnych bibliotek), plik `tools/patch_firstboot.py` z repozytorium:
@@ -59,7 +59,8 @@ Po ok. 30–60 s:
 - **Z dostępem fizycznym:** przytrzymaj przycisk **BOOT 10 s** (GPIO9 na XIAO ESP32-C6) – reset fabryczny (hasło, sieć, ustawienia), uruchomi się portal `TeklaPelletCAN-XXXX`.
 
 ## 6. Aktualizacje później (jedno kliknięcie w przeglądarce)
-Ustawienia → **Aktualizacja oprogramowania**: wybierz `teklapelletcan.bin` i plik `.sig` z artefaktu CI → *Wgraj*.
+Ustawienia → **Aktualizacja oprogramowania** → *Sprawdź aktualizacje* → *Pobierz i zainstaluj* (przeglądarka sama pobiera plik z GitHuba).
+Ręcznie: *Wgraj plik ręcznie* → wskaż `teklapelletcan.bin` (podpis jest w środku, osobny `.sig` nie jest potrzebny).
 Urządzenie sprawdza **podpis ECDSA** – obcego pliku nie przyjmie. Uwaga: obecnie podpis wykonuje klucz **testowy** z repozytorium
 (etap rozwojowy); przed wydaniem produkcyjnym trzeba wygenerować własny klucz (`tools/ota_sign.py init`) i dodać go jako sekret `OTA_SIGNING_KEY`.
 

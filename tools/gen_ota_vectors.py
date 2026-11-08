@@ -17,7 +17,13 @@ wrong_chip = image(5)
 tampered = bytearray(good); tampered[500] ^= 1
 def arr(name, data):
     return f"static const unsigned char {name}[] = {{{','.join(str(b) for b in data)}}};\n"
+TR = O.TRAILER_MAGIC
+sig_good = bytes.fromhex(O.sign_image(key, good))
+pkg = good + TR + sig_good
+pkg_tampered = bytes(tampered) + TR + sig_good
+pkg_nosig = good + bytes(72)
 out = "// WYGENEROWANE przez tools/gen_ota_vectors.py (klucz testowy)\n#pragma once\n"
+out += arr("kOtaPackage", pkg) + arr("kOtaPackageTampered", pkg_tampered) + arr("kOtaPackageNoSig", pkg_nosig)
 out += arr("kOtaGood", good) + arr("kOtaWrongChip", wrong_chip) + arr("kOtaTampered", bytes(tampered))
 out += f'static const char* kOtaGoodSig = "{O.sign_image(key, good)}";\n'
 out += f'static const char* kOtaWrongChipSig = "{O.sign_image(key, wrong_chip)}";\n'

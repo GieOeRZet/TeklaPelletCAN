@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
     EngineConfig cfg;
     cfg.boot_delay_ms = 500;
     cfg.boot_guard_ms = 0;
-    cfg.fw = "sim-0.1.0";
+    cfg.fw = "0.3.0+1";
     Engine engine(cfg, [&](const CanFrame& f) { return boiler.on_can(f); }, dev);
     MemoryClientStore clients;
     if (!password.empty()) clients.set_password(password);
