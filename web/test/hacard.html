@@ -71,6 +71,10 @@ async function setup() {
   card.hass = hass;
   editor.setConfig(card._tcfg || {});
   editor.hass = hass;
+  // Symuluje normalne odswiezanie z HA (coordinator co ~2 s): NOWY obiekt hass (inna referencja, ta sama trasc)
+  // przypisywany do .hass. Karta nie moze przy tym gubic biezacego ekranu (regresja: setConfig wywolywany co tyk).
+  window.__pushHassTick = () => { card.hass = Object.assign({}, window.__hass, { states: Object.assign({}, window.__hass.states), entities: Object.assign({}, window.__hass.entities), devices: Object.assign({}, window.__hass.devices) }); };
+  window.__cardScreen = () => card._scr;
   window.__ready = true;
 }
 setup();

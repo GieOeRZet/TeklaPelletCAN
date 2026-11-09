@@ -40,7 +40,7 @@
     setConfig(c) {
       if (!c || typeof c !== 'object') throw new Error('Nieprawidłowa konfiguracja karty');
       this._tcfg = Object.assign({ grafiki: 'pelne', boiler_image: '13', screen: 'main', language: 'auto' }, c);
-      this._sig = '';
+      this._resolvedDevId = undefined;   // wymusza ponowne rozwiazanie urzadzenia/prefiksu (ale nie na kazdym tyknieciu hass!)
       if (this._lastHass) this._apply(this._lastHass); else super.setConfig(this._innerConfig({}));
     }
     _innerConfig(extra) {
@@ -54,10 +54,14 @@
         boiler_image: ['11', '12', '13', '14'].includes(String(t.boiler_image)) ? String(t.boiler_image) : '13',
       }, extra);
     }
+    // WAZNE: tekla-panel-card.setConfig() resetuje biezacy ekran karty (this._scr = ...screen...). Dlatego
+    // setConfig wolno wywolac ponownie TYLKO gdy faktycznie zmienilo sie urzadzenie (albo konfiguracja karty
+    // z edytora) – NIGDY przy zwyklym odswiezeniu stanow z HA (co ~2 s), bo inaczej kazde klikniecie w karcie
+    // cofa sie po chwili do ekranu glownego (dokladnie taki byl zglaszany blad).
     _apply(hass) {
       const devs = ourDevices(hass);
       if (!devs.length) {
-        this._sig = 'none';
+        this._resolvedDevId = null;
         this.innerHTML = '<ha-card><div style="padding:16px;color:var(--error-color,#db4437);font-size:14px;line-height:1.5">' +
           '<b>TeklaPelletCAN</b><br>Nie znaleziono żadnego urządzenia tej integracji. Dodaj ją w ' +
           '<b>Ustawienia → Urządzenia i usługi → Dodaj integrację → TeklaPelletCAN</b>.</div></ha-card>';
@@ -65,14 +69,14 @@
       }
       const want = this._tcfg && this._tcfg.device_id;
       const dev = (want && devs.find(d => d.id === want)) || devs[0];
-      const pf = prefixOf(hass, dev.id);
-      const sig = dev.id + '|' + pf + '|' + JSON.stringify(this._tcfg);
-      if (sig !== this._sig) {
-        this._sig = sig;
-        this._multi = devs.length > 1;
-        this._devName = dev.name;
+      this._multi = devs.length > 1;
+      this._devName = dev.name;
+      if (dev.id !== this._resolvedDevId || this._resolvedCfg !== this._tcfg) {
+        this._resolvedDevId = dev.id;
+        this._resolvedCfg = this._tcfg;
+        this._pf = prefixOf(hass, dev.id);   // raz na urzadzenie: nazwa encji sie nie zmienia w trakcie dzialania karty
         if (this._warnEl) { this._warnEl.remove(); this._warnEl = null; }
-        super.setConfig(this._innerConfig(pf ? { entity_prefix: pf } : {}));
+        super.setConfig(this._innerConfig(this._pf ? { entity_prefix: this._pf } : {}));
       }
       super.hass = hass;
       if (this._multi && !want && !this._warnEl) {

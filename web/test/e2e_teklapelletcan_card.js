@@ -64,6 +64,25 @@ async function cardText(page) {
     await ctx.close();
   }
 
+  // ---- regresja: klikniecie w ekran karty nie cofa sie po kolejnym odswiezeniu stanow z HA ----
+  {
+    const ctx = await b.newContext({ viewport: { width: 480, height: 900 }, deviceScaleFactor: 2 });
+    const p = await ctx.newPage();
+    await p.goto(BASE + '/test/hacard.html?mode=one');
+    await p.waitForFunction(() => window.__ready === true, null, { timeout: 15000 });
+    await sleep(2000);
+    check('nawigacja: start na ekranie głównym', (await p.evaluate(() => window.__cardScreen())) === 'main');
+    // wejscie w podmenu "Historia alarmów" (nie wymaga PIN-u, jak w oryginalnej karcie)
+    await p.evaluate(() => { document.querySelector('#root teklapelletcan-card')._go('alarm'); });
+    const scrAfterClick = await p.evaluate(() => window.__cardScreen());
+    check('nawigacja: klik zmienia ekran', scrAfterClick === 'alarm', scrAfterClick);
+    // symulacja kilku kolejnych odswiezen z HA (jak coordinator co 2 s) – ekran MUSI zostac
+    for (let i = 0; i < 4; i++) { await p.evaluate(() => window.__pushHassTick()); await sleep(600); }
+    const scrAfterTicks = await p.evaluate(() => window.__cardScreen());
+    check('nawigacja: ekran NIE wraca do głównego po odświeżeniach stanów', scrAfterTicks === 'alarm', 'było: ' + scrAfterTicks);
+    await ctx.close();
+  }
+
   // ---- 0 urzadzen: czytelny komunikat, karta nie wybucha ----
   {
     const ctx = await b.newContext({ viewport: { width: 480, height: 300 } });
