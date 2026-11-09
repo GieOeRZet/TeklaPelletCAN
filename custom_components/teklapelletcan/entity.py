@@ -16,6 +16,9 @@ class TeklaEntity(CoordinatorEntity[TeklaCoordinator]):
         self._id = item["id"]
         self._attr_name = item["attributes"]["friendly_name"]
         self._attr_unique_id = f"{coordinator.device_id}_{self._id}"
+        # Id punktu z urzadzenia (ten sam co w rejestry/*.csv i w /api/v1/points) – jako atrybut stanu, zeby
+        # karty Lovelace mogly mapowac punkt -> encje bez zgadywania po nazwie (np. teklapelletcan-modern-card).
+        self._attr_extra_state_attributes = {"tpc_id": self._id}
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, coordinator.device_id)},
             name=coordinator.device_name,

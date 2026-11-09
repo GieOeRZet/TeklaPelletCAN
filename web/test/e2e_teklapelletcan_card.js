@@ -112,7 +112,89 @@ async function cardText(page) {
     await ctx.close();
   }
 
+  await modernTests(b);
+
   await b.close();
   console.log(fail.length ? '\nNIEPOWODZENIA: ' + fail.join('; ') : '\nWSZYSTKO OK');
   process.exit(fail.length ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(2); });
+
+// ==================================================================================================
+// teklapelletcan-modern-card: pulpit/instalacja/nastawy/harmonogram/alarmy, adresowanie po tpc_id,
+// zapisy przez prawdziwe uslugi HA (forwardowane w tescie do demo_server – ten sam silnik co firmware).
+// ==================================================================================================
+async function modernTests(b) {
+  const ctx = await b.newContext({ viewport: { width: 440, height: 1400 }, deviceScaleFactor: 2 });
+  const p = await ctx.newPage();
+  const errs = []; p.on('pageerror', e => errs.push(e.message));
+  p.setDefaultTimeout(8000);
+  await p.goto(BASE + '/test/hacard.html?mode=one');
+  await p.waitForFunction(() => window.__ready === true, null, { timeout: 15000 });
+  await p.waitForFunction(() => typeof window.__modernReady === 'function', null, { timeout: 15000 });
+  await p.evaluate(() => window.__modernReady());
+  await p.waitForFunction(() => !!window.__mcard, null, { timeout: 10000 });
+  await sleep(1500);
+
+  const mtxt = sel => p.evaluate(sel => document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector(sel).textContent, sel);
+  const mhas = sel => p.evaluate(sel => !!document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector(sel), sel);
+  const mclick = sel => p.evaluate(sel => document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector(sel).click(), sel);
+  const mtext = () => p.evaluate(() => document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.getElementById('body').textContent);
+
+  check('modern: pulpit renderuje temperaturę kotła (po tpc_id, bez zgadywania)', /\d\d\.\d/.test(await mtxt('.hero .big')));
+  check('modern: grafika kotła załadowana', await p.evaluate(() => { const i = document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector('.hero img'); return i.complete && i.naturalWidth > 20; }));
+  check('modern: kafelek paliwa', /\d+/.test(await mtxt('[data-fuel] b')));
+  await p.screenshot({ path: OUT + '/ha_modern_pulpit.png' });
+
+  // nawigacja + regresja (ten sam blad co w teklapelletcan-card: setConfig nie wolno wywolywac na kazdym hass ticku)
+  await mclick('[data-s="instalacja"]');
+  check('modern: nawigacja do Instalacja', (await mtext()).includes('Zbiornik'));
+  await p.evaluate(() => window.__pushHassTick());
+  await p.evaluate(() => { document.querySelector('#rootm teklapelletcan-modern-card').hass = window.__hass; });
+  await sleep(300);
+  check('modern: ekran NIE wraca do pulpitu po odświeżeniu hass', await mhas('#nav button[data-s="instalacja"].on'));
+
+  // odblokowanie poziomu 1 (PIN 0900) i zapis nastawy wymagajacej poziomu
+  await mclick('[data-s="nastawy"]');
+  await mclick('.stepper[data-id="boiler_set_manual"]');
+  await sleep(300);
+  check('modern: edycja prostego pola (poziom 0) nie wymaga PIN-u', !(await mhas('.sheet .pin')));
+  // zmiana zadanej kotla (set_setpoint which=0) i weryfikacja na silniku
+  await p.evaluate(() => { const r = document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot; r.querySelector('.sheet #p').click(); });
+  await p.evaluate(() => { const r = document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot; r.querySelector('.sheet #ok').click(); });
+  await sleep(600);
+  await p.evaluate(() => window.__refreshFromDevice());
+  await sleep(300);
+  check('modern: zapis zadanej kotła trafił do silnika (set_setpoint)', (await p.evaluate(() => window.__hass.states['sensor.tekla_kociol_zadana_reczna'].state)) === '71', await p.evaluate(() => window.__hass.states['sensor.tekla_kociol_zadana_reczna'].state));
+
+  // harmonogram: edycja dnia i zapis (realny set_schedule)
+  await mclick('[data-s="harmonogram"]');
+  check('modern: siedem dni w harmonogramie', (await p.evaluate(() => document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelectorAll('.dayrow').length)) === 7);
+  await p.evaluate(() => { document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelectorAll('.dayrow')[1].click(); });
+  await sleep(300);
+  check('modern: okno edycji dnia harmonogramu', await mhas('.hgrid'));
+  const was12 = await p.evaluate(() => document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector('.hgrid button[data-h="12"]').classList.contains('on'));
+  await p.evaluate(() => { document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector('.hgrid button[data-h="12"]').click(); });
+  await p.evaluate(() => { document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector('.sheet #ok').click(); });
+  await sleep(700);
+  await p.evaluate(() => window.__refreshFromDevice());
+  await sleep(300);
+  const co2 = await p.evaluate(() => window.__hass.states['sensor.tekla_co_harmonogram_rejestry'].state.split(' ')[1]);
+  check('modern: zapis harmonogramu (godzina 12, wtorek) trafił do silnika', (((parseInt(co2, 16) >> 12) & 1) === 1) === !was12, co2);
+
+  // alarmy
+  await mclick('[data-s="alarmy"]');
+  check('modern: historia alarmów z wpisami', /Przegrzanie|Brak ognia/.test(await mtext()));
+  check('modern: puste wpisy historii (\'-\') nie są pokazywane', !(await mtext()).includes('trwa'));
+  await p.screenshot({ path: OUT + '/ha_modern_alarmy.png' });
+
+  // brak urzadzenia: czytelny komunikat
+  await p.goto(BASE + '/test/hacard.html?mode=none');
+  await p.waitForFunction(() => window.__ready === true, null, { timeout: 15000 });
+  await p.waitForFunction(() => typeof window.__modernReady === 'function', null, { timeout: 15000 });
+  await p.evaluate(() => window.__modernReady());
+  await sleep(600);
+  check('modern: brak urządzenia -> czytelny komunikat', (await p.evaluate(() => document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.getElementById('body').textContent)).includes('Nie znaleziono'));
+
+  check('modern: brak błędów JS', errs.length === 0, errs.join('|'));
+  await ctx.close();
+}
