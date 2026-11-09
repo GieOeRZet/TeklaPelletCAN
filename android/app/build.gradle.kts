@@ -5,7 +5,9 @@ plugins {
 
 // Wersja aplikacji = wersja firmware z pliku VERSION w korzeniu repo; numer budowy z CI.
 val appVersion = rootProject.file("../VERSION").readText().trim()
-val buildNo = (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInt()
+// Zmienne puste (np. brakujące sekrety CI) traktujemy jak nieustawione.
+fun env(name: String, default: String): String = System.getenv(name)?.takeIf { it.isNotBlank() } ?: default
+val buildNo = env("GITHUB_RUN_NUMBER", "1").toInt()
 
 android {
     namespace = "pl.gieoerzet.teklapelletcan"
@@ -26,10 +28,10 @@ android {
     // Klucz podpisu: z sekretów CI (ANDROID_KEYSTORE_FILE/…); bez nich – klucz TESTOWY z repozytorium (android/dev-release.jks).
     signingConfigs {
         create("release") {
-            storeFile = file(System.getenv("ANDROID_KEYSTORE_FILE") ?: "../dev-release.jks")
-            storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD") ?: "tekla-dev"
-            keyAlias = System.getenv("ANDROID_KEY_ALIAS") ?: "tekla"
-            keyPassword = System.getenv("ANDROID_KEY_PASSWORD") ?: "tekla-dev"
+            storeFile = file(env("ANDROID_KEYSTORE_FILE", "../dev-release.jks"))
+            storePassword = env("ANDROID_KEYSTORE_PASSWORD", "tekla-dev")
+            keyAlias = env("ANDROID_KEY_ALIAS", "tekla")
+            keyPassword = env("ANDROID_KEY_PASSWORD", "tekla-dev")
         }
     }
     buildTypes {
