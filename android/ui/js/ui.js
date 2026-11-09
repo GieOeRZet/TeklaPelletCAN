@@ -61,9 +61,23 @@ export function confirmSheet(title, text, okLabel = 'Zastosuj') {
   });
 }
 
+/** Pierwsze ustawienie PIN-u aplikacji (wywolywane leniwie przy pierwszej probie odblokowania sterowania,
+ * nie od razu po instalacji - uzytkownik moze wpierw przejrzec/dodac urzadzenie bez zadnego hasla). */
+export async function ensurePinSetup() {
+  const pin1 = await pinSheet({ title: 'Ustaw PIN aplikacji', sub: 'PIN chroni sterowanie kotłem (4–12 cyfr). Bez niego aplikacja działa tylko jako podgląd.' });
+  if (!pin1) return false;
+  const pin2 = await pinSheet({ title: 'Powtórz PIN', sub: 'Wpisz ten sam PIN jeszcze raz', check: async p => (p === pin1 ? null : 'PIN-y się różnią') });
+  if (!pin2) return false;
+  const r = nat.setupPin(pin1);
+  if (!r.ok) { toast(r.error); return false; }
+  nat.setBio(false);
+  return true;
+}
+
 /** Odblokowanie zapisu PIN-em aplikacji lub odciskiem. Zwraca true po sukcesie. */
 export async function ensureUnlocked() {
   if (nat.state().unlocked) return true;
+  if (!nat.state().hasPin && !(await ensurePinSetup())) return false;
   const st = nat.state();
   const useBio = st.bio && st.bioAvailable;
   let bioOk = null;
@@ -96,10 +110,15 @@ export async function ensureLevel(need) {
       const r = await api('POST', '/api/v1/call', { domain: 'teklapelletcan', service: 'tekla_estyma_unlock', data: { pin: parseInt(p, 10) } });
       if (r.status === 403 && r.json.error === 'app_locked') return 'Aplikacja zablokowana';
       if (r.status !== 200) return 'Błąd połączenia z urządzeniem';
-      await new Promise(res => setTimeout(res, 700));
-      const s = await api('GET', '/api/v1/states');
-      const lv = (s.json.states || []).find(x => x.entity_id === 'sensor.tekla_poziom_dostepu');
-      const cur = lv ? parseInt(lv.state, 10) : (r.json.level || 0);
+      // odczyt poziomu potwierdzany asynchronicznie przez urzadzenie - pojedyncze 700ms nie zawsze wystarcza
+      // (wolniejsza siec/urzadzenie), wiec odpytujemy do skutku zamiast raz, do ok. 4 s.
+      let cur = r.json.level || 0;
+      for (let i = 0; i < 10 && cur < need; i++) {
+        await new Promise(res => setTimeout(res, 400));
+        const s = await api('GET', '/api/v1/states');
+        const lv = (s.json.states || []).find(x => x.entity_id === 'sensor.tekla_poziom_dostepu');
+        if (lv) cur = parseInt(lv.state, 10);
+      }
       return cur >= need ? null : (cur > 0 ? `Ten PIN daje tylko poziom ${cur}` : 'Zły PIN poziomu');
     },
   });

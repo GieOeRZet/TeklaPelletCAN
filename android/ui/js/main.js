@@ -1,6 +1,6 @@
 import { nat, onEvent, api } from './native.js';
-import { S, startPolling, stopPolling, subscribe, level } from './store.js';
-import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ensureLevel, confirmSheet } from './ui.js';
+import { S, startPolling, stopPolling, subscribe, level, refreshInfo } from './store.js';
+import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ensureLevel, ensurePinSetup, confirmSheet } from './ui.js';
 import * as V from './views.js';
 import { checkUpdates, dismissed, dismiss } from './updates.js';
 
@@ -92,9 +92,16 @@ async function render() {
   if (unsub) { unsub(); unsub = null; }
   closeSheet();
   const st = nat.state();
-  if (!st.hasPin && r !== 'setup') return go('setup');
+  // PIN aplikacji pyta sie dopiero przy pierwszej probie sterowania (ensureUnlocked), nie od razu po instalacji -
+  // przegladanie listy/dodawanie urzadzenia i podglad pulpitu (odczyt) dzialaja bez PIN-u.
   if (r === 'setup') return viewSetup();
-  if (r === 'start' || r === 'devices') return viewDevices();
+  if (r === 'start') {
+    // uruchomienie apki z jednym zapisanym urzadzeniem -> od razu pulpit kotla, bez listy do klikniecia
+    const devices = nat.devices();
+    if (devices.length === 1) { nat.selectDevice(devices[0].base, devices[0].name); go('d/pulpit'); startPolling(); return; }
+    return viewDevices();
+  }
+  if (r === 'devices') return viewDevices();
   if (r === 'app') return viewAppSettings();
   if (r.startsWith('d/')) {
     if (!st.deviceName) return go('devices');
@@ -142,7 +149,12 @@ onEvent(e => {
     toast(e.reason === 'idle' ? 'Odblokowanie wygasło – tryb podglądu' : 'Sterowanie zablokowane');
   } else if (e.type === 'needs_unlock') {
     ensureUnlocked().then(ok => { if (ok) toast('Odblokowano – spróbuj ponownie'); });
-  } else if (e.type === 'device_closed') { refreshChip(); }
+  } else if (e.type === 'device_closed') {
+    refreshChip();
+    // po powrocie z konfiguracji urzadzenia (mogla tam byc instalacja aktualizacji OTA) odswiez fw i,
+    // jesli jestesmy na pulpicie, przerysuj go - inaczej baner "dostepna aktualizacja" wisi do nastepnej nawigacji
+    refreshInfo().then(() => { if (location.hash === '#/d/pulpit') render(); });
+  }
 });
 setInterval(refreshChip, 1000);
 
@@ -211,7 +223,7 @@ function viewDevices() {
     if (!list.length) { box.innerHTML = `<div class="hint">${Object.keys(found).length ? 'Wszystkie znalezione urządzenia są już na liście.' : 'Nic nie znaleziono. Upewnij się, że telefon jest w tej samej sieci Wi‑Fi co urządzenie, albo dodaj adres ręcznie.'}</div>`; return; }
     list.forEach(f => {
       const b = el(`<div class="dev"><span class="dot on"></span><div class="t"><b>${esc(f.name)}</b><small>${esc(f.base.replace('http://', ''))}${f.fw ? ' · fw ' + esc(f.fw) : ''}</small></div><button class="btn acc" style="margin:0;width:auto;padding:9px 14px">Dodaj</button></div>`);
-      $('button', b).onclick = () => { devices.push({ id: f.id, name: f.name, base: f.base, fw: f.fw, up: true }); save(); renderMine(); renderFound(); };
+      $('button', b).onclick = () => { devices.push({ id: f.id, name: f.name, base: f.base, fw: f.fw, up: true }); save(); open(f.base, f.name); };
       box.appendChild(b);
     });
   };
@@ -236,7 +248,8 @@ function viewDevices() {
     window.__addPing = (i, info) => {
       if (i !== key) return; window.__addPing = null;
       if (!info || !info.id) return msg('Pod tym adresem nie ma urządzenia TeklaPelletCAN (brak odpowiedzi).');
-      devices.push({ id: info.id, name: 'TeklaPelletCAN ' + info.id.slice(-4), base, fw: info.fw, up: true }); save(); renderMine(); renderFound(); $('#addr', root).value = ''; msg('Dodano.');
+      const name = 'TeklaPelletCAN ' + info.id.slice(-4);
+      devices.push({ id: info.id, name, base, fw: info.fw, up: true }); save(); open(base, name);
     };
     nat.ping(key, base);
   };

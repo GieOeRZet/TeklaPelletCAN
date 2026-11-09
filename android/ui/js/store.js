@@ -42,3 +42,11 @@ export async function startPolling() {
 export function stopPolling() { if (timer) clearInterval(timer); timer = null; }
 export const refreshSoon = () => setTimeout(pull, 450);
 export const pullNow = pull;
+
+/** Doczytuje /api/v1/info (wersja firmware itp.) bez czekania na kolejny cykl pull() – wolniej zmienne niz
+ * stany, ale musi sie odswiezyc np. zaraz po aktualizacji OTA (strona konfiguracji zamknieta), zeby baner
+ * "dostepna aktualizacja" zniknal od razu, a nie dopiero po ponownym wybraniu urzadzenia. */
+export async function refreshInfo() {
+  const info = await api('GET', '/api/v1/info');
+  if (info.status === 200) { S.info = info.json; subs.forEach(fn => { try { fn(); } catch (e) { /* widok odswiezy sie nastepnym razem */ } }); }
+}

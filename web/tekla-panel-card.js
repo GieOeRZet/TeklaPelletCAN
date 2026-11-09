@@ -914,9 +914,7 @@ class TeklaPanelCard extends HTMLElement {
     `;
   }
 }
-customElements.define('tekla-panel-card', TeklaPanelCard);
-window.customCards = window.customCards || [];
-window.customCards.push({ type: 'tekla-panel-card', name: 'Tekla – panel igneo Touch', description: 'Replika panelu Estyma Igneo Touch' });
+customElements.define('tekla-panel-card', TeklaPanelCard);   // silnik renderowania, nie pokazujemy w selektorze kart (zob. teklapelletcan-card.js)
 
 /* ---------- edytor karty (wizualny konfigurator) ---------- */
 class TeklaPanelCardEditor extends HTMLElement {
