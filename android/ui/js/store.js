@@ -41,3 +41,4 @@ export async function startPolling() {
 }
 export function stopPolling() { if (timer) clearInterval(timer); timer = null; }
 export const refreshSoon = () => setTimeout(pull, 450);
+export const pullNow = pull;

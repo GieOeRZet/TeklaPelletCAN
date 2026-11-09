@@ -3,8 +3,48 @@ import { nat, api } from './native.js';
 import { S, v, num, pv, pn, level, subscribe } from './store.js';
 import { $, el, esc, f1, fmt, toast, openSheet, closeSheet, ensureLevel, ensureUnlocked, editPoint, callService, writePoint, confirmSheet } from './ui.js';
 
+const TANK = (pct, w = 96) => {
+  const p = Math.max(0, Math.min(100, Number.isFinite(pct) ? pct : 0)), top = 20 + (100 - p) * 0.8;   // poziom pelletu w lejku
+  const dots = Array.from({ length: 26 }, (_, i) => `<circle cx="${18 + (i * 37) % 84}" cy="${top + 6 + ((i * 53) % 70) * 0.8}" r="2.2" fill="#a8702f"/>`).join('');
+  return `<svg width="${w}" viewBox="0 0 120 130"><defs><clipPath id="tkc"><path d="M10 18h100l-22 100H32z"/></clipPath></defs><path d="M10 18h100l-22 100H32z" fill="#12151b" stroke="#4a4f5c" stroke-width="3"/><g clip-path="url(#tkc)"><rect x="0" y="${top}" width="120" height="130" fill="#c98a4a"/>${dots}<rect x="0" y="${top}" width="120" height="4" fill="#e7b06f"/></g><rect x="6" y="12" width="108" height="8" rx="3" fill="#4a4f5c"/></svg>`;
+};
+
+/** Zbiornik paliwa: grafika z poziomem pelletu i edycja ilości (punkt tank_kg, jak w oryginalnej karcie). */
+export function fuelSheet() {
+  const cap = num('sensor.tekla_zbiornik_pojemnosc'), cur = num('sensor.tekla_zbiornik_paliwo'), days = num('sensor.tekla_paliwo_prognoza');
+  const p = S.pointById.get('tank_kg') || { min: 0, max: 1500 };
+  let val = Number.isFinite(cur) ? cur : 0;
+  const sh = openSheet(`<h3>Zbiornik paliwa</h3>
+    <div style="display:flex;gap:16px;align-items:center"><div id="tk"></div>
+      <div style="flex:1"><div class="hint">Ilość pelletu w zbiorniku</div>
+      <div style="display:flex;gap:8px;align-items:center"><input class="t" id="kg" type="number" inputmode="numeric" min="${p.min}" max="${p.max}" step="1" style="font-size:24px"><span class="dim">kg</span></div>
+      <div class="hint" id="info"></div></div></div>
+    <div class="chips"><button data-d="-50">−50</button><button data-d="-10">−10</button><button data-d="10">+10</button><button data-d="25">+25</button><button data-d="50">+50</button><button data-d="100">+100</button><button data-full="1">Pełny</button><button data-zero="1">Pusty</button></div>
+    <div class="hint" style="margin-top:8px">Pojemność zbiornika (${Number.isFinite(cap) ? fmt(cap, 0) : '–'} kg) jest odczytywana z kotła.${Number.isFinite(days) ? ' Prognoza: ok. ' + fmt(days, 0) + ' dni.' : ''}</div>
+    <button class="btn acc" id="ok">Zapisz ilość paliwa</button><button class="btn sec" id="no">Anuluj</button>`);
+  const inp = $('#kg', sh);
+  const draw = () => {
+    const pct = cap > 0 ? val / cap * 100 : NaN;
+    $('#tk', sh).innerHTML = TANK(pct, 96);
+    $('#info', sh).innerHTML = Number.isFinite(pct) ? `${fmt(pct, 0)} % pojemności` + (val > cap ? ' · <span class="wr">powyżej pojemności</span>' : '') : '';
+  };
+  inp.value = String(Math.round(val)); draw();
+  inp.oninput = () => { const x = parseFloat(inp.value); val = Number.isFinite(x) ? x : 0; draw(); };
+  const setVal = x => { val = Math.max(p.min ?? 0, Math.min(p.max ?? 1500, Math.round(x))); inp.value = String(val); draw(); };
+  sh.querySelectorAll('[data-d]').forEach(b => b.onclick = () => setVal(val + parseInt(b.dataset.d, 10)));
+  $('[data-full]', sh).onclick = () => { if (Number.isFinite(cap)) setVal(cap); };
+  $('[data-zero]', sh).onclick = () => setVal(0);
+  $('#no', sh).onclick = closeSheet;
+  $('#ok', sh).onclick = async () => {
+    if (val > (p.max ?? 1500) || val < 0) { toast('Wartość poza zakresem'); return; }
+    closeSheet();
+    if (await writePoint('tank_kg', val)) toast('Ilość paliwa zapisana: ' + val + ' kg');
+  };
+}
+
+const HOPPER = (pct = 60, h = 54) => TANK(pct, Math.round(h * 0.95));
 const MODE = { 0: 'Czasowy auto', 1: 'Czasowy ręczny', 2: 'Auto', 3: 'Ręczny' };
-const HOPPER = (pct = 60, h = 54) => `<svg height="${h}" viewBox="0 0 70 78"><path d="M4 6h62l-14 62H18z" fill="#12151b" stroke="#4a4f5c" stroke-width="2"/><path d="M${12 + (100 - pct) * 0.04} ${68 - 38 * pct / 100}h${46 - (100 - pct) * 0.08}l-8 ${38 * pct / 100}H20z" fill="#c98a4a"/></svg>`;
+const HOPPER_OLD = (pct = 60, h = 54) => `<svg height="${h}" viewBox="0 0 70 78"><path d="M4 6h62l-14 62H18z" fill="#12151b" stroke="#4a4f5c" stroke-width="2"/><path d="M${12 + (100 - pct) * 0.04} ${68 - 38 * pct / 100}h${46 - (100 - pct) * 0.08}l-8 ${38 * pct / 100}H20z" fill="#c98a4a"/></svg>`;
 
 /** Aktualizacja wartości w miejscu (bez przebudowy widoku): elementy z atrybutem data-b="funkcja". */
 const binders = new Map();
@@ -48,7 +88,7 @@ export function pulpit(go) {
       <button class="cd im" data-go="kociol"><small>Palnik</small><b data-b="burner_pct"></b><span class="u"> %</span><div class="dots"><span><i data-b="dot_blower"></i>dmuchawa</span><span><i data-b="dot_feeder"></i>podajnik</span></div><img src="img/palnik.webp" style="height:50px" alt=""></button>
       <button class="cd im" data-go="kociol"><small>CWU</small><b data-b="t_cwu"></b><span class="u"> °C</span><div class="u" data-b="cwu_sub"></div><img src="img/bojler.webp" style="height:76px;right:10px;top:8px;border-radius:8px" alt=""></button>
       <button class="cd" data-go="kociol"><small>CO</small><b data-b="t_co"></b><span class="u"> °C</span><div class="u" data-b="co_sub"></div></button>
-      <button class="cd" data-go="instalacja"><small>Paliwo</small><b data-b="fuel"></b><span class="u"> kg</span><div class="u" data-b="fuel_sub"></div><div style="position:absolute;right:10px;bottom:8px" data-b="hopper"></div></button>
+      <button class="cd" data-fuel="1"><small>Paliwo</small><b data-b="fuel"></b><span class="u"> kg</span><div class="u" data-b="fuel_sub"></div><div style="position:absolute;right:10px;bottom:8px" data-b="hopper"></div></button>
       <button class="cd" data-go="instalacja"><small>Zewnętrzna</small><b data-b="t_out"></b><span class="u"> °C</span><div class="u" data-b="out_sub"></div></button>
       <button class="cd" data-go="instalacja"><small>Moc palnika</small><b data-b="kw"></b><span class="u"> kW</span><div class="u" data-b="kw_sub"></div></button>
       <button class="cd full" data-go="alarmy"><span data-b="alarm_ico" style="font-size:26px"></span><div><b data-b="alarm_t" style="font-size:16px"></b><div class="u" data-b="alarm_sub"></div></div></button>
@@ -77,13 +117,14 @@ export function pulpit(go) {
   set('alarm_sub', n => { n.textContent = 'ostatni: ' + lastAlarm(); });
   root.querySelector('#kimg').src = boilerImg();
   root.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
+  root.querySelectorAll('[data-fuel]').forEach(b => b.onclick = fuelSheet);
   return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); root.classList.toggle('offline', !!S.cachedAt); updateBound(root); } };
 }
 
 // ------------------------------------------------------------------ instalacja
 export function instalacja(go) {
   const root = el(`<div class="flow"><div id="bn"></div>
-    <button class="node" data-go="params/Paliwo"><span data-b="in_hop"></span><div><b>Zbiornik</b><span class="u" data-b="in_hop_t"></span></div><div class="r"><span class="pill" data-b="in_hop_p"></span></div></button>
+    <button class="node" data-fuel="1"><span data-b="in_hop"></span><div><b>Zbiornik</b><span class="u" data-b="in_hop_t"></span></div><div class="r"><span class="pill" data-b="in_hop_p"></span></div></button>
     <div class="arrow">▼ ▼ ▼</div>
     <button class="node" data-go="params/Palnik"><img src="img/palnik.webp" alt=""><div><b>Palnik</b><span class="u" data-b="in_burn_t"></span></div><div class="r"><b data-b="in_burn_p"></b></div></button>
     <div class="arrow">▼ ▼ ▼</div>
@@ -117,6 +158,7 @@ export function instalacja(go) {
   set('in_out', n => { n.textContent = f1(num('sensor.tekla_temperatura_zewnetrzna')) + ' °C'; });
   set('in_kw', n => { n.textContent = f1(num('sensor.tekla_palnik_moc')) + ' kW'; });
   root.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
+  root.querySelectorAll('[data-fuel]').forEach(b => b.onclick = fuelSheet);
   return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); root.classList.toggle('offline', !!S.cachedAt); updateBound(root); } };
 }
 
@@ -195,19 +237,45 @@ export function paramGroups(go) {
 
 export function paramList(group) {
   const pts = S.points.filter(p => groupOf(p) === group);
-  const root = el(`<div><div id="bn"></div><div class="sec"><h5>${esc(group)}</h5><div id="plist"></div></div></div>`);
+  const root = el(`<div><div id="bn"></div><div id="plist"></div></div>`);
   const L = $('#plist', root);
-  for (const p of pts) {
-    const b = el(`<button class="row ${p.writable ? 'nav2' : ''}" data-p="${esc(p.id)}"><span>${esc(p.name)}<span data-b="pk_${esc(p.id)}"></span>${p.writable ? '' : '<div class="hint">tylko odczyt</div>'}</span><span class="v" data-b="pv_${esc(p.id)}"></span></button>`);
+  const lvOf = p => (p.writable ? (p.level || 0) : -1);          // -1 = tylko odczyt
+  let shownLevel = -1;
+  const row = p => {
+    const b = el(`<button class="row ${p.writable ? 'nav2' : ''}" data-p="${esc(p.id)}"><span>${esc(p.name)}${p.writable ? '' : '<div class="hint">tylko odczyt</div>'}</span><span class="v" data-b="pv_${esc(p.id)}"></span></button>`);
     binders.set('pv_' + p.id, n => {
       const s = pv(p.id);
       let t = s === undefined || s === 'unknown' ? '–' : s;
       if (p.options && p.options[String(Math.round(parseFloat(s)))] !== undefined && !Number.isNaN(parseFloat(s))) t = p.options[String(Math.round(parseFloat(s)))];
       n.textContent = t + (p.unit && t !== '–' && !p.options ? ' ' + p.unit : '');
     });
-    binders.set('pk_' + p.id, n => { n.innerHTML = p.writable && p.level && level() < p.level ? `<span class="lk">🔒 P${p.level}</span>` : ''; });
     if (p.writable) b.onclick = () => editPoint(p.id);
-    L.appendChild(b);
-  }
-  return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); updateBound(root); root.querySelectorAll('.lk').forEach(() => {}); } };
+    return b;
+  };
+  const section = (title, items) => { const s = el(`<div class="sec"><h5>${title}</h5></div>`); items.forEach(p => s.appendChild(row(p))); return s; };
+  // jak w oryginalnej karcie: po odblokowaniu poziomu pojawia się wyraźny podział „— 1 —” / „— 2 —” z opcjami tego poziomu
+  const draw = () => {
+    shownLevel = level();
+    L.innerHTML = '';
+    const by = l => pts.filter(p => lvOf(p) === l);
+    const base = by(0);
+    if (base.length) L.appendChild(section('Ustawienia podstawowe', base));
+    for (const lv of [1, 2]) {
+      const items = by(lv);
+      if (!items.length) continue;
+      if (shownLevel >= lv) {
+        L.appendChild(el(`<div class="lvh" data-lvh="${lv}">Poziom ${lv}</div>`));
+        L.appendChild(section(`Opcje poziomu ${lv} (odblokowane PIN-em)`, items));
+      } else {
+        const b = el(`<button class="lvh lock" data-lv="${lv}">🔒 Poziom ${lv} · ${items.length} ${items.length === 1 ? 'opcja' : 'opcji'} – odblokuj PIN-em</button>`);
+        b.onclick = async () => { if (await ensureLevel(lv)) draw(); };
+        L.appendChild(b);
+      }
+    }
+    const ro = by(-1);
+    if (ro.length) L.appendChild(section('Odczyty (tylko do odczytu)', ro));
+    updateBound(root);
+  };
+  draw();
+  return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); if (level() !== shownLevel) draw(); else updateBound(root); } };
 }

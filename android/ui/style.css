@@ -84,3 +84,8 @@ input.t { width:100%; padding:12px; border-radius:10px; border:1px solid var(--l
   .cd img { display:none; } .cd.im { padding-right:12px; } .hero .big { font-size:42px; } .hero { height:176px; }
   .dots { flex-wrap:wrap; gap:4px 10px; }
 }
+
+.lvh { display:flex; align-items:center; gap:10px; color:var(--acc); font-weight:700; font-size:13px; letter-spacing:.6px; text-transform:uppercase; margin:16px 0 4px; width:100%; background:none; border:0; text-align:left; }
+.lvh:before, .lvh:after { content:""; flex:1; height:1px; background:var(--acc); opacity:.5; }
+.lvh.lock { color:var(--warn); text-transform:none; font-weight:600; font-size:14px; padding:12px; border:1px dashed rgba(242,180,65,.5); border-radius:12px; justify-content:center; }
+.lvh.lock:before, .lvh.lock:after { display:none; }

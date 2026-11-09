@@ -108,12 +108,17 @@ void DemoDevice::physics(uint32_t t) {
     boiler_.reg[0x4005] = (uint32_t)mod;
     boiler_.reg[0x226C] = (uint32_t)(state == 5 ? 2400 + mod * 12 + (int)(40 * std::sin(s / 5.0)) : (on ? 1400 : 600));   // temperatura palnika
     blower_on_ = state == 5; feeder_on_ = state == 5 && std::fmod(s, 12.0) < 2.0 + mod / 25.0;
+    {   // zapis użytkownika (ilość paliwa) ma pierwszeństwo przed symulacją
+        auto it = boiler_.reg.find(0x3601);
+        if (it != boiler_.reg.end() && it->second != last_tank_) fuel_ = (double)it->second;
+    }
     if (on) {
         fuel_ -= dt * 0.0022 * (0.4 + mod / 100.0);                          // ~ kilka kg na godzinę
         const uint32_t reserve = reg(0x3604, 20) & 0xFFFF;
         if (fuel_ < reserve - 5) fuel_ = 300;                                // „dosypano” opał
         boiler_.reg[0x3601] = (uint32_t)std::lround(fuel_);
     }
+    { auto it = boiler_.reg.find(0x3601); if (it != boiler_.reg.end()) last_tank_ = it->second; }
 }
 
 void DemoDevice::tick() {

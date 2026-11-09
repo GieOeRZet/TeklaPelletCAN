@@ -1,6 +1,6 @@
 // Wspólne elementy interfejsu: okna dolne, klawiatura PIN, powiadomienia, formatowanie.
 import { nat, onEvent, api } from './native.js';
-import { S, pv, pn, level, refreshSoon } from './store.js';
+import { S, pv, pn, level, refreshSoon, pullNow } from './store.js';
 
 export const $ = (s, r = document) => r.querySelector(s);
 export const el = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstElementChild; };
@@ -103,7 +103,7 @@ export async function ensureLevel(need) {
       return cur >= need ? null : (cur > 0 ? `Ten PIN daje tylko poziom ${cur}` : 'Zły PIN poziomu');
     },
   });
-  refreshSoon();
+  await pullNow();   // widoki od razu widzą nowy poziom
   return pin !== null;
 }
 

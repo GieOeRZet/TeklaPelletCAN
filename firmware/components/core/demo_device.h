@@ -47,6 +47,7 @@ private:
     uint32_t last_phys_ = 0;
     double fuel_ = 180;
     uint32_t last_pdo_ = 0;
+    uint32_t last_tank_ = 0;
     int64_t time_off_ = 0;
     bool time_set_ = false;
     uint32_t skew_ = 0;                // przesunięcie czasu wirtualnego (rozgrzewka)

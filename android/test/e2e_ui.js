@@ -101,20 +101,25 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
   // ---------------------------------------------------------------- poziomy kotła
   await p.evaluate(() => { location.hash = '#/d/params/Palnik'; }); await sleep(1500);
-  const locked = await p.locator('.lk').count();
-  check('parametry: pozycje z kłódką poziomu', locked > 0, String(locked));
-  await p.locator('button.row', { has: p.locator('.lk') }).first().click();
+  check('poziomy: zablokowane poziomy zwinięte (kłódka)', (await p.locator('.lvh.lock[data-lv="1"]').count()) === 1 && (await p.locator('.lvh.lock[data-lv="2"]').count()) === 1);
+  check('poziomy: przed odblokowaniem nie widać opcji poziomu 1', !/opcje poziomu 1/i.test(await p.innerText('#plist')));
+  await p.locator('.lvh.lock[data-lv="1"]').click();
   check('poziom: okno PIN kotła', await waitSheet(/Poziom dostępu kotła/));
   await pin('1234');
   check('poziom: zły PIN poziomu odrzucony', await waitSheet(/Zły PIN poziomu/));
   await pin('0900');
-  check('poziom: PIN 0900 -> okno edycji (po potwierdzeniu poziomu)', await waitSheet(/Zakres|poziom 1|Zastosuj/));
-  await p.locator('#no').click().catch(() => {});
-  await sleep(2600);
+  await noSheet(); await sleep(1800);
+  check('poziom 1: pojawia się podział „Poziom 1” z opcjami', (await p.locator('.lvh[data-lvh="1"]').count()) === 1 && /opcje poziomu 1/i.test(await p.innerText('#plist')));
+  check('poziom 1: poziom 2 nadal za kłódką', (await p.locator('.lvh.lock[data-lv="2"]').count()) === 1);
   check('poziom: plakietka P1', /P1/.test(await txt('#chip')), await txt('#chip'));
   await p.screenshot({ path: OUT + '/ui_parametry.png', fullPage: true });
   const nlist = await p.locator('#plist .row').count();
   check('parametry: lista punktów grupy', nlist > 5, String(nlist));
+  await p.locator('.lvh.lock[data-lv="2"]').click();
+  await waitSheet(/Poziom dostępu kotła/); await pin('0999'); await noSheet(); await sleep(1800);
+  check('poziom 2: widać podział „Poziom 1” i „Poziom 2”', (await p.locator('.lvh[data-lvh="1"]').count()) === 1 && (await p.locator('.lvh[data-lvh="2"]').count()) === 1);
+  check('poziom 2: plakietka P2', /P2/.test(await txt('#chip')), await txt('#chip'));
+  await p.screenshot({ path: OUT + '/ui_parametry_p2.png', fullPage: true });
 
   // ---------------------------------------------------------------- wygasanie po 5 min
   await p.evaluate(() => { window.__skew = 301000; }); await sleep(1800);
@@ -122,7 +127,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('wygasanie: tryb tylko do odczytu', /tylko odczyt/.test(await txt('#chip')));
   check('wygasanie: aplikacja zdjęła poziom kotła', (await p.evaluate(() => window.__nativeCalls.some(c => c[0] === 'dropLevel'))));
   await sleep(2600);
-  check('wygasanie: poziom kotła spadł do 0', !/P1/.test(await txt('#chip')));
+  check('wygasanie: poziom kotła spadł do 0', !/P[12]/.test(await txt('#chip')));
   check('wygasanie: komunikat', /wygasło/.test(await p.locator('#toast').innerText()) || true);
 
   // ---------------------------------------------------------------- menu: oryginalna karta i konfiguracja wymagają odblokowania
@@ -132,6 +137,22 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await pin('2468'); await noSheet();
   await p.click('#orig'); await p.click('#cfg'); await sleep(300);
   check('menu: po odblokowaniu otwiera oryginał i konfigurację', await p.evaluate(() => { const c = window.__nativeCalls.map(x => x[0]); return c.includes('original') && c.includes('settings'); }));
+
+  // ---------------------------------------------------------------- zbiornik paliwa: edycja ilości pelletu
+  await p.evaluate(() => { location.hash = '#/d/pulpit'; }); await sleep(1500);
+  const fuel0 = parseFloat(await txt('[data-b="pulpit_fuel"]'));
+  await p.click('[data-fuel]');
+  check('zbiornik: okno z grafiką i edycją ilości', await waitSheet(/Zbiornik paliwa/) && (await p.locator('.sheet svg').count()) === 1);
+  check('zbiornik: pole ilości ma bieżącą wartość', Math.abs(parseFloat(await p.inputValue('#kg')) - fuel0) <= 1);
+  await p.screenshot({ path: OUT + '/ui_zbiornik.png' });
+  await p.click('[data-d="50"]');
+  check('zbiornik: przycisk +50 zmienia ilość', Math.abs(parseFloat(await p.inputValue('#kg')) - (fuel0 + 50)) <= 1);
+  await p.fill('#kg', '222');
+  await p.click('.sheet #ok'); await sleep(3500);
+  check('zbiornik: zapisana ilość widoczna na pulpicie', parseFloat(await txt('[data-b="pulpit_fuel"]')) === 222, await txt('[data-b="pulpit_fuel"]'));
+  await p.click('[data-fuel]'); await waitSheet(/Zbiornik paliwa/); await p.click('[data-full]');
+  check('zbiornik: „Pełny” ustawia pojemność zbiornika', Math.abs(parseFloat(await p.inputValue('#kg')) - 300) <= 1, await p.inputValue('#kg'));
+  await p.click('.sheet #no');
 
   // ---------------------------------------------------------------- brak połączenia: ostatnie dane
   await p.evaluate(() => { location.hash = '#/d/pulpit'; }); await sleep(1500);
