@@ -2,6 +2,7 @@
 // Symulator kotła: odpowiada na zapytania SDO jak prawdziwy sterownik (cs=0x42, 4 bajty danych) i przyjmuje zapisy.
 // Używany w trybie demo na urządzeniu (bez magistrali CAN) oraz w testach.
 #include <map>
+#include <set>
 #include <vector>
 #include "can_frame.h"
 #include "reads.h"
@@ -14,11 +15,13 @@ struct SimBoiler {
     std::vector<CanFrame> to_engine;
     std::vector<uint16_t> reads_seen;
     bool abort_all = false;
+    std::set<uint16_t> silent;       // rejestry, na które kocioł w ogóle nie odpowiada (timeout)
 
     bool on_can(const CanFrame& f) {
         if (f.id != 0x604) return true;
         const uint16_t idx = f.data[1] | (f.data[2] << 8);
         CanFrame r; r.id = 0x584; r.dlc = 8; r.data[1] = f.data[1]; r.data[2] = f.data[2]; r.data[3] = f.data[3];
+        if (silent.count(idx) && f.data[0] == 0x40) { reads_seen.push_back(idx); return true; }
         if (abort_all) { r.data[0] = 0x80; r.data[7] = 0x06; to_engine.push_back(r); return true; }
         if (f.data[0] == 0x40) {
             reads_seen.push_back(idx);

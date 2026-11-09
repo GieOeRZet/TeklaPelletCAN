@@ -42,6 +42,7 @@ struct FakeMcp : ISpi {
             case 0x05: reg[tx[1]] = (reg[tx[1]] & ~tx[2]) | (tx[3] & tx[2]); break;
             case 0x40: memcpy(txbuf, tx + 1, len - 1); break;
             case 0x81: rts = true; break;
+            case 0xA0: rx[1] = reg[0x2C] & 0x03; break;
             case 0x90: memcpy(rx + 1, rxbuf, 13); rx_pending = false; break;
         }
         if (rx_pending) reg[0x2C] |= 0x01; else reg[0x2C] &= ~0x01;

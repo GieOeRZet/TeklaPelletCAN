@@ -166,6 +166,11 @@ private:
     uint8_t scan_sub_ = 1, scan_node_ = 4;
     uint32_t sdo_ok_ = 0, sdo_abort_ = 0, sdo_timeout_ = 0, rx_frames_ = 0, rx_sdo_ = 0, last_abort_code_ = 0;
     uint16_t last_abort_index_ = 0;
+    // Rejestry, na które kocioł nie odpowiada (np. nieobsługiwane w tym modelu): po 3 kolejnych timeoutach, gdy reszta SDO działa,
+    // odpytujemy je rzadko (5 min, potem co raz dłużej do 1 h) zamiast co cykl. Pierwsza poprawna odpowiedź przywraca normalne odpytywanie.
+    struct Quiet { uint8_t fails = 0; uint32_t next_ms = 0; };
+    std::map<uint16_t, Quiet> quiet_;
+    uint32_t now_ms_ = 0, last_ok_ms_ = 0;
     std::map<uint16_t, uint32_t> timeouts_;       // rejestr -> liczba timeoutów (diagnostyka)
     bool was_can_ok_ = false;
     std::function<void(const std::string&)> log_;

@@ -73,6 +73,8 @@ std::string Engine::device_id_hex() const {
 }
 
 bool Engine::skipped(const ReadPoint& p) const {
+    auto q = quiet_.find(p.index);
+    if (q != quiet_.end() && q->second.fails >= 3 && (int32_t)(now_ms_ - q->second.next_ms) < 0) return true;
     if (cfg_.two_circuits) return false;
     switch (p.index) {  // rejestry drugiego obiegu CO
         case 0x4002: case 0x2147: case 0x22AE: case 0x229A: case 0x2065: return true;
@@ -117,13 +119,22 @@ void Engine::on_frame(const CanFrame& f, uint32_t now) {
 void Engine::on_done(const SdoResult& r) {
     const uint16_t index = r.job.tag & 0xFFFF;
     const uint32_t fl = r.job.tag & 0xFFFF0000u;
-    if (r.outcome == SdoOutcome::Ok) sdo_ok_++;
+    if (r.outcome == SdoOutcome::Ok) { sdo_ok_++; last_ok_ms_ = now_ms_; quiet_.erase(index); }
     else if (r.outcome == SdoOutcome::Abort) {
         sdo_abort_++; last_abort_code_ = r.abort_code; last_abort_index_ = index;
         if (fl & F_WRITE) logf("ABORT zapisu 0x%04X kod 0x%08X", index, (unsigned)r.abort_code);
     } else if (r.outcome == SdoOutcome::Timeout) {
         sdo_timeout_++;
         if (timeouts_.size() < 64 || timeouts_.count(index)) timeouts_[index]++;
+        if (!(fl & F_WRITE) && sdo_ok_ > 0 && now_ms_ - last_ok_ms_ < 10000) {   // kocioł żyje, a ten rejestr milczy
+            Quiet& q = quiet_[index];
+            if (q.fails < 255) q.fails++;
+            if (q.fails >= 3) {
+                const uint32_t step = q.fails - 3 < 4 ? (300000u << (q.fails - 3)) : 3600000u;   // 5, 10, 20, 40 min, potem 1 h
+                q.next_ms = now_ms_ + (step > 3600000u ? 3600000u : step);
+                if (q.fails == 3) logf("Rejestr 0x%04X nie odpowiada – odpytuje rzadko", index);
+            }
+        }
         if (fl & F_WRITE) logf("BRAK ODPOWIEDZI na zapis 0x%04X", index);
     }
     if (fl & F_WRITE) {
@@ -261,6 +272,7 @@ uint8_t Engine::unlock(uint16_t pin, uint32_t now_ms) {
 }
 
 void Engine::tick(uint32_t now) {
+    now_ms_ = now;
     now_ = now;
     access_.tick(now);
     const bool cok = can_ok(now);
@@ -751,6 +763,9 @@ std::string Engine::diag_json(uint32_t now) const {
         for (size_t i = 0; i < v.size() && i < 8; i++) { snprintf(b, sizeof b, "0x%04X", (unsigned)v[i].second); w.key(b).num(v[i].first); }
     }
     w.end_obj();
+    w.key("quiet").begin_arr();
+    for (auto& kv : quiet_) if (kv.second.fails >= 3) { snprintf(b, sizeof b, "0x%04X", (unsigned)kv.first); w.str(b); }
+    w.end_arr();
     w.key("queue").num(queue_.pending()).key("level").num(access_.level());
     w.kvb("mirror", cfg_.access.mirror).kvb("write_enabled", cfg_.access.write_enabled);
     w.kvb("pdo_feeder_seen", pdo_seen_feeder_).kvb("pdo_blower_seen", pdo_seen_blower_);

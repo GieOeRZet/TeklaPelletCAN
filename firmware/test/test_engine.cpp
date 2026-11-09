@@ -214,6 +214,21 @@ int main() {
 
     std::string info = e.info_json(InfoExtras{"0.1.0", 12, 1, false}, t);
     assert(contains(info, "\"id\":\"A1B2C3D4E5F6\"") && contains(info, "\"fw\":\"0.1.0\""));
+    // cichy rejestr (kocioł nie odpowiada): po 3 timeoutach odpytywany rzadko; po odzyskaniu odpowiedzi wraca do normy
+    {
+        FakeBoiler q; q.reg = b.reg; q.silent.insert(0x2283);
+        Engine eq(cfg, [&](const CanFrame& f) { return q.on_can(f); }, dev);
+        uint32_t tq = run(eq, q, 0, 60000);
+        auto count = [&](uint16_t ix) { int n = 0; for (uint16_t v : q.reads_seen) n += v == ix; return n; };
+        const int c1 = count(0x2283);
+        assert(contains(eq.diag_json(tq), "\"quiet\":[\"0x2283\"]"));
+        tq = run(eq, q, tq, 180000);                       // 3 min: brak kolejnych prób (pierwsza ponowna dopiero po 5 min)
+        assert(count(0x2283) == c1);
+        q.silent.clear();
+        tq = run(eq, q, tq, 400000);                       // po 5 min próba, odpowiedź poprawna -> koniec wyciszenia
+        assert(count(0x2283) > c1);
+        assert(!contains(eq.diag_json(tq), "0x2283\"]") && contains(eq.diag_json(tq), "\"quiet\":[]"));
+    }
     puts("OK: testy silnika przeszly");
     return 0;
 }

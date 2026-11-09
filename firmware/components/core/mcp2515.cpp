@@ -84,24 +84,25 @@ bool Mcp2515::send(const CanFrame& f) {
 }
 
 bool Mcp2515::receive(CanFrame& f) {
-    uint8_t flags;
-    if (!read_reg(REG_CANINTF, flags)) return false;
-    uint8_t cmd, clear;
-    if (flags & INTF_RX0)      { cmd = CMD_READ_RX0; clear = INTF_RX0; }
-    else if (flags & INTF_RX1) { cmd = CMD_READ_RX1; clear = INTF_RX1; }
+    // READ STATUS (0xA0): jedna krótka transakcja zamiast odczytu CANINTF; rx[1] bit0 = RX0IF, bit1 = RX1IF.
+    const uint8_t st_tx[2] = {0xA0, 0};
+    uint8_t st_rx[2] = {0, 0};
+    if (!spi_.transfer(st_tx, st_rx, 2)) return false;
+    uint8_t cmd;
+    if (st_rx[1] & INTF_RX0)      cmd = CMD_READ_RX0;
+    else if (st_rx[1] & INTF_RX1) cmd = CMD_READ_RX1;
     else return false;
 
     uint8_t tx[14] = {cmd};
     uint8_t rx[14] = {0};
     if (!spi_.transfer(tx, rx, 14)) return false;  // rx[1..13] = SIDH..D7
+    // Komendy READ RX BUFFER (0x90/0x94) same zerują flagę RXnIF po odczycie – osobny BIT MODIFY niepotrzebny (-1 transakcja SPI na ramkę).
     // Ramki rozszerzone (IDE) ignorujemy – kocioł używa 11 bitów.
     const bool extended = rx[2] & 0x08;
     f.id = (rx[1] << 3) | (rx[2] >> 5);
     f.dlc = rx[5] & 0x0F;
     if (f.dlc > 8) f.dlc = 8;
     for (uint8_t i = 0; i < 8; i++) f.data[i] = rx[6 + i];
-    // Czytanie przez komendę READ RX BUFFER zeruje flagę, ale bezpiecznie czyścimy.
-    bit_modify(REG_CANINTF, clear, 0x00);
     return !extended;
 }
 
