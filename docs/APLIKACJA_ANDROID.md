@@ -1,31 +1,39 @@
 # Aplikacja Android
 
-Aplikacja (`teklapelletcan.apk` w wydaniu na GitHubie, Android 10+) to:
+Aplikacja (`teklapelletcan.apk` w wydaniu na GitHubie, Android 10+) jest **samodzielna**: jej interfejs (`android/ui`, HTML/JS) jest wbudowany w APK i działa także bez sieci. Z urządzeniem rozmawia wyłącznie natywna warstwa (Kotlin), która pilnuje blokady zapisu i zapamiętuje ostatnie odczyty.
 
-- **Lista urządzeń** – urządzenia z sieci wyszukuje sama (mDNS, `_teklapelletcan._tcp`), można też wpisać adres IP. Zmiana adresu po DHCP jest rozpoznawana po ID urządzenia.
-- **Widok urządzenia** – ta sama strona, którą serwuje samo urządzenie: pełna karta kotła (z grafikami Estymy, PIN-y 0900/0999), Ustawienia, aktualizacja firmware, dziennik i raport (zapis do „Pobrane” + udostępnianie).
-  Dzięki temu aplikacja zawsze pokazuje to, co umie firmware w urządzeniu – nie trzeba osobno aktualizować aplikacji przy nowych funkcjach.
-- **Konfiguracja nowego urządzenia** – po połączeniu telefonu z siecią `TeklaPelletCAN-XXXX` aplikacja otwiera portal pierwszej konfiguracji (`10.77.77.1`) i kieruje ruch przez Wi‑Fi, także gdy ta sieć nie ma internetu.
-- **Tryb demo** – wirtualny kocioł z żywymi odczytami. Działa bez sieci: w aplikacji pracuje **ten sam rdzeń C++ co w firmware** (silnik, API, tabele punktów – biblioteka natywna przez JNI), więc karta, zapisy, PIN-y, ustawienia i dziennik zachowują się jak na prawdziwym urządzeniu. Nic nie jest wysyłane do żadnego kotła.
+## Co potrafi
+- **Lista urządzeń**: wyszukiwanie przez mDNS (`_teklapelletcan._tcp`) albo ręczny adres IP; rozpoznaje to samo urządzenie po ID, gdy zmieni adres (DHCP); podsumowanie ostatnich wartości.
+- **Pulpit** (kocioł z grafiką Tekli, palnik, CWU, CO, paliwo, alarm, temperatury), **Instalacja** (schemat zbiornik → palnik → kocioł → CO/CWU z wartościami na żywo), **Nastawy** (zadane i tryby kotła/CO/CWU), **Alarmy** (historia, potwierdzanie), **Wszystkie parametry** (generowane z opisu punktów urządzenia `/api/v1/points`, z poziomami dostępu).
+- **Poziomy kotła 1 i 2** (PIN jak w panelu): okno z klawiaturą PIN, plakietka poziomu, autoblokada po 5 minutach bezczynności; pozycje wyższych poziomów oznaczone kłódką.
+- **Tryb demo**: wirtualny kocioł (ten sam rdzeń C++ co w firmware przez JNI) z żywymi odczytami, bez sieci i bez kotła.
+- **Oryginalna karta** i **konfiguracja urządzenia** (aktualizacja firmware, dziennik, Wi‑Fi, antena) – osobne okno z menu, dostępne tylko przy odblokowanej aplikacji.
+- **Pełny ekran poziomo** (paski systemowe ukryte), układ pionowy z kafelkami.
 
-Hasło urządzenia (do parowania) jest potrzebne tylko wtedy, gdy w Ustawieniach wyłączysz „Panel WWW bez hasła”; wtedy aplikacja zapyta o nie przy pierwszej zmianie (okno dialogowe).
+## Bezpieczeństwo (jak działa blokada)
+1. Przy pierwszym uruchomieniu ustawiasz **PIN aplikacji** (4–12 cyfr, zapis jako skrót PBKDF2 z solą; 5 błędów → blokada 30 s, rosnąca) i wybierasz, czy używać **odcisku palca** (domyślnie nie).
+2. Bez odblokowania aplikacja jest w trybie **podglądu**: widać wszystkie wartości i parametry, ale żadne zapisy nie docierają do urządzenia (egzekwuje to natywny proxy, nie tylko interfejs).
+3. Odblokowanie (PIN lub odcisk) trwa **5 minut od ostatniej aktywności**; kończy je też wyłączenie ekranu i wyjście z aplikacji. Aplikacja wraca wtedy na pulpit, a niezatwierdzona edycja jest odrzucana.
+4. Poziom kotła (PIN 0900/0999) wymaga odblokowanej aplikacji; przy blokadzie aplikacja zdejmuje poziom kotła (poziom jest wspólny dla wszystkich klientów urządzenia).
+5. Zapomniany PIN nie do odzyskania: „Usuń PIN i ustawienia bezpieczeństwa” w Ustawieniach aplikacji.
+
+## Poza domem
+Gdy urządzenie jest nieosiągalne, aplikacja pokazuje **ostatnie znane wartości** z godziną i wyraźnym banerem „Brak połączenia z kotłem”, a sterowanie jest niedostępne.
 
 ## Budowa
-
-Android SDK pobiera CI (`.github/workflows/ci.yml`, zadanie `android`): `cd android && ./gradlew assembleRelease`. Lokalnie potrzebne są JDK 17, Android SDK (platforma 35, NDK, CMake).
-Strony z `web/` oraz powłoka z `android/shell/` są kopiowane do `assets` przy budowie (zadanie `syncAssets`), a rdzeń firmware (`firmware/components/core`) kompiluje CMake (`android/app/src/main/cpp`).
+Android SDK pobiera CI (`.github/workflows/ci.yml`, zadanie `android`): `cd android && ./gradlew assembleRelease`. Lokalnie: JDK 17, Android SDK (platforma 35, NDK, CMake).
+`web/` (oryginalna karta, strony urządzenia) i `android/ui` (nowy interfejs) trafiają do `assets` przy budowie (`syncAssets`), rdzeń firmware (`firmware/components/core`) kompiluje CMake (`android/app/src/main/cpp`).
 
 ## Podpis APK
-
-Bez sekretów CI podpis robi klucz **testowy** z repozytorium (`android/dev-release.jks`, hasło `tekla-dev`). Do wydań docelowych ustaw sekrety `ANDROID_KEYSTORE_B64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`. Zmiana klucza oznacza konieczność odinstalowania aplikacji (Android nie pozwala aktualizować pliku podpisanego innym kluczem).
+Sekrety CI: `ANDROID_KEYSTORE_B64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`. Bez nich podpis robi klucz testowy z repozytorium, a **wydanie odmówi publikacji** takiego APK (zabezpieczenie w `github-release`). Klucz trzymaj poza repozytorium (kopia w menedżerze haseł) – bez niego nie da się aktualizować zainstalowanych aplikacji.
 
 ## Testy
-
-- `android/test/e2e_app.js` (Chromium): powłoka (wyszukiwanie, dodawanie, duplikaty, zmiana adresu, usuwanie) i tryb demo (karta, żywe odczyty, PIN, zapis nastawy, ustawienia, dziennik). Serwer `demo_server` (`firmware/test/demo_server.cpp`) używa dokładnie tej samej klasy `DemoDevice`, którą wywołuje JNI.
-- Warstwa JNI i kod Kotlin sprawdzane są kompilacją (Kotlin względem frameworka Android 15) i próbą z JVM; pełne zachowanie na telefonie – patrz „Ograniczenia”.
+- `android/jvmtest` (JVM): bramka zapisu, PIN i blokada prób, cache, proxy (`./gradlew -p jvmtest run`).
+- `android/test/e2e_ui.js` (Chromium + atrapa mostu natywnego + `demo_server`): pierwsze uruchomienie, PIN, pulpit, instalacja, zapis po odblokowaniu, poziomy kotła, wygasanie po 5 min, tryb offline z ostatnimi danymi, menu, ustawienia aplikacji.
+- `android/test/e2e_app.js`: oryginalna karta i konfiguracja w trybie demo.
+- Warstwa JNI i Kotlin: kompilacja w CI z prawdziwym SDK; zachowanie na telefonie – patrz „Ograniczenia”.
 
 ## Ograniczenia / do zrobienia
-
-- Aplikacja nie była jeszcze uruchamiana na prawdziwym telefonie (CI tylko buduje APK). Wyszukiwanie mDNS (NSD) działa tylko w tej samej podsieci/VLAN co telefon.
-- Powiadomienia o alarmach w tle (wymaga usługi pierwszoplanowej albo pushy) – do zrobienia.
-- Samoaktualizacja aplikacji – na razie ręcznie z wydania GitHub.
+- Aplikacja nie była jeszcze uruchamiana na prawdziwym telefonie. Wyszukiwanie mDNS działa tylko w tej samej podsieci/VLAN co telefon.
+- Parytet z oryginalną kartą: ekrany Konfiguracja / Test wyjść / Statystyki / Sieć / harmonogramy są na razie dostępne przez „Panel kotła (oryginał)” i „Wszystkie parametry”; kolejne przenoszone do nowego stylu etapami (patrz `docs/TODO.md`).
+- Do zrobienia: ustawianie czasu urządzenia (endpoint `/api/v1/time`), aktualizator aplikacji i baner o wersjach, powiadomienia o alarmach (+ endpoint `/api/v1/summary`, blueprint HA), widżet.

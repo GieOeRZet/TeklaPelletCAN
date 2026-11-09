@@ -53,7 +53,7 @@ android {
 // Strony karty/urządzenia (web/) oraz powłoka aplikacji (android/shell) trafiają do assets bez kopiowania w repozytorium.
 val syncAssets = tasks.register<Sync>("syncAssets") {
     from(rootProject.file("../web")) { exclude("test/**", "**/*.md"); into("web") }
-    from(rootProject.file("shell")) { into("app") }
+    from(rootProject.file("ui")) { exclude("**/*.md"); into("ui") }
     into(layout.buildDirectory.dir("generated/tpcAssets"))
 }
 android.sourceSets.getByName("main").assets.srcDir(layout.buildDirectory.dir("generated/tpcAssets"))

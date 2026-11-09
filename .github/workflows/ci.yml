@@ -85,7 +85,10 @@ jobs:
       - name: Test aplikacji Android – powłoka i tryb DEMO (wirtualne urządzenie z rdzenia firmware)
         run: |
           build-host/demo_server 8098 web & sleep 3
-          cd android/test && NODE_PATH=$PWD/../../web/test/node_modules node e2e_app.js ../shell ../../web http://127.0.0.1:8098 /tmp
+          cd android/test && NODE_PATH=$PWD/../../web/test/node_modules node e2e_app.js ../ui ../../web http://127.0.0.1:8098 /tmp
+          pkill demo_server || true; cd ../..
+          build-host/demo_server 8099 android/ui & sleep 3
+          cd android/test && NODE_PATH=$PWD/../../web/test/node_modules node e2e_ui.js http://127.0.0.1:8099 /tmp
   # Aplikacja Android: ten sam rdzeń C++ co firmware (tryb demo, JNI) + strony urządzenia (web/) w paczce. Podpis kluczem z sekretów
   # (ANDROID_KEYSTORE_B64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD); bez nich – klucz TESTOWY z repozytorium.
   android:
@@ -96,6 +99,8 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
+      - name: Testy logiki aplikacji na JVM (blokada zapisu, PIN, cache, proxy)
+        run: cd android && chmod +x gradlew && ./gradlew --no-daemon -p jvmtest run
       - name: Licencje SDK
         run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
       - name: Budowa APK
