@@ -106,7 +106,14 @@ jobs:
       - name: Testy logiki aplikacji na JVM (blokada zapisu, PIN, cache, proxy)
         run: |
           cd android
-          ok=0; for i in 1 2 3 4; do if ./gradlew --no-daemon -p jvmtest run; then ok=1; break; fi; echo "próba $i nieudana (np. chwilowy błąd pobierania) – ponawiam"; sleep 30; done; [ "$ok" = 1 ]
+          ok=0; for i in 1 2 3 4 5 6; do if ./gradlew --no-daemon -p jvmtest run; then ok=1; break; fi; echo "próba $i nieudana (np. chwilowy błąd pobierania) – ponawiam"; sleep 45; done; [ "$ok" = 1 ]
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ hashFiles('android/**/*.gradle.kts', 'android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: gradle-
       - name: Licencje SDK
         run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
       - name: Budowa APK
@@ -118,7 +125,7 @@ jobs:
         run: |
           if [ -n "$KS_B64" ]; then echo "$KS_B64" | base64 -d > /tmp/release.jks; export ANDROID_KEYSTORE_FILE=/tmp/release.jks; echo prod > signing.txt; else echo "UWAGA: podpis kluczem TESTOWYM"; echo dev > signing.txt; fi
           cd android && chmod +x gradlew
-          ok=0; for i in 1 2 3 4; do if ./gradlew --no-daemon assembleRelease assembleDebug; then ok=1; break; fi; echo "próba $i nieudana (np. chwilowy błąd pobierania) – ponawiam"; sleep 30; done; [ "$ok" = 1 ]
+          ok=0; for i in 1 2 3 4 5 6; do if ./gradlew --no-daemon assembleRelease assembleDebug; then ok=1; break; fi; echo "próba $i nieudana (np. chwilowy błąd pobierania) – ponawiam"; sleep 45; done; [ "$ok" = 1 ]
           cp app/build/outputs/apk/release/app-release.apk ../teklapelletcan.apk
           cp app/build/outputs/apk/debug/app-debug.apk ../teklapelletcan-debug.apk
       - uses: actions/upload-artifact@v4
