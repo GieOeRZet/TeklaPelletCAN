@@ -64,7 +64,7 @@ export function confirmSheet(title, text, okLabel = 'Zastosuj') {
 /** Pierwsze ustawienie PIN-u aplikacji (wywolywane leniwie przy pierwszej probie odblokowania sterowania,
  * nie od razu po instalacji - uzytkownik moze wpierw przejrzec/dodac urzadzenie bez zadnego hasla). */
 export async function ensurePinSetup() {
-  const pin1 = await pinSheet({ title: 'Ustaw PIN aplikacji', sub: 'PIN chroni sterowanie kotłem (4–12 cyfr). Bez niego aplikacja działa tylko jako podgląd.' });
+  const pin1 = await pinSheet({ title: 'Ustaw PIN aplikacji', sub: 'PIN chroni uruchomienie aplikacji (4–12 cyfr).' });
   if (!pin1) return false;
   const pin2 = await pinSheet({ title: 'Powtórz PIN', sub: 'Wpisz ten sam PIN jeszcze raz', check: async p => (p === pin1 ? null : 'PIN-y się różnią') });
   if (!pin2) return false;
@@ -85,7 +85,7 @@ export async function ensureUnlocked() {
   if (useBio) nat.unlockBio();
   const extra = useBio ? '<button class="btn sec" id="bio">☝ Użyj odcisku palca</button>' : '';
   const p = pinSheet({
-    title: 'Odblokuj sterowanie', sub: 'Podaj PIN aplikacji. Zapis do kotła włączy się na 5 minut bezczynności.',
+    title: 'Odblokuj aplikację', sub: 'Podaj PIN aplikacji.',
     extra,
     check: async pin => {
       const r = nat.unlockPin(pin);
@@ -100,15 +100,14 @@ export async function ensureUnlocked() {
   return bioOk === true || nat.state().unlocked;
 }
 
-/** Poziom kotła (PIN 0900/0999) – wymaga odblokowanej aplikacji. Zwraca true, gdy poziom >= need. */
+/** Poziom kotła (PIN 0900/0999) – niezalezny od PIN-u aplikacji (ten chroni juz tylko start apki).
+ * Zwraca true, gdy poziom >= need. */
 export async function ensureLevel(need) {
   if (level() >= need) return true;
-  if (!(await ensureUnlocked())) return false;
   const pin = await pinSheet({
     title: 'Poziom dostępu kotła', sub: `Ta pozycja wymaga poziomu ${need}. Podaj PIN poziomu (jak w panelu kotła). Wygasa po 5 minutach bezczynności.`, digits: [4, 6],
     check: async p => {
       const r = await api('POST', '/api/v1/call', { domain: 'teklapelletcan', service: 'tekla_estyma_unlock', data: { pin: parseInt(p, 10) } });
-      if (r.status === 403 && r.json.error === 'app_locked') return 'Aplikacja zablokowana';
       if (r.status !== 200) return 'Błąd połączenia z urządzeniem';
       // odczyt poziomu potwierdzany asynchronicznie przez urzadzenie - pojedyncze 700ms nie zawsze wystarcza
       // (wolniejsza siec/urzadzenie), wiec odpytujemy do skutku zamiast raz, do ok. 4 s.
@@ -131,20 +130,12 @@ export async function ensureLevel(need) {
 export async function writePoint(id, value) {
   const p = S.pointById.get(id);
   if (p && p.level && level() < p.level && !(await ensureLevel(p.level))) return false;
-  let r = await api('POST', '/api/v1/write', { id, value });
-  if (r.status === 403 && r.json.error === 'app_locked') {
-    if (!(await ensureUnlocked())) return false;
-    r = await api('POST', '/api/v1/write', { id, value });
-  }
+  const r = await api('POST', '/api/v1/write', { id, value });
   return handleResult(r);
 }
 
 export async function callService(service, data, domain = 'teklapelletcan') {
-  let r = await api('POST', '/api/v1/call', { domain, service, data });
-  if (r.status === 403 && r.json.error === 'app_locked') {
-    if (!(await ensureUnlocked())) return false;
-    r = await api('POST', '/api/v1/call', { domain, service, data });
-  }
+  const r = await api('POST', '/api/v1/call', { domain, service, data });
   return handleResult(r);
 }
 
@@ -154,7 +145,7 @@ function handleResult(r) {
   const m = {
     level: 'Za niski poziom dostępu kotła', mirror: 'Urządzenie jest w trybie tylko do odczytu', disabled: 'Zapis wyłączony w urządzeniu',
     range: 'Wartość poza dozwolonym zakresem', rejected: 'Kocioł odrzucił zmianę', blocked: 'Operacja zablokowana', offline: 'Brak połączenia z urządzeniem',
-    app_locked: 'Sterowanie zablokowane', unauthorized: 'Urządzenie wymaga hasła (sparuj w konfiguracji)', setup_required: 'Urządzenie wymaga pierwszej konfiguracji',
+    unauthorized: 'Urządzenie wymaga hasła (sparuj w konfiguracji)', setup_required: 'Urządzenie wymaga pierwszej konfiguracji',
   }[e] || ('Błąd (' + (e || r.status) + ')');
   toast(m);
   return false;
@@ -165,7 +156,6 @@ export async function editPoint(pid) {
   const p = S.pointById.get(pid);
   if (!p || !p.writable) return;
   if (p.level && level() < p.level && !(await ensureLevel(p.level))) return;
-  if (!nat.state().unlocked && !(await ensureUnlocked())) return;
   const cur = pn(pid);
   if (p.options) {
     const opts = Object.entries(p.options);

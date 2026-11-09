@@ -85,12 +85,14 @@ fun main() {
     val px = Proxy(be, gate2, cache, tokens, { t })
     val tSave = t
 
+    // PIN aplikacji chroni tylko start apki, nie warunkuje juz zapisu - zapis dziala zawsze; kazda "prawdziwa"
+    // zmiana tylko odswieza bramke (timer bezczynnosci do automatycznego zdjecia poziomu kotla).
+    check("gate: domyślnie zablokowana (przed pierwszym zapisem)", !gate2.isUnlocked())
     val ro = px.handle("POST", "/api/v1/write", "{\"id\":\"boiler_set_manual\",\"value\":70}")
-    check("proxy: zapis zablokowany (403 app_locked)", ro.status == 403 && ro.body.contains("app_locked"))
-    check("proxy: zablokowany zapis nie dotarł do urządzenia", be.seen.none { it.contains("/api/v1/write") })
+    check("proxy: zapis dziala bez PIN-u aplikacji (status 200)", ro.status == 200, ro.body)
+    check("proxy: zapis dotarł do urządzenia", be.seen.any { it.contains("/api/v1/write") })
+    check("proxy: zapis odblokowuje bramkę (timer do zdjęcia poziomu kotła)", gate2.isUnlocked())
     check("proxy: odczyt przechodzi", px.handle("GET", "/api/v1/states", "").status == 200)
-    gate2.unlock()
-    check("proxy: po odblokowaniu zapis dociera", px.handle("POST", "/api/v1/write", "{\"id\":\"x\"}").status == 200 && be.seen.any { it.contains("/api/v1/write") })
     px.handle("POST", "/api/v1/pair", "{\"password\":\"p\"}")
     px.handle("GET", "/api/v1/info", "")
     check("proxy: token urządzenia doklejany po parowaniu", be.seen.last().contains("auth=Bearer tok123"), be.seen.last())

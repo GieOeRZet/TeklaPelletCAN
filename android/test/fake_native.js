@@ -41,7 +41,9 @@
     deviceSummary: b => { const c = cache['/api/v1/states']; return JSON.stringify(c && b !== 'demo' ? { at: c.at, body: c.body } : {}); },
     request: (id, method, pq, body) => setTimeout(() => {
       const path = pq.split('?')[0];
-      if (!isOpen() && !allowed(method, path, body)) return resp(id, { status: 403, ctype: 'application/json', body: '{"ok":false,"error":"app_locked"}', cachedAt: 0 });
+      // PIN aplikacji chroni tylko start - zapis dziala zawsze; kazda "prawdziwa" zmiana tylko odswieza
+      // timer bezczynnosci (do automatycznego zdjecia poziomu kotla), jak w Proxy.handle() w Kotlinie.
+      if (!allowed(method, path, body)) { open = true; unlockedAt = now(); wasOpen = true; }
       if (window.__offline) {
         const c = cache[path];
         if (method === 'GET' && c) return resp(id, { status: 200, ctype: 'application/json', body: c.body, cachedAt: c.at });
@@ -63,8 +65,8 @@
     lock: () => lock('user'), setBio: on => { setLS('bio', on ? '1' : '0'); setLS('bioasked', '1'); }, setLockOnStart: on => setLS('los', on ? '1' : '0'),
     clearCache: () => { for (const k of Object.keys(cache)) delete cache[k]; calls.push(['clearCache']); },
     resetSecurity: () => { setLS('pin', null); setLS('bio', null); open = false; calls.push(['reset']); },
-    openOriginal: () => { if (!isOpen()) ev({ type: 'needs_unlock' }); else calls.push(['original']); },
-    openDeviceSettings: () => { if (!isOpen()) ev({ type: 'needs_unlock' }); else calls.push(['settings']); },
+    openOriginal: () => { open = true; unlockedAt = now(); wasOpen = true; calls.push(['original']); },
+    openDeviceSettings: () => { open = true; unlockedAt = now(); wasOpen = true; calls.push(['settings']); },
     openSetup: () => calls.push(['setup']), openExternalUrl: u => calls.push(['ext', u]), now: () => now(),
   };
 })();

@@ -22,9 +22,9 @@ class Proxy(
 
     fun handle(method: String, pathQuery: String, body: String): Out {
         val path = pathQuery.substringBefore('?')
-        if (!gate.isUnlocked() && !WriteGate.allowedWhenLocked(method, path, body)) {
-            return Out(403, "application/json", "{\"ok\":false,\"error\":\"app_locked\"}")
-        }
+        // PIN aplikacji chroni tylko start apki, nie warunkuje zapisu - kazda "prawdziwa" zmiana tylko
+        // odswieza timer bezczynnosci (do automatycznego zdjecia poziomu kotla po bezczynnosci/wyjsciu).
+        if (!WriteGate.allowedWhenLocked(method, path, body)) gate.unlock()
         val tok = tokens.getString(tokenKey()) ?: ""
         val r = backend.request(method, pathQuery, if (tok.isNotEmpty()) "Bearer $tok" else "", body.toByteArray(Charsets.UTF_8))
         if (r == null) {

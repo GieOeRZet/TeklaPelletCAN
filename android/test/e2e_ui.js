@@ -77,23 +77,11 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('instalacja: wartości na żywo (temperatura kotła)', /\d+\.\d °C/.test(inst));
   await p.screenshot({ path: OUT + '/ui_instalacja.png' });
 
-  // ---------------------------------------------------------------- zapis wymaga odblokowania (leniwy PIN aplikacji + poziomu)
+  // ---------------------------------------------------------------- zapis dziala od razu, bez PIN-u aplikacji
+  // (PIN chroni tylko opcjonalnie start apki - nie warunkuje juz zapisu, patrz Proxy.handle() w Kotlinie)
   await goHash('#/d/kociol');
   await p.click('[data-edit="boiler_set_manual"]');
-  check('zapis: brak PIN-u aplikacji -> leniwe ustawianie PIN-u', await waitSheet(/Ustaw PIN aplikacji/));
-  await pin('2468');
-  check('zapis: potwierdzenie PIN-u', await waitSheet(/Powtórz PIN/));
-  await pin('1111');
-  check('zapis: różne PIN-y odrzucone', /różnią/.test(await sheetText()));
-  await pin('2468');
-  // ensurePinSetup() nie pyta juz o odcisk palca przy tej leniwej sciezce (bio to tylko przelacznik w Ustawieniach
-  // aplikacji) - od razu po ustawieniu PIN-u wraca do ensureUnlocked() i prosi o ten sam PIN do odblokowania zapisu.
-  check('zapis: od razu potem odblokowanie sterowania', await waitSheet(/Odblokuj sterowanie/));
-  await pin('0000');
-  check('zapis: zły PIN aplikacji odrzucony', /Zły PIN \(pozostało prób: 4\)/.test(await sheetText()));
-  await pin('2468');
-  check('zapis: po odblokowaniu okno edycji', await waitSheet(/Kociol zadana reczna/));
-  await sleep(1300);
+  check('zapis: okno edycji od razu, bez PIN-u aplikacji', await waitSheet(/Kociol zadana reczna/));
   const before = parseFloat((await txt('[data-b="st_boiler_set_manual"]')));
   await p.click('#p'); await p.click('#ok');
   await sleep(3200);
@@ -154,19 +142,18 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('poziom 2: test wyjść (feeder/blower tryb testowy) widoczny po PIN 0999', /Podajnik tryb/i.test(await p.innerText('body')) && /Dmuchawa tryb/i.test(await p.innerText('body')));
   await p.screenshot({ path: OUT + '/ui_palnik_poziom2.png', fullPage: true });
 
-  // ---------------------------------------------------------------- wygasanie odblokowania aplikacji po 5 min
+  // ---------------------------------------------------------------- wygasanie "aktywnosci" po 5 min (bezpiecznik: zdjecie poziomu kotla)
+  // Zapis dziala caly czas - to juz nie jest blokada zapisu, tylko automatyczne zdjecie poziomu kotla po bezczynnosci.
+  const urlBefore = p.url();
   await p.evaluate(() => { window.__skew = 301000; }); await sleep(1800);
-  check('wygasanie: powrót do pulpitu', /#\/d\/pulpit$/.test(p.url()), p.url());
-  check('wygasanie: aplikacja zdjęła odblokowanie zapisu (dropLevel)', (await p.evaluate(() => window.__nativeCalls.some(c => c[0] === 'dropLevel'))));
-  check('wygasanie: komunikat', /wygasło/.test(await p.locator('#toast').innerText()) || true);
+  check('wygasanie: nie przenosi na pulpit (zapis dziala caly czas, bez PIN-u)', p.url() === urlBefore, p.url());
+  check('wygasanie: zdjecie poziomu kotla po bezczynnosci (dropLevel)', (await p.evaluate(() => window.__nativeCalls.some(c => c[0] === 'dropLevel'))));
+  check('wygasanie: komunikat', /Poziom kotła zablokowany/.test(await p.locator('#toast').innerText()));
 
-  // ---------------------------------------------------------------- menu: oryginalna karta i konfiguracja wymagają odblokowania
+  // ---------------------------------------------------------------- menu: oryginalna karta i konfiguracja otwieraja sie bez PIN-u
   await goHash('#/d/menu');
-  await p.click('#orig');
-  check('menu: oryginał zablokowany bez odblokowania', await waitSheet(/Odblokuj sterowanie/));
-  await pin('2468'); await noSheet();
   await p.click('#orig'); await p.click('#cfg'); await sleep(300);
-  check('menu: po odblokowaniu otwiera oryginał i konfigurację', await p.evaluate(() => { const c = window.__nativeCalls.map(x => x[0]); return c.includes('original') && c.includes('settings'); }));
+  check('menu: oryginał i konfiguracja otwierają się bez PIN-u', await p.evaluate(() => { const c = window.__nativeCalls.map(x => x[0]); return c.includes('original') && c.includes('settings'); }));
 
   // ---------------------------------------------------------------- zbiornik paliwa i zasilanie: ogólnie dostępne z Menu (jak w oryginale)
   await goHash('#/d/menu');
@@ -231,6 +218,9 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await p.screenshot({ path: OUT + '/ui_alarmy.png' });
 
   // ---------------------------------------------------------------- ustawienia aplikacji
+  // PIN juz nie jest ustawiany w trakcie normalnego uzytkowania (zapis nie wymaga PIN-u) - seedujemy go tu,
+  // zeby przetestowac zmiane/usuniecie PIN-u w Ustawieniach (opcjonalna blokada startu apki).
+  await nat('setupPin', '2468');
   await goHash('#/app');
   await p.screenshot({ path: OUT + '/ui_app.png', fullPage: true });
   await p.click('#bio'); await sleep(100);

@@ -353,7 +353,7 @@ export function alarmy() {
 }
 
 // ------------------------------------------------------------------ parametry (z metadanych punktów)
-export const GROUPS = [['Kocioł', /^(Kociol|Moc|Histereza zal|Wartosc|Korekta)/i], ['Palnik', /^(Palnik|Dmuchawa|Podajnik|Ilosc paliwa)/i], ['CO', /^CO/i], ['CWU', /^CWU/i], ['Paliwo', /^(Zbiornik|Paliwo)/i], ['Alarmy', /^Alarm/i]];
+export const GROUPS = [['Kocioł', /^(Kociol|Moc|Histereza|Wartosc|Korekta)/i], ['Palnik', /^(Palnik|Dmuchawa|Podajnik|Ilosc paliwa|Wentylator|Wymiennik)/i], ['CO', /^CO/i], ['CWU', /^CWU/i], ['Paliwo', /^(Zbiornik|Paliwo)/i], ['Alarmy', /^Alarm/i]];
 export const groupOf = p => { for (const [g, re] of GROUPS) if (re.test(p.name)) return g; return 'Inne'; };
 
 export function paramGroups(go) {

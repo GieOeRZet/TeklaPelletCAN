@@ -273,9 +273,10 @@ class MainActivity : Activity() {
         if (!silent) event(JSONObject().put("type", "device_closed"))
     }
 
-    /** Okno z oryginalną kartą lub konfiguracją urządzenia: wymaga odblokowanej aplikacji (zapisy idą wtedy poza proxy). */
+    /** Okno z oryginalną kartą lub konfiguracją urządzenia (zapisy idą wtedy poza proxy, poza blokadą zapisu,
+     * ktorej juz nie ma - PIN aplikacji chroni tylko start, nie otwieranie tego okna). */
     private fun openDeviceWindow(path: String, title: String) {
-        if (!gate.isUnlocked()) { event(JSONObject().put("type", "needs_unlock")); return }
+        gate.unlock()
         val demoMode = backend?.isDemo == true
         val base = if (demoMode) "https://$DEMO_HOST/" else deviceBase.trimEnd('/') + "/"
         titleView.text = title
@@ -473,12 +474,6 @@ class MainActivity : Activity() {
         if (uri == null) { toast("Nie można zapisać pliku"); return }
         contentResolver.openOutputStream(uri)?.use { it.write(bytes) }
         toast("Zapisano w Pobranych: $name")
-        main.post {
-            val send = Intent(Intent.ACTION_SEND).apply {
-                type = mime.substringBefore(';'); putExtra(Intent.EXTRA_STREAM, uri); addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            }
-            try { startActivity(Intent.createChooser(send, "Wyślij plik")) } catch (e: Exception) { /* brak aplikacji do udostępniania */ }
-        }
     }
 
     private fun openExternal(url: String) {

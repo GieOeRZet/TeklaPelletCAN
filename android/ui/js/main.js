@@ -25,7 +25,7 @@ function updateBanner(kind, info) {
     $('#get', b).onclick = () => nat.openExternal(e.apk);
     $('#rel', b).onclick = () => nat.openExternal(e.url);
   } else {
-    $('#inst', b).onclick = async () => { if (await ensureUnlocked()) nat.openDeviceSettings(); };
+    $('#inst', b).onclick = () => nat.openDeviceSettings();
   }
   return b;
 }
@@ -150,12 +150,11 @@ function toLeave() { go('d/menu'); }   // z pulpitu „wstecz” otwiera menu (n
 // ------------------------------------------------------------------ zdarzenia z aplikacji natywnej
 onEvent(e => {
   if (e.type === 'locked') {
+    // Zapis dziala zawsze (PIN aplikacji chroni tylko start) - to zdarzenie znaczy juz tylko, ze po
+    // bezczynnosci/wyjsciu z apki zdjelismy poziom dostepu kotla (bezpiecznik, nie blokada zapisu).
     closeSheet();
     refreshChip();
-    if (location.hash.startsWith('#/d/') && !location.hash.startsWith('#/d/menu')) go('d/pulpit');
-    toast(e.reason === 'idle' ? 'Odblokowanie wygasło – tryb podglądu' : 'Sterowanie zablokowane');
-  } else if (e.type === 'needs_unlock') {
-    ensureUnlocked().then(ok => { if (ok) toast('Odblokowano – spróbuj ponownie'); });
+    toast('Poziom kotła zablokowany' + (e.reason === 'idle' ? ' (bezczynność)' : ''));
   } else if (e.type === 'device_closed') {
     refreshChip();
     // po powrocie z konfiguracji urzadzenia (mogla tam byc instalacja aktualizacji OTA) odswiez fw i,
@@ -297,6 +296,7 @@ function viewMenu() {
   $('#lvl', body).onclick = async () => { if (await ensureLevel(1)) { toast('Poziom kotła aktywny'); $('#lvv', body).textContent = 'poziom ' + level(); } };
   $('#fuel', body).onclick = fuelSheet;
   $('#pwr', body).onclick = zasilanieSheet;
+  // PIN aplikacji chroni tylko start apki - otwarcie oryginalu/konfiguracji nie wymaga PIN-u.
   $('#orig', body).onclick = () => nat.openOriginal();
   $('#cfg', body).onclick = () => nat.openDeviceSettings();
   unsub = subscribe(() => { refreshChip(); const l = $('#lvv', body); if (l) l.textContent = 'poziom ' + level(); });
@@ -308,9 +308,8 @@ function viewAppSettings() {
   const body = el(`<div>
     <div class="sec"><h5>Bezpieczeństwo</h5>
       <button class="row nav2" id="chpin"><span>Zmień PIN aplikacji</span></button>
-      <div class="sw"><span>Odcisk palca zamiast PIN-u<div class="hint">${st.bioAvailable ? 'Odblokowuje sterowanie na 5 minut' : 'Brak skonfigurowanej biometrii w telefonie'}</div></span><button class="tg ${st.bio ? 'on' : ''}" id="bio" ${st.bioAvailable ? '' : 'disabled'}></button></div>
-      <div class="sw"><span>Blokuj aplikację przy uruchomieniu<div class="hint">Wymaga odblokowania, żeby w ogóle zobaczyć dane</div></span><button class="tg ${st.lockOnStart ? 'on' : ''}" id="los"></button></div>
-      <div class="hint">Odblokowanie wygasa po 5 minutach bezczynności, po wyłączeniu ekranu i po wyjściu z aplikacji.</div></div>
+      <div class="sw"><span>Odcisk palca zamiast PIN-u<div class="hint">${st.bioAvailable ? 'Odblokowuje uruchomienie aplikacji' : 'Brak skonfigurowanej biometrii w telefonie'}</div></span><button class="tg ${st.bio ? 'on' : ''}" id="bio" ${st.bioAvailable ? '' : 'disabled'}></button></div>
+      <div class="sw"><span>Blokuj aplikację przy uruchomieniu<div class="hint">Wymaga PIN-u/odcisku tylko przy starcie aplikacji - sterowanie kotłem działa bez PIN-u</div></span><button class="tg ${st.lockOnStart ? 'on' : ''}" id="los"></button></div></div>
     <div class="sec"><h5>Dane</h5><button class="row nav2" id="cc"><span>Wyczyść zapisane odczyty</span></button></div>
     <div class="sec"><h5>Aplikacja</h5><div class="row"><span>Wersja</span><span class="v">${esc(st.version)}</span></div>
       <div class="row"><span>Najnowsza</span><span class="v" id="latest">…</span></div><div id="updbox"></div>
