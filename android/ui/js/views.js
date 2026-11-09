@@ -238,23 +238,20 @@ function pointRow(p) {
 
 /** Dopisuje do sekcji (domenowej albo grupy w "Wszystkich parametrach") punkty podzielone na poziomy dostepu -
  * poziom 0 bez naglowka (juz tam sa recznie dobrane najwazniejsze pola), poziom 1/2 za wyraznym podkresleniem
- * "— POZIOM N —" (replika oryginalnej karty: wrench + numer poziomu), odslanianym dopiero po PIN-ie danego
- * poziomu - a nie ukrytym na zawsze jak dotychczas w ekranie Nastawy. */
+ * "— POZIOM N —" (replika oryginalnej karty: wrench + numer poziomu). Zablokowany poziom jest CALKOWICIE
+ * niewidoczny (zero sladu, zero przycisku) - dokladnie jak w oryginale: zwykly uzytkownik nie ma wiedziec,
+ * ze cos tam jeszcze jest. Pojawia sie dopiero po PIN-ie danego poziomu (wpisywanym w Menu). */
 function appendLevelGroups(container, points, shownLevel, { skipIds = new Set(), includeReadOnly = false } = {}) {
   const rest = points.filter(p => !skipIds.has(p.id) && (p.writable || includeReadOnly));
   const lvOf = p => (p.writable ? (p.level || 0) : -1);
   const base = rest.filter(p => lvOf(p) === 0);
   base.forEach(p => container.appendChild(pointRow(p)));
   for (const lv of [1, 2]) {
+    if (shownLevel < lv) continue;
     const items = rest.filter(p => lvOf(p) === lv);
     if (!items.length) continue;
-    if (shownLevel >= lv) {
-      container.appendChild(el(`<div class="lvh" data-lvh="${lv}">Poziom ${lv}</div>`));
-      items.forEach(p => container.appendChild(pointRow(p)));
-    } else {
-      // bez instrukcji "odblokuj PIN-em" - PIN wpisuje sie w Menu, to tylko sygnal ze cos tu jeszcze jest
-      container.appendChild(el(`<div class="lvh lock" data-lv="${lv}">🔒 Poziom ${lv}</div>`));
-    }
+    container.appendChild(el(`<div class="lvh" data-lvh="${lv}">Poziom ${lv}</div>`));
+    items.forEach(p => container.appendChild(pointRow(p)));
   }
   const ro = includeReadOnly ? rest.filter(p => lvOf(p) === -1) : [];
   if (ro.length) { container.appendChild(el('<div class="lvh" style="color:var(--dim)">Odczyty</div>')); ro.forEach(p => container.appendChild(pointRow(p))); }
@@ -357,14 +354,11 @@ export function paramList(group) {
     const base = by(0);
     if (base.length) L.appendChild(section('Ustawienia podstawowe', base));
     for (const lv of [1, 2]) {
+      if (shownLevel < lv) continue;
       const items = by(lv);
       if (!items.length) continue;
-      if (shownLevel >= lv) {
-        L.appendChild(el(`<div class="lvh" data-lvh="${lv}">Poziom ${lv}</div>`));
-        L.appendChild(section(`Poziom ${lv}`, items));
-      } else {
-        L.appendChild(el(`<div class="lvh lock" data-lv="${lv}">🔒 Poziom ${lv}</div>`));
-      }
+      L.appendChild(el(`<div class="lvh" data-lvh="${lv}">Poziom ${lv}</div>`));
+      L.appendChild(section(`Poziom ${lv}`, items));
     }
     const ro = by(-1);
     if (ro.length) L.appendChild(section('Odczyty (tylko do odczytu)', ro));
