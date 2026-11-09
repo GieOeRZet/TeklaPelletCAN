@@ -4,11 +4,13 @@
 // WIEC bez zgadywania po nazwach encji – metadane (zakres/krok/poziom) z teklapelletcan-points.js, generowanych
 // z tego samego zrodla co firmware (rejestry/*.csv). PIN tylko do poziomu menu (1/2), jak w oryginalnej karcie –
 // bez biometrii (to przegladarka HA, nie telefon).
-import { TPC_POINTS_BY_ID } from './teklapelletcan-points.js';
+import { TPC_POINTS, TPC_POINTS_BY_ID } from './teklapelletcan-points.js';
 
 // Baza zasobow (img/) wyliczona wzgledem adresu TEGO pliku – dziala i w HA (/teklapelletcan_static/...),
 // i w testach lokalnych (karta serwowana z korzenia web/), bez zalezenia od adresu strony/dashboardu.
-const ASSET_BASE = new URL('.', import.meta.url).href;
+// Mozna nadpisac w configu karty (asset_base) – przydatne, gdy sam plik karty jest serwowany z innego
+// miejsca niz obrazki (np. karta wgrana tymczasowo do /local/ do testow, obrazki wciaz w /teklapelletcan_static/).
+const DEFAULT_ASSET_BASE = new URL('.', import.meta.url).href;
 
 const DOMAIN = 'teklapelletcan';
 const LOCK_MS = 300000;
@@ -123,6 +125,7 @@ class TeklaModernCard extends HTMLElement {
   setConfig(c) {
     if (!c || typeof c !== 'object') throw new Error('Nieprawidłowa konfiguracja karty');
     this._cfg = Object.assign({ boiler_image: '13' }, c);
+    this._assetBase = this._cfg.asset_base || DEFAULT_ASSET_BASE;
     this._screen = 'pulpit';
     this._unlockedAt = 0;
     this._schedKind = 1;
@@ -149,6 +152,16 @@ class TeklaModernCard extends HTMLElement {
   pn(id) { const x = parseFloat(this.pv(id)); return Number.isFinite(x) ? x : NaN; }
   pb(id) { return this.pv(id) === 'on'; }
   level() { const x = this.pn('access_level_sensor'); return Number.isFinite(x) ? x : 0; }
+  // Biezacy klucz enuma: niektore punkty (np. boiler_mode) firmware zglasza tylko jako etykiete tekstowa
+  // na encji "<id>_text" (bez liczbowego odczytu), wiec przy braku liczby szukamy klucza po dopasowaniu
+  // tekstu etykiety do opcji punktu – zapis zawsze idzie po numerycznym kluczu (set_param/set_boiler_mode).
+  _enumKey(id, opts) {
+    const n = this.pn(id);
+    if (Number.isFinite(n)) return String(Math.round(n));
+    const t = this.pv(id + '_text');
+    if (t) { const k = Object.keys(opts).find(k => opts[k] === t); if (k) return k; }
+    return null;
+  }
 
   async _call(service, data) {
     const node = nodeOf(this._hass);
@@ -235,7 +248,8 @@ class TeklaModernCard extends HTMLElement {
     const cur = this.pn(id);
     if (p.options) {
       const opts = {}; p.options.split(',').forEach(kv => { const i = kv.indexOf(':'); opts[kv.slice(0, i)] = kv.slice(i + 1); });
-      const sh = this._openSheet(`<h3>${esc(p.name)}</h3><div class="chips">${Object.entries(opts).map(([k, l]) => `<button data-k="${k}" class="${String(Math.round(cur)) === k ? 'on' : ''}">${esc(l)}</button>`).join('')}</div>`);
+      const curKey = this._enumKey(id, opts);
+      const sh = this._openSheet(`<h3>${esc(p.name)}</h3><div class="chips">${Object.entries(opts).map(([k, l]) => `<button data-k="${k}" class="${curKey === k ? 'on' : ''}">${esc(l)}</button>`).join('')}</div>`);
       sh.querySelectorAll('.chips button').forEach(b => b.onclick = async () => {
         const val = parseInt(b.dataset.k, 10); this._closeSheet();
         if (id === 'boiler_mode') await this._call('set_boiler_mode', { mode: val }); else await this._call('set_param', { key: p.key, value: val });
@@ -335,15 +349,15 @@ class TeklaModernCard extends HTMLElement {
       + (devs.length > 1 && !this._cfg.device_id ? '<div class="hint" style="padding:0 12px 6px">Wykryto kilka urządzeń – pokazuję „' + esc(dev.name) + '” (wybierz w edytorze karty).</div>' : '');
     hdr.querySelector('#chip').onclick = () => { if (!unlocked) this._ensureLevel(1).then(() => this._render()); else { this._unlockedAt = 0; this._render(); } };
     const nav = root.getElementById('nav');
-    const screens = [['pulpit', 'Pulpit'], ['instalacja', 'Instalacja'], ['nastawy', 'Nastawy'], ['harmonogram', 'Harmonogram'], ['alarmy', 'Alarmy']];
+    const screens = [['pulpit', 'Pulpit'], ['instalacja', 'Instalacja'], ['nastawy', 'Nastawy'], ['parametry', 'Parametry'], ['harmonogram', 'Harmonogram'], ['alarmy', 'Alarmy']];
     nav.innerHTML = screens.map(([k, l]) => `<button data-s="${k}" class="${this._screen === k ? 'on' : ''}">${l}</button>`).join('');
     nav.querySelectorAll('button').forEach(b => b.onclick = () => { this._screen = b.dataset.s; this._render(); });
     body.innerHTML = '';
-    const fn = { pulpit: this._pulpit, instalacja: this._instalacja, nastawy: this._nastawy, harmonogram: this._harmonogram, alarmy: this._alarmy }[this._screen] || this._pulpit;
+    const fn = { pulpit: this._pulpit, instalacja: this._instalacja, nastawy: this._nastawy, parametry: this._parametry, harmonogram: this._harmonogram, alarmy: this._alarmy }[this._screen] || this._pulpit;
     body.appendChild(fn.call(this));
   }
 
-  _boilerImg() { const t = this._cfg.boiler_image; return ASSET_BASE + (['11', '12', '14'].includes(String(t)) ? `img/panel/0${t}.png` : 'img/kociol.webp'); }
+  _boilerImg() { const t = this._cfg.boiler_image; return this._assetBase + (['11', '12', '14'].includes(String(t)) ? `img/panel/0${t}.png` : 'img/kociol.webp'); }
 
   _pulpit() {
     const alarmOn = this.pb('alarm_active');
@@ -392,7 +406,7 @@ class TeklaModernCard extends HTMLElement {
   }
   _modeChips(title, id, labelsStr, applyMode) {
     const opts = {}; (labelsStr || '').split(',').forEach(kv => { const i = kv.indexOf(':'); if (i > 0) opts[kv.slice(0, i)] = kv.slice(i + 1); });
-    const cur = String(Math.round(this.pn(id)));
+    const cur = this._enumKey(id, opts);
     const r = el(`<div><div class="hint" style="margin-top:8px">${esc(title)}</div><div class="chips">${Object.entries(opts).map(([k, l]) => `<button data-k="${k}" class="${cur === k ? 'on' : ''}">${esc(l)}</button>`).join('')}</div></div>`);
     r.querySelectorAll('button').forEach(b => b.onclick = () => applyMode(parseInt(b.dataset.k, 10)));
     return r;
@@ -405,6 +419,53 @@ class TeklaModernCard extends HTMLElement {
     sec('CO (ogrzewanie)').append(this._stepperRow('Zadana CO (ręczna)', 'ch1_set_manual'), this._stepperRow('Zadana CO – komfort', 'co_set_comfort'), this._stepperRow('Zadana CO – eko', 'co_set_eco'));
     const w = sec('CWU (ciepła woda)');
     w.append(this._stepperRow('Zadana CWU – komfort', 'hw_set_comfort'), this._stepperRow('Zadana CWU – eko', 'hw_set_eco'));
+    return root;
+  }
+
+  // Wiersz pojedynczego parametru (dowolny punkt zapisywalny) – wartosc + poziom wymagany, klik otwiera
+  // ten sam edytor co _stepperRow/_modeChips (_editPoint rozpoznaje liczbowy/enum i wybiera usluge sam).
+  _paramRow(id) {
+    const p = TPC_POINTS_BY_ID[id];
+    if (!p) return el('<div></div>');
+    let val;
+    if (p.options) {
+      const opts = {}; p.options.split(',').forEach(kv => { const i = kv.indexOf(':'); if (i > 0) opts[kv.slice(0, i)] = kv.slice(i + 1); });
+      const k = this._enumKey(id, opts);
+      val = k != null ? opts[k] : '–';
+    } else {
+      val = f1(this.pn(id)) + (p.unit ? ' ' + p.unit : '');
+    }
+    const r = el(`<button class="row"><span>${esc(p.name)}${p.level ? ' <span class="lk">🔒' + p.level + '</span>' : ''}</span><span class="v">${esc(val)}</span></button>`);
+    r.onclick = () => this._editPoint(id);
+    return r;
+  }
+  // Pelna lista wszystkich parametrow zapisywalnych urzadzenia (jak "Palnik/CO/CWU – ustawienia" w karcie
+  // oryginalnej) – pogrupowana wg prefiksu id z rejestry/punkty.csv, bez recznego katalogu nazw encji.
+  _parametry() {
+    const GROUPS = [
+      ['Kocioł', /^(boiler_|k_nominal|boil_|fuel_heat|fuel_test|air_corr|power_(min|max))/],
+      ['Palnik', /^(p_|fan_mod_|exh_c|k_predose|k_egt|k_exch_int)/],
+      ['CO (ogrzewanie)', /^(co1_|ch1_|ch2_|co_set)/],
+      ['CWU (ciepła woda)', /^(cwu_|hw_set)/],
+      ['Alarmy', /^alarm_/],
+    ];
+    const writable = TPC_POINTS.filter(p => p.writable && p.id !== 'tank_kg');
+    const used = new Set();
+    const root = el('<div></div>');
+    for (const [label, re] of GROUPS) {
+      const pts = writable.filter(p => re.test(p.id));
+      if (!pts.length) continue;
+      pts.forEach(p => used.add(p.id));
+      const s = el(`<div class="sec"><h5>${esc(label)}</h5></div>`);
+      pts.forEach(p => s.appendChild(this._paramRow(p.id)));
+      root.appendChild(s);
+    }
+    const rest = writable.filter(p => !used.has(p.id));
+    if (rest.length) {
+      const s = el('<div class="sec"><h5>Inne</h5></div>');
+      rest.forEach(p => s.appendChild(this._paramRow(p.id)));
+      root.appendChild(s);
+    }
     return root;
   }
 
