@@ -212,7 +212,7 @@ static void test_signed_codec() {
 }
 
 static void test_points() {
-    assert(kPointCount == 87);
+    assert(kPointCount == 89);
     const Point* p = find_point_by_key(0);
     assert(p && p->index == 0x2270 && p->encoding == Encoding::FlagByte && p->level == 0);
     p = find_point_by_key(3);                       // korekta powietrza, ze znakiem
