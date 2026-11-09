@@ -2,6 +2,7 @@ import { nat, onEvent, api } from './native.js';
 import { S, LEVEL_MS, startPolling, stopPolling, subscribe, level, refreshInfo } from './store.js';
 import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ensureLevel, ensurePinSetup, confirmSheet, callService } from './ui.js';
 import * as V from './views.js';
+import { fuelSheet, zasilanieSheet } from './views.js';
 import { checkUpdates, dismissed, dismiss } from './updates.js';
 
 const app = $('#app');
@@ -279,7 +280,9 @@ function viewMenu() {
     <button class="row nav2" data-go="d/cwu"><span>Ciepła woda (CWU)</span></button>
     <button class="row nav2" data-go="d/harmonogram"><span>Harmonogramy</span></button>
     <button class="row nav2" data-go="d/alarmy"><span>Alarmy i historia</span></button>
-    <button class="row nav2" data-go="d/params"><span>Wszystkie parametry</span></button></div>
+    <button class="row nav2" data-go="d/params"><span>Wszystkie parametry</span></button>
+    <button class="row nav2" id="fuel"><span>Zbiornik paliwa</span></button>
+    <button class="row nav2" id="pwr"><span>Zasilanie i tryby</span></button></div>
     <div class="sec"><h5>Dostęp</h5>
     <button class="row nav2" id="lvl"><span>Poziom kotła (PIN)</span><span class="v" id="lvv"></span></button></div>
     <div class="sec"><h5>Urządzenie</h5>
@@ -292,6 +295,8 @@ function viewMenu() {
   $('#lvv', body).textContent = level() > 0 ? 'poziom ' + level() : 'poziom 0';
   body.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   $('#lvl', body).onclick = async () => { if (await ensureLevel(1)) { toast('Poziom kotła aktywny'); $('#lvv', body).textContent = 'poziom ' + level(); } };
+  $('#fuel', body).onclick = fuelSheet;
+  $('#pwr', body).onclick = zasilanieSheet;
   $('#orig', body).onclick = () => nat.openOriginal();
   $('#cfg', body).onclick = () => nat.openDeviceSettings();
   unsub = subscribe(() => { refreshChip(); const l = $('#lvv', body); if (l) l.textContent = 'poziom ' + level(); });

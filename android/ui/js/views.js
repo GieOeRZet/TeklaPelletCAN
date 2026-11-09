@@ -82,6 +82,23 @@ export function fuelSheet() {
   };
 }
 
+/** Panel „Zasilanie" jak w oryginalnej karcie (szybki dostęp): włącznik kotła + szybki wybór trybu CO/CWU. */
+export function zasilanieSheet() {
+  const sh = openSheet(`<h3>Zasilanie</h3>
+    <div class="sw"><span>Kocioł włączony</span><button class="tg" id="pw"></button></div>
+    <div id="comode"></div><div id="cwmode"></div>`, () => unsub());
+  const MODES4 = { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' };
+  const co = modeChips('Tryb CO', 'co_mode', MODES4, m => callService('select_option', { entity_id: 'select.tekla_co_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_co_tryb');
+  const cw = modeChips('Tryb CWU', 'cwu_mode', MODES4, m => callService('select_option', { entity_id: 'select.tekla_cwu_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_cwu_tryb');
+  $('#comode', sh).replaceWith(co); $('#cwmode', sh).replaceWith(cw);
+  const pw = $('#pw', sh);
+  const isOn = () => v('binary_sensor.tekla_kociol_wlaczony') === 'on' || v('switch.tekla_kociol_wlacz_wylacz') === 'on';
+  pw.onclick = async () => { await callService(isOn() ? 'turn_off' : 'turn_on', { entity_id: 'switch.tekla_kociol_wlacz_wylacz' }, 'switch'); draw(); };
+  const draw = () => { pw.classList.toggle('on', isOn()); updateBound(sh); };
+  draw();
+  const unsub = subscribe(draw);
+}
+
 const MODE = { 0: 'Czasowy auto', 1: 'Czasowy ręczny', 2: 'Auto', 3: 'Ręczny' };
 
 /** Aktualizacja wartości w miejscu (bez przebudowy widoku): elementy z atrybutem data-b="funkcja". */
