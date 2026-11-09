@@ -279,3 +279,67 @@ export function paramList(group) {
   draw();
   return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); if (level() !== shownLevel) draw(); else updateBound(root); } };
 }
+
+// ------------------------------------------------------------------ harmonogramy (CWU / CO / kocioł) – bit i = godzina i, jak w karcie
+const SCH = [['CWU', 'sensor.tekla_cwu_harmonogram_rejestry', 0], ['CO', 'sensor.tekla_co_harmonogram_rejestry', 1], ['Kocioł', 'sensor.tekla_kociol_harmonogram_rejestry', 2]];
+const DAYS = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
+const schedBits = k => ((S.states.get(SCH[k][1]) || {}).state || '').split(' ').map(x => (/^[0-9A-Fa-f]{6}$/.test(x) ? parseInt(x, 16) : null));
+const bandsText = bits => {
+  if (bits == null) return 'brak odczytu';
+  const o = []; let st = null;
+  for (let i = 0; i <= 24; i++) { const b = i < 24 && ((bits >> i) & 1); if (b && st === null) st = i; if (!b && st !== null) { o.push(`${st}–${i}`); st = null; } }
+  return o.length ? o.join(', ') + ' h' : 'wyłączone';
+};
+let schedKind = 1;
+
+async function editDay(kind, day) {
+  const cur = schedBits(kind)[day];
+  if (cur == null) { toast('Brak odczytu tego dnia – poczekaj chwilę'); return; }
+  if (!(await ensureUnlocked())) return;
+  let bits = cur;
+  const sh = openSheet(`<h3>${SCH[kind][0]} · ${DAYS[day]}</h3><div class="hint">Stuknij godziny, w których ma być włączone (podświetlone = włączone).</div>
+    <div class="hgrid">${Array.from({ length: 24 }, (_, h) => `<button data-h="${h}" class="${(bits >> h) & 1 ? 'on' : ''}">${h}</button>`).join('')}</div>
+    <div class="hint" id="txt"></div>
+    <div class="chips"><button data-all="1">Wszystkie</button><button data-none="1">Żadna</button></div>
+    <div class="hint" style="margin-top:8px">Zastosuj również do:</div>
+    <div class="chips" id="cp"><button data-cp="wk">Pn–Pt</button><button data-cp="we">Sob–Nd</button><button data-cp="all">Cały tydzień</button></div>
+    <button class="btn acc" id="ok">Zapisz</button><button class="btn sec" id="no">Anuluj</button>`);
+  let copy = null;
+  const draw = () => { sh.querySelectorAll('[data-h]').forEach(b => b.classList.toggle('on', !!((bits >> +b.dataset.h) & 1))); $('#txt', sh).textContent = bandsText(bits); };
+  draw();
+  sh.querySelectorAll('[data-h]').forEach(b => b.onclick = () => { bits ^= (1 << +b.dataset.h); draw(); });
+  $('[data-all]', sh).onclick = () => { bits = 0xFFFFFF; draw(); };
+  $('[data-none]', sh).onclick = () => { bits = 0; draw(); };
+  $('#cp', sh).querySelectorAll('button').forEach(b => b.onclick = () => { copy = copy === b.dataset.cp ? null : b.dataset.cp; $('#cp', sh).querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.cp === copy)); });
+  $('#no', sh).onclick = closeSheet;
+  $('#ok', sh).onclick = async () => {
+    const days = copy === 'wk' ? [0, 1, 2, 3, 4] : copy === 'we' ? [5, 6] : copy === 'all' ? [0, 1, 2, 3, 4, 5, 6] : [day];
+    if (copy && !days.includes(day)) days.push(day);
+    closeSheet();
+    let ok = true;
+    for (const d of days) ok = (await callService('tekla_estyma_set_schedule', { kind: SCH[kind][2], day: d, bits })) && ok;
+    if (ok) toast(days.length > 1 ? 'Harmonogram zapisany dla ' + days.length + ' dni' : 'Harmonogram zapisany');
+  };
+}
+
+export function harmonogram() {
+  const root = el('<div><div id="bn"></div><div class="chips" id="kinds" style="margin:4px 0 8px"></div><div class="sec" id="days"></div><div class="hint" style="padding:0 6px">Godziny pracy w poszczególne dni tygodnia. Zmiany wymagają odblokowanej aplikacji.</div></div>');
+  const today = (new Date().getDay() + 6) % 7;
+  const draw = () => {
+    $('#kinds', root).innerHTML = SCH.map((s, i) => `<button data-k="${i}" class="${i === schedKind ? 'on' : ''}">${s[0]}</button>`).join('');
+    $('#kinds', root).querySelectorAll('button').forEach(b => b.onclick = () => { schedKind = +b.dataset.k; draw(); });
+    const all = schedBits(schedKind);
+    const box = $('#days', root); box.innerHTML = '<h5>' + SCH[schedKind][0] + ' · tydzień</h5>';
+    DAYS.forEach((dn, d) => {
+      const b = all[d];
+      const r = el(`<button class="dayrow" data-d="${d}"><div class="dn"><b class="${d === today ? 'today' : ''}">${dn}${d === today ? ' · dziś' : ''}</b><span class="dim" style="font-size:12px">${bandsText(b)}</span></div>
+        <div class="hbar">${Array.from({ length: 24 }, (_, h) => `<i class="${b != null && ((b >> h) & 1) ? 'on' : ''}"></i>`).join('')}</div>
+        <div class="hscale"><span>0</span><span>6</span><span>12</span><span>18</span><span>24</span></div></button>`);
+      r.onclick = () => editDay(schedKind, d);
+      box.appendChild(r);
+    });
+  };
+  draw();
+  let sig = '';
+  return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); const s = SCH.map(x => (S.states.get(x[1]) || {}).state).join('|'); if (s !== sig) { sig = s; draw(); } } };
+}

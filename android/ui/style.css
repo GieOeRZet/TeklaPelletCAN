@@ -89,3 +89,12 @@ input.t { width:100%; padding:12px; border-radius:10px; border:1px solid var(--l
 .lvh:before, .lvh:after { content:""; flex:1; height:1px; background:var(--acc); opacity:.5; }
 .lvh.lock { color:var(--warn); text-transform:none; font-weight:600; font-size:14px; padding:12px; border:1px dashed rgba(242,180,65,.5); border-radius:12px; justify-content:center; }
 .lvh.lock:before, .lvh.lock:after { display:none; }
+
+.row > span:first-child { flex:1 1 auto; min-width:0; }
+.row .v { flex:0 0 auto; min-width:4.4em; text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.row.nav2:after { flex:0 0 auto; }
+.hbar { display:flex; gap:2px; margin-top:6px; } .hbar i { flex:1; height:16px; border-radius:2px; background:#2b303b; } .hbar i.on { background:var(--acc); }
+.dayrow { display:block; width:100%; text-align:left; background:none; border:0; border-top:1px solid var(--line); padding:10px 0; } .dayrow:first-of-type { border-top:0; }
+.dayrow .dn { display:flex; justify-content:space-between; } .dayrow .dn b.today { color:var(--acc); }
+.hscale { display:flex; justify-content:space-between; color:var(--dim); font-size:10px; margin-top:2px; }
+.hgrid { display:grid; grid-template-columns:repeat(6,1fr); gap:6px; margin:10px 0; } .hgrid button { padding:12px 0; border-radius:10px; border:0; background:#2b303b; font-size:15px; } .hgrid button.on { background:var(--acc); color:#1a1208; font-weight:700; }

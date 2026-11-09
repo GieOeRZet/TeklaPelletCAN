@@ -165,6 +165,24 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await p.evaluate(() => { window.__offline = false; }); await sleep(3500);
   check('offline: powrót do danych na żywo', (await p.locator('#bn .banner').count()) === 0);
 
+  // ---------------------------------------------------------------- harmonogramy (CWU/CO/kocioł)
+  await p.click('.nav button[data-k="harmonogram"]'); await sleep(1500);
+  check('harmonogram: siedem dni tygodnia z paskami godzin', (await p.locator('.dayrow').count()) === 7 && (await p.locator('.dayrow .hbar i').count()) === 7 * 24);
+  check('harmonogram: wszystkie dni mają odczyt (demo ma pełne dane)', !/brak odczytu/.test(await p.innerText('#days')));
+  await p.screenshot({ path: OUT + '/ui_harmonogram.png', fullPage: true });
+  await p.locator('.dayrow').nth(1).click();
+  check('harmonogram: okno edycji godzin', await waitSheet(/Wtorek/) && (await p.locator('.hgrid button').count()) === 24);
+  const h12 = p.locator('.hgrid button[data-h="12"]');
+  const was12 = await h12.evaluate(n => n.classList.contains('on'));
+  await h12.click();
+  check('harmonogram: stuknięcie godziny przełącza ją', (await h12.evaluate(n => n.classList.contains('on'))) === !was12);
+  await p.click('[data-cp="wk"]');
+  await p.click('.sheet #ok'); await sleep(4500);
+  const co = await p.evaluate(async () => { const r = await new Promise(res => { const id='h1'; const o=window.__tpcResp; window.__tpcResp=(i,x)=>{ if(i===id){window.__tpcResp=o;res(x);} else o&&o(i,x); }; TPCNative.request(id,'GET','/api/v1/states',''); }); return (JSON.parse(r.body).states.find(s=>s.entity_id==='sensor.tekla_co_harmonogram_rejestry')||{}).state; });
+  const days = co.split(' ').map(x => parseInt(x, 16));
+  check('harmonogram: zapis dotarł do kotła (godzina 12 przełączona we wtorek)', (((days[1] >> 12) & 1) === 1) === !was12, co);
+  check('harmonogram: dni Pn–Pt mają ten sam harmonogram', days.slice(0, 5).every(x => x === days[1]), co);
+
   // ---------------------------------------------------------------- alarmy
   await p.click('.nav button[data-k="alarmy"]'); await sleep(1200);
   check('alarmy: historia z wpisami', /Przegrzanie|Brak ognia/.test(await p.innerText('#alist')));

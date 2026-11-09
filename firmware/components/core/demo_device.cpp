@@ -9,6 +9,15 @@ namespace tpc {
 
 DemoDevice::DemoDevice(const std::string& fw) : t0_(std::chrono::steady_clock::now()), rng_(20260101) {
     populate_demo(boiler_);
+    {   // harmonogramy tygodniowe (bit i = godzina i): CWU, CO i kocioł – wszystkie dni
+        auto hours = [](int a, int b) { uint32_t m = 0; for (int h = a; h < b; h++) m |= 1u << h; return m; };
+        for (int day = 0; day < 7; day++) {
+            const bool we = day >= 5;
+            boiler_.reg[day < 6 ? 0x2154 + day : 0x2160] = we ? (hours(7, 10) | hours(17, 22)) : (hours(5, 8) | hours(17, 22));   // CWU
+            boiler_.reg[0x2126 + 4 * day] = we ? hours(6, 23) : (hours(4, 8) | hours(15, 22));                                        // CO
+            boiler_.reg[0x2209 + day] = 0xFFFFFF;                                                                                    // kocioł
+        }
+    }
     boiler_.reg[0x404C] = 256 + 1;                       // ostatni wpis: slot 0 (zakończony) – bez aktywnego alarmu
     boiler_.reg[0x4010] = 2; boiler_.reg[0x4011] = 140;  // historia: przegrzanie, brak ognia (oba zakończone)
     boiler_.reg[0x4025] = 1794150000; boiler_.reg[0x4039] = 1794153600;

@@ -42,8 +42,8 @@ async function showUpdateBanners(container, which) {
 }
 
 // ------------------------------------------------------------------ router
-const TITLES = { pulpit: 'Pulpit', instalacja: 'Instalacja', kociol: 'Nastawy', alarmy: 'Alarmy', menu: 'Menu', params: 'Parametry' };
-const NAVS = [['pulpit', '▦', 'Pulpit'], ['instalacja', '⇵', 'Instalacja'], ['alarmy', '⚠', 'Alarmy'], ['menu', '≡', 'Menu']];
+const TITLES = { pulpit: 'Pulpit', instalacja: 'Instalacja', harmonogram: 'Harmonogram', kociol: 'Nastawy', alarmy: 'Alarmy', menu: 'Menu', params: 'Parametry' };
+const NAVS = [['pulpit', '▦', 'Pulpit'], ['instalacja', '⇵', 'Instalacja'], ['harmonogram', '◷', 'Harmonogram'], ['alarmy', '⚠', 'Alarmy'], ['menu', '≡', 'Menu']];
 
 export function go(r) { location.hash = '#/' + r; }
 window.addEventListener('hashchange', render);
@@ -103,13 +103,14 @@ async function render() {
     if (page === 'pulpit') view = V.pulpit(p => go('d/' + p));
     else if (page === 'instalacja') view = V.instalacja(p => go('d/' + p));
     else if (page === 'kociol') view = V.kociol();
+    else if (page === 'harmonogram') view = V.harmonogram();
     else if (page === 'alarmy') view = V.alarmy();
     else if (page === 'menu') return viewMenu();
     else if (page === 'params' && parts[2]) view = V.paramList(decodeURIComponent(parts[2]));
     else if (page === 'params') view = V.paramGroups(p => go('d/' + p));
     else return go('d/pulpit');
     const title = page === 'pulpit' ? (st.deviceName || 'Kocioł') : parts[2] ? decodeURIComponent(parts[2]) : (TITLES[page] || '');
-    const nav = ['pulpit', 'instalacja', 'alarmy'].includes(page) ? 'main' : 'sub';
+    const nav = ['pulpit', 'instalacja', 'harmonogram', 'alarmy'].includes(page) ? 'main' : 'sub';
     const sc0 = chrome(title, view.node, nav);
     if (page === 'pulpit') setTimeout(() => showUpdateBanners(sc0, ['fw']), 1500);
     const upd = () => { view.update(); refreshChip(); };
@@ -126,7 +127,7 @@ window.__tpcBack = () => {
   const r = location.hash.replace(/^#\//, '');
   if (r === 'devices' || r === 'start' || r === 'setup' || r === '') return false;
   if (r === 'd/pulpit') { toLeave(); return true; }
-  if (r.startsWith('d/') && r !== 'd/menu' && !['d/instalacja', 'd/alarmy'].includes(r)) { history.back(); return true; }
+  if (r.startsWith('d/') && r !== 'd/menu' && !['d/instalacja', 'd/alarmy', 'd/harmonogram'].includes(r)) { history.back(); return true; }
   if (r === 'd/menu' || r === 'app') { r === 'app' ? history.back() : go('d/pulpit'); return true; }
   go('d/pulpit'); return true;
 };
@@ -254,6 +255,7 @@ function viewMenu() {
     <button class="row nav2" data-go="d/pulpit"><span>Pulpit</span></button>
     <button class="row nav2" data-go="d/instalacja"><span>Instalacja</span></button>
     <button class="row nav2" data-go="d/kociol"><span>Nastawy: kocioł, CO, CWU</span></button>
+    <button class="row nav2" data-go="d/harmonogram"><span>Harmonogramy</span></button>
     <button class="row nav2" data-go="d/alarmy"><span>Alarmy i historia</span></button>
     <button class="row nav2" data-go="d/params"><span>Wszystkie parametry</span></button></div>
     <div class="sec"><h5>Dostęp</h5>
