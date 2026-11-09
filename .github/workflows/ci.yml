@@ -105,14 +105,16 @@ jobs:
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          if [ -n "$KS_B64" ]; then echo "$KS_B64" | base64 -d > /tmp/release.jks; export ANDROID_KEYSTORE_FILE=/tmp/release.jks; else echo "UWAGA: podpis kluczem TESTOWYM"; fi
+          if [ -n "$KS_B64" ]; then echo "$KS_B64" | base64 -d > /tmp/release.jks; export ANDROID_KEYSTORE_FILE=/tmp/release.jks; echo prod > signing.txt; else echo "UWAGA: podpis kluczem TESTOWYM"; echo dev > signing.txt; fi
           cd android && chmod +x gradlew
           ok=0; for i in 1 2 3 4; do if ./gradlew --no-daemon assembleRelease; then ok=1; break; fi; echo "próba $i nieudana (np. chwilowy błąd pobierania) – ponawiam"; sleep 30; done; [ "$ok" = 1 ]
           cp app/build/outputs/apk/release/app-release.apk ../teklapelletcan.apk
       - uses: actions/upload-artifact@v4
         with:
           name: teklapelletcan-apk
-          path: teklapelletcan.apk
+          path: |
+            teklapelletcan.apk
+            signing.txt
           retention-days: 30
   ha-integration:
     runs-on: ubuntu-latest
@@ -190,6 +192,12 @@ jobs:
         with:
           name: teklapelletcan-apk
           path: art
+      - name: Zabezpieczenie – APK z wydania musi być podpisany kluczem produkcyjnym
+        run: |
+          if [ "$(cat art/signing.txt)" != "prod" ]; then
+            echo "::error::APK jest podpisany kluczem TESTOWYM. Ustaw sekrety ANDROID_KEYSTORE_B64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD (docs/APLIKACJA_ANDROID.md) – inaczej pierwsza aktualizacja aplikacji wymagałaby jej odinstalowania."
+            exit 1
+          fi
       - name: Utworz wydanie
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
