@@ -33,6 +33,7 @@ from .const import (
 _LOGGER = logging.getLogger(__name__)
 PLATFORMS = [Platform.SENSOR, Platform.BINARY_SENSOR, Platform.BUTTON, Platform.SWITCH, Platform.SELECT]
 CARD_URL = f"/{DOMAIN}_static/pelletcan-card.js"
+NEW_CARD_URL = f"/{DOMAIN}_static/teklapelletcan-card.js"
 
 
 class TeklaCoordinator(DataUpdateCoordinator[dict[str, dict]]):
@@ -65,6 +66,7 @@ async def async_setup(hass: HomeAssistant, config: dict[str, Any]) -> bool:
         await hass.http.async_register_static_paths([StaticPathConfig(f"/{DOMAIN}_static", str(www), False)])
         try:
             frontend.add_extra_js_url(hass, CARD_URL)
+            frontend.add_extra_js_url(hass, NEW_CARD_URL)
         except KeyError:   # frontend niezaładowany (np. instalacja bez interfejsu) – kartę można dodać ręcznie jako zasób
             _LOGGER.debug("frontend niedostępny, karta nie została dodana automatycznie")
     return True

@@ -77,10 +77,12 @@ Wersja `v1`, JSON, `http://<ip>/api/v1/...`.
 - Config flow: wykrycie przez zeroconf `_teklapelletcan._tcp` lub ręczne IP → kod parowania → entry z `unique_id` = ID urządzenia.
 - Coordinator z WebSocket (push) i REST jako fallback; encje tworzone z `/points`.
 - Usługi odpowiadające akcjom z PelletCAN (set_param, set_setpoint, set_schedule, unlock, diag).
-- Karta `teklapelletcan-card` dostarczana razem z integracją (HACS, zasób dashboardu).
+- Dwie karty dostarczane razem z integracją (HACS, zasoby dashboardu): `teklapelletcan-card` (polecana w HA – patrz niżej) i `pelletcan-card` (zgodność wsteczna / strona urządzenia).
 
-## 10. Karta (`web/`)
-Jeden kod, dwa tryby: **urządzenie** (rozmawia z API ESP, serwowana z LittleFS) i **HA** (rozmawia przez integrację). Tłumaczenia (11 języków), tryb demo, edytor wizualny w HA. Kod startowy przeniesiony z `dist/` projektu PelletCAN i przepięty z encji ESPHome na model punktów.
+## 10. Karty (`web/`)
+Silnik renderowania (`tekla-panel-card.js`/`pelletcan-card.js`) jest wspólny dla strony urządzenia i dla HA: tłumaczenia (11 języków), tryb demo, edytor wizualny. Kod startowy przeniesiony z `dist/` projektu PelletCAN i przepięty z encji ESPHome na model punktów. Dwa punkty wejścia na tym silniku:
+- **`pelletcan-card`** – ogólna, kompatybilna wstecz: wykrywa dowolne urządzenie (ESPHome PelletCAN albo TeklaPelletCAN) po prefiksie encji w CAŁYM Home Assistant (ręczny `entity_prefix` albo zgadywanie po „kotwicach”). Używana na stronie WWW urządzenia (tam zawsze jest tylko jedno urządzenie – samo siebie).
+- **`teklapelletcan-card`** (`web/teklapelletcan-card.js`) – wyłącznie dla integracji TeklaPelletCAN: urządzenie znajduje przez rejestr urządzeń HA (`identifiers[0] === "teklapelletcan"`), nie przez zgadywanie po całym HA, więc nie myli się z ESPHome ani inną integracją. Przy kilku urządzeniach integracji w jednym HA pokazuje wybór w edytorze karty (`device_id`); bez wyboru używa pierwszego i pokazuje baner. Konfiguracja: urządzenie (opcjonalnie), grafiki (domyślnie pełne), obraz kotła 11–14, język, ekran startowy – bez ręcznego mapowania encji. Polecana karta dla integracji; `pelletcan-card` zostaje dla strony WWW urządzenia i starych dashboardów.
 
 ## 11. Pamięć flash (XIAO C6, 4 MB)
 Partycje (`firmware/partitions.csv`): NVS, otadata, 2 × OTA po 1,8 MB, `storage` 256 KB (opcjonalne grafiki panela). **Karta WWW jest wbudowana w obraz firmware** (gzip), więc jedna paczka = jedna atomowa aktualizacja firmware i karty.

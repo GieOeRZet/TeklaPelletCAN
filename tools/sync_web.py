@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC, DST = ROOT / "web", ROOT / "custom_components/teklapelletcan/www"
-FILES = ["pelletcan-card.js", "tekla-panel-card.js", "pelletcan-lang.js"]
+FILES = ["pelletcan-card.js", "teklapelletcan-card.js", "tekla-panel-card.js", "pelletcan-lang.js"]
 DIRS = ["img"]
 
 

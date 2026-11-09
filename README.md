@@ -8,7 +8,7 @@ Własny firmware (ESP-IDF, C++) dla ESP32 z modułem CAN (MCP2515), który czyta
 | Katalog | Zawartość |
 |---|---|
 | `firmware/` | firmware ESP32 (ESP-IDF, C++): CAN/CANopen, API, portal AP, WWW |
-| `web/` | karta `teklapelletcan-card` – jeden kod dla strony na ESP i dla Home Assistant |
+| `web/` | strona urządzenia i karty Lovelace: `pelletcan-card` (silnik renderowania, działa na stronie ESP i w HA – dowolna integracja/ESPHome), `teklapelletcan-card` (cienka nakładka wyłącznie dla integracji TeklaPelletCAN – auto-wykrywanie urządzenia, bez ręcznego mapowania encji) |
 | `custom_components/teklapelletcan/` | integracja Home Assistant (HACS) |
 | `android/` | aplikacja Android (później) |
 | `rejestry/` | katalog rejestrów CANopen kotła (przeniesiony z PelletCAN) |
