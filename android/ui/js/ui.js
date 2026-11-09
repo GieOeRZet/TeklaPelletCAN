@@ -122,6 +122,7 @@ export async function ensureLevel(need) {
       return cur >= need ? null : (cur > 0 ? `Ten PIN daje tylko poziom ${cur}` : 'Zły PIN poziomu');
     },
   });
+  if (pin !== null) S.levelAt = Date.now();   // liczniik sesji poziomu w naglowku (patrz main.js chip())
   await pullNow();   // widoki od razu widzą nowy poziom
   return pin !== null;
 }

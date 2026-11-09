@@ -222,22 +222,81 @@ function modeChips(title, pid, labels, apply, entityId) {
   return n;
 }
 
+/** Wiersz jednego punktu z katalogu (/api/v1/points) - uzywany i w ekranach domenowych (kociol/palnik/co/cwu),
+ * i w "Wszystkich parametrach". Zapisywalny -> otwiera editPoint (sam rozpoznaje suwak/stepper czy opcje). */
+function pointRow(p) {
+  const b = el(`<button class="row ${p.writable ? 'nav2' : ''}" data-p="${esc(p.id)}"><span>${esc(p.name)}${p.writable ? '' : '<div class="hint">tylko odczyt</div>'}</span><span class="v" data-b="pv_${esc(p.id)}"></span></button>`);
+  binders.set('pv_' + p.id, n => {
+    const s = pv(p.id);
+    let t = s === undefined || s === 'unknown' ? '–' : s;
+    if (p.options && p.options[String(Math.round(parseFloat(s)))] !== undefined && !Number.isNaN(parseFloat(s))) t = p.options[String(Math.round(parseFloat(s)))];
+    n.textContent = t + (p.unit && t !== '–' && !p.options ? ' ' + p.unit : '');
+  });
+  if (p.writable) b.onclick = () => editPoint(p.id);
+  return b;
+}
+
+/** Dopisuje do sekcji (domenowej albo grupy w "Wszystkich parametrach") punkty podzielone na poziomy dostepu -
+ * poziom 0 bez naglowka (juz tam sa recznie dobrane najwazniejsze pola), poziom 1/2 za wyraznym podkresleniem
+ * "— POZIOM N —" (replika oryginalnej karty: wrench + numer poziomu), odslanianym dopiero po PIN-ie danego
+ * poziomu - a nie ukrytym na zawsze jak dotychczas w ekranie Nastawy. */
+function appendLevelGroups(container, points, shownLevel, { skipIds = new Set(), includeReadOnly = false } = {}) {
+  const rest = points.filter(p => !skipIds.has(p.id) && (p.writable || includeReadOnly));
+  const lvOf = p => (p.writable ? (p.level || 0) : -1);
+  const base = rest.filter(p => lvOf(p) === 0);
+  base.forEach(p => container.appendChild(pointRow(p)));
+  for (const lv of [1, 2]) {
+    const items = rest.filter(p => lvOf(p) === lv);
+    if (!items.length) continue;
+    if (shownLevel >= lv) {
+      container.appendChild(el(`<div class="lvh" data-lvh="${lv}">Poziom ${lv}</div>`));
+      items.forEach(p => container.appendChild(pointRow(p)));
+    } else {
+      const b = el(`<button class="lvh lock" data-lv="${lv}">🔒 Poziom ${lv} · ${items.length} ${items.length === 1 ? 'opcja' : 'opcji'} – odblokuj PIN-em</button>`);
+      b.onclick = async () => { if (await ensureLevel(lv)) { container.dispatchEvent(new CustomEvent('relevel', { bubbles: true })); } };
+      container.appendChild(b);
+    }
+  }
+  const ro = includeReadOnly ? rest.filter(p => lvOf(p) === -1) : [];
+  if (ro.length) { container.appendChild(el('<div class="lvh" style="color:var(--dim)">Odczyty</div>')); ro.forEach(p => container.appendChild(pointRow(p))); }
+}
+
 export function kociol() {
   const root = el('<div><div id="bn"></div></div>');
-  const sec = (h) => { const s = el(`<div class="sec"><h5>${h}</h5></div>`); root.appendChild(s); return s; };
-  const k = sec('Kocioł');
-  k.append(stepperRow('Zadana temperatura kotła (ręczna)', 'boiler_set_manual'),
-    modeChips('Tryb pracy kotła', 'boiler_mode', MODE, m => callService('tekla_estyma_set_boiler_mode', { mode: m }), 'sensor.tekla_kociol_tryb_pracy'));
-  const c = sec('CO (ogrzewanie)');
-  c.append(stepperRow('Zadana CO (ręczna)', 'ch1_set_manual'), stepperRow('Zadana CO – komfort', 'co_set_comfort'), stepperRow('Zadana CO – eko', 'co_set_eco'),
-    modeChips('Tryb CO', 'co_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_co_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_co_tryb'));
-  const w = sec('CWU (ciepła woda)');
-  w.append(stepperRow('Zadana CWU – komfort', 'hw_set_comfort'), stepperRow('Zadana CWU – eko', 'hw_set_eco'),
-    modeChips('Tryb CWU', 'cwu_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_cwu_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_cwu_tryb'));
-  w.append(el('<button class="btn sec" id="boost">Zagrzej CWU teraz</button>'));
-  root.querySelector('#boost').onclick = async () => { if (await confirmSheet('Zagrzej CWU teraz', 'Włączyć jednorazowe dogrzanie wody?')) await writePoint('cwu_boost', 1); };
-  root.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => editPoint(b.dataset.edit));
-  return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); updateBound(root); } };
+  let shownLevel = -1;
+  const byGroup = {};
+  for (const p of S.points) { const g = groupOf(p); (byGroup[g] = byGroup[g] || []).push(p); }
+  const draw = () => {
+    shownLevel = level();
+    root.innerHTML = ''; root.appendChild(el('<div id="bn"></div>'));
+    const sec = (h) => { const s = el(`<div class="sec"><h5>${h}</h5></div>`); root.appendChild(s); return s; };
+
+    const k = sec('Kocioł');
+    k.append(stepperRow('Zadana temperatura kotła (ręczna)', 'boiler_set_manual'),
+      modeChips('Tryb pracy kotła', 'boiler_mode', MODE, m => callService('tekla_estyma_set_boiler_mode', { mode: m }), 'sensor.tekla_kociol_tryb_pracy'));
+    appendLevelGroups(k, byGroup['Kocioł'] || [], shownLevel, { skipIds: new Set(['boiler_set_manual', 'boiler_mode']) });
+
+    const pl = sec('Palnik');
+    appendLevelGroups(pl, byGroup['Palnik'] || [], shownLevel);
+
+    const c = sec('CO (ogrzewanie)');
+    c.append(stepperRow('Zadana CO (ręczna)', 'ch1_set_manual'), stepperRow('Zadana CO – komfort', 'co_set_comfort'), stepperRow('Zadana CO – eko', 'co_set_eco'),
+      modeChips('Tryb CO', 'co_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_co_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_co_tryb'));
+    appendLevelGroups(c, byGroup['CO'] || [], shownLevel, { skipIds: new Set(['ch1_set_manual', 'co_set_comfort', 'co_set_eco']) });
+
+    const w = sec('CWU (ciepła woda)');
+    w.append(stepperRow('Zadana CWU – komfort', 'hw_set_comfort'), stepperRow('Zadana CWU – eko', 'hw_set_eco'),
+      modeChips('Tryb CWU', 'cwu_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_cwu_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_cwu_tryb'));
+    w.append(el('<button class="btn sec" id="boost">Zagrzej CWU teraz</button>'));
+    appendLevelGroups(w, byGroup['CWU'] || [], shownLevel, { skipIds: new Set(['hw_set_comfort', 'hw_set_eco']) });
+
+    $('#boost', root).onclick = async () => { if (await confirmSheet('Zagrzej CWU teraz', 'Włączyć jednorazowe dogrzanie wody?')) await writePoint('cwu_boost', 1); };
+    root.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => editPoint(b.dataset.edit));
+    updateBound(root);
+  };
+  root.addEventListener('relevel', draw);
+  draw();
+  return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); if (level() !== shownLevel) draw(); else updateBound(root); } };
 }
 
 // ------------------------------------------------------------------ alarmy

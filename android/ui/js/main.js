@@ -1,6 +1,6 @@
 import { nat, onEvent, api } from './native.js';
-import { S, startPolling, stopPolling, subscribe, level, refreshInfo } from './store.js';
-import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ensureLevel, ensurePinSetup, confirmSheet } from './ui.js';
+import { S, LEVEL_MS, startPolling, stopPolling, subscribe, level, refreshInfo } from './store.js';
+import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ensureLevel, ensurePinSetup, confirmSheet, callService } from './ui.js';
 import * as V from './views.js';
 import { checkUpdates, dismissed, dismiss } from './updates.js';
 
@@ -48,14 +48,17 @@ const NAVS = [['pulpit', '▦', 'Pulpit'], ['instalacja', '⇵', 'Instalacja'], 
 export function go(r) { location.hash = '#/' + r; }
 window.addEventListener('hashchange', render);
 
+// Naglowek pokazuje TYLKO sesje poziomu kotla (PIN 0900/0999) - to jedyna ochrona zapisu, ktora ma sens
+// pokazywac stale (ile czasu zostalo). Status "poziom menu" jako taki widac juz w Menu - nie dublujemy go
+// tutaj. PIN aplikacji/odcisk palca chronia tylko start aplikacji, wiec nie maja tu oddzielnego znacznika.
 function chip() {
-  const st = nat.state();
   if (S.cachedAt || (!S.online && S.loaded === false && S.fails > 1)) return '<button class="chip off" id="chip">⏸ offline</button>';
-  if (st.unlocked) {
-    const m = Math.floor(st.remainingMs / 60000), s = Math.floor(st.remainingMs / 1000) % 60;
-    return `<button class="chip open" id="chip">🔓 ${m}:${String(s).padStart(2, '0')}${level() > 0 ? ' · P' + level() : ''}</button>`;
+  const left = S.levelAt ? LEVEL_MS - (Date.now() - S.levelAt) : 0;
+  if (level() > 0 && left > 0) {
+    const m = Math.floor(left / 60000), s = Math.floor(left / 1000) % 60;
+    return `<button class="chip open" id="chip">🔓 ${m}:${String(s).padStart(2, '0')}</button>`;
   }
-  return '<button class="chip" id="chip">🔒 tylko odczyt</button>';
+  return '';
 }
 
 function chrome(title, body, nav) {
@@ -77,11 +80,11 @@ function chrome(title, body, nav) {
 function bindChip() {
   const c = $('#chip');
   if (!c) return;
+  // widoczny tylko gdy poziom kotla aktywny (patrz chip()) - klik blokuje sesje od razu (PIN 0000, jak w oryginale)
   c.onclick = async () => {
-    const st = nat.state();
     if (S.cachedAt) { toast('Brak połączenia z urządzeniem – tryb podglądu ostatnich danych'); return; }
-    if (st.unlocked) { nat.lock(); refreshChip(); toast('Sterowanie zablokowane'); }
-    else { if (await ensureUnlocked()) { refreshChip(); toast('Sterowanie odblokowane na 5 min'); } }
+    await callService('tekla_estyma_unlock', { pin: 0 });
+    S.levelAt = 0; refreshChip(); toast('Poziom kotła zablokowany');
   };
 }
 function refreshChip() { const b = $('#chipbox'); if (b) { b.innerHTML = chip(); bindChip(); } }

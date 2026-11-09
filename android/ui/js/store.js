@@ -1,7 +1,8 @@
 // Stan urządzenia: stany encji (odpytywane co 2 s), opis punktów, konfiguracja; wartości z pamięci, gdy urządzenie jest poza zasięgiem.
 import { api } from './native.js';
 
-export const S = { states: new Map(), byId: new Map(), points: [], pointById: new Map(), info: {}, config: {}, cachedAt: 0, online: false, loaded: false, fails: 0 };
+export const S = { states: new Map(), byId: new Map(), points: [], pointById: new Map(), info: {}, config: {}, cachedAt: 0, online: false, loaded: false, fails: 0, levelAt: 0 };
+export const LEVEL_MS = 300000;   // sesja poziomu kotla (PIN 0900/0999) - tyle samo co w oryginalnej karcie
 const subs = new Set();
 export const subscribe = fn => { subs.add(fn); return () => subs.delete(fn); };
 let timer = null;
