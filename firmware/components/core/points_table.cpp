@@ -91,8 +91,10 @@ const Point kPoints[] = {
     {103, 0x2048, Encoding::Tenths, 10.0f, 30.0f, 0, "CO zadana eko"},
     {104, 0x2003, Encoding::Plain, 60.0f, 80.0f, 0, "Kociol zadana reczna"},
     {106, 0x2002, Encoding::Plain, 0.0f, 3.0f, 0, "Kociol tryb zadawania (0 czasowy auto, 1 czasowy reczny, 2 auto, 3 reczny)"},
+    {107, 0x2259, Encoding::EnumList, 0.0f, 2.0f, 2, "Podajnik tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {108, 0x2283, Encoding::EnumList, 0.0f, 2.0f, 2, "Dmuchawa tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
 };
 
-const unsigned kPointCount = 87;
+const unsigned kPointCount = 89;
 
 }  // namespace tpc

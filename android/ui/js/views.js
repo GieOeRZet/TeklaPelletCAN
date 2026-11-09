@@ -120,13 +120,13 @@ export function pulpit(go) {
   const root = el(`<div>
     <div id="bn"></div>
     <div class="land2">
-    <div class="hero"><div class="stage"><img id="kimg" alt="kocioł"></div>
+    <div class="hero" data-go="kociol"><div class="stage"><img id="kimg" alt="kocioł"></div>
       <div class="tx"><div class="big"><span data-b="t_boiler"></span><small> °C</small></div><div data-b="pill"></div></div>
       <div class="st"><div data-b="hero_sub"></div></div></div>
     <div class="g2">
-      <button class="cd im" data-go="kociol"><small>Palnik</small><b data-b="burner_pct"></b><span class="u"> %</span><div class="dots"><span><i data-b="dot_blower"></i>dmuchawa</span><span><i data-b="dot_feeder"></i>podajnik</span></div><img src="img/palnik.webp" style="height:50px" alt=""></button>
-      <button class="cd im" data-go="kociol"><small>CWU</small><b data-b="t_cwu"></b><span class="u"> °C</span><div class="u" data-b="cwu_sub"></div><img src="img/bojler.webp" style="height:76px;right:10px;top:8px;border-radius:8px" alt=""></button>
-      <button class="cd" data-go="kociol"><small>CO</small><b data-b="t_co"></b><span class="u"> °C</span><div class="u" data-b="co_sub"></div></button>
+      <button class="cd im" data-go="palnik"><small>Palnik</small><b data-b="burner_pct"></b><span class="u"> %</span><div class="dots"><span><i data-b="dot_blower"></i>dmuchawa</span><span><i data-b="dot_feeder"></i>podajnik</span></div><img src="img/palnik.webp" style="height:50px" alt=""></button>
+      <button class="cd im" data-go="cwu"><small>CWU</small><b data-b="t_cwu"></b><span class="u"> °C</span><div class="u" data-b="cwu_sub"></div><img src="img/bojler.webp" style="height:76px;right:10px;top:8px;border-radius:8px" alt=""></button>
+      <button class="cd" data-go="co"><small>CO</small><b data-b="t_co"></b><span class="u"> °C</span><div class="u" data-b="co_sub"></div></button>
       <button class="cd" data-fuel="1"><small>Paliwo</small><b data-b="fuel"></b><span class="u"> kg</span><div class="u" data-b="fuel_sub"></div><div style="position:absolute;right:12px;top:12px" data-b="hopper"></div></button>
       <button class="cd" data-go="instalacja"><small>Zewnętrzna</small><b data-b="t_out"></b><span class="u"> °C</span><div class="u" data-b="out_sub"></div></button>
       <button class="cd" data-go="instalacja"><small>Moc palnika</small><b data-b="kw"></b><span class="u"> kW</span><div class="u" data-b="kw_sub"></div></button>
@@ -165,13 +165,13 @@ export function instalacja(go) {
   const root = el(`<div class="flow"><div id="bn"></div>
     <button class="node" data-fuel="1"><span data-b="in_hop"></span><div><b>Zbiornik</b><span class="u" data-b="in_hop_t"></span></div><div class="r"><span class="pill" data-b="in_hop_p"></span></div></button>
     <div class="arrow">▼ ▼ ▼</div>
-    <button class="node" data-go="params/Palnik"><img src="img/palnik.webp" alt=""><div><b>Palnik</b><span class="u" data-b="in_burn_t"></span></div><div class="r"><b data-b="in_burn_p"></b></div></button>
+    <button class="node" data-go="palnik"><img src="img/palnik.webp" alt=""><div><b>Palnik</b><span class="u" data-b="in_burn_t"></span></div><div class="r"><b data-b="in_burn_p"></b></div></button>
     <div class="arrow">▼ ▼ ▼</div>
     <button class="node" data-go="kociol"><img src="${boilerImg()}" style="height:60px" alt=""><div><b>Kocioł</b><span class="u" data-b="in_k_t"></span></div><div class="r"><b data-b="in_k_p"></b></div></button>
     <div class="arrow" style="letter-spacing:70px">▼ ▼</div>
     <div class="split">
-      <button class="node" data-go="kociol"><b>CO</b><span class="u" data-b="in_co_t"></span><b style="font-size:22px" data-b="in_co_p"></b><span class="u" data-b="in_co_v"></span></button>
-      <button class="node" data-go="kociol"><b>CWU</b><span class="u" data-b="in_cwu_t"></span><b style="font-size:22px" data-b="in_cwu_p"></b></button>
+      <button class="node" data-go="co"><b>CO</b><span class="u" data-b="in_co_t"></span><b style="font-size:22px" data-b="in_co_p"></b><span class="u" data-b="in_co_v"></span></button>
+      <button class="node" data-go="cwu"><b>CWU</b><span class="u" data-b="in_cwu_t"></span><b style="font-size:22px" data-b="in_cwu_p"></b></button>
     </div>
     <div class="sec" style="margin-top:12px"><h5>Dodatkowe</h5>
       <div class="row"><span>Temperatura powrotu</span><span class="v" data-b="in_ret"></span></div>
@@ -257,41 +257,62 @@ function appendLevelGroups(container, points, shownLevel, { skipIds = new Set(),
   if (ro.length) { container.appendChild(el('<div class="lvh" style="color:var(--dim)">Odczyty</div>')); ro.forEach(p => container.appendChild(pointRow(p))); }
 }
 
-export function kociol() {
-  const root = el('<div><div id="bn"></div></div>');
-  let shownLevel = -1;
+function pointsByGroup() {
   const byGroup = {};
   for (const p of S.points) { const g = groupOf(p); (byGroup[g] = byGroup[g] || []).push(p); }
+  return byGroup;
+}
+
+/** Ekran domenowy (Kocioł / Palnik / Ogrzewanie / Woda) – jak w oryginalnej karcie: osobny pełny ekran
+ * dla każdej instalacji, z własnymi nastawami podzielonymi na poziomy dostępu. */
+function domainScreen(build) {
+  const root = el('<div><div id="bn"></div></div>');
+  let shownLevel = -1;
   const draw = () => {
     shownLevel = level();
     root.innerHTML = ''; root.appendChild(el('<div id="bn"></div>'));
     const sec = (h) => { const s = el(`<div class="sec"><h5>${h}</h5></div>`); root.appendChild(s); return s; };
-
-    const k = sec('Kocioł');
-    k.append(stepperRow('Zadana temperatura kotła (ręczna)', 'boiler_set_manual'),
-      modeChips('Tryb pracy kotła', 'boiler_mode', MODE, m => callService('tekla_estyma_set_boiler_mode', { mode: m }), 'sensor.tekla_kociol_tryb_pracy'));
-    appendLevelGroups(k, byGroup['Kocioł'] || [], shownLevel, { skipIds: new Set(['boiler_set_manual', 'boiler_mode']) });
-
-    const pl = sec('Palnik');
-    appendLevelGroups(pl, byGroup['Palnik'] || [], shownLevel);
-
-    const c = sec('CO (ogrzewanie)');
-    c.append(stepperRow('Zadana CO (ręczna)', 'ch1_set_manual'), stepperRow('Zadana CO – komfort', 'co_set_comfort'), stepperRow('Zadana CO – eko', 'co_set_eco'),
-      modeChips('Tryb CO', 'co_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_co_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_co_tryb'));
-    appendLevelGroups(c, byGroup['CO'] || [], shownLevel, { skipIds: new Set(['ch1_set_manual', 'co_set_comfort', 'co_set_eco']) });
-
-    const w = sec('CWU (ciepła woda)');
-    w.append(stepperRow('Zadana CWU – komfort', 'hw_set_comfort'), stepperRow('Zadana CWU – eko', 'hw_set_eco'),
-      modeChips('Tryb CWU', 'cwu_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_cwu_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_cwu_tryb'));
-    w.append(el('<button class="btn sec" id="boost">Zagrzej CWU teraz</button>'));
-    appendLevelGroups(w, byGroup['CWU'] || [], shownLevel, { skipIds: new Set(['hw_set_comfort', 'hw_set_eco']) });
-
-    $('#boost', root).onclick = async () => { if (await confirmSheet('Zagrzej CWU teraz', 'Włączyć jednorazowe dogrzanie wody?')) await writePoint('cwu_boost', 1); };
+    build(root, sec, pointsByGroup(), shownLevel);
     root.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => editPoint(b.dataset.edit));
     updateBound(root);
   };
   draw();
   return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); if (level() !== shownLevel) draw(); else updateBound(root); } };
+}
+
+export function kociol() {
+  return domainScreen((root, sec, byGroup, shownLevel) => {
+    const k = sec('Kocioł');
+    k.append(stepperRow('Zadana temperatura kotła (ręczna)', 'boiler_set_manual'),
+      modeChips('Tryb pracy kotła', 'boiler_mode', MODE, m => callService('tekla_estyma_set_boiler_mode', { mode: m }), 'sensor.tekla_kociol_tryb_pracy'));
+    appendLevelGroups(k, byGroup['Kocioł'] || [], shownLevel, { skipIds: new Set(['boiler_set_manual', 'boiler_mode']) });
+  });
+}
+
+export function palnik() {
+  return domainScreen((root, sec, byGroup, shownLevel) => {
+    appendLevelGroups(sec('Palnik'), byGroup['Palnik'] || [], shownLevel);
+  });
+}
+
+export function ogrzewanie() {
+  return domainScreen((root, sec, byGroup, shownLevel) => {
+    const c = sec('Ogrzewanie (CO)');
+    c.append(stepperRow('Zadana CO (ręczna)', 'ch1_set_manual'), stepperRow('Zadana CO – komfort', 'co_set_comfort'), stepperRow('Zadana CO – eko', 'co_set_eco'),
+      modeChips('Tryb CO', 'co_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_co_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_co_tryb'));
+    appendLevelGroups(c, byGroup['CO'] || [], shownLevel, { skipIds: new Set(['ch1_set_manual', 'co_set_comfort', 'co_set_eco']) });
+  });
+}
+
+export function cieplaWoda() {
+  return domainScreen((root, sec, byGroup, shownLevel) => {
+    const w = sec('Ciepła woda (CWU)');
+    w.append(stepperRow('Zadana CWU – komfort', 'hw_set_comfort'), stepperRow('Zadana CWU – eko', 'hw_set_eco'),
+      modeChips('Tryb CWU', 'cwu_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_cwu_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_cwu_tryb'));
+    w.append(el('<button class="btn sec" id="boost">Zagrzej CWU teraz</button>'));
+    appendLevelGroups(w, byGroup['CWU'] || [], shownLevel, { skipIds: new Set(['hw_set_comfort', 'hw_set_eco']) });
+    const b = $('#boost', root); if (b) b.onclick = async () => { if (await confirmSheet('Zagrzej CWU teraz', 'Włączyć jednorazowe dogrzanie wody?')) await writePoint('cwu_boost', 1); };
+  });
 }
 
 // ------------------------------------------------------------------ alarmy
@@ -315,7 +336,7 @@ export function alarmy() {
 }
 
 // ------------------------------------------------------------------ parametry (z metadanych punktów)
-export const GROUPS = [['Kocioł', /^(Kociol|Moc|Histereza zal|Wartosc|Korekta)/i], ['Palnik', /^(Palnik|Dmuchawa|Ilosc paliwa)/i], ['CO', /^CO/i], ['CWU', /^CWU/i], ['Paliwo', /^(Zbiornik|Paliwo)/i], ['Alarmy', /^Alarm/i]];
+export const GROUPS = [['Kocioł', /^(Kociol|Moc|Histereza zal|Wartosc|Korekta)/i], ['Palnik', /^(Palnik|Dmuchawa|Podajnik|Ilosc paliwa)/i], ['CO', /^CO/i], ['CWU', /^CWU/i], ['Paliwo', /^(Zbiornik|Paliwo)/i], ['Alarmy', /^Alarm/i]];
 export const groupOf = p => { for (const [g, re] of GROUPS) if (re.test(p.name)) return g; return 'Inne'; };
 
 export function paramGroups(go) {

@@ -42,7 +42,7 @@ async function showUpdateBanners(container, which) {
 }
 
 // ------------------------------------------------------------------ router
-const TITLES = { pulpit: 'Pulpit', instalacja: 'Instalacja', harmonogram: 'Harmonogram', kociol: 'Nastawy', alarmy: 'Alarmy', menu: 'Menu', params: 'Parametry' };
+const TITLES = { pulpit: 'Pulpit', instalacja: 'Instalacja', harmonogram: 'Harmonogram', kociol: 'Kocioł', palnik: 'Palnik', co: 'Ogrzewanie (CO)', cwu: 'Ciepła woda (CWU)', alarmy: 'Alarmy', menu: 'Menu', params: 'Parametry' };
 const NAVS = [['pulpit', '▦', 'Pulpit'], ['instalacja', '⇵', 'Instalacja'], ['harmonogram', '◷', 'Harmonogram'], ['alarmy', '⚠', 'Alarmy'], ['menu', '≡', 'Menu']];
 
 export function go(r) { location.hash = '#/' + r; }
@@ -113,6 +113,9 @@ async function render() {
     if (page === 'pulpit') view = V.pulpit(p => go('d/' + p));
     else if (page === 'instalacja') view = V.instalacja(p => go('d/' + p));
     else if (page === 'kociol') view = V.kociol();
+    else if (page === 'palnik') view = V.palnik();
+    else if (page === 'co') view = V.ogrzewanie();
+    else if (page === 'cwu') view = V.cieplaWoda();
     else if (page === 'harmonogram') view = V.harmonogram();
     else if (page === 'alarmy') view = V.alarmy();
     else if (page === 'menu') return viewMenu();
@@ -270,7 +273,10 @@ function viewMenu() {
   const body = el(`<div><div class="sec"><h5>Widoki</h5>
     <button class="row nav2" data-go="d/pulpit"><span>Pulpit</span></button>
     <button class="row nav2" data-go="d/instalacja"><span>Instalacja</span></button>
-    <button class="row nav2" data-go="d/kociol"><span>Nastawy: kocioł, CO, CWU</span></button>
+    <button class="row nav2" data-go="d/kociol"><span>Kocioł</span></button>
+    <button class="row nav2" data-go="d/palnik"><span>Palnik</span></button>
+    <button class="row nav2" data-go="d/co"><span>Ogrzewanie (CO)</span></button>
+    <button class="row nav2" data-go="d/cwu"><span>Ciepła woda (CWU)</span></button>
     <button class="row nav2" data-go="d/harmonogram"><span>Harmonogramy</span></button>
     <button class="row nav2" data-go="d/alarmy"><span>Alarmy i historia</span></button>
     <button class="row nav2" data-go="d/params"><span>Wszystkie parametry</span></button></div>

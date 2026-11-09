@@ -86,3 +86,5 @@ klucz,indeks,nazwa,kodowanie,ze_znakiem,min,max,poziom
 103,0x2048,CO zadana eko,Tenths,0,10.0,30.0,0
 104,0x2003,Kociol zadana reczna,Plain,0,60.0,80.0,0
 106,0x2002,"Kociol tryb zadawania (0 czasowy auto, 1 czasowy reczny, 2 auto, 3 reczny)",Plain,0,0.0,3.0,0
+107,0x2259,"Podajnik tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+108,0x2283,"Dmuchawa tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2

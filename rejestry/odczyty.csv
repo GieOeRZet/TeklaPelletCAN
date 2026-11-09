@@ -119,8 +119,8 @@ boiler_mode,0x2002,RAW,enum,,,Kociol tryb pracy,"0:Czasowy auto,1:Czasowy reczny
 co_mode,0x2064,LOW,enum,,,CO tryb,"0:Off,1:Eko,2:Harmonogram,3:Komfort",basic,live,,
 co2_mode,0x2065,LOW,enum,,,CO2 tryb,"0:Off,1:Eko,2:Harmonogram,3:Komfort",basic,live,,
 cwu_mode,0x2014,LOW,enum,,,CWU tryb,"0:Off,1:Eko,2:Harmonogram,3:Komfort",basic,live,,
-feeder_mode,0x2259,LOW,enum,,,Podajnik tryb,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,,
-blower_mode,0x2283,LOW,enum,,,Dmuchawa tryb,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,,
+feeder_mode,0x2259,LOW,enum,,,Podajnik tryb,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,107,0
+blower_mode,0x2283,LOW,enum,,,Dmuchawa tryb,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,108,0
 boiler_on,0x2005,FLAG_LOW,binary_sensor,,running,Kociol wlaczony,,basic,live,,
 tank_cap,0x3600,U16,sensor,kg,weight,Zbiornik pojemnosc,,basic,live,,
 tank_kg,0x3601,U16,sensor,kg,weight,Zbiornik paliwo,,basic,live,47,0
