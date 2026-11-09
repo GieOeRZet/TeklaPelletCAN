@@ -308,7 +308,18 @@ export function kociol() {
 
 export function palnik() {
   return domainScreen((root, sec, byGroup, shownLevel) => {
-    appendLevelGroups(sec('Palnik'), byGroup['Palnik'] || [], shownLevel);
+    // feeder_mode/blower_mode ("Test wyjsc") to w oryginale osobna strona z Menu, nie czesc ekranu Palnik.
+    appendLevelGroups(sec('Palnik'), byGroup['Palnik'] || [], shownLevel, { skipIds: new Set(['feeder_mode', 'blower_mode']) });
+  });
+}
+
+/** "Test wyjść" jak w oryginale: osobna strona (Menu -> widoczna juz od poziomu 1, zawartosc wymaga poziomu 2). */
+export function testWyjsc() {
+  return domainScreen((root, sec, byGroup, shownLevel) => {
+    const points = (byGroup['Palnik'] || []).filter(p => p.id === 'feeder_mode' || p.id === 'blower_mode');
+    const t = sec('Test wyjść');
+    if (shownLevel < 2) { t.append(el('<div class="hint">Sterowanie od poziomu 2 (PIN 0999): Menu → Poziom kotła.</div>')); return; }
+    points.forEach(p => t.appendChild(pointRow(p)));
   });
 }
 
@@ -354,7 +365,10 @@ export function alarmy() {
 
 // ------------------------------------------------------------------ parametry (z metadanych punktów)
 export const GROUPS = [['Kocioł', /^(Kociol|Moc|Histereza|Wartosc|Korekta)/i], ['Palnik', /^(Palnik|Dmuchawa|Podajnik|Ilosc paliwa|Wentylator|Wymiennik)/i], ['CO', /^CO/i], ['CWU', /^CWU/i], ['Paliwo', /^(Zbiornik|Paliwo)/i], ['Alarmy', /^Alarm/i]];
-export const groupOf = p => { for (const [g, re] of GROUPS) if (re.test(p.name)) return g; return 'Inne'; };
+// Wyjatki od dopasowania po nazwie - sprawdzone wprost w oryginalnej karcie (hacard.html): nazwa zwodzi,
+// ale oryginal pokazuje ten punkt na innym ekranie niz wskazywalaby nazwa.
+const GROUP_OVERRIDE = { k_nominal: 'Palnik' };   // "Kociol moc nominalna" -> w oryginale ekran Palnik
+export const groupOf = p => { if (GROUP_OVERRIDE[p.id]) return GROUP_OVERRIDE[p.id]; for (const [g, re] of GROUPS) if (re.test(p.name)) return g; return 'Inne'; };
 
 export function paramGroups(go) {
   const cnt = {};

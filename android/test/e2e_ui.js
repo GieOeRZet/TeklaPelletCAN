@@ -110,8 +110,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
   // ---------------------------------------------------------------- poziomy kotła: zablokowane calkowicie niewidoczne, odblokowanie przez Menu
   await goHash('#/d/palnik');
-  check('poziomy: przed PIN-em zero śladu (krzywa modulacji i test wyjść nieobecne)', !/Dmuchawa modulacja|tryb testowy/i.test(await p.innerText('body')));
+  check('poziomy: przed PIN-em zero śladu (krzywa modulacji nieobecna)', !/Dmuchawa modulacja/i.test(await p.innerText('body')));
   await goHash('#/d/menu');
+  check('menu: "Test wyjść" niewidoczne na poziomie 0', (await p.locator('[data-go="d/test"]').count()) === 0);
+  check('menu: "Konfiguracja urządzenia" niewidoczna na poziomie 0', (await p.locator('#cfg').count()) === 0);
   await p.click('#lvl');
   check('poziom: okno PIN kotła', await waitSheet(/Poziom dostępu kotła/));
   await pin('1234');
@@ -123,9 +125,12 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await goHash('#/d/palnik');
   await sleep(1000);
   check('poziom 1: krzywa modulacji dmuchawy widoczna po PIN 0900', /Dmuchawa modulacja/i.test(await p.innerText('body')));
-  check('poziom 1: test wyjść (poziom 2) wciąż niewidoczny', !/tryb testowy/i.test(await p.innerText('body')));
   check('poziom: plakietka odliczania w nagłówku (jedyny sygnał w nagłówku)', /🔓/.test(await txt('#chip')));
   await p.screenshot({ path: OUT + '/ui_palnik_poziom1.png', fullPage: true });
+  await goHash('#/d/menu');
+  check('menu: "Test wyjść" i "Konfiguracja urządzenia" widoczne od poziomu 1', (await p.locator('[data-go="d/test"]').count()) === 1 && (await p.locator('#cfg').count()) === 1);
+  await goHash('#/d/test');
+  check('test wyjść: na poziomie 1 widac tylko informacje, bez punktow (wymaga poziomu 2)', /poziomu 2/i.test(await p.innerText('body')) && !/Podajnik tryb/i.test(await p.innerText('body')));
   // Przycisk "Poziom kotła" w Menu zawsze pyta o poziom 1 (ensureLevel(1)) - gdy poziom 1 juz jest aktywny,
   // nic nie robi. Najpierw blokujemy sesje klikiem plakietki w naglowku (jak w oryginale), potem wchodzimy
   // ponownie z PIN-em 0999, zeby dostac poziom 2.
@@ -135,12 +140,18 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await p.click('#lvl');
   check('poziom 2: okno PIN po ponownym zablokowaniu', await waitSheet(/Poziom dostępu kotła/));
   await pin('0999'); await noSheet(); await sleep(1500);
-  await goHash('#/d/palnik');
-  await sleep(1000);
+  await goHash('#/d/test');
+  await sleep(500);
   // nazwa wyswietlana to nazwa z reads_table ("Podajnik tryb"/"Dmuchawa tryb") - nazwa wlasna z punkty.csv
   // nie jest uzywana przez points_json(); liczy sie to, ze punkt jest teraz zapisywalny (poziom 2).
-  check('poziom 2: test wyjść (feeder/blower tryb testowy) widoczny po PIN 0999', /Podajnik tryb/i.test(await p.innerText('body')) && /Dmuchawa tryb/i.test(await p.innerText('body')));
-  await p.screenshot({ path: OUT + '/ui_palnik_poziom2.png', fullPage: true });
+  check('test wyjść: feeder/blower widoczne po PIN 0999 (osobny ekran, jak w oryginale)', /Podajnik tryb/i.test(await p.innerText('body')) && /Dmuchawa tryb/i.test(await p.innerText('body')));
+  await p.screenshot({ path: OUT + '/ui_test_wyjsc_poziom2.png', fullPage: true });
+
+  // ---------------------------------------------------------------- menu: oryginalna karta i konfiguracja otwieraja sie bez PIN-u aplikacji
+  // (Konfiguracja jest tu widoczna, bo wciaz jestesmy na poziomie 2 - "wygasanie" nizej zdejmuje ten poziom)
+  await goHash('#/d/menu');
+  await p.click('#orig'); await p.click('#cfg'); await sleep(300);
+  check('menu: oryginał i konfiguracja otwierają się bez PIN-u', await p.evaluate(() => { const c = window.__nativeCalls.map(x => x[0]); return c.includes('original') && c.includes('settings'); }));
 
   // ---------------------------------------------------------------- wygasanie "aktywnosci" po 5 min (bezpiecznik: zdjecie poziomu kotla)
   // Zapis dziala caly czas - to juz nie jest blokada zapisu, tylko automatyczne zdjecie poziomu kotla po bezczynnosci.
@@ -149,11 +160,6 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('wygasanie: nie przenosi na pulpit (zapis dziala caly czas, bez PIN-u)', p.url() === urlBefore, p.url());
   check('wygasanie: zdjecie poziomu kotla po bezczynnosci (dropLevel)', (await p.evaluate(() => window.__nativeCalls.some(c => c[0] === 'dropLevel'))));
   check('wygasanie: komunikat', /Poziom kotła zablokowany/.test(await p.locator('#toast').innerText()));
-
-  // ---------------------------------------------------------------- menu: oryginalna karta i konfiguracja otwieraja sie bez PIN-u
-  await goHash('#/d/menu');
-  await p.click('#orig'); await p.click('#cfg'); await sleep(300);
-  check('menu: oryginał i konfiguracja otwierają się bez PIN-u', await p.evaluate(() => { const c = window.__nativeCalls.map(x => x[0]); return c.includes('original') && c.includes('settings'); }));
 
   // ---------------------------------------------------------------- zbiornik paliwa i zasilanie: ogólnie dostępne z Menu (jak w oryginale)
   await goHash('#/d/menu');

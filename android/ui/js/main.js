@@ -43,7 +43,7 @@ async function showUpdateBanners(container, which) {
 }
 
 // ------------------------------------------------------------------ router
-const TITLES = { pulpit: 'Pulpit', instalacja: 'Instalacja', harmonogram: 'Harmonogram', kociol: 'Kocioł', palnik: 'Palnik', co: 'Ogrzewanie (CO)', cwu: 'Ciepła woda (CWU)', alarmy: 'Alarmy', menu: 'Menu', params: 'Parametry' };
+const TITLES = { pulpit: 'Pulpit', instalacja: 'Instalacja', harmonogram: 'Harmonogram', kociol: 'Kocioł', palnik: 'Palnik', co: 'Ogrzewanie (CO)', cwu: 'Ciepła woda (CWU)', test: 'Test wyjść', alarmy: 'Alarmy', menu: 'Menu', params: 'Parametry' };
 const NAVS = [['pulpit', '▦', 'Pulpit'], ['instalacja', '⇵', 'Instalacja'], ['harmonogram', '◷', 'Harmonogram'], ['alarmy', '⚠', 'Alarmy'], ['menu', '≡', 'Menu']];
 
 export function go(r) { location.hash = '#/' + r; }
@@ -117,6 +117,7 @@ async function render() {
     else if (page === 'palnik') view = V.palnik();
     else if (page === 'co') view = V.ogrzewanie();
     else if (page === 'cwu') view = V.cieplaWoda();
+    else if (page === 'test') view = V.testWyjsc();
     else if (page === 'harmonogram') view = V.harmonogram();
     else if (page === 'alarmy') view = V.alarmy();
     else if (page === 'menu') return viewMenu();
@@ -270,6 +271,9 @@ function viewDevices() {
 // ------------------------------------------------------------------ menu urządzenia
 function viewMenu() {
   const st = nat.state();
+  // Jak w oryginale: "Test wyjść" i "Konfiguracja urządzenia" sa calkowicie niewidoczne, dopoki nie wpisze
+  // sie PIN-u poziomu kotla (0900/0999) w "Poziom kotła" nizej - nie tylko ich zawartosc, caly wpis w Menu.
+  const unlocked1 = level() >= 1;
   const body = el(`<div><div class="sec"><h5>Widoki</h5>
     <button class="row nav2" data-go="d/pulpit"><span>Pulpit</span></button>
     <button class="row nav2" data-go="d/instalacja"><span>Instalacja</span></button>
@@ -277,6 +281,7 @@ function viewMenu() {
     <button class="row nav2" data-go="d/palnik"><span>Palnik</span></button>
     <button class="row nav2" data-go="d/co"><span>Ogrzewanie (CO)</span></button>
     <button class="row nav2" data-go="d/cwu"><span>Ciepła woda (CWU)</span></button>
+    ${unlocked1 ? '<button class="row nav2" data-go="d/test"><span>Test wyjść</span></button>' : ''}
     <button class="row nav2" data-go="d/harmonogram"><span>Harmonogramy</span></button>
     <button class="row nav2" data-go="d/alarmy"><span>Alarmy i historia</span></button>
     <button class="row nav2" data-go="d/params"><span>Wszystkie parametry</span></button>
@@ -286,7 +291,7 @@ function viewMenu() {
     <button class="row nav2" id="lvl"><span>Poziom kotła (PIN)</span><span class="v" id="lvv"></span></button></div>
     <div class="sec"><h5>Urządzenie</h5>
     <button class="row nav2" id="orig"><span>Panel kotła (oryginał)</span></button>
-    <button class="row nav2" id="cfg"><span>Konfiguracja urządzenia</span></button>
+    ${unlocked1 ? '<button class="row nav2" id="cfg"><span>Konfiguracja urządzenia</span></button>' : ''}
     <button class="row nav2" data-go="devices"><span>Zmień urządzenie</span></button></div>
     <div class="sec"><h5>Aplikacja</h5><button class="row nav2" data-go="app"><span>Ustawienia aplikacji</span></button></div>
     <div class="hint" style="text-align:center">Aplikacja ${esc(st.version)} · firmware ${esc(S.info.fw || '?')}</div></div>`);
@@ -298,8 +303,12 @@ function viewMenu() {
   $('#pwr', body).onclick = zasilanieSheet;
   // PIN aplikacji chroni tylko start apki - otwarcie oryginalu/konfiguracji nie wymaga PIN-u.
   $('#orig', body).onclick = () => nat.openOriginal();
-  $('#cfg', body).onclick = () => nat.openDeviceSettings();
-  unsub = subscribe(() => { refreshChip(); const l = $('#lvv', body); if (l) l.textContent = 'poziom ' + level(); });
+  const cfgBtn = $('#cfg', body); if (cfgBtn) cfgBtn.onclick = () => nat.openDeviceSettings();
+  unsub = subscribe(() => {
+    refreshChip();
+    const l = $('#lvv', body); if (l) l.textContent = 'poziom ' + level();
+    if ((level() >= 1) !== unlocked1) render();   // "Test wyjść"/"Konfiguracja" pojawiaja/chowaja sie od razu
+  });
 }
 
 // ------------------------------------------------------------------ ustawienia aplikacji
