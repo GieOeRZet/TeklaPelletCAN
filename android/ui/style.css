@@ -79,3 +79,8 @@ input.t { width:100%; padding:12px; border-radius:10px; border:1px solid var(--l
   .nav { padding-top:2px; padding-bottom:2px; } .nav button i { font-size:17px; }
   .land2 { display:grid; grid-template-columns:42% 1fr; gap:10px; align-items:start; } .land2 .g2 { margin-top:0; }
 }
+
+@media (max-width: 370px) {
+  .cd img { display:none; } .cd.im { padding-right:12px; } .hero .big { font-size:42px; } .hero { height:176px; }
+  .dots { flex-wrap:wrap; gap:4px 10px; }
+}

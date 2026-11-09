@@ -2,10 +2,44 @@ import { nat, onEvent, api } from './native.js';
 import { S, startPolling, stopPolling, subscribe, level } from './store.js';
 import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ensureLevel, confirmSheet } from './ui.js';
 import * as V from './views.js';
+import { checkUpdates, dismissed, dismiss } from './updates.js';
 
 const app = $('#app');
 let cur = null, unsub = null, route = '';
 let tickT = null;
+
+
+// ------------------------------------------------------------------ banery aktualizacji (aplikacja / firmware urządzenia)
+function updateBanner(kind, info) {
+  const e = info.entry;
+  const title = kind === 'app' ? `Dostępna aplikacja ${esc(e.full)}` : `Dostępna aktualizacja urządzenia ${esc(e.full)}`;
+  const sub = kind === 'app' ? `zainstalowana: ${esc(info.installed)}` : `zainstalowana: ${esc(info.installed || '?')}`;
+  const log = (e.changelog && e.changelog.length ? e.changelog : (e.notes ? [e.notes] : [])).map(x => `<li>${esc(x)}</li>`).join('');
+  const b = el(`<div class="banner upd"><b>${title}</b> <span class="dim">(${sub})</span>
+    <div id="chg" style="display:none;margin-top:6px"><ul style="margin:4px 0 0;padding-left:18px">${log || '<li>brak opisu zmian</li>'}</ul></div>
+    <div style="display:flex;gap:14px;margin-top:8px;flex-wrap:wrap"><u id="more">Zobacz zmiany</u>${kind === 'app' ? '<b id="get">Pobierz APK</b><u id="rel">Strona wydania</u>' : '<b id="inst">Zainstaluj w konfiguracji</b>'}<u id="no">Później</u></div></div>`);
+  $('#more', b).onclick = () => { const c = $('#chg', b); c.style.display = c.style.display === 'none' ? 'block' : 'none'; };
+  $('#no', b).onclick = () => { dismiss(kind, e.full); b.remove(); };
+  if (kind === 'app') {
+    $('#get', b).onclick = () => nat.openExternal(e.apk);
+    $('#rel', b).onclick = () => nat.openExternal(e.url);
+  } else {
+    $('#inst', b).onclick = async () => { if (await ensureUnlocked()) nat.openDeviceSettings(); };
+  }
+  return b;
+}
+
+/** Wstawia baner (jeśli jest nowsza wersja i nie została odłożona) na początek kontenera. */
+async function showUpdateBanners(container, which) {
+  try {
+    const st = nat.state();
+    const r = await checkUpdates({ appVersion: st.version, fwVersion: S.info && S.info.fw });
+    for (const kind of which) {
+      const info = r[kind];
+      if (info && info.newer && dismissed(kind) !== info.entry.full && container.isConnected) container.prepend(updateBanner(kind, info));
+    }
+  } catch (e) { /* brak internetu – bez banera */ }
+}
 
 // ------------------------------------------------------------------ router
 const TITLES = { pulpit: 'Pulpit', instalacja: 'Instalacja', kociol: 'Nastawy', alarmy: 'Alarmy', menu: 'Menu', params: 'Parametry' };
@@ -76,7 +110,8 @@ async function render() {
     else return go('d/pulpit');
     const title = page === 'pulpit' ? (st.deviceName || 'Kocioł') : parts[2] ? decodeURIComponent(parts[2]) : (TITLES[page] || '');
     const nav = ['pulpit', 'instalacja', 'alarmy'].includes(page) ? 'main' : 'sub';
-    chrome(title, view.node, nav);
+    const sc0 = chrome(title, view.node, nav);
+    if (page === 'pulpit') setTimeout(() => showUpdateBanners(sc0, ['fw']), 1500);
     const upd = () => { view.update(); refreshChip(); };
     upd();
     unsub = subscribe(upd);
@@ -147,6 +182,7 @@ function viewDevices() {
     <button class="row nav2" id="appset" style="margin-top:6px"><span>Ustawienia aplikacji</span></button></div>`);
   const sc = chrome('Urządzenia', root, 'none');
   $('#hm').style.visibility = 'hidden'; $('#chipbox').innerHTML = '';
+  showUpdateBanners(root, ['app']);
   const open = (base, name) => { nat.selectDevice(base, name); go('d/pulpit'); startPolling(); };
   const renderMine = () => {
     const box = $('#mine', root); box.innerHTML = '';
@@ -248,6 +284,8 @@ function viewAppSettings() {
       <div class="hint">Odblokowanie wygasa po 5 minutach bezczynności, po wyłączeniu ekranu i po wyjściu z aplikacji.</div></div>
     <div class="sec"><h5>Dane</h5><button class="row nav2" id="cc"><span>Wyczyść zapisane odczyty</span></button></div>
     <div class="sec"><h5>Aplikacja</h5><div class="row"><span>Wersja</span><span class="v">${esc(st.version)}</span></div>
+      <div class="row"><span>Najnowsza</span><span class="v" id="latest">…</span></div><div id="updbox"></div>
+      <button class="row nav2" id="chk"><span>Sprawdź aktualizacje</span></button>
       <button class="row nav2" id="rel"><span>Wydania na GitHubie</span></button></div>
     <div class="sec"><h5>Zapomniany PIN</h5><div class="hint">PIN nie da się odzyskać. Usunięcie PIN-u kasuje ustawienia bezpieczeństwa i wymaga ustawienia nowego.</div><button class="btn err" id="rst">Usuń PIN i ustawienia bezpieczeństwa</button></div></div>`);
   chrome('Ustawienia aplikacji', body, 'sub');
@@ -262,6 +300,18 @@ function viewAppSettings() {
   tgl('#bio', on => nat.setBio(on)); tgl('#los', on => nat.setLockOnStart(on));
   $('#cc', body).onclick = async () => { if (await confirmSheet('Wyczyścić zapisane odczyty?', 'Po wyjściu z domowej sieci aplikacja nie pokaże ostatnich danych, dopóki nie połączy się z urządzeniem.', 'Wyczyść')) { nat.clearCache(); toast('Wyczyszczono'); } };
   $('#rel', body).onclick = () => nat.openExternal('https://github.com/GieOeRZet/TeklaPelletCan/releases');
+  const check = async force => {
+    $('#latest', body).textContent = '…';
+    try {
+      const r = await checkUpdates({ appVersion: st.version, fwVersion: S.info && S.info.fw, force });
+      const a = r.app;
+      $('#latest', body).textContent = a ? a.entry.full : 'brak danych';
+      $('#updbox', body).innerHTML = '';
+      if (a && a.newer) $('#updbox', body).appendChild(updateBanner('app', a)); else if (a) $('#latest', body).textContent = a.entry.full + ' (masz najnowszą)';
+    } catch (e) { $('#latest', body).textContent = 'brak internetu'; }
+  };
+  $('#chk', body).onclick = () => check(true);
+  check(false);
   $('#rst', body).onclick = async () => { if (await confirmSheet('Usunąć PIN?', 'Zostanie usunięty PIN i ustawienia biometrii. Aplikacja poprosi o nowy PIN.', 'Usuń')) { nat.resetSecurity(); go('setup'); } };
 }
 

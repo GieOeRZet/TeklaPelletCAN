@@ -227,6 +227,7 @@ jobs:
           RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
           CHANNEL=beta; case "$REF" in refs/tags/v*) CHANNEL=stable;; esac; [ -n "$RELEASE_TAG" ] && CHANNEL=stable
+          APPARG=""; if [ "$CHANNEL" = stable ]; then APPARG="--app-tag ${RELEASE_TAG:-${REF#refs/tags/}} --repo ${GITHUB_REPOSITORY}"; fi
           git fetch origin updates:updates 2>/dev/null && git worktree add /tmp/upd updates || { mkdir -p /tmp/upd && git -C /tmp/upd init -q -b updates && git -C /tmp/upd remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"; }
           mkdir -p /tmp/upd/$CHANNEL
           cp art/teklapelletcan.bin /tmp/upd/$CHANNEL/teklapelletcan.bin
@@ -235,7 +236,7 @@ jobs:
           # changelog = komunikaty commitów od poprzedniego opublikowanego wydania tego kanału (max 15)
           PREV="$(python3 -c "import json;print(json.load(open('/tmp/upd/manifest.json'))['channels']['$CHANNEL']['commit'])" 2>/dev/null || true)"
           if [ -n "$PREV" ] && git cat-file -e "$PREV^{commit}" 2>/dev/null; then CHG="$(git log --pretty=%s "$PREV..$SHA" | head -15)"; else CHG="$(git log --pretty=%s -n 10 "$SHA")"; fi
-          python3 tools/make_manifest.py --dir /tmp/upd --channel $CHANNEL --version "$(cat VERSION)" --build "$RUN_NUMBER" --commit "$SHA" --notes "$NOTES" --changelog "$CHG" --embedded
+          python3 tools/make_manifest.py --dir /tmp/upd --channel $CHANNEL --version "$(cat VERSION)" --build "$RUN_NUMBER" --commit "$SHA" --notes "$NOTES" --changelog "$CHG" --embedded $APPARG
           cd /tmp/upd
           FULL="$(python3 -c "import json;print(json.load(open('manifest.json'))['channels']['$CHANNEL']['full'])")"
           git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"

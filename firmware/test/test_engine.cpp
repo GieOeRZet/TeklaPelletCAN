@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 #include "fake_boiler.h"
+#include "../components/core/api.h"
+#include "../components/core/json_parse.h"
 
 using namespace tpc;
 
@@ -228,6 +230,29 @@ int main() {
         tq = run(eq, q, tq, 400000);                       // po 5 min próba, odpowiedź poprawna -> koniec wyciszenia
         assert(count(0x2283) > c1);
         assert(!contains(eq.diag_json(tq), "0x2283\"]") && contains(eq.diag_json(tq), "\"quiet\":[]"));
+    }
+    // zegar od klienta: /api/v1/time (ESP nie ma internetu ani RTC)
+    {
+        MemoryClientStore cs; cs.set_password("haslo123");
+        int64_t clk = 0; uint32_t seq = 0;
+        Api api(e, cs, ApiConfig{}, [&] { return (uint32_t)(t); }, [&](size_t n) { std::string r; for (size_t i = 0; i < n; i++) r += "ab"[(seq++) & 1]; return r; });
+        ApiHooks hk; hk.set_time = [&](int64_t v) { clk = v; }; hk.get_time = [&]() -> int64_t { return clk; };
+        api.set_hooks(hk);
+        HttpRequest rq; rq.method = "POST"; rq.path = "/api/v1/time"; rq.body = "{\"epoch_ms\":1794200000000}";
+        rq.headers["origin"] = "http://evil.example"; rq.headers["host"] = "192.168.0.5";
+        assert(api.handle(rq).status == 401);                       // obcy origin bez tokenu
+        HttpRequest pr; pr.method = "POST"; pr.path = "/api/v1/pair"; pr.body = "{\"password\":\"haslo123\",\"client_id\":\"app\",\"name\":\"a\"}";
+        std::string tok;
+        HttpResponse pres = api.handle(pr);
+        Json pj; assert(json_parse(pres.body, pj)); tok = pj.str("token");
+        rq.headers.erase("origin"); rq.headers["authorization"] = "Bearer " + tok;
+        HttpResponse ok = api.handle(rq);
+        assert(ok.status == 200 && clk == 1794200000);
+        HttpRequest bad = rq; bad.body = "{\"epoch\":100}";
+        assert(api.handle(bad).status == 422);                      // spoza sensownego zakresu
+        HttpRequest ir; ir.method = "GET"; ir.path = "/api/v1/info";
+        HttpResponse info = api.handle(ir);
+        assert(contains(info.body, "\"time\":1794200000") && contains(info.body, "\"features\":[\"time\"]"));
     }
     puts("OK: testy silnika przeszly");
     return 0;

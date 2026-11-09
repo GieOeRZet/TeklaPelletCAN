@@ -11,7 +11,7 @@
   const isOpen = () => { if (open && now() - unlockedAt >= 300000) open = false; return open; };
   const ro = /_(param_refresh|alarm_refresh|schedule_refresh|test_refresh|sdo_read|sdo_scan_stop)$/;
   const allowed = (m, p, b) => {
-    if (m === 'GET') return true; if (p === '/api/v1/pair') return true;
+    if (m === 'GET') return true; if (p === '/api/v1/pair' || p === '/api/v1/time') return true;
     if (p === '/api/v1/call') { const s = /"service"\s*:\s*"([^"]+)"/.exec(b); return !!s && ro.test(s[1]); }
     return false;
   };

@@ -35,6 +35,7 @@ fun main() {
     check("gate: unlock (PIN poziomu) zablokowany", !WriteGate.allowedWhenLocked("POST", "/api/v1/call", "{\"service\":\"tekla_estyma_unlock\"}"))
     check("gate: set_param zablokowany", !WriteGate.allowedWhenLocked("POST", "/api/v1/call", "{\"domain\":\"x\",\"service\":\"tekla_estyma_set_param\"}"))
     check("gate: odświeżenie parametrów wolne", WriteGate.allowedWhenLocked("POST", "/api/v1/call", "{\"service\":\"tekla_estyma_param_refresh\"}"))
+    check("gate: ustawienie czasu urządzenia wolne", WriteGate.allowedWhenLocked("POST", "/api/v1/time", "{}"))
     check("gate: parowanie wolne", WriteGate.allowedWhenLocked("POST", "/api/v1/pair", "{}"))
     check("gate: brak usługi = zablokowane", !WriteGate.allowedWhenLocked("POST", "/api/v1/call", "{}"))
     check("gate: konfiguracja urządzenia zablokowana", !WriteGate.allowedWhenLocked("POST", "/api/v1/config", "{}"))

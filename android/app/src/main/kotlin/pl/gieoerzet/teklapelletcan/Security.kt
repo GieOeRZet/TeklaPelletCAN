@@ -121,6 +121,7 @@ class WriteGate(private val clock: () -> Long = { System.currentTimeMillis() }, 
         fun allowedWhenLocked(method: String, path: String, body: String): Boolean {
             if (method == "GET") return true
             if (path == "/api/v1/pair") return true                    // parowanie z urządzeniem nie zmienia kotła
+            if (path == "/api/v1/time") return true                    // ustawienie zegara urządzenia (znaczniki czasu) nie zmienia kotła
             if (path == "/api/v1/call") {
                 val svc = Regex("\"service\"\\s*:\\s*\"([^\"]+)\"").find(body)?.groupValues?.get(1) ?: return false
                 return READ_ONLY_SERVICE.containsMatchIn(svc)

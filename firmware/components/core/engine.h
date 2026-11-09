@@ -45,6 +45,7 @@ struct InfoExtras {                    // dane spoza silnika, dokładane do /inf
     uint32_t clients = 0;
     bool dev_key = false;
     bool password_set = false;
+    int64_t time_s = 0;                // zegar urządzenia (epoch s) albo 0, gdy nie ustawiony
 };
 
 class Engine {

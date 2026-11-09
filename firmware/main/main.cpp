@@ -15,6 +15,8 @@
 #include "esp_timer.h"
 #include "firstboot.h"
 #include "driver/gpio.h"
+#include <sys/time.h>
+#include <time.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 #include "freertos/semphr.h"
@@ -144,6 +146,8 @@ extern "C" void app_main(void) {
         log_add(std::string("Konfiguracja zapisana: mirror=") + (c.mirror ? "1" : "0") + " write=" + (c.write_enabled ? "1" : "0") +
                 " demo=" + (c.demo ? "1" : "0") + " two_circuits=" + (c.two_circuits ? "1" : "0") + " (wymaga restartu)");
     };
+    hk.set_time = [](int64_t t) { struct timeval tv; tv.tv_sec = (time_t)t; tv.tv_usec = 0; settimeofday(&tv, nullptr); log_add("Czas ustawiony przez klienta"); };
+    hk.get_time = []() -> int64_t { time_t t = time(nullptr); return t > 1700000000 ? (int64_t)t : 0; };
     hk.ota_rollback = [] { return ota_rollback_previous(); };
     hk.log_get = [](size_t n) { return log_get(n); };
     hk.log_clear = [] { log_clear(); };

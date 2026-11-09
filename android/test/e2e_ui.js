@@ -24,6 +24,9 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   const nat = (fn, ...a) => p.evaluate(([f, args]) => JSON.parse(window.TPCNative[f](...args) || '{}'), [fn, a]);
 
   // ---------------------------------------------------------------- pierwsze uruchomienie
+  await ctx.route('**/raw.githubusercontent.com/**/manifest.json*', r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' },
+    body: JSON.stringify({ channels: { stable: { version: '9.9.9', build: 9, full: '9.9.9+9', changelog: ['Nowy układ', 'Poprawki'], notes: 'x' } },
+      app: { version: '9.9.9', build: 9, full: '9.9.9+9', tag: 'v9.9.9', url: 'https://github.com/x/releases/tag/v9.9.9', apk: 'https://github.com/x/releases/download/v9.9.9/teklapelletcan.apk', changelog: ['Nowy układ', 'Poprawki'] } }) }));
   await p.goto(BASE + '/');
   check('start: brak PIN-u -> ustawianie PIN-u', await waitSheet(/Nowy PIN aplikacji/));
   await pin('2468');
@@ -39,6 +42,12 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
   // ---------------------------------------------------------------- urządzenia
   await p.waitForSelector('#found .dev', { timeout: 4000 });
+  await sleep(800);
+  check('aktualizacje: baner nowej wersji aplikacji na liście urządzeń', /Dostępna aplikacja 9\.9\.9\+9/.test(await p.innerText('body')));
+  await p.click('#more'); await sleep(100);
+  check('aktualizacje: lista zmian po rozwinięciu', /Nowy układ/.test(await p.innerText('#chg')));
+  await p.click('#get');
+  check('aktualizacje: Pobierz APK otwiera adres pliku', await p.evaluate(() => window.__nativeCalls.some(c => c[0] === 'ext' && /teklapelletcan\.apk$/.test(c[1]))));
   await p.screenshot({ path: OUT + '/ui_devices.png', fullPage: true });
   await p.locator('#found .dev button').click();
   check('urządzenia: dodanie znalezionego', (await p.locator('#mine .dev').count()) === 1);
@@ -54,6 +63,9 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('pulpit: grafika kotła załadowana', await p.evaluate(() => { const i = document.getElementById('kimg'); return i.complete && i.naturalWidth > 20; }));
   check('pulpit: brak alarmu', /Brak alarmów/.test(await txt('[data-b="pulpit_alarm_t"]')));
   check('pulpit: paliwo', /^\d+$/.test(await txt('[data-b="pulpit_fuel"]')));
+  await sleep(1600);
+  check('aktualizacje: baner nowego firmware na pulpicie', /Dostępna aktualizacja urządzenia 9\.9\.9\+9/.test(await p.innerText('.scroll')));
+  check('czas: aplikacja ustawiła zegar urządzenia', (await p.evaluate(async () => { const r = await new Promise(res => { const id='t1'; const o=window.__tpcResp; window.__tpcResp=(i,x)=>{ if(i===id){window.__tpcResp=o;res(x);} else o&&o(i,x); }; TPCNative.request(id,'GET','/api/v1/info',''); }); return JSON.parse(r.body).time; })) > 1700000000);
   await p.screenshot({ path: OUT + '/ui_pulpit.png' });
   await p.setViewportSize({ width: 844, height: 390 }); await sleep(500);
   await p.screenshot({ path: OUT + '/ui_pulpit_land.png' });

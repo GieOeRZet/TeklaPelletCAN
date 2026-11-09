@@ -30,7 +30,11 @@ export async function startPolling() {
   S.loaded = false; S.states = new Map(); S.byId = new Map(); S.cachedAt = 0; S.online = false; S.fails = 0;
   const [pts, info, cfg] = await Promise.all([api('GET', '/api/v1/points'), api('GET', '/api/v1/info'), api('GET', '/api/v1/config')]);
   if (pts.status === 200) { S.points = pts.json.points || []; S.pointById = new Map(S.points.map(p => [p.id, p])); }
-  if (info.status === 200) S.info = info.json;
+  if (info.status === 200) {
+    S.info = info.json;
+    // ESP nie ma internetu ani RTC: aplikacja ustawia mu zegar przy każdym otwarciu (znaczniki czasu w dzienniku/alarmach)
+    if (!info.cachedAt && Array.isArray(info.json.features) && info.json.features.includes('time')) api('POST', '/api/v1/time', { epoch_ms: Date.now() });
+  }
   if (cfg.status === 200) S.config = cfg.json;
   await pull();
   timer = setInterval(pull, 2000);

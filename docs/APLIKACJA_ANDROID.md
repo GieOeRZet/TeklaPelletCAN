@@ -17,6 +17,10 @@ Aplikacja (`teklapelletcan.apk` w wydaniu na GitHubie, Android 10+) jest **samod
 4. Poziom kotła (PIN 0900/0999) wymaga odblokowanej aplikacji; przy blokadzie aplikacja zdejmuje poziom kotła (poziom jest wspólny dla wszystkich klientów urządzenia).
 5. Zapomniany PIN nie do odzyskania: „Usuń PIN i ustawienia bezpieczeństwa” w Ustawieniach aplikacji.
 
+## Czas urządzenia i aktualizacje
+- **Czas:** ESP nie ma internetu ani RTC, więc przy otwarciu urządzenia aplikacja ustawia mu zegar (`POST /api/v1/time`, dozwolone także w trybie podglądu). Urządzenie podaje `time` i `features` w `/api/v1/info`; aplikacja używa tylko funkcji, które firmware ma.
+- **Aktualizacje:** aplikacja sprawdza manifest z gałęzi `updates` (ten sam co strona urządzenia). Baner o nowej aplikacji (lista zmian, „Pobierz APK”, strona wydania) pokazuje się na liście urządzeń i w Ustawieniach aplikacji; baner o nowym firmware urządzenia (lista zmian, „Zainstaluj w konfiguracji”) – na pulpicie. „Później” odkłada baner dla danej wersji. Sekcja `app` w manifeście powstaje przy wydaniu stabilnym (`make_manifest.py --app-tag`).
+
 ## Poza domem
 Gdy urządzenie jest nieosiągalne, aplikacja pokazuje **ostatnie znane wartości** z godziną i wyraźnym banerem „Brak połączenia z kotłem”, a sterowanie jest niedostępne.
 
@@ -36,4 +40,5 @@ Sekrety CI: `ANDROID_KEYSTORE_B64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_AL
 ## Ograniczenia / do zrobienia
 - Aplikacja nie była jeszcze uruchamiana na prawdziwym telefonie. Wyszukiwanie mDNS działa tylko w tej samej podsieci/VLAN co telefon.
 - Parytet z oryginalną kartą: ekrany Konfiguracja / Test wyjść / Statystyki / Sieć / harmonogramy są na razie dostępne przez „Panel kotła (oryginał)” i „Wszystkie parametry”; kolejne przenoszone do nowego stylu etapami (patrz `docs/TODO.md`).
-- Do zrobienia: ustawianie czasu urządzenia (endpoint `/api/v1/time`), aktualizator aplikacji i baner o wersjach, powiadomienia o alarmach (+ endpoint `/api/v1/summary`, blueprint HA), widżet.
+- Do zrobienia: instalacja aktualizacji aplikacji bez wychodzenia do przeglądarki, powiadomienia o alarmach (+ endpoint `/api/v1/summary`, blueprint HA), widżet.
+- Test dymny na prawdziwym emulatorze Androida (`android-emulator` w CI): zrzuty ekranu trafiają na gałąź `ci-screens`.

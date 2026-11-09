@@ -12,6 +12,8 @@ p.add_argument("--dir", required=True); p.add_argument("--channel", required=Tru
 p.add_argument("--version", required=True); p.add_argument("--build", type=int, required=True)
 p.add_argument("--embedded", action="store_true", help="plik .bin zawiera podpis (pakiet) – przeglądarka nie pobiera osobnego .sig")
 p.add_argument("--changelog", default="", help="linie changelogu rozdzielone znakiem nowej linii")
+p.add_argument("--app-tag", default="", help="tag wydania GitHub z plikiem teklapelletcan.apk (kanał stable): wpisuje sekcję app (aktualizacja aplikacji Android)")
+p.add_argument("--repo", default="GieOeRZet/TeklaPelletCan")
 p.add_argument("--commit", default=""); p.add_argument("--notes", default="")
 a = p.parse_args()
 
@@ -31,5 +33,10 @@ m.setdefault("channels", {})[a.channel] = {
     "embedded": a.embedded, "sha256": hashlib.sha256(data).hexdigest(), "size": len(data), "commit": a.commit,
     "notes": a.notes.strip()[:400], "changelog": [l.strip()[:200] for l in a.changelog.splitlines() if l.strip()][:15], "date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
 }
+if a.app_tag and a.channel == "stable":
+    base = f"https://github.com/{a.repo}/releases"
+    m["app"] = {"version": a.version, "build": a.build, "full": f"{a.version}+{a.build}", "tag": a.app_tag,
+                "url": f"{base}/tag/{a.app_tag}", "apk": f"{base}/download/{a.app_tag}/teklapelletcan.apk",
+                "notes": a.notes.strip()[:400], "changelog": [l.strip()[:200] for l in a.changelog.splitlines() if l.strip()][:15]}
 mf.write_text(json.dumps(m, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 print(f"manifest: kanal {a.channel} -> {a.version}+{a.build}, {len(data)} B")

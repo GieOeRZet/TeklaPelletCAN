@@ -58,6 +58,8 @@ struct ApiHooks {
     std::function<void()> log_clear;
     std::function<std::string()> diag_extra;                 // obiekt JSON z danymi platformy (heap, reset, Wi-Fi...)
     std::function<void()> factory_reset;
+    std::function<void(int64_t)> set_time;                   // ustawia zegar urządzenia (epoch, sekundy) – czas dostarcza klient, ESP nie ma internetu
+    std::function<int64_t()> get_time;                       // epoch w sekundach albo 0, gdy zegar nie był ustawiony
     std::function<std::string()> ota_rollback;               // zwraca "" gdy OK albo komunikat błędu (powrót do poprzedniej partycji)
 };
 

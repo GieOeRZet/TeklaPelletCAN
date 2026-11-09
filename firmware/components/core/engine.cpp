@@ -703,6 +703,8 @@ std::string Engine::info_json(const InfoExtras& x, uint32_t now) const {
     w.key("clients").num(x.clients);
     w.kvb("dev_key", x.dev_key);
     w.kvb("password_set", x.password_set);
+    w.key("time").num((double)x.time_s);
+    w.key("features").begin_arr().str("time").end_arr();     // opcjonalne funkcje API (aplikacja ukrywa to, czego firmware nie ma)
     w.end_obj();
     return w.take();
 }

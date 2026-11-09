@@ -103,7 +103,19 @@ HttpResponse Api::handle(const HttpRequest& r) {
         InfoExtras x;
         x.fw = cfg_.fw; x.uptime_s = now / 1000; x.clients = (uint32_t)c_.list().size();
         x.dev_key = cfg_.dev_key; x.password_set = c_.has_password();
+        x.time_s = hooks_.get_time ? hooks_.get_time() : 0;
         HttpResponse res; res.body = e_.info_json(x, now); return res;
+    }
+    if (r.path == "/api/v1/time" && r.method == "POST") {   // zegar od klienta (przeglądarka/aplikacja): ESP nie ma internetu ani RTC
+        if (!c_.has_password()) return err(403, "setup_required");
+        if (!authorized(r)) return err(401, "unauthorized");
+        Json j;
+        if (!json_parse(r.body, j)) return err(400, "bad_json");
+        double s = j.has_num("epoch_ms") ? j.num("epoch_ms") / 1000.0 : j.has_num("epoch") ? j.num("epoch") : -1;
+        if (s < 1700000000.0 || s > 4102444800.0) return err(422, "range");     // 2023-11 … 2100
+        if (!hooks_.set_time) return err(501, "unsupported");
+        hooks_.set_time((int64_t)s);
+        HttpResponse res; res.body = JsonWriter().begin_obj().kvb("ok", true).key("time").num((double)(int64_t)s).end_obj().out(); return res;
     }
     if (r.path == "/api/v1/points" && r.method == "GET") { HttpResponse res; res.body = e_.points_json(); return res; }
     if (r.path == "/api/v1/state" && r.method == "GET") { HttpResponse res; res.body = e_.state_json(now); return res; }

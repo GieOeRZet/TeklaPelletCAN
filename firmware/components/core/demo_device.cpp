@@ -57,6 +57,8 @@ DemoDevice::DemoDevice(const std::string& fw) : t0_(std::chrono::steady_clock::n
     hk.config_set = [this](const DeviceConfig& c) { devcfg_ = c; devcfg_.demo = true; ring_->append("Konfiguracja zapisana (demo)"); };
     hk.log_get = [this](size_t n) { return n ? ring_->tail(n) : ring_->dump(); };
     hk.log_clear = [this] { ring_->clear(); };
+    hk.set_time = [this](int64_t t) { time_off_ = t - (int64_t)(now_ms() / 1000); time_set_ = true; ring_->append("Czas ustawiony przez klienta (demo)"); };
+    hk.get_time = [this]() -> int64_t { return time_set_ ? time_off_ + (int64_t)(now_ms() / 1000) : 0; };
     hk.ota_rollback = [] { return std::string("w trybie demo nie ma poprzedniej wersji"); };
     hk.diag_extra = [] { return std::string("{\"heap_free\":210000,\"reset_reason\":\"demo\",\"wifi_rssi\":-55,\"partition\":\"demo\"}"); };
     hk.factory_reset = [this] { ring_->append("Reset fabryczny (demo)"); };
