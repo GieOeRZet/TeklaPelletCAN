@@ -143,8 +143,8 @@
   if (!window.customCards.some(c => c.type === 'teklapelletcan-card')) {
     window.customCards.push({
       type: 'teklapelletcan-card',
-      name: 'TeklaPelletCAN',
-      description: 'Panel kotła Tekla/Estyma – wyłącznie dla integracji TeklaPelletCAN (encje dobierane automatycznie).',
+      name: 'TeklaPelletClassic-card',
+      description: 'Panel kotła Tekla/Estyma (replika panelu) – wyłącznie dla integracji TeklaPelletCAN (encje dobierane automatycznie).',
       preview: true,
     });
   }

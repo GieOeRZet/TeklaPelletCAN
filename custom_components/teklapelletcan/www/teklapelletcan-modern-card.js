@@ -550,5 +550,5 @@ if (!customElements.get('teklapelletcan-modern-card-editor')) customElements.def
 
 window.customCards = window.customCards || [];
 if (!window.customCards.some(c => c.type === 'teklapelletcan-modern-card')) {
-  window.customCards.push({ type: 'teklapelletcan-modern-card', name: 'TeklaPelletCAN modern', description: 'Panel kotła w stylu aplikacji Android – pulpit, instalacja, nastawy, harmonogramy, alarmy.', preview: true });
+  window.customCards.push({ type: 'teklapelletcan-modern-card', name: 'TeklaPelletModern-card', description: 'Panel kotła w stylu aplikacji Android – pulpit, instalacja, nastawy, parametry, harmonogramy, alarmy.', preview: true });
 }
