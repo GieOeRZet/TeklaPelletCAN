@@ -33,7 +33,11 @@ function buildIndex(hass, deviceId) {
     if (!st) continue;
     byEntity.set(e.entity_id, st);
     const pid = st.attributes && st.attributes.tpc_id;
-    if (pid) byId.set(pid, st);
+    if (!pid) continue;
+    const prev = byId.get(pid);
+    // Osierocone encje po przeladowaniu integracji moga dzielic ten sam tpc_id z aktualnymi (ten sam
+    // punkt zarejestrowany dwa razy, stara kopia utyka na "unavailable") – wygrywa ta z realnym odczytem.
+    if (!prev || prev.state === 'unavailable' || prev.state === 'unknown') byId.set(pid, st);
   }
   return { byId, byEntity };
 }
