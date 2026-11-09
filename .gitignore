@@ -8,3 +8,4 @@ node_modules/
 __pycache__/
 .venv/
 build-host/
+docs/do_wgrania/
