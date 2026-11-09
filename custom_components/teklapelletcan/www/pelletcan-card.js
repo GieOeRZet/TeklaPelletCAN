@@ -1059,9 +1059,7 @@
       customElements.define('tekla-panel-card_lite', class extends C { setConfig(c) { super.setConfig(Object.assign({}, c, { lite: true })); } });
     }
 
-    if (!customElements.get('pelletcan-card')) customElements.define('pelletcan-card', class extends C {});   // alias typu: custom:pelletcan-card = custom:tekla-panel-card
-    window.customCards = window.customCards || [];   // wybor karty w edytorze dashboardu
-    if (!window.customCards.some(c => c.type === 'pelletcan-card')) window.customCards.push({ type: 'pelletcan-card', name: 'PelletCAN-card', description: 'Panel kotła pelletowego (replika panelu Igneo Touch) dla PelletCAN', preview: false });
+    if (!customElements.get('pelletcan-card')) customElements.define('pelletcan-card', class extends C {});   // alias typu: custom:pelletcan-card = custom:tekla-panel-card (wewnetrzny silnik, nie pokazujemy w selektorze kart)
     // ---- edytor wizualny: sekcje wg ekranow i menu karty ----
     const PR2L = {}; ((W && W.PR) || []).concat((W && W.PR2) || []).forEach(c => { PR2L[c.r] = c.t; });
     const LBL = {}; D.ENT_GROUPS.forEach(g => g[1].forEach(f => { LBL[f[0]] = f[1]; }));
