@@ -62,16 +62,14 @@ async function connect(match) {
   check('demo: stan palnika', /Modulacja|Pauza|Wy/.test((await ev("(document.querySelector('[data-b=\"pulpit_pill\"]')||{}).textContent")) || ''));
   shot('03_pulpit');
 
-  // blokada zapisu w warstwie natywnej
+  // zapis dziala od razu, bez PIN-u aplikacji (PIN chroni tylko opcjonalnie start apki - patrz Proxy.handle() w Kotlinie)
   const req = (m, p, b) => ev(`new Promise(r => { const id = 'q' + Math.random(); const old = window.__tpcResp; window.__tpcResp = (i, o) => { if (i === id) { window.__tpcResp = old; r(o.status + ' ' + o.body); } else old && old(i, o); }; TPCNative.request(id, '${m}', '${p}', '${b}'); })`);
-  const locked = await req('POST', '/api/v1/write', '{"id":"boiler_set_manual","value":71}');
-  check('zapis zablokowany przy zablokowanej aplikacji', /^403 .*app_locked/.test(locked), String(locked));
+  const open = await req('POST', '/api/v1/write', '{"id":"boiler_set_manual","value":71}');
+  check('zapis dziala bez PIN-u aplikacji', /^200 /.test(open), String(open));
   const wrong = JSON.parse(await ev("TPCNative.unlockPin('0000')"));
   check('zły PIN aplikacji odrzucony', wrong.ok === false);
   const good = JSON.parse(await ev("TPCNative.unlockPin('2468')"));
   check('dobry PIN odblokowuje', good.ok === true);
-  const open = await req('POST', '/api/v1/write', '{"id":"boiler_set_manual","value":71}');
-  check('zapis po odblokowaniu dociera do urządzenia', /^200 /.test(open), String(open));
   await sleep(3000);
   const sp = await ev("(async () => { const r = await new Promise(res => { const id='z'+Math.random(); const o=window.__tpcResp; window.__tpcResp=(i,x)=>{ if(i===id){window.__tpcResp=o;res(x);} else o&&o(i,x); }; TPCNative.request(id,'GET','/api/v1/states',''); }); return (JSON.parse(r.body).states.find(s=>s.entity_id==='sensor.tekla_kociol_zadana_reczna')||{}).state; })()");
   check('nowa zadana odczytana z kotła', String(sp) === '71', String(sp));
