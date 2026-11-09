@@ -1,7 +1,7 @@
 // Widoki: pulpit, instalacja, kocioł, alarmy, parametry, menu.
 import { nat, api } from './native.js';
 import { S, v, num, pv, pn, level, subscribe } from './store.js';
-import { $, el, esc, f1, fmt, toast, openSheet, closeSheet, ensureLevel, ensureUnlocked, editPoint, callService, writePoint, confirmSheet } from './ui.js';
+import { $, el, esc, f1, fmt, toast, openSheet, closeSheet, ensureUnlocked, editPoint, callService, writePoint, confirmSheet } from './ui.js';
 
 /** Zbiornik jak w oknie „Paliwo” oryginalnej karty: różowy korpus z czerwoną pokrywą i uchwytem, szary wskaźnik wypełniany od dołu
  *  żółtym pelletem, litera „E” (pusty). Wymiary z CSS karty (.ftk/.fth/.fbar); poziom = pct 0..100. Bez suwaka – tylko poziom. */
@@ -252,9 +252,8 @@ function appendLevelGroups(container, points, shownLevel, { skipIds = new Set(),
       container.appendChild(el(`<div class="lvh" data-lvh="${lv}">Poziom ${lv}</div>`));
       items.forEach(p => container.appendChild(pointRow(p)));
     } else {
-      const b = el(`<button class="lvh lock" data-lv="${lv}">🔒 Poziom ${lv} · ${items.length} ${items.length === 1 ? 'opcja' : 'opcji'} – odblokuj PIN-em</button>`);
-      b.onclick = async () => { if (await ensureLevel(lv)) { container.dispatchEvent(new CustomEvent('relevel', { bubbles: true })); } };
-      container.appendChild(b);
+      // bez instrukcji "odblokuj PIN-em" - PIN wpisuje sie w Menu, to tylko sygnal ze cos tu jeszcze jest
+      container.appendChild(el(`<div class="lvh lock" data-lv="${lv}">🔒 Poziom ${lv}</div>`));
     }
   }
   const ro = includeReadOnly ? rest.filter(p => lvOf(p) === -1) : [];
@@ -294,7 +293,6 @@ export function kociol() {
     root.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => editPoint(b.dataset.edit));
     updateBound(root);
   };
-  root.addEventListener('relevel', draw);
   draw();
   return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); if (level() !== shownLevel) draw(); else updateBound(root); } };
 }
@@ -363,11 +361,9 @@ export function paramList(group) {
       if (!items.length) continue;
       if (shownLevel >= lv) {
         L.appendChild(el(`<div class="lvh" data-lvh="${lv}">Poziom ${lv}</div>`));
-        L.appendChild(section(`Opcje poziomu ${lv} (odblokowane PIN-em)`, items));
+        L.appendChild(section(`Poziom ${lv}`, items));
       } else {
-        const b = el(`<button class="lvh lock" data-lv="${lv}">🔒 Poziom ${lv} · ${items.length} ${items.length === 1 ? 'opcja' : 'opcji'} – odblokuj PIN-em</button>`);
-        b.onclick = async () => { if (await ensureLevel(lv)) draw(); };
-        L.appendChild(b);
+        L.appendChild(el(`<div class="lvh lock" data-lv="${lv}">🔒 Poziom ${lv}</div>`));
       }
     }
     const ro = by(-1);
