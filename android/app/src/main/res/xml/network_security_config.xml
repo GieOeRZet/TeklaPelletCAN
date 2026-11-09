@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Urządzenie TeklaPelletCAN serwuje stronę przez HTTP w sieci lokalnej (bez certyfikatu), więc ruch jawny jest dozwolony. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

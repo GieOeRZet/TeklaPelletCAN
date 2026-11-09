@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TeklaPelletCAN</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main>
+  <h1>Tekla<span>PelletCAN</span></h1>
+  <p class="sub">Sterowanie kotłem Tekla / Estyma</p>
+
+  <div class="card" id="mine">
+    <h2>Moje urządzenia</h2>
+    <div id="mylist"></div>
+  </div>
+
+  <div class="card" id="found">
+    <h2><span class="spin" id="spin"></span>Znalezione w sieci</h2>
+    <div id="foundlist"><div class="empty">Szukam urządzeń w sieci Wi‑Fi…</div></div>
+    <button class="sec" id="rescan" style="margin-top:8px;width:100%">Szukaj ponownie</button>
+  </div>
+
+  <div class="card">
+    <h2>Dodaj ręcznie</h2>
+    <div class="row"><input id="addr" type="text" inputmode="url" autocapitalize="none" autocomplete="off" placeholder="adres IP, np. 192.168.1.50"><button id="addbtn">Dodaj</button></div>
+    <div class="msg" id="addmsg"></div>
+    <div class="hint">Adres znajdziesz w routerze albo w Ustawieniach urządzenia. Można podać też port (np. 192.168.1.50:8080).</div>
+  </div>
+
+  <div class="card">
+    <h2>Nowe urządzenie</h2>
+    <div class="hint" style="margin:0 0 10px">Pierwsze uruchomienie: połącz telefon z siecią Wi‑Fi <b>TeklaPelletCAN-XXXX</b> (otwarta, bez hasła), potem stuknij poniżej i wybierz swoją sieć oraz ustaw hasło urządzenia.</div>
+    <button class="sec big" id="setup">Konfiguruj nowe urządzenie</button>
+  </div>
+
+  <div class="card">
+    <h2>Tryb demo</h2>
+    <div class="hint" style="margin:0 0 10px">Wirtualny kocioł z żywymi odczytami – cała karta, ustawienia i sterowanie działają jak na prawdziwym urządzeniu. Nic nie jest wysyłane do żadnego kotła.</div>
+    <button class="acc big" id="demo">Uruchom demo</button>
+  </div>
+
+  <p class="hint" style="text-align:center" id="about"></p>
+</main>
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const T = window.TPC;
+  let devices = [];
+  try { devices = JSON.parse(T.getDevices()); } catch (e) { devices = []; }
+  const found = {};   // klucz base -> wpis
+  const save = () => T.saveDevices(JSON.stringify(devices.map(d => ({ id: d.id, name: d.name, base: d.base }))));
+  const norm = s => {
+    s = (s || '').trim().replace(/^https?:\/\//i, '').replace(/\/.*$/, '');
+    if (!/^[A-Za-z0-9.\-]+(:\d{1,5})?$/.test(s)) return '';
+    return 'http://' + s;
+  };
+  const same = (a, b) => a.base === b.base || (a.id && b.id && a.id === b.id);
+  const msg = (t, c) => { const m = $('addmsg'); m.className = 'msg ' + (c || ''); m.textContent = t || ''; };
+
+  function renderMine() {
+    const box = $('mylist'); box.innerHTML = '';
+    if (!devices.length) { box.innerHTML = '<div class="empty">Brak zapisanych urządzeń. Dodaj znalezione poniżej albo wpisz adres IP.</div>'; return; }
+    devices.forEach(d => {
+      const el = document.createElement('div'); el.className = 'dev';
+      el.innerHTML = '<span class="dot ' + (d.up === true ? 'on' : d.up === false ? 'off' : '') + '"></span><div class="t"><b></b><small></small></div><button class="x" aria-label="Usuń">✕</button>';
+      el.querySelector('b').textContent = d.name;
+      el.querySelector('small').textContent = d.base.replace('http://', '') + (d.fw ? ' · fw ' + d.fw : '') + (d.up === false ? ' · brak połączenia' : '');
+      el.onclick = () => T.open(d.base, d.name);
+      el.querySelector('.x').onclick = ev => { ev.stopPropagation(); if (confirm('Usunąć „' + d.name + '” z listy?')) { devices = devices.filter(x => x !== d); save(); renderMine(); renderFound(); } };
+      box.appendChild(el);
+    });
+  }
+  function renderFound() {
+    const box = $('foundlist'); box.innerHTML = '';
+    const list = Object.values(found).filter(f => !devices.some(d => same(d, f)));
+    if (!list.length) { box.innerHTML = '<div class="empty">' + (Object.keys(found).length ? 'Wszystkie znalezione urządzenia są już na liście.' : 'Nic nie znaleziono. Upewnij się, że telefon jest w tej samej sieci Wi‑Fi co urządzenie, albo dodaj adres ręcznie.') + '</div>'; return; }
+    list.forEach(f => {
+      const el = document.createElement('div'); el.className = 'dev';
+      el.innerHTML = '<span class="dot on"></span><div class="t"><b></b><small></small></div><button class="acc">Dodaj</button>';
+      el.querySelector('b').textContent = f.name;
+      el.querySelector('small').textContent = f.base.replace('http://', '') + (f.fw ? ' · fw ' + f.fw : '');
+      el.querySelector('button').onclick = () => { devices.push({ id: f.id || '', name: f.name, base: f.base, fw: f.fw, up: true }); save(); renderMine(); renderFound(); };
+      box.appendChild(el);
+    });
+  }
+  function pingAll() { devices.forEach((d, i) => T.ping(String(i), d.base)); }
+
+  window.tpcPing = (i, info) => {
+    const d = devices[+i]; if (!d) return;
+    d.up = !!info;
+    if (info) { d.fw = info.fw || d.fw; if (info.id && !d.id) { d.id = info.id; save(); } }
+    renderMine();
+  };
+  window.tpcDiscovered = f => {
+    const base = 'http://' + f.host + (f.port && f.port !== 80 ? ':' + f.port : '');
+    found[base] = { id: f.id || '', name: (f.id ? 'TeklaPelletCAN ' + f.id.slice(-4) : f.name) || 'TeklaPelletCAN', base, fw: f.fw || '' };
+    // adres zmienił się (DHCP), ale to to samo urządzenie: zaktualizuj zapisany adres
+    devices.forEach(d => { if (d.id && f.id && d.id === f.id && d.base !== base) { d.base = base; save(); } });
+    renderFound(); renderMine(); pingAll();
+  };
+  window.tpcReturned = () => { pingAll(); T.startDiscovery(); };
+
+  $('addbtn').onclick = () => {
+    const base = norm($('addr').value);
+    if (!base) { msg('Wpisz poprawny adres IP lub nazwę hosta.', 'err'); return; }
+    if (devices.some(d => d.base === base)) { msg('To urządzenie jest już na liście.', 'err'); return; }
+    msg('Sprawdzam…', 'ok');
+    const key = 'add' + Date.now();
+    const prev = window.tpcPing;
+    window.tpcPing = (i, info) => {
+      if (i !== key) return prev(i, info);
+      window.tpcPing = prev;
+      if (!info || !info.id) { msg('Pod tym adresem nie ma urządzenia TeklaPelletCAN (brak odpowiedzi).', 'err'); return; }
+      devices.push({ id: info.id, name: 'TeklaPelletCAN ' + info.id.slice(-4), base, fw: info.fw, up: true });
+      save(); renderMine(); renderFound(); $('addr').value = ''; msg('Dodano.', 'ok');
+      setTimeout(() => msg(''), 1500);
+    };
+    T.ping(key, base);
+  };
+  $('addr').addEventListener('keydown', e => { if (e.key === 'Enter') $('addbtn').click(); });
+  $('rescan').onclick = () => { Object.keys(found).forEach(k => delete found[k]); renderFound(); T.stopDiscovery(); T.startDiscovery(); };
+  $('setup').onclick = () => T.openSetup();
+  $('demo').onclick = () => T.open('demo', 'Demo');
+  try { const i = JSON.parse(T.appInfo()); $('about').textContent = 'Aplikacja ' + i.version + ' · github.com/GieOeRZet/TeklaPelletCan'; } catch (e) { /* bez wersji */ }
+
+  renderMine(); renderFound(); pingAll(); T.startDiscovery();
+  setInterval(pingAll, 8000);
+})();
+</script>
+</body>
+</html>

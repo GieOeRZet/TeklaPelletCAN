@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <!-- płomień nad kotłem -->
+    <path android:fillColor="#FF7A1A" android:pathData="M54,24 C62,34 68,40 68,50 C68,58 62,64 54,64 C46,64 40,58 40,50 C40,44 44,40 47,36 C48,40 50,42 52,42 C51,36 52,30 54,24 Z" />
+    <path android:fillColor="#FFC27A" android:pathData="M54,42 C58,47 60,50 60,54 C60,58 57,60 54,60 C51,60 48,58 48,54 C48,51 50,49 51,47 C52,49 53,49 54,50 C53,47 53,44 54,42 Z" />
+    <!-- korpus kotła -->
+    <path android:fillColor="#E8EAF0" android:pathData="M36,68 L72,68 C74,68 76,70 76,72 L76,80 C76,82 74,84 72,84 L36,84 C34,84 32,82 32,80 L32,72 C32,70 34,68 36,68 Z" />
+    <path android:fillColor="#4A86E8" android:pathData="M38,74 L70,74 L70,78 L38,78 Z" />
+</vector>

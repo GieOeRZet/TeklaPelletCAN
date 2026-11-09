@@ -39,6 +39,7 @@ hass.start(2000);
   try {
     const U = await import('./update.js');
     const info = await (await fetch('/api/v1/info')).json();
+    if (/demo/i.test(info.fw || '')) return;   // wirtualne urządzenie (tryb demo w aplikacji) nie ma aktualizacji
     const r = await U.checkUpdate(info.fw);
     if (r.newer) { const a = document.getElementById('setlink'); a.textContent = '⬆ Dostępna aktualizacja ' + r.remoteFull + ' – Ustawienia'; a.style.color = '#ff7a1a'; a.style.fontWeight = '700'; }
   } catch (e) { /* brak internetu w przeglądarce – bez wskaźnika */ }

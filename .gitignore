@@ -9,3 +9,6 @@ __pycache__/
 .venv/
 build-host/
 docs/do_wgrania/
+.gradle/
+android/local.properties
+*.apk

@@ -82,6 +82,37 @@ jobs:
           PY
           build-host/sim_server 8102 web & sleep 15
           cd web/test && NODE_PATH=$PWD/node_modules node e2e_device_ui.js http://127.0.0.1:8102 /tmp/ota
+      - name: Test aplikacji Android – powłoka i tryb DEMO (wirtualne urządzenie z rdzenia firmware)
+        run: |
+          build-host/demo_server 8098 web & sleep 3
+          cd android/test && NODE_PATH=$PWD/../../web/test/node_modules node e2e_app.js ../shell ../../web http://127.0.0.1:8098 /tmp
+  # Aplikacja Android: ten sam rdzeń C++ co firmware (tryb demo, JNI) + strony urządzenia (web/) w paczce. Podpis kluczem z sekretów
+  # (ANDROID_KEYSTORE_B64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD); bez nich – klucz TESTOWY z repozytorium.
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Licencje SDK
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+      - name: Budowa APK
+        env:
+          KS_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -n "$KS_B64" ]; then echo "$KS_B64" | base64 -d > /tmp/release.jks; export ANDROID_KEYSTORE_FILE=/tmp/release.jks; else echo "UWAGA: podpis kluczem TESTOWYM"; fi
+          cd android && chmod +x gradlew && ./gradlew --no-daemon assembleRelease
+          cp app/build/outputs/apk/release/app-release.apk ../teklapelletcan.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: teklapelletcan-apk
+          path: teklapelletcan.apk
+          retention-days: 30
   ha-integration:
     runs-on: ubuntu-latest
     steps:
@@ -141,7 +172,7 @@ jobs:
 
   # GitHub Release przy tagu v*: HACS instaluje integrację z wydania; w załącznikach firmware do ręcznego wgrania.
   github-release:
-    needs: [host-tests, idf-build, web-ui, ha-integration]
+    needs: [host-tests, idf-build, web-ui, ha-integration, android]
     if: startsWith(github.ref, 'refs/tags/v') || inputs.release_tag != ''
     runs-on: ubuntu-latest
     permissions:
@@ -154,6 +185,10 @@ jobs:
         with:
           name: teklapelletcan-firmware
           path: art
+      - uses: actions/download-artifact@v4
+        with:
+          name: teklapelletcan-apk
+          path: art
       - name: Utworz wydanie
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -165,12 +200,13 @@ jobs:
             echo "## TeklaPelletCAN $TAG"
             echo
             echo "- **Firmware:** \`teklapelletcan.bin\` (podpis ECDSA wbudowany w plik; osobny \`.sig\` tylko dla zgodności), \`teklapelletcan-factory.bin\` (pełny obraz do wgrania kablem od adresu 0x0)."
+            echo "- **Aplikacja Android:** \`teklapelletcan.apk\` (Android 10+; wyszukuje urządzenia w sieci, ma tryb demo)."
             echo "- **Integracja Home Assistant:** HACS → Integracje → ⋮ → Własne repozytoria → \`https://github.com/${GITHUB_REPOSITORY}\` (Integracja)."
             echo "- **Aktualizacja urządzenia:** strona urządzenia → Ustawienia → Aktualizacja oprogramowania → kanał stabilny."
             echo
             echo "### Zmiany"
             git log --pretty='- %s' $RANGE | head -40
           } > notes.md
-          mapfile -t FILES < <(find art -type f \( -name 'teklapelletcan*.bin' -o -name 'teklapelletcan*.sig' \) | sort)
+          mapfile -t FILES < <(find art -type f \( -name 'teklapelletcan*.bin' -o -name 'teklapelletcan*.sig' -o -name 'teklapelletcan*.apk' \) | sort)
           echo "zalaczniki: ${FILES[*]}"
           gh release create "$TAG" --target "$GITHUB_SHA" --title "TeklaPelletCAN $TAG" --notes-file notes.md "${FILES[@]}"

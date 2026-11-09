@@ -127,8 +127,10 @@ async function load() {
     'Wi-Fi': (w.ssid || '-') + (w.ip ? ' · ' + w.ip : ''), 'Sygnał': w.rssi ? w.rssi + ' dBm' : '-', 'Antena': w.antenna || '-', 'Klienci': i.clients, 'Klucz OTA': i.dev_key ? 'testowy (deweloperski)' : 'produkcyjny' });
   $('c_write').checked = !c.mirror && c.write_enabled; $('c_two').checked = c.two_circuits; $('c_demo').checked = c.demo; $('c_ant').checked = !!c.external_antenna; buildBoilers(c.boiler_image || 13); $('c_web').checked = c.web_open !== false;
   installedFw = i.fw || '';
+  const isDemo = /demo/i.test(installedFw);
+  if (isDemo) { const c = $('upgo').closest('.card'); if (c) { c.style.display = 'none'; c.insertAdjacentHTML('afterend', '<div class="card"><h2>Aktualizacja oprogramowania</h2><div class="hint">Tryb demo: wirtualne urządzenie nie ma własnego firmware, więc aktualizacje są niedostępne.</div></div>'); } }
   $('upchan').value = lsGet('tpc_channel') || 'beta'; $('manifest').value = lsGet('tpc_manifest_url');
-  loadLog(); loadClients(); doCheck(true);
+  loadLog(); loadClients(); if (!isDemo) doCheck(true);
 }
 async function loadLog() { try { const t = await fetch('/api/v1/log').then(r => r.text()); const p = $('log'); p.textContent = t.split('\n').slice(-120).join('\n') || '(pusty)'; p.scrollTop = p.scrollHeight; } catch (e) { $('log').textContent = 'błąd: ' + e.message; } }
 async function loadClients() {

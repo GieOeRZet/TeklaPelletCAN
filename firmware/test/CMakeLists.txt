@@ -29,3 +29,7 @@ add_executable(sim_server sim_server.cpp ${CORE}/logring.cpp ${CORE}/ota.cpp ${C
 target_link_libraries(sim_server mbedcrypto)
 
 add_executable(mdns_tool mdns_tool.cpp ${CORE}/mdns.cpp)
+
+add_executable(demo_server demo_server.cpp ${CORE}/demo_device.cpp ${CORE}/logring.cpp ${CORE}/sdo.cpp ${CORE}/codec.cpp ${CORE}/point.cpp ${CORE}/points_table.cpp
+    ${CORE}/access.cpp ${CORE}/sdo_queue.cpp ${CORE}/reads.cpp ${CORE}/reads_table.cpp ${CORE}/engine.cpp
+    ${CORE}/entities.cpp ${CORE}/entities_table.cpp ${CORE}/alarms.cpp ${CORE}/alarm_names_table.cpp ${CORE}/json_parse.cpp ${CORE}/api.cpp)

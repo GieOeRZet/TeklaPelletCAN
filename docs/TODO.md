@@ -16,5 +16,8 @@
 - [ ] Zapis i odczyt czasu od klienta (przeglądarka/HA) dla znaczników alarmów.
 
 ## Integracje
-- [ ] Aplikacja Android (wyszukiwanie przez mDNS lub ręczne dodanie; ta sama karta).
+- [x] Aplikacja Android (mDNS/ręcznie, ta sama karta, tryb demo) – patrz `docs/APLIKACJA_ANDROID.md`.
+- [ ] Aplikacja: sprawdzenie na prawdziwym telefonie (NSD, wiązanie z Wi‑Fi bez internetu, pobieranie dziennika), powiadomienia o alarmach, samoaktualizacja.
+- [ ] Poziomy encji w HA (podstawowe / rozszerzone / wszystkie) zamiast wszystkich ~190 encji.
+- [ ] Własny klucz podpisu APK (sekrety `ANDROID_KEYSTORE_*`) zamiast testowego.
 - [ ] Zweryfikować wykrywanie zeroconf w HA na prawdziwym urządzeniu.
