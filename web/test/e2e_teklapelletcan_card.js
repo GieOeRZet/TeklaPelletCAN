@@ -154,17 +154,21 @@ async function modernTests(b) {
   check('modern: ekran NIE wraca do pulpitu po odświeżeniu hass', await mhas('#nav button[data-s="instalacja"].on'));
 
   // odblokowanie poziomu 1 (PIN 0900) i zapis nastawy wymagajacej poziomu
+  const stateOfM = () => p.evaluate(() => (window.__hass.states['sensor.tekla_kociol_zadana_reczna'] || {}).state);
   await mclick('[data-s="nastawy"]');
+  const before = parseFloat(await stateOfM());
   await mclick('.stepper[data-id="boiler_set_manual"]');
   await sleep(300);
   check('modern: edycja prostego pola (poziom 0) nie wymaga PIN-u', !(await mhas('.sheet .pin')));
-  // zmiana zadanej kotla (set_setpoint which=0) i weryfikacja na silniku
+  check('modern: okno edycji pokazuje bieżącą wartość', (await mtxt('.sheet #val')).startsWith(String(Math.round(before))), await mtxt('.sheet #val'));
+  // zmiana zadanej kotla (set_setpoint which=4) i weryfikacja na silniku (wartosc wzgledna – odporne na kolejnosc testow)
   await p.evaluate(() => { const r = document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot; r.querySelector('.sheet #p').click(); });
+  check('modern: stepper pokazuje nową wartość przed zapisem', (await mtxt('.sheet #val')).startsWith(String(Math.round(before + 1))), await mtxt('.sheet #val'));
   await p.evaluate(() => { const r = document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot; r.querySelector('.sheet #ok').click(); });
-  await sleep(600);
-  await p.evaluate(() => window.__refreshFromDevice());
-  await sleep(300);
-  check('modern: zapis zadanej kotła trafił do silnika (set_setpoint)', (await p.evaluate(() => window.__hass.states['sensor.tekla_kociol_zadana_reczna'].state)) === '71', await p.evaluate(() => window.__hass.states['sensor.tekla_kociol_zadana_reczna'].state));
+  // odpytywanie silnika do skutku (CI bywa wolniejsze niz lokalna piaskownica – silnik potwierdza zapis asynchronicznie)
+  let after = NaN;
+  for (let i = 0; i < 20; i++) { await sleep(400); await p.evaluate(() => window.__refreshFromDevice()); after = parseFloat(await stateOfM()); if (after === before + 1) break; }
+  check('modern: zapis zadanej kotła trafił do silnika (set_setpoint)', after === before + 1, `było ${before}, oczekiwano ${before + 1}, jest ${after}`);
 
   // harmonogram: edycja dnia i zapis (realny set_schedule)
   await mclick('[data-s="harmonogram"]');
@@ -175,11 +179,15 @@ async function modernTests(b) {
   const was12 = await p.evaluate(() => document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector('.hgrid button[data-h="12"]').classList.contains('on'));
   await p.evaluate(() => { document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector('.hgrid button[data-h="12"]').click(); });
   await p.evaluate(() => { document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector('.sheet #ok').click(); });
-  await sleep(700);
-  await p.evaluate(() => window.__refreshFromDevice());
-  await sleep(300);
-  const co2 = await p.evaluate(() => window.__hass.states['sensor.tekla_co_harmonogram_rejestry'].state.split(' ')[1]);
-  check('modern: zapis harmonogramu (godzina 12, wtorek) trafił do silnika', (((parseInt(co2, 16) >> 12) & 1) === 1) === !was12, co2);
+  // odpytywanie silnika do skutku (jak przy nastawie – zapis harmonogramu potwierdzany asynchronicznie)
+  let co2 = '', bitMatches = false;
+  for (let i = 0; i < 20; i++) {
+    await sleep(400); await p.evaluate(() => window.__refreshFromDevice());
+    co2 = await p.evaluate(() => window.__hass.states['sensor.tekla_co_harmonogram_rejestry'].state.split(' ')[1]);
+    bitMatches = (((parseInt(co2, 16) >> 12) & 1) === 1) === !was12;
+    if (bitMatches) break;
+  }
+  check('modern: zapis harmonogramu (godzina 12, wtorek) trafił do silnika', bitMatches, co2);
 
   // alarmy
   await mclick('[data-s="alarmy"]');
