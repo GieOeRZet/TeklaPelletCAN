@@ -106,7 +106,8 @@ jobs:
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
           if [ -n "$KS_B64" ]; then echo "$KS_B64" | base64 -d > /tmp/release.jks; export ANDROID_KEYSTORE_FILE=/tmp/release.jks; else echo "UWAGA: podpis kluczem TESTOWYM"; fi
-          cd android && chmod +x gradlew && ./gradlew --no-daemon assembleRelease
+          cd android && chmod +x gradlew
+          ok=0; for i in 1 2 3 4; do if ./gradlew --no-daemon assembleRelease; then ok=1; break; fi; echo "próba $i nieudana (np. chwilowy błąd pobierania) – ponawiam"; sleep 30; done; [ "$ok" = 1 ]
           cp app/build/outputs/apk/release/app-release.apk ../teklapelletcan.apk
       - uses: actions/upload-artifact@v4
         with:
