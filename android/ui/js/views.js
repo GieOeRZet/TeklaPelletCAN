@@ -323,7 +323,7 @@ export function paramGroups(go) {
   for (const p of S.points) { const g = groupOf(p); cnt[g] = (cnt[g] || 0) + 1; }
   const names = [...GROUPS.map(g => g[0]), 'Inne'].filter(g => cnt[g]);
   const root = el(`<div><div id="bn"></div><div class="sec"><h5>Parametry i odczyty</h5>${names.map(g => `<button class="row nav2" data-go="params/${g}"><span>${g}</span><span class="v">${cnt[g]}</span></button>`).join('')}</div>
-    <div class="hint" style="padding:0 6px">Wszystkie punkty urządzenia – tak jak w oryginalnej karcie. Pozycje z 🔒 wymagają poziomu 1 lub 2 (PIN kotła).</div></div>`);
+    <div class="hint" style="padding:0 6px">Wszystkie punkty urządzenia – tak jak w oryginalnej karcie.</div></div>`);
   root.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); } };
 }
