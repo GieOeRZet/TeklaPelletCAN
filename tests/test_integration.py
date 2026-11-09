@@ -16,6 +16,17 @@ async def _pair_flow(hass: HomeAssistant, host: str, port: int, password: str = 
     return r
 
 
+async def _finish_pair_flow(hass: HomeAssistant, flow_id: str, password: str = "qwerty123", name: str = "Tekla", card: str = "none"):
+    """Konczy parowanie: krok auth (haslo) + krok card (wybor karty) -> CREATE_ENTRY."""
+    # symuluje normalna instalacje, gdzie komponent "frontend" jest zaladowany (tu pomijany dla szybkosci testow)
+    hass.data.setdefault("frontend_extra_module_url", set())
+    r = await hass.config_entries.flow.async_configure(
+        flow_id, {"password": password, "password_confirm": password, "name": name}
+    )
+    assert r["type"] is FlowResultType.FORM and r["step_id"] == "card"
+    return await hass.config_entries.flow.async_configure(r["flow_id"], {"card": card})
+
+
 async def test_config_flow_pairs_and_creates_entry(hass: HomeAssistant, sim):
     host, port = sim
     r = await _pair_flow(hass, host, port)
@@ -24,18 +35,17 @@ async def test_config_flow_pairs_and_creates_entry(hass: HomeAssistant, sim):
         r["flow_id"], {"password": "qwerty123", "password_confirm": "qwerty124", "name": "Tekla"}
     )
     assert bad["type"] is FlowResultType.FORM and bad["errors"]["base"] == "password_mismatch"
-    r = await hass.config_entries.flow.async_configure(
-        r["flow_id"], {"password": "qwerty123", "password_confirm": "qwerty123", "name": "Tekla"}
-    )
+    r = await _finish_pair_flow(hass, r["flow_id"])
     assert r["type"] is FlowResultType.CREATE_ENTRY
     assert r["data"]["token"] and r["data"]["host"] == host
+    assert r["data"]["card"] == "none"
     assert r["result"].unique_id == "A1B2C3D4E5F6"
 
 
 async def test_same_device_cannot_be_added_twice(hass: HomeAssistant, sim):
     host, port = sim
     r = await _pair_flow(hass, host, port)
-    await hass.config_entries.flow.async_configure(r["flow_id"], {"password": "qwerty123", "password_confirm": "qwerty123", "name": "Tekla"})
+    await _finish_pair_flow(hass, r["flow_id"])
     r2 = await hass.config_entries.flow.async_init(DOMAIN, context={"source": config_entries.SOURCE_USER})
     r2 = await hass.config_entries.flow.async_configure(r2["flow_id"], {"host": host, "port": port})
     assert r2["type"] is FlowResultType.ABORT and r2["reason"] == "already_configured"
@@ -44,7 +54,7 @@ async def test_same_device_cannot_be_added_twice(hass: HomeAssistant, sim):
 async def test_wrong_password_rejected(hass: HomeAssistant, sim):
     host, port = sim
     r = await _pair_flow(hass, host, port)
-    await hass.config_entries.flow.async_configure(r["flow_id"], {"password": "qwerty123", "password_confirm": "qwerty123", "name": "Tekla"})
+    await _finish_pair_flow(hass, r["flow_id"])
     # drugi HA (inny client_id) próbuje sparować ze złym hasłem – nowe urządzenie z hasłem ustawionym
     from custom_components.teklapelletcan.api import TeklaAuthError, TeklaClient
     from homeassistant.helpers.aiohttp_client import async_get_clientsession
@@ -60,9 +70,42 @@ async def test_wrong_password_rejected(hass: HomeAssistant, sim):
 async def entry(hass: HomeAssistant, sim):
     host, port = sim
     r = await _pair_flow(hass, host, port)
-    r = await hass.config_entries.flow.async_configure(r["flow_id"], {"password": "qwerty123", "password_confirm": "qwerty123", "name": "Tekla"})
+    r = await _finish_pair_flow(hass, r["flow_id"])
     await hass.async_block_till_done()
     return r["result"]
+
+
+async def test_card_choice_modern_adds_only_modern_resource(hass: HomeAssistant, sim):
+    # integracja nie wstrzykuje zadnej karty "domyslnie" - tylko ta wybrana w kreatorze (tu: modern)
+    host, port = sim
+    r = await _pair_flow(hass, host, port)
+    r = await _finish_pair_flow(hass, r["flow_id"], card="modern")
+    await hass.async_block_till_done()
+    assert r["data"]["card"] == "modern"
+    extra_urls = hass.data["frontend_extra_module_url"]
+    assert any(u.endswith("teklapelletcan-modern-card.js") for u in extra_urls)
+    assert not any(u.endswith("teklapelletcan-card.js") and "modern" not in u for u in extra_urls)
+
+
+async def test_card_choice_none_adds_no_resource(hass: HomeAssistant, sim):
+    host, port = sim
+    r = await _pair_flow(hass, host, port)
+    await _finish_pair_flow(hass, r["flow_id"], card="none")
+    await hass.async_block_till_done()
+    extra_urls = hass.data.get("frontend_extra_module_url", set())
+    assert not any("teklapelletcan" in u for u in extra_urls)
+
+
+async def test_options_flow_changes_card_choice(hass: HomeAssistant, entry):
+    # fixture "entry" parowana z card="none" (domyslne) - w opcjach zmieniamy na "classic"
+    result = await hass.config_entries.options.async_init(entry.entry_id)
+    assert result["type"] is FlowResultType.FORM and result["step_id"] == "init"
+    result = await hass.config_entries.options.async_configure(result["flow_id"], {"card": "classic"})
+    assert result["type"] is FlowResultType.CREATE_ENTRY
+    await hass.async_block_till_done()
+    extra_urls = hass.data["frontend_extra_module_url"]
+    assert any(u.endswith("/pelletcan-card.js") for u in extra_urls)
+    assert any(u.endswith("/teklapelletcan-card.js") for u in extra_urls)
 
 
 async def test_entities_have_esphome_compatible_ids_and_values(hass: HomeAssistant, entry):
