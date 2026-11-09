@@ -21,6 +21,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   const sheetText = () => p.locator('.sheet').innerText().catch(() => '');
   const waitSheet = async re => { for (let i = 0; i < 40; i++) { if (re.test(await sheetText())) return true; await sleep(100); } return false; };
   const noSheet = async () => { for (let i = 0; i < 40; i++) { if (!(await p.locator('.sheet').count())) return true; await sleep(100); } return false; };
+  const closeAny = async () => { for (let i = 0; i < 3; i++) { if (await p.locator('.scrim').count()) await p.locator('.scrim').click({ position: { x: 5, y: 5 } }).catch(() => {}); } };
   const nat = (fn, ...a) => p.evaluate(([f, args]) => JSON.parse(window.TPCNative[f](...args) || '{}'), [fn, a]);
 
   // ---------------------------------------------------------------- pierwsze uruchomienie
@@ -97,6 +98,13 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('zapis: nowa zadana widoczna po zapisie', after === before + 1, before + ' -> ' + after);
   await p.getByRole('button', { name: 'Ręczny', exact: true }).first().click(); await sleep(3200);
   check('zapis: zmiana trybu kotła', /Ręczny/.test(await p.locator('.chips button.on').first().innerText()), await p.locator('.chips').first().innerText());
+  const stateOf = id => p.evaluate(async id => { const r = await new Promise(res => { const q = 's' + Math.random(); const o = window.__tpcResp; window.__tpcResp = (i, x) => { if (i === q) { window.__tpcResp = o; res(x); } else o && o(i, x); }; TPCNative.request(q, 'GET', '/api/v1/states', ''); }); return (JSON.parse(r.body).states.find(s => s.entity_id === id) || {}).state; }, id);
+  await p.getByRole('button', { name: 'Eko', exact: true }).nth(0).click(); await sleep(3200);
+  check('zapis: tryb CO „Eko” (select) dotarł do kotła', (await stateOf('sensor.tekla_co_tryb')) === 'Eko', await stateOf('sensor.tekla_co_tryb'));
+  await p.getByRole('button', { name: 'Harmonogram', exact: true }).nth(0).click(); await sleep(3200);
+  check('zapis: tryb CO „Harmonogram” (błąd unknown_entity z telefonu)', (await stateOf('sensor.tekla_co_tryb')) === 'Harmonogram', await stateOf('sensor.tekla_co_tryb') + ' | ' + await p.locator('#toast').innerText());
+  await p.getByRole('button', { name: 'Eko', exact: true }).nth(1).click(); await sleep(3200);
+  check('zapis: tryb CWU „Eko” (select) dotarł do kotła', (await stateOf('sensor.tekla_cwu_tryb')) === 'Eko', await stateOf('sensor.tekla_cwu_tryb'));
   await p.screenshot({ path: OUT + '/ui_nastawy.png', fullPage: true });
 
   // ---------------------------------------------------------------- poziomy kotła
@@ -142,7 +150,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await p.evaluate(() => { location.hash = '#/d/pulpit'; }); await sleep(1500);
   const fuel0 = parseFloat(await txt('[data-b="pulpit_fuel"]'));
   await p.click('[data-fuel]');
-  check('zbiornik: okno z grafiką i edycją ilości', await waitSheet(/Zbiornik paliwa/) && (await p.locator('.sheet svg').count()) === 1);
+  check('zbiornik: okno z grafiką i edycją ilości', await waitSheet(/Podaj paliwo ręcznie/) && (await p.locator('.sheet svg').count()) >= 1);
   check('zbiornik: pole ilości ma bieżącą wartość', Math.abs(parseFloat(await p.inputValue('#kg')) - fuel0) <= 1);
   await p.screenshot({ path: OUT + '/ui_zbiornik.png' });
   await p.click('[data-d="50"]');
@@ -150,9 +158,11 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await p.fill('#kg', '222');
   await p.click('.sheet #ok'); await sleep(3500);
   check('zbiornik: zapisana ilość widoczna na pulpicie', parseFloat(await txt('[data-b="pulpit_fuel"]')) === 222, await txt('[data-b="pulpit_fuel"]'));
-  await p.click('[data-fuel]'); await waitSheet(/Zbiornik paliwa/); await p.click('[data-full]');
+  await p.click('[data-fuel]'); await waitSheet(/Podaj paliwo ręcznie/); await p.click('[data-full]');
   check('zbiornik: „Pełny” ustawia pojemność zbiornika', Math.abs(parseFloat(await p.inputValue('#kg')) - 300) <= 1, await p.inputValue('#kg'));
-  await p.click('.sheet #no');
+  await p.click('#feed'); await waitSheet(/Podawanie paliwa/); await p.click('.sheet #yes'); await sleep(1200);
+  check('zbiornik: ręczne podawanie paliwa bez błędu', !/Błąd/.test(await p.locator('#toast').innerText()), await p.locator('#toast').innerText());
+  await closeAny();
 
   // ---------------------------------------------------------------- brak połączenia: ostatnie dane
   await p.evaluate(() => { location.hash = '#/d/pulpit'; }); await sleep(1500);

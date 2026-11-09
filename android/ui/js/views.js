@@ -3,37 +3,77 @@ import { nat, api } from './native.js';
 import { S, v, num, pv, pn, level, subscribe } from './store.js';
 import { $, el, esc, f1, fmt, toast, openSheet, closeSheet, ensureLevel, ensureUnlocked, editPoint, callService, writePoint, confirmSheet } from './ui.js';
 
+/** Zbiornik jak w oknie „Paliwo” oryginalnej karty: różowy korpus z czerwoną pokrywą i uchwytem, szary wskaźnik wypełniany od dołu
+ *  żółtym pelletem, litera „E” (pusty). Wymiary z CSS karty (.ftk/.fth/.fbar); poziom = pct 0..100. Bez suwaka – tylko poziom. */
+let tankSeq = 0;
 const TANK = (pct, w = 96) => {
-  const p = Math.max(0, Math.min(100, Number.isFinite(pct) ? pct : 0)), top = 20 + (100 - p) * 0.8;   // poziom pelletu w lejku
-  const dots = Array.from({ length: 26 }, (_, i) => `<circle cx="${18 + (i * 37) % 84}" cy="${top + 6 + ((i * 53) % 70) * 0.8}" r="2.2" fill="#a8702f"/>`).join('');
-  return `<svg width="${w}" viewBox="0 0 120 130"><defs><clipPath id="tkc"><path d="M10 18h100l-22 100H32z"/></clipPath></defs><path d="M10 18h100l-22 100H32z" fill="#12151b" stroke="#4a4f5c" stroke-width="3"/><g clip-path="url(#tkc)"><rect x="0" y="${top}" width="120" height="130" fill="#c98a4a"/>${dots}<rect x="0" y="${top}" width="120" height="4" fill="#e7b06f"/></g><rect x="6" y="12" width="108" height="8" rx="3" fill="#4a4f5c"/></svg>`;
+  const f = Math.max(0, Math.min(100, Number.isFinite(pct) ? pct : 0)) / 100, u = 'tk' + (++tankSeq);
+  const barH = 327, barY = 95.8, fillH = Math.round(barH * f * 10) / 10;
+  return `<svg width="${w}" viewBox="0 0 256 445" aria-label="zbiornik paliwa" data-tank="${Math.round(f * 100)}"><defs>
+      <linearGradient id="${u}b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4b5b8"/><stop offset="1" stop-color="#f09aa2"/></linearGradient>
+      <linearGradient id="${u}t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6604f"/><stop offset="1" stop-color="#e5352b"/></linearGradient>
+      <pattern id="${u}p" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="10" fill="#f3e24f"/><rect x="5" width="5" height="10" fill="#e1c92f"/></pattern></defs>
+    <rect x="1.25" y="1.25" width="253.5" height="442.5" fill="url(#${u}b)" stroke="#e0453b" stroke-width="2.5"/>
+    <rect x="1.25" y="1.25" width="253.5" height="68.5" fill="url(#${u}t)"/><rect x="1.25" y="67" width="253.5" height="3" fill="#b8352c"/>
+    <svg x="94.7" y="27" width="64" height="30" viewBox="0 0 42 20"><path d="M3 20V9Q3 2.2 9.5 2.2H32.5Q39 2.2 39 9V20" fill="none" stroke="#f9d3cf" stroke-width="4.4"/></svg>
+    <rect x="97" y="${barY}" width="60.6" height="${barH}" fill="#6c7898" stroke="#e9edf8" stroke-width="2.5"/>
+    <rect x="98.3" y="${(barY + barH - fillH).toFixed(1)}" width="58.1" height="${Math.max(0, fillH - 1.3).toFixed(1)}" fill="url(#${u}p)"/>
+    <text x="64" y="412" font-size="42" font-weight="700" fill="#f5a21a" font-family="Roboto,sans-serif">E</text></svg>`;
 };
 
-/** Zbiornik paliwa: grafika z poziomem pelletu i edycja ilości (punkt tank_kg, jak w oryginalnej karcie). */
+/** Okno „Paliwo”: grafika zbiornika z poziomem pelletu (jak w karcie), ilość w kg z przyciskami ±1 kg (przytrzymanie powtarza),
+ *  wpisanie wartości, szybkie kroki i ręczne podawanie paliwa. Zapis: punkt tank_kg. */
 export function fuelSheet() {
   const cap = num('sensor.tekla_zbiornik_pojemnosc'), cur = num('sensor.tekla_zbiornik_paliwo'), days = num('sensor.tekla_paliwo_prognoza');
   const p = S.pointById.get('tank_kg') || { min: 0, max: 1500 };
   let val = Number.isFinite(cur) ? cur : 0;
-  const sh = openSheet(`<h3>Zbiornik paliwa</h3>
-    <div style="display:flex;gap:16px;align-items:center"><div id="tk"></div>
-      <div style="flex:1"><div class="hint">Ilość pelletu w zbiorniku</div>
-      <div style="display:flex;gap:8px;align-items:center"><input class="t" id="kg" type="number" inputmode="numeric" min="${p.min}" max="${p.max}" step="1" style="font-size:24px"><span class="dim">kg</span></div>
-      <div class="hint" id="info"></div></div></div>
+  let feedT = null, feedLeft = 0;
+  const sh = openSheet(`<h3>Paliwo</h3>
+    <div style="display:flex;gap:18px;align-items:center">
+      <div id="tk" style="flex:0 0 112px"></div>
+      <div style="flex:1;text-align:center">
+        <button class="ico" id="pl" style="width:56px;height:56px;margin:0 auto;font-size:28px">+</button>
+        <div style="font-size:36px;font-weight:500;margin:6px 0" id="big"></div>
+        <button class="ico" id="mi" style="width:56px;height:56px;margin:0 auto;font-size:28px">−</button>
+        <div class="hint" id="info" style="margin-top:6px"></div></div></div>
+    <div class="hint" style="margin-top:10px">Wpisz ilość lub użyj szybkich kroków</div>
+    <div style="display:flex;gap:8px;align-items:center"><input class="t" id="kg" type="number" inputmode="numeric" min="${p.min}" max="${p.max}" step="1"><span class="dim">kg</span></div>
     <div class="chips"><button data-d="-50">−50</button><button data-d="-10">−10</button><button data-d="10">+10</button><button data-d="25">+25</button><button data-d="50">+50</button><button data-d="100">+100</button><button data-full="1">Pełny</button><button data-zero="1">Pusty</button></div>
-    <div class="hint" style="margin-top:8px">Pojemność zbiornika (${Number.isFinite(cap) ? fmt(cap, 0) : '–'} kg) jest odczytywana z kotła.${Number.isFinite(days) ? ' Prognoza: ok. ' + fmt(days, 0) + ' dni.' : ''}</div>
-    <button class="btn acc" id="ok">Zapisz ilość paliwa</button><button class="btn sec" id="no">Anuluj</button>`);
+    <div class="hint" style="margin-top:8px">Pojemność zbiornika (${Number.isFinite(cap) ? fmt(cap, 0) : '–'} kg) kocioł podaje tylko do odczytu.${Number.isFinite(days) ? ' Prognoza: ok. ' + fmt(days, 0) + ' dni.' : ''}</div>
+    <button class="btn sec" id="feed">Podaj paliwo ręcznie (30 s)</button>
+    <button class="btn acc" id="ok">Zapisz ilość paliwa</button><button class="btn sec" id="no">Anuluj</button>`, () => { clearInterval(feedT); });
   const inp = $('#kg', sh);
   const draw = () => {
     const pct = cap > 0 ? val / cap * 100 : NaN;
-    $('#tk', sh).innerHTML = TANK(pct, 96);
-    $('#info', sh).innerHTML = Number.isFinite(pct) ? `${fmt(pct, 0)} % pojemności` + (val > cap ? ' · <span class="wr">powyżej pojemności</span>' : '') : '';
+    $('#tk', sh).innerHTML = TANK(pct, 112);
+    $('#big', sh).textContent = Math.round(val) + ' kg';
+    $('#info', sh).innerHTML = Number.isFinite(pct) ? `${fmt(pct, 0)} % pojemności` + (val > cap ? '<br><span class="wr">powyżej pojemności</span>' : '') : '';
   };
+  const setVal = x => { val = Math.max(p.min ?? 0, Math.min(p.max ?? 1500, Math.round(x))); inp.value = String(val); draw(); };
   inp.value = String(Math.round(val)); draw();
   inp.oninput = () => { const x = parseFloat(inp.value); val = Number.isFinite(x) ? x : 0; draw(); };
-  const setVal = x => { val = Math.max(p.min ?? 0, Math.min(p.max ?? 1500, Math.round(x))); inp.value = String(val); draw(); };
   sh.querySelectorAll('[data-d]').forEach(b => b.onclick = () => setVal(val + parseInt(b.dataset.d, 10)));
   $('[data-full]', sh).onclick = () => { if (Number.isFinite(cap)) setVal(cap); };
   $('[data-zero]', sh).onclick = () => setVal(0);
+  // ±1 kg: stuknięcie = 1 kg, przytrzymanie (0,45 s) powtarza co 0,12 s – jak w karcie
+  const hold = (btn, d) => {
+    let t0 = null, t1 = null, held = false;
+    const stop = () => { clearTimeout(t0); clearInterval(t1); };
+    btn.addEventListener('pointerdown', () => { stop(); held = false; t0 = setTimeout(() => { held = true; setVal(val + d); t1 = setInterval(() => setVal(val + d), 120); }, 450); });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(e => btn.addEventListener(e, stop));
+    btn.addEventListener('click', () => { if (held) { held = false; return; } setVal(val + d); });
+  };
+  hold($('#pl', sh), 1); hold($('#mi', sh), -1);
+  // ręczne podawanie (jak ślimak w karcie): 30 s; ponowne stuknięcie wraca do automatu
+  $('#feed', sh).onclick = async () => {
+    if (feedLeft > 0) {
+      clearInterval(feedT); feedLeft = 0; $('#feed', sh).textContent = 'Podaj paliwo ręcznie (30 s)';
+      await callService('press', { entity_id: 'button.tekla_podajnik_automat' }, 'button'); return;
+    }
+    if (!(await confirmSheet('Podawanie paliwa', 'Włączyć ręczne podawanie paliwa na 30 s?', 'Podaj'))) return;
+    if (!(await callService('press', { entity_id: 'button.tekla_podajnik_podaj_paliwo_30_s' }, 'button'))) return;
+    feedLeft = 30;
+  };
   $('#no', sh).onclick = closeSheet;
   $('#ok', sh).onclick = async () => {
     if (val > (p.max ?? 1500) || val < 0) { toast('Wartość poza zakresem'); return; }
@@ -42,9 +82,7 @@ export function fuelSheet() {
   };
 }
 
-const HOPPER = (pct = 60, h = 54) => TANK(pct, Math.round(h * 0.95));
 const MODE = { 0: 'Czasowy auto', 1: 'Czasowy ręczny', 2: 'Auto', 3: 'Ręczny' };
-const HOPPER_OLD = (pct = 60, h = 54) => `<svg height="${h}" viewBox="0 0 70 78"><path d="M4 6h62l-14 62H18z" fill="#12151b" stroke="#4a4f5c" stroke-width="2"/><path d="M${12 + (100 - pct) * 0.04} ${68 - 38 * pct / 100}h${46 - (100 - pct) * 0.08}l-8 ${38 * pct / 100}H20z" fill="#c98a4a"/></svg>`;
 
 /** Aktualizacja wartości w miejscu (bez przebudowy widoku): elementy z atrybutem data-b="funkcja". */
 const binders = new Map();
@@ -76,6 +114,7 @@ export function offlineBanner() {
   return `<div class="banner off"><b>Brak połączenia z kotłem.</b> Pokazuję ostatnie dane z <b>${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</b> (${when}). Wrócę do danych na żywo, gdy będziesz w domowej sieci.</div>`;
 }
 
+
 // ------------------------------------------------------------------ pulpit
 export function pulpit(go) {
   const root = el(`<div>
@@ -88,7 +127,7 @@ export function pulpit(go) {
       <button class="cd im" data-go="kociol"><small>Palnik</small><b data-b="burner_pct"></b><span class="u"> %</span><div class="dots"><span><i data-b="dot_blower"></i>dmuchawa</span><span><i data-b="dot_feeder"></i>podajnik</span></div><img src="img/palnik.webp" style="height:50px" alt=""></button>
       <button class="cd im" data-go="kociol"><small>CWU</small><b data-b="t_cwu"></b><span class="u"> °C</span><div class="u" data-b="cwu_sub"></div><img src="img/bojler.webp" style="height:76px;right:10px;top:8px;border-radius:8px" alt=""></button>
       <button class="cd" data-go="kociol"><small>CO</small><b data-b="t_co"></b><span class="u"> °C</span><div class="u" data-b="co_sub"></div></button>
-      <button class="cd" data-fuel="1"><small>Paliwo</small><b data-b="fuel"></b><span class="u"> kg</span><div class="u" data-b="fuel_sub"></div><div style="position:absolute;right:10px;bottom:8px" data-b="hopper"></div></button>
+      <button class="cd" data-fuel="1"><small>Paliwo</small><b data-b="fuel"></b><span class="u"> kg</span><div class="u" data-b="fuel_sub"></div><div style="position:absolute;right:12px;top:12px" data-b="hopper"></div></button>
       <button class="cd" data-go="instalacja"><small>Zewnętrzna</small><b data-b="t_out"></b><span class="u"> °C</span><div class="u" data-b="out_sub"></div></button>
       <button class="cd" data-go="instalacja"><small>Moc palnika</small><b data-b="kw"></b><span class="u"> kW</span><div class="u" data-b="kw_sub"></div></button>
       <button class="cd full" data-go="alarmy"><span data-b="alarm_ico" style="font-size:26px"></span><div><b data-b="alarm_t" style="font-size:16px"></b><div class="u" data-b="alarm_sub"></div></div></button>
@@ -107,7 +146,7 @@ export function pulpit(go) {
   set('co_sub', n => { n.innerHTML = `zadana ${fmt(num('sensor.tekla_co_zadana_wynikowa'), 0)} · pompa ${v('binary_sensor.tekla_co_pompa') === 'on' ? '<span class="ok">wł.</span>' : 'wył.'}`; });
   set('fuel', n => { n.textContent = fmt(num('sensor.tekla_zbiornik_paliwo'), 0); });
   set('fuel_sub', n => { const d = num('sensor.tekla_paliwo_prognoza'); n.textContent = Number.isFinite(d) ? `ok. ${fmt(d, 0)} dni` : `${fmt(pct(), 0)} %`; });
-  set('hopper', n => { n.innerHTML = HOPPER(Number.isFinite(pct()) ? pct() : 50, 62); });
+  set('hopper', n => { n.innerHTML = TANK(Number.isFinite(pct()) ? pct() : 0, 40); });
   set('t_out', n => { n.textContent = f1(num('sensor.tekla_temperatura_zewnetrzna')); });
   set('out_sub', n => { n.textContent = 'powrót ' + f1(num('sensor.tekla_temperatura_powrotu')) + ' °C'; });
   set('kw', n => { n.textContent = f1(num('sensor.tekla_palnik_moc')); });
@@ -141,7 +180,7 @@ export function instalacja(go) {
       <div class="row"><span>Moc palnika</span><span class="v" data-b="in_kw"></span></div></div></div>`);
   const set = (k, fn) => { const n = root.querySelector(`[data-b="${k}"]`); if (n) { n.dataset.b = 'inst_' + k; binders.set('inst_' + k, fn); } };
   const pct = () => { const x = num('sensor.tekla_zbiornik_zapelnienie'); return Number.isFinite(x) ? x : 50; };
-  set('in_hop', n => { n.innerHTML = HOPPER(pct(), 54); });
+  set('in_hop', n => { n.innerHTML = TANK(pct(), 38); });
   set('in_hop_t', n => { n.textContent = `${fmt(num('sensor.tekla_zbiornik_paliwo'), 0)} / ${fmt(num('sensor.tekla_zbiornik_pojemnosc'), 0)} kg`; });
   set('in_hop_p', n => { n.textContent = fmt(pct(), 0) + ' %'; n.className = 'pill' + (v('binary_sensor.tekla_paliwo_rezerwa') === 'on' ? ' r' : ''); });
   set('in_burn_t', n => { n.innerHTML = `${esc((S.states.get('sensor.tekla_palnik_stan') || {}).state || '–')} · podajnik ${v('binary_sensor.tekla_podajnik_pracuje') === 'on' || v('binary_sensor.tekla_podajnik_palnika_pracuje') === 'on' ? '<span class="ok">wł.</span>' : 'wył.'}`; });
@@ -191,10 +230,10 @@ export function kociol() {
     modeChips('Tryb pracy kotła', 'boiler_mode', MODE, m => callService('tekla_estyma_set_boiler_mode', { mode: m }), 'sensor.tekla_kociol_tryb_pracy'));
   const c = sec('CO (ogrzewanie)');
   c.append(stepperRow('Zadana CO (ręczna)', 'ch1_set_manual'), stepperRow('Zadana CO – komfort', 'co_set_comfort'), stepperRow('Zadana CO – eko', 'co_set_eco'),
-    modeChips('Tryb CO', 'co_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_co_mode_sel', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_co_tryb'));
+    modeChips('Tryb CO', 'co_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_co_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_co_tryb'));
   const w = sec('CWU (ciepła woda)');
   w.append(stepperRow('Zadana CWU – komfort', 'hw_set_comfort'), stepperRow('Zadana CWU – eko', 'hw_set_eco'),
-    modeChips('Tryb CWU', 'cwu_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_cwu_mode_sel', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_cwu_tryb'));
+    modeChips('Tryb CWU', 'cwu_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_cwu_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_cwu_tryb'));
   w.append(el('<button class="btn sec" id="boost">Zagrzej CWU teraz</button>'));
   root.querySelector('#boost').onclick = async () => { if (await confirmSheet('Zagrzej CWU teraz', 'Włączyć jednorazowe dogrzanie wody?')) await writePoint('cwu_boost', 1); };
   root.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => editPoint(b.dataset.edit));
