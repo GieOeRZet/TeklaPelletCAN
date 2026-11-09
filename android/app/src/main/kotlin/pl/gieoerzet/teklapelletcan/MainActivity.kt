@@ -102,6 +102,7 @@ class MainActivity : Activity() {
             override fun getLong(k: String, d: Long) = prefs.getLong(k, d)
             override fun putLong(k: String, v: Long) { prefs.edit().putLong(k, v).apply() }
         }
+        if ((applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0) WebView.setWebContentsDebuggingEnabled(true)
         security = SecurityStore(kv)
         cache = Cache(java.io.File(filesDir, "cache"))
 
@@ -135,7 +136,11 @@ class MainActivity : Activity() {
             setOnApplyWindowInsetsListener { v, ins -> applyInsets(v, ins); ins }
         }
         setContentView(root)
-        if (Build.VERSION.SDK_INT >= 28) window.attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        if (Build.VERSION.SDK_INT >= 28) {
+            val lp = window.attributes
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            window.attributes = lp
+        }
         applyOrientation(resources.configuration)
         ui.loadUrl("https://$UI_HOST/")
         bindToWifi()
@@ -143,7 +148,7 @@ class MainActivity : Activity() {
         screenReceiver = object : BroadcastReceiver() {
             override fun onReceive(c: Context, i: Intent) { lockNow("screen_off") }
         }
-        registerReceiver(screenReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
+        try { registerReceiver(screenReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF)) } catch (e: Exception) { screenReceiver = null }
         tick()
     }
 
@@ -482,10 +487,13 @@ class MainActivity : Activity() {
 
     // ------------------------------------------------------------------ biometria
 
-    private fun biometricAvailable(): Boolean {
-        val bm = getSystemService(Context.BIOMETRIC_SERVICE) as? BiometricManager ?: return false
-        return if (Build.VERSION.SDK_INT >= 30) bm.canAuthenticate(android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_SUCCESS
+    private fun biometricAvailable(): Boolean = try {
+        val bm = getSystemService(Context.BIOMETRIC_SERVICE) as? BiometricManager
+        if (bm == null) false
+        else if (Build.VERSION.SDK_INT >= 30) bm.canAuthenticate(android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_SUCCESS
         else @Suppress("DEPRECATION") (bm.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS)
+    } catch (e: Throwable) {
+        false     // brak uprawnienia/usługi: aplikacja działa bez biometrii
     }
 
     private fun promptBiometric() {
@@ -513,18 +521,20 @@ class MainActivity : Activity() {
 
     // ------------------------------------------------------------------ mosty JavaScript
 
+    /** Stan dla interfejsu. Nigdy nie rzuca wyjątku (wyjątek w moście przerywa cały skrypt strony = czarny ekran). */
     private fun stateJson(): String {
         val o = JSONObject()
-        o.put("hasPin", security.hasPin())
-        o.put("bio", security.biometricEnabled)
-        o.put("bioAsked", security.biometricAsked)
+        fun <T> safe(d: T, f: () -> T): T = try { f() } catch (e: Throwable) { d }
+        o.put("hasPin", safe(false) { security.hasPin() })
+        o.put("bio", safe(false) { security.biometricEnabled })
+        o.put("bioAsked", safe(false) { security.biometricAsked })
         o.put("bioAvailable", biometricAvailable())
-        o.put("lockOnStart", security.lockOnStart)
-        o.put("unlocked", gate.isUnlocked())
-        o.put("remainingMs", gate.remainingMs())
+        o.put("lockOnStart", safe(false) { security.lockOnStart })
+        o.put("unlocked", safe(false) { gate.isUnlocked() })
+        o.put("remainingMs", safe(0L) { gate.remainingMs() })
         o.put("deviceName", deviceName)
         o.put("demo", backend?.isDemo == true)
-        o.put("version", try { packageManager.getPackageInfo(packageName, 0).versionName ?: "?" } catch (e: Exception) { "?" })
+        o.put("version", safe("?") { packageManager.getPackageInfo(packageName, 0).versionName ?: "?" })
         o.put("sdk", Build.VERSION.SDK_INT)
         return o.toString()
     }

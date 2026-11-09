@@ -118,8 +118,9 @@ jobs:
         run: |
           if [ -n "$KS_B64" ]; then echo "$KS_B64" | base64 -d > /tmp/release.jks; export ANDROID_KEYSTORE_FILE=/tmp/release.jks; echo prod > signing.txt; else echo "UWAGA: podpis kluczem TESTOWYM"; echo dev > signing.txt; fi
           cd android && chmod +x gradlew
-          ok=0; for i in 1 2 3 4; do if ./gradlew --no-daemon assembleRelease; then ok=1; break; fi; echo "próba $i nieudana (np. chwilowy błąd pobierania) – ponawiam"; sleep 30; done; [ "$ok" = 1 ]
+          ok=0; for i in 1 2 3 4; do if ./gradlew --no-daemon assembleRelease assembleDebug; then ok=1; break; fi; echo "próba $i nieudana (np. chwilowy błąd pobierania) – ponawiam"; sleep 30; done; [ "$ok" = 1 ]
           cp app/build/outputs/apk/release/app-release.apk ../teklapelletcan.apk
+          cp app/build/outputs/apk/debug/app-debug.apk ../teklapelletcan-debug.apk
       - uses: actions/upload-artifact@v4
         with:
           name: teklapelletcan-apk
@@ -127,6 +128,58 @@ jobs:
             teklapelletcan.apk
             signing.txt
           retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: teklapelletcan-debug-apk
+          path: teklapelletcan-debug.apk
+          retention-days: 7
+  # Test dymny aplikacji na prawdziwym emulatorze Androida (prawdziwy WebView, JNI, tryb demo). Zrzuty ekranu trafiają na gałąź ci-screens.
+  android-emulator:
+    needs: android
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: actions/download-artifact@v4
+        with:
+          name: teklapelletcan-debug-apk
+          path: debugapk
+      - name: Włącz KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Emulator Android 34 + test dymny
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          target: google_apis
+          disable-animations: true
+          script: bash android/test/emulator_smoke.sh debugapk/teklapelletcan-debug.apk /tmp/shots
+      - name: Wynik testu
+        if: always()
+        run: cat /tmp/shots/wynik.txt || true
+      - name: Publikuj zrzuty na gałęzi ci-screens
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          [ -d /tmp/shots ] || exit 0
+          mkdir -p /tmp/shots_pub && cp -r /tmp/shots/. /tmp/shots_pub/
+          git config user.name "ci"; git config user.email "ci@users.noreply.github.com"
+          git checkout --orphan shots
+          git rm -rf . -q
+          cp -r /tmp/shots_pub/. .
+          echo "run ${{ github.run_number }} sha ${{ github.sha }}" > INFO.txt
+          git add -A
+          git commit -qm "Zrzuty z emulatora: przebieg ${{ github.run_number }}"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" shots:ci-screens --force
   ha-integration:
     runs-on: ubuntu-latest
     steps:

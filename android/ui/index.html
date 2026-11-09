@@ -7,9 +7,18 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="app"></div>
+<div id="app"><div style="padding:48px 24px;text-align:center;color:#9aa1b2;font:15px sans-serif">TeklaPelletCAN<br><span id="boot">Ładowanie…</span></div></div>
 <div id="overlay"></div>
 <div id="toast"></div>
+<script>
+  // Diagnostyka: błąd przy starcie ma być widoczny na ekranie, nie jako czarna plansza.
+  (function () {
+    function show(m) { var a = document.getElementById('app'); if (a && (!window.__tpcReady || !a.firstChild)) a.innerHTML = '<div style="padding:28px 20px;color:#e8eaf0;font:14px sans-serif"><b style="color:#ef5350">Błąd uruchomienia interfejsu</b><br><br><span style="color:#9aa1b2;word-break:break-all">' + String(m).replace(/</g, '&lt;') + '</span></div>'; }
+    window.addEventListener('error', function (e) { show(e.message + ' (' + (e.filename || '').split('/').pop() + ':' + e.lineno + ')'); });
+    window.addEventListener('unhandledrejection', function (e) { show('Odrzucona obietnica: ' + (e.reason && e.reason.message || e.reason)); });
+    setTimeout(function () { if (!window.__tpcReady) show('Interfejs nie wystartował w 6 s (sprawdź, czy aplikacja ma aktualne pliki).'); }, 6000);
+  })();
+</script>
 <script type="module" src="js/main.js"></script>
 </body>
 </html>

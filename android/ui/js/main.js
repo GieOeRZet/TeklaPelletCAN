@@ -269,3 +269,4 @@ function viewAppSettings() {
 const st0 = nat.state();
 if (!location.hash) location.hash = '#/start'; else render();
 if (st0.hasPin && st0.lockOnStart && !st0.unlocked) setTimeout(() => ensureUnlocked(), 100);
+window.__tpcReady = true;
