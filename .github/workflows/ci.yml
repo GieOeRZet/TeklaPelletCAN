@@ -42,6 +42,7 @@ jobs:
           if [ -n "$KEY" ]; then printf '%s\n' "$KEY" > /tmp/ota.pem; else cp tools/dev-keys/ota-dev-private.pem /tmp/ota.pem; echo "UWAGA: podpis kluczem TESTOWYM"; fi
           python3 tools/ota_sign.py sign --key /tmp/ota.pem --bin firmware/build/teklapelletcan.bin       # .sig (zgodność wsteczna)
           cp firmware/build/teklapelletcan.bin.sig .
+          cp firmware/build/teklapelletcan.bin teklapelletcan-raw.bin   # surowy obraz: razem z .sig dla starych wersji (0.2.x), które nie znają podpisu wbudowanego
           python3 tools/ota_sign.py package --key /tmp/ota.pem --bin firmware/build/teklapelletcan.bin --out teklapelletcan.bin   # plik z podpisem w środku
           rm -f /tmp/ota.pem
       - uses: actions/upload-artifact@v4
@@ -50,6 +51,7 @@ jobs:
           path: |
             firmware/teklapelletcan-factory.bin
             teklapelletcan.bin
+            teklapelletcan-raw.bin
             teklapelletcan.bin.sig
           retention-days: 30
   web-ui:
