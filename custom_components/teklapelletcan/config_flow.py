@@ -4,32 +4,20 @@ from __future__ import annotations
 from typing import Any
 
 import voluptuous as vol
-from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResult, OptionsFlow
-from homeassistant.core import callback
+from homeassistant.config_entries import ConfigFlowResult, ConfigFlow
 from homeassistant.helpers import instance_id
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from homeassistant.helpers.selector import SelectOptionDict, SelectSelector, SelectSelectorConfig
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo
 
 from .api import TeklaAuthError, TeklaClient, TeklaError
 from .const import (
-    CARD_CHOICES,
-    CONF_CARD,
     CONF_HOST,
     CONF_NAME,
     CONF_PORT,
     CONF_TOKEN,
-    DEFAULT_CARD,
     DEFAULT_NAME,
     DEFAULT_PORT,
     DOMAIN,
-)
-
-CARD_SELECTOR = SelectSelector(
-    SelectSelectorConfig(
-        options=[SelectOptionDict(value=c, label=c) for c in CARD_CHOICES],
-        translation_key="card",
-    )
 )
 
 
@@ -40,12 +28,6 @@ class TeklaPelletCanConfigFlow(ConfigFlow, domain=DOMAIN):
         self._host = ""
         self._port = DEFAULT_PORT
         self._info: dict = {}
-        self._pending_data: dict = {}
-
-    @staticmethod
-    @callback
-    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow:
-        return TeklaPelletCanOptionsFlow()
 
     async def _probe(self) -> str | None:
         """Sprawdza urządzenie; zwraca kod błędu albo None."""
@@ -107,24 +89,14 @@ class TeklaPelletCanConfigFlow(ConfigFlow, domain=DOMAIN):
             except TeklaError:
                 errors["base"] = "cannot_connect"
             else:
-                self._pending_data = {
+                data = {
                     CONF_HOST: self._host,
                     CONF_PORT: self._port,
                     CONF_TOKEN: res["token"],
                     CONF_NAME: user_input.get(CONF_NAME) or DEFAULT_NAME,
                 }
-                return await self.async_step_card()
+                return self.async_create_entry(title=data[CONF_NAME], data=data)
         return self._auth_form(errors, first_setup)
-
-    async def async_step_card(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
-        """Wybor karty Lovelace do automatycznego dodania (integracja jej nie wymusza)."""
-        if user_input is not None:
-            return self.async_create_entry(
-                title=self._pending_data[CONF_NAME],
-                data={**self._pending_data, CONF_CARD: user_input[CONF_CARD]},
-            )
-        schema = vol.Schema({vol.Required(CONF_CARD, default=DEFAULT_CARD): CARD_SELECTOR})
-        return self.async_show_form(step_id="card", data_schema=schema)
 
     def _auth_form(self, errors: dict[str, str], first_setup: bool) -> ConfigFlowResult:
         fields: dict = {vol.Required("password"): str}
@@ -134,14 +106,3 @@ class TeklaPelletCanConfigFlow(ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="auth", data_schema=vol.Schema(fields), errors=errors, description_placeholders={"first_setup": str(first_setup)}
         )
-
-
-class TeklaPelletCanOptionsFlow(OptionsFlow):
-    """Zmiana wyboru karty po fakcie, bez ponownego parowania urzadzenia."""
-
-    async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
-        if user_input is not None:
-            return self.async_create_entry(title="", data=user_input)
-        current = self.config_entry.options.get(CONF_CARD, self.config_entry.data.get(CONF_CARD, DEFAULT_CARD))
-        schema = vol.Schema({vol.Required(CONF_CARD, default=current): CARD_SELECTOR})
-        return self.async_show_form(step_id="init", data_schema=schema)

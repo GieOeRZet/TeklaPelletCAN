@@ -22,13 +22,6 @@
           "name": "Nazwa (prefiks encji)",
           "password_confirm": "Powtórz hasło (przy pierwszej konfiguracji)"
         }
-      },
-      "card": {
-        "title": "Karta Lovelace",
-        "description": "Integracja sama nie wymusza żadnej karty. Wybierz, którą dodać automatycznie jako zasób dashboardu (możesz to zmienić później w opcjach integracji) – klasyczna to replika panelu kotła, nowoczesna to styl aplikacji Android z pełną listą parametrów.",
-        "data": {
-          "card": "Karta"
-        }
       }
     },
     "error": {
@@ -39,27 +32,6 @@
     "abort": {
       "already_configured": "To urządzenie jest już dodane w tym Home Assistant",
       "cannot_connect": "Nie można połączyć się z urządzeniem"
-    }
-  },
-  "options": {
-    "step": {
-      "init": {
-        "title": "Karta Lovelace",
-        "description": "Zmiana wyboru dokłada brakujące zasoby przy następnym starcie HA (usunięcie już dodanej karty zrób ręcznie w Ustawienia → Panele → Zasoby).",
-        "data": {
-          "card": "Karta"
-        }
-      }
-    }
-  },
-  "selector": {
-    "card": {
-      "options": {
-        "none": "Brak",
-        "classic": "Klasyczna (replika panelu)",
-        "modern": "Nowoczesna (styl aplikacji)",
-        "both": "Obie"
-      }
     }
   }
 }
