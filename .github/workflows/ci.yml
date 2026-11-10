@@ -429,7 +429,7 @@ jobs:
           FULLTAG="${TAG:-v0.0.0+${RUN_NUMBER}}"
           rm -rf /tmp/pub && mkdir -p /tmp/pub
           git clone "https://x-access-token:${TOKEN}@github.com/GieOeRZet/TeklaPelletDroid.git" /tmp/pub || { mkdir -p /tmp/pub && cd /tmp/pub && git init -q -b main && git remote add origin "https://x-access-token:${TOKEN}@github.com/GieOeRZet/TeklaPelletDroid.git" && cd -; }
-          [ -f /tmp/pub/README.md ] || cp docs/APLIKACJA_ANDROID.md /tmp/pub/README.md 2>/dev/null || echo "# TeklaPelletDroid" > /tmp/pub/README.md
+          [ -f /tmp/pub/README.md ] || echo "# TeklaPelletDroid" > /tmp/pub/README.md
           [ -f /tmp/pub/LICENSE ] || cp LICENSE /tmp/pub/LICENSE
           cd /tmp/pub
           git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
