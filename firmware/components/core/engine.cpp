@@ -817,6 +817,12 @@ std::string Engine::states_json(const std::string& prefix, uint32_t now) const {
                                 ? label : "nieznany (" + std::to_string((int)st_[ri].value) + ")";
                 } else state = JsonWriter::fmt(st_[ri].value);
             }
+        } else if (!strcmp(en.id, "alarm_history")) {
+            // Skonsolidowana historia alarmow: 20 wpisow (dawniej 20 osobnych encji ah_0..ah_19) jako
+            // atrybuty jednej encji zamiast tekstu do parsowania - stan to liczba niepustych wpisow.
+            int n = 0;
+            for (int i = 0; i < 20; i++) { auto it2 = computed_.find("ah_" + std::to_string(i)); if (it2 != computed_.end() && it2->second != "-") n++; }
+            state = std::to_string(n);
         } else {
             auto it = computed_.find(en.id);
             if (it != computed_.end()) state = it->second;
@@ -827,6 +833,12 @@ std::string Engine::states_json(const std::string& prefix, uint32_t now) const {
         if (en.dclass[0]) w.kv("device_class", en.dclass);
         if (!strcmp(en.domain, "select")) {
             w.key("options").begin_arr().str("Off").str("Eko").str("Harmonogram").str("Komfort").end_arr();
+        }
+        if (!strcmp(en.id, "alarm_history")) {
+            for (int i = 0; i < 20; i++) {
+                auto it2 = computed_.find("ah_" + std::to_string(i));
+                w.kv(("ah_" + std::to_string(i)).c_str(), it2 != computed_.end() ? it2->second.c_str() : "-");
+            }
         }
         w.end_obj().end_obj();
     }

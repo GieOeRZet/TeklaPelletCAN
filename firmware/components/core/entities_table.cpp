@@ -145,26 +145,7 @@ const Entity kEntities[] = {
     {"text_sensor", "alarm_last_text", "Ostatni alarm", "", "", ""},
     {"text_sensor", "alarm_start_text", "Alarm poczatek", "", "", ""},
     {"text_sensor", "alarm_end_text", "Alarm koniec", "", "", ""},
-    {"text_sensor", "ah_0", "Alarm wpis 1", "", "", ""},
-    {"text_sensor", "ah_1", "Alarm wpis 2", "", "", ""},
-    {"text_sensor", "ah_2", "Alarm wpis 3", "", "", ""},
-    {"text_sensor", "ah_3", "Alarm wpis 4", "", "", ""},
-    {"text_sensor", "ah_4", "Alarm wpis 5", "", "", ""},
-    {"text_sensor", "ah_5", "Alarm wpis 6", "", "", ""},
-    {"text_sensor", "ah_6", "Alarm wpis 7", "", "", ""},
-    {"text_sensor", "ah_7", "Alarm wpis 8", "", "", ""},
-    {"text_sensor", "ah_8", "Alarm wpis 9", "", "", ""},
-    {"text_sensor", "ah_9", "Alarm wpis 10", "", "", ""},
-    {"text_sensor", "ah_10", "Alarm wpis 11", "", "", ""},
-    {"text_sensor", "ah_11", "Alarm wpis 12", "", "", ""},
-    {"text_sensor", "ah_12", "Alarm wpis 13", "", "", ""},
-    {"text_sensor", "ah_13", "Alarm wpis 14", "", "", ""},
-    {"text_sensor", "ah_14", "Alarm wpis 15", "", "", ""},
-    {"text_sensor", "ah_15", "Alarm wpis 16", "", "", ""},
-    {"text_sensor", "ah_16", "Alarm wpis 17", "", "", ""},
-    {"text_sensor", "ah_17", "Alarm wpis 18", "", "", ""},
-    {"text_sensor", "ah_18", "Alarm wpis 19", "", "", ""},
-    {"text_sensor", "ah_19", "Alarm wpis 20", "", "", ""},
+    {"text_sensor", "alarm_history", "Historia alarmow", "", "", ""},
     {"text_sensor", "alarm_raw_text", "Alarm rejestr", "", "", ""},
     {"text_sensor", "blower_mode_text", "Dmuchawa tryb", "", "", "blower_mode"},
     {"text_sensor", "co_mode_text", "CO tryb", "", "", "co_mode"},
@@ -196,6 +177,6 @@ const Entity kEntities[] = {
     {"button", "dmuchawa_wlacz_czasowo", "Dmuchawa: Wlacz (czasowo)", "", "", ""},
 };
 
-const unsigned kEntityCount = 190;
+const unsigned kEntityCount = 171;
 
 }  // namespace tpc

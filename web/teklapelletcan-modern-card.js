@@ -164,6 +164,9 @@ class TeklaModernCard extends HTMLElement {
   pv(id) { const s = this._lastIdx && this._lastIdx.byId.get(id); return s ? s.state : undefined; }
   pn(id) { const x = parseFloat(this.pv(id)); return Number.isFinite(x) ? x : NaN; }
   pb(id) { return this.pv(id) === 'on'; }
+  // Atrybut encji (np. wpisy historii alarmow ah_0..ah_19 na encji alarm_history, skonsolidowane
+  // zamiast wielu osobnych encji) - przekazywany przez integracje jako extra_state_attributes.
+  pattr(id, key) { const s = this._lastIdx && this._lastIdx.byId.get(id); return s && s.attributes ? s.attributes[key] : undefined; }
   level() { const x = this.pn('access_level_sensor'); return Number.isFinite(x) ? x : 0; }
   // Biezacy klucz enuma: niektore punkty (np. boiler_mode) firmware zglasza tylko jako etykiete tekstowa
   // na encji "<id>_text" (bez liczbowego odczytu), wiec przy braku liczby szukamy klucza po dopasowaniu
@@ -534,7 +537,7 @@ class TeklaModernCard extends HTMLElement {
     const L = root.querySelector('#alist'), rows = [];
     const fmtT = raw => { const x = parseInt(raw, 10); return x > 1e9 ? new Date(x * 1000).toLocaleString('pl-PL', { dateStyle: 'short', timeStyle: 'short' }) : '–'; };
     for (let i = 0; i < 20; i++) {
-      const v = this.pv('ah_' + i);
+      const v = this.pattr('alarm_history', 'ah_' + i);
       if (!v || v === '-' || v === 'unknown') continue;
       const [txt, a, b] = String(v).split('|');
       rows.push(`<div class="row" style="cursor:default"><span>${esc(txt)}<div class="hint">${fmtT(a)} → ${parseInt(b, 10) > 1e9 ? fmtT(b) : 'trwa'}</div></span></div>`);

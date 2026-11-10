@@ -140,26 +140,7 @@ text_sensor,boiler_mode_text,Kociol tryb pracy,,,boiler_mode,
 text_sensor,alarm_last_text,Ostatni alarm,,,,alarmy
 text_sensor,alarm_start_text,Alarm poczatek,,,,alarmy
 text_sensor,alarm_end_text,Alarm koniec,,,,alarmy
-text_sensor,ah_0,Alarm wpis 1,,,,alarmy
-text_sensor,ah_1,Alarm wpis 2,,,,alarmy
-text_sensor,ah_2,Alarm wpis 3,,,,alarmy
-text_sensor,ah_3,Alarm wpis 4,,,,alarmy
-text_sensor,ah_4,Alarm wpis 5,,,,alarmy
-text_sensor,ah_5,Alarm wpis 6,,,,alarmy
-text_sensor,ah_6,Alarm wpis 7,,,,alarmy
-text_sensor,ah_7,Alarm wpis 8,,,,alarmy
-text_sensor,ah_8,Alarm wpis 9,,,,alarmy
-text_sensor,ah_9,Alarm wpis 10,,,,alarmy
-text_sensor,ah_10,Alarm wpis 11,,,,alarmy
-text_sensor,ah_11,Alarm wpis 12,,,,alarmy
-text_sensor,ah_12,Alarm wpis 13,,,,alarmy
-text_sensor,ah_13,Alarm wpis 14,,,,alarmy
-text_sensor,ah_14,Alarm wpis 15,,,,alarmy
-text_sensor,ah_15,Alarm wpis 16,,,,alarmy
-text_sensor,ah_16,Alarm wpis 17,,,,alarmy
-text_sensor,ah_17,Alarm wpis 18,,,,alarmy
-text_sensor,ah_18,Alarm wpis 19,,,,alarmy
-text_sensor,ah_19,Alarm wpis 20,,,,alarmy
+text_sensor,alarm_history,Historia alarmow,,,,alarmy
 text_sensor,alarm_raw_text,Alarm rejestr,,,,alarmy
 text_sensor,blower_mode_text,Dmuchawa tryb,,,blower_mode,
 text_sensor,co_mode_text,CO tryb,,,co_mode,

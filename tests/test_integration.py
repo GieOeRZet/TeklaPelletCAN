@@ -118,10 +118,12 @@ async def test_entities_have_esphome_compatible_ids_and_values(hass: HomeAssista
     assert hass.states.get("select.tekla_cwu_tryb_ustaw").state == "Komfort"
     assert hass.states.get("switch.tekla_kociol_wlacz_wylacz") is not None
     assert hass.states.get("button.tekla_potwierdz_alarm") is not None
-    assert hass.states.get("sensor.tekla_alarm_wpis_2") is not None
+    # historia alarmow: skonsolidowana w 1 encje (dawniej 20 osobnych ah_0..ah_19) - wpisy jako atrybuty
+    hist = hass.states.get("sensor.tekla_historia_alarmow")
+    assert hist is not None and hist.attributes["ah_1"].startswith("kod 140")
     # liczba encji: wszystkie z katalogu poza CO2 przy jednym obiegu
     ours = [s for s in hass.states.async_all() if s.entity_id.split(".")[1].startswith("tekla_")]
-    assert len(ours) >= 185
+    assert len(ours) >= 165
 
 
 async def test_services_have_card_compatible_names_and_write(hass: HomeAssistant, entry):

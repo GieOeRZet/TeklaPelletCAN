@@ -394,10 +394,14 @@ export function alarmy() {
   const fmtT = s => { const x = parseInt(s, 10); return x > 1e9 ? new Date(x * 1000).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' }) : '–'; };
   const draw = () => {
     const rows = [];
-    for (let i = 1; i <= 20; i++) {
-      const e = S.states.get('sensor.tekla_alarm_wpis_' + i);
-      if (!e || e.state === '-' || e.state === 'unknown') continue;
-      const [txt, a, b] = String(e.state).split('|');
+    // Historia alarmow: skonsolidowana w 1 encje (sensor.tekla_historia_alarmow) - 20 wpisow jako
+    // atrybuty ah_0..ah_19 zamiast dawnych 20 osobnych encji.
+    const hist = S.states.get('sensor.tekla_historia_alarmow');
+    const attrs = (hist && hist.attributes) || {};
+    for (let i = 0; i < 20; i++) {
+      const v = attrs['ah_' + i];
+      if (!v || v === '-' || v === 'unknown') continue;
+      const [txt, a, b] = String(v).split('|');
       rows.push(`<div class="row"><span>${esc(txt)}<div class="hint">${fmtT(a)} → ${parseInt(b, 10) > 1e9 ? fmtT(b) : 'trwa'}</div></span></div>`);
     }
     $('#alist', root).innerHTML = rows.join('') || '<div class="hint">Brak wpisów.</div>';

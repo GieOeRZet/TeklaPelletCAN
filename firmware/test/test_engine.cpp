@@ -209,7 +209,9 @@ int main() {
     assert(contains(hs, "\"unit_of_measurement\":\"\xC2\xB0" "C\""));
     assert(contains(hs, "\"entity_id\":\"sensor.tekla_palnik_stan\",\"state\":\"Modulacja\""));
     assert(contains(hs, "\"entity_id\":\"binary_sensor.tekla_kociol_wlaczony\",\"state\":\"off\""));
-    assert(contains(hs, "\"entity_id\":\"sensor.tekla_alarm_wpis_1\",\"state\":\"kod 2"));
+    // historia alarmow: skonsolidowana w 1 encje (dawniej 20 osobnych ah_0..ah_19) - wpisy jako atrybuty
+    assert(contains(hs, "\"entity_id\":\"sensor.tekla_historia_alarmow\""));
+    assert(contains(hs, "\"ah_0\":\"kod 2"));
     assert(contains(hs, "\"entity_id\":\"sensor.tekla_palnik_kod_stanu\",\"state\":\"5\""));
     assert(contains(hs, "\"entity_id\":\"binary_sensor.tekla_alarm_aktywny\",\"state\":\"on\""));
     assert(slugify("Podajnik: Podaj paliwo (30 s)") == "podajnik_podaj_paliwo_30_s");
