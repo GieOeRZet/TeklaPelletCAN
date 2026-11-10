@@ -133,10 +133,13 @@ async def test_entities_have_esphome_compatible_ids_and_values(hass: HomeAssista
     # Palnik krzywe dmuchawy i spalin: skonsolidowane w 1 encje (dawniej 10 osobnych fan_mod_*/exh_c*)
     pk = hass.states.get("sensor.tekla_palnik_krzywe_dmuchawy_i_spalin_poziom_1")
     assert pk is not None and pk.attributes["exh_c3"] == "30"
+    # CWU konfiguracja: skonsolidowane w 2 encje wg poziomu (dawniej 8 osobnych)
+    cwuk = hass.states.get("sensor.tekla_cwu_konfiguracja_poziom_0")
+    assert cwuk is not None and cwuk.attributes["cwu_legion"] == "30"
     # liczba encji: wszystkie z katalogu poza CO2 przy jednym obiegu (spadek z 165: konsolidacja
     # nastaw serwisowych - patrz AttrGroup w engine.cpp)
     ours = [s for s in hass.states.async_all() if s.entity_id.split(".")[1].startswith("tekla_")]
-    assert len(ours) >= 100
+    assert len(ours) >= 95
 
 
 async def test_services_have_card_compatible_names_and_write(hass: HomeAssistant, entry):

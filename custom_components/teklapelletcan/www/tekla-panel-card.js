@@ -46,6 +46,7 @@ const ROLE_KEY = {
   co1_p0: 'co1_konfiguracja_krzywej_pogodowej_poziom_0', co1_p1: 'co1_konfiguracja_krzywej_pogodowej_poziom_1',
   kociol_p0: 'kociol_konfiguracja_poziom_0', kociol_p1: 'kociol_konfiguracja_poziom_1', kociol_p2: 'kociol_konfiguracja_poziom_2',
   palnik_krzywe: 'palnik_krzywe_dmuchawy_i_spalin_poziom_1',
+  cwu_p0: 'cwu_konfiguracja_poziom_0', cwu_p1: 'cwu_konfiguracja_poziom_1',
 };
 // Role skonsolidowane w grupy (patrz AttrGroup w firmware/engine.cpp): encja osobna nie istnieje juz w HA,
 // wartosc jest atrybutem encji grupy (klucz atrybutu = nazwa roli, jak w tej mapie). _s() nizej czyta ja
@@ -79,6 +80,10 @@ const GROUP_OF = {
   fan_mod_4: ['palnik_krzywe', 'fan_mod_4'], fan_mod_5: ['palnik_krzywe', 'fan_mod_5'],
   exh_c1: ['palnik_krzywe', 'exh_c1'], exh_c2: ['palnik_krzywe', 'exh_c2'], exh_c3: ['palnik_krzywe', 'exh_c3'],
   exh_c4: ['palnik_krzywe', 'exh_c4'], exh_c5: ['palnik_krzywe', 'exh_c5'],
+  cwu_hyst: ['cwu_p0', 'cwu_hyst'], cwu_boost: ['cwu_p0', 'cwu_boost'], cwu_prio: ['cwu_p0', 'cwu_prio'],
+  legion: ['cwu_p0', 'cwu_legion'],
+  cwu_src: ['cwu_p1', 'cwu_src'], cwu_src_inc: ['cwu_p1', 'cwu_src_inc'], cwu_delta: ['cwu_p1', 'cwu_delta'],
+  cwu_tmax: ['cwu_p1', 'cwu_tmax'],
 };
 const SCREEN_OPTS = [
   ['main', 'Ekran główny'], ['heat', 'Ogrzewanie'], ['water', 'Woda użytkowa'], ['burn', 'Palnik'], ['quick', 'Szybkie ustawienia (okno)'], ['fuel', 'Paliwo (okno)'],
