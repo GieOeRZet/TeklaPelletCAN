@@ -50,6 +50,11 @@ button.cd { color:inherit; }
 .hint { color:var(--dim); font-size:12px; margin-top:4px; }
 .stepper { display:flex; align-items:center; justify-content:space-between; background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:8px 12px; margin:6px 0; }
 .stepper button { width:46px; height:46px; border-radius:50%; border:0; background:#2b303b; color:#fff; font-size:24px; } .stepper b { font-size:30px; font-weight:500; }
+/* Suwak do zgrubnego ustawienia wartosci (przeciagnij/stuknij gdziekolwiek na pasku) - plusy/minusy w
+   .stepper ponizej dalej sluza do precyzyjnej korekty o jeden krok, jak w karcie classic. */
+.slider { position:relative; height:30px; background:#2b303b; border-radius:999px; margin:14px 2px 10px; touch-action:none; }
+.slider .fill { position:absolute; top:0; left:0; bottom:0; background:var(--acc); border-radius:999px; pointer-events:none; }
+.slider .thumb { position:absolute; top:50%; width:28px; height:28px; margin-left:-14px; margin-top:-14px; border-radius:50%; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.4); pointer-events:none; }
 .chips { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; } .chips button { padding:8px 13px; border-radius:999px; background:#2b303b; border:0; font-size:13px; } .chips button.on { background:var(--acc); color:#1a1208; font-weight:700; }
 .btn { display:block; width:100%; text-align:center; padding:13px; border-radius:12px; background:var(--blue); color:#fff; font-weight:600; margin-top:10px; border:0; }
 .btn.acc { background:var(--acc); color:#1a1208; } .btn.sec { background:#2b303b; } .btn.dis { background:#2b303b; color:#6d7384; } .btn.err { background:var(--err); }

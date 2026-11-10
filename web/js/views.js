@@ -315,10 +315,96 @@ export function kociol() {
   });
 }
 
+// Wykres krzywej (np. modulacji dmuchawy) - w oryginale osobny ekran z linia i punktami do edycji (karta
+// classic, "Moc dmuchawy modulacja"), tutaj ten sam pomysl w stylu aplikacji: linia SVG z podzialka (siatka
+// + opisane wartosci na osi Y), punkty przeciagalne palcem (pionowo) - jak suwak, bez otwierania okna.
+// Zapis TYLKO po "Zapisz" (jak kazda inna nastawa w aplikacji - nigdy na zywo w trakcie przeciagania):
+// przeciaganie zmienia wartosc tylko lokalnie na wykresie, przycisk pojawia sie gdy cos sie zmienilo i
+// wysyla na raz wszystkie zmienione punkty. Stuknięcie bez przeciagania otwiera zwykly edytor (suwak+/-),
+// ktory ma wlasne "Zastosuj" - tak samo zapis dopiero po potwierdzeniu, nigdy w trakcie.
+function curveChart(ids, xLabels, title) {
+  const pts = ids.map(id => S.pointById.get(id));
+  const step = pts.find(p => p && p.step)?.step || 1;
+  const dc = step < 1 ? 1 : 0;
+  const lo = Math.min(...pts.map(p => p ? p.min : 0)), hi = Math.max(...pts.map(p => p ? p.max : 100));
+  const W = 100, H = 54, PAD_L = 11, PAD_R = 4, PAD_T = 7, n = ids.length;
+  const X = i => n > 1 ? (i / (n - 1)) * (W - PAD_L - PAD_R) + PAD_L : (W + PAD_L) / 2;
+  const Y = v => Number.isFinite(v) ? PAD_T + H - ((v - lo) / (hi - lo)) * H : PAD_T + H / 2;
+  const Vfrom = y => lo + (1 - Math.max(0, Math.min(H, y - PAD_T)) / H) * (hi - lo);
+  const snap = v => Math.round(Math.max(lo, Math.min(hi, v)) / step) * step;
+  // 4 linie siatki (0/33/66/100% zakresu) z wartoscia opisana po lewej - "podzialka" osi Y
+  const grid = [0, 1 / 3, 2 / 3, 1].map(f => {
+    const gv = Math.round((lo + (hi - lo) * (1 - f)) / step) * step;
+    const gy = PAD_T + f * H;
+    return `<line x1="${PAD_L}" y1="${gy.toFixed(1)}" x2="${W - PAD_R}" y2="${gy.toFixed(1)}" stroke="var(--line)" stroke-width="0.6"/>
+      <text x="${(PAD_L - 2).toFixed(1)}" y="${(gy + 1.6).toFixed(1)}" font-size="4.6" fill="var(--dim)" text-anchor="end">${fmt(gv, dc)}</text>`;
+  }).join('');
+  // Elementy SVG punktow tworzone RAZ (nie przy kazdym przerysowaniu) - zamiana innerHTML w trakcie
+  // przeciagania niszczylaby wlasnie przeciagany element (i jego pointer capture) w polowie gestu.
+  const ptsSvg = ids.map((id, i) => `
+    <text data-t="${i}" x="${X(i).toFixed(1)}" font-size="5" fill="var(--txt)" text-anchor="middle"></text>
+    <circle data-k="${i}" r="3.4"></circle>`).join('');
+  const root = el(`<div class="sec"><h5>${esc(title)}</h5>
+    <svg viewBox="0 0 ${W} ${PAD_T + H + 14}" style="width:100%;height:160px;overflow:visible;touch-action:none">
+      <g id="grid">${grid}</g>
+      <polyline id="ln" points="" fill="none" stroke="var(--acc)" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+      <g id="pts">${ptsSvg}</g>
+      ${xLabels.map((l, i) => `<text x="${X(i).toFixed(1)}" y="${PAD_T + H + 10}" font-size="4.6" fill="var(--dim)" text-anchor="middle">${esc(l)}</text>`).join('')}
+    </svg>
+    <button class="btn acc" id="save" style="display:none;margin-top:8px">Zapisz</button></div>`);
+  const svg = root.querySelector('svg'), ln = root.querySelector('#ln'), saveBtn = root.querySelector('#save');
+  const circles = root.querySelectorAll('#pts circle'), texts = root.querySelectorAll('#pts text[data-t]');
+  let orig = ids.map(id => pn(id));
+  let vals = orig.slice();
+  const dirty = () => vals.some((v, i) => v !== orig[i]);
+  const redraw = () => {
+    ln.setAttribute('points', vals.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' '));
+    vals.forEach((v, i) => {
+      circles[i].setAttribute('cx', X(i).toFixed(1)); circles[i].setAttribute('cy', Y(v).toFixed(1));
+      circles[i].setAttribute('fill', v !== orig[i] ? '#fff' : 'var(--acc)');
+      const yv = Y(v), below = yv - PAD_T < 9;
+      texts[i].setAttribute('y', (below ? yv + 9 : yv - 5).toFixed(1));
+      texts[i].textContent = Number.isFinite(v) ? fmt(v, dc) : '-';
+    });
+    saveBtn.style.display = dirty() ? 'block' : 'none';
+  };
+  const toSvgY = clientY => { const r = svg.getBoundingClientRect(); return (clientY - r.top) / r.height * (PAD_T + H + 14); };
+  circles.forEach(c => {
+    const i = +c.dataset.k, id = ids[i];
+    let dragging = false, moved = false;
+    c.style.cursor = 'pointer';
+    c.addEventListener('pointerdown', e => { dragging = true; moved = false; c.setPointerCapture(e.pointerId); });
+    c.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      moved = true;
+      vals[i] = snap(Vfrom(toSvgY(e.clientY)));
+      redraw();
+    });
+    const finish = async e => {
+      if (!dragging) return;
+      dragging = false;
+      if (!moved) { await editPoint(id); orig[i] = vals[i] = pn(id); redraw(); }
+    };
+    c.addEventListener('pointerup', finish);
+    c.addEventListener('pointercancel', finish);
+  });
+  redraw();
+  saveBtn.onclick = async () => {
+    let ok = true;
+    for (let i = 0; i < ids.length; i++) if (vals[i] !== orig[i]) { if (!(await writePoint(ids[i], vals[i]))) ok = false; }
+    if (!ok) vals = ids.map(id => pn(id));
+    orig = vals.slice();
+    redraw();
+  };
+  return root;
+}
 export function palnik() {
   return domainScreen((root, sec, byGroup, shownLevel) => {
     // feeder_mode/blower_mode ("Test wyjsc") to w oryginale osobna strona z Menu, nie czesc ekranu Palnik.
-    appendLevelGroups(sec('Palnik'), byGroup['Palnik'] || [], shownLevel, { skipIds: new Set(['feeder_mode', 'blower_mode']) });
+    // Krzywa modulacji dmuchawy (fan_mod_1..5) dostaje wykres zamiast plaskiej listy - jak w oryginale.
+    const curveIds = ['fan_mod_1', 'fan_mod_2', 'fan_mod_3', 'fan_mod_4', 'fan_mod_5'];
+    appendLevelGroups(sec('Palnik'), byGroup['Palnik'] || [], shownLevel, { skipIds: new Set(['feeder_mode', 'blower_mode', ...curveIds]) });
+    if (shownLevel >= 1) root.appendChild(curveChart(curveIds, ['20%', '40%', '60%', '80%', '100%'], 'Dmuchawa – krzywa modulacji [%]'));
   });
 }
 
@@ -366,12 +452,33 @@ export function konfiguracja() {
 }
 
 /** "Test wyjść" jak w oryginale: osobna strona (Menu -> widoczna juz od poziomu 1, zawartosc wymaga poziomu 2). */
+// Wiersz testu wyjscia (Dmuchawa/Podajnik): lampka stanu + przelacznik trybu (Automat/Wylacz/Wlacz) jako
+// przyciski, zapis od razu po kliknieciu (jak w oryginale - bez okna edycji, pelny 3-stanowy przelacznik).
+function testOutRow(id, label, runningId) {
+  const p = S.pointById.get(id);
+  const opts = {}; if (p && p.options) Object.entries(p.options).forEach(([k, l]) => { opts[k] = l; });
+  const lamp = () => `<i style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:${v(runningId) === 'on' ? 'var(--ok)' : '#3a3f4c'}${v(runningId) === 'on' ? ';box-shadow:0 0 8px var(--ok)' : ''}"></i>`;
+  const r = el(`<div><div class="row" style="border-top:0;padding-bottom:0"><span>${lamp()}${esc(label)}</span></div><div class="chips" id="c"></div></div>`);
+  const cur = () => { const x = pn(id); return Number.isFinite(x) ? String(Math.round(x)) : null; };
+  const draw = () => {
+    r.querySelector('.row span').innerHTML = lamp() + esc(label);
+    r.querySelector('#c').innerHTML = Object.entries(opts).map(([k, l]) => `<button data-k="${k}" class="${cur() === k ? 'on' : ''}">${esc(l)}</button>`).join('');
+    r.querySelectorAll('#c button').forEach(b => b.onclick = async () => { if (await writePoint(id, parseInt(b.dataset.k, 10))) draw(); });
+  };
+  draw();
+  return r;
+}
 export function testWyjsc() {
   return domainScreen((root, sec, byGroup, shownLevel) => {
-    const points = (byGroup['Palnik'] || []).filter(p => p.id === 'feeder_mode' || p.id === 'blower_mode');
     const t = sec('Test wyjść');
     if (shownLevel < 2) { t.append(el('<div class="hint">Sterowanie od poziomu 2 (PIN 0999): Menu → Poziom kotła.</div>')); return; }
-    points.forEach(p => t.appendChild(pointRow(p)));
+    t.append(testOutRow('blower_mode', 'Dmuchawa', 'binary_sensor.tekla_dmuchawa_pracuje'));
+    t.append(testOutRow('feeder_mode', 'Podajnik', 'binary_sensor.tekla_podajnik_pracuje'));
+    const ro = (label, onId) => el(`<div class="row"><span><i style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:${v(onId) === 'on' ? 'var(--ok)' : '#3a3f4c'}"></i>${esc(label)}</span></div>`);
+    t.append(ro('Pompa CWU', 'binary_sensor.tekla_cwu_pompa'));
+    t.append(ro('Pompa CO', 'binary_sensor.tekla_co_pompa'));
+    t.append(ro('Palnik', 'binary_sensor.tekla_kociol_wlaczony'));
+    t.append(el('<div class="hint" style="margin-top:8px">Pompy i palnik: tylko podgląd (kocioł nie udostępnia sterowania).</div>'));
   });
 }
 
@@ -420,16 +527,40 @@ export function alarmy() {
 }
 
 // ------------------------------------------------------------------ parametry (z metadanych punktów)
-export const GROUPS = [['Kocioł', /^(Kociol|Moc|Histereza|Wartosc|Korekta)/i], ['Palnik', /^(Palnik|Dmuchawa|Podajnik|Ilosc paliwa|Wentylator|Wymiennik)/i], ['CO', /^CO/i], ['CWU', /^CWU/i], ['Paliwo', /^(Zbiornik|Paliwo)/i], ['Alarmy', /^Alarm/i]];
-// Wyjatki od dopasowania po nazwie - sprawdzone wprost w oryginalnej karcie (hacard.html): nazwa zwodzi,
-// ale oryginal pokazuje ten punkt na innym ekranie niz wskazywalaby nazwa.
-const GROUP_OVERRIDE = { k_nominal: 'Palnik' };   // "Kociol moc nominalna" -> w oryginale ekran Palnik
-export const groupOf = p => { if (GROUP_OVERRIDE[p.id]) return GROUP_OVERRIDE[p.id]; for (const [g, re] of GROUPS) if (re.test(p.name)) return g; return 'Inne'; };
+// Przynaleznosc punktu do ekranu domenowego - NIE zgadywana po nazwie (nazwy czesto zwodza, np. "Palnik
+// dawka wstepna g"/"Wymiennik interwal czyszczenia" naleza w oryginale do menu Palnik mimo brzmienia, a
+// "Korekta powietrza"/"Moc min/max"/"Wartosc opalowa" tez do Palnik, nie Kociol). Zrodlo: katalog
+// "Menu -> X -> NASTAWY" w web/pelletcan-card.js (zweryfikowane na prawdziwym kotle), ta sama przynaleznosc
+// co w karcie classic i co w konsolidacji encji (patrz AttrGroup w firmware/engine.cpp).
+const POINT_GROUP = {
+  boiler_hyst_on: 'Kocioł', boiler_hyst_off: 'Kocioł', boiler_pump_min: 'Kocioł', boil_pump_run: 'Kocioł',
+  boiler_ret_min: 'Kocioł', boiler_mixer_time: 'Kocioł', boil_fuel_reserve: 'Kocioł',
+  air_corr: 'Palnik', power_min: 'Palnik', power_max: 'Palnik', fuel_heat: 'Palnik', fuel_test: 'Palnik',
+  k_nominal: 'Palnik', k_predose_g: 'Palnik', k_egt_min: 'Palnik', k_egt_max: 'Palnik', k_exch_int: 'Palnik',
+  exh_c1: 'Palnik', exh_c2: 'Palnik', exh_c3: 'Palnik', exh_c4: 'Palnik', exh_c5: 'Palnik',
+  fan_mod_1: 'Palnik', fan_mod_2: 'Palnik', fan_mod_3: 'Palnik', fan_mod_4: 'Palnik', fan_mod_5: 'Palnik',
+  p_prefeed: 'Palnik', p_feed_max: 'Palnik', p_photo: 'Palnik', p_blow_ign: 'Palnik', p_blow_glow: 'Palnik',
+  p_blow_stop: 'Palnik', p_glow_time: 'Palnik', p_glow_fuel: 'Palnik', p_stop_time: 'Palnik', p_lambda: 'Palnik',
+  p_o2_30: 'Palnik', p_o2_100: 'Palnik', p_cleans: 'Palnik', p_clean_gap: 'Palnik', p_pause_time: 'Palnik',
+  p_pause_power: 'Palnik', p_pause_blow: 'Palnik',
+  p_inertia: 'Palnik', p_grate_time: 'Palnik', p_burner_feed: 'Palnik', p_feeder_period: 'Palnik', p_min_rpm: 'Palnik',
+  feeder_mode: 'Palnik', blower_mode: 'Palnik',
+  co1_hyst: 'CO', co1_calib: 'CO', co1_mode: 'CO', co1_curve_m20: 'CO', co1_curve_0: 'CO', co1_curve_10: 'CO',
+  co1_src_inc: 'CO', co1_tmax: 'CO', co1_corr: 'CO', co1_out_comf: 'CO', co1_out_eco: 'CO', co1_lower: 'CO',
+  co1_pump_min: 'CO', co1_mixer_time: 'CO', co1_const_pump: 'CO', co1_ret_protect: 'CO', co1_source: 'CO',
+  co1_co_sensor: 'CO', co1_room_sensor: 'CO',
+  cwu_hyst: 'CWU', cwu_boost: 'CWU', cwu_prio: 'CWU', cwu_legion: 'CWU', cwu_src: 'CWU', cwu_src_inc: 'CWU',
+  cwu_delta: 'CWU', cwu_tmax: 'CWU',
+  alarm_snd: 'Alarmy', alarm_sil_from: 'Alarmy', alarm_sil_to: 'Alarmy',
+  tank_kg: 'Paliwo',
+};
+export const GROUP_NAMES = ['Kocioł', 'Palnik', 'CO', 'CWU', 'Paliwo', 'Alarmy'];
+export const groupOf = p => POINT_GROUP[p.id] || 'Inne';
 
 export function paramGroups(go) {
   const cnt = {};
   for (const p of S.points) { const g = groupOf(p); cnt[g] = (cnt[g] || 0) + 1; }
-  const names = [...GROUPS.map(g => g[0]), 'Inne'].filter(g => cnt[g]);
+  const names = [...GROUP_NAMES, 'Inne'].filter(g => cnt[g]);
   const root = el(`<div><div id="bn"></div><div class="sec"><h5>Parametry i odczyty</h5>${names.map(g => `<button class="row nav2" data-go="params/${g}"><span>${g}</span><span class="v">${cnt[g]}</span></button>`).join('')}</div>
     <div class="hint" style="padding:0 6px">Wszystkie punkty urządzenia – tak jak w oryginalnej karcie.</div></div>`);
   root.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));

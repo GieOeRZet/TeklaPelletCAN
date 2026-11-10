@@ -129,7 +129,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('poziom: status widoczny tylko w Menu', await waitFor(async () => /poziom 1/i.test(await p.innerText('#lvv'))));
   await goHash('#/d/palnik');
   await sleep(1000);
-  check('poziom 1: krzywa modulacji dmuchawy widoczna po PIN 0900', /Dmuchawa modulacja/i.test(await p.innerText('body')));
+  check('poziom 1: krzywa modulacji dmuchawy widoczna po PIN 0900', /krzywa modulacji/i.test(await p.innerText('body')) && (await p.locator('svg polyline').count()) > 0);
   check('poziom: plakietka odliczania w nagłówku (jedyny sygnał w nagłówku)', /🔓/.test(await txt('#chip')));
   await p.screenshot({ path: OUT + '/ui_palnik_poziom1.png', fullPage: true });
   await goHash('#/d/menu');
@@ -148,9 +148,9 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await pin('0999'); await noSheet(); await sleep(1500);
   await goHash('#/d/test');
   await sleep(500);
-  // nazwa wyswietlana to nazwa z reads_table ("Podajnik tryb"/"Dmuchawa tryb") - nazwa wlasna z punkty.csv
-  // nie jest uzywana przez points_json(); liczy sie to, ze punkt jest teraz zapisywalny (poziom 2).
-  check('test wyjść: feeder/blower widoczne po PIN 0999 (osobny ekran, jak w oryginale)', /Podajnik tryb/i.test(await p.innerText('body')) && /Dmuchawa tryb/i.test(await p.innerText('body')));
+  // Realne przelaczniki trybu (Automat/Wylacz/Wlacz) dla Dmuchawy i Podajnika, jak w oryginale - nie
+  // plaskie wiersze z nazwa punktu.
+  check('test wyjść: feeder/blower widoczne po PIN 0999 (osobny ekran, jak w oryginale)', /Dmuchawa/.test(await p.innerText('body')) && /Podajnik/.test(await p.innerText('body')) && (await p.locator('.chips button:has-text("Automat")').count()) >= 2);
   await p.screenshot({ path: OUT + '/ui_test_wyjsc_poziom2.png', fullPage: true });
   await goHash('#/d/konf');
   check('konfiguracja: "Dmuchawa z HALL" widoczna po PIN 0999 (poziom 2)', /Dmuchawa z HALL/i.test(await p.innerText('body')));

@@ -199,11 +199,27 @@ export async function editPoint(pid) {
   }
   const step = p.step || 1, dec = String(step).includes('.') ? String(step).split('.')[1].length : 0;
   let val = Number.isFinite(cur) ? cur : (p.min ?? 0);
+  const lo = p.min ?? 0, hi = p.max ?? (lo + 100);
+  // Suwak do zgrubnego ustawienia (przeciagnij/stuknij pasek) + plusy/minusy do precyzyjnej korekty o
+  // jeden krok, gdy palcem nie da sie trafic dokladnie - jak w karcie classic (suwak + +/-).
   const sh = openSheet(`<h3>${esc(p.name)}</h3><div class="hint">Zakres ${p.min ?? ''}…${p.max ?? ''} ${esc(p.unit || '')}${p.level ? ` · poziom ${p.level}` : ''}</div>
+    <div class="slider" id="sl"><div class="fill" id="fill"></div><div class="thumb" id="thumb"></div></div>
     <div class="stepper"><button id="m">−</button><b id="val"></b><button id="p">+</button></div><button class="btn acc" id="ok">Zastosuj</button><button class="btn sec" id="no">Anuluj</button>`);
-  const draw = () => { $('#val', sh).textContent = val.toFixed(dec) + (p.unit ? ' ' + p.unit : ''); };
+  const draw = () => {
+    $('#val', sh).textContent = val.toFixed(dec) + (p.unit ? ' ' + p.unit : '');
+    const f = hi > lo ? Math.max(0, Math.min(1, (val - lo) / (hi - lo))) : 0;
+    $('#fill', sh).style.width = (f * 100) + '%'; $('#thumb', sh).style.left = (f * 100) + '%';
+  };
   draw();
   const bump = d => { val = Math.min(p.max ?? Infinity, Math.max(p.min ?? -Infinity, Math.round((val + d) / step) * step)); val = Number(val.toFixed(dec)); draw(); };
+  const setFromFrac = f => { val = lo + Math.max(0, Math.min(1, f)) * (hi - lo); val = Math.min(hi, Math.max(lo, Math.round(val / step) * step)); val = Number(val.toFixed(dec)); draw(); };
+  const track = $('#sl', sh);
+  let dragging = false;
+  const fracOf = e => { const r = track.getBoundingClientRect(); return (e.clientX - r.left) / r.width; };
+  track.addEventListener('pointerdown', e => { dragging = true; track.setPointerCapture(e.pointerId); setFromFrac(fracOf(e)); });
+  track.addEventListener('pointermove', e => { if (dragging) setFromFrac(fracOf(e)); });
+  track.addEventListener('pointerup', () => { dragging = false; });
+  track.addEventListener('pointercancel', () => { dragging = false; });
   $('#m', sh).onclick = () => bump(-step); $('#p', sh).onclick = () => bump(step);
   $('#no', sh).onclick = closeSheet;
   $('#ok', sh).onclick = async () => {
