@@ -45,6 +45,7 @@ const ROLE_KEY = {
   palnik_p1: 'palnik_nastawy_serwisowe_poziom_1', palnik_p2: 'palnik_nastawy_serwisowe_poziom_2',
   co1_p0: 'co1_konfiguracja_krzywej_pogodowej_poziom_0', co1_p1: 'co1_konfiguracja_krzywej_pogodowej_poziom_1',
   kociol_p0: 'kociol_konfiguracja_poziom_0', kociol_p1: 'kociol_konfiguracja_poziom_1', kociol_p2: 'kociol_konfiguracja_poziom_2',
+  palnik_krzywe: 'palnik_krzywe_dmuchawy_i_spalin_poziom_1',
 };
 // Role skonsolidowane w grupy (patrz AttrGroup w firmware/engine.cpp): encja osobna nie istnieje juz w HA,
 // wartosc jest atrybutem encji grupy (klucz atrybutu = nazwa roli, jak w tej mapie). _s() nizej czyta ja
@@ -74,6 +75,10 @@ const GROUP_OF = {
   boiler_pump_run: ['kociol_p1', 'boil_pump_run'], predose_g: ['kociol_p1', 'k_predose_g'], egt_min: ['kociol_p1', 'k_egt_min'],
   egt_max: ['kociol_p1', 'k_egt_max'], exch_int: ['kociol_p1', 'k_exch_int'],
   nominal_kw: ['kociol_p2', 'k_nominal'],
+  fan_mod_1: ['palnik_krzywe', 'fan_mod_1'], fan_mod_2: ['palnik_krzywe', 'fan_mod_2'], fan_mod_3: ['palnik_krzywe', 'fan_mod_3'],
+  fan_mod_4: ['palnik_krzywe', 'fan_mod_4'], fan_mod_5: ['palnik_krzywe', 'fan_mod_5'],
+  exh_c1: ['palnik_krzywe', 'exh_c1'], exh_c2: ['palnik_krzywe', 'exh_c2'], exh_c3: ['palnik_krzywe', 'exh_c3'],
+  exh_c4: ['palnik_krzywe', 'exh_c4'], exh_c5: ['palnik_krzywe', 'exh_c5'],
 };
 const SCREEN_OPTS = [
   ['main', 'Ekran główny'], ['heat', 'Ogrzewanie'], ['water', 'Woda użytkowa'], ['burn', 'Palnik'], ['quick', 'Szybkie ustawienia (okno)'], ['fuel', 'Paliwo (okno)'],

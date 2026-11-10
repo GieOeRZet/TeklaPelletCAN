@@ -154,6 +154,9 @@ const GROUP_OF = {
   boil_fuel_reserve: 'kociol_konf_p1', boil_pump_run: 'kociol_konf_p1', k_predose_g: 'kociol_konf_p1',
   k_egt_min: 'kociol_konf_p1', k_egt_max: 'kociol_konf_p1', k_exch_int: 'kociol_konf_p1',
   k_nominal: 'kociol_konf_p2',
+  fan_mod_1: 'palnik_krzywe_p1', fan_mod_2: 'palnik_krzywe_p1', fan_mod_3: 'palnik_krzywe_p1', fan_mod_4: 'palnik_krzywe_p1',
+  fan_mod_5: 'palnik_krzywe_p1', exh_c1: 'palnik_krzywe_p1', exh_c2: 'palnik_krzywe_p1', exh_c3: 'palnik_krzywe_p1',
+  exh_c4: 'palnik_krzywe_p1', exh_c5: 'palnik_krzywe_p1',
 };
 
 class TeklaModernCard extends HTMLElement {

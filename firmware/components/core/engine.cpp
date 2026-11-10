@@ -36,6 +36,8 @@ const char* kKociolP0[] = {"air_corr", "power_min", "power_max", "fuel_heat", "f
 const char* kKociolP1[] = {"boiler_mixer_time", "boiler_pump_min", "boiler_ret_min", "boil_fuel_reserve", "boil_pump_run",
                            "k_predose_g", "k_egt_min", "k_egt_max", "k_exch_int"};
 const char* kKociolP2[] = {"k_nominal"};
+const char* kPalnikKrzywe[] = {"fan_mod_1", "fan_mod_2", "fan_mod_3", "fan_mod_4", "fan_mod_5",
+                               "exh_c1", "exh_c2", "exh_c3", "exh_c4", "exh_c5"};
 struct AttrGroup { const char* id; const char* const* members; unsigned n; };
 const AttrGroup kAttrGroups[] = {
     {"palnik_nastawy_p1", kPalnikP1, sizeof(kPalnikP1) / sizeof(kPalnikP1[0])},
@@ -45,6 +47,7 @@ const AttrGroup kAttrGroups[] = {
     {"kociol_konf_p0", kKociolP0, sizeof(kKociolP0) / sizeof(kKociolP0[0])},
     {"kociol_konf_p1", kKociolP1, sizeof(kKociolP1) / sizeof(kKociolP1[0])},
     {"kociol_konf_p2", kKociolP2, sizeof(kKociolP2) / sizeof(kKociolP2[0])},
+    {"palnik_krzywe_p1", kPalnikKrzywe, sizeof(kPalnikKrzywe) / sizeof(kPalnikKrzywe[0])},
 };
 const AttrGroup* find_attr_group(const char* id) {
     for (const auto& g : kAttrGroups) if (!strcmp(g.id, id)) return &g;

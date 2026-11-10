@@ -130,10 +130,13 @@ async def test_entities_have_esphome_compatible_ids_and_values(hass: HomeAssista
     # Kociol konfiguracja: skonsolidowane w 3 encje wg poziomu (dawniej 17 osobnych, w tym k_*)
     kk = hass.states.get("sensor.tekla_kociol_konfiguracja_poziom_2")
     assert kk is not None and kk.attributes["k_nominal"] == "60"
+    # Palnik krzywe dmuchawy i spalin: skonsolidowane w 1 encje (dawniej 10 osobnych fan_mod_*/exh_c*)
+    pk = hass.states.get("sensor.tekla_palnik_krzywe_dmuchawy_i_spalin_poziom_1")
+    assert pk is not None and pk.attributes["exh_c3"] == "30"
     # liczba encji: wszystkie z katalogu poza CO2 przy jednym obiegu (spadek z 165: konsolidacja
     # nastaw serwisowych - patrz AttrGroup w engine.cpp)
     ours = [s for s in hass.states.async_all() if s.entity_id.split(".")[1].startswith("tekla_")]
-    assert len(ours) >= 110
+    assert len(ours) >= 100
 
 
 async def test_services_have_card_compatible_names_and_write(hass: HomeAssistant, entry):

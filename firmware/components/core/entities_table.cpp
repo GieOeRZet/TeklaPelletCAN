@@ -42,11 +42,7 @@ const Entity kEntities[] = {
     {"sensor", "cwu_delta", "CWU delta zalaczenia pompy", "°C", "", "cwu_delta"},
     {"sensor", "cwu_tmax", "CWU temperatura maksymalna", "", "", "cwu_tmax"},
     {"sensor", "cwu_legion", "CWU antylegionella", "", "", "cwu_legion"},
-    {"sensor", "exh_c1", "Wentylator spalin krzywa 1", "", "", "exh_c1"},
-    {"sensor", "exh_c2", "Wentylator spalin krzywa 2", "", "", "exh_c2"},
-    {"sensor", "exh_c3", "Wentylator spalin krzywa 3", "", "", "exh_c3"},
-    {"sensor", "exh_c4", "Wentylator spalin krzywa 4", "", "", "exh_c4"},
-    {"sensor", "exh_c5", "Wentylator spalin krzywa 5", "", "", "exh_c5"},
+    {"text_sensor", "palnik_krzywe_p1", "Palnik krzywe dmuchawy i spalin (poziom 1)", "", "", ""},
     {"sensor", "alarm_snd", "Alarm dzwiekowy", "", "", "alarm_snd"},
     {"sensor", "alarm_sil_from", "Alarm cisza od", "", "", "alarm_sil_from"},
     {"sensor", "alarm_sil_to", "Alarm cisza do", "", "", "alarm_sil_to"},
@@ -56,11 +52,6 @@ const Entity kEntities[] = {
     {"sensor", "k_exh_pct", "Kociol wentylator spalin moc", "%", "", "k_exh_pct"},
     {"sensor", "cwu_boost", "CWU zagrzej teraz (0/1)", "", "", "cwu_boost"},
     {"sensor", "cwu_prio", "CWU priorytet (0/1)", "", "", "cwu_prio"},
-    {"sensor", "fan_mod_1", "Dmuchawa modulacja 20 %", "%", "", "fan_mod_1"},
-    {"sensor", "fan_mod_2", "Dmuchawa modulacja 40 %", "%", "", "fan_mod_2"},
-    {"sensor", "fan_mod_3", "Dmuchawa modulacja 60 %", "%", "", "fan_mod_3"},
-    {"sensor", "fan_mod_4", "Dmuchawa modulacja 80 %", "%", "", "fan_mod_4"},
-    {"sensor", "fan_mod_5", "Dmuchawa modulacja 100 %", "%", "", "fan_mod_5"},
     {"sensor", "burner_power", "Moc palnika", "%", "", "burner_power"},
     {"sensor", "burn_ign", "Palnik zapalarka", "%", "", "burn_ign"},
     {"sensor", "blower_pct", "Dmuchawa obroty", "%", "", "blower_pct"},
@@ -126,6 +117,6 @@ const Entity kEntities[] = {
     {"button", "dmuchawa_wlacz_czasowo", "Dmuchawa: Wlacz (czasowo)", "", "", ""},
 };
 
-const unsigned kEntityCount = 120;
+const unsigned kEntityCount = 111;
 
 }  // namespace tpc
