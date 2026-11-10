@@ -109,12 +109,12 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await goHash('#/d/cwu');
   await p.getByRole('button', { name: 'Eko', exact: true }).click(); await sleep(3200);
   check('zapis: tryb CWU „Eko” (select) dotarł do kotła', (await stateOf('sensor.tekla_cwu_tryb')) === 'Eko', await stateOf('sensor.tekla_cwu_tryb'));
-  check('CWU: przycisk „Zagrzej CWU teraz” obecny', (await p.locator('#boost').count()) === 1);
+  check('CWU: wiersz „Zagrzej teraz” (cwu_boost) obecny, jak na urządzeniu', (await p.locator('[data-p="cwu_boost"]').count()) === 1);
   await p.screenshot({ path: OUT + '/ui_cwu.png', fullPage: true });
 
   // ---------------------------------------------------------------- poziomy kotła: zablokowane calkowicie niewidoczne, odblokowanie przez Menu
   await goHash('#/d/palnik');
-  check('poziomy: przed PIN-em zero śladu (krzywa modulacji nieobecna)', !/Dmuchawa modulacja/i.test(await p.innerText('body')));
+  check('poziomy: przed PIN-em zero śladu (krzywa modulacji nieobecna)', !/Moc dmuchawy modulacja/i.test(await p.innerText('body')));
   await goHash('#/d/menu');
   check('menu: "Test wyjść" niewidoczne na poziomie 0', (await p.locator('[data-go="d/test"]').count()) === 0);
   check('menu: "Konfiguracja" (kotla) niewidoczna na poziomie 0', (await p.locator('[data-go="d/konf"]').count()) === 0);
@@ -129,7 +129,11 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('poziom: status widoczny tylko w Menu', await waitFor(async () => /poziom 1/i.test(await p.innerText('#lvv'))));
   await goHash('#/d/palnik');
   await sleep(1000);
-  check('poziom 1: krzywa modulacji dmuchawy widoczna po PIN 0900', /krzywa modulacji/i.test(await p.innerText('body')) && (await p.locator('svg polyline').count()) > 0);
+  check('poziom 1: wiersz krzywej dmuchawy widoczny po PIN 0900 (jak na urządzeniu)', /Moc dmuchawy modulacja/i.test(await p.innerText('body')));
+  check('poziom 1: wiersz krzywej wentylatora wspomagającego widoczny (exh_c, nie płaskie wiersze)', /Wentylator wspomagający/i.test(await p.innerText('body')));
+  await p.locator('button.row', { hasText: 'Moc dmuchawy modulacja' }).click();
+  check('krzywa dmuchawy: okno z wykresem (svg) się otwiera', (await p.locator('.sheet svg polyline').count()) > 0);
+  await p.locator('.sheet #no').click();
   check('poziom: plakietka odliczania w nagłówku (jedyny sygnał w nagłówku)', /🔓/.test(await txt('#chip')));
   await p.screenshot({ path: OUT + '/ui_palnik_poziom1.png', fullPage: true });
   await goHash('#/d/menu');

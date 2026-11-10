@@ -105,3 +105,4 @@ input.t { width:100%; padding:12px; border-radius:10px; border:1px solid var(--l
 .hscale { display:flex; justify-content:space-between; color:var(--dim); font-size:10px; margin-top:2px; }
 .hgrid { display:grid; grid-template-columns:repeat(6,1fr); gap:6px; margin:10px 0; } .hgrid button { padding:12px 0; border-radius:10px; border:0; background:#2b303b; font-size:15px; } .hgrid button.on { background:var(--acc); color:#1a1208; font-weight:700; }
 .sheet .ico { background:#2b303b; border:1px solid #3a3f4c; }
+.ico.dis { opacity:.35; pointer-events:none; }

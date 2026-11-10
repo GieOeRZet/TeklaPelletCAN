@@ -267,14 +267,21 @@ function pointRow(p) {
  * "— POZIOM N —" (replika oryginalnej karty: wrench + numer poziomu). Zablokowany poziom jest CALKOWICIE
  * niewidoczny (zero sladu, zero przycisku) - dokladnie jak w oryginale: zwykly uzytkownik nie ma wiedziec,
  * ze cos tam jeszcze jest. Pojawia sie dopiero po PIN-ie danego poziomu (wpisywanym w Menu). */
-function appendLevelGroups(container, points, shownLevel, { skipIds = new Set(), includeReadOnly = false } = {}) {
+function appendLevelGroups(container, points, shownLevel, { skipIds = new Set(), includeReadOnly = false, order = null } = {}) {
   const rest = points.filter(p => !skipIds.has(p.id) && (p.writable || includeReadOnly));
   const lvOf = p => (p.writable ? (p.level || 0) : -1);
-  const base = rest.filter(p => lvOf(p) === 0);
+  // order: kolejnosc dokladnie jak w oryginalnym panelu (zweryfikowana zdjeciami ekranu) - punkty spoza
+  // tej listy (np. nowe w przyszlosci) ladują sie na koniec swojego poziomu, nic nie znika.
+  const sortByOrder = arr => {
+    if (!order) return arr;
+    const idx = id => { const i = order.indexOf(id); return i < 0 ? 1e9 : i; };
+    return arr.slice().sort((a, b) => idx(a.id) - idx(b.id));
+  };
+  const base = sortByOrder(rest.filter(p => lvOf(p) === 0));
   base.forEach(p => container.appendChild(pointRow(p)));
   for (const lv of [1, 2]) {
     if (shownLevel < lv) continue;
-    const items = rest.filter(p => lvOf(p) === lv);
+    const items = sortByOrder(rest.filter(p => lvOf(p) === lv));
     if (!items.length) continue;
     container.appendChild(el(`<div class="lvh" data-lvh="${lv}">Poziom ${lv}</div>`));
     items.forEach(p => container.appendChild(pointRow(p)));
@@ -306,23 +313,32 @@ function domainScreen(build) {
   return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); if (level() !== shownLevel) draw(); else updateBound(root); } };
 }
 
+// Kolejnosc dokladnie jak na prawdziwym panelu (sprawdzona zdjeciami ekranu Kociol -> NASTAWY).
+const ORDER_KOCIOL = ['boiler_hyst_on', 'boiler_hyst_off', 'boiler_pump_min', 'boil_pump_run', 'boiler_ret_min', 'boiler_mixer_time', 'boil_fuel_reserve'];
 export function kociol() {
   return domainScreen((root, sec, byGroup, shownLevel) => {
     const k = sec('Kocioł');
     k.append(stepperRow('Zadana temperatura kotła (ręczna)', 'boiler_set_manual'),
       modeChips('Tryb pracy kotła', 'boiler_mode', MODE, m => callService('tekla_estyma_set_boiler_mode', { mode: m }), 'sensor.tekla_kociol_tryb_pracy'));
-    appendLevelGroups(k, byGroup['Kocioł'] || [], shownLevel, { skipIds: new Set(['boiler_set_manual', 'boiler_mode']) });
+    appendLevelGroups(k, byGroup['Kocioł'] || [], shownLevel, { skipIds: new Set(['boiler_set_manual', 'boiler_mode']), order: ORDER_KOCIOL });
   });
 }
 
-// Wykres krzywej (np. modulacji dmuchawy) - w oryginale osobny ekran z linia i punktami do edycji (karta
-// classic, "Moc dmuchawy modulacja"), tutaj ten sam pomysl w stylu aplikacji: linia SVG z podzialka (siatka
-// + opisane wartosci na osi Y), punkty przeciagalne palcem (pionowo) - jak suwak, bez otwierania okna.
-// Zapis TYLKO po "Zapisz" (jak kazda inna nastawa w aplikacji - nigdy na zywo w trakcie przeciagania):
-// przeciaganie zmienia wartosc tylko lokalnie na wykresie, przycisk pojawia sie gdy cos sie zmienilo i
-// wysyla na raz wszystkie zmienione punkty. Stuknięcie bez przeciagania otwiera zwykly edytor (suwak+/-),
-// ktory ma wlasne "Zastosuj" - tak samo zapis dopiero po potwierdzeniu, nigdy w trakcie.
-function curveChart(ids, xLabels, title) {
+// Krzywa (np. modulacji dmuchawy) - w oryginale osobny ekran z Menu: wiersz w liście nastaw ("Moc
+// dmuchawy modulacja [%]" / "Wentylator wspomagający [%]") otwiera okno z wykresem. Tu ten sam uklad:
+// zwykly wiersz z chevronem w miejscu nastaw -> dotkniecie otwiera okno (curveSheet).
+// Obsluga jak w oryginale: dotkniecie punktu zaznacza go (aktywny, podswietlony) - mozna go wtedy
+// przeciagac palcem (zgrubnie) ALBO korygowac +/- po prawej (precyzyjnie, o jeden krok). Zapis
+// TYLKO po "Zapisz" (jak kazda inna nastawa w aplikacji - nigdy na zywo w trakcie przeciagania czy
+// klikania +/-): zmiany siedza lokalnie w oknie, przycisk "Zapisz" pojawia sie gdy cos sie zmienilo
+// i wysyla na raz wszystkie zmienione punkty.
+const CHART_ICO = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M3 17l5-5 4 3 7-8"/></svg>';
+function curveRow(ids, xLabels, title) {
+  const b = el(`<button class="row nav2"><span>${esc(title)}</span><span class="v">${CHART_ICO}</span></button>`);
+  b.onclick = () => curveSheet(ids, xLabels, title);
+  return b;
+}
+function curveSheet(ids, xLabels, title) {
   const pts = ids.map(id => S.pointById.get(id));
   const step = pts.find(p => p && p.step)?.step || 1;
   const dc = step < 1 ? 1 : 0;
@@ -347,51 +363,62 @@ function curveChart(ids, xLabels, title) {
   const ptsSvg = ids.map((id, i) => `
     <text data-t="${i}" x="${(i === 0 ? X(i) + 3 : X(i)).toFixed(1)}" font-size="5" fill="var(--txt)" text-anchor="${i === 0 ? 'start' : 'middle'}"></text>
     <circle data-k="${i}" r="3.4"></circle>`).join('');
-  const root = el(`<div class="sec"><h5>${esc(title)}</h5>
-    <svg viewBox="0 0 ${W} ${PAD_T + H + 14}" style="width:100%;height:160px;overflow:visible;touch-action:none">
-      <g id="grid">${grid}</g>
-      <polyline id="ln" points="" fill="none" stroke="var(--acc)" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
-      <g id="pts">${ptsSvg}</g>
-      ${xLabels.map((l, i) => `<text x="${X(i).toFixed(1)}" y="${PAD_T + H + 10}" font-size="4.6" fill="var(--dim)" text-anchor="middle">${esc(l)}</text>`).join('')}
-    </svg>
-    <button class="btn acc" id="save" style="display:none;margin-top:8px">Zapisz</button></div>`);
-  const svg = root.querySelector('svg'), ln = root.querySelector('#ln'), saveBtn = root.querySelector('#save');
-  const circles = root.querySelectorAll('#pts circle'), texts = root.querySelectorAll('#pts text[data-t]');
+  const sh = openSheet(`<h3>${esc(title)}</h3>
+    <div style="display:flex;align-items:center;gap:10px">
+      <svg viewBox="0 0 ${W} ${PAD_T + H + 14}" style="flex:1 1 auto;min-width:0;height:160px;overflow:visible;touch-action:none">
+        <g id="grid">${grid}</g>
+        <polyline id="ln" points="" fill="none" stroke="var(--acc)" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+        <g id="pts">${ptsSvg}</g>
+        ${xLabels.map((l, i) => `<text x="${X(i).toFixed(1)}" y="${PAD_T + H + 10}" font-size="4.6" fill="var(--dim)" text-anchor="middle">${esc(l)}</text>`).join('')}
+      </svg>
+      <div style="display:flex;flex-direction:column;gap:10px;flex:0 0 auto">
+        <button class="ico" id="pl" style="width:44px;height:44px;font-size:22px">+</button>
+        <button class="ico" id="mi" style="width:44px;height:44px;font-size:22px">−</button>
+      </div>
+    </div>
+    <div class="hint" style="margin-top:4px">Dotknij punkt, aby go wybrać - przeciągnij palcem (zgrubnie) albo koryguj +/− (precyzyjnie).</div>
+    <button class="btn acc" id="save" style="display:none;margin-top:8px">Zapisz</button>
+    <button class="btn sec" id="no">Zamknij</button>`);
+  const svg = $('svg', sh), ln = $('#ln', sh), saveBtn = $('#save', sh), plBtn = $('#pl', sh), miBtn = $('#mi', sh);
+  const circles = sh.querySelectorAll('#pts circle'), texts = sh.querySelectorAll('#pts text[data-t]');
   let orig = ids.map(id => pn(id));
   let vals = orig.slice();
+  let sel = -1;
   const dirty = () => vals.some((v, i) => v !== orig[i]);
   const redraw = () => {
     ln.setAttribute('points', vals.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' '));
     vals.forEach((v, i) => {
       circles[i].setAttribute('cx', X(i).toFixed(1)); circles[i].setAttribute('cy', Y(v).toFixed(1));
+      circles[i].setAttribute('r', i === sel ? '4.2' : '3.4');
+      circles[i].setAttribute('stroke', i === sel ? 'var(--acc)' : 'none');
+      circles[i].setAttribute('stroke-width', i === sel ? '2' : '0');
       circles[i].setAttribute('fill', v !== orig[i] ? '#fff' : 'var(--acc)');
       const yv = Y(v), below = yv - PAD_T < 9;
       texts[i].setAttribute('y', (below ? yv + 9 : yv - 5).toFixed(1));
       texts[i].textContent = Number.isFinite(v) ? fmt(v, dc) : '-';
     });
     saveBtn.style.display = dirty() ? 'block' : 'none';
+    plBtn.classList.toggle('dis', sel < 0); miBtn.classList.toggle('dis', sel < 0);
   };
   const toSvgY = clientY => { const r = svg.getBoundingClientRect(); return (clientY - r.top) / r.height * (PAD_T + H + 14); };
   circles.forEach(c => {
-    const i = +c.dataset.k, id = ids[i];
-    let dragging = false, moved = false;
+    const i = +c.dataset.k;
+    let dragging = false;
     c.style.cursor = 'pointer';
-    c.addEventListener('pointerdown', e => { dragging = true; moved = false; c.setPointerCapture(e.pointerId); });
+    c.addEventListener('pointerdown', e => { dragging = true; sel = i; c.setPointerCapture(e.pointerId); redraw(); });
     c.addEventListener('pointermove', e => {
       if (!dragging) return;
-      moved = true;
       vals[i] = snap(Vfrom(toSvgY(e.clientY)));
       redraw();
     });
-    const finish = async e => {
-      if (!dragging) return;
-      dragging = false;
-      if (!moved) { await editPoint(id); orig[i] = vals[i] = pn(id); redraw(); }
-    };
+    const finish = () => { dragging = false; };
     c.addEventListener('pointerup', finish);
     c.addEventListener('pointercancel', finish);
   });
   redraw();
+  plBtn.onclick = () => { if (sel < 0) return; vals[sel] = snap(Math.min(hi, vals[sel] + step)); redraw(); };
+  miBtn.onclick = () => { if (sel < 0) return; vals[sel] = snap(Math.max(lo, vals[sel] - step)); redraw(); };
+  $('#no', sh).onclick = closeSheet;
   saveBtn.onclick = async () => {
     let ok = true;
     for (let i = 0; i < ids.length; i++) if (vals[i] !== orig[i]) { if (!(await writePoint(ids[i], vals[i]))) ok = false; }
@@ -399,15 +426,40 @@ function curveChart(ids, xLabels, title) {
     orig = vals.slice();
     redraw();
   };
-  return root;
 }
+
+// Kolejnosc dokladnie jak na prawdziwym panelu (sprawdzona zdjeciami ekranu Palnik -> NASTAWY): dwie
+// krzywe (dmuchawa, wentylator wspomagajacy) sa wierszami w tym samym miejscu co na urzadzeniu, nie
+// osobnymi "wynalezionymi" ekranami.
+const FANMOD_IDS = ['fan_mod_1', 'fan_mod_2', 'fan_mod_3', 'fan_mod_4', 'fan_mod_5'];
+const EXHC_IDS = ['exh_c1', 'exh_c2', 'exh_c3', 'exh_c4', 'exh_c5'];
+const ORDER_PALNIK_0 = ['air_corr', 'power_min', 'power_max', 'fuel_heat', 'fuel_test'];
+const ORDER_PALNIK_1 = [
+  '__fanmod__', 'p_feed_max', 'p_prefeed', 'p_photo', 'p_blow_ign', 'p_blow_glow', 'p_blow_stop',
+  'p_glow_time', 'p_glow_fuel', 'p_stop_time', 'p_lambda', 'p_o2_30', 'p_o2_100', 'p_cleans',
+  'k_predose_g', 'k_egt_min', 'k_egt_max', 'k_exch_int', '__exhc__',
+  'p_clean_gap', 'p_pause_time', 'p_pause_power', 'p_pause_blow',
+];
+const ORDER_PALNIK_2 = ['k_nominal', 'p_inertia', 'p_grate_time', 'p_burner_feed', 'p_feeder_period', 'p_min_rpm'];
 export function palnik() {
   return domainScreen((root, sec, byGroup, shownLevel) => {
     // feeder_mode/blower_mode ("Test wyjsc") to w oryginale osobna strona z Menu, nie czesc ekranu Palnik.
-    // Krzywa modulacji dmuchawy (fan_mod_1..5) dostaje wykres zamiast plaskiej listy - jak w oryginale.
-    const curveIds = ['fan_mod_1', 'fan_mod_2', 'fan_mod_3', 'fan_mod_4', 'fan_mod_5'];
-    appendLevelGroups(sec('Palnik'), byGroup['Palnik'] || [], shownLevel, { skipIds: new Set(['feeder_mode', 'blower_mode', ...curveIds]) });
-    if (shownLevel >= 1) root.appendChild(curveChart(curveIds, ['20%', '40%', '60%', '80%', '100%'], 'Dmuchawa – krzywa modulacji [%]'));
+    const skip = new Set(['feeder_mode', 'blower_mode', ...FANMOD_IDS, ...EXHC_IDS]);
+    const byId = new Map((byGroup['Palnik'] || []).map(p => [p.id, p]));
+    const p = sec('Palnik');
+    ORDER_PALNIK_0.forEach(id => { const pt = byId.get(id); if (pt && !skip.has(id)) p.appendChild(pointRow(pt)); });
+    if (shownLevel >= 1) {
+      p.appendChild(el('<div class="lvh" data-lvh="1">Poziom 1</div>'));
+      ORDER_PALNIK_1.forEach(id => {
+        if (id === '__fanmod__') { p.appendChild(curveRow(FANMOD_IDS, ['20%', '40%', '60%', '80%', '100%'], 'Moc dmuchawy modulacja [%]')); return; }
+        if (id === '__exhc__') { p.appendChild(curveRow(EXHC_IDS, ['1', '2', '3', '4', '5'], 'Wentylator wspomagający [%]')); return; }
+        const pt = byId.get(id); if (pt && !skip.has(id)) p.appendChild(pointRow(pt));
+      });
+    }
+    if (shownLevel >= 2) {
+      p.appendChild(el('<div class="lvh" data-lvh="2">Poziom 2</div>'));
+      ORDER_PALNIK_2.forEach(id => { const pt = byId.get(id); if (pt && !skip.has(id)) p.appendChild(pointRow(pt)); });
+    }
   });
 }
 
@@ -485,23 +537,31 @@ export function testWyjsc() {
   });
 }
 
+// Kolejnosc dokladnie jak na prawdziwym panelu (sprawdzona zdjeciami ekranu Ogrzewanie 1 -> NASTAWY).
+const ORDER_CO = [
+  'co1_hyst', 'co1_calib', 'co1_mode', 'co1_curve_m20', 'co1_curve_0', 'co1_curve_10',
+  'co1_source', 'co1_src_inc', 'co1_room_sensor', 'co1_tmax', 'co1_co_sensor', 'co1_corr',
+  'co1_out_comf', 'co1_out_eco', 'co1_lower', 'co1_pump_min', 'co1_mixer_time', 'co1_const_pump', 'co1_ret_protect',
+];
 export function ogrzewanie() {
   return domainScreen((root, sec, byGroup, shownLevel) => {
     const c = sec('Ogrzewanie (CO)');
     c.append(stepperRow('Zadana CO (ręczna)', 'ch1_set_manual'), stepperRow('Zadana CO – komfort', 'co_set_comfort'), stepperRow('Zadana CO – eko', 'co_set_eco'),
       modeChips('Tryb CO', 'co_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_co_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_co_tryb'));
-    appendLevelGroups(c, byGroup['CO'] || [], shownLevel, { skipIds: new Set(['ch1_set_manual', 'co_set_comfort', 'co_set_eco']) });
+    appendLevelGroups(c, byGroup['CO'] || [], shownLevel, { skipIds: new Set(['ch1_set_manual', 'co_set_comfort', 'co_set_eco']), order: ORDER_CO });
   });
 }
 
+// Kolejnosc dokladnie jak na prawdziwym panelu (sprawdzona zdjeciami ekranu Ciepla woda -> NASTAWY).
+// "Zagrzej teraz" to zwykly wiersz-przelacznik (cwu_boost) jak na urzadzeniu, nie osobny przycisk z
+// potwierdzeniem - oryginal nie ma takiego potwierdzenia.
+const ORDER_CWU = ['cwu_boost', 'cwu_hyst', 'cwu_legion', 'cwu_prio', 'cwu_src', 'cwu_src_inc', 'cwu_delta', 'cwu_tmax'];
 export function cieplaWoda() {
   return domainScreen((root, sec, byGroup, shownLevel) => {
     const w = sec('Ciepła woda (CWU)');
     w.append(stepperRow('Zadana CWU – komfort', 'hw_set_comfort'), stepperRow('Zadana CWU – eko', 'hw_set_eco'),
       modeChips('Tryb CWU', 'cwu_mode', { 0: 'Off', 1: 'Eko', 2: 'Harmonogram', 3: 'Komfort' }, m => callService('select_option', { entity_id: 'select.tekla_cwu_tryb_ustaw', option: ['Off', 'Eko', 'Harmonogram', 'Komfort'][m] }, 'select'), 'sensor.tekla_cwu_tryb'));
-    w.append(el('<button class="btn sec" id="boost">Zagrzej CWU teraz</button>'));
-    appendLevelGroups(w, byGroup['CWU'] || [], shownLevel, { skipIds: new Set(['hw_set_comfort', 'hw_set_eco']) });
-    const b = $('#boost', root); if (b) b.onclick = async () => { if (await confirmSheet('Zagrzej CWU teraz', 'Włączyć jednorazowe dogrzanie wody?')) await writePoint('cwu_boost', 1); };
+    appendLevelGroups(w, byGroup['CWU'] || [], shownLevel, { skipIds: new Set(['hw_set_comfort', 'hw_set_eco']), order: ORDER_CWU });
   });
 }
 

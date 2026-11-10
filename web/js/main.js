@@ -64,7 +64,10 @@ function chip() {
 
 function chrome(title, body, nav) {
   app.innerHTML = '';
-  const hdr = el(`<div class="hdr"><button class="ico" id="hm">${nav === 'sub' ? '←' : '☰'}</button><b>${esc(title)}</b><span id="chipbox">${chip()}</span></div>`);
+  // Strzalka powrotu jako SVG, nie znak "←" - ten glif rozjezdza sie (nie jest wyosiowany) w domyslnej
+  // czcionce na czesci urzadzen/Androidow, przez co wyglada krzywo w okraglym przycisku .ico.
+  const BACK_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>';
+  const hdr = el(`<div class="hdr"><button class="ico" id="hm">${nav === 'sub' ? BACK_SVG : '☰'}</button><b>${esc(title)}</b><span id="chipbox">${chip()}</span></div>`);
   const sc = el('<div class="scroll"></div>');
   app.append(hdr, sc);
   if (nav === 'main') {
