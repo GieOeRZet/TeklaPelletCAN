@@ -37,12 +37,8 @@ const Entity kEntities[] = {
     {"sensor", "ret_temp", "Temperatura powrotu", "°C", "temperature", "ret_temp"},
     {"sensor", "boiler_hyst_on", "Histereza zalaczenia kotla", "°C", "", "boiler_hyst_on"},
     {"sensor", "boiler_hyst_off", "Histereza wylaczenia kotla", "°C", "", "boiler_hyst_off"},
-    {"sensor", "co1_hyst", "CO1 histereza", "°C", "", "co1_hyst"},
-    {"sensor", "co1_calib", "CO1 kalibracja czujnika", "°C", "", "co1_calib"},
-    {"sensor", "co1_mode", "CO1 tryb pracy (0 reczny / 1 pogodowy)", "", "", "co1_mode"},
-    {"sensor", "co1_curve_m20", "CO1 krzywa pogodowa -20 C", "°C", "", "co1_curve_m20"},
-    {"sensor", "co1_curve_0", "CO1 krzywa pogodowa 0 C", "°C", "", "co1_curve_0"},
-    {"sensor", "co1_curve_10", "CO1 krzywa pogodowa +10 C", "°C", "", "co1_curve_10"},
+    {"text_sensor", "co1_krzywa_p0", "CO1 konfiguracja krzywej pogodowej (poziom 0)", "", "", ""},
+    {"text_sensor", "co1_krzywa_p1", "CO1 konfiguracja krzywej pogodowej (poziom 1)", "", "", ""},
     {"sensor", "cwu_hyst", "CWU histereza", "°C", "", "cwu_hyst"},
     {"sensor", "cwu_src", "CWU zrodlo", "", "", "cwu_src"},
     {"sensor", "cwu_src_inc", "CWU zwiekszenie temp. zrodla", "°C", "", "cwu_src_inc"},
@@ -50,19 +46,6 @@ const Entity kEntities[] = {
     {"sensor", "boiler_pump_min", "Kociol minimalna temp. pomp", "°C", "", "boiler_pump_min"},
     {"sensor", "boiler_ret_min", "Kociol minimalna temp. powrotu", "°C", "", "boiler_ret_min"},
     {"sensor", "boiler_mixer_time", "Kociol czas mieszacza", "s", "", "boiler_mixer_time"},
-    {"sensor", "co1_src_inc", "CO1 zwiekszenie temp. zrodla", "°C", "", "co1_src_inc"},
-    {"sensor", "co1_tmax", "CO1 temperatura maksymalna", "°C", "", "co1_tmax"},
-    {"sensor", "co1_corr", "CO1 wspolczynnik korekcji t. CO", "", "", "co1_corr"},
-    {"sensor", "co1_out_comf", "CO1 MAX Tzew pomp komfort", "°C", "", "co1_out_comf"},
-    {"sensor", "co1_out_eco", "CO1 MAX Tzew pomp ekon.", "°C", "", "co1_out_eco"},
-    {"sensor", "co1_lower", "CO1 obnizenie temperatury CO", "°C", "", "co1_lower"},
-    {"sensor", "co1_pump_min", "CO1 MIN temperatura CO pomp", "°C", "", "co1_pump_min"},
-    {"sensor", "co1_mixer_time", "CO1 czas mieszacza", "s", "", "co1_mixer_time"},
-    {"sensor", "co1_const_pump", "CO1 stala pompa (0/1)", "", "", "co1_const_pump"},
-    {"sensor", "co1_ret_protect", "CO1 obnizenie Tco ochrona powrotu (0/1)", "", "", "co1_ret_protect"},
-    {"sensor", "co1_source", "CO1 zrodlo (0 kociol / 1 bufor)", "", "", "co1_source"},
-    {"sensor", "co1_co_sensor", "CO1 czujnik CO (0/1)", "", "", "co1_co_sensor"},
-    {"sensor", "co1_room_sensor", "CO1 czujnik pokojowy (0 brak,1 CTP1,2 CTP2,3 videROOM,4 termostat,5 CAN)", "", "", "co1_room_sensor"},
     {"sensor", "boil_pump_run", "Kociol wybieg pompy", "", "", "boil_pump_run"},
     {"sensor", "boil_fuel_reserve", "Kociol rezerwa paliwa stop", "", "", "boil_fuel_reserve"},
     {"sensor", "cwu_tmax", "CWU temperatura maksymalna", "", "", "cwu_tmax"},
@@ -157,6 +140,6 @@ const Entity kEntities[] = {
     {"button", "dmuchawa_wlacz_czasowo", "Dmuchawa: Wlacz (czasowo)", "", "", ""},
 };
 
-const unsigned kEntityCount = 151;
+const unsigned kEntityCount = 134;
 
 }  // namespace tpc

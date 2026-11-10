@@ -142,6 +142,12 @@ const GROUP_OF = {
   p_pause_blow: 'palnik_nastawy_p1',
   p_inertia: 'palnik_nastawy_p2', p_grate_time: 'palnik_nastawy_p2', p_burner_feed: 'palnik_nastawy_p2', p_feeder_period: 'palnik_nastawy_p2',
   p_min_rpm: 'palnik_nastawy_p2',
+  co1_calib: 'co1_krzywa_p0', co1_curve_0: 'co1_krzywa_p0', co1_curve_10: 'co1_krzywa_p0', co1_curve_m20: 'co1_krzywa_p0',
+  co1_hyst: 'co1_krzywa_p0', co1_mode: 'co1_krzywa_p0',
+  co1_co_sensor: 'co1_krzywa_p1', co1_const_pump: 'co1_krzywa_p1', co1_corr: 'co1_krzywa_p1', co1_lower: 'co1_krzywa_p1',
+  co1_mixer_time: 'co1_krzywa_p1', co1_out_comf: 'co1_krzywa_p1', co1_out_eco: 'co1_krzywa_p1', co1_pump_min: 'co1_krzywa_p1',
+  co1_ret_protect: 'co1_krzywa_p1', co1_room_sensor: 'co1_krzywa_p1', co1_source: 'co1_krzywa_p1', co1_src_inc: 'co1_krzywa_p1',
+  co1_tmax: 'co1_krzywa_p1',
 };
 
 class TeklaModernCard extends HTMLElement {
