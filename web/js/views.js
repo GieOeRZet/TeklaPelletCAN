@@ -132,6 +132,10 @@ export function offlineBanner() {
 }
 
 
+// Ikona grzejnika (kafelek CO na pulpicie) - ta sama sciezka co w oryginalnej karcie (ikona "radi"),
+// zeby wyglad byl spojny miedzy aplikacja/portalem a karta classic.
+const RADI_SVG = `<svg class="ico" viewBox="0 0 29.8 36.5" fill="currentColor"><path d="M4.0 0.2L3.4 1.2L2.8 3.6L0.0 6.2L0.4 7.2L2.9 9.5L3.2 10.2L3.5 19.8L3.4 26.8L2.9 27.6L0.9 29.4L0.2 30.8L2.9 32.4L3.5 33.5L3.8 35.5L4.6 36.4L5.5 36.4L6.0 35.9L6.2 32.1L7.1 31.1L8.0 30.9L9.6 31.0L10.5 31.6L10.9 32.5L11.0 35.6L11.9 36.5L12.9 36.4L13.4 35.8L13.6 32.1L14.6 31.2L15.8 30.9L16.8 30.9L18.0 31.9L18.4 32.8L18.5 35.8L19.2 36.4L20.1 36.2L20.6 35.6L21.0 32.2L21.9 31.4L22.8 31.0L24.0 31.0L25.2 31.6L25.9 32.5L26.1 35.8L26.8 36.4L28.0 36.1L28.4 35.8L28.8 32.8L29.5 30.6L28.6 26.0L28.8 11.5L29.8 6.1L28.5 0.6L28.0 0.2L26.6 0.1L25.8 1.1L25.0 4.9L24.1 5.6L23.1 5.8L21.6 4.6L20.9 0.9L20.1 0.1L19.0 0.1L18.0 1.4L17.8 4.8L17.2 5.5L16.1 5.9L14.4 5.1L13.9 3.9L13.8 1.1L13.0 0.1L11.9 0.0L10.6 1.2L10.6 3.4L10.2 5.0L9.5 5.6L7.6 5.8L6.8 5.1L6.5 4.5L6.2 0.8L5.2 0.0ZM23.1 7.4L24.4 7.6L25.0 8.2L25.6 9.9L25.9 27.1L25.4 28.6L23.8 30.1L23.0 30.1L21.4 28.5L21.0 27.6L21.2 9.6L21.8 8.2ZM7.6 7.4L9.8 7.6L10.4 8.2L10.6 9.2L10.9 26.9L10.4 28.9L9.1 30.1L7.6 30.1L7.0 29.5L6.2 27.9L6.4 9.4L6.8 8.0ZM16.2 7.2L16.9 7.4L17.6 8.1L18.0 9.6L18.2 24.2L18.1 27.9L17.2 29.8L16.6 30.2L15.1 29.9L13.9 28.5L13.5 27.4L13.8 9.5L14.5 7.9Z"/></svg>`;
+
 // ------------------------------------------------------------------ pulpit
 export function pulpit(go) {
   const root = el(`<div>
@@ -141,9 +145,9 @@ export function pulpit(go) {
       <div class="tx"><div class="big"><span data-b="t_boiler"></span><small> °C</small></div><div data-b="pill"></div></div>
       <div class="st"><div data-b="hero_sub"></div></div></div>
     <div class="g2">
-      <button class="cd im" data-go="palnik"><small>Palnik</small><b data-b="burner_pct"></b><span class="u"> %</span><div class="dots"><span><i data-b="dot_blower"></i>dmuchawa</span><span><i data-b="dot_feeder"></i>podajnik</span></div><img src="img/palnik.webp" style="height:50px" alt=""></button>
-      <button class="cd im" data-go="cwu"><small>CWU</small><b data-b="t_cwu"></b><span class="u"> °C</span><div class="u" data-b="cwu_sub"></div><img src="img/bojler.webp" style="height:76px;right:10px;top:8px;border-radius:8px" alt=""></button>
-      <button class="cd" data-go="co"><small>CO</small><b data-b="t_co"></b><span class="u"> °C</span><div class="u" data-b="co_sub"></div></button>
+      <button class="cd im" data-go="palnik"><small>Palnik</small><b data-b="burner_pct"></b><span class="u"> %</span><div class="dots"><span><i data-b="dot_ign"></i>zapalarka</span><span><i data-b="dot_blower"></i>dmuchawa</span><span><i data-b="dot_feeder"></i>podajnik</span><span><i data-b="dot_feeder2"></i>podajnik 2</span></div><img src="img/palnik.webp" style="height:50px" alt=""></button>
+      <button class="cd im" data-go="cwu"><small>CWU</small><b data-b="t_cwu"></b><span class="u"> °C</span><div class="u" data-b="cwu_sub"></div><div class="dots"><span><i data-b="dot_cwu_pump"></i>pompa</span></div><img src="img/bojler.webp" style="height:76px;right:10px;top:8px;border-radius:8px" alt=""></button>
+      <button class="cd im" data-go="co"><small>CO</small><b data-b="t_co"></b><span class="u"> °C</span><div class="u" data-b="co_sub"></div><div class="dots"><span><i data-b="dot_co_pump"></i>pompa</span><span><i data-b="dot_co_mixer"></i>mieszacz</span></div>${RADI_SVG}</button>
       <button class="cd" data-fuel="1"><small>Paliwo</small><b data-b="fuel"></b><span class="u"> kg</span><div class="u" data-b="fuel_sub"></div><div style="position:absolute;right:12px;top:12px" data-b="hopper"></div></button>
       <button class="cd" data-go="instalacja"><small>Zewnętrzna</small><b data-b="t_out"></b><span class="u"> °C</span><div class="u" data-b="out_sub"></div></button>
       <button class="cd" data-go="instalacja"><small>Moc palnika</small><b data-b="kw"></b><span class="u"> kW</span><div class="u" data-b="kw_sub"></div></button>
@@ -155,12 +159,17 @@ export function pulpit(go) {
   set('pill', n => { n.innerHTML = burnerPill(); });
   set('hero_sub', n => { n.innerHTML = `zadana <b style="color:var(--txt)">${fmt(num('sensor.tekla_kociol_zadana_wynikowa'), 0)} °C</b> · tryb <b style="color:var(--txt)">${esc((S.states.get('sensor.tekla_kociol_tryb_pracy') || {}).state || '–')}</b><br>${v('binary_sensor.tekla_can_ok') === 'on' ? 'CAN OK' : '<span class="er">brak CAN</span>'}`; });
   set('burner_pct', n => { n.textContent = Number.isFinite(num('sensor.tekla_moc_palnika')) ? fmt(num('sensor.tekla_moc_palnika'), 0) : '–'; });
+  set('dot_ign', n => { const x = num('sensor.tekla_palnik_zapalarka'); n.className = Number.isFinite(x) && x > 0 ? 'on' : ''; });
   set('dot_blower', n => { n.className = v('binary_sensor.tekla_dmuchawa_pracuje') === 'on' ? 'on' : ''; });
-  set('dot_feeder', n => { n.className = (v('binary_sensor.tekla_podajnik_pracuje') === 'on' || v('binary_sensor.tekla_podajnik_palnika_pracuje') === 'on') ? 'on' : ''; });
+  set('dot_feeder', n => { n.className = v('binary_sensor.tekla_podajnik_pracuje') === 'on' ? 'on' : ''; });
+  set('dot_feeder2', n => { n.className = v('binary_sensor.tekla_podajnik_palnika_pracuje') === 'on' ? 'on' : ''; });
   set('t_cwu', n => { n.textContent = f1(num('sensor.tekla_cwu_temperatura')); });
-  set('cwu_sub', n => { n.innerHTML = `zadana ${fmt(num('sensor.tekla_cwu_zadana_wynikowa'), 0)} · pompa ${v('binary_sensor.tekla_cwu_pompa') === 'on' ? '<span class="ok">wł.</span>' : 'wył.'}`; });
+  set('cwu_sub', n => { n.textContent = `zadana ${fmt(num('sensor.tekla_cwu_zadana_wynikowa'), 0)} °C`; });
+  set('dot_cwu_pump', n => { n.className = v('binary_sensor.tekla_cwu_pompa') === 'on' ? 'on' : ''; });
   set('t_co', n => { n.textContent = f1(num('sensor.tekla_co_temperatura')); });
-  set('co_sub', n => { n.innerHTML = `zadana ${fmt(num('sensor.tekla_co_zadana_wynikowa'), 0)} · pompa ${v('binary_sensor.tekla_co_pompa') === 'on' ? '<span class="ok">wł.</span>' : 'wył.'}`; });
+  set('co_sub', n => { n.textContent = `zadana ${fmt(num('sensor.tekla_co_zadana_wynikowa'), 0)} °C`; });
+  set('dot_co_pump', n => { n.className = v('binary_sensor.tekla_co_pompa') === 'on' ? 'on' : ''; });
+  set('dot_co_mixer', n => { const x = num('sensor.tekla_mieszacz_co1_stan'); n.className = Number.isFinite(x) && x > 0 ? 'on' : ''; });
   set('fuel', n => { n.textContent = fmt(num('sensor.tekla_zbiornik_paliwo'), 0); });
   set('fuel_sub', n => { const d = num('sensor.tekla_paliwo_prognoza'); n.textContent = Number.isFinite(d) ? `ok. ${fmt(d, 0)} dni` : `${fmt(pct(), 0)} %`; });
   set('hopper', n => { n.innerHTML = TANK(Number.isFinite(pct()) ? pct() : 0, 40); });
