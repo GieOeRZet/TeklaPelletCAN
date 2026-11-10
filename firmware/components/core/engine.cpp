@@ -32,12 +32,19 @@ const char* kCo1P0[] = {"co1_calib", "co1_curve_0", "co1_curve_10", "co1_curve_m
 const char* kCo1P1[] = {"co1_co_sensor", "co1_const_pump", "co1_corr", "co1_lower", "co1_mixer_time", "co1_out_comf",
                         "co1_out_eco", "co1_pump_min", "co1_ret_protect", "co1_room_sensor", "co1_source",
                         "co1_src_inc", "co1_tmax"};
+const char* kKociolP0[] = {"air_corr", "power_min", "power_max", "fuel_heat", "fuel_test", "boiler_hyst_on", "boiler_hyst_off"};
+const char* kKociolP1[] = {"boiler_mixer_time", "boiler_pump_min", "boiler_ret_min", "boil_fuel_reserve", "boil_pump_run",
+                           "k_predose_g", "k_egt_min", "k_egt_max", "k_exch_int"};
+const char* kKociolP2[] = {"k_nominal"};
 struct AttrGroup { const char* id; const char* const* members; unsigned n; };
 const AttrGroup kAttrGroups[] = {
     {"palnik_nastawy_p1", kPalnikP1, sizeof(kPalnikP1) / sizeof(kPalnikP1[0])},
     {"palnik_nastawy_p2", kPalnikP2, sizeof(kPalnikP2) / sizeof(kPalnikP2[0])},
     {"co1_krzywa_p0", kCo1P0, sizeof(kCo1P0) / sizeof(kCo1P0[0])},
     {"co1_krzywa_p1", kCo1P1, sizeof(kCo1P1) / sizeof(kCo1P1[0])},
+    {"kociol_konf_p0", kKociolP0, sizeof(kKociolP0) / sizeof(kKociolP0[0])},
+    {"kociol_konf_p1", kKociolP1, sizeof(kKociolP1) / sizeof(kKociolP1[0])},
+    {"kociol_konf_p2", kKociolP2, sizeof(kKociolP2) / sizeof(kKociolP2[0])},
 };
 const AttrGroup* find_attr_group(const char* id) {
     for (const auto& g : kAttrGroups) if (!strcmp(g.id, id)) return &g;

@@ -127,10 +127,13 @@ async def test_entities_have_esphome_compatible_ids_and_values(hass: HomeAssista
     # CO1 konfiguracja krzywej pogodowej: skonsolidowane w 2 encje wg poziomu (dawniej 19 osobnych co1_*)
     co1 = hass.states.get("sensor.tekla_co1_konfiguracja_krzywej_pogodowej_poziom_1")
     assert co1 is not None and co1.attributes["co1_tmax"] == "30"
+    # Kociol konfiguracja: skonsolidowane w 3 encje wg poziomu (dawniej 17 osobnych, w tym k_*)
+    kk = hass.states.get("sensor.tekla_kociol_konfiguracja_poziom_2")
+    assert kk is not None and kk.attributes["k_nominal"] == "60"
     # liczba encji: wszystkie z katalogu poza CO2 przy jednym obiegu (spadek z 165: konsolidacja
     # nastaw serwisowych - patrz AttrGroup w engine.cpp)
     ours = [s for s in hass.states.async_all() if s.entity_id.split(".")[1].startswith("tekla_")]
-    assert len(ours) >= 125
+    assert len(ours) >= 110
 
 
 async def test_services_have_card_compatible_names_and_write(hass: HomeAssistant, entry):

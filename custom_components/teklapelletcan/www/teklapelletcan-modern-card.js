@@ -148,6 +148,12 @@ const GROUP_OF = {
   co1_mixer_time: 'co1_krzywa_p1', co1_out_comf: 'co1_krzywa_p1', co1_out_eco: 'co1_krzywa_p1', co1_pump_min: 'co1_krzywa_p1',
   co1_ret_protect: 'co1_krzywa_p1', co1_room_sensor: 'co1_krzywa_p1', co1_source: 'co1_krzywa_p1', co1_src_inc: 'co1_krzywa_p1',
   co1_tmax: 'co1_krzywa_p1',
+  air_corr: 'kociol_konf_p0', power_min: 'kociol_konf_p0', power_max: 'kociol_konf_p0', fuel_heat: 'kociol_konf_p0',
+  fuel_test: 'kociol_konf_p0', boiler_hyst_on: 'kociol_konf_p0', boiler_hyst_off: 'kociol_konf_p0',
+  boiler_mixer_time: 'kociol_konf_p1', boiler_pump_min: 'kociol_konf_p1', boiler_ret_min: 'kociol_konf_p1',
+  boil_fuel_reserve: 'kociol_konf_p1', boil_pump_run: 'kociol_konf_p1', k_predose_g: 'kociol_konf_p1',
+  k_egt_min: 'kociol_konf_p1', k_egt_max: 'kociol_konf_p1', k_exch_int: 'kociol_konf_p1',
+  k_nominal: 'kociol_konf_p2',
 };
 
 class TeklaModernCard extends HTMLElement {

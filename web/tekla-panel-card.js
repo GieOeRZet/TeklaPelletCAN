@@ -44,6 +44,7 @@ const ROLE_KEY = {
   alarm: 'alarm_aktywny', last_alarm: 'ostatni_alarm', alarm_start: 'alarm_poczatek', alarm_end: 'alarm_koniec', can_ok: 'can_ok', confirm: 'potwierdz_alarm',
   palnik_p1: 'palnik_nastawy_serwisowe_poziom_1', palnik_p2: 'palnik_nastawy_serwisowe_poziom_2',
   co1_p0: 'co1_konfiguracja_krzywej_pogodowej_poziom_0', co1_p1: 'co1_konfiguracja_krzywej_pogodowej_poziom_1',
+  kociol_p0: 'kociol_konfiguracja_poziom_0', kociol_p1: 'kociol_konfiguracja_poziom_1', kociol_p2: 'kociol_konfiguracja_poziom_2',
 };
 // Role skonsolidowane w grupy (patrz AttrGroup w firmware/engine.cpp): encja osobna nie istnieje juz w HA,
 // wartosc jest atrybutem encji grupy (klucz atrybutu = nazwa roli, jak w tej mapie). _s() nizej czyta ja
@@ -65,6 +66,14 @@ const GROUP_OF = {
   co_out_eco: ['co1_p1', 'co1_out_eco'], co_pump_min: ['co1_p1', 'co1_pump_min'], co_ret_protect: ['co1_p1', 'co1_ret_protect'],
   co_room: ['co1_p1', 'co1_room_sensor'], co_source: ['co1_p1', 'co1_source'], co_src_inc: ['co1_p1', 'co1_src_inc'],
   co_tmax: ['co1_p1', 'co1_tmax'],
+  air_corr: ['kociol_p0', 'air_corr'], power_min: ['kociol_p0', 'power_min'], power_max: ['kociol_p0', 'power_max'],
+  fuel_heat: ['kociol_p0', 'fuel_heat'], fuel_test: ['kociol_p0', 'fuel_test'], boiler_hyst_on: ['kociol_p0', 'boiler_hyst_on'],
+  boiler_hyst_off: ['kociol_p0', 'boiler_hyst_off'],
+  boiler_mixer_time: ['kociol_p1', 'boiler_mixer_time'], boiler_pump_min: ['kociol_p1', 'boiler_pump_min'],
+  boiler_ret_min: ['kociol_p1', 'boiler_ret_min'], boiler_fuel_reserve: ['kociol_p1', 'boil_fuel_reserve'],
+  boiler_pump_run: ['kociol_p1', 'boil_pump_run'], predose_g: ['kociol_p1', 'k_predose_g'], egt_min: ['kociol_p1', 'k_egt_min'],
+  egt_max: ['kociol_p1', 'k_egt_max'], exch_int: ['kociol_p1', 'k_exch_int'],
+  nominal_kw: ['kociol_p2', 'k_nominal'],
 };
 const SCREEN_OPTS = [
   ['main', 'Ekran główny'], ['heat', 'Ogrzewanie'], ['water', 'Woda użytkowa'], ['burn', 'Palnik'], ['quick', 'Szybkie ustawienia (okno)'], ['fuel', 'Paliwo (okno)'],
