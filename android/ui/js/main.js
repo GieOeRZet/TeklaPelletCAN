@@ -1,6 +1,6 @@
 import { nat, onEvent, api } from './native.js';
 import { S, LEVEL_MS, startPolling, stopPolling, subscribe, level, refreshInfo } from './store.js';
-import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ensureLevel, ensurePinSetup, confirmSheet, callService } from './ui.js';
+import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ensureLevel, enterLevelPin, ensurePinSetup, confirmSheet, callService } from './ui.js';
 import * as V from './views.js';
 import { fuelSheet, zasilanieSheet } from './views.js';
 import { checkUpdates, dismissed, dismiss } from './updates.js';
@@ -303,7 +303,7 @@ function viewMenu() {
   const sc = chrome('Menu', body, 'main');
   $('#lvv', body).textContent = level() > 0 ? 'poziom ' + level() : 'poziom 0';
   body.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
-  $('#lvl', body).onclick = async () => { if (await ensureLevel(1)) { toast('Poziom kotła aktywny'); $('#lvv', body).textContent = 'poziom ' + level(); } };
+  $('#lvl', body).onclick = async () => { if (await enterLevelPin()) { toast('Poziom kotła ' + level()); $('#lvv', body).textContent = 'poziom ' + level(); } };
   $('#fuel', body).onclick = fuelSheet;
   $('#pwr', body).onclick = zasilanieSheet;
   // PIN aplikacji chroni tylko start apki - otwarcie oryginalu/konfiguracji nie wymaga PIN-u.

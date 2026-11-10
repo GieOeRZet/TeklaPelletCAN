@@ -126,6 +126,31 @@ export async function ensureLevel(need) {
   return pin !== null;
 }
 
+/** Recznie wpisany PIN poziomu z Menu ("Poziom kotła") - w odroznieniu od ensureLevel() ZAWSZE pyta o PIN,
+ * nawet gdy jakis poziom juz jest aktywny (np. ktos ma poziom 1, ale chce wejsc PIN-em 0999 na poziom 2 bez
+ * czekania az wygasnie poprzednia sesja), i akceptuje KAZDY poprawny PIN poziomu (1 lub 2), nie tylko taki,
+ * ktory daje poziom >= jakiegos wymaganego minimum. Zwraca true po poprawnym PIN-ie (dowolnego poziomu). */
+export async function enterLevelPin() {
+  const pin = await pinSheet({
+    title: 'Poziom dostępu kotła', sub: 'Podaj PIN poziomu (jak w panelu kotła). Wygasa po 5 minutach bezczynności.', digits: [4, 6],
+    check: async p => {
+      const r = await api('POST', '/api/v1/call', { domain: 'teklapelletcan', service: 'tekla_estyma_unlock', data: { pin: parseInt(p, 10) } });
+      if (r.status !== 200) return 'Brak połączenia z kotłem';
+      let cur = r.json.level || 0;
+      for (let i = 0; i < 10 && cur < 1; i++) {
+        await new Promise(res => setTimeout(res, 400));
+        const s = await api('GET', '/api/v1/states');
+        const lv = (s.json.states || []).find(x => x.entity_id === 'sensor.tekla_poziom_dostepu');
+        if (lv) cur = parseInt(lv.state, 10);
+      }
+      return cur > 0 ? null : 'Zły PIN poziomu';
+    },
+  });
+  if (pin !== null) S.levelAt = Date.now();
+  await pullNow();
+  return pin !== null;
+}
+
 /** Zapis punktu przez API z obsługą typowych odmów. Zwraca true przy powodzeniu. */
 export async function writePoint(id, value) {
   const p = S.pointById.get(id);

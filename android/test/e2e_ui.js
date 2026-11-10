@@ -139,14 +139,12 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('konfiguracja: profil instalacji widoczny, "Dmuchawa z HALL" jeszcze nie (wymaga poziomu 2)', /Autokonfiguracja/i.test(await p.innerText('body')) && !/Dmuchawa z HALL/i.test(await p.innerText('body')));
   await goHash('#/d/test');
   check('test wyjść: na poziomie 1 widac tylko informacje, bez punktow (wymaga poziomu 2)', /poziomu 2/i.test(await p.innerText('body')) && !/Podajnik tryb/i.test(await p.innerText('body')));
-  // Przycisk "Poziom kotła" w Menu zawsze pyta o poziom 1 (ensureLevel(1)) - gdy poziom 1 juz jest aktywny,
-  // nic nie robi. Najpierw blokujemy sesje klikiem plakietki w naglowku (jak w oryginale), potem wchodzimy
-  // ponownie z PIN-em 0999, zeby dostac poziom 2.
-  await p.click('#chip'); await sleep(500);
-  check('poziom: klik plakietki blokuje sesję', (await p.locator('#chip').count()) === 0);
+  // Przycisk "Poziom kotła" w Menu zawsze pyta o PIN (enterLevelPin(), nie ensureLevel(1)) - nawet gdy
+  // poziom 1 jest juz aktywny, mozna od razu wpisac PIN 0999 i przejsc na poziom 2 bez czekania az
+  // wygasnie sesja poziomu 1 (wczesniej trzeba bylo najpierw zablokowac sesje klikiem plakietki).
   await goHash('#/d/menu');
   await p.click('#lvl');
-  check('poziom 2: okno PIN po ponownym zablokowaniu', await waitSheet(/Poziom dostępu kotła/));
+  check('poziom 2: okno PIN mimo aktywnego poziomu 1 (bez blokowania sesji)', await waitSheet(/Poziom dostępu kotła/));
   await pin('0999'); await noSheet(); await sleep(1500);
   await goHash('#/d/test');
   await sleep(500);
