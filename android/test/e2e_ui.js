@@ -113,7 +113,8 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('poziomy: przed PIN-em zero śladu (krzywa modulacji nieobecna)', !/Dmuchawa modulacja/i.test(await p.innerText('body')));
   await goHash('#/d/menu');
   check('menu: "Test wyjść" niewidoczne na poziomie 0', (await p.locator('[data-go="d/test"]').count()) === 0);
-  check('menu: "Konfiguracja urządzenia" niewidoczna na poziomie 0', (await p.locator('#cfg').count()) === 0);
+  check('menu: "Konfiguracja" (kotla) niewidoczna na poziomie 0', (await p.locator('[data-go="d/konf"]').count()) === 0);
+  check('menu: "Konfiguracja urządzenia" (WiFi/OTA) widoczna od razu, bez PIN-u', (await p.locator('#cfg').count()) === 1);
   await p.click('#lvl');
   check('poziom: okno PIN kotła', await waitSheet(/Poziom dostępu kotła/));
   await pin('1234');
@@ -128,7 +129,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('poziom: plakietka odliczania w nagłówku (jedyny sygnał w nagłówku)', /🔓/.test(await txt('#chip')));
   await p.screenshot({ path: OUT + '/ui_palnik_poziom1.png', fullPage: true });
   await goHash('#/d/menu');
-  check('menu: "Test wyjść" i "Konfiguracja urządzenia" widoczne od poziomu 1', (await p.locator('[data-go="d/test"]').count()) === 1 && (await p.locator('#cfg').count()) === 1);
+  check('menu: "Test wyjść" widoczne od poziomu 1', (await p.locator('[data-go="d/test"]').count()) === 1);
+  check('menu: "Konfiguracja" (kotla) widoczna od poziomu 1', (await p.locator('[data-go="d/konf"]').count()) === 1);
+  await goHash('#/d/konf');
+  check('konfiguracja: profil instalacji widoczny, "Dmuchawa z HALL" jeszcze nie (wymaga poziomu 2)', /Autokonfiguracja/i.test(await p.innerText('body')) && !/Dmuchawa z HALL/i.test(await p.innerText('body')));
   await goHash('#/d/test');
   check('test wyjść: na poziomie 1 widac tylko informacje, bez punktow (wymaga poziomu 2)', /poziomu 2/i.test(await p.innerText('body')) && !/Podajnik tryb/i.test(await p.innerText('body')));
   // Przycisk "Poziom kotła" w Menu zawsze pyta o poziom 1 (ensureLevel(1)) - gdy poziom 1 juz jest aktywny,
@@ -146,6 +150,8 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   // nie jest uzywana przez points_json(); liczy sie to, ze punkt jest teraz zapisywalny (poziom 2).
   check('test wyjść: feeder/blower widoczne po PIN 0999 (osobny ekran, jak w oryginale)', /Podajnik tryb/i.test(await p.innerText('body')) && /Dmuchawa tryb/i.test(await p.innerText('body')));
   await p.screenshot({ path: OUT + '/ui_test_wyjsc_poziom2.png', fullPage: true });
+  await goHash('#/d/konf');
+  check('konfiguracja: "Dmuchawa z HALL" widoczna po PIN 0999 (poziom 2)', /Dmuchawa z HALL/i.test(await p.innerText('body')));
 
   // ---------------------------------------------------------------- menu: oryginalna karta i konfiguracja otwieraja sie bez PIN-u aplikacji
   // (Konfiguracja jest tu widoczna, bo wciaz jestesmy na poziomie 2 - "wygasanie" nizej zdejmuje ten poziom)

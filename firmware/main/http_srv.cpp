@@ -179,6 +179,11 @@ bool http_start(tpc::Api* api, SemaphoreHandle_t dev_mutex) {
     cfg.uri_match_fn = httpd_uri_match_wildcard;
     cfg.recv_wait_timeout = 10;
     cfg.send_wait_timeout = 10;
+    // ESP32-C6 jest jednordzeniowy, a zadanie odbioru CAN (main.cpp) dziala z priorytetem 6, co 1 ms, bez
+    // przerwy - przy domyslnym priorytecie httpd (5) ściaga caly procesor podczas dlugich transferow
+    // (np. OTA ~1,5 MB), co urywa polaczenie po ok. 20 s (obserwowane w dziennikach urzadzenia). Zrownanie
+    // priorytetu httpd z zadaniem CAN daje mu sprawiedliwy czas procesora bez psucia odbioru CAN na biezaco.
+    cfg.task_priority = 6;
     httpd_handle_t srv = nullptr;
     if (httpd_start(&srv, &cfg) != ESP_OK) { ESP_LOGE(TAG, "nie mozna uruchomic serwera HTTP"); return false; }
     httpd_uri_t ota = {"/api/v1/ota", HTTP_POST, ota_handler, nullptr};

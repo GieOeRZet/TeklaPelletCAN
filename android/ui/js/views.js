@@ -313,6 +313,49 @@ export function palnik() {
   });
 }
 
+/** "Konfiguracja" (kotla) jak w oryginale: profil instalacji odczytany z kotla (sensor "conf_txt" -
+ * ciag liczb rozdzielonych spacja, dekodowany tak samo jak w oryginalnej karcie). Widoczna w Menu od
+ * poziomu 1, ostatnia pozycja ("Dmuchawa z HALL") dopiero od poziomu 2 - identycznie jak w oryginale. */
+export function konfiguracja() {
+  const root = el('<div><div id="bn"></div></div>');
+  let shownLevel = -1;
+  const draw = () => {
+    shownLevel = level();
+    root.innerHTML = ''; root.appendChild(el('<div id="bn"></div>'));
+    const raw = (v('sensor.tekla_konfiguracja_kotla') || '').trim().split(/\s+/);
+    const g = i => (/^-?\d+$/.test(raw[i] || '') ? parseInt(raw[i], 10) : null);
+    const onoff = i => { const x = g(i); return x == null ? '-' : (x ? 'WŁ' : 'WYŁ'); };
+    const lst = (i, a) => { const x = g(i); return x == null ? '-' : (a[x] != null ? a[x] : String(x)); };
+    const numv = i => { const x = g(i); return x == null ? '-' : String(x); };
+    const cap = num('sensor.tekla_zbiornik_pojemnosc');
+    const sec = el('<div class="sec"><h5>Konfiguracja</h5></div>'); root.appendChild(sec);
+    const row = (n, val) => sec.appendChild(el(`<div class="row"><span>${esc(n)}</span><span class="v">${esc(String(val))}</span></div>`));
+    row('Autokonfiguracja', onoff(0));
+    row('Główny moduł IO', lst(1, ['BIG', 'CAN IO']));
+    row('Ilość obwodów grzewczych', '-');
+    row('Czujnik temperatury zewnętrznej', lst(2, ['brak', 'CTZ1', 'CAN']));
+    row('Uśrednianie temp. zewnętrznej [h]', numv(3));
+    row('Ciepła woda użytkowa', onoff(4));
+    row('Solary', onoff(5));
+    row('Bufor', onoff(6));
+    row('Moduł Lambda', onoff(7));
+    row('Czujnik rezerwy paliwa', onoff(8));
+    row('Pojemność zbiornika paliwa [kg]', Number.isFinite(cap) ? fmt(cap, 0) : '-');
+    row('Rezerwa zbiornika paliwa [kg]', numv(9));
+    row('Czujnik powrotu do kotła', onoff(10));
+    row('Numer profilu', numv(11));
+    row('Pompa kotłowa', lst(12, ['ładująca', 'ochrony powrotu']));
+    row('Kaskada master', onoff(13));
+    row('Czujnik ciśnienia', onoff(14));
+    row('Dodatkowy magazyn paliwa', onoff(15));
+    row('Pomiar energii', onoff(16));
+    row('Kopiuj nastawy z innego sterownika', '-');
+    if (shownLevel >= 2) row('Dmuchawa z HALL', onoff(17));
+  };
+  draw();
+  return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); if (level() !== shownLevel) draw(); } };
+}
+
 /** "Test wyjść" jak w oryginale: osobna strona (Menu -> widoczna juz od poziomu 1, zawartosc wymaga poziomu 2). */
 export function testWyjsc() {
   return domainScreen((root, sec, byGroup, shownLevel) => {
