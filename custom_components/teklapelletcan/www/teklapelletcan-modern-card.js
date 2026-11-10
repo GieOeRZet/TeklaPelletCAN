@@ -73,9 +73,12 @@ const CSS = `
 :root { --bg:#111318; --card:#1c1f27; --card2:#12151b; --line:#2b303b; --txt:#e8eaf0; --dim:#9aa1b2; --acc:#ff7a1a; --ok:#4cc38a; --err:#ef5350; --blue:#4a86e8; --warn:#f2b441; }
 * { box-sizing:border-box; }
 :host { display:block; }
-/* Karta ma STAŁĄ wysokość (jak classic) – ekrany (pulpit/instalacja/.../parametry) przewijają się w swoim
-   wnętrzu (.body), więc długie listy (Parametry, Harmonogram) nie rozpychają już całej karty na dashboardzie. */
-.wrap { background:var(--bg); color:var(--txt); font:15px/1.4 Roboto, system-ui, sans-serif; border-radius:var(--ha-card-border-radius,12px); overflow:hidden; display:flex; flex-direction:column; height:480px; }
+/* Responsywny rozmiar jak karta classic (width:100%, bez sztywnej wysokosci w px) - zeby obie karty mialy
+   spojny, przewidywalny rozmiar na dashboardzie niezaleznie od szerokosci kolumny. Proporcja 3:2 (a nie
+   768:437 jak classic) - ta karta ma gestszy, pionowy uklad tresci (kafelki/listy w stylu aplikacji, nie
+   namalowany panel), wiec wezsza proporcja classic zostawialaby za malo wysokosci. Ekrany (pulpit/instalacja/
+   .../parametry) nadal przewijaja sie w swoim wnetrzu (.body) dla dluzszych list (Parametry, Harmonogram). */
+.wrap { background:var(--bg); color:var(--txt); font:15px/1.4 Roboto, system-ui, sans-serif; border-radius:var(--ha-card-border-radius,12px); overflow:hidden; display:flex; flex-direction:column; width:100%; aspect-ratio:4/5; }
 .hdr { flex:0 0 auto; display:flex; align-items:center; gap:10px; padding:10px 12px; }
 .hdr b { flex:1; font-size:16px; }
 .ico { width:36px; height:36px; border-radius:50%; background:var(--card); border:0; color:inherit; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer; }
@@ -107,7 +110,6 @@ const CSS = `
 .row { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 0; border-top:1px solid var(--line); width:100%; background:none; border-left:0; border-right:0; border-bottom:0; color:inherit; text-align:left; cursor:pointer; }
 .row:first-of-type { border-top:0; }
 .row .v { color:var(--dim); flex:0 0 auto; min-width:4.2em; text-align:right; }
-.row .lk { color:var(--warn); font-size:11px; margin-left:6px; }
 .hint { color:var(--dim); font-size:12px; margin-top:4px; }
 .stepper { display:flex; align-items:center; justify-content:space-between; background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:8px 12px; margin:6px 0; }
 .stepper button { width:42px; height:42px; border-radius:50%; border:0; background:#2b303b; color:#fff; font-size:22px; cursor:pointer; }
@@ -130,7 +132,6 @@ const CSS = `
 const SCH = [['CWU', 'sch_cwu_txt', 0], ['CO', 'sch_co_txt', 1], ['Kocioł', 'sch_boil_txt', 2]];
 const DAYS = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
 const SCREENS = [['pulpit', 'Pulpit'], ['instalacja', 'Instalacja'], ['nastawy', 'Nastawy'], ['parametry', 'Parametry'], ['harmonogram', 'Harmonogram'], ['alarmy', 'Alarmy']];
-const DEFAULT_HEIGHT = 480;
 
 class TeklaModernCard extends HTMLElement {
   setConfig(c) {
@@ -143,8 +144,7 @@ class TeklaModernCard extends HTMLElement {
     this._scroll = this._scroll || {};
     if (!this.shadowRoot) this.attachShadow({ mode: 'open' });
   }
-  _height() { const h = parseInt(this._cfg && this._cfg.height, 10); return Number.isFinite(h) && h >= 280 ? h : DEFAULT_HEIGHT; }
-  getCardSize() { return Math.max(1, Math.round(this._height() / 50)); }
+  getCardSize() { return 6; }
   set hass(hass) {
     this._hass = hass;
     this._render();
@@ -353,7 +353,6 @@ class TeklaModernCard extends HTMLElement {
       const st = document.createElement('style'); st.textContent = CSS; root.appendChild(st);
       root.appendChild(el('<div class="wrap"><div id="hdr"></div><div id="nav" class="nav"></div><div id="body" class="body"></div><div id="dots" class="dots"></div><div id="overlay"></div></div>'));
     }
-    const wrap = root.querySelector('.wrap'); wrap.style.height = this._height() + 'px';
     const { devs, dev, idx } = this._idx();
     this._lastIdx = idx;
     const body = root.getElementById('body');
@@ -466,8 +465,10 @@ class TeklaModernCard extends HTMLElement {
     return root;
   }
 
-  // Wiersz pojedynczego parametru (dowolny punkt zapisywalny) – wartosc + poziom wymagany, klik otwiera
-  // ten sam edytor co _stepperRow/_modeChips (_editPoint rozpoznaje liczbowy/enum i wybiera usluge sam).
+  // Wiersz pojedynczego parametru (dowolny punkt zapisywalny) – wartosc, klik otwiera ten sam edytor co
+  // _stepperRow/_modeChips (_editPoint rozpoznaje liczbowy/enum i wybiera usluge sam). Punkty poziomu 1/2
+  // sa calkowicie niewidoczne, dopoki ten poziom nie jest aktywny (bez PIN-u - zero sladu, bez klodki) -
+  // _parametry() filtruje je juz wczesniej, wiec tutaj trafiaja tylko punkty na biezacym poziomie.
   _paramRow(id) {
     const p = TPC_POINTS_BY_ID[id];
     if (!p) return el('<div></div>');
@@ -479,7 +480,7 @@ class TeklaModernCard extends HTMLElement {
     } else {
       val = f1(this.pn(id)) + (p.unit ? ' ' + p.unit : '');
     }
-    const r = el(`<button class="row"><span>${esc(p.name)}${p.level ? ' <span class="lk">🔒' + p.level + '</span>' : ''}</span><span class="v">${esc(val)}</span></button>`);
+    const r = el(`<button class="row"><span>${esc(p.name)}</span><span class="v">${esc(val)}</span></button>`);
     r.onclick = () => this._editPoint(id);
     return r;
   }
@@ -493,7 +494,8 @@ class TeklaModernCard extends HTMLElement {
       ['CWU (ciepła woda)', /^(cwu_|hw_set)/],
       ['Alarmy', /^alarm_/],
     ];
-    const writable = TPC_POINTS.filter(p => p.writable && p.id !== 'tank_kg');
+    const lvl = this.level();
+    const writable = TPC_POINTS.filter(p => p.writable && p.id !== 'tank_kg' && (!p.level || lvl >= p.level));
     const used = new Set();
     const root = el('<div></div>');
     for (const [label, re] of GROUPS) {
@@ -565,7 +567,7 @@ class TeklaModernCardEditor extends HTMLElement {
     if (!this._form) {
       const info = document.createElement('div');
       info.style.cssText = 'font-size:13px;line-height:1.45;margin:0 0 10px;opacity:.9';
-      info.textContent = 'Nowa karta (styl aplikacji) wyłącznie dla integracji TeklaPelletCAN – encje dobierane automatycznie po ID punktu. Karta ma stałą wysokość – dłuższe ekrany (Parametry, Harmonogram) przewijają się w jej wnętrzu.';
+      info.textContent = 'Nowa karta (styl aplikacji) wyłącznie dla integracji TeklaPelletCAN – encje dobierane automatycznie po ID punktu. Karta ma taką samą proporcję jak karta classic – dłuższe ekrany (Parametry, Harmonogram) przewijają się w jej wnętrzu.';
       this.appendChild(info);
       this._form = document.createElement('ha-form');
       this._form.computeLabel = s => s.label || s.name;
@@ -575,16 +577,14 @@ class TeklaModernCardEditor extends HTMLElement {
     const devs = this._hass ? ourDevices(this._hass) : [];
     const schema = [
       { name: 'boiler_image', label: 'Grafika kotła', selector: { select: { mode: 'dropdown', options: [{ value: '11', label: 'Typ 11' }, { value: '12', label: 'Typ 12' }, { value: '13', label: 'Typ 13' }, { value: '14', label: 'Typ 14' }] } } },
-      { name: 'height', label: 'Wysokość karty (px)', selector: { number: { mode: 'box', min: 320, max: 900, step: 10 } } },
     ];
     if (devs.length > 1) schema.unshift({ name: 'device_id', label: 'Urządzenie', selector: { select: { mode: 'dropdown', options: [{ value: 'auto', label: 'Automatycznie' }].concat(devs.map(d => ({ value: d.id, label: d.name }))) } } });
     this._form.schema = schema;
-    this._form.data = Object.assign({ height: DEFAULT_HEIGHT }, this._cfg, { device_id: this._cfg.device_id || 'auto' });
+    this._form.data = Object.assign({}, this._cfg, { device_id: this._cfg.device_id || 'auto' });
     if (this._hass) this._form.hass = this._hass;
   }
   _changed(v) {
     const cfg = Object.assign({}, this._cfg, { boiler_image: v.boiler_image || '13' });
-    if (v.height && +v.height !== DEFAULT_HEIGHT) cfg.height = +v.height; else delete cfg.height;
     if (v.device_id && v.device_id !== 'auto') cfg.device_id = v.device_id; else delete cfg.device_id;
     this._cfg = cfg;
     this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: cfg }, bubbles: true, composed: true }));
