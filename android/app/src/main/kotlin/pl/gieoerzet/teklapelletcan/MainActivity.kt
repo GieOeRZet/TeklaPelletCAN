@@ -638,7 +638,7 @@ class MainActivity : Activity() {
         @JavascriptInterface fun resetSecurity() { security.reset(); gate.lock(); wasUnlocked = false }
 
         // --- okna urządzenia i narzędzia
-        @JavascriptInterface fun openOriginal() { main.post { openDeviceWindow("index.html", "Panel kotła (oryginał)") } }
+        @JavascriptInterface fun openOriginal() { main.post { openDeviceWindow("classic.html", "Panel kotła (oryginał)") } }
         @JavascriptInterface fun openDeviceSettings() { main.post { openDeviceWindow("settings.html", "Konfiguracja modułu") } }
         @JavascriptInterface fun openSetup() {
             main.post {
