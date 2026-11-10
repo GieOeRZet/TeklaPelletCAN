@@ -347,6 +347,7 @@ jobs:
         run: |
           rm -rf /tmp/pub && mkdir -p /tmp/pub
           git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/GieOeRZet/TeklaPelletCAN_HA.git" /tmp/pub
+          mkdir -p /tmp/pub/custom_components/teklapelletcan
           rsync -a --delete --exclude='__pycache__' custom_components/teklapelletcan/ /tmp/pub/custom_components/teklapelletcan/
           cd /tmp/pub
           git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
