@@ -4,6 +4,17 @@ import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ens
 import * as V from './views.js';
 import { fuelSheet, zasilanieSheet } from './views.js';
 import { checkUpdates, dismissed, dismiss } from './updates.js';
+import { getTheme, setTheme, getDefaultStyle, setDefaultStyle } from './theme.js';
+
+// Domyslny styl interfejsu = "klasyczny" (Estyma) -> od razu przeskakujemy do repliki oryginalnego
+// panelu, zamiast renderowac styl nowoczesny. Dziala identycznie w apce (przelacza WebView mostem
+// natywnym) i w portalu urzadzenia (zwykle przekierowanie na classic.html). Wybor dotyczy TYLKO
+// startu - z menu zawsze da sie wejsc w drugi styl ("Panel kotła (oryginał)" / linki w klasyku).
+if (getDefaultStyle() === 'classic' && !location.hash.includes('/wyglad')) {
+  const st0chk = nat.state();
+  if (st0chk.web) location.replace('classic.html');
+  else nat.openOriginal();
+}
 
 const app = $('#app');
 let cur = null, unsub = null, route = '';
@@ -110,6 +121,7 @@ async function render() {
   }
   if (r === 'devices') return viewDevices();
   if (r === 'app') return viewAppSettings();
+  if (r === 'wyglad') return viewAppearance();
   if (r.startsWith('d/')) {
     if (!st.deviceName) return go('devices');
     const parts = r.split('/'), page = parts[1];
@@ -150,7 +162,7 @@ window.__tpcBack = () => {
   if (r === 'devices' || r === 'start' || r === 'setup' || r === '') return false;
   if (r === 'd/pulpit') { toLeave(); return true; }
   if (r.startsWith('d/') && r !== 'd/menu' && !['d/instalacja', 'd/alarmy', 'd/harmonogram'].includes(r)) { history.back(); return true; }
-  if (r === 'd/menu' || r === 'app') { r === 'app' ? history.back() : go('d/pulpit'); return true; }
+  if (r === 'd/menu' || r === 'app' || r === 'wyglad') { r === 'd/menu' ? go('d/pulpit') : history.back(); return true; }
   go('d/pulpit'); return true;
 };
 function toLeave() { go('d/menu'); }   // z pulpitu „wstecz” otwiera menu (nie zamyka aplikacji)
@@ -301,6 +313,7 @@ function viewMenu() {
     <button class="row nav2" id="orig"><span>Panel kotła (oryginał)</span></button>
     <button class="row nav2" id="cfg"><span>Konfiguracja modułu</span></button>
     ${st.web ? '' : '<button class="row nav2" data-go="devices"><span>Zmień urządzenie</span></button>'}</div>
+    <div class="sec"><h5>Wygląd</h5><button class="row nav2" data-go="wyglad"><span>Motyw i styl interfejsu</span></button></div>
     ${st.web ? '' : '<div class="sec"><h5>Aplikacja</h5><button class="row nav2" data-go="app"><span>Ustawienia aplikacji</span></button></div>'}
     <div class="hint" style="text-align:center">${st.web ? '' : 'Aplikacja ' + esc(st.version) + ' · '}firmware ${esc(S.info.fw || '?')}</div></div>`);
   const sc = chrome('Menu', body, 'main');
@@ -316,6 +329,30 @@ function viewMenu() {
     refreshChip();
     const l = $('#lvv', body); if (l) l.textContent = 'poziom ' + level();
     if ((level() >= 1) !== unlocked1) render();   // "Test wyjść"/"Konfiguracja" pojawiaja/chowaja sie od razu
+  });
+}
+
+// ------------------------------------------------------------------ wyglad (motyw + domyslny styl)
+function viewAppearance() {
+  const st = nat.state();
+  const themeNow = getTheme();
+  const styleNow = getDefaultStyle();
+  const chipRow = (id, opts, cur) => `<div class="chips" id="${id}">${opts.map(([k, l]) => `<button data-k="${k}" class="${cur === k ? 'on' : ''}">${esc(l)}</button>`).join('')}</div>`;
+  const body = el(`<div>
+    <div class="sec"><h5>Motyw</h5><div class="hint" style="margin-bottom:6px">Dotyczy tego, nowoczesnego stylu interfejsu (nie karty klasycznej).</div>
+      ${chipRow('thm', [['dark', 'Ciemny'], ['light', 'Jasny'], ['auto', 'Systemowy']], themeNow)}</div>
+    ${st.web ? '' : `<div class="sec"><h5>Domyślny styl</h5><div class="hint" style="margin-bottom:6px">Który interfejs otwiera się przy starcie aplikacji. Drugi zawsze dostępny z Menu.</div>
+      ${chipRow('sty', [['modern', 'Nowoczesny'], ['classic', 'Klasyczny (Estyma)']], styleNow)}</div>`}</div>`);
+  chrome('Wygląd', body, 'sub');
+  $('#thm', body).querySelectorAll('button').forEach(b => b.onclick = () => {
+    setTheme(b.dataset.k);
+    $('#thm', body).querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+  });
+  const styBox = $('#sty', body);
+  if (styBox) styBox.querySelectorAll('button').forEach(b => b.onclick = () => {
+    setDefaultStyle(b.dataset.k);
+    styBox.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    if (b.dataset.k === 'classic') nat.openOriginal();
   });
 }
 

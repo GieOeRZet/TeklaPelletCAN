@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "web"
 UI_SRC = ROOT / "android/ui"
-UI_FILES = ["js/store.js", "js/ui.js", "js/views.js", "js/main.js", "js/updates.js", "style.css"]
+UI_FILES = ["js/store.js", "js/ui.js", "js/views.js", "js/main.js", "js/updates.js", "js/theme.js", "style.css"]
 
 
 def pairs():
