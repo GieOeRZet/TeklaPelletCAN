@@ -159,6 +159,7 @@ const GROUP_OF = {
   exh_c4: 'palnik_krzywe_p1', exh_c5: 'palnik_krzywe_p1',
   cwu_hyst: 'cwu_konf_p0', cwu_boost: 'cwu_konf_p0', cwu_prio: 'cwu_konf_p0', cwu_legion: 'cwu_konf_p0',
   cwu_src: 'cwu_konf_p1', cwu_src_inc: 'cwu_konf_p1', cwu_delta: 'cwu_konf_p1', cwu_tmax: 'cwu_konf_p1',
+  alarm_snd: 'alarm_konf_p1', alarm_sil_from: 'alarm_konf_p1', alarm_sil_to: 'alarm_konf_p1',
 };
 
 class TeklaModernCard extends HTMLElement {

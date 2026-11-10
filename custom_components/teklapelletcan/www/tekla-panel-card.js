@@ -47,6 +47,7 @@ const ROLE_KEY = {
   kociol_p0: 'kociol_konfiguracja_poziom_0', kociol_p1: 'kociol_konfiguracja_poziom_1', kociol_p2: 'kociol_konfiguracja_poziom_2',
   palnik_krzywe: 'palnik_krzywe_dmuchawy_i_spalin_poziom_1',
   cwu_p0: 'cwu_konfiguracja_poziom_0', cwu_p1: 'cwu_konfiguracja_poziom_1',
+  alarm_p1: 'alarmy_ustawienia_poziom_1',
 };
 // Role skonsolidowane w grupy (patrz AttrGroup w firmware/engine.cpp): encja osobna nie istnieje juz w HA,
 // wartosc jest atrybutem encji grupy (klucz atrybutu = nazwa roli, jak w tej mapie). _s() nizej czyta ja
@@ -84,6 +85,7 @@ const GROUP_OF = {
   legion: ['cwu_p0', 'cwu_legion'],
   cwu_src: ['cwu_p1', 'cwu_src'], cwu_src_inc: ['cwu_p1', 'cwu_src_inc'], cwu_delta: ['cwu_p1', 'cwu_delta'],
   cwu_tmax: ['cwu_p1', 'cwu_tmax'],
+  alarm_snd: ['alarm_p1', 'alarm_snd'], alarm_sil_from: ['alarm_p1', 'alarm_sil_from'], alarm_sil_to: ['alarm_p1', 'alarm_sil_to'],
 };
 const SCREEN_OPTS = [
   ['main', 'Ekran główny'], ['heat', 'Ogrzewanie'], ['water', 'Woda użytkowa'], ['burn', 'Palnik'], ['quick', 'Szybkie ustawienia (okno)'], ['fuel', 'Paliwo (okno)'],

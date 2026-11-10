@@ -39,9 +39,7 @@ const Entity kEntities[] = {
     {"text_sensor", "cwu_konf_p0", "CWU konfiguracja (poziom 0)", "", "", ""},
     {"text_sensor", "cwu_konf_p1", "CWU konfiguracja (poziom 1)", "", "", ""},
     {"text_sensor", "palnik_krzywe_p1", "Palnik krzywe dmuchawy i spalin (poziom 1)", "", "", ""},
-    {"sensor", "alarm_snd", "Alarm dzwiekowy", "", "", "alarm_snd"},
-    {"sensor", "alarm_sil_from", "Alarm cisza od", "", "", "alarm_sil_from"},
-    {"sensor", "alarm_sil_to", "Alarm cisza do", "", "", "alarm_sil_to"},
+    {"text_sensor", "alarm_konf_p1", "Alarmy ustawienia (poziom 1)", "", "", ""},
     {"sensor", "k_pwr", "Kociol moc palnika", "kW", "", "k_pwr"},
     {"sensor", "k_cons", "Kociol zuzycie paliwa", "kg/h", "", "k_cons"},
     {"sensor", "k_grate_t", "Kociol czas do czyszczenia rusztu", "min", "", "k_grate_t"},
@@ -111,6 +109,6 @@ const Entity kEntities[] = {
     {"button", "dmuchawa_wlacz_czasowo", "Dmuchawa: Wlacz (czasowo)", "", "", ""},
 };
 
-const unsigned kEntityCount = 105;
+const unsigned kEntityCount = 103;
 
 }  // namespace tpc

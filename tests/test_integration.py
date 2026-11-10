@@ -136,10 +136,13 @@ async def test_entities_have_esphome_compatible_ids_and_values(hass: HomeAssista
     # CWU konfiguracja: skonsolidowane w 2 encje wg poziomu (dawniej 8 osobnych)
     cwuk = hass.states.get("sensor.tekla_cwu_konfiguracja_poziom_0")
     assert cwuk is not None and cwuk.attributes["cwu_legion"] == "30"
+    # Alarmy ustawienia: skonsolidowane w 1 encje (dawniej 3 osobne)
+    alk = hass.states.get("sensor.tekla_alarmy_ustawienia_poziom_1")
+    assert alk is not None and alk.attributes["alarm_snd"] == "30"
     # liczba encji: wszystkie z katalogu poza CO2 przy jednym obiegu (spadek z 165: konsolidacja
     # nastaw serwisowych - patrz AttrGroup w engine.cpp)
     ours = [s for s in hass.states.async_all() if s.entity_id.split(".")[1].startswith("tekla_")]
-    assert len(ours) >= 95
+    assert len(ours) >= 90
 
 
 async def test_services_have_card_compatible_names_and_write(hass: HomeAssistant, entry):
