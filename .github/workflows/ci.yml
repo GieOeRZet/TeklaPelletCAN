@@ -13,6 +13,26 @@ on:
         required: false
         type: boolean
         default: false
+      publish_integration:
+        description: "Opublikuj integrację HA do osobnego repo GieOeRZet/TeklaPelletCAN_HA (HACS instaluje stamtąd, nie z tego repo)."
+        required: false
+        type: boolean
+        default: false
+      publish_card_classic:
+        description: "Opublikuj kartę classic do osobnego repo GieOeRZet/TeklaPelletClassic-card."
+        required: false
+        type: boolean
+        default: false
+      publish_card_modern:
+        description: "Opublikuj kartę modern do osobnego repo GieOeRZet/TeklaPelletModern-card."
+        required: false
+        type: boolean
+        default: false
+      publish_apk:
+        description: "Opublikuj APK (wydanie GitHub z załącznikiem) do osobnego repo GieOeRZet/TeklaPelletDroid."
+        required: false
+        type: boolean
+        default: false
 jobs:
   host-tests:
     runs-on: ubuntu-latest
@@ -308,3 +328,113 @@ jobs:
           mapfile -t FILES < <(find art -type f \( -name 'teklapelletcan*.bin' -o -name 'teklapelletcan*.sig' -o -name 'teklapelletcan*.apk' \) | sort)
           echo "zalaczniki: ${FILES[*]}"
           gh release create "$TAG" --target "$GITHUB_SHA" --title "TeklaPelletCAN $TAG" --notes-file notes.md "${FILES[@]}"
+
+  # Od tego miejsca: publikacja do osobnych repozytoriów (HACS instaluje stamtad, nie z tego monorepo). Tylko na
+  # wyrazne zadanie (workflow_dispatch z odpowiednim inputem) - development dalej dzieje sie tutaj, w jednym miejscu,
+  # a te joby tylko wypychaja juz zbudowane/przetestowane pliki. Wymaga sekretu RELEASE_REPOS_TOKEN (fine-grained PAT
+  # z Contents: write na docelowych repozytoriach) - bez niego push zakonczy sie bledem autoryzacji.
+  publish-integration:
+    needs: host-tests
+    if: github.event_name == 'workflow_dispatch' && inputs.publish_integration == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publikuj do GieOeRZet/TeklaPelletCAN_HA
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_REPOS_TOKEN }}
+          TOKEN: ${{ secrets.RELEASE_REPOS_TOKEN }}
+          TAG: ${{ inputs.release_tag }}
+        run: |
+          rm -rf /tmp/pub && mkdir -p /tmp/pub
+          git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/GieOeRZet/TeklaPelletCAN_HA.git" /tmp/pub
+          rsync -a --delete --exclude='__pycache__' custom_components/teklapelletcan/ /tmp/pub/custom_components/teklapelletcan/
+          cd /tmp/pub
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "brak zmian w integracji"; else git commit -q -m "Synchronizacja z TeklaPelletCAN${TAG:+ ($TAG)}"; fi
+          git push origin HEAD:main
+          if [ -n "$TAG" ]; then
+            gh release view "$TAG" --repo GieOeRZet/TeklaPelletCAN_HA >/dev/null 2>&1 && gh release delete "$TAG" --repo GieOeRZet/TeklaPelletCAN_HA --yes
+            gh release create "$TAG" --repo GieOeRZet/TeklaPelletCAN_HA --target main --title "TeklaPelletCAN HA $TAG" --notes "Synchronizacja z głównego repo TeklaPelletCAN $TAG."
+          fi
+
+  publish-card-classic:
+    needs: [host-tests, web-ui]
+    if: github.event_name == 'workflow_dispatch' && inputs.publish_card_classic == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publikuj do GieOeRZet/TeklaPelletClassic-card
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_REPOS_TOKEN }}
+          TOKEN: ${{ secrets.RELEASE_REPOS_TOKEN }}
+          TAG: ${{ inputs.release_tag }}
+        run: |
+          rm -rf /tmp/pub && mkdir -p /tmp/pub
+          git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/GieOeRZet/TeklaPelletClassic-card.git" /tmp/pub
+          for f in pelletcan-card.js pelletcan-lang.js tekla-panel-card.js teklapelletcan-card.js teklapelletcan-points.js; do cp "web/$f" /tmp/pub/"$f"; done
+          rsync -a --delete web/img/ /tmp/pub/img/
+          cd /tmp/pub
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "brak zmian w karcie classic"; else git commit -q -m "Synchronizacja z TeklaPelletCAN${TAG:+ ($TAG)}"; fi
+          git push origin HEAD:main
+
+  publish-card-modern:
+    needs: [host-tests, web-ui]
+    if: github.event_name == 'workflow_dispatch' && inputs.publish_card_modern == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publikuj do GieOeRZet/TeklaPelletModern-card
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_REPOS_TOKEN }}
+          TOKEN: ${{ secrets.RELEASE_REPOS_TOKEN }}
+          TAG: ${{ inputs.release_tag }}
+        run: |
+          rm -rf /tmp/pub && mkdir -p /tmp/pub
+          git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/GieOeRZet/TeklaPelletModern-card.git" /tmp/pub
+          cp web/teklapelletcan-modern-card.js web/teklapelletcan-points.js /tmp/pub/
+          rsync -a --delete web/img/ /tmp/pub/img/
+          cd /tmp/pub
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "brak zmian w karcie modern"; else git commit -q -m "Synchronizacja z TeklaPelletCAN${TAG:+ ($TAG)}"; fi
+          git push origin HEAD:main
+
+  publish-apk:
+    needs: android
+    if: github.event_name == 'workflow_dispatch' && inputs.publish_apk == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: teklapelletcan-apk
+          path: art
+      - name: Zabezpieczenie – APK musi być podpisany kluczem produkcyjnym
+        run: |
+          if [ "$(cat art/signing.txt)" != "prod" ]; then
+            echo "::error::APK jest podpisany kluczem TESTOWYM - nie publikuje do TeklaPelletDroid."
+            exit 1
+          fi
+      - name: Publikuj do GieOeRZet/TeklaPelletDroid
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_REPOS_TOKEN }}
+          TOKEN: ${{ secrets.RELEASE_REPOS_TOKEN }}
+          TAG: ${{ inputs.release_tag }}
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          FULLTAG="${TAG:-v0.0.0+${RUN_NUMBER}}"
+          rm -rf /tmp/pub && mkdir -p /tmp/pub
+          git clone "https://x-access-token:${TOKEN}@github.com/GieOeRZet/TeklaPelletDroid.git" /tmp/pub || { mkdir -p /tmp/pub && cd /tmp/pub && git init -q -b main && git remote add origin "https://x-access-token:${TOKEN}@github.com/GieOeRZet/TeklaPelletDroid.git" && cd -; }
+          [ -f /tmp/pub/README.md ] || cp docs/APLIKACJA_ANDROID.md /tmp/pub/README.md 2>/dev/null || echo "# TeklaPelletDroid" > /tmp/pub/README.md
+          [ -f /tmp/pub/LICENSE ] || cp LICENSE /tmp/pub/LICENSE
+          cd /tmp/pub
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          git checkout -B main
+          git add -A
+          git diff --cached --quiet || git commit -q -m "Aktualizacja $FULLTAG"
+          git push -u origin main
+          gh release view "$FULLTAG" --repo GieOeRZet/TeklaPelletDroid >/dev/null 2>&1 && gh release delete "$FULLTAG" --repo GieOeRZet/TeklaPelletDroid --yes
+          gh release create "$FULLTAG" --repo GieOeRZet/TeklaPelletDroid --target main --title "TeklaPelletCAN Android $FULLTAG" --notes "Aplikacja Android TeklaPelletCAN, zsynchronizowana z głównego repo." "$GITHUB_WORKSPACE/art/teklapelletcan.apk"

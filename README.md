@@ -1,18 +1,38 @@
 # TeklaPelletCAN
 
-Własny firmware (ESP-IDF, C++) dla ESP32 z modułem CAN (MCP2515), który czyta i zapisuje parametry kotła pelletowego Tekla/Estyma po magistrali CAN (CANopen SDO, węzeł 4, 125 kbit/s). Następca projektu [PelletCAN](https://github.com/GieOeRZet/PelletCAN) (ESPHome) – bez ESPHome, z własnym portalem konfiguracji, własnym API, stroną WWW z pełną kartą, integracją Home Assistant i (później) aplikacją Android.
+Własny firmware (ESP-IDF, C++) dla ESP32-C6 z modułem CAN (MCP2515), który czyta i zapisuje parametry kotła pelletowego
+Tekla/Estyma po magistrali CAN (CANopen SDO, węzeł 4, 125 kbit/s) i udostępnia je przez REST API, własną stronę WWW
+(interfejs jak w aplikacji Android), integrację Home Assistant i aplikację Android.
 
-> Status: **projekt w początkowej fazie** – szkielet repozytorium i architektura. Zobacz [docs/ARCHITEKTURA.md](docs/ARCHITEKTURA.md).
+To jest repozytorium **rozwojowe** — tu powstaje firmware, integracja, karty i aplikacja. Gotowe wydania trafiają też
+do osobnych, dedykowanych repozytoriów (patrz niżej), żeby każdy element dało się zainstalować niezależnie.
 
-## Elementy
-| Katalog | Zawartość |
-|---|---|
-| `firmware/` | firmware ESP32 (ESP-IDF, C++): CAN/CANopen, API, portal AP, WWW |
-| `web/` | strona urządzenia i karty Lovelace: `pelletcan-card` (silnik renderowania, działa na stronie ESP i w HA – dowolna integracja/ESPHome), `teklapelletcan-card` (cienka nakładka wyłącznie dla integracji TeklaPelletCAN – auto-wykrywanie urządzenia, bez ręcznego mapowania encji) |
-| `custom_components/teklapelletcan/` | integracja Home Assistant (HACS) |
-| `android/` | aplikacja Android (później) |
-| `rejestry/` | katalog rejestrów CANopen kotła (przeniesiony z PelletCAN) |
-| `docs/` | dokumentacja i architektura |
+## Elementy projektu
+
+| Co | Gdzie zainstalować | Źródło w tym repo |
+|---|---|---|
+| Firmware (ESP32-C6) | [Wydania tego repo](../../releases) – wgrywane przez USB lub OTA | `firmware/` |
+| Integracja Home Assistant (HACS) | [GieOeRZet/TeklaPelletCAN_HA](https://github.com/GieOeRZet/TeklaPelletCAN_HA) | `custom_components/teklapelletcan/` |
+| Karta classic (replika panelu Igneo Touch) | [GieOeRZet/TeklaPelletClassic-card](https://github.com/GieOeRZet/TeklaPelletClassic-card) | `web/pelletcan-card.js`, `web/tekla-panel-card.js`, `web/teklapelletcan-card.js` |
+| Karta modern (styl aplikacji Android) | [GieOeRZet/TeklaPelletModern-card](https://github.com/GieOeRZet/TeklaPelletModern-card) | `web/teklapelletcan-modern-card.js` |
+| Aplikacja Android | [GieOeRZet/TeklaPelletDroid](https://github.com/GieOeRZet/TeklaPelletDroid) | `android/` |
+
+Portal urządzenia (`http://<adres-urządzenia>/`) działa od razu, bez żadnej z powyższych instalacji — serwowany jest
+bezpośrednio przez samo urządzenie i ma ten sam interfejs co aplikacja Android.
+
+## Jak zacząć
+
+1. Wgraj firmware na ESP32-C6 (patrz [docs/BUDOWANIE.md](docs/BUDOWANIE.md)).
+2. Połącz się z siecią Wi-Fi `TeklaPelletCAN-XXXX` wystawianą przez urządzenie i skonfiguruj hasło + Wi-Fi domowe.
+3. Otwórz `http://<adres-urządzenia>/` w przeglądarce — gotowe, sterowanie działa od razu.
+4. Opcjonalnie: zainstaluj integrację Home Assistant i/lub kartę, i/lub aplikację Android z repozytoriów w tabeli wyżej.
+
+Pełny opis architektury: [docs/ARCHITEKTURA.md](docs/ARCHITEKTURA.md).
 
 ## Zastrzeżenia
-Projekt niezależny i nieoficjalny, niezwiązany z firmami Tekla ani Estyma. Zapis parametrów na własne ryzyko (może naruszać gwarancję). Szczegóły i licencja – jak w PelletCAN, zobacz [LICENSE](LICENSE).
+
+Projekt jest niezależny i nieoficjalny, niezwiązany z firmami Tekla (producent kotłów) ani Estyma (producent
+sterowników). **TeklaPelletCAN nie jest zamiennikiem oryginalnego sterownika kotła** — to dodatkowe urządzenie
+podłączane do tej samej magistrali CAN, służące wyłącznie do odczytu i zapisu parametrów przez Home Assistant.
+Podłączenie i zapis parametrów odbywa się na własne ryzyko i może naruszać warunki gwarancji producenta oraz prowadzić
+do uszkodzenia lub nieprawidłowej pracy kotła/sterownika. Licencja: [LICENSE](LICENSE).

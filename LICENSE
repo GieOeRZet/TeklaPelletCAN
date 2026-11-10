@@ -1,24 +1,21 @@
-PelletCAN Non-Commercial License (źródła otwarte, bez użycia komercyjnego)
+TeklaPelletCAN Non-Commercial License
 Copyright (c) 2026 Roman Gorz (GieOeRZet)
 
-Wolno Ci kopiować, modyfikować i rozpowszechniać kod w tym repozytorium (firmware ESPHome, karta Home Assistant,
-dokumentacja, katalog rejestrów) pod warunkami:
-1. Zachowujesz informację o autorze (Roman Gorz, PelletCAN), link do repozytorium i treść tej licencji.
+Wolno Ci kopiować, modyfikować i rozpowszechniać kod w tym repozytorium pod warunkami:
+1. Zachowujesz informację o autorze, link do repozytorium i treść tej licencji.
 2. Wersje zmienione oznaczasz jako zmienione i udostępniasz na tej samej licencji.
 3. NIE WOLNO używać tej pracy komercyjnie ani do zarobku (sprzedaż, płatne usługi, instalacje na zlecenie, wbudowanie w
    produkt lub urządzenie sprzedawane, reklamy) bez uprzedniej pisemnej zgody autora. Użytek osobisty, domowy,
    edukacyjny i hobbystyczny jest dozwolony.
-Uwaga: zakaz użycia komercyjnego sprawia, że licencja nie jest licencją „open source” w rozumieniu OSI (kod z otwartymi źródłami).
 
-Niezależność, zgodność i prawa producentów: projekt jest niezależny i nieoficjalny. Nie jest związany z firmą Tekla
-(producentem kotłów) ani Estyma (producentem sterowników), nie jest przez nie zatwierdzony ani wspierany i nie zastępuje
-oryginalnych produktów. Jest z nimi zgodny i opiera się na ich rozwiązaniach (magistrala CAN, protokół CANopen, parametry
-sterownika i panelu) w celu współpracy z Home Assistant. Nazwy Tekla, Estyma, Igneo, Igneo Touch, a także wygląd panelu,
-jego grafiki, teksty i wszelkie inne materiały pochodzące od producentów, są ich własnością; wszelkie prawa do nich
-zastrzeżone są dla producentów. Licencja powyżej dotyczy wyłącznie własnego kodu i dokumentacji autora, nie obejmuje
-materiałów producentów. Na wyraźną prośbę właściciela praw wskazana treść zostanie niezwłocznie usunięta.
+Niezależność i zgodność: projekt jest niezależny i nieoficjalny. Nie jest związany z firmą Tekla (producentem kotłów) ani
+Estyma (producentem sterowników), nie jest przez nie zatwierdzony ani wspierany. TeklaPelletCAN NIE JEST zamiennikiem
+oryginalnego sterownika kotła – to dodatkowe urządzenie podłączane do magistrali CAN obok istniejącego sterownika, w celu
+odczytu i zapisu parametrów przez Home Assistant. Nazwy Tekla, Estyma oraz wszelkie materiały (grafiki, teksty, wygląd
+panelu) pochodzące od tych producentów są ich własnością; licencja powyżej dotyczy wyłącznie własnego kodu i
+dokumentacji autora.
 
-Gwarancja i odpowiedzialność: oprogramowanie dostarczane jest „tak jak jest”, bez żadnej gwarancji. Użycie z urządzeniem innym niż
-produkt dopuszczony przez producenta kotła (Tekla) i producenta sterowników (Estyma) może naruszać warunki gwarancji i prowadzić
-do uszkodzenia lub nieprawidłowej pracy kotła/sterownika. Całe ryzyko, w tym za wszelkie zmiany sprzętowe, ponosi użytkownik;
-autor nie odpowiada za żadne szkody.
+Gwarancja i odpowiedzialność: oprogramowanie i urządzenie dostarczane są „tak jak jest”, bez żadnej gwarancji. Podłączenie
+do magistrali CAN kotła i zapis parametrów odbywa się na własne ryzyko – może naruszać warunki gwarancji producenta
+i prowadzić do uszkodzenia lub nieprawidłowej pracy kotła/sterownika. Całe ryzyko ponosi użytkownik; autor nie
+odpowiada za żadne szkody.
