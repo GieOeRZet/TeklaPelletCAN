@@ -127,10 +127,15 @@ class TeklaPanelCard extends HTMLElement {
   _node() { return this._cfg.esphome_node || 'tekla_estyma'; }
   _svc(name, data) { if (this._hass) this._hass.callService((this._cfg && this._cfg.service_domain) || 'teklapelletcan', this._node() + '_' + name, data || {}); }
   _refresh(force) { const n = Date.now(); if (!force && n - (this._rfAt || 0) < 30000) return; this._rfAt = n; this._svc('schedule_refresh'); }
-  // harmonogram: kind 0 = CWU, 1 = CO, 2 = kocioł; zwraca 7 liczb (24 bity) albo null
+  // harmonogram: kind 0 = CWU, 1 = CO, 2 = kocioł; zwraca 7 liczb (24 bity) albo null. Od konsolidacji
+  // encji (patrz integracja) stan to juz tylko liczba dni z odczytem - same maski godzin (hex) sa w
+  // atrybutach d0..d6 encji (jeden na dzien), zamiast w jednym tekscie do rozbijania po spacji.
   _bits(kind) {
     const s = this._s(['sch_cwu', 'sch_co', 'sch_boil'][kind]), arr = new Array(7).fill(null);
-    if (s && !['unknown', 'unavailable'].includes(s.state)) s.state.trim().split(/\s+/).forEach((h, i) => { if (i < 7 && /^[0-9A-Fa-f]{6}$/.test(h)) arr[i] = parseInt(h, 16); });
+    if (s && !['unknown', 'unavailable'].includes(s.state)) {
+      const a = s.attributes || {};
+      for (let i = 0; i < 7; i++) { const h = a['d' + i]; if (/^[0-9A-Fa-f]{6}$/.test(h || '')) arr[i] = parseInt(h, 16); }
+    }
     const sp = this._sp || (this._sp = {});
     for (let d = 0; d < 7; d++) { const q = sp[kind + ':' + d]; if (q) { if (arr[d] === q.bits || Date.now() - q.t > 20000) delete sp[kind + ':' + d]; else arr[d] = q.bits; } }
     return arr;

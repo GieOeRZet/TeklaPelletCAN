@@ -1040,9 +1040,22 @@
       sch_boil: '000000 000000 000000 000000 000000 000000 000000', sch_co: '03FC3C 03FC3C 03FC3C 03FC3C 03FC3C 03FC3C 03FC3C', sch_cwu: 'FFFFFF FFFFFF FFFFFF FFFFFF FFFFFF FFFFFF FFFFFF'
     };
     window.__teklaDemo = DEMO;
+    const SCH_ROLES = ['sch_boil', 'sch_co', 'sch_cwu'];
     const os0 = C.prototype._s;
     C.prototype._s = function (k) {
-      if (this._cfg && this._cfg.demo) { const v = DEMO[k]; return v === undefined ? undefined : { state: String(v), attributes: {} }; }
+      if (this._cfg && this._cfg.demo) {
+        const v = DEMO[k];
+        if (v === undefined) return undefined;
+        // Harmonogramy (rejestry) sa od konsolidacji encji: stan = liczba dni, maski godzin w atrybutach
+        // d0..d6 - jak realne urzadzenie - zeby demo pokazywalo te same paski co prawdziwa encja.
+        if (SCH_ROLES.includes(k)) {
+          const days = String(v).trim().split(/\s+/);
+          const attrs = {}; let n = 0;
+          days.forEach((h, i) => { attrs['d' + i] = h; if (h !== '------') n++; });
+          return { state: String(n), attributes: attrs };
+        }
+        return { state: String(v), attributes: {} };
+      }
       return os0.call(this, k);
     };
     const sc2 = C.prototype.setConfig;
