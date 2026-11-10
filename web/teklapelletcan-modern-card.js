@@ -73,16 +73,21 @@ const CSS = `
 :root { --bg:#111318; --card:#1c1f27; --card2:#12151b; --line:#2b303b; --txt:#e8eaf0; --dim:#9aa1b2; --acc:#ff7a1a; --ok:#4cc38a; --err:#ef5350; --blue:#4a86e8; --warn:#f2b441; }
 * { box-sizing:border-box; }
 :host { display:block; }
-.wrap { background:var(--bg); color:var(--txt); font:15px/1.4 Roboto, system-ui, sans-serif; border-radius:var(--ha-card-border-radius,12px); overflow:hidden; }
-.hdr { display:flex; align-items:center; gap:10px; padding:10px 12px; }
+/* Karta ma STAŁĄ wysokość (jak classic) – ekrany (pulpit/instalacja/.../parametry) przewijają się w swoim
+   wnętrzu (.body), więc długie listy (Parametry, Harmonogram) nie rozpychają już całej karty na dashboardzie. */
+.wrap { background:var(--bg); color:var(--txt); font:15px/1.4 Roboto, system-ui, sans-serif; border-radius:var(--ha-card-border-radius,12px); overflow:hidden; display:flex; flex-direction:column; height:480px; }
+.hdr { flex:0 0 auto; display:flex; align-items:center; gap:10px; padding:10px 12px; }
 .hdr b { flex:1; font-size:16px; }
 .ico { width:36px; height:36px; border-radius:50%; background:var(--card); border:0; color:inherit; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer; }
 .chip { display:inline-flex; gap:6px; align-items:center; padding:5px 10px; border-radius:999px; font-size:12px; background:#2b303b; border:0; color:inherit; cursor:pointer; white-space:nowrap; }
 .chip.open { background:rgba(76,195,138,.18); color:var(--ok); }
-.nav { display:flex; gap:3px; padding:0 10px 8px; overflow-x:auto; scrollbar-width:none; } .nav::-webkit-scrollbar { display:none; }
+.nav { flex:0 0 auto; display:flex; gap:3px; padding:0 10px 8px; overflow-x:auto; scrollbar-width:none; } .nav::-webkit-scrollbar { display:none; }
 .nav button { background:#2b303b; color:var(--dim); border:0; border-radius:999px; padding:6px 9px; font-size:11.5px; white-space:nowrap; cursor:pointer; flex:0 0 auto; }
 .nav button.on { background:var(--acc); color:#1a1208; font-weight:700; }
-.body { padding:0 12px 12px; }
+.dots { flex:0 0 auto; display:flex; justify-content:center; gap:5px; padding-bottom:6px; }
+.dots i { width:5px; height:5px; border-radius:50%; background:var(--line); display:inline-block; }
+.dots i.on { background:var(--acc); width:12px; border-radius:3px; }
+.body { flex:1 1 auto; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding:0 12px 12px; touch-action:pan-y; }
 .hero { border-radius:14px; background:linear-gradient(160deg,#2a2f3b,#1c1f27 70%); border:1px solid var(--line); position:relative; overflow:hidden; height:168px; margin-top:4px; }
 .hero .stage { position:absolute; left:0; top:0; bottom:0; width:42%; display:flex; align-items:flex-end; justify-content:center; padding-bottom:10px; }
 .hero .stage img { max-height:140px; max-width:86%; object-fit:contain; filter:drop-shadow(0 8px 10px rgba(0,0,0,.45)); }
@@ -124,18 +129,22 @@ const CSS = `
 
 const SCH = [['CWU', 'sch_cwu_txt', 0], ['CO', 'sch_co_txt', 1], ['Kocioł', 'sch_boil_txt', 2]];
 const DAYS = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
+const SCREENS = [['pulpit', 'Pulpit'], ['instalacja', 'Instalacja'], ['nastawy', 'Nastawy'], ['parametry', 'Parametry'], ['harmonogram', 'Harmonogram'], ['alarmy', 'Alarmy']];
+const DEFAULT_HEIGHT = 480;
 
 class TeklaModernCard extends HTMLElement {
   setConfig(c) {
     if (!c || typeof c !== 'object') throw new Error('Nieprawidłowa konfiguracja karty');
     this._cfg = Object.assign({ boiler_image: '13' }, c);
     this._assetBase = this._cfg.asset_base || DEFAULT_ASSET_BASE;
-    this._screen = 'pulpit';
-    this._unlockedAt = 0;
-    this._schedKind = 1;
+    this._screen = this._screen || 'pulpit';
+    this._unlockedAt = this._unlockedAt || 0;
+    this._schedKind = this._schedKind || 1;
+    this._scroll = this._scroll || {};
     if (!this.shadowRoot) this.attachShadow({ mode: 'open' });
   }
-  getCardSize() { return 6; }
+  _height() { const h = parseInt(this._cfg && this._cfg.height, 10); return Number.isFinite(h) && h >= 280 ? h : DEFAULT_HEIGHT; }
+  getCardSize() { return Math.max(1, Math.round(this._height() / 50)); }
   set hass(hass) {
     this._hass = hass;
     this._render();
@@ -336,14 +345,16 @@ class TeklaModernCard extends HTMLElement {
     const root = this.shadowRoot;
     if (!root.querySelector('style')) {
       const st = document.createElement('style'); st.textContent = CSS; root.appendChild(st);
-      root.appendChild(el('<div class="wrap"><div id="hdr"></div><div id="nav" class="nav"></div><div id="body" class="body"></div><div id="overlay"></div></div>'));
+      root.appendChild(el('<div class="wrap"><div id="hdr"></div><div id="nav" class="nav"></div><div id="body" class="body"></div><div id="dots" class="dots"></div><div id="overlay"></div></div>'));
     }
+    const wrap = root.querySelector('.wrap'); wrap.style.height = this._height() + 'px';
     const { devs, dev, idx } = this._idx();
     this._lastIdx = idx;
     const body = root.getElementById('body');
     if (!dev) {
       root.getElementById('hdr').innerHTML = '';
       root.getElementById('nav').innerHTML = '';
+      root.getElementById('dots').innerHTML = '';
       body.innerHTML = '<div class="sec"><b style="color:var(--err)">TeklaPelletCAN-modern</b><div class="hint" style="margin-top:6px">Nie znaleziono żadnego urządzenia integracji TeklaPelletCAN. Dodaj ją w Ustawienia → Urządzenia i usługi.</div></div>';
       return;
     }
@@ -353,12 +364,35 @@ class TeklaModernCard extends HTMLElement {
       + (devs.length > 1 && !this._cfg.device_id ? '<div class="hint" style="padding:0 12px 6px">Wykryto kilka urządzeń – pokazuję „' + esc(dev.name) + '” (wybierz w edytorze karty).</div>' : '');
     hdr.querySelector('#chip').onclick = () => { if (!unlocked) this._ensureLevel(1).then(() => this._render()); else { this._unlockedAt = 0; this._render(); } };
     const nav = root.getElementById('nav');
-    const screens = [['pulpit', 'Pulpit'], ['instalacja', 'Instalacja'], ['nastawy', 'Nastawy'], ['parametry', 'Parametry'], ['harmonogram', 'Harmonogram'], ['alarmy', 'Alarmy']];
-    nav.innerHTML = screens.map(([k, l]) => `<button data-s="${k}" class="${this._screen === k ? 'on' : ''}">${l}</button>`).join('');
-    nav.querySelectorAll('button').forEach(b => b.onclick = () => { this._screen = b.dataset.s; this._render(); });
+    nav.innerHTML = SCREENS.map(([k, l]) => `<button data-s="${k}" class="${this._screen === k ? 'on' : ''}">${l}</button>`).join('');
+    nav.querySelectorAll('button').forEach(b => b.onclick = () => this._goScreen(b.dataset.s));
+    root.getElementById('dots').innerHTML = SCREENS.map(([k]) => `<i class="${this._screen === k ? 'on' : ''}"></i>`).join('');
+    // Ekran przewija się we własnym wnętrzu (wysokość karty jest stała – jak classic) – zapamietujemy
+    // scrollTop per ekran, bo kazda aktualizacja hass() przebudowuje body od zera (traci scroll bez tego).
+    const savedScroll = this._scroll[this._screen] || 0;
     body.innerHTML = '';
     const fn = { pulpit: this._pulpit, instalacja: this._instalacja, nastawy: this._nastawy, parametry: this._parametry, harmonogram: this._harmonogram, alarmy: this._alarmy }[this._screen] || this._pulpit;
     body.appendChild(fn.call(this));
+    body.scrollTop = savedScroll;
+    body.onscroll = () => { this._scroll[this._screen] = body.scrollTop; };
+    this._bindSwipe(body);
+  }
+
+  // Zmiana ekranu (nawigacja i swipe) w jednym miejscu, żeby oba sposoby dzialaly tak samo.
+  _goScreen(k) { if (k !== this._screen) { this._screen = k; this._render(); } }
+  // Przesuwanie palcem w lewo/prawo = nastepny/poprzedni ekran (jak karty w aplikacji) – tylko gdy ruch jest
+  // bardziej horyzontalny niz wertykalny, zeby nie przeszkadzac normalnemu przewijaniu listy w gore/dol.
+  _bindSwipe(body) {
+    let sx = 0, sy = 0, tracking = false;
+    body.ontouchstart = e => { const t = e.touches[0]; sx = t.clientX; sy = t.clientY; tracking = true; };
+    body.ontouchend = e => {
+      if (!tracking) return; tracking = false;
+      const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.4) return;
+      const i = SCREENS.findIndex(([k]) => k === this._screen);
+      const ni = dx < 0 ? Math.min(SCREENS.length - 1, i + 1) : Math.max(0, i - 1);
+      if (ni !== i) this._goScreen(SCREENS[ni][0]);
+    };
   }
 
   _boilerImg() { const t = this._cfg.boiler_image; return this._assetBase + (['11', '12', '14'].includes(String(t)) ? `img/panel/0${t}.png` : 'img/kociol.webp'); }
@@ -525,7 +559,7 @@ class TeklaModernCardEditor extends HTMLElement {
     if (!this._form) {
       const info = document.createElement('div');
       info.style.cssText = 'font-size:13px;line-height:1.45;margin:0 0 10px;opacity:.9';
-      info.textContent = 'Nowa karta (styl aplikacji) wyłącznie dla integracji TeklaPelletCAN – encje dobierane automatycznie po ID punktu.';
+      info.textContent = 'Nowa karta (styl aplikacji) wyłącznie dla integracji TeklaPelletCAN – encje dobierane automatycznie po ID punktu. Karta ma stałą wysokość – dłuższe ekrany (Parametry, Harmonogram) przewijają się w jej wnętrzu.';
       this.appendChild(info);
       this._form = document.createElement('ha-form');
       this._form.computeLabel = s => s.label || s.name;
@@ -533,14 +567,18 @@ class TeklaModernCardEditor extends HTMLElement {
       this.appendChild(this._form);
     }
     const devs = this._hass ? ourDevices(this._hass) : [];
-    const schema = [{ name: 'boiler_image', label: 'Grafika kotła', selector: { select: { mode: 'dropdown', options: [{ value: '11', label: 'Typ 11' }, { value: '12', label: 'Typ 12' }, { value: '13', label: 'Typ 13' }, { value: '14', label: 'Typ 14' }] } } }];
+    const schema = [
+      { name: 'boiler_image', label: 'Grafika kotła', selector: { select: { mode: 'dropdown', options: [{ value: '11', label: 'Typ 11' }, { value: '12', label: 'Typ 12' }, { value: '13', label: 'Typ 13' }, { value: '14', label: 'Typ 14' }] } } },
+      { name: 'height', label: 'Wysokość karty (px)', selector: { number: { mode: 'box', min: 320, max: 900, step: 10 } } },
+    ];
     if (devs.length > 1) schema.unshift({ name: 'device_id', label: 'Urządzenie', selector: { select: { mode: 'dropdown', options: [{ value: 'auto', label: 'Automatycznie' }].concat(devs.map(d => ({ value: d.id, label: d.name }))) } } });
     this._form.schema = schema;
-    this._form.data = Object.assign({}, this._cfg, { device_id: this._cfg.device_id || 'auto' });
+    this._form.data = Object.assign({ height: DEFAULT_HEIGHT }, this._cfg, { device_id: this._cfg.device_id || 'auto' });
     if (this._hass) this._form.hass = this._hass;
   }
   _changed(v) {
     const cfg = Object.assign({}, this._cfg, { boiler_image: v.boiler_image || '13' });
+    if (v.height && +v.height !== DEFAULT_HEIGHT) cfg.height = +v.height; else delete cfg.height;
     if (v.device_id && v.device_id !== 'auto') cfg.device_id = v.device_id; else delete cfg.device_id;
     this._cfg = cfg;
     this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: cfg }, bubbles: true, composed: true }));
