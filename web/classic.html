@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TeklaPelletCAN</title>
+<style>
+  :root { color-scheme: dark light; --primary-text-color:#e6e6e6; --secondary-text-color:#9aa0a6; --card-background-color:#1c1c1e; --ha-card-background:#1c1c1e; --primary-color:#03a9f4; --divider-color:#333; }
+  html, body { margin:0; background:#111; font-family: Roboto, "Segoe UI", sans-serif; }
+  #root { max-width: 520px; margin: 0 auto; padding: 8px; }
+  #offline { display:none; background:#b3261e; color:#fff; padding:8px 12px; text-align:center; font-size:14px; }
+</style>
+</head>
+<body>
+<div id="offline">Brak połączenia z urządzeniem</div>
+<div style="text-align:center;padding:6px"><a id="setlink" href="/settings.html" style="color:#9aa1b2;font-size:13px;text-decoration:none">⚙ Ustawienia, aktualizacja, dziennik</a></div>
+<div id="root"></div>
+<script type="module">
+window.__tpcDevice = true;   // karta działa na stronie urządzenia (ma /settings.html)
+import './ha-icon.js';
+import { DeviceHass } from './shim.js';
+try { const i = await (await fetch('/api/v1/info')).json(); if (!i.password_set) { location.replace('/portal.html'); } } catch (e) { /* offline */ }
+await import('./pelletcan-card.js');
+await customElements.whenDefined('pelletcan-card');
+const hass = new DeviceHass('');
+const card = document.createElement('pelletcan-card');
+const q = new URLSearchParams(location.search);
+let devCfg = {}; try { devCfg = await (await fetch('/api/v1/config')).json(); } catch (e) { /* offline */ }
+const boilerImage = +(q.get('boiler') || devCfg.boiler_image || 13);
+card.setConfig(Object.assign({ type: 'custom:pelletcan-card', entity_prefix: 'tekla', screen: q.get('screen') || 'main', language: q.get('lang') || 'pl', boiler_image: boilerImage }, q.get('grafiki') ? { grafiki: q.get('grafiki') } : {}));
+document.getElementById('root').appendChild(card);
+hass.onUpdate(h => {
+  document.getElementById('offline').style.display = h.online ? 'none' : 'block';
+  if (h.online) card.hass = h;
+});
+hass.start(2000);
+// cichy wskaźnik: czy w kanale jest nowsza wersja (przeglądarka ma internet; urządzenie nie)
+(async () => {
+  try {
+    const U = await import('./update.js');
+    const info = await (await fetch('/api/v1/info')).json();
+    if (/demo/i.test(info.fw || '')) return;   // wirtualne urządzenie (tryb demo w aplikacji) nie ma aktualizacji
+    const r = await U.checkUpdate(info.fw);
+    if (r.newer) { const a = document.getElementById('setlink'); a.textContent = '⬆ Dostępna aktualizacja ' + r.remoteFull + ' – Ustawienia'; a.style.color = '#ff7a1a'; a.style.fontWeight = '700'; }
+  } catch (e) { /* brak internetu w przeglądarce – bez wskaźnika */ }
+})();
+</script>
+</body>
+</html>

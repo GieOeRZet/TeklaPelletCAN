@@ -7,7 +7,7 @@ const BASE = process.argv[2] || 'http://127.0.0.1:8100';
   const dialogs = [];
   p.on('dialog', async d => { dialogs.push(d.message()); await d.accept('qwerty123'); });
   const errs = []; p.on('pageerror', e => errs.push(e.message));
-  await p.goto(BASE + '/index.html?screen=main'); await p.waitForTimeout(4000);
+  await p.goto(BASE + '/classic.html?screen=main'); await p.waitForTimeout(4000);
   // wywolanie uslugi tak, jak robi to karta (przez hass.callService zbudowany przez shim)
   const res = await p.evaluate(async () => {
     const card = document.querySelector('pelletcan-card');

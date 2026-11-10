@@ -173,7 +173,7 @@ Status silnika: odczyt cykliczny, stan 126 punktów (sensory/binarne/enumy), nas
 Zweryfikowane automatycznie (host, w CI):
 - **Silnik** (`engine`): odczyt cykliczny, nastawy z poziomami PIN 0/1/2, warstwa obliczana (moc kW, spalanie, zbiornik, prognoza paliwa, PDO podajnik/dmuchawa), historia alarmów (20 wpisów, potwierdzanie), harmonogramy, test wyjść (klucz 2, autopowrót), konfiguracja i statystyki, 18 usług, przyciski, selecty i przełącznik kotła, skaner rejestrów. Katalog **190 encji** o nazwach jak w ESPHome (`rejestry/encje.csv`).
 - **API REST** (`api`): stany w formacie HA, usługi, parowanie z hasłem urządzenia i tokenem; ponowne parowanie tego samego klienta nie tworzy duplikatu, wiele różnych klientów (HA) może używać jednego urządzenia.
-- **Karta** (`web/`): oryginalna karta PelletCAN z cienką warstwą zgodności (`shim.js`) – sprawdzona w prawdziwej przeglądarce (ekrany, zapis z PIN-em, parowanie).
+- **Portal urządzenia** (`web/index.html`): ten sam interfejs co aplikacja Android (`android/ui`, synchronizowany przez `tools/sync_web.py`) – pulpit, instalacja, menu z poziomami PIN, własny `web/js/native.js` (zwykły `fetch()` z parowaniem haseł zamiast mostu JNI). Oryginalna karta PelletCAN z cienką warstwą zgodności (`shim.js`) została zachowana pod `web/classic.html` – sprawdzone w prawdziwej przeglądarce (ekrany, zapis z PIN-em, parowanie, portal, OTA).
 - **Integracja HA** (`custom_components/teklapelletcan`): config flow (ręczny IP + zeroconf), encje z tymi samymi `entity_id` co w ESPHome, usługi `<węzeł>_<akcja>`, karta w pakiecie – 7 testów na prawdziwym symulatorze urządzenia.
 
 Jeszcze nie zrobione / niezweryfikowane na sprzęcie:

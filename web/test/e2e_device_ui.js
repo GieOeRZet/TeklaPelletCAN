@@ -36,6 +36,22 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   const dup = await fetch(BASE + '/api/v1/setup', { method: 'POST', body: JSON.stringify({ password: 'inne1234', ssid: 'x' }) });
   check('ponowny setup odrzucony (nie da sie przejac urzadzenia)', dup.status === 403);
 
+  // 2b. nowy portal urzadzenia na / - ten sam interfejs co apka Android (android/ui), zamiast starej karty
+  await p.goto(BASE + '/index.html'); await p.waitForTimeout(2500);
+  check('portal: od razu pulpit kotla (bez listy urzadzen)', (await p.locator('.nav button[data-k="pulpit"]').count()) === 1);
+  check('portal: odczyty z urzadzenia widoczne na pulpicie', /\d/.test(await p.locator('.scroll').innerText()));
+  await p.click('.nav button[data-k="menu"]'); await p.waitForTimeout(300);
+  check('portal: bez PIN-u poziomu "Konfiguracja"/"Test wyjść" niewidoczne w Menu', (await p.locator('[data-go="d/konf"]').count()) === 0 && (await p.locator('[data-go="d/test"]').count()) === 0);
+  check('portal: "Konfiguracja urządzenia" (WiFi/OTA) widoczna od razu, bez PIN-u', (await p.locator('#cfg').count()) === 1);
+  check('portal: brak koncepcji z apki (zmiana urządzenia / ustawienia aplikacji)', (await p.locator('[data-go="devices"]').count()) === 0 && (await p.locator('[data-go="app"]').count()) === 0);
+  await p.click('#lvl'); await p.waitForSelector('.pad');
+  for (const d of '0900') await p.click(`.pad button[data-k="${d}"]`);
+  await p.click('.pad button[data-k="ok"]');
+  await p.waitForTimeout(1500);
+  check('portal: po PIN-ie poziomu kotła "Konfiguracja"/"Test wyjść" widoczne', (await p.locator('[data-go="d/konf"]').count()) === 1 && (await p.locator('[data-go="d/test"]').count()) === 1);
+  await p.click('[data-go="d/konf"]'); await p.waitForTimeout(500);
+  check('portal: ekran "Konfiguracja" otwiera się', (await p.locator('.hdr b').innerText()) === 'Konfiguracja');
+
   // 3. ustawienia
   await p.goto(BASE + '/settings.html'); await p.waitForTimeout(2000);
   const status = await p.locator('#status').innerText();
@@ -56,7 +72,7 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
 
   // 3a. grafiki panelu: domyslnie PELNE (bez ustawienia w konfiguracji karty); 'domyslne' wylacza. Czerwony kociol = img/panel/013.png
   const panelFiles = async q => { const pg = await b.newPage({ viewport: { width: 520, height: 420 } }); const f = new Set(); pg.on('request', r => { if (r.url().includes('/img/panel/')) f.add(r.url().split('/img/panel/')[1].split('?')[0]); });
-    await pg.goto(BASE + '/index.html' + q); await pg.waitForTimeout(7000); await pg.close(); return f; };
+    await pg.goto(BASE + '/classic.html' + q); await pg.waitForTimeout(7000); await pg.close(); return f; };
   const fDefault = await panelFiles(''), fBasic = await panelFiles('?grafiki=domyslne');
   check('grafiki pelne domyslnie (karta bez ustawienia): oryginalny kociol Estyma', fDefault.has('013.png'), [...fDefault].join(','));
   check('grafiki: domyslne wylacza pelne (bez kotla Estyma)', !fBasic.has('013.png'), [...fBasic].join(','));
@@ -71,7 +87,7 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   const geo = {};
   for (const w of [360, 520, 900]) for (const n of [11, 12, 13, 14]) {
     const pg = await b.newPage({ viewport: { width: w, height: Math.round(w * 0.8) } });
-    await pg.goto(BASE + '/index.html?boiler=' + n); await pg.waitForTimeout(4500);
+    await pg.goto(BASE + '/classic.html?boiler=' + n); await pg.waitForTimeout(4500);
     const r = await pg.evaluate(() => { let o = null; const f = x => { if (o) return; if (x.shadowRoot) { const e = x.shadowRoot.querySelector('.boil'); if (e) { o = e; return; } f(x.shadowRoot); } x.childNodes && x.childNodes.forEach(f); }; f(document.body); if (!o) return null; const bb = o.getBoundingClientRect(); return { cx: Math.round(bb.x + bb.width / 2), bottom: Math.round(bb.bottom), h: Math.round(bb.height) }; });
     (geo[w] = geo[w] || {})[n] = r; await pg.close();
   }
@@ -85,7 +101,7 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   const mf = { channels: { beta: { version: '0.3.0', build: 99, full: '0.3.0+99', date: '2026-11-08 20:00 UTC', notes: 'x', changelog: ['Pierwsza zmiana testowa', 'Druga zmiana testowa'] } } };
   const ip2 = await b.newPage({ viewport: { width: 520, height: 420 } });
   await ip2.route('**/updates/manifest.json*', r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(mf) }));
-  await ip2.goto(BASE + '/index.html?screen=info'); await ip2.waitForTimeout(8000);
+  await ip2.goto(BASE + '/classic.html?screen=info'); await ip2.waitForTimeout(8000);
   const infoText = await ip2.evaluate(() => { const o = []; const w = n => { if (n.nodeType === 3) o.push(n.textContent.trim()); if (n.shadowRoot) w(n.shadowRoot); n.childNodes && n.childNodes.forEach(w); }; w(document.body); return o.filter(Boolean).join(' | '); });
   check('INFO karty: wersja modulu z urzadzenia', /TeklaPelletCAN 0\.3\.0\+1\b/.test(infoText), infoText.slice(0, 200));
   check('INFO karty: dostepna aktualizacja 0.3.0+99 z data', /Dostępna aktualizacja: 0\.3\.0\+99/.test(infoText) && /2026-11-08/.test(infoText));
@@ -111,7 +127,7 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   await p.waitForFunction(() => /zweryfikowano podpis/.test(document.getElementById('upmsg').textContent), null, { timeout: 15000 });
   check('aktualizacja pobrana z "internetu" i przyjeta przez urzadzenie (podpis OK)', true);
   check('pakiet z wbudowanym podpisem: osobny plik .sig NIE jest pobierany', sigFetched === false);
-  const idx = await (async () => { const pg = await b.newPage(); await pg.route(u => !u.href.startsWith(BASE), r => r.abort()); /* przeglądarka bez internetu: blokuj wszystko poza urządzeniem */ await pg.goto(BASE + '/index.html'); await pg.waitForTimeout(3000); const t = await pg.locator('#setlink').innerText(); await pg.close(); return t; })();
+  const idx = await (async () => { const pg = await b.newPage(); await pg.route(u => !u.href.startsWith(BASE), r => r.abort()); /* przeglądarka bez internetu: blokuj wszystko poza urządzeniem */ await pg.goto(BASE + '/classic.html'); await pg.waitForTimeout(3000); const t = await pg.locator('#setlink').innerText(); await pg.close(); return t; })();
   check('brak internetu w przegladarce: strona dziala bez wskaznika', /Ustawienia, aktualizacja, dziennik/.test(idx), idx);
 
   // 4. OTA: poprawny podpis

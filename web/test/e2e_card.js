@@ -1,7 +1,7 @@
 // Test karty w prawdziwej przegladarce (Playwright): ladowanie strony urzadzenia, render, klikniecie.
 const { chromium } = require('playwright');
 (async () => {
-  const url = process.argv[2] || 'http://127.0.0.1:8099/index.html';
+  const url = process.argv[2] || 'http://127.0.0.1:8099/classic.html';
   const out = process.argv[3] || '/tmp/claude-0/card.png';
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 480, height: 900 }, deviceScaleFactor: 1 });

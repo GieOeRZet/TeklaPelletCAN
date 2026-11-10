@@ -294,9 +294,9 @@ function viewMenu() {
     <div class="sec"><h5>Urządzenie</h5>
     <button class="row nav2" id="orig"><span>Panel kotła (oryginał)</span></button>
     <button class="row nav2" id="cfg"><span>Konfiguracja urządzenia</span></button>
-    <button class="row nav2" data-go="devices"><span>Zmień urządzenie</span></button></div>
-    <div class="sec"><h5>Aplikacja</h5><button class="row nav2" data-go="app"><span>Ustawienia aplikacji</span></button></div>
-    <div class="hint" style="text-align:center">Aplikacja ${esc(st.version)} · firmware ${esc(S.info.fw || '?')}</div></div>`);
+    ${st.web ? '' : '<button class="row nav2" data-go="devices"><span>Zmień urządzenie</span></button>'}</div>
+    ${st.web ? '' : '<div class="sec"><h5>Aplikacja</h5><button class="row nav2" data-go="app"><span>Ustawienia aplikacji</span></button></div>'}
+    <div class="hint" style="text-align:center">${st.web ? '' : 'Aplikacja ' + esc(st.version) + ' · '}firmware ${esc(S.info.fw || '?')}</div></div>`);
   const sc = chrome('Menu', body, 'main');
   $('#lvv', body).textContent = level() > 0 ? 'poziom ' + level() : 'poziom 0';
   body.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));

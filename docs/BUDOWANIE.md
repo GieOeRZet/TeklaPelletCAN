@@ -35,7 +35,7 @@ Karta z `web/` (oryginalna karta PelletCAN + `shim.js`) jest sprawdzana w prawdz
 cmake -S firmware/test -B build-host && cmake --build build-host
 build-host/sim_dump web/test/states.json            # silnik + atrapa kotła -> stany encji
 python3 web/test/mock_server.py 8099 &              # atrapa urządzenia (API + pliki web/)
-node web/test/e2e_card.js http://127.0.0.1:8099/index.html /tmp/karta.png
+node web/test/e2e_card.js http://127.0.0.1:8099/classic.html /tmp/karta.png
 node web/test/e2e_screens.js                        # ekrany: palnik, CO, CWU, menu, alarmy, info
 ```
 (wymaga Node z pakietem `playwright`).

@@ -27,7 +27,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   const p = await ctx.newPage();
   const derrs = []; p.on('pageerror', e => derrs.push(e.message)); p.on('dialog', d => d.accept('x'));
   const nonDemoReq = []; p.on('request', r => { const u = r.url(); if (!u.startsWith(DEMO) && !u.startsWith('data:') && !/githubusercontent|fonts\.(googleapis|gstatic)\.com/.test(u)) nonDemoReq.push(u); });
-  await p.goto(DEMO + '/index.html');
+  await p.goto(DEMO + '/classic.html');
   await p.waitForFunction(() => document.querySelector('pelletcan-card') && document.querySelector('pelletcan-card').shadowRoot && document.querySelector('pelletcan-card').shadowRoot.textContent.length > 500, null, { timeout: 20000 });
   await sleep(2500);
   const txt = () => p.evaluate(() => document.querySelector('pelletcan-card').shadowRoot.textContent);
