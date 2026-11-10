@@ -42,6 +42,17 @@ const ROLE_KEY = {
   fan_mod_1: 'dmuchawa_modulacja_20', fan_mod_2: 'dmuchawa_modulacja_40', fan_mod_3: 'dmuchawa_modulacja_60', fan_mod_4: 'dmuchawa_modulacja_80', fan_mod_5: 'dmuchawa_modulacja_100',
   stats: 'statystyki_kotla', mirror: 'tryb_mirror',
   alarm: 'alarm_aktywny', last_alarm: 'ostatni_alarm', alarm_start: 'alarm_poczatek', alarm_end: 'alarm_koniec', can_ok: 'can_ok', confirm: 'potwierdz_alarm',
+  palnik_p1: 'palnik_nastawy_serwisowe_poziom_1', palnik_p2: 'palnik_nastawy_serwisowe_poziom_2',
+};
+// Role skonsolidowane w grupy (patrz AttrGroup w firmware/engine.cpp): encja osobna nie istnieje juz w HA,
+// wartosc jest atrybutem encji grupy (klucz atrybutu = nazwa roli, jak w tej mapie). _s() nizej czyta ja
+// jako "sztuczny" stan {state: ...}, wiec _v/_on/_t dzialaja bez zmian - jeden fallback dla wszystkich grup.
+const GROUP_OF = {
+  p_prefeed: 'palnik_p1', p_feed_max: 'palnik_p1', p_photo: 'palnik_p1', p_blow_ign: 'palnik_p1', p_blow_glow: 'palnik_p1',
+  p_blow_stop: 'palnik_p1', p_glow_time: 'palnik_p1', p_glow_fuel: 'palnik_p1', p_stop_time: 'palnik_p1', p_lambda: 'palnik_p1',
+  p_o2_30: 'palnik_p1', p_o2_100: 'palnik_p1', p_cleans: 'palnik_p1', p_clean_gap: 'palnik_p1', p_pause_time: 'palnik_p1',
+  p_pause_power: 'palnik_p1', p_pause_blow: 'palnik_p1',
+  p_inertia: 'palnik_p2', p_grate_time: 'palnik_p2', p_burner_feed: 'palnik_p2', p_feeder_period: 'palnik_p2', p_min_rpm: 'palnik_p2',
 };
 const SCREEN_OPTS = [
   ['main', 'Ekran główny'], ['heat', 'Ogrzewanie'], ['water', 'Woda użytkowa'], ['burn', 'Palnik'], ['quick', 'Szybkie ustawienia (okno)'], ['fuel', 'Paliwo (okno)'],
@@ -298,7 +309,16 @@ class TeklaPanelCard extends HTMLElement {
     this._render(true);
   }
   _feeding() { return !!this._ft && Date.now() - this._ft.dec < 15000; }
-  _s(k) { return this._hass && this.E[k] && this._hass.states[this.E[k]]; }
+  _s(k) {
+    const s = this._hass && this.E[k] && this._hass.states[this.E[k]];
+    if (s) return s;
+    const g = GROUP_OF[k];
+    if (g && this._hass && this.E[g]) {
+      const gs = this._hass.states[this.E[g]];
+      if (gs && gs.attributes && gs.attributes[k] !== undefined) return { state: gs.attributes[k], attributes: {} };
+    }
+    return s;
+  }
   _v(k) { const s = this._s(k); if (!s) return NaN; const n = parseFloat(s.state); return isNaN(n) ? NaN : n; }
   _on(k) { const s = this._s(k); return !!s && s.state === 'on'; }
   // tryb pracy obiegu: Off / Eko / Harmonogram / Komfort (tekst z ESP) -> ikona, podpis, pozycja suwaka

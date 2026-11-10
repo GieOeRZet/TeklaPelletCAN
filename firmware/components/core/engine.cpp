@@ -20,6 +20,24 @@ const uint16_t kStats[14] = {0x3608, 0x3609, 0x3611, 0x3612, 0x3507, 0x3618, 0x3
                              0x362A, 0x3610, 0x3613, 0x3614, 0x3615, 0x3616, 0x3628};
 constexpr uint16_t kPower = 0x2005, kFeeder = 0x2259, kBlower = 0x2283;
 
+// Skonsolidowane encje "grupowe": zamiast jednej encji HA na kazdy punkt ustawien serwisowych (rzadko
+// zmieniane, nie wykresowane), jedna encja na grupe z wartosciami punktow jako atrybuty (klucz = id punktu
+// z rejestry/punkty.csv). Odczyt rejestru (polling) jest zupelnie niezalezny od tego (patrz reads_table.cpp
+// / punkty.csv) - to zmienia tylko to, co wystawiamy do HA, tak samo jak przy alarm_history/harmonogramach.
+const char* kPalnikP1[] = {"p_prefeed", "p_feed_max", "p_photo", "p_blow_ign", "p_blow_glow", "p_blow_stop",
+                           "p_glow_time", "p_glow_fuel", "p_stop_time", "p_lambda", "p_o2_30", "p_o2_100",
+                           "p_cleans", "p_clean_gap", "p_pause_time", "p_pause_power", "p_pause_blow"};
+const char* kPalnikP2[] = {"p_inertia", "p_grate_time", "p_burner_feed", "p_feeder_period", "p_min_rpm"};
+struct AttrGroup { const char* id; const char* const* members; unsigned n; };
+const AttrGroup kAttrGroups[] = {
+    {"palnik_nastawy_p1", kPalnikP1, sizeof(kPalnikP1) / sizeof(kPalnikP1[0])},
+    {"palnik_nastawy_p2", kPalnikP2, sizeof(kPalnikP2) / sizeof(kPalnikP2[0])},
+};
+const AttrGroup* find_attr_group(const char* id) {
+    for (const auto& g : kAttrGroups) if (!strcmp(g.id, id)) return &g;
+    return nullptr;
+}
+
 std::string num_str(double v) { return JsonWriter::fmt(v); }
 
 std::string join_hex(const std::vector<int64_t>& v) {
@@ -841,6 +859,12 @@ std::string Engine::states_json(const std::string& prefix, uint32_t now) const {
             int n = 0;
             for (const auto& d : sch_days) if (d != "------") n++;
             state = std::to_string(n);
+        } else if (const AttrGroup* g = find_attr_group(en.id)) {
+            // Skonsolidowana grupa nastaw (patrz AttrGroup wyzej) - stan to liczba poprawnie odczytanych
+            // punktow grupy, same wartosci trafiaja do atrybutow (klucz = id punktu) nizej.
+            int n = 0;
+            for (unsigned i = 0; i < g->n; i++) { bool ok; value_of(g->members[i], &ok); if (ok) n++; }
+            state = std::to_string(n);
         } else {
             auto it = computed_.find(en.id);
             if (it != computed_.end()) state = it->second;
@@ -861,6 +885,12 @@ std::string Engine::states_json(const std::string& prefix, uint32_t now) const {
         if (!strcmp(en.id, "sch_cwu_txt") || !strcmp(en.id, "sch_co_txt") || !strcmp(en.id, "sch_boil_txt")) {
             for (int i = 0; i < 7; i++) {
                 w.kv(("d" + std::to_string(i)).c_str(), i < (int)sch_days.size() ? sch_days[i].c_str() : "------");
+            }
+        }
+        if (const AttrGroup* g = find_attr_group(en.id)) {
+            for (unsigned i = 0; i < g->n; i++) {
+                bool ok; const double v = value_of(g->members[i], &ok);
+                if (ok) w.kv(g->members[i], num_str(v).c_str()); else w.kv(g->members[i], "-");
             }
         }
         w.end_obj().end_obj();

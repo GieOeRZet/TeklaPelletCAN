@@ -121,9 +121,13 @@ async def test_entities_have_esphome_compatible_ids_and_values(hass: HomeAssista
     # historia alarmow: skonsolidowana w 1 encje (dawniej 20 osobnych ah_0..ah_19) - wpisy jako atrybuty
     hist = hass.states.get("sensor.tekla_historia_alarmow")
     assert hist is not None and hist.attributes["ah_1"].startswith("kod 140")
-    # liczba encji: wszystkie z katalogu poza CO2 przy jednym obiegu
+    # palnik - nastawy serwisowe: skonsolidowane w 2 encje wg poziomu (dawniej 22 osobne p_*)
+    p1 = hass.states.get("sensor.tekla_palnik_nastawy_serwisowe_poziom_1")
+    assert p1 is not None and p1.attributes["p_prefeed"] == "60"
+    # liczba encji: wszystkie z katalogu poza CO2 przy jednym obiegu (spadek z 165: konsolidacja
+    # nastaw serwisowych palnika, 22 osobne encje -> 2 z atrybutami, patrz AttrGroup w engine.cpp)
     ours = [s for s in hass.states.async_all() if s.entity_id.split(".")[1].startswith("tekla_")]
-    assert len(ours) >= 165
+    assert len(ours) >= 145
 
 
 async def test_services_have_card_compatible_names_and_write(hass: HomeAssistant, entry):

@@ -20,28 +20,8 @@ const Entity kEntities[] = {
     {"sensor", "hw_set_eco", "CWU zadana ekonomiczna", "°C", "temperature", "hw_set_eco"},
     {"sensor", "hw_set_result", "CWU zadana wynikowa", "°C", "temperature", "hw_set_result"},
     {"sensor", "outside_temp", "Temperatura zewnetrzna", "°C", "temperature", "outside_temp"},
-    {"sensor", "p_prefeed", "Palnik wstepna dawka paliwa", "s", "", "p_prefeed"},
-    {"sensor", "p_feed_max", "Palnik podawanie max", "s", "", "p_feed_max"},
-    {"sensor", "p_photo", "Palnik prog foto", "", "", "p_photo"},
-    {"sensor", "p_blow_ign", "Palnik moc dmuchawy rozpalanie", "%", "", "p_blow_ign"},
-    {"sensor", "p_blow_glow", "Palnik moc dmuchawy rozzarzanie", "%", "", "p_blow_glow"},
-    {"sensor", "p_blow_stop", "Palnik moc dmuchawy wygaszanie", "%", "", "p_blow_stop"},
-    {"sensor", "p_glow_time", "Palnik czas rozzarzania", "min", "", "p_glow_time"},
-    {"sensor", "p_glow_fuel", "Palnik rozzarzanie paliwo", "%", "", "p_glow_fuel"},
-    {"sensor", "p_stop_time", "Palnik czas wygaszania", "min", "", "p_stop_time"},
-    {"sensor", "p_lambda", "Palnik sterowanie lambda", "", "", "p_lambda"},
-    {"sensor", "p_o2_30", "Palnik tlen dla mocy 30 %", "%", "", "p_o2_30"},
-    {"sensor", "p_o2_100", "Palnik tlen dla mocy 100 %", "%", "", "p_o2_100"},
-    {"sensor", "p_cleans", "Palnik liczba czyszczen rusztu", "", "", "p_cleans"},
-    {"sensor", "p_clean_gap", "Palnik odstep czyszczenia", "h", "", "p_clean_gap"},
-    {"sensor", "p_pause_time", "Palnik czas pauzy", "min", "", "p_pause_time"},
-    {"sensor", "p_pause_power", "Palnik moc w pauzie", "%", "", "p_pause_power"},
-    {"sensor", "p_pause_blow", "Palnik dmuchawa w pauzie", "%", "", "p_pause_blow"},
-    {"sensor", "p_inertia", "Palnik bezwladnosc", "min", "", "p_inertia"},
-    {"sensor", "p_grate_time", "Palnik czas ruchu rusztu", "s", "", "p_grate_time"},
-    {"sensor", "p_burner_feed", "Palnik podawanie palnika (% podajnika zasobnika)", "%", "", "p_burner_feed"},
-    {"sensor", "p_feeder_period", "Palnik okres podajnika zasobnika", "s", "", "p_feeder_period"},
-    {"sensor", "p_min_rpm", "Palnik minimalne obroty dmuchawy", "x100", "", "p_min_rpm"},
+    {"text_sensor", "palnik_nastawy_p1", "Palnik nastawy serwisowe (poziom 1)", "", "", ""},
+    {"text_sensor", "palnik_nastawy_p2", "Palnik nastawy serwisowe (poziom 2)", "", "", ""},
     {"sensor", "burner_flame", "Palnik jasnosc plomienia", "%", "", "burner_flame"},
     {"sensor", "mixer_co1_state", "Mieszacz CO1 stan", "", "", "mixer_co1_state"},
     {"sensor", "mixer_ret_state", "Mieszacz powrotu stan", "", "", "mixer_ret_state"},
@@ -177,6 +157,6 @@ const Entity kEntities[] = {
     {"button", "dmuchawa_wlacz_czasowo", "Dmuchawa: Wlacz (czasowo)", "", "", ""},
 };
 
-const unsigned kEntityCount = 171;
+const unsigned kEntityCount = 151;
 
 }  // namespace tpc
