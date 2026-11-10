@@ -83,7 +83,7 @@ function bindChip() {
   if (!c) return;
   // widoczny tylko gdy poziom kotla aktywny (patrz chip()) - klik blokuje sesje od razu (PIN 0000, jak w oryginale)
   c.onclick = async () => {
-    if (S.cachedAt) { toast('Brak połączenia z urządzeniem – tryb podglądu ostatnich danych'); return; }
+    if (S.cachedAt) { toast('Brak połączenia z modułem – tryb podglądu ostatnich danych'); return; }
     await callService('tekla_estyma_unlock', { pin: 0 });
     S.levelAt = 0; refreshChip(); toast('Poziom kotła zablokowany');
   };
@@ -275,7 +275,7 @@ function viewDevices() {
 // ------------------------------------------------------------------ menu urządzenia
 function viewMenu() {
   const st = nat.state();
-  // Jak w oryginale: "Test wyjść" i "Konfiguracja urządzenia" sa calkowicie niewidoczne, dopoki nie wpisze
+  // Jak w oryginale: "Test wyjść" i "Konfiguracja modułu" sa calkowicie niewidoczne, dopoki nie wpisze
   // sie PIN-u poziomu kotla (0900/0999) w "Poziom kotła" nizej - nie tylko ich zawartosc, caly wpis w Menu.
   const unlocked1 = level() >= 1;
   const body = el(`<div><div class="sec"><h5>Widoki</h5>
@@ -296,7 +296,7 @@ function viewMenu() {
     <button class="row nav2" id="lvl"><span>Poziom kotła (PIN)</span><span class="v" id="lvv"></span></button></div>
     <div class="sec"><h5>Urządzenie</h5>
     <button class="row nav2" id="orig"><span>Panel kotła (oryginał)</span></button>
-    <button class="row nav2" id="cfg"><span>Konfiguracja urządzenia</span></button>
+    <button class="row nav2" id="cfg"><span>Konfiguracja modułu</span></button>
     ${st.web ? '' : '<button class="row nav2" data-go="devices"><span>Zmień urządzenie</span></button>'}</div>
     ${st.web ? '' : '<div class="sec"><h5>Aplikacja</h5><button class="row nav2" data-go="app"><span>Ustawienia aplikacji</span></button></div>'}
     <div class="hint" style="text-align:center">${st.web ? '' : 'Aplikacja ' + esc(st.version) + ' · '}firmware ${esc(S.info.fw || '?')}</div></div>`);
@@ -324,6 +324,7 @@ function viewAppSettings() {
       <button class="row nav2" id="chpin"><span>Zmień PIN aplikacji</span></button>
       <div class="sw"><span>Odcisk palca zamiast PIN-u<div class="hint">${st.bioAvailable ? 'Odblokowuje uruchomienie aplikacji' : 'Brak skonfigurowanej biometrii w telefonie'}</div></span><button class="tg ${st.bio ? 'on' : ''}" id="bio" ${st.bioAvailable ? '' : 'disabled'}></button></div>
       <div class="sw"><span>Blokuj aplikację przy uruchomieniu<div class="hint">Wymaga PIN-u/odcisku tylko przy starcie aplikacji - sterowanie kotłem działa bez PIN-u</div></span><button class="tg ${st.lockOnStart ? 'on' : ''}" id="los"></button></div></div>
+    <div class="sec"><h5>Tryb demo</h5><div class="hint" style="margin-bottom:8px">Wirtualny kocioł z żywymi odczytami – bez sieci i bez modułu. Przełącza bieżący widok; zapisane urządzenie zostaje na liście.</div><button class="btn acc" id="demo">Uruchom demo</button></div>
     <div class="sec"><h5>Dane</h5><button class="row nav2" id="cc"><span>Wyczyść zapisane odczyty</span></button></div>
     <div class="sec"><h5>Aplikacja</h5><div class="row"><span>Wersja</span><span class="v">${esc(st.version)}</span></div>
       <div class="row"><span>Najnowsza</span><span class="v" id="latest">…</span></div><div id="updbox"></div>
@@ -341,6 +342,7 @@ function viewAppSettings() {
   const tgl = (id, fn) => { const b = $(id, body); b.onclick = () => { b.classList.toggle('on'); fn(b.classList.contains('on')); }; };
   tgl('#bio', on => nat.setBio(on)); tgl('#los', on => nat.setLockOnStart(on));
   $('#cc', body).onclick = async () => { if (await confirmSheet('Wyczyścić zapisane odczyty?', 'Po wyjściu z domowej sieci aplikacja nie pokaże ostatnich danych, dopóki nie połączy się z urządzeniem.', 'Wyczyść')) { nat.clearCache(); toast('Wyczyszczono'); } };
+  $('#demo', body).onclick = () => { nat.selectDevice('demo', 'Demo – wirtualny kocioł'); go('d/pulpit'); startPolling(); };
   $('#rel', body).onclick = () => nat.openExternal('https://github.com/GieOeRZet/TeklaPelletCan/releases');
   const check = async force => {
     $('#latest', body).textContent = '…';

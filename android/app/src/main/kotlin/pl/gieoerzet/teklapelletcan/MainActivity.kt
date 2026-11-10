@@ -383,9 +383,9 @@ class MainActivity : Activity() {
 
     private fun errorPage(url: String): String =
         "<html><body style='background:#111318;color:#e8eaf0;font-family:sans-serif;padding:24px'>" +
-        "<h2>Brak połączenia z urządzeniem</h2><p style='color:#9aa1b2'>Nie udało się otworzyć:<br>" +
+        "<h2>Brak połączenia z modułem</h2><p style='color:#9aa1b2'>Nie udało się otworzyć:<br>" +
         android.text.TextUtils.htmlEncode(url) + "</p><p style='color:#9aa1b2'>Sprawdź, czy telefon jest w tej samej sieci Wi‑Fi " +
-        "co urządzenie i czy urządzenie ma zasilanie. Stuknij ⟳, żeby spróbować ponownie.</p></body></html>"
+        "co moduł i czy moduł ma zasilanie. Stuknij ⟳, żeby spróbować ponownie.</p></body></html>"
 
     private fun mimeOf(path: String): String = when (path.substringAfterLast('.', "").lowercase()) {
         "html" -> "text/html"
@@ -639,7 +639,7 @@ class MainActivity : Activity() {
 
         // --- okna urządzenia i narzędzia
         @JavascriptInterface fun openOriginal() { main.post { openDeviceWindow("index.html", "Panel kotła (oryginał)") } }
-        @JavascriptInterface fun openDeviceSettings() { main.post { openDeviceWindow("settings.html", "Konfiguracja urządzenia") } }
+        @JavascriptInterface fun openDeviceSettings() { main.post { openDeviceWindow("settings.html", "Konfiguracja modułu") } }
         @JavascriptInterface fun openSetup() {
             main.post {
                 backend = HttpBackend(SETUP_URL.trimEnd('/')); deviceBase = SETUP_URL; deviceName = "Nowe urządzenie"

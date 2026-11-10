@@ -69,6 +69,26 @@ inline void populate_demo(SimBoiler& b) {
     b.reg[0x404C] = 256 + 2;  b.reg[0x4011] = 0x00010000 | 140;  b.reg[0x4010] = 2;
     b.reg[0x4025] = 1794150000; b.reg[0x4039] = 0;  b.reg[0x4024] = 1794000000; b.reg[0x4038] = 1794003600;
     b.reg[0x2154] = 0x00FF00; b.reg[0x2126] = 0x3FFFC0;
+    // Konfiguracja kotla (kConf w engine.cpp) - bez tego ekran "Konfiguracja" w apce/karcie pokazuje same "-"
+    // w trybie demo (rejestry spoza kReads nigdy nie zostaly odczytane, conf_v_ zostaje przy wartosci -1).
+    b.reg[0x3501] = 256 + 1;  // Autokonfiguracja: wl.
+    b.reg[0x3500] = 0;        // Glowny modul IO: BIG
+    b.reg[0x3505] = 1;        // Czujnik temp. zewn.: CTZ1
+    b.reg[0x3720] = 3;        // Usrednianie [h]
+    b.reg[0x2106] = 256 + 1;  // CWU: wl.
+    b.reg[0x2108] = 256 + 0;  // Solary: wyl.
+    b.reg[0x2107] = 256 + 0;  // Bufor: wyl.
+    b.reg[0x2123] = 256 + 0;  // Modul Lambda: wyl.
+    b.reg[0x3602] = 256 + 1;  // Czujnik rezerwy paliwa: wl.
+    b.reg[0x3603] = 50;       // Rezerwa zbiornika [kg]
+    b.reg[0x350A] = 256 + 1;  // Czujnik powrotu: wl.
+    b.reg[0x350B] = 1;        // Numer profilu
+    b.reg[0x299E] = 0;        // Pompa kotlowa: ladujaca
+    b.reg[0x350C] = 256 + 0;  // Kaskada master: wyl.
+    b.reg[0x350D] = 256 + 1;  // Czujnik cisnienia: wl.
+    b.reg[0x3525] = 256 + 0;  // Dodatkowy magazyn paliwa: wyl.
+    b.reg[0x3629] = 256 + 0;  // Pomiar energii: wyl.
+    b.reg[0x299D] = 256 + 1;  // Dmuchawa z HALL: wl.
 }
 
 }  // namespace tpc

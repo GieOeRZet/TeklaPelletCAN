@@ -118,7 +118,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await goHash('#/d/menu');
   check('menu: "Test wyjść" niewidoczne na poziomie 0', (await p.locator('[data-go="d/test"]').count()) === 0);
   check('menu: "Konfiguracja" (kotla) niewidoczna na poziomie 0', (await p.locator('[data-go="d/konf"]').count()) === 0);
-  check('menu: "Konfiguracja urządzenia" (WiFi/OTA) widoczna od razu, bez PIN-u', (await p.locator('#cfg').count()) === 1);
+  check('menu: "Konfiguracja modułu" (WiFi/OTA) widoczna od razu, bez PIN-u', (await p.locator('#cfg').count()) === 1);
   await p.click('#lvl');
   check('poziom: okno PIN kotła', await waitSheet(/Poziom dostępu kotła/));
   await pin('1234');

@@ -108,7 +108,7 @@ export async function ensureLevel(need) {
     title: 'Poziom dostępu kotła', sub: `Ta pozycja wymaga poziomu ${need}. Podaj PIN poziomu (jak w panelu kotła). Wygasa po 5 minutach bezczynności.`, digits: [4, 6],
     check: async p => {
       const r = await api('POST', '/api/v1/call', { domain: 'teklapelletcan', service: 'tekla_estyma_unlock', data: { pin: parseInt(p, 10) } });
-      if (r.status !== 200) return 'Błąd połączenia z urządzeniem';
+      if (r.status !== 200) return 'Brak połączenia z kotłem';
       // odczyt poziomu potwierdzany asynchronicznie przez urzadzenie - pojedyncze 700ms nie zawsze wystarcza
       // (wolniejsza siec/urzadzenie), wiec odpytujemy do skutku zamiast raz, do ok. 4 s.
       let cur = r.json.level || 0;
@@ -144,7 +144,7 @@ function handleResult(r) {
   const e = r.json.error || r.json.result || '';
   const m = {
     level: 'Za niski poziom dostępu kotła', mirror: 'Urządzenie jest w trybie tylko do odczytu', disabled: 'Zapis wyłączony w urządzeniu',
-    range: 'Wartość poza dozwolonym zakresem', rejected: 'Kocioł odrzucił zmianę', blocked: 'Operacja zablokowana', offline: 'Brak połączenia z urządzeniem',
+    range: 'Wartość poza dozwolonym zakresem', rejected: 'Kocioł odrzucił zmianę', blocked: 'Operacja zablokowana', offline: 'Brak połączenia z modułem',
     unauthorized: 'Urządzenie wymaga hasła (sparuj w konfiguracji)', setup_required: 'Urządzenie wymaga pierwszej konfiguracji',
   }[e] || ('Błąd (' + (e || r.status) + ')');
   toast(m);

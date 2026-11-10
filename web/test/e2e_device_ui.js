@@ -42,7 +42,7 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   check('portal: odczyty z urzadzenia widoczne na pulpicie', /\d/.test(await p.locator('.scroll').innerText()));
   await p.click('.nav button[data-k="menu"]'); await p.waitForTimeout(300);
   check('portal: bez PIN-u poziomu "Konfiguracja"/"Test wyjść" niewidoczne w Menu', (await p.locator('[data-go="d/konf"]').count()) === 0 && (await p.locator('[data-go="d/test"]').count()) === 0);
-  check('portal: "Konfiguracja urządzenia" (WiFi/OTA) widoczna od razu, bez PIN-u', (await p.locator('#cfg').count()) === 1);
+  check('portal: "Konfiguracja modułu" (WiFi/OTA) widoczna od razu, bez PIN-u', (await p.locator('#cfg').count()) === 1);
   check('portal: brak koncepcji z apki (zmiana urządzenia / ustawienia aplikacji)', (await p.locator('[data-go="devices"]').count()) === 0 && (await p.locator('[data-go="app"]').count()) === 0);
   await p.click('#lvl'); await p.waitForSelector('.pad');
   for (const d of '0900') await p.click(`.pad button[data-k="${d}"]`);
