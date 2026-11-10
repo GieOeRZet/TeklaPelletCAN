@@ -343,8 +343,11 @@ function curveSheet(ids, xLabels, title) {
   const step = pts.find(p => p && p.step)?.step || 1;
   const dc = step < 1 ? 1 : 0;
   const lo = Math.min(...pts.map(p => p ? p.min : 0)), hi = Math.max(...pts.map(p => p ? p.max : 100));
-  const W = 100, H = 54, PAD_L = 22, PAD_R = 4, PAD_T = 7, n = ids.length;
-  const X = i => n > 1 ? (i / (n - 1)) * (W - PAD_L - PAD_R) + PAD_L : (W + PAD_L) / 2;
+  // PAD_L/PAD_R = krawedzie linii siatki (odstep miedzy skala Y a wykresem zostaje). PTS_INSET dodatkowo
+  // wsuwa same punkty do srodka wzgledem tych linii, zeby pierwszy/ostatni punkt nie siedzial dokladnie
+  // na krawedzi siatki, tylko kawalek dalej (linie siatki sa szersze niz rozstaw punktow).
+  const W = 100, H = 54, PAD_L = 22, PAD_R = 2, PAD_T = 7, PTS_INSET = 6, n = ids.length;
+  const X = i => n > 1 ? (i / (n - 1)) * (W - PAD_L - PAD_R - 2 * PTS_INSET) + PAD_L + PTS_INSET : (W + PAD_L) / 2;
   const Y = v => Number.isFinite(v) ? PAD_T + H - ((v - lo) / (hi - lo)) * H : PAD_T + H / 2;
   const Vfrom = y => lo + (1 - Math.max(0, Math.min(H, y - PAD_T)) / H) * (hi - lo);
   const snap = v => Math.round(Math.max(lo, Math.min(hi, v)) / step) * step;
