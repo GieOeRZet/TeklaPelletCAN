@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       release_tag:
-        description: "Nazwa wydania (np. v0.3.0): publikuje kanał STABILNY i tworzy GitHub Release (tag powstaje po stronie GitHuba). Puste = zwykły przebieg."
+        description: "Nazwa wydania (np. v0.3.0): publikuje kanał STABILNY, tworzy GitHub Release (tag powstaje po stronie GitHuba) i AUTOMATYCZNIE publikuje integrację/karty/APK do osobnych repo (patrz niżej) - nie trzeba zaznaczać tamtych checkboxów osobno. Puste = zwykły przebieg, bez publikacji nigdzie."
         required: false
         default: ""
       skip_tests:
@@ -14,22 +14,22 @@ on:
         type: boolean
         default: false
       publish_integration:
-        description: "Opublikuj integrację HA do osobnego repo GieOeRZet/TeklaPelletCAN_HA (HACS instaluje stamtąd, nie z tego repo)."
+        description: "Opublikuj integrację HA do osobnego repo GieOeRZet/TeklaPelletCAN_HA, NAWET BEZ wydania (release_tag) - np. do testu. Przy ustawionym release_tag publikuje się i tak, automatycznie."
         required: false
         type: boolean
         default: false
       publish_card_classic:
-        description: "Opublikuj kartę classic do osobnego repo GieOeRZet/TeklaPelletClassic-card."
+        description: "Opublikuj kartę classic do osobnego repo, NAWET BEZ wydania - jw."
         required: false
         type: boolean
         default: false
       publish_card_modern:
-        description: "Opublikuj kartę modern do osobnego repo GieOeRZet/TeklaPelletModern-card."
+        description: "Opublikuj kartę modern do osobnego repo, NAWET BEZ wydania - jw."
         required: false
         type: boolean
         default: false
       publish_apk:
-        description: "Opublikuj APK (wydanie GitHub z załącznikiem) do osobnego repo GieOeRZet/TeklaPelletDroid."
+        description: "Opublikuj APK (wydanie GitHub z załącznikiem) do osobnego repo, NAWET BEZ wydania - jw."
         required: false
         type: boolean
         default: false
@@ -335,7 +335,7 @@ jobs:
   # z Contents: write na docelowych repozytoriach) - bez niego push zakonczy sie bledem autoryzacji.
   publish-integration:
     needs: host-tests
-    if: github.event_name == 'workflow_dispatch' && inputs.publish_integration == true
+    if: github.event_name == 'workflow_dispatch' && (inputs.publish_integration == true || inputs.release_tag != '')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -361,7 +361,7 @@ jobs:
 
   publish-card-classic:
     needs: [host-tests, web-ui]
-    if: github.event_name == 'workflow_dispatch' && inputs.publish_card_classic == true
+    if: github.event_name == 'workflow_dispatch' && (inputs.publish_card_classic == true || inputs.release_tag != '')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -383,7 +383,7 @@ jobs:
 
   publish-card-modern:
     needs: [host-tests, web-ui]
-    if: github.event_name == 'workflow_dispatch' && inputs.publish_card_modern == true
+    if: github.event_name == 'workflow_dispatch' && (inputs.publish_card_modern == true || inputs.release_tag != '')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -405,7 +405,7 @@ jobs:
 
   publish-apk:
     needs: android
-    if: github.event_name == 'workflow_dispatch' && inputs.publish_apk == true
+    if: github.event_name == 'workflow_dispatch' && (inputs.publish_apk == true || inputs.release_tag != '')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
