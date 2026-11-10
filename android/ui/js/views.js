@@ -327,22 +327,25 @@ function curveChart(ids, xLabels, title) {
   const step = pts.find(p => p && p.step)?.step || 1;
   const dc = step < 1 ? 1 : 0;
   const lo = Math.min(...pts.map(p => p ? p.min : 0)), hi = Math.max(...pts.map(p => p ? p.max : 100));
-  const W = 100, H = 54, PAD_L = 11, PAD_R = 4, PAD_T = 7, n = ids.length;
+  const W = 100, H = 54, PAD_L = 22, PAD_R = 4, PAD_T = 7, n = ids.length;
   const X = i => n > 1 ? (i / (n - 1)) * (W - PAD_L - PAD_R) + PAD_L : (W + PAD_L) / 2;
   const Y = v => Number.isFinite(v) ? PAD_T + H - ((v - lo) / (hi - lo)) * H : PAD_T + H / 2;
   const Vfrom = y => lo + (1 - Math.max(0, Math.min(H, y - PAD_T)) / H) * (hi - lo);
   const snap = v => Math.round(Math.max(lo, Math.min(hi, v)) / step) * step;
-  // 4 linie siatki (0/33/66/100% zakresu) z wartoscia opisana po lewej - "podzialka" osi Y
-  const grid = [0, 1 / 3, 2 / 3, 1].map(f => {
+  // Linie siatki co 20% zakresu (0/20/40/60/80/100%) z wartoscia opisana po lewej - "podzialka" osi Y,
+  // ta sama gestosc co opisy na osi X.
+  const grid = [0, 0.2, 0.4, 0.6, 0.8, 1].map(f => {
     const gv = Math.round((lo + (hi - lo) * (1 - f)) / step) * step;
     const gy = PAD_T + f * H;
     return `<line x1="${PAD_L}" y1="${gy.toFixed(1)}" x2="${W - PAD_R}" y2="${gy.toFixed(1)}" stroke="var(--line)" stroke-width="0.6"/>
-      <text x="${(PAD_L - 2).toFixed(1)}" y="${(gy + 1.6).toFixed(1)}" font-size="4.6" fill="var(--dim)" text-anchor="end">${fmt(gv, dc)}</text>`;
+      <text x="${(PAD_L - 8).toFixed(1)}" y="${(gy + 1.6).toFixed(1)}" font-size="4.6" fill="var(--dim)" text-anchor="end">${fmt(gv, dc)}</text>`;
   }).join('');
   // Elementy SVG punktow tworzone RAZ (nie przy kazdym przerysowaniu) - zamiana innerHTML w trakcie
   // przeciagania niszczylaby wlasnie przeciagany element (i jego pointer capture) w polowie gestu.
+  // Etykieta pierwszego punktu przesunieta w prawo (zamiast wyosiowana na nim) - inaczej nachodzi na
+  // opisy osi Y, ktore siedza dokladnie w tym samym miejscu po lewej stronie wykresu.
   const ptsSvg = ids.map((id, i) => `
-    <text data-t="${i}" x="${X(i).toFixed(1)}" font-size="5" fill="var(--txt)" text-anchor="middle"></text>
+    <text data-t="${i}" x="${(i === 0 ? X(i) + 3 : X(i)).toFixed(1)}" font-size="5" fill="var(--txt)" text-anchor="${i === 0 ? 'start' : 'middle'}"></text>
     <circle data-k="${i}" r="3.4"></circle>`).join('');
   const root = el(`<div class="sec"><h5>${esc(title)}</h5>
     <svg viewBox="0 0 ${W} ${PAD_T + H + 14}" style="width:100%;height:160px;overflow:visible;touch-action:none">
