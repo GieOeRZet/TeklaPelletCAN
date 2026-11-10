@@ -17,14 +17,20 @@
   };
   const resp = (id, o) => setTimeout(() => window.__tpcResp && window.__tpcResp(id, o), 5);
   const ev = e => window.__tpcEvent && window.__tpcEvent(e);
-  const lock = reason => { const was = isOpen(); open = false; wasOpen = false; if (was) { calls.push(['dropLevel']); fetchDev('POST', '/api/v1/call', '', '{"domain":"teklapelletcan","service":"tekla_estyma_unlock","data":{"pin":0}}'); ev({ type: 'locked', reason }); } };
-  function fetchDev(method, path, query, body) {
-    const x = new XMLHttpRequest(); x.open('POST', '/__demo', false);
-    x.send(JSON.stringify({ method, path, query, authorization: '', body: body || '' })); return JSON.parse(x.responseText);
+  // Synchroniczny XHR bez timeoutu (poprzednia wersja) moze zawiesic cala strone na czas calego TCP timeoutu
+  // (minuty), jesli demo_server chwilowo przyhamuje (np. CI pod obciazeniem) - fetch() z AbortSignal.timeout
+  // zawodzi szybko i przewidywalnie zamiast wisiec w nieskonczonosc.
+  async function fetchDev(method, path, query, body) {
+    const r = await fetch('/__demo', {
+      method: 'POST', body: JSON.stringify({ method, path, query, authorization: '', body: body || '' }),
+      signal: AbortSignal.timeout(8000),
+    });
+    return JSON.parse(await r.text());
   }
-  setInterval(() => {
+  const lock = async reason => { const was = isOpen(); open = false; wasOpen = false; if (was) { calls.push(['dropLevel']); await fetchDev('POST', '/api/v1/call', '', '{"domain":"teklapelletcan","service":"tekla_estyma_unlock","data":{"pin":0}}').catch(() => {}); ev({ type: 'locked', reason }); } };
+  setInterval(async () => {
     const o = isOpen();
-    if (wasOpen && !o) { calls.push(['dropLevel']); fetchDev('POST', '/api/v1/call', '', '{"domain":"teklapelletcan","service":"tekla_estyma_unlock","data":{"pin":0}}'); ev({ type: 'locked', reason: 'idle' }); }
+    if (wasOpen && !o) { calls.push(['dropLevel']); await fetchDev('POST', '/api/v1/call', '', '{"domain":"teklapelletcan","service":"tekla_estyma_unlock","data":{"pin":0}}').catch(() => {}); ev({ type: 'locked', reason: 'idle' }); }
     wasOpen = o;
   }, 400);
   window.addEventListener('pointerdown', () => { if (isOpen()) unlockedAt = now(); }, true);
@@ -39,7 +45,7 @@
     selectDevice: (b, n) => { open = false; wasOpen = false; base = b; device = n; calls.push(['select', b, n]); },
     deselect: () => { open = false; device = ''; base = ''; },
     deviceSummary: b => { const c = cache['/api/v1/states']; return JSON.stringify(c && b !== 'demo' ? { at: c.at, body: c.body } : {}); },
-    request: (id, method, pq, body) => setTimeout(() => {
+    request: (id, method, pq, body) => setTimeout(async () => {
       const path = pq.split('?')[0];
       // PIN aplikacji chroni tylko start - zapis dziala zawsze; kazda "prawdziwa" zmiana tylko odswieza
       // timer bezczynnosci (do automatycznego zdjecia poziomu kotla), jak w Proxy.handle() w Kotlinie.
@@ -49,7 +55,9 @@
         if (method === 'GET' && c) return resp(id, { status: 200, ctype: 'application/json', body: c.body, cachedAt: c.at });
         return resp(id, { status: 503, ctype: 'application/json', body: '{"ok":false,"error":"offline"}', cachedAt: 0 });
       }
-      const r = fetchDev(method, path, pq.split('?')[1] || '', body);
+      let r;
+      try { r = await fetchDev(method, path, pq.split('?')[1] || '', body); }
+      catch (e) { return resp(id, { status: 0, ctype: 'application/json', body: '{"ok":false,"error":"timeout"}', cachedAt: 0 }); }
       if (method === 'GET' && r.status === 200 && ['/api/v1/states', '/api/v1/info', '/api/v1/points', '/api/v1/config'].includes(path)) cache[path] = { body: r.body, at: now() };
       resp(id, { status: r.status, ctype: r.ctype, body: r.body, cachedAt: 0 });
     }, 3),
