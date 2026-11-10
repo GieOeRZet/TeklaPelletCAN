@@ -319,7 +319,10 @@ class TeklaModernCard extends HTMLElement {
     for (let i = 0; i <= 24; i++) { const b = i < 24 && ((bits >> i) & 1); if (b && st === null) st = i; if (!b && st !== null) { o.push(`${st}–${i}`); st = null; } }
     return o.length ? o.join(', ') + ' h' : 'wyłączone';
   }
-  _schedBits(kind) { return ((this.pv(SCH[kind][1]) || '').split(' ')).map(x => (/^[0-9A-Fa-f]{6}$/.test(x) ? parseInt(x, 16) : null)); }
+  _schedBits(kind) {
+    const id = SCH[kind][1];
+    return Array.from({ length: 7 }, (_, d) => { const x = this.pattr(id, 'd' + d); return /^[0-9A-Fa-f]{6}$/.test(x || '') ? parseInt(x, 16) : null; });
+  }
   async _editDay(kind, day) {
     const cur = this._schedBits(kind)[day];
     if (cur == null) { this._toast('Brak odczytu tego dnia'); return; }

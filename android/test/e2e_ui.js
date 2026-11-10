@@ -221,10 +221,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check('harmonogram: stuknięcie godziny przełącza ją', (await h12.evaluate(n => n.classList.contains('on'))) === !was12);
   await p.click('[data-cp="wk"]');
   await p.click('.sheet #ok'); await sleep(4500);
-  const co = await p.evaluate(async () => { const r = await new Promise(res => { const id='h1'; const o=window.__tpcResp; window.__tpcResp=(i,x)=>{ if(i===id){window.__tpcResp=o;res(x);} else o&&o(i,x); }; TPCNative.request(id,'GET','/api/v1/states',''); }); return (JSON.parse(r.body).states.find(s=>s.entity_id==='sensor.tekla_co_harmonogram_rejestry')||{}).state; });
-  const days = co.split(' ').map(x => parseInt(x, 16));
-  check('harmonogram: zapis dotarł do kotła (godzina 12 przełączona we wtorek)', (((days[1] >> 12) & 1) === 1) === !was12, co);
-  check('harmonogram: dni Pn–Pt mają ten sam harmonogram', days.slice(0, 5).every(x => x === days[1]), co);
+  const coAttrs = await p.evaluate(async () => { const r = await new Promise(res => { const id='h1'; const o=window.__tpcResp; window.__tpcResp=(i,x)=>{ if(i===id){window.__tpcResp=o;res(x);} else o&&o(i,x); }; TPCNative.request(id,'GET','/api/v1/states',''); }); return (JSON.parse(r.body).states.find(s=>s.entity_id==='sensor.tekla_co_harmonogram_rejestry')||{}).attributes; });
+  const days = Array.from({ length: 7 }, (_, d) => parseInt(coAttrs['d' + d], 16));
+  check('harmonogram: zapis dotarł do kotła (godzina 12 przełączona we wtorek)', (((days[1] >> 12) & 1) === 1) === !was12, JSON.stringify(coAttrs));
+  check('harmonogram: dni Pn–Pt mają ten sam harmonogram', days.slice(0, 5).every(x => x === days[1]), JSON.stringify(coAttrs));
 
   // ---------------------------------------------------------------- alarmy
   await p.click('.nav button[data-k="alarmy"]'); await sleep(1200);

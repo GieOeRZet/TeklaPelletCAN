@@ -806,6 +806,7 @@ std::string Engine::states_json(const std::string& prefix, uint32_t now) const {
     for (unsigned e = 0; e < kEntityCount; e++) {
         const Entity& en = kEntities[e];
         std::string state = "unknown";
+        std::vector<std::string> sch_days;  // harmonogram: dni z computed_ rozbite na d0..d6 (patrz nizej)
         const int ri = ent_read_[e];
         if (ri >= 0) {
             if (st_[ri].valid) {
@@ -823,6 +824,23 @@ std::string Engine::states_json(const std::string& prefix, uint32_t now) const {
             int n = 0;
             for (int i = 0; i < 20; i++) { auto it2 = computed_.find("ah_" + std::to_string(i)); if (it2 != computed_.end() && it2->second != "-") n++; }
             state = std::to_string(n);
+        } else if (!strcmp(en.id, "sch_cwu_txt") || !strcmp(en.id, "sch_co_txt") || !strcmp(en.id, "sch_boil_txt")) {
+            // Harmonogram tygodniowy: 7 dni (maska godzin w hex, jak dotychczas) jako atrybuty d0..d6
+            // zamiast jednego nieczytelnego tekstu - stan to liczba dni z odczytanym harmonogramem.
+            auto it = computed_.find(en.id);
+            if (it != computed_.end()) {
+                size_t pos = 0;
+                const std::string& s = it->second;
+                while (true) {
+                    size_t sp = s.find(' ', pos);
+                    sch_days.push_back(s.substr(pos, sp == std::string::npos ? std::string::npos : sp - pos));
+                    if (sp == std::string::npos) break;
+                    pos = sp + 1;
+                }
+            }
+            int n = 0;
+            for (const auto& d : sch_days) if (d != "------") n++;
+            state = std::to_string(n);
         } else {
             auto it = computed_.find(en.id);
             if (it != computed_.end()) state = it->second;
@@ -838,6 +856,11 @@ std::string Engine::states_json(const std::string& prefix, uint32_t now) const {
             for (int i = 0; i < 20; i++) {
                 auto it2 = computed_.find("ah_" + std::to_string(i));
                 w.kv(("ah_" + std::to_string(i)).c_str(), it2 != computed_.end() ? it2->second.c_str() : "-");
+            }
+        }
+        if (!strcmp(en.id, "sch_cwu_txt") || !strcmp(en.id, "sch_co_txt") || !strcmp(en.id, "sch_boil_txt")) {
+            for (int i = 0; i < 7; i++) {
+                w.kv(("d" + std::to_string(i)).c_str(), i < (int)sch_days.size() ? sch_days[i].c_str() : "------");
             }
         }
         w.end_obj().end_obj();

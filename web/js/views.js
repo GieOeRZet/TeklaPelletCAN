@@ -470,7 +470,14 @@ export function paramList(group) {
 // ------------------------------------------------------------------ harmonogramy (CWU / CO / kocioł) – bit i = godzina i, jak w karcie
 const SCH = [['CWU', 'sensor.tekla_cwu_harmonogram_rejestry', 0], ['CO', 'sensor.tekla_co_harmonogram_rejestry', 1], ['Kocioł', 'sensor.tekla_kociol_harmonogram_rejestry', 2]];
 const DAYS = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
-const schedBits = k => ((S.states.get(SCH[k][1]) || {}).state || '').split(' ').map(x => (/^[0-9A-Fa-f]{6}$/.test(x) ? parseInt(x, 16) : null));
+const schedBits = k => {
+  const attrs = (S.states.get(SCH[k][1]) || {}).attributes || {};
+  return Array.from({ length: 7 }, (_, d) => { const x = attrs['d' + d]; return /^[0-9A-Fa-f]{6}$/.test(x || '') ? parseInt(x, 16) : null; });
+};
+const schedSig = k => {
+  const attrs = (S.states.get(SCH[k][1]) || {}).attributes || {};
+  return Array.from({ length: 7 }, (_, d) => attrs['d' + d]).join('|');
+};
 const bandsText = bits => {
   if (bits == null) return 'brak odczytu';
   const o = []; let st = null;
@@ -528,5 +535,5 @@ export function harmonogram() {
   };
   draw();
   let sig = '';
-  return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); const s = SCH.map(x => (S.states.get(x[1]) || {}).state).join('|'); if (s !== sig) { sig = s; draw(); } } };
+  return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); const s = SCH.map((_, i) => schedSig(i)).join('#'); if (s !== sig) { sig = s; draw(); } } };
 }

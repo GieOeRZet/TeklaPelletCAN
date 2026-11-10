@@ -183,7 +183,7 @@ async function modernTests(b) {
   let co2 = '', bitMatches = false;
   for (let i = 0; i < 20; i++) {
     await sleep(400); await p.evaluate(() => window.__refreshFromDevice());
-    co2 = await p.evaluate(() => window.__hass.states['sensor.tekla_co_harmonogram_rejestry'].state.split(' ')[1]);
+    co2 = await p.evaluate(() => window.__hass.states['sensor.tekla_co_harmonogram_rejestry'].attributes.d1);
     bitMatches = (((parseInt(co2, 16) >> 12) & 1) === 1) === !was12;
     if (bitMatches) break;
   }
