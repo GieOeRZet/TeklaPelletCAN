@@ -128,7 +128,10 @@ async function render() {
     const title = page === 'pulpit' ? (st.deviceName || 'Kocioł') : parts[2] ? decodeURIComponent(parts[2]) : (TITLES[page] || '');
     const nav = ['pulpit', 'instalacja', 'harmonogram', 'alarmy'].includes(page) ? 'main' : 'sub';
     const sc0 = chrome(title, view.node, nav);
-    if (page === 'pulpit') setTimeout(() => showUpdateBanners(sc0, ['fw']), 1500);
+    // 'app' tutaj tez, nie tylko 'fw': przy jednym zapisanym urzadzeniu start apki idzie prosto na pulpit
+    // (patrz 'start' nizej) i viewDevices() z jej wlasnym showUpdateBanners(['app']) nigdy sie nie renderuje -
+    // bez tego aktualizacja samej apki nigdy by sie nie pokazala.
+    if (page === 'pulpit') setTimeout(() => showUpdateBanners(sc0, ['fw', 'app']), 1500);
     const upd = () => { view.update(); refreshChip(); };
     upd();
     unsub = subscribe(upd);
