@@ -73,23 +73,23 @@ const CSS = `
 :root { --bg:#111318; --card:#1c1f27; --card2:#12151b; --line:#2b303b; --txt:#e8eaf0; --dim:#9aa1b2; --acc:#ff7a1a; --ok:#4cc38a; --err:#ef5350; --blue:#4a86e8; --warn:#f2b441; }
 * { box-sizing:border-box; }
 :host { display:block; }
-/* Responsywny rozmiar jak karta classic (width:100%, bez sztywnej wysokosci w px) - zeby obie karty mialy
-   spojny, przewidywalny rozmiar na dashboardzie niezaleznie od szerokosci kolumny. Proporcja 3:2 (a nie
-   768:437 jak classic) - ta karta ma gestszy, pionowy uklad tresci (kafelki/listy w stylu aplikacji, nie
-   namalowany panel), wiec wezsza proporcja classic zostawialaby za malo wysokosci. Ekrany (pulpit/instalacja/
-   .../parametry) nadal przewijaja sie w swoim wnetrzu (.body) dla dluzszych list (Parametry, Harmonogram). */
-.wrap { background:var(--bg); color:var(--txt); font:15px/1.4 Roboto, system-ui, sans-serif; border-radius:var(--ha-card-border-radius,12px); overflow:hidden; display:flex; flex-direction:column; width:100%; aspect-ratio:4/5; }
-.hdr { flex:0 0 auto; display:flex; align-items:center; gap:10px; padding:10px 12px; }
+/* Ten sam ksztalt co karta classic (768:437, szeroki/niski "ekran") zamiast poprzedniej pionowej proporcji
+   4:5 - glownym widokiem (pulpit) jest teraz uklad poziomy (jak tryb landscape aplikacji), wiec karta ma
+   wyglądać tak jak oryginał: STAŁA wysokość, dolny pasek nawigacji (ikony+etykiety, jak w aplikacji) ZAWSZE
+   widoczny, a tresc ekranu przewija sie we wlasnym wnetrzu (.body) nad nim - klikniecie w cokolwiek otwiera
+   dolny arkusz (patrz _openSheet) albo podmienia caly ekran, nigdy nie rozpycha karty w dol. */
+.wrap { background:var(--bg); color:var(--txt); font:15px/1.4 Roboto, system-ui, sans-serif; border-radius:var(--ha-card-border-radius,12px); overflow:hidden; display:flex; flex-direction:column; width:100%; aspect-ratio:768/437; }
+.hdr { flex:0 0 auto; display:flex; align-items:center; gap:10px; padding:8px 12px; }
 .hdr b { flex:1; font-size:16px; }
 .ico { width:36px; height:36px; border-radius:50%; background:var(--card); border:0; color:inherit; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer; }
 .chip { display:inline-flex; gap:6px; align-items:center; padding:5px 10px; border-radius:999px; font-size:12px; background:#2b303b; border:0; color:inherit; cursor:pointer; white-space:nowrap; }
 .chip.open { background:rgba(76,195,138,.18); color:var(--ok); }
-.nav { flex:0 0 auto; display:flex; gap:3px; padding:0 10px 8px; overflow-x:auto; scrollbar-width:none; } .nav::-webkit-scrollbar { display:none; }
-.nav button { background:#2b303b; color:var(--dim); border:0; border-radius:999px; padding:6px 9px; font-size:11.5px; white-space:nowrap; cursor:pointer; flex:0 0 auto; }
-.nav button.on { background:var(--acc); color:#1a1208; font-weight:700; }
-.dots { flex:0 0 auto; display:flex; justify-content:center; gap:5px; padding-bottom:6px; }
-.dots i { width:5px; height:5px; border-radius:50%; background:var(--line); display:inline-block; }
-.dots i.on { background:var(--acc); width:12px; border-radius:3px; }
+/* Dolny pasek nawigacji - ikona+etykieta, jak w aplikacji (ten sam zestaw zakladek: Pulpit/Instalacja/
+   Harmonogram/Alarmy/Menu - Nastawy i Parametry siedza pod "Menu", tak jak w menu aplikacji). */
+.nav { flex:0 0 auto; display:flex; justify-content:space-around; align-items:stretch; border-top:1px solid var(--line); }
+.nav button { background:none; border:0; color:var(--dim); font-size:10.5px; display:flex; flex-direction:column; align-items:center; gap:1px; flex:1 1 0; padding:3px 2px; cursor:pointer; }
+.nav button i { font-style:normal; font-size:17px; }
+.nav button.on { color:var(--acc); }
 .body { flex:1 1 auto; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding:0 12px 12px; touch-action:pan-y; }
 .hero { border-radius:14px; background:linear-gradient(160deg,#2a2f3b,#1c1f27 70%); border:1px solid var(--line); position:relative; overflow:hidden; height:168px; margin-top:4px; }
 .hero .stage { position:absolute; left:0; top:0; bottom:0; width:42%; display:flex; align-items:flex-end; justify-content:center; padding-bottom:10px; }
@@ -127,11 +127,29 @@ const CSS = `
 .dayrow { display:block; width:100%; text-align:left; background:none; border:0; border-top:1px solid var(--line); padding:9px 0; cursor:pointer; color:inherit; } .dayrow:first-of-type { border-top:0; }
 .dayrow .dn { display:flex; justify-content:space-between; font-size:13px; }
 .hbar { display:flex; gap:1px; margin-top:5px; } .hbar i { flex:1; height:13px; border-radius:1px; background:#2b303b; } .hbar i.on { background:var(--acc); }
+/* Uklad pulpitu - jak tryb poziomy (landscape) aplikacji: hero po lewej (pelna wysokosc), siatka 2x3
+   kafelkow po prawej, kafelek alarmu na cala szerokosc pod hero. "min-height:100%" (nie "height") + wiersze
+   "minmax(64px,1fr)" - na szerokiej karcie wypelnia cala dostepna wysokosc bez przewijania (jak w oryginale),
+   a na waskiej (gdzie 6 kafelkow by sie scisnelo nieczytelnie) kafelki trzymaja minimalna czytelna wysokosc
+   i caly uklad po prostu przewija sie w .body, zamiast zgniatac tekst. */
+.l2 { display:grid; grid-template-columns:42% 1fr; grid-template-rows:repeat(3,minmax(64px,1fr)); gap:6px; min-height:100%; padding-top:6px; }
+.l2 .hero { min-height:140px; margin-top:0; grid-column:1; grid-row:1 / span 2; }
+.l2 .hero .stage img { max-height:96px; }
+.l2 .hero .big { font-size:28px; }
+.l2 .hero .tx { top:8px; } .l2 .hero .st { bottom:6px; font-size:10px; line-height:1.3; }
+.l2 .cd.full { grid-column:1; grid-row:3; margin-top:0; min-height:56px; }
+.l2 .g2 { grid-column:2; grid-row:1 / span 3; margin-top:0; display:grid; grid-template-rows:repeat(3,minmax(64px,1fr)); grid-template-columns:1fr 1fr; gap:6px; }
+.l2 .cd { min-height:0; padding:6px 10px; }
+.l2 .cd small { font-size:10px; }
+.l2 .cd b { font-size:18px; }
+.l2 .cd .u { font-size:10px; }
 `;
 
 const SCH = [['CWU', 'sch_cwu_txt', 0], ['CO', 'sch_co_txt', 1], ['Kocioł', 'sch_boil_txt', 2]];
 const DAYS = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
-const SCREENS = [['pulpit', 'Pulpit'], ['instalacja', 'Instalacja'], ['nastawy', 'Nastawy'], ['parametry', 'Parametry'], ['harmonogram', 'Harmonogram'], ['alarmy', 'Alarmy']];
+// Te same 5 zakladek co dolny pasek aplikacji (ikony-glify jak w android/ui/js/main.js NAVS) - "Nastawy" i
+// "Parametry" nie maja wlasnej zakladki (tak jak w aplikacji), tylko wpis w "Menu".
+const SCREENS = [['pulpit', '▦', 'Pulpit'], ['instalacja', '⇵', 'Instalacja'], ['harmonogram', '◷', 'Harmonogram'], ['alarmy', '⚠', 'Alarmy'], ['menu', '≡', 'Menu']];
 // mapa punkt -> id encji grupy (patrz AttrGroup w firmware/engine.cpp) - jedna, wspolna lista dla wszystkich
 // skonsolidowanych grup nastaw serwisowych (encja osobna nie istnieje juz w HA, wartosc jest jej atrybutem)
 const GROUP_OF = {
@@ -388,7 +406,7 @@ class TeklaModernCard extends HTMLElement {
     const root = this.shadowRoot;
     if (!root.querySelector('style')) {
       const st = document.createElement('style'); st.textContent = CSS; root.appendChild(st);
-      root.appendChild(el('<div class="wrap"><div id="hdr"></div><div id="nav" class="nav"></div><div id="body" class="body"></div><div id="dots" class="dots"></div><div id="overlay"></div></div>'));
+      root.appendChild(el('<div class="wrap"><div id="hdr"></div><div id="body" class="body"></div><div id="nav" class="nav"></div><div id="overlay"></div></div>'));
     }
     const { devs, dev, idx } = this._idx();
     this._lastIdx = idx;
@@ -396,7 +414,6 @@ class TeklaModernCard extends HTMLElement {
     if (!dev) {
       root.getElementById('hdr').innerHTML = '';
       root.getElementById('nav').innerHTML = '';
-      root.getElementById('dots').innerHTML = '';
       body.innerHTML = '<div class="sec"><b style="color:var(--err)">TeklaPelletCAN-modern</b><div class="hint" style="margin-top:6px">Nie znaleziono żadnego urządzenia integracji TeklaPelletCAN. Dodaj ją w Ustawienia → Urządzenia i usługi.</div></div>';
       return;
     }
@@ -405,15 +422,17 @@ class TeklaModernCard extends HTMLElement {
     hdr.innerHTML = `<div class="hdr"><b>${esc(dev.name)}</b><button class="chip ${unlocked ? 'open' : ''}" id="chip">${unlocked ? '🔓 ' + Math.ceil(this._remaining() / 60000) + ' min' : '🔒 poziom ' + this.level()}</button></div>`
       + (devs.length > 1 && !this._cfg.device_id ? '<div class="hint" style="padding:0 12px 6px">Wykryto kilka urządzeń – pokazuję „' + esc(dev.name) + '” (wybierz w edytorze karty).</div>' : '');
     hdr.querySelector('#chip').onclick = () => { if (!unlocked) this._ensureLevel(1).then(() => this._render()); else { this._unlockedAt = 0; this._render(); } };
+    // Dolny pasek nawigacji (ikona+etykieta, jak w aplikacji) - zawsze widoczny, nie przewija sie razem z
+    // trescia (patrz uklad .wrap: hdr/nav poza .body, ktory jest jedynym przewijanym obszarem).
     const nav = root.getElementById('nav');
-    nav.innerHTML = SCREENS.map(([k, l]) => `<button data-s="${k}" class="${this._screen === k ? 'on' : ''}">${l}</button>`).join('');
+    const navKey = SCREENS.some(([k]) => k === this._screen) ? this._screen : null;
+    nav.innerHTML = SCREENS.map(([k, i, l]) => `<button data-s="${k}" class="${navKey === k ? 'on' : ''}"><i>${i}</i>${esc(l)}</button>`).join('');
     nav.querySelectorAll('button').forEach(b => b.onclick = () => this._goScreen(b.dataset.s));
-    root.getElementById('dots').innerHTML = SCREENS.map(([k]) => `<i class="${this._screen === k ? 'on' : ''}"></i>`).join('');
     // Ekran przewija się we własnym wnętrzu (wysokość karty jest stała – jak classic) – zapamietujemy
     // scrollTop per ekran, bo kazda aktualizacja hass() przebudowuje body od zera (traci scroll bez tego).
     const savedScroll = this._scroll[this._screen] || 0;
     body.innerHTML = '';
-    const fn = { pulpit: this._pulpit, instalacja: this._instalacja, nastawy: this._nastawy, parametry: this._parametry, harmonogram: this._harmonogram, alarmy: this._alarmy }[this._screen] || this._pulpit;
+    const fn = { pulpit: this._pulpit, instalacja: this._instalacja, nastawy: this._nastawy, parametry: this._parametry, harmonogram: this._harmonogram, alarmy: this._alarmy, menu: this._menu }[this._screen] || this._pulpit;
     body.appendChild(fn.call(this));
     body.scrollTop = savedScroll;
     body.onscroll = () => { this._scroll[this._screen] = body.scrollTop; };
@@ -441,18 +460,21 @@ class TeklaModernCard extends HTMLElement {
 
   _pulpit() {
     const alarmOn = this.pb('alarm_active');
-    const root = el(`<div>
+    const root = el(`<div class="l2">
       <div class="hero"><div class="stage"><img src="${this._boilerImg()}" alt="kocioł"></div>
         <div class="tx"><div class="big">${f1(this.pn('boiler_temp'))}<small> °C</small></div>
           <div class="pill ${/alarm/i.test(this.pv('burner_state_text') || '') ? 'r' : /modulacj/i.test(this.pv('burner_state_text') || '') ? '' : 'o'}">${esc(this.pv('burner_state_text') || '–')}${Number.isFinite(this.pn('burner_power')) ? ' · ' + fmt(this.pn('burner_power'), 0) + ' %' : ''}</div></div>
         <div class="st">zadana ${fmt(this.pn('boiler_set_result'), 0)} °C · tryb ${esc(this.pv('boiler_mode_text') || '–')}</div></div>
       <div class="g2">
+        <button class="cd" data-go="instalacja"><small>Palnik</small><b>${fmt(this.pn('burner_power'), 0)}</b><span class="u"> %</span><div class="u">${esc(this.pv('burner_state_text') || '–')}</div></button>
         <button class="cd" data-go="nastawy"><small>CWU</small><b>${f1(this.pn('hw_temp'))}</b><span class="u"> °C</span><div class="u">zadana ${fmt(this.pn('hw_set_result'), 0)} · pompa ${this.pb('hw_pump') ? '<span class="ok">wł.</span>' : 'wył.'}</div></button>
         <button class="cd" data-go="nastawy"><small>CO</small><b>${f1(this.pn('ch1_temp'))}</b><span class="u"> °C</span><div class="u">zadana ${fmt(this.pn('ch1_set_result'), 0)} · pompa ${this.pb('ch1_pump') ? '<span class="ok">wł.</span>' : 'wył.'}</div></button>
         <button class="cd" data-fuel="1"><small>Paliwo</small><b>${fmt(this.pn('tank_kg'), 0)}</b><span class="u"> kg</span><div class="u">${Number.isFinite(this.pn('fuel_days')) ? 'ok. ' + fmt(this.pn('fuel_days'), 0) + ' dni' : fmt(this.pn('tank_pct'), 0) + ' %'}</div></button>
         <button class="cd" data-go="instalacja"><small>Zewnętrzna</small><b>${f1(this.pn('outside_temp'))}</b><span class="u"> °C</span><div class="u">powrót ${f1(this.pn('ret_temp'))} °C</div></button>
-        <button class="cd full" data-go="alarmy"><span style="font-size:22px">${alarmOn ? '<span class="er">⚠</span>' : '<span class="ok">✓</span>'}</span><div><b style="font-size:15px${alarmOn ? ';color:var(--err)' : ''}">${alarmOn ? 'Alarm aktywny' : 'Brak alarmów'}</b><div class="u">ostatni: ${esc(this.pv('alarm_last_text') || '–')}</div></div></button>
-      </div></div>`);
+        <button class="cd" data-go="instalacja"><small>Moc palnika</small><b>${fmt(this.pn('burner_kw'), 1)}</b><span class="u"> kW</span><div class="u">palnik ${f1(this.pn('burner_temp'))} °C</div></button>
+      </div>
+      <button class="cd full" data-go="alarmy"><span style="font-size:22px">${alarmOn ? '<span class="er">⚠</span>' : '<span class="ok">✓</span>'}</span><div><b style="font-size:15px${alarmOn ? ';color:var(--err)' : ''}">${alarmOn ? 'Alarm aktywny' : 'Brak alarmów'}</b><div class="u">ostatni: ${esc(this.pv('alarm_last_text') || '–')}</div></div></button>
+      </div>`);
     root.querySelectorAll('[data-go]').forEach(b => b.onclick = () => { this._screen = b.dataset.go; this._render(); });
     root.querySelectorAll('[data-fuel]').forEach(b => b.onclick = () => this._fuelSheet());
     return root;
@@ -478,6 +500,13 @@ class TeklaModernCard extends HTMLElement {
     return root;
   }
 
+  // Ekran "Menu" - odpowiednik pozycji menu aplikacji, ktore nie maja juz wlasnej zakladki w dolnym pasku
+  // (Nastawy, Parametry) - jak w aplikacji, dostep przez Menu, nie przez osobna zakladke.
+  _menu() {
+    const root = el('<div><div class="sec"><button class="row" data-go="nastawy"><span>Nastawy</span></button><button class="row" data-go="parametry"><span>Wszystkie parametry</span></button></div></div>');
+    root.querySelectorAll('[data-go]').forEach(b => b.onclick = () => { this._screen = b.dataset.go; this._render(); });
+    return root;
+  }
   _stepperRow(title, id) {
     const p = TPC_POINTS_BY_ID[id];
     const r = el(`<div><div class="hint">${esc(title)}</div><button class="stepper" data-id="${esc(id)}" style="width:100%;justify-content:center;gap:16px"><b>${f1(this.pn(id))} ${p ? esc(p.unit) : ''}</b><span class="dim" style="font-size:12px">edytuj</span></button></div>`);

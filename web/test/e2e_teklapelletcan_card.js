@@ -120,7 +120,7 @@ async function cardText(page) {
 })().catch(e => { console.error(e); process.exit(2); });
 
 // ==================================================================================================
-// teklapelletcan-modern-card: pulpit/instalacja/nastawy/harmonogram/alarmy, adresowanie po tpc_id,
+// teklapelletcan-modern-card: pulpit/instalacja/harmonogram/alarmy/menu (nastawy+parametry pod menu), adresowanie po tpc_id,
 // zapisy przez prawdziwe uslugi HA (forwardowane w tescie do demo_server – ten sam silnik co firmware).
 // ==================================================================================================
 async function modernTests(b) {
@@ -155,7 +155,9 @@ async function modernTests(b) {
 
   // odblokowanie poziomu 1 (PIN 0900) i zapis nastawy wymagajacej poziomu
   const stateOfM = () => p.evaluate(() => (window.__hass.states['sensor.tekla_kociol_zadana_reczna'] || {}).state);
-  await mclick('[data-s="nastawy"]');
+  // "Nastawy" nie ma juz wlasnej zakladki w dolnym pasku (jak w aplikacji) - dostep przez "Menu".
+  await mclick('[data-s="menu"]');
+  await p.evaluate(() => document.querySelector('#rootm teklapelletcan-modern-card').shadowRoot.querySelector('[data-go="nastawy"]').click());
   const before = parseFloat(await stateOfM());
   await mclick('.stepper[data-id="boiler_set_manual"]');
   await sleep(300);
