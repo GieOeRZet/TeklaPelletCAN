@@ -126,12 +126,33 @@ const ReadPoint kReads[] = {
     {"cwu_mode", 0x2014, Decode::LOW, Kind::Enum, "", "", "CWU tryb", "0:Off,1:Eko,2:Harmonogram,3:Komfort", Tier::Basic, Poll::Live, -1},
     {"feeder_mode", 0x2259, Decode::LOW, Kind::Enum, "", "", "Podajnik tryb", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 107},
     {"blower_mode", 0x2283, Decode::LOW, Kind::Enum, "", "", "Dmuchawa tryb", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 108},
+    {"cwu_pump_mode", 0x2296, Decode::LOW, Kind::Enum, "", "", "Pompa CWU tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 109},
+    {"boiler_pump_mode", 0x2286, Decode::LOW, Kind::Enum, "", "", "Pompa kotlowa tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 110},
+    {"solar_pump_mode", 0x311F, Decode::LOW, Kind::Enum, "", "", "Pompa solarna tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 111},
+    {"grate_mode", 0x2279, Decode::LOW, Kind::Enum, "", "", "Ruszt tryb testowy", "0:Automat,1:Close,2:Open", Tier::Full, Poll::Live, 112},
+    {"exchanger_mode", 0x2285, Decode::LOW, Kind::Enum, "", "", "Wymiennik tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 113},
+    {"igniter_mode", 0x2284, Decode::LOW, Kind::Enum, "", "", "Zapalarka tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 114},
+    {"burner_feeder_mode", 0x2295, Decode::LOW, Kind::Enum, "", "", "Podajnik palnika tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 115},
+    {"fuel_transporter_mode", 0x351E, Decode::LOW, Kind::Enum, "", "", "Magazyn paliwa transporter tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 116},
+    {"fuel_storage_feeder_mode", 0x351F, Decode::LOW, Kind::Enum, "", "", "Magazyn paliwa podajnik tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 117},
+    {"blower_test_pct", 0x2288, Decode::LOW, Kind::Sensor, "%", "", "Dmuchawa moc testowa", "", Tier::Full, Poll::Live, 118},
+    {"exh_fan_mode", 0x2293, Decode::LOW, Kind::Enum, "", "", "WentWyc tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 119},
+    {"exh_fan_pct", 0x2298, Decode::LOW, Kind::Sensor, "%", "", "WentWyc moc testowa", "", Tier::Full, Poll::Live, 120},
+    {"co1_pump_mode", 0x229D, Decode::LOW, Kind::Enum, "", "", "Pompa CO1 tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 121},
+    {"co2_pump_mode", 0x229E, Decode::LOW, Kind::Enum, "", "", "Pompa CO2 tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 122},
+    {"co3_pump_mode", 0x229F, Decode::LOW, Kind::Enum, "", "", "Pompa CO3 tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 123},
+    {"co4_pump_mode", 0x22A0, Decode::LOW, Kind::Enum, "", "", "Pompa CO4 tryb testowy", "0:Automat,1:Wylaczony,2:Wlaczony", Tier::Full, Poll::Live, 124},
+    {"co1_mixer_mode", 0x214A, Decode::LOW, Kind::Enum, "", "", "Mieszacz CO1 tryb testowy", "0:Automat,1:Close,2:Open", Tier::Full, Poll::Live, 125},
+    {"co2_mixer_mode", 0x214B, Decode::LOW, Kind::Enum, "", "", "Mieszacz CO2 tryb testowy", "0:Automat,1:Close,2:Open", Tier::Full, Poll::Live, 126},
+    {"co3_mixer_mode", 0x214C, Decode::LOW, Kind::Enum, "", "", "Mieszacz CO3 tryb testowy", "0:Automat,1:Close,2:Open", Tier::Full, Poll::Live, 127},
+    {"co4_mixer_mode", 0x214D, Decode::LOW, Kind::Enum, "", "", "Mieszacz CO4 tryb testowy", "0:Automat,1:Close,2:Open", Tier::Full, Poll::Live, 128},
+    {"ret_mixer_mode", 0x216D, Decode::LOW, Kind::Enum, "", "", "Mieszacz powrotu tryb testowy", "0:Automat,1:Close,2:Open", Tier::Full, Poll::Live, 129},
     {"boiler_on", 0x2005, Decode::FLAG_LOW, Kind::Binary, "", "running", "Kociol wlaczony", "", Tier::Basic, Poll::Live, -1},
     {"tank_cap", 0x3600, Decode::U16, Kind::Sensor, "kg", "weight", "Zbiornik pojemnosc", "", Tier::Basic, Poll::Live, -1},
     {"tank_kg", 0x3601, Decode::U16, Kind::Sensor, "kg", "weight", "Zbiornik paliwo", "", Tier::Basic, Poll::Live, 47},
     {"param_70", 0x0226, Decode::U16, Kind::Sensor, "", "", "Parametr 0x0226 (nieopisany)", "", Tier::Full, Poll::L1, 70},
 };
 
-const unsigned kReadCount = 126;
+const unsigned kReadCount = 147;
 
 }  // namespace tpc

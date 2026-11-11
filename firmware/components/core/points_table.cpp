@@ -93,8 +93,29 @@ const Point kPoints[] = {
     {106, 0x2002, Encoding::Plain, 0.0f, 3.0f, 0, "Kociol tryb zadawania (0 czasowy auto, 1 czasowy reczny, 2 auto, 3 reczny)"},
     {107, 0x2259, Encoding::EnumList, 0.0f, 2.0f, 2, "Podajnik tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
     {108, 0x2283, Encoding::EnumList, 0.0f, 2.0f, 2, "Dmuchawa tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {109, 0x2296, Encoding::EnumList, 0.0f, 2.0f, 2, "Pompa CWU tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {110, 0x2286, Encoding::EnumList, 0.0f, 2.0f, 2, "Pompa kotlowa tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {111, 0x311F, Encoding::EnumList, 0.0f, 2.0f, 2, "Pompa solarna tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {112, 0x2279, Encoding::EnumList, 0.0f, 2.0f, 2, "Ruszt tryb testowy (0 automat, 1 close, 2 open)"},
+    {113, 0x2285, Encoding::EnumList, 0.0f, 2.0f, 2, "Wymiennik tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {114, 0x2284, Encoding::EnumList, 0.0f, 2.0f, 2, "Zapalarka tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {115, 0x2295, Encoding::EnumList, 0.0f, 2.0f, 2, "Podajnik palnika tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {116, 0x351E, Encoding::EnumList, 0.0f, 2.0f, 2, "Magazyn paliwa transporter tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {117, 0x351F, Encoding::EnumList, 0.0f, 2.0f, 2, "Magazyn paliwa podajnik tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {118, 0x2288, Encoding::EnumList, 0.0f, 100.0f, 2, "Dmuchawa moc testowa [%]"},
+    {119, 0x2293, Encoding::EnumList, 0.0f, 2.0f, 2, "WentWyc tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {120, 0x2298, Encoding::EnumList, 0.0f, 100.0f, 2, "WentWyc moc testowa [%]"},
+    {121, 0x229D, Encoding::EnumList, 0.0f, 2.0f, 2, "Pompa CO1 tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {122, 0x229E, Encoding::EnumList, 0.0f, 2.0f, 2, "Pompa CO2 tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {123, 0x229F, Encoding::EnumList, 0.0f, 2.0f, 2, "Pompa CO3 tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {124, 0x22A0, Encoding::EnumList, 0.0f, 2.0f, 2, "Pompa CO4 tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)"},
+    {125, 0x214A, Encoding::EnumList, 0.0f, 2.0f, 2, "Mieszacz CO1 tryb testowy (0 automat, 1 close, 2 open)"},
+    {126, 0x214B, Encoding::EnumList, 0.0f, 2.0f, 2, "Mieszacz CO2 tryb testowy (0 automat, 1 close, 2 open)"},
+    {127, 0x214C, Encoding::EnumList, 0.0f, 2.0f, 2, "Mieszacz CO3 tryb testowy (0 automat, 1 close, 2 open)"},
+    {128, 0x214D, Encoding::EnumList, 0.0f, 2.0f, 2, "Mieszacz CO4 tryb testowy (0 automat, 1 close, 2 open)"},
+    {129, 0x216D, Encoding::EnumList, 0.0f, 2.0f, 2, "Mieszacz powrotu tryb testowy (0 automat, 1 close, 2 open)"},
 };
 
-const unsigned kPointCount = 89;
+const unsigned kPointCount = 110;
 
 }  // namespace tpc

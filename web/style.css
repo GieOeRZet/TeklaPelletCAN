@@ -140,3 +140,13 @@ input.t { width:100%; padding:12px; border-radius:10px; border:1px solid var(--l
 .hgrid { display:grid; grid-template-columns:repeat(6,1fr); gap:6px; margin:10px 0; } .hgrid button { padding:12px 0; border-radius:10px; border:0; background:var(--surf2); font-size:15px; } .hgrid button.on { background:var(--acc); color:#1a1208; font-weight:700; }
 .sheet .ico { background:var(--surf2); border:1px solid var(--surf3); }
 .ico.dis { opacity:.35; pointer-events:none; }
+
+/* Test wyjść - te same zwarte pola "A / OFF / ON" (albo "A / CLOSE / OPEN") z ptaszkiem co na prawdziwym
+   panelu/karcie klasycznej, zamiast pelnoszerokich "pigulek". Bez lampki stanu - oryginal jej tu nie ma. */
+.tst { gap:10px; }
+.tst .l { flex:1 1 auto; min-width:0; }
+.tst .abo { display:flex; gap:5px; flex:0 0 auto; }
+.tst .abo em { font-style:normal; display:flex; flex-direction:column; align-items:center; justify-content:center; width:34px; height:32px; border-radius:8px; background:var(--surf2); gap:1px; }
+.tst .abo em small { font-size:9px; color:var(--dim); line-height:1; letter-spacing:.3px; }
+.tst .abo em b { font-size:13px; font-weight:700; color:var(--acc); line-height:1; min-height:13px; }
+.tst .abo em.ck { background:var(--surf3); }

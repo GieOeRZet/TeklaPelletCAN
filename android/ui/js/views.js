@@ -518,34 +518,66 @@ export function konfiguracja() {
   return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); if (level() !== shownLevel) draw(); } };
 }
 
-/** "Test wyjść" jak w oryginale: osobna strona (Menu -> widoczna juz od poziomu 1, zawartosc wymaga poziomu 2). */
-// Wiersz testu wyjscia (Dmuchawa/Podajnik): lampka stanu + przelacznik trybu (Automat/Wylacz/Wlacz) jako
-// przyciski, zapis od razu po kliknieciu (jak w oryginale - bez okna edycji, pelny 3-stanowy przelacznik).
-function testOutRow(id, label, runningId) {
+/** "Test wyjść" jak w oryginale (21 pozycji, dokladnie w tej kolejnosci i z tymi rejestrami co na prawdziwym
+ * panelu - sprawdzone zdjeciami ekranu i stara integracja ESPHome, PelletCAN_packages.yaml, akcja set_output):
+ * kazdy wiersz to trzy zwarte pola "A / OFF / ON" (pompy/dmuchawy/podajniki) albo "A / CLOSE / OPEN"
+ * (mieszacze, ruszt) z ptaszkiem na aktywnym trybie - bez lampki stanu (oryginal jej tu nie ma). */
+const TST_LABELS = { '0': 'A', '1': 'OFF', '2': 'ON' };
+const TST_LABELS_CO = { '0': 'A', '1': 'CLOSE', '2': 'OPEN' };
+let tstSeq = 0;
+// Encje trybow testowych nie maja wlasnej liczbowej wartosci - kociol zglasza tylko etykiete tekstowa
+// (sensor "..._tryb..."), wiec biezacy klucz trzeba dopasowac po tekscie, dokladnie jak w modeChips() wyzej
+// (bez tego pn(id) zawsze NaN i ptaszek nigdy by sie nie zaznaczal, mimo ze zapis dziala).
+function testOutRow(id, label, textEntityId, closeOpen) {
   const p = S.pointById.get(id);
-  const opts = {}; if (p && p.options) Object.entries(p.options).forEach(([k, l]) => { opts[k] = l; });
-  const lamp = () => `<i style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:${v(runningId) === 'on' ? 'var(--ok)' : '#3a3f4c'}${v(runningId) === 'on' ? ';box-shadow:0 0 8px var(--ok)' : ''}"></i>`;
-  const r = el(`<div><div class="row" style="border-top:0;padding-bottom:0"><span>${lamp()}${esc(label)}</span></div><div class="chips" id="c"></div></div>`);
-  const cur = () => { const x = pn(id); return Number.isFinite(x) ? String(Math.round(x)) : null; };
-  const draw = () => {
-    r.querySelector('.row span').innerHTML = lamp() + esc(label);
-    r.querySelector('#c').innerHTML = Object.entries(opts).map(([k, l]) => `<button data-k="${k}" class="${cur() === k ? 'on' : ''}">${esc(l)}</button>`).join('');
-    r.querySelectorAll('#c button').forEach(b => b.onclick = async () => { if (await writePoint(id, parseInt(b.dataset.k, 10))) draw(); });
-  };
-  draw();
+  const labels = closeOpen ? TST_LABELS_CO : TST_LABELS;
+  const opts = {}; if (p && p.options) Object.entries(p.options).forEach(([k]) => { opts[k] = labels[k] || k; });
+  const r = el(`<div class="row tst"><span class="l">${esc(label)}</span><span class="abo">${Object.entries(opts).map(([k, l]) => `<em data-k="${k}"><small>${esc(l)}</small><b></b></em>`).join('')}</span></div>`);
+  r.querySelectorAll('.abo em').forEach(e => e.onclick = () => writePoint(id, parseInt(e.dataset.k, 10)));
+  bind(r, 'tst_' + (tstSeq++), n => {
+    const lblNow = (S.states.get(textEntityId) || {}).state;
+    const hit = Object.entries(p && p.options || {}).find(([k, l]) => norm(l) === norm(lblNow));
+    const x = pn(id);
+    const cur = hit ? hit[0] : (Number.isFinite(x) ? String(Math.round(x)) : null);
+    n.querySelectorAll('.abo em').forEach(e => { const ck = e.dataset.k === cur; e.classList.toggle('ck', ck); e.querySelector('b').textContent = ck ? '✓' : ''; });
+  });
+  return r;
+}
+// Dmuchawa/WentWyc maja na panelu dodatkowo suwak mocy [%] w tym samym wierszu - u nas osobny wiersz
+// zapisywalny (otwiera standardowy edytor +/-, jak kazdy inny punkt liczbowy w appce).
+function testPctRow(id, label) {
+  const r = el(`<button class="row nav2"><span>${esc(label)}</span><span class="v"></span></button>`);
+  r.onclick = () => editPoint(id);
+  bind(r.querySelector('.v'), 'tstpct_' + id, n => { const x = pn(id); n.textContent = (Number.isFinite(x) ? Math.round(x) : '–') + ' %'; });
   return r;
 }
 export function testWyjsc() {
   return domainScreen((root, sec, byGroup, shownLevel) => {
     const t = sec('Test wyjść');
     if (shownLevel < 2) { t.append(el('<div class="hint">Sterowanie od poziomu 2 (PIN 0999): Menu → Poziom kotła.</div>')); return; }
-    t.append(testOutRow('blower_mode', 'Dmuchawa', 'binary_sensor.tekla_dmuchawa_pracuje'));
-    t.append(testOutRow('feeder_mode', 'Podajnik', 'binary_sensor.tekla_podajnik_pracuje'));
-    const ro = (label, onId) => el(`<div class="row"><span><i style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:${v(onId) === 'on' ? 'var(--ok)' : '#3a3f4c'}"></i>${esc(label)}</span></div>`);
-    t.append(ro('Pompa CWU', 'binary_sensor.tekla_cwu_pompa'));
-    t.append(ro('Pompa CO', 'binary_sensor.tekla_co_pompa'));
-    t.append(ro('Palnik', 'binary_sensor.tekla_kociol_wlaczony'));
-    t.append(el('<div class="hint" style="margin-top:8px">Pompy i palnik: tylko podgląd (kocioł nie udostępnia sterowania).</div>'));
+    t.append(testOutRow('cwu_pump_mode', 'Pompa CWU', 'sensor.tekla_pompa_cwu_tryb_testowy'));
+    t.append(testOutRow('boiler_pump_mode', 'Pompa kotłowa', 'sensor.tekla_pompa_kotlowa_tryb_testowy'));
+    t.append(testOutRow('solar_pump_mode', 'Pompa solarna', 'sensor.tekla_pompa_solarna_tryb_testowy'));
+    t.append(testOutRow('feeder_mode', 'Podajnik', 'sensor.tekla_podajnik_tryb'));
+    t.append(testOutRow('grate_mode', 'Ruszt', 'sensor.tekla_ruszt_tryb_testowy', true));
+    t.append(testOutRow('exchanger_mode', 'Wymiennik', 'sensor.tekla_wymiennik_tryb_testowy'));
+    t.append(testOutRow('igniter_mode', 'Zapalarka', 'sensor.tekla_zapalarka_tryb_testowy'));
+    t.append(testOutRow('burner_feeder_mode', 'Podajnik palnika', 'sensor.tekla_podajnik_palnika_tryb_testowy'));
+    t.append(testOutRow('fuel_transporter_mode', 'Magazyn paliwa transporter', 'sensor.tekla_magazyn_paliwa_transporter_tryb_testowy'));
+    t.append(testOutRow('fuel_storage_feeder_mode', 'Magazyn paliwa podajnik', 'sensor.tekla_magazyn_paliwa_podajnik_tryb_testowy'));
+    t.append(testOutRow('blower_mode', 'Dmuchawa', 'sensor.tekla_dmuchawa_tryb'));
+    t.append(testPctRow('blower_test_pct', 'Dmuchawa – moc testowa'));
+    t.append(testOutRow('exh_fan_mode', 'WentWyc', 'sensor.tekla_wentwyc_tryb_testowy'));
+    t.append(testPctRow('exh_fan_pct', 'WentWyc – moc testowa'));
+    t.append(testOutRow('co1_pump_mode', 'Pompa CO1', 'sensor.tekla_pompa_co1_tryb_testowy'));
+    t.append(testOutRow('co2_pump_mode', 'Pompa CO2', 'sensor.tekla_pompa_co2_tryb_testowy'));
+    t.append(testOutRow('co3_pump_mode', 'Pompa CO3', 'sensor.tekla_pompa_co3_tryb_testowy'));
+    t.append(testOutRow('co4_pump_mode', 'Pompa CO4', 'sensor.tekla_pompa_co4_tryb_testowy'));
+    t.append(testOutRow('co1_mixer_mode', 'Mieszacz CO1', 'sensor.tekla_mieszacz_co1_tryb_testowy', true));
+    t.append(testOutRow('co2_mixer_mode', 'Mieszacz CO2', 'sensor.tekla_mieszacz_co2_tryb_testowy', true));
+    t.append(testOutRow('co3_mixer_mode', 'Mieszacz CO3', 'sensor.tekla_mieszacz_co3_tryb_testowy', true));
+    t.append(testOutRow('co4_mixer_mode', 'Mieszacz CO4', 'sensor.tekla_mieszacz_co4_tryb_testowy', true));
+    t.append(testOutRow('ret_mixer_mode', 'Mieszacz powrotu', 'sensor.tekla_mieszacz_powrotu_tryb_testowy', true));
   });
 }
 

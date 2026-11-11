@@ -121,6 +121,27 @@ co2_mode,0x2065,LOW,enum,,,CO2 tryb,"0:Off,1:Eko,2:Harmonogram,3:Komfort",basic,
 cwu_mode,0x2014,LOW,enum,,,CWU tryb,"0:Off,1:Eko,2:Harmonogram,3:Komfort",basic,live,,
 feeder_mode,0x2259,LOW,enum,,,Podajnik tryb,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,107,0
 blower_mode,0x2283,LOW,enum,,,Dmuchawa tryb,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,108,0
+cwu_pump_mode,0x2296,LOW,enum,,,Pompa CWU tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,109,0
+boiler_pump_mode,0x2286,LOW,enum,,,Pompa kotlowa tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,110,0
+solar_pump_mode,0x311F,LOW,enum,,,Pompa solarna tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,111,0
+grate_mode,0x2279,LOW,enum,,,Ruszt tryb testowy,"0:Automat,1:Close,2:Open",full,live,112,0
+exchanger_mode,0x2285,LOW,enum,,,Wymiennik tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,113,0
+igniter_mode,0x2284,LOW,enum,,,Zapalarka tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,114,0
+burner_feeder_mode,0x2295,LOW,enum,,,Podajnik palnika tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,115,0
+fuel_transporter_mode,0x351E,LOW,enum,,,Magazyn paliwa transporter tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,116,0
+fuel_storage_feeder_mode,0x351F,LOW,enum,,,Magazyn paliwa podajnik tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,117,0
+blower_test_pct,0x2288,LOW,sensor,%,,Dmuchawa moc testowa,,full,live,118,0
+exh_fan_mode,0x2293,LOW,enum,,,WentWyc tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,119,0
+exh_fan_pct,0x2298,LOW,sensor,%,,WentWyc moc testowa,,full,live,120,0
+co1_pump_mode,0x229D,LOW,enum,,,Pompa CO1 tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,121,0
+co2_pump_mode,0x229E,LOW,enum,,,Pompa CO2 tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,122,0
+co3_pump_mode,0x229F,LOW,enum,,,Pompa CO3 tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,123,0
+co4_pump_mode,0x22A0,LOW,enum,,,Pompa CO4 tryb testowy,"0:Automat,1:Wylaczony,2:Wlaczony",full,live,124,0
+co1_mixer_mode,0x214A,LOW,enum,,,Mieszacz CO1 tryb testowy,"0:Automat,1:Close,2:Open",full,live,125,0
+co2_mixer_mode,0x214B,LOW,enum,,,Mieszacz CO2 tryb testowy,"0:Automat,1:Close,2:Open",full,live,126,0
+co3_mixer_mode,0x214C,LOW,enum,,,Mieszacz CO3 tryb testowy,"0:Automat,1:Close,2:Open",full,live,127,0
+co4_mixer_mode,0x214D,LOW,enum,,,Mieszacz CO4 tryb testowy,"0:Automat,1:Close,2:Open",full,live,128,0
+ret_mixer_mode,0x216D,LOW,enum,,,Mieszacz powrotu tryb testowy,"0:Automat,1:Close,2:Open",full,live,129,0
 boiler_on,0x2005,FLAG_LOW,binary_sensor,,running,Kociol wlaczony,,basic,live,,
 tank_cap,0x3600,U16,sensor,kg,weight,Zbiornik pojemnosc,,basic,live,,
 tank_kg,0x3601,U16,sensor,kg,weight,Zbiornik paliwo,,basic,live,47,0

@@ -88,3 +88,24 @@ klucz,indeks,nazwa,kodowanie,ze_znakiem,min,max,poziom
 106,0x2002,"Kociol tryb zadawania (0 czasowy auto, 1 czasowy reczny, 2 auto, 3 reczny)",Plain,0,0.0,3.0,0
 107,0x2259,"Podajnik tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
 108,0x2283,"Dmuchawa tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+109,0x2296,"Pompa CWU tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+110,0x2286,"Pompa kotlowa tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+111,0x311F,"Pompa solarna tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+112,0x2279,"Ruszt tryb testowy (0 automat, 1 close, 2 open)",EnumList,0,0.0,2.0,2
+113,0x2285,"Wymiennik tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+114,0x2284,"Zapalarka tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+115,0x2295,"Podajnik palnika tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+116,0x351E,"Magazyn paliwa transporter tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+117,0x351F,"Magazyn paliwa podajnik tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+118,0x2288,"Dmuchawa moc testowa [%]",EnumList,0,0.0,100.0,2
+119,0x2293,"WentWyc tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+120,0x2298,"WentWyc moc testowa [%]",EnumList,0,0.0,100.0,2
+121,0x229D,"Pompa CO1 tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+122,0x229E,"Pompa CO2 tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+123,0x229F,"Pompa CO3 tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+124,0x22A0,"Pompa CO4 tryb testowy (0 automat, 1 wylaczony, 2 wlaczony)",EnumList,0,0.0,2.0,2
+125,0x214A,"Mieszacz CO1 tryb testowy (0 automat, 1 close, 2 open)",EnumList,0,0.0,2.0,2
+126,0x214B,"Mieszacz CO2 tryb testowy (0 automat, 1 close, 2 open)",EnumList,0,0.0,2.0,2
+127,0x214C,"Mieszacz CO3 tryb testowy (0 automat, 1 close, 2 open)",EnumList,0,0.0,2.0,2
+128,0x214D,"Mieszacz CO4 tryb testowy (0 automat, 1 close, 2 open)",EnumList,0,0.0,2.0,2
+129,0x216D,"Mieszacz powrotu tryb testowy (0 automat, 1 close, 2 open)",EnumList,0,0.0,2.0,2

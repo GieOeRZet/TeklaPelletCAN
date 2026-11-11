@@ -155,9 +155,12 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await pin('0999'); await noSheet(); await sleep(1500);
   await goHash('#/d/test');
   await sleep(500);
-  // Realne przelaczniki trybu (Automat/Wylacz/Wlacz) dla Dmuchawy i Podajnika, jak w oryginale - nie
-  // plaskie wiersze z nazwa punktu.
-  check('test wyjść: feeder/blower widoczne po PIN 0999 (osobny ekran, jak w oryginale)', /Dmuchawa/.test(await p.innerText('body')) && /Podajnik/.test(await p.innerText('body')) && (await p.locator('.chips button:has-text("Automat")').count()) >= 2);
+  // Pelna lista 21 wyjsc testowych jak na prawdziwym panelu (A/OFF/ON, mieszacze+ruszt A/CLOSE/OPEN),
+  // plus suwaki mocy Dmuchawy/WentWyc - nie tylko Dmuchawa/Podajnik jak dawniej.
+  check('test wyjść: pełna lista 21 pozycji (jak na prawdziwym panelu)', (await p.locator('.tst').count()) === 21);
+  check('test wyjść: mieszacze/ruszt mają CLOSE/OPEN zamiast OFF/ON', (await p.locator('.tst .abo em:has-text("CLOSE")').count()) >= 5);
+  check('test wyjść: Dmuchawa i Podajnik widoczne, z polami A/OFF/ON', /Dmuchawa/.test(await p.innerText('body')) && /Podajnik/.test(await p.innerText('body')) && (await p.locator('.tst .abo em:has-text("A")').count()) >= 2);
+  check('test wyjść: suwaki mocy testowej (Dmuchawa/WentWyc)', /moc testowa/.test(await p.innerText('body')));
   await p.screenshot({ path: OUT + '/ui_test_wyjsc_poziom2.png', fullPage: true });
   await goHash('#/d/konf');
   check('konfiguracja: "Dmuchawa z HALL" widoczna po PIN 0999 (poziom 2)', /Dmuchawa z HALL/i.test(await p.innerText('body')));
