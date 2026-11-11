@@ -132,9 +132,9 @@ export function offlineBanner() {
 }
 
 
-// Ikona grzejnika (kafelek CO na pulpicie) - ta sama sciezka co w oryginalnej karcie (ikona "radi"),
-// zeby wyglad byl spojny miedzy aplikacja/portalem a karta classic.
-const RADI_SVG = `<svg class="ico" viewBox="0 0 29.8 36.5" fill="currentColor"><path d="M4.0 0.2L3.4 1.2L2.8 3.6L0.0 6.2L0.4 7.2L2.9 9.5L3.2 10.2L3.5 19.8L3.4 26.8L2.9 27.6L0.9 29.4L0.2 30.8L2.9 32.4L3.5 33.5L3.8 35.5L4.6 36.4L5.5 36.4L6.0 35.9L6.2 32.1L7.1 31.1L8.0 30.9L9.6 31.0L10.5 31.6L10.9 32.5L11.0 35.6L11.9 36.5L12.9 36.4L13.4 35.8L13.6 32.1L14.6 31.2L15.8 30.9L16.8 30.9L18.0 31.9L18.4 32.8L18.5 35.8L19.2 36.4L20.1 36.2L20.6 35.6L21.0 32.2L21.9 31.4L22.8 31.0L24.0 31.0L25.2 31.6L25.9 32.5L26.1 35.8L26.8 36.4L28.0 36.1L28.4 35.8L28.8 32.8L29.5 30.6L28.6 26.0L28.8 11.5L29.8 6.1L28.5 0.6L28.0 0.2L26.6 0.1L25.8 1.1L25.0 4.9L24.1 5.6L23.1 5.8L21.6 4.6L20.9 0.9L20.1 0.1L19.0 0.1L18.0 1.4L17.8 4.8L17.2 5.5L16.1 5.9L14.4 5.1L13.9 3.9L13.8 1.1L13.0 0.1L11.9 0.0L10.6 1.2L10.6 3.4L10.2 5.0L9.5 5.6L7.6 5.8L6.8 5.1L6.5 4.5L6.2 0.8L5.2 0.0ZM23.1 7.4L24.4 7.6L25.0 8.2L25.6 9.9L25.9 27.1L25.4 28.6L23.8 30.1L23.0 30.1L21.4 28.5L21.0 27.6L21.2 9.6L21.8 8.2ZM7.6 7.4L9.8 7.6L10.4 8.2L10.6 9.2L10.9 26.9L10.4 28.9L9.1 30.1L7.6 30.1L7.0 29.5L6.2 27.9L6.4 9.4L6.8 8.0ZM16.2 7.2L16.9 7.4L17.6 8.1L18.0 9.6L18.2 24.2L18.1 27.9L17.2 29.8L16.6 30.2L15.1 29.9L13.9 28.5L13.5 27.4L13.8 9.5L14.5 7.9Z"/></svg>`;
+// Ikona grzejnika (kafelek CO na pulpicie) - glif "mdi:radiator" (ten sam co w menu karty classic),
+// zeby wyglad byl spojny i czytelny zamiast recznie odrysowanego ksztaltu.
+const RADI_SVG = `<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M7.95,3L6.53,5.19L7.95,7.4H7.94L5.95,10.5L4.22,9.6L5.64,7.39L4.22,5.19L6.22,2.09L7.95,3M13.95,2.89L12.53,5.1L13.95,7.3L13.94,7.31L11.95,10.4L10.22,9.5L11.64,7.3L10.22,5.1L12.22,2L13.95,2.89M20,2.89L18.56,5.1L20,7.3V7.31L18,10.4L16.25,9.5L17.67,7.3L16.25,5.1L18.25,2L20,2.89M2,22V14A2,2 0 0,1 4,12H20A2,2 0 0,1 22,14V22H20V20H4V22H2M6,14A1,1 0 0,0 5,15V17A1,1 0 0,0 6,18A1,1 0 0,0 7,17V15A1,1 0 0,0 6,14M10,14A1,1 0 0,0 9,15V17A1,1 0 0,0 10,18A1,1 0 0,0 11,17V15A1,1 0 0,0 10,14M14,14A1,1 0 0,0 13,15V17A1,1 0 0,0 14,18A1,1 0 0,0 15,17V15A1,1 0 0,0 14,14M18,14A1,1 0 0,0 17,15V17A1,1 0 0,0 18,18A1,1 0 0,0 19,17V15A1,1 0 0,0 18,14Z"/></svg>`;
 
 // ------------------------------------------------------------------ pulpit
 export function pulpit(go) {
@@ -151,8 +151,9 @@ export function pulpit(go) {
       <button class="cd" data-fuel="1"><small>Paliwo</small><b data-b="fuel"></b><span class="u"> kg</span><div class="u" data-b="fuel_sub"></div><div style="position:absolute;right:12px;top:12px" data-b="hopper"></div></button>
       <button class="cd" data-go="instalacja"><small>Zewnętrzna</small><b data-b="t_out"></b><span class="u"> °C</span><div class="u" data-b="out_sub"></div></button>
       <button class="cd" data-go="instalacja"><small>Moc palnika</small><b data-b="kw"></b><span class="u"> kW</span><div class="u" data-b="kw_sub"></div></button>
-      <button class="cd full" data-go="alarmy"><span data-b="alarm_ico" style="font-size:26px"></span><div><b data-b="alarm_t" style="font-size:16px"></b><div class="u" data-b="alarm_sub"></div></div></button>
-    </div></div></div>`);
+    </div>
+    <button class="cd full" data-go="alarmy" data-b="alarm_card"><span data-b="alarm_ico" style="font-size:26px"></span><div><b data-b="alarm_t" style="font-size:16px"></b><div class="u" data-b="alarm_sub"></div></div></button>
+    </div></div>`);
   const pct = () => { const x = pn('tank_pct'); return Number.isFinite(x) ? x : num('sensor.tekla_zbiornik_zapelnienie'); };
   const set = (k, fn) => { const n = root.querySelector(`[data-b="${k}"]`); if (n) bind(n, 'pulpit_' + k, fn); if (n) n.dataset.b = 'pulpit_' + k; };
   set('t_boiler', n => { n.textContent = f1(num('sensor.tekla_kociol_temperatura')); });
@@ -180,6 +181,7 @@ export function pulpit(go) {
   set('alarm_ico', n => { n.innerHTML = alarmActive() ? '<span class="er">⚠</span>' : '<span class="ok">✓</span>'; });
   set('alarm_t', n => { n.textContent = alarmActive() ? 'Alarm aktywny' : 'Brak alarmów'; n.className = alarmActive() ? 'er' : ''; });
   set('alarm_sub', n => { n.textContent = 'ostatni: ' + lastAlarm(); });
+  set('alarm_card', n => { n.classList.toggle('alarm-active', alarmActive()); });
   root.querySelector('#kimg').src = boilerImg();
   root.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   root.querySelectorAll('[data-fuel]').forEach(b => b.onclick = fuelSheet);
@@ -346,7 +348,7 @@ function curveSheet(ids, xLabels, title) {
   // PAD_L/PAD_R = krawedzie linii siatki (odstep miedzy skala Y a wykresem zostaje). PTS_INSET dodatkowo
   // wsuwa same punkty do srodka wzgledem tych linii, zeby pierwszy/ostatni punkt nie siedzial dokladnie
   // na krawedzi siatki, tylko kawalek dalej (linie siatki sa szersze niz rozstaw punktow).
-  const W = 100, H = 54, PAD_L = 22, PAD_R = 2, PAD_T = 7, PTS_INSET = 6, n = ids.length;
+  const W = 100, H = 54, PAD_L = 17, PAD_R = 2, PAD_T = 7, PTS_INSET = 6, n = ids.length;
   const X = i => n > 1 ? (i / (n - 1)) * (W - PAD_L - PAD_R - 2 * PTS_INSET) + PAD_L + PTS_INSET : (W + PAD_L) / 2;
   const Y = v => Number.isFinite(v) ? PAD_T + H - ((v - lo) / (hi - lo)) * H : PAD_T + H / 2;
   const Vfrom = y => lo + (1 - Math.max(0, Math.min(H, y - PAD_T)) / H) * (hi - lo);
@@ -380,7 +382,7 @@ function curveSheet(ids, xLabels, title) {
       </div>
     </div>
     <div class="hint" style="margin-top:4px">Dotknij punkt, aby go wybrać - przeciągnij palcem (zgrubnie) albo koryguj +/− (precyzyjnie).</div>
-    <button class="btn acc" id="save" style="display:none;margin-top:8px">Zapisz</button>
+    <button class="btn acc hideable" id="save" style="margin-top:8px">Zapisz</button>
     <button class="btn sec" id="no">Zamknij</button>`);
   const svg = $('svg', sh), ln = $('#ln', sh), saveBtn = $('#save', sh), plBtn = $('#pl', sh), miBtn = $('#mi', sh);
   const circles = sh.querySelectorAll('#pts circle'), texts = sh.querySelectorAll('#pts text[data-t]');
@@ -400,7 +402,7 @@ function curveSheet(ids, xLabels, title) {
       texts[i].setAttribute('y', (below ? yv + 9 : yv - 5).toFixed(1));
       texts[i].textContent = Number.isFinite(v) ? fmt(v, dc) : '-';
     });
-    saveBtn.style.display = dirty() ? 'block' : 'none';
+    saveBtn.classList.toggle('hideable', !dirty());   // miejsce na przycisk zawsze zarezerwowane (visibility, nie display) - bez skoku wysokosci okienka
     plBtn.classList.toggle('dis', sel < 0); miBtn.classList.toggle('dis', sel < 0);
   };
   const toSvgY = clientY => { const r = svg.getBoundingClientRect(); return (clientY - r.top) / r.height * (PAD_T + H + 14); };
@@ -570,8 +572,10 @@ export function cieplaWoda() {
 
 // ------------------------------------------------------------------ alarmy
 export function alarmy() {
-  const root = el('<div><div id="bn"></div><div class="sec"><h5>Stan</h5><div class="row"><span>Alarm</span><span class="v" data-b="al_state"></span></div><div class="row"><span>Ostatni</span><span class="v" data-b="al_last"></span></div></div><div class="sec"><h5>Historia alarmów</h5><div id="alist"></div></div><button class="btn sec" id="ack">Potwierdź alarm</button></div>');
+  const root = el('<div><div id="bn"></div><div class="sec"><h5>Stan</h5><div class="row"><span>Alarm</span><span class="v" data-b="al_state"></span></div><div class="row"><span>Ostatni</span><span class="v" data-b="al_last"></span></div></div><div class="sec"><h5>Historia alarmów</h5><div id="alist"></div></div><button class="btn sec" id="ack" data-b="al_ack">Potwierdź alarm</button></div>');
   binders.set('al_state', n => { n.innerHTML = alarmActive() ? '<span class="er">aktywny</span>' : '<span class="ok">brak</span>'; });
+  // przycisk widoczny TYLKO przy aktywnym alarmie - jak w oryginale, nie ma sensu potwierdzac czegos czego nie ma.
+  binders.set('al_ack', n => { n.classList.toggle('hideable', !alarmActive()); });
   binders.set('al_last', n => { n.textContent = lastAlarm(); });
   const fmtT = s => { const x = parseInt(s, 10); return x > 1e9 ? new Date(x * 1000).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' }) : '–'; };
   const draw = () => {

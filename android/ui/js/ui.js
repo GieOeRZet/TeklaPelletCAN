@@ -61,6 +61,22 @@ export function confirmSheet(title, text, okLabel = 'Zastosuj') {
   });
 }
 
+/** Okno z polem tekstowym (np. nazwa urządzenia). Zwraca Promise<string|null> (null = anulowano/puste). */
+export function promptSheet({ title, sub, value = '', placeholder = '', okLabel = 'Zapisz' }) {
+  return new Promise(resolve => {
+    let done = false;
+    const sh = openSheet(`<h3>${esc(title)}</h3>${sub ? `<div class="hint" style="font-size:14px;margin:6px 0 10px">${esc(sub)}</div>` : ''}
+      <input class="t" id="pv" value="${esc(value)}" placeholder="${esc(placeholder)}" maxlength="40" style="margin-bottom:10px">
+      <button class="btn acc" id="yes">${esc(okLabel)}</button><button class="btn sec" id="no">Anuluj</button>`, () => { if (!done) resolve(null); });
+    const inp = $('#pv', sh);
+    inp.focus(); inp.setSelectionRange(0, inp.value.length);
+    const submit = () => { const v = inp.value.trim(); done = true; sheetClose = null; closeSheet(); resolve(v || null); };
+    $('#yes', sh).onclick = submit;
+    inp.onkeydown = e => { if (e.key === 'Enter') submit(); };
+    $('#no', sh).onclick = () => closeSheet();
+  });
+}
+
 /** Pierwsze ustawienie PIN-u aplikacji (wywolywane leniwie przy pierwszej probie odblokowania sterowania,
  * nie od razu po instalacji - uzytkownik moze wpierw przejrzec/dodac urzadzenie bez zadnego hasla). */
 export async function ensurePinSetup() {

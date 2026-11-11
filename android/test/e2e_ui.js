@@ -45,8 +45,11 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await p.click('#get');
   check('aktualizacje: Pobierz APK otwiera adres pliku', await p.evaluate(() => window.__nativeCalls.some(c => c[0] === 'ext' && /teklapelletcan\.apk$/.test(c[1]))));
   await p.screenshot({ path: OUT + '/ui_devices.png', fullPage: true });
-  // Klik „Dodaj” na znalezionym urządzeniu od razu wybiera je i nawiguje do pulpitu (patrz open() w main.js).
+  // Klik „Dodaj” na znalezionym urządzeniu pyta o wlasna nazwe (promptSheet), potem wybiera je i nawiguje
+  // do pulpitu (patrz open() w main.js).
   await p.locator('#found .dev button').click();
+  check('urządzenia: dodanie pyta o nazwę urządzenia', await waitSheet(/Nazwa urządzenia/));
+  await p.click('#overlay .sheet #yes');
   await p.waitForSelector('[data-b="pulpit_t_boiler"]', { timeout: 4000 });
   check('urządzenia: dodanie znalezionego nawiguje do pulpitu', /#\/d\/pulpit$/.test(p.url()), p.url());
 

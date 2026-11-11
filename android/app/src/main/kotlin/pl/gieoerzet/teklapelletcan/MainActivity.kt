@@ -70,6 +70,7 @@ class MainActivity : Activity() {
     private lateinit var ui: WebView
     private lateinit var device: WebView
     private lateinit var deviceBox: LinearLayout
+    private lateinit var deviceBar: LinearLayout
     private lateinit var titleView: TextView
     private lateinit var root: FrameLayout
     private val main = Handler(Looper.getMainLooper())
@@ -117,7 +118,7 @@ class MainActivity : Activity() {
             setTextColor(0xFFE8EAF0.toInt()); textSize = 16f; maxLines = 1
             layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
         }
-        val bar = LinearLayout(this).apply {
+        deviceBar = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL
             setBackgroundColor(0xFF1C1F27.toInt()); setPadding(dp(4), 0, dp(4), 0)
             addView(barButton("←") { closeDevice() })
@@ -126,7 +127,7 @@ class MainActivity : Activity() {
         }
         deviceBox = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL; visibility = View.GONE
-            addView(bar, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(48)))
+            addView(deviceBar, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(48)))
             addView(device, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
         }
         root = FrameLayout(this).apply {
@@ -162,7 +163,10 @@ class MainActivity : Activity() {
         super.onDestroy()
     }
 
-    override fun onStop() { super.onStop(); discovery?.stop(); lockNow("background") }
+    // Przelaczenie na inna aplikacje (alt-tab) NIE blokuje natychmiast - odblokowanie wygasa samo po
+    // 5 min bezczynnosci (WriteGate liczy to po prawdziwym czasie, niezaleznie od cyklu zycia Activity).
+    // Blokujemy od razu tylko przy zgaszeniu ekranu (ACTION_SCREEN_OFF) - to realna granica bezpieczenstwa.
+    override fun onStop() { super.onStop(); discovery?.stop() }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
@@ -267,6 +271,7 @@ class MainActivity : Activity() {
     private fun closeDevice(silent: Boolean = false) {
         if (deviceBox.visibility != View.VISIBLE) return
         deviceBox.visibility = View.GONE
+        deviceBar.visibility = View.VISIBLE
         ui.visibility = View.VISIBLE
         clearHistoryAfterBlank = true
         device.loadUrl("about:blank")
@@ -274,12 +279,15 @@ class MainActivity : Activity() {
     }
 
     /** Okno z oryginalną kartą lub konfiguracją urządzenia (zapisy idą wtedy poza proxy, poza blokadą zapisu,
-     * ktorej juz nie ma - PIN aplikacji chroni tylko start, nie otwieranie tego okna). */
-    private fun openDeviceWindow(path: String, title: String) {
+     * ktorej juz nie ma - PIN aplikacji chroni tylko start, nie otwieranie tego okna). showBar=false dla repliki
+     * oryginalnego panelu - ten ekran ma wlasna nawigacje (ikona "ekran glowny"), wiec natywny pasek z drugim
+     * "wstecz" nad nim byl zbedny; wyjscie dalej dziala przez systemowy gest/przycisk wstecz (onBackPressed). */
+    private fun openDeviceWindow(path: String, title: String, showBar: Boolean = true) {
         gate.unlock()
         val demoMode = backend?.isDemo == true
         val base = if (demoMode) "https://$DEMO_HOST/" else deviceBase.trimEnd('/') + "/"
         titleView.text = title
+        deviceBar.visibility = if (showBar) View.VISIBLE else View.GONE
         ui.visibility = View.GONE
         deviceBox.visibility = View.VISIBLE
         device.loadUrl(base + path)
@@ -638,7 +646,7 @@ class MainActivity : Activity() {
         @JavascriptInterface fun resetSecurity() { security.reset(); gate.lock(); wasUnlocked = false }
 
         // --- okna urządzenia i narzędzia
-        @JavascriptInterface fun openOriginal() { main.post { openDeviceWindow("classic.html", "Panel kotła (oryginał)") } }
+        @JavascriptInterface fun openOriginal() { main.post { openDeviceWindow("classic.html", "Panel kotła (oryginał)", showBar = false) } }
         @JavascriptInterface fun openDeviceSettings() { main.post { openDeviceWindow("settings.html", "Konfiguracja modułu") } }
         @JavascriptInterface fun openSetup() {
             main.post {

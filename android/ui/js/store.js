@@ -50,8 +50,15 @@ export const pv = pid => {
 };
 export const pn = pid => { const x = parseFloat(pv(pid)); return Number.isFinite(x) ? x : NaN; };
 
+// Watek wywolan do /api/v1/states (odpytywanie co 2 s + recznie wymuszone pullNow() np. po PIN-ie) moga
+// nachodzic na siebie - starsze zapytanie (np. z poprzedniego ticku) moze wrocic PO nowszym (np. przy
+// wolniejszej/przeciazonej sieci/CAN) i nadpisac swiezy stan (np. poziom dostepu zaraz po odblokowaniu)
+// stara wartoscia. Numer seryjny odrzuca taka spozniona, nieaktualna odpowiedz.
+let pullSeq = 0;
 async function pull() {
+  const seq = ++pullSeq;
   const r = await api('GET', '/api/v1/states');
+  if (seq !== pullSeq) return;   // przyszla pozniejsza odpowiedz w miedzyczasie - ta jest nieaktualna
   if (r.status === 200 && Array.isArray(r.json.states)) {
     const m = new Map(), b = new Map();
     for (const s of r.json.states) { m.set(s.entity_id, s); if (s.id) b.set(s.id, s); }

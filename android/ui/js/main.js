@@ -1,6 +1,6 @@
 import { nat, onEvent, api } from './native.js';
 import { S, LEVEL_MS, startPolling, stopPolling, subscribe, level, refreshInfo } from './store.js';
-import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ensureLevel, enterLevelPin, ensurePinSetup, confirmSheet, callService } from './ui.js';
+import { $, el, esc, toast, openSheet, closeSheet, pinSheet, ensureUnlocked, ensureLevel, enterLevelPin, ensurePinSetup, confirmSheet, promptSheet, callService } from './ui.js';
 import * as V from './views.js';
 import { fuelSheet, zasilanieSheet } from './views.js';
 import { checkUpdates, dismissed, dismiss } from './updates.js';
@@ -68,7 +68,8 @@ function chip() {
   const left = S.levelAt ? LEVEL_MS - (Date.now() - S.levelAt) : 0;
   if (level() > 0 && left > 0) {
     const m = Math.floor(left / 60000), s = Math.floor(left / 1000) % 60;
-    return `<button class="chip open" id="chip">🔓 ${m}:${String(s).padStart(2, '0')}</button>`;
+    const sup = { 1: '¹', 2: '²' }[level()] || '';
+    return `<button class="chip open" id="chip">🔓${sup} ${m}:${String(s).padStart(2, '0')}</button>`;
   }
   return '';
 }
@@ -78,7 +79,11 @@ function chrome(title, body, nav) {
   // Strzalka powrotu jako SVG, nie znak "←" - ten glif rozjezdza sie (nie jest wyosiowany) w domyslnej
   // czcionce na czesci urzadzen/Androidow, przez co wyglada krzywo w okraglym przycisku .ico.
   const BACK_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>';
-  const hdr = el(`<div class="hdr"><button class="ico" id="hm">${nav === 'sub' ? BACK_SVG : '☰'}</button><b>${esc(title)}</b><span id="chipbox">${chip()}</span></div>`);
+  // Na glownych ekranach (zakladki dolnego paska) ikona hamburgera w naglowku dublowalaby zakladke
+  // "Menu" w prawym dolnym rogu (ten sam cel: go('d/menu')) - zostaje tylko dolna. Strzalka powrotu na
+  // podekranach to nie duplikat (inny cel: history.back()), wiec tam ikona zostaje.
+  const showHm = nav !== 'main';
+  const hdr = el(`<div class="hdr${showHm ? '' : ' noicon'}">${showHm ? `<button class="ico" id="hm">${nav === 'sub' ? BACK_SVG : '☰'}</button>` : ''}<b>${esc(title)}</b><span id="chipbox">${chip()}</span></div>`);
   const sc = el('<div class="scroll"></div>');
   app.append(hdr, sc);
   if (nav === 'main') {
@@ -86,7 +91,7 @@ function chrome(title, body, nav) {
     n.querySelectorAll('button').forEach(b => b.onclick = () => go('d/' + b.dataset.k));
     app.append(n);
   }
-  $('#hm').onclick = () => nav === 'sub' ? history.back() : go('d/menu');
+  if ($('#hm')) $('#hm').onclick = () => nav === 'sub' ? history.back() : go('d/menu');
   bindChip();
   sc.appendChild(body);
   return sc;
@@ -227,7 +232,7 @@ function viewDevices() {
     const box = $('#mine', root); box.innerHTML = '';
     if (!devices.length) { box.innerHTML = '<div class="hint">Brak zapisanych urządzeń. Dodaj znalezione poniżej albo wpisz adres IP.</div>'; return; }
     devices.forEach(d => {
-      const b = el(`<button class="dev"><span class="dot ${d.up === true ? 'on' : d.up === false ? 'off' : ''}"></span><div class="t"><b>${esc(d.name)}</b><small>${esc(d.base.replace('http://', ''))}${d.fw ? ' · fw ' + esc(d.fw) : ''}${d.up === false ? ' · poza zasięgiem' : ''}</small></div><div class="v"><b data-b2="t"></b><br><small data-b2="s"></small></div><span class="x">✕</span></button>`);
+      const b = el(`<button class="dev"><span class="dot ${d.up === true ? 'on' : d.up === false ? 'off' : ''}"></span><div class="t"><b>${esc(d.name)}</b><small>${esc(d.base.replace('http://', ''))}${d.fw ? ' · fw ' + esc(d.fw) : ''}${d.up === false ? ' · poza zasięgiem' : ''}</small></div><div class="v"><b data-b2="t"></b><br><small data-b2="s"></small></div><span class="edit">✎</span><span class="x">✕</span></button>`);
       const sm = nat.summary(d.base);
       if (sm && sm.body) {
         try {
@@ -239,6 +244,14 @@ function viewDevices() {
         } catch (e) { /* bez podsumowania */ }
       }
       b.onclick = () => open(d.base, d.name);
+      $('.edit', b).onclick = async ev => {
+        ev.stopPropagation();
+        const nn = await promptSheet({ title: 'Nazwa urządzenia', sub: 'Własna nazwa pokazywana w nagłówku aplikacji.', value: d.name, placeholder: d.name });
+        if (!nn || nn === d.name) return;
+        const wasActive = nat.state().deviceName === d.name;
+        d.name = nn; save(); renderMine();
+        if (wasActive) { nat.selectDevice(d.base, nn); render(); }   // odswieza naglowek od razu, bez przechodzenia na pulpit
+      };
       $('.x', b).onclick = async ev => { ev.stopPropagation(); if (await confirmSheet('Usunąć urządzenie?', `„${esc(d.name)}” zniknie z listy.`, 'Usuń')) { devices = devices.filter(x => x !== d); save(); renderMine(); renderFound(); } };
       box.appendChild(b);
     });
@@ -249,7 +262,11 @@ function viewDevices() {
     if (!list.length) { box.innerHTML = `<div class="hint">${Object.keys(found).length ? 'Wszystkie znalezione urządzenia są już na liście.' : 'Nic nie znaleziono. Upewnij się, że telefon jest w tej samej sieci Wi‑Fi co urządzenie, albo dodaj adres ręcznie.'}</div>`; return; }
     list.forEach(f => {
       const b = el(`<div class="dev"><span class="dot on"></span><div class="t"><b>${esc(f.name)}</b><small>${esc(f.base.replace('http://', ''))}${f.fw ? ' · fw ' + esc(f.fw) : ''}</small></div><button class="btn acc" style="margin:0;width:auto;padding:9px 14px">Dodaj</button></div>`);
-      $('button', b).onclick = () => { devices.push({ id: f.id, name: f.name, base: f.base, fw: f.fw, up: true }); save(); open(f.base, f.name); };
+      $('button', b).onclick = async () => {
+        const nn = await promptSheet({ title: 'Nazwa urządzenia', sub: 'Jak nazwać to urządzenie? Zobaczysz tę nazwę w nagłówku aplikacji.', value: f.name, placeholder: f.name });
+        const name = nn || f.name;
+        devices.push({ id: f.id, name, base: f.base, fw: f.fw, up: true }); save(); open(f.base, name);
+      };
       box.appendChild(b);
     });
   };
@@ -271,10 +288,12 @@ function viewDevices() {
     if (devices.some(d => d.base === base)) return msg('To urządzenie jest już na liście.');
     msg('Sprawdzam…');
     const key = 'add' + Date.now();
-    window.__addPing = (i, info) => {
+    window.__addPing = async (i, info) => {
       if (i !== key) return; window.__addPing = null;
       if (!info || !info.id) return msg('Pod tym adresem nie ma urządzenia TeklaPelletCAN (brak odpowiedzi).');
-      const name = 'TeklaPelletCAN ' + info.id.slice(-4);
+      const defName = 'TeklaPelletCAN ' + info.id.slice(-4);
+      const nn = await promptSheet({ title: 'Nazwa urządzenia', sub: 'Jak nazwać to urządzenie? Zobaczysz tę nazwę w nagłówku aplikacji.', value: defName, placeholder: defName });
+      const name = nn || defName;
       devices.push({ id: info.id, name, base, fw: info.fw, up: true }); save(); open(base, name);
     };
     nat.ping(key, base);
