@@ -134,7 +134,7 @@ class MainActivity : Activity() {
             setBackgroundColor(0xFF111318.toInt())
             addView(ui, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
             addView(deviceBox, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-            setOnApplyWindowInsetsListener { _, ins -> applyInsets(ins); ins }
+            setOnApplyWindowInsetsListener { v, ins -> applyInsets(v, ins); ins }
         }
         setContentView(root)
         if (Build.VERSION.SDK_INT >= 28) {
@@ -235,23 +235,14 @@ class MainActivity : Activity() {
         setOnClickListener { action() }
     }
 
-    /** "ui" (android/ui, glowna apka) ma w <head> viewport-fit=cover i CSS liczace z env(safe-area-inset-*)
-     * (.nav, .sheet) - dolny margines na pasek nawigacji telefonu ma dawac SAMA strona, nie dublujemy go
-     * tu jeszcze raz natywnym paddingiem (to dawalo pusty pasek nad przyciskami nawigacyjnymi telefonu).
-     * "device" (classic.html/settings.html - replika oryginalnego panelu, bez obslugi safe-area w CSS)
-     * dostaje pelny, natywnie liczony inset jak wczesniej. */
-    private fun applyInsets(ins: WindowInsets) {
+    private fun applyInsets(v: View, ins: WindowInsets) {
         if (Build.VERSION.SDK_INT >= 30) {
             val s = ins.getInsets(WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout())
             val k = ins.getInsets(WindowInsets.Type.ime())
-            ui.setPadding(s.left, s.top, s.right, k.bottom)
-            deviceBox.setPadding(s.left, s.top, s.right, maxOf(s.bottom, k.bottom))
+            v.setPadding(s.left, s.top, s.right, maxOf(s.bottom, k.bottom))
         } else {
             @Suppress("DEPRECATION")
-            val l = ins.systemWindowInsetLeft; val t = ins.systemWindowInsetTop
-            @Suppress("DEPRECATION") val r = ins.systemWindowInsetRight
-            @Suppress("DEPRECATION") val b = ins.systemWindowInsetBottom
-            ui.setPadding(l, t, r, b); deviceBox.setPadding(l, t, r, b)
+            v.setPadding(ins.systemWindowInsetLeft, ins.systemWindowInsetTop, ins.systemWindowInsetRight, ins.systemWindowInsetBottom)
         }
     }
 
