@@ -337,11 +337,11 @@
       { t: 'Wybieg pompy [min]', r: 'boiler_pump_run', lo: 0, hi: 120, st: 1, dc: 0, sk: 64 },
       { t: 'Rezerwa paliwa stop [kg]', r: 'boiler_fuel_reserve', lo: 0, hi: 100, st: 1, dc: 0, sk: 65 },
       { t: 'Temp. maksymalna [°C]', r: 'cwu_tmax', lo: 40, hi: 80, st: 1, dc: 0, sk: 66 },   // 38
-      { t: 'Wentylator spalin – krzywa 1 [%]', r: 'exh_c1', lo: 0, hi: 100, st: 1, dc: 0, sk: 68 },   // 39..43
-      { t: 'Wentylator spalin – krzywa 2 [%]', r: 'exh_c2', lo: 0, hi: 100, st: 1, dc: 0, sk: 69 },
-      { t: 'Wentylator spalin – krzywa 3 [%]', r: 'exh_c3', lo: 0, hi: 100, st: 1, dc: 0, sk: 70 },
-      { t: 'Wentylator spalin – krzywa 4 [%]', r: 'exh_c4', lo: 0, hi: 100, st: 1, dc: 0, sk: 71 },
-      { t: 'Wentylator spalin – krzywa 5 [%]', r: 'exh_c5', lo: 0, hi: 100, st: 1, dc: 0, sk: 72 },
+      { t: 'Wentylator wspomagający – krzywa 1 [%]', r: 'exh_c1', lo: 0, hi: 100, st: 1, dc: 0, sk: 68 },   // 39..43
+      { t: 'Wentylator wspomagający – krzywa 2 [%]', r: 'exh_c2', lo: 0, hi: 100, st: 1, dc: 0, sk: 69 },
+      { t: 'Wentylator wspomagający – krzywa 3 [%]', r: 'exh_c3', lo: 0, hi: 100, st: 1, dc: 0, sk: 70 },
+      { t: 'Wentylator wspomagający – krzywa 4 [%]', r: 'exh_c4', lo: 0, hi: 100, st: 1, dc: 0, sk: 71 },
+      { t: 'Wentylator wspomagający – krzywa 5 [%]', r: 'exh_c5', lo: 0, hi: 100, st: 1, dc: 0, sk: 72 },
       { t: 'Alarm dźwiękowy', r: 'alarm_snd', opts: ['Wyłączony', 'Włączony'], sk: 73, tog: true },   // 44
       { t: 'Cisza od [h]', r: 'alarm_sil_from', lo: 0, hi: 24, st: 1, dc: 0, sk: 74 },   // 45
       { t: 'Cisza do [h]', r: 'alarm_sil_to', lo: 0, hi: 24, st: 1, dc: 0, sk: 75 },   // 46
@@ -501,7 +501,9 @@
       { k: 67, t: 'Antylegionella', r: 'legion', tog: true, lv: 0 },
     ];
     W.PR2 = PR2; W.PR = PR;
-    const L1 = [1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 'wsp', 13, 14, 15, 16], L2 = [17, 18, 19, 20, 21];
+    // 'wsp': klucz 1, kolejnosc jak na panelu - dawka wstepna/temp. spalin/interwal czyszczenia PRZED krzywa
+    // wentylatora wspomagajacego (exh_c1..5). Moc nominalna (47) to klucz 2, nie nalezy do tej grupy (patrz L2).
+    const L1 = [1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 'wsp', 13, 14, 15, 16], L2 = ['nom', 17, 18, 19, 20, 21];
     const q = (v, c) => Number(Math.max(c.lo, Math.min(c.hi, Math.round(v / c.st) * c.st)).toFixed(c.dc));
     const KEYDIV = n => `<div class="svsep"><ha-icon icon="mdi:wrench" style="--mdc-icon-size:5cqw"></ha-icon><sup>${n}</sup></div>`;
 
@@ -632,7 +634,8 @@
       const r = [P('Korekta powietrza [%]', this._p(this._v('air_corr'), 0), 3), P('Moc min [%]', this._p(this._v('power_min'), 0), 0),
         P('Moc max [%]', this._p(this._v('power_max'), 0), 1), P('Wartość opałowa [kWh/kg]', this._p(this._v('fuel_heat'), 1), 2),
         P('Ilość paliwa test [kg/h]', this._p(this._v('fuel_test'), 1), 4)];
-      const item = i => i === 'wsp' ? [39, 40, 41, 42, 43, 47, 48, 49, 50, 51].map(k => this._prow(PR[k].t, this._po(k), k)).join('') : this._q2row(i);
+      const item = i => i === 'wsp' ? [48, 49, 50, 51, 39, 40, 41, 42, 43].map(k => this._prow(PR[k].t, this._po(k), k)).join('')
+        : i === 'nom' ? this._prow(PR[47].t, this._po(47), 47) : this._q2row(i);
       if (l >= 1) {
         r.push(KEYDIV(1), '<div class="row go" data-go="fanmod" data-back="burner_s"><span class="l">Moc dmuchawy modulacja [%]</span><span class="v ch">&rsaquo;</span></div>');
         L1.forEach(i => r.push(item(i)));
