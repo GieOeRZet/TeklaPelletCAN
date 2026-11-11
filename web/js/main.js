@@ -342,7 +342,7 @@ function viewAppearance() {
     <div class="sec"><h5>Motyw</h5><div class="hint" style="margin-bottom:6px">Dotyczy tego, nowoczesnego stylu interfejsu (nie karty klasycznej).</div>
       ${chipRow('thm', [['dark', 'Ciemny'], ['light', 'Jasny'], ['auto', 'Systemowy']], themeNow)}</div>
     ${st.web ? '' : `<div class="sec"><h5>Domyślny styl</h5><div class="hint" style="margin-bottom:6px">Który interfejs otwiera się przy starcie aplikacji. Drugi zawsze dostępny z Menu.</div>
-      ${chipRow('sty', [['modern', 'Nowoczesny'], ['classic', 'Klasyczny (Estyma)']], styleNow)}</div>`}</div>`);
+      ${chipRow('sty', [['modern', 'Nowoczesny'], ['classic', 'Estyma']], styleNow)}</div>`}</div>`);
   chrome('Wygląd', body, 'sub');
   $('#thm', body).querySelectorAll('button').forEach(b => b.onclick = () => {
     setTheme(b.dataset.k);
