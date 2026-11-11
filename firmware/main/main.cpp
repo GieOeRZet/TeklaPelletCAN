@@ -176,22 +176,27 @@ extern "C" void app_main(void) {
     gpio_config(&bc);
     uint32_t boot_pressed_at = 0;
 
-    // Odbiór CAN w osobnym zadaniu o wyższym priorytecie: ramki nie giną, gdy HTTP/JSON chwilowo zajmuje główną pętlę
+    // Odbiór CAN w osobnym zadaniu o wyższym priorytecie: ramki nie giną, gdy HTTP/JSON chwilowo zajmuje główną pętlę.
+    // Priorytet podniesiony z 6 na 10 (nadal daleko poniżej wewnętrznych zadań Wi-Fi/lwIP ESP-IDF) i brak
+    // usypiania zaraz po odebraniu ramek (tylko gdy kolejka byla pusta) - zmniejsza okno, w ktorym moga
+    // sie uzbierac 2 ramki w buforach RXB0/RXB1 kontrolera MCP2515 zanim zdazymy je odczytac (mcp_err=0x40).
     xTaskCreate([](void*) {
         for (;;) {
+            bool got = false;
             if (can_ok_hw && !g_set.cfg.demo) {
                 tpc::CanFrame f;
                 int n = 0;
                 xSemaphoreTake(can_mu, portMAX_DELAY);
                 while (n++ < 24 && can.receive(f)) {
+                    got = true;
                     rx_total++;
                     if (xQueueSend(rxq, &f, 0) != pdTRUE) rx_dropped++;
                 }
                 xSemaphoreGive(can_mu);
             }
-            vTaskDelay(pdMS_TO_TICKS(1));
+            vTaskDelay(pdMS_TO_TICKS(got ? 0 : 1));
         }
-    }, "can_rx", 4096, nullptr, 6, nullptr);
+    }, "can_rx", 4096, nullptr, 10, nullptr);
 
     uint32_t last_can_try = 0, last_sum = 0, rx = 0;
     for (;;) {
