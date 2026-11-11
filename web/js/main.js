@@ -164,7 +164,8 @@ async function render() {
 window.__tpcBack = () => {
   if ($('#overlay').innerHTML) { closeSheet(); return true; }
   const r = location.hash.replace(/^#\//, '');
-  if (r === 'devices' || r === 'start' || r === 'setup' || r === '') return false;
+  if (r === 'devices') { if (nat.state().deviceName) { history.back(); return true; } return false; }
+  if (r === 'start' || r === 'setup' || r === '') return false;
   if (r === 'd/pulpit') { toLeave(); return true; }
   if (r.startsWith('d/') && r !== 'd/menu' && !['d/instalacja', 'd/alarmy', 'd/harmonogram'].includes(r)) { history.back(); return true; }
   if (r === 'd/menu' || r === 'app' || r === 'wyglad') { r === 'd/menu' ? go('d/pulpit') : history.back(); return true; }
@@ -211,7 +212,13 @@ function viewSetup() {
 
 // ------------------------------------------------------------------ lista urządzeń
 function viewDevices() {
-  nat.deselect(); stopPolling();
+  // "Zmien urzadzenie" z Menu nawiguje tu z AKTYWNYM urzadzeniem - w tym przypadku NIE wylaczamy go
+  // od razu (dopiero przy faktycznym wyborze nowego, patrz open() nizej - selectDevice() samo czysci
+  // poprzednie), zeby "wstecz"/anulowanie wracalo do pulpitu zamiast uwiezic uzytkownika na tym ekranie
+  // (system back wtedy po prostu zamykal aplikacje). Pierwsze uruchomienie (brak urzadzenia) - bez zmian.
+  const cameFromActive = !!nat.state().deviceName;
+  if (!cameFromActive) nat.deselect();
+  stopPolling();
   let devices = nat.devices();
   const found = {};
   const save = () => nat.saveDevices(devices.map(d => ({ id: d.id, name: d.name, base: d.base })));
@@ -224,8 +231,9 @@ function viewDevices() {
     <div class="sec"><h5>Nowe urządzenie</h5><div class="hint" style="margin-bottom:8px">Pierwsze uruchomienie: połącz telefon z siecią Wi‑Fi <b>TeklaPelletCAN-XXXX</b>, potem stuknij poniżej.</div><button class="btn sec" id="setup">Konfiguruj nowe urządzenie</button></div>
     <div class="sec"><h5>Tryb demo</h5><div class="hint" style="margin-bottom:8px">Wirtualny kocioł z żywymi odczytami – bez sieci i bez kotła.</div><button class="btn acc" id="demo">Uruchom demo</button></div>
     <button class="row nav2" id="appset" style="margin-top:6px"><span>Ustawienia aplikacji</span></button></div>`);
-  const sc = chrome('Urządzenia', root, 'none');
-  $('#hm').style.visibility = 'hidden'; $('#chipbox').innerHTML = '';
+  const sc = chrome('Urządzenia', root, cameFromActive ? 'sub' : 'none');
+  if (!cameFromActive) $('#hm').style.visibility = 'hidden';
+  $('#chipbox').innerHTML = '';
   showUpdateBanners(root, ['app']);
   const open = (base, name) => { nat.selectDevice(base, name); go('d/pulpit'); startPolling(); };
   const renderMine = () => {

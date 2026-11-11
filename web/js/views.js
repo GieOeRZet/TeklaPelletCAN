@@ -252,10 +252,17 @@ function modeChips(title, pid, labels, apply, entityId) {
 
 /** Wiersz jednego punktu z katalogu (/api/v1/points) - uzywany i w ekranach domenowych (kociol/palnik/co/cwu),
  * i w "Wszystkich parametrach". Zapisywalny -> otwiera editPoint (sam rozpoznaje suwak/stepper czy opcje). */
+// Punkty 0/1 (bez opcji nazwanych) - prawdziwy przelacznik wl/wyl zamiast wiersza z liczba i
+// strzalka (klik na caly wiersz jak wczesniej - editPoint() juz ma galaz dla bool: zapis od razu,
+// z potwierdzeniem na poziomie 1/2 - tu zmienia sie tylko wyglad, nie logika zapisu).
 function pointRow(p) {
-  const b = el(`<button class="row ${p.writable ? 'nav2' : ''}" data-p="${esc(p.id)}"><span>${esc(p.name)}${p.writable ? '' : '<div class="hint">tylko odczyt</div>'}</span><span class="v" data-b="pv_${esc(p.id)}"></span></button>`);
+  const isBool = p.writable && !p.options && p.min === 0 && p.max === 1 && (p.step || 1) === 1;
+  const b = isBool
+    ? el(`<button class="row" data-p="${esc(p.id)}"><span>${esc(p.name)}</span><span class="tg" data-b="pv_${esc(p.id)}"></span></button>`)
+    : el(`<button class="row ${p.writable ? 'nav2' : ''}" data-p="${esc(p.id)}"><span>${esc(p.name)}${p.writable ? '' : '<div class="hint">tylko odczyt</div>'}</span><span class="v" data-b="pv_${esc(p.id)}"></span></button>`);
   binders.set('pv_' + p.id, n => {
     const s = pv(p.id);
+    if (isBool) { n.classList.toggle('on', Math.round(parseFloat(s)) === 1); return; }
     let t = s === undefined || s === 'unknown' ? '–' : s;
     if (p.options && p.options[String(Math.round(parseFloat(s)))] !== undefined && !Number.isNaN(parseFloat(s))) t = p.options[String(Math.round(parseFloat(s)))];
     n.textContent = t + (p.unit && t !== '–' && !p.options ? ' ' + p.unit : '');
