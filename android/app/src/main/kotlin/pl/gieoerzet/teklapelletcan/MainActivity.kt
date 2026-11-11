@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.graphics.drawable.GradientDrawable
 import android.hardware.biometrics.BiometricManager
 import android.hardware.biometrics.BiometricPrompt
 import android.net.ConnectivityManager
@@ -115,12 +116,17 @@ class MainActivity : Activity() {
         device.addJavascriptInterface(AppBridge(), "TPCApp")
 
         titleView = TextView(this).apply {
-            setTextColor(0xFFE8EAF0.toInt()); textSize = 16f; maxLines = 1
-            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+            setTextColor(0xFFE8EAF0.toInt()); textSize = 17f; maxLines = 1; gravity = Gravity.CENTER
+            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f).apply {
+                marginStart = dp(10); marginEnd = dp(10)
+            }
         }
+        // Ten sam styl co naglowek .hdr nowoczesnego interfejsu (tlo ekranu + okragly przycisk .ico,
+        // wysrodkowany tytul) - wczesniej to byl calkowicie odrebny, natywny wyglad (plaskie tlo karty,
+        // tytul do lewej), co rzucalo sie w oczy przy przejsciu z/do ekranow nowoczesnych.
         deviceBar = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL
-            setBackgroundColor(0xFF1C1F27.toInt()); setPadding(dp(4), 0, dp(4), 0)
+            setBackgroundColor(0xFF111318.toInt()); setPadding(dp(10), 0, dp(10), 0)
             addView(barButton("←") { closeDevice() })
             addView(titleView)
             addView(barButton("⟳") { device.reload() })
@@ -229,9 +235,9 @@ class MainActivity : Activity() {
     private fun dp(v: Int) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, v.toFloat(), resources.displayMetrics).toInt()
 
     private fun barButton(label: String, action: () -> Unit) = TextView(this).apply {
-        text = label; setTextColor(0xFFE8EAF0.toInt()); textSize = 20f; gravity = Gravity.CENTER
-        minWidth = dp(44); minHeight = dp(44)
-        layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        text = label; setTextColor(0xFFE8EAF0.toInt()); textSize = 19f; gravity = Gravity.CENTER
+        background = GradientDrawable().apply { shape = GradientDrawable.OVAL; setColor(0xFF1C1F27.toInt()) }
+        layoutParams = LinearLayout.LayoutParams(dp(38), dp(38))
         setOnClickListener { action() }
     }
 
