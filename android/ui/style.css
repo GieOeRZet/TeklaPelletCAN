@@ -25,10 +25,10 @@ button { font:inherit; color:inherit; }
 .chip { display:inline-flex; gap:6px; align-items:center; padding:6px 11px; border-radius:999px; font-size:12px; background:var(--surf2); border:0; white-space:nowrap; }
 .chip.open { background:rgba(76,195,138,.18); color:var(--ok); }
 .chip.off { background:rgba(242,180,65,.16); color:var(--warn); }
-.nav { flex:0 0 auto; display:flex; justify-content:space-around; align-items:stretch; background:var(--navbg); border-top:1px solid var(--line); padding:1px 0 calc(1px + env(safe-area-inset-bottom)); }
+.nav { flex:0 0 auto; display:flex; justify-content:space-around; align-items:stretch; background:var(--navbg); border-top:1px solid var(--line); padding:0 0 env(safe-area-inset-bottom); }
 .nav button { justify-content:center; }
-.nav button { background:none; border:0; color:var(--dim); font-size:9px; display:flex; flex-direction:column; align-items:center; gap:1px; min-width:64px; padding:1px 8px; }
-.nav button i { font-style:normal; font-size:16px; }
+.nav button { background:none; border:0; color:var(--dim); font-size:11px; display:flex; flex-direction:column; align-items:center; gap:2px; min-width:64px; padding:5px 8px; }
+.nav button i { font-style:normal; font-size:20px; }
 .nav button.on { color:var(--acc); }
 .banner { margin:0 12px 8px; padding:9px 12px; border-radius:12px; font-size:13px; }
 .banner.off { background:rgba(242,180,65,.14); color:var(--warn); border:1px solid rgba(242,180,65,.4); }
@@ -117,7 +117,7 @@ input.t { width:100%; padding:12px; border-radius:10px; border:1px solid var(--l
   .land2 .cd img { height:34px; top:6px; }
   .land2 .cd .ico { height:34px; top:6px; }
   .land2 .cd .dots { font-size:9px; gap:1px 7px; }
-  .nav { padding-top:4px; padding-bottom:calc(4px + env(safe-area-inset-bottom)); } .nav button i { font-size:17px; }
+  .nav button { padding:2px 8px; } .nav button i { font-size:17px; }
 }
 
 @media (max-width: 370px) {
