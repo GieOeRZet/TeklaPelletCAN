@@ -20,6 +20,17 @@ do osobnych, dedykowanych repozytoriów (patrz niżej), żeby każdy element da�
 Portal urządzenia (`http://<adres-urządzenia>/`) działa od razu, bez żadnej z powyższych instalacji — serwowany jest
 bezpośrednio przez samo urządzenie i ma ten sam interfejs co aplikacja Android.
 
+Ekrany Kocioł/Palnik/Ogrzewanie/Ciepła woda (aplikacja Android, portal urządzenia) mają tę samą kolejność ustawień
+i te same poziomy dostępu PIN co fizyczny panel kotła. Styl interfejsu (Nowoczesny / Estyma – replika oryginalnego
+panelu) oraz motyw (ciemny / jasny / wg systemu) ustawia się w Menu → Wygląd; ustawienie zapisuje się na urządzeniu
+z którego korzystasz.
+
+<p>
+  <img src="docs/img/pulpit_dark.png" alt="Pulpit – motyw ciemny" width="260">
+  <img src="docs/img/pulpit_light.png" alt="Pulpit – motyw jasny" width="260">
+  <img src="docs/img/wyglad.png" alt="Menu Wygląd – motyw i domyślny styl" width="260">
+</p>
+
 ## Jak zacząć
 
 1. Wgraj firmware na ESP32-C6 (patrz [docs/BUDOWANIE.md](docs/BUDOWANIE.md)).
