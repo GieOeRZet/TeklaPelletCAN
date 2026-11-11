@@ -36,6 +36,7 @@ int main() {
     b.reg[0x3604] = 20;             // rezerwa paliwa 20 kg
     b.reg[0x2272] = 100; b.reg[0x2257] = 256 + 50; b.reg[0x3700] = 40; b.reg[0x2292] = 256 + 46; b.reg[0x4005] = 60;  // do mocy kW (wzor zapasowy)
     b.reg[0x3706] = 184;             // moc palnika - odczyt bezposredni z panelu (k_pwr): 18,4 kW
+    b.reg[0x3710] = 39;              // spalanie - odczyt bezposredni z panelu (k_cons): 3,9 kg/h
     b.reg[0x404C] = 256 + 2;                              // alarm: następna pozycja 2 -> ostatni slot 1
     b.reg[0x4011] = 0x00010000 | 140;                     // slot 1: kod 140 (brak ognia), aktywny
     b.reg[0x4025] = 1700000000; b.reg[0x4039] = 0;       // początek, koniec (otwarty)
@@ -111,13 +112,12 @@ int main() {
     assert(e.text_of("tank_pct") == "40");                         // 120/300
     assert(e.text_of("fuel_low") == "off");
     assert(e.text_of("burner_kw") != "" && e.text_of("burner_fuel_rate") != "");
-    // moc palnika pochodzi teraz z bezposredniego odczytu (k_pwr, ten sam rejestr co liczy/pokazuje
-    // sam panel) - w symulatorze ustawiony na 18,4 kW (SimBoiler::populate_demo), NIE z wzoru
-    // (ilosc paliwa x wartosc opalowa x moc% x sprawnosc) - ten zostaje tylko jako zapasowe przyblizenie,
-    // uzywane gdy odczyt bezposredni akurat niedostepny. Spalanie [kg/h] nadal przyblizone, ale juz
-    // liczone z prawdziwej mocy: 18,4/(4,6*0,85) = 4,7.
+    // moc palnika i spalanie pochodza teraz z bezposredniego odczytu (k_pwr/k_cons, te same rejestry
+    // co liczy/pokazuje sam panel) - w tescie ustawione na 18,4 kW / 3,9 kg/h - NIE z wzorow
+    // (ilosc paliwa x wartosc opalowa x moc% x sprawnosc) - te zostaja tylko jako zapasowe przyblizenie,
+    // uzywane gdy odczyt bezposredni akurat niedostepny.
     assert(e.text_of("burner_kw") == "18.4");
-    assert(e.text_of("burner_fuel_rate") == "4.7");
+    assert(e.text_of("burner_fuel_rate") == "3.9");
     assert(e.text_of("can_ok") == "on" && e.text_of("mirror_mode") == "off");
     assert(e.text_of("fw_ver") == "0.1.0");
     assert(e.text_of("alarm_last_text") == "kod 140 (Brak ognia/opalu), aktywny" ||

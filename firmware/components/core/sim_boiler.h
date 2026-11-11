@@ -90,6 +90,7 @@ inline void populate_demo(SimBoiler& b) {
     b.reg[0x3629] = 256 + 0;  // Pomiar energii: wyl.
     b.reg[0x299D] = 256 + 1;  // Dmuchawa z HALL: wl.
     b.reg[0x3706] = 184;      // Moc palnika (bezposredni odczyt z panelu): 18,4 kW - realistyczna dla demo
+    b.reg[0x3710] = 47;       // Spalanie (bezposredni odczyt z panelu): 4,7 kg/h - realistyczna dla demo
 }
 
 }  // namespace tpc

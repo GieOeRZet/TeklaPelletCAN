@@ -414,9 +414,12 @@ void Engine::recompute(uint32_t now) {
         haveKw = true;
     }
     if (haveKw) set_text("burner_kw", num_str(std::round(kw * 10.0) / 10.0));
-    // spalanie [kg/h]: wciaz przyblizenie (brak bezposredniego rejestru) - ale liczone juz z prawdziwej
-    // mocy (kw powyzej), gdy ta jest dostepna, wiec dokladniejsze niz dotychczas.
-    if (haveKw && ok4) set_text("burner_fuel_rate", num_str(std::round(kw / (cv * cfg_.burner_eff_fuel) * 10.0) / 10.0));
+    // spalanie [kg/h]: tak samo jak moc - najpierw bezposredni odczyt z panelu (k_cons), wzor
+    // (oparty o wyliczona moc) tylko jako zapasowe przyblizenie.
+    bool okCons;
+    const double directCons = value_of("k_cons", &okCons);
+    if (okCons) set_text("burner_fuel_rate", num_str(std::round(directCons * 10.0) / 10.0));
+    else if (haveKw && ok4) set_text("burner_fuel_rate", num_str(std::round(kw / (cv * cfg_.burner_eff_fuel) * 10.0) / 10.0));
     // zbiornik, rezerwa, zużycie 24 h i prognoza
     const double cap = value_of("tank_cap", &ok1), kg = value_of("tank_kg", &ok2);
     if (ok1 && ok2 && cap > 0) set_text("tank_pct", num_str(std::round(kg * 100.0 / cap)));
