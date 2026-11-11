@@ -157,10 +157,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await sleep(500);
   // Pelna lista 21 wyjsc testowych jak na prawdziwym panelu (A/OFF/ON, mieszacze+ruszt A/CLOSE/OPEN),
   // plus suwaki mocy Dmuchawy/WentWyc - nie tylko Dmuchawa/Podajnik jak dawniej.
-  check('test wyjść: pełna lista 21 pozycji (jak na prawdziwym panelu)', (await p.locator('.tst').count()) === 21);
+  check('test wyjść: pełna lista 21 pozycji trybu (jak na prawdziwym panelu)', (await p.locator('.tst').count()) === 21);
   check('test wyjść: mieszacze/ruszt mają CLOSE/OPEN zamiast OFF/ON', (await p.locator('.tst .abo em:has-text("CLOSE")').count()) >= 5);
   check('test wyjść: Dmuchawa i Podajnik widoczne, z polami A/OFF/ON', /Dmuchawa/.test(await p.innerText('body')) && /Podajnik/.test(await p.innerText('body')) && (await p.locator('.tst .abo em:has-text("A")').count()) >= 2);
-  check('test wyjść: suwaki mocy testowej (Dmuchawa/WentWyc)', /moc testowa/.test(await p.innerText('body')));
+  check('test wyjść: suwaki mocy testowej pełnej szerokości (Dmuchawa/WentWyc)', (await p.locator('.tst-sl2 .slider').count()) === 2);
   await p.screenshot({ path: OUT + '/ui_test_wyjsc_poziom2.png', fullPage: true });
   await goHash('#/d/konf');
   check('konfiguracja: "Dmuchawa z HALL" widoczna po PIN 0999 (poziom 2)', /Dmuchawa z HALL/i.test(await p.innerText('body')));

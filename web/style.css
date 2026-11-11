@@ -150,3 +150,8 @@ input.t { width:100%; padding:12px; border-radius:10px; border:1px solid var(--l
 .tst .abo em small { font-size:9px; color:var(--dim); line-height:1; letter-spacing:.3px; }
 .tst .abo em b { font-size:13px; font-weight:700; color:var(--acc); line-height:1; min-height:13px; }
 .tst .abo em.ck { background:var(--surf3); }
+/* Dmuchawa/WentWyc: suwak mocy testowej na pelnej szerokosci wiersza, od razu pod wierszem trybu - scisniety
+   suwak obok A/OFF/ON byl za maly, zeby cokolwiek nim realnie wysterowac. */
+.tst-sl2 { padding:4px 0 14px; }
+.tst-sl2 .slider { width:100%; height:38px; margin:0; }
+.tst-sl2 .slider .thumb { width:30px; height:30px; margin-left:-15px; margin-top:-15px; }

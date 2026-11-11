@@ -543,12 +543,22 @@ function testOutRow(id, label, textEntityId, closeOpen) {
   });
   return r;
 }
-// Dmuchawa/WentWyc maja na panelu dodatkowo suwak mocy [%] w tym samym wierszu - u nas osobny wiersz
-// zapisywalny (otwiera standardowy edytor +/-, jak kazdy inny punkt liczbowy w appce).
-function testPctRow(id, label) {
-  const r = el(`<button class="row nav2"><span>${esc(label)}</span><span class="v"></span></button>`);
-  r.onclick = () => editPoint(id);
-  bind(r.querySelector('.v'), 'tstpct_' + id, n => { const x = pn(id); n.textContent = (Number.isFinite(x) ? Math.round(x) : '–') + ' %'; });
+// Dmuchawa/WentWyc maja na panelu dodatkowo suwak mocy [%] - u nas wlasny, pelnoszerokosciowy wiersz od
+// razu pod wierszem trybu (przeciagnij/stuknij gdziekolwiek na calej szerokosci, zapis przy puszczeniu -
+// bez tekstu, bez chevronu, bez wchodzenia w osobne okno edycji - zbyt maly suwak obok A/OFF/ON nie dawal
+// sie realnie wysterowac).
+function testSliderRow(pctId) {
+  const pp = S.pointById.get(pctId), lo = pp?.min ?? 0, hi = pp?.max ?? 100;
+  const r = el('<div class="row tst-sl2"><div class="slider" id="sl"><div class="fill" id="fill"></div><div class="thumb" id="thumb"></div></div></div>');
+  const track = r.querySelector('#sl'), fill = r.querySelector('#fill'), thumb = r.querySelector('#thumb');
+  const paint = f => { fill.style.width = (f * 100) + '%'; thumb.style.left = (f * 100) + '%'; };
+  const fracOf = e => { const rc = track.getBoundingClientRect(); return Math.max(0, Math.min(1, (e.clientX - rc.left) / rc.width)); };
+  let dragging = false, dragVal = null;
+  track.addEventListener('pointerdown', e => { dragging = true; track.setPointerCapture(e.pointerId); dragVal = Math.round(lo + fracOf(e) * (hi - lo)); paint((dragVal - lo) / (hi - lo)); });
+  track.addEventListener('pointermove', e => { if (!dragging) return; dragVal = Math.round(lo + fracOf(e) * (hi - lo)); paint((dragVal - lo) / (hi - lo)); });
+  const release = () => { if (!dragging) return; dragging = false; if (dragVal != null) writePoint(pctId, dragVal); dragVal = null; };
+  track.addEventListener('pointerup', release); track.addEventListener('pointercancel', release);
+  bind(r, 'tst_' + (tstSeq++), () => { if (!dragging) { const pv = pn(pctId); if (Number.isFinite(pv) && hi > lo) paint((pv - lo) / (hi - lo)); } });
   return r;
 }
 export function testWyjsc() {
@@ -566,9 +576,9 @@ export function testWyjsc() {
     t.append(testOutRow('fuel_transporter_mode', 'Magazyn paliwa transporter', 'sensor.tekla_magazyn_paliwa_transporter_tryb_testowy'));
     t.append(testOutRow('fuel_storage_feeder_mode', 'Magazyn paliwa podajnik', 'sensor.tekla_magazyn_paliwa_podajnik_tryb_testowy'));
     t.append(testOutRow('blower_mode', 'Dmuchawa', 'sensor.tekla_dmuchawa_tryb'));
-    t.append(testPctRow('blower_test_pct', 'Dmuchawa – moc testowa'));
+    t.append(testSliderRow('blower_test_pct'));
     t.append(testOutRow('exh_fan_mode', 'WentWyc', 'sensor.tekla_wentwyc_tryb_testowy'));
-    t.append(testPctRow('exh_fan_pct', 'WentWyc – moc testowa'));
+    t.append(testSliderRow('exh_fan_pct'));
     t.append(testOutRow('co1_pump_mode', 'Pompa CO1', 'sensor.tekla_pompa_co1_tryb_testowy'));
     t.append(testOutRow('co2_pump_mode', 'Pompa CO2', 'sensor.tekla_pompa_co2_tryb_testowy'));
     t.append(testOutRow('co3_pump_mode', 'Pompa CO3', 'sensor.tekla_pompa_co3_tryb_testowy'));
