@@ -96,11 +96,6 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Jawnie wlaczamy rysowanie tresci "pod" paskami systemowymi (edge-to-edge) zamiast polegac na
-        // niejawnym zachowaniu zwiazanym z targetSdk 35 - przy niejednoznacznym stanie niektóre OEM-y
-        // potrafily zarezerwowac miejsce na pasek nawigacji DWA razy (raz sam system, raz applyInsets()
-        // ponizej), co dawalo pustą czarna belke nad przyciskami nawigacyjnymi telefonu.
-        if (Build.VERSION.SDK_INT >= 30) window.setDecorFitsSystemWindow(false)
         prefs = getSharedPreferences("tpc", Context.MODE_PRIVATE)
         kv = object : KV {
             override fun getString(k: String) = prefs.getString(k, null)
