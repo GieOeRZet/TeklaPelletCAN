@@ -1,4 +1,4 @@
-// teklapelletcan-card: karta Lovelace WYŁĄCZNIE dla integracji TeklaPelletCAN (domena "teklapelletcan").
+// teklapelletclassic-card: karta Lovelace WYŁĄCZNIE dla integracji TeklaPelletCAN (domena "teklapelletcan").
 // Nie zgaduje encji po całym Home Assistant jak oryginalna pelletcan-card (entity_prefix/auto) – urządzenie
 // znajduje przez rejestr urządzeń HA (identifiers[0] === "teklapelletcan"), więc nie myli się z ESPHome
 // ani z innymi integracjami. Renderuje się przez silnik tekla-panel-card (ten sam co pelletcan-card),
@@ -8,7 +8,7 @@
   // poczekaj na tekla-panel-card (rejestrowana przez pelletcan-card.js, ładowaną wcześniej przez integrację)
   await customElements.whenDefined('tekla-panel-card').catch(() => {});
   const Base = customElements.get('tekla-panel-card');
-  if (!Base) { console.warn('teklapelletcan-card: brak tekla-panel-card (pelletcan-card.js nie załadowana)'); return; }
+  if (!Base) { console.warn('teklapelletclassic-card: brak tekla-panel-card (pelletcan-card.js nie załadowana)'); return; }
   for (let i = 0; i < 50 && !window.__igneoFind; i++) await new Promise(r => setTimeout(r, 100));
   const IF = window.__igneoFind || {};
 
@@ -88,10 +88,10 @@
     }
     set hass(h) { this._lastHass = h; if (this._tcfg) this._apply(h); }
     get hass() { return this._lastHass; }
-    static getConfigElement() { return document.createElement('teklapelletcan-card-editor'); }
+    static getConfigElement() { return document.createElement('teklapelletclassic-card-editor'); }
     static getStubConfig() { return { screen: 'main', grafiki: 'pelne' }; }
   }
-  if (!customElements.get('teklapelletcan-card')) customElements.define('teklapelletcan-card', TeklaPelletCanCard);
+  if (!customElements.get('teklapelletclassic-card')) customElements.define('teklapelletclassic-card', TeklaPelletCanCard);
 
   // ---- edytor: tylko urządzenie (gdy >1), grafiki, obraz kotła, język, ekran – bez ręcznego mapowania encji ----
   class TeklaPelletCanCardEditor extends HTMLElement {
@@ -137,12 +137,12 @@
       this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: cfg }, bubbles: true, composed: true }));
     }
   }
-  if (!customElements.get('teklapelletcan-card-editor')) customElements.define('teklapelletcan-card-editor', TeklaPelletCanCardEditor);
+  if (!customElements.get('teklapelletclassic-card-editor')) customElements.define('teklapelletclassic-card-editor', TeklaPelletCanCardEditor);
 
   window.customCards = window.customCards || [];
-  if (!window.customCards.some(c => c.type === 'teklapelletcan-card')) {
+  if (!window.customCards.some(c => c.type === 'teklapelletclassic-card')) {
     window.customCards.push({
-      type: 'teklapelletcan-card',
+      type: 'teklapelletclassic-card',
       name: 'TeklaPelletClassic-card',
       description: 'Panel kotła Tekla/Estyma (replika panelu) – wyłącznie dla integracji TeklaPelletCAN (encje dobierane automatycznie).',
       preview: true,

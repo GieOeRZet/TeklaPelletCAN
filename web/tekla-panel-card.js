@@ -972,7 +972,7 @@ class TeklaPanelCard extends HTMLElement {
     `;
   }
 }
-customElements.define('tekla-panel-card', TeklaPanelCard);   // silnik renderowania, nie pokazujemy w selektorze kart (zob. teklapelletcan-card.js)
+customElements.define('tekla-panel-card', TeklaPanelCard);   // silnik renderowania, nie pokazujemy w selektorze kart (zob. teklapelletclassic-card.js)
 
 /* ---------- edytor karty (wizualny konfigurator) ---------- */
 class TeklaPanelCardEditor extends HTMLElement {

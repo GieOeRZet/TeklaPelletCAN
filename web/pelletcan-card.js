@@ -1397,7 +1397,7 @@
       let b = '<div class="inf">';
       if (up.length) b += '<div class="updbtn" data-act="updskip">Odrzuć aktualizację</div>';
       const tag = (this.tagName || '').toLowerCase();
-      const cardLabel = tag === 'teklapelletcan-card' ? 'TeklaPelletCAN-card (integracja TeklaPelletCAN)'
+      const cardLabel = tag === 'teklapelletclassic-card' ? 'TeklaPelletCAN-card (integracja TeklaPelletCAN)'
         : tag === 'pelletcan-card' ? 'pelletcan-card' : (tag || 'tekla-panel-card');
       b += '<div class="dim auth"><span>Stworzone przez: <span class="wh">Gorz Roman</span></span><span class="zq" data-act="zq"><i><svg viewBox="0 0 24 24"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z" fill="#fff"/><path d="M16 9.5h1.6a2 2 0 0 1 0 4H16" fill="none" stroke="#fff" stroke-width="1.6"/><rect x="5" y="18.2" width="11" height="1.6" rx=".8" fill="#fff"/></svg></i>Postaw kawę</span></div>'
         + '<div class="dim">Karta: <span class="wh">' + esc(cardLabel) + ' ' + esc(CARD_VER) + '</span></div>'

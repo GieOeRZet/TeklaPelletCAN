@@ -31,10 +31,10 @@
 - [ ] Zrzuty z emulatora Androida w CI (gałąź ze zrzutami) i ujednolicone, wyższej rozdzielczości grafiki kotła 11/12/14.
 
 ## Karta TeklaPelletCAN-card (zrobione) i następne kroki
-- [x] `teklapelletcan-card`: wyłącznie integracja TeklaPelletCAN, urządzenie z rejestru HA (nie zgadywanie po encjach), auto-dobór encji, wybór urządzenia w edytorze przy kilku integracjach, grafiki pełne domyślnie.
+- [x] `teklapelletclassic-card`: wyłącznie integracja TeklaPelletCAN, urządzenie z rejestru HA (nie zgadywanie po encjach), auto-dobór encji, wybór urządzenia w edytorze przy kilku integracjach, grafiki pełne domyślnie.
 - [ ] Zsynchronizować wybór grafiki/obrazu kotła z ustawieniem na samym urządzeniu (dziś niezależne – urządzenie nie wystawia tego jako encja HA).
 - [ ] Karta `TeklaPelletCAN-modern` w stylu nowej aplikacji Android (patrz niżej) – projekt do zrobienia.
 - [ ] Rozważyć `CARD_DOMAIN_ONLY` flag / translation_key na encjach integracji, żeby karta mogła odróżniać urządzenia bez polegania tylko na `identifiers`.
 
 ## Karta TeklaPelletCAN-modern (do zaprojektowania, nie zaczęte)
-Styl spójny z nową aplikacją Android (pulpit z grafikami Tekli, schemat instalacji, harmonogramy, poziomy 1/2 z PIN-em jak w oryginale – bez biometrii, bo to środowisko przeglądarki HA). Te same proporcje karty co `teklapelletcan-card`/oryginał (żeby komponowała się w istniejące dashboardy). Pomysł na modułowość: osobne mniejsze karty (pulpit/instalacja/harmonogram/alarmy) albo jedna karta z zakładkami – do decyzji przy starcie prac.
+Styl spójny z nową aplikacją Android (pulpit z grafikami Tekli, schemat instalacji, harmonogramy, poziomy 1/2 z PIN-em jak w oryginale – bez biometrii, bo to środowisko przeglądarki HA). Te same proporcje karty co `teklapelletclassic-card`/oryginał (żeby komponowała się w istniejące dashboardy). Pomysł na modułowość: osobne mniejsze karty (pulpit/instalacja/harmonogram/alarmy) albo jedna karta z zakładkami – do decyzji przy starcie prac.

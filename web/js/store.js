@@ -11,7 +11,7 @@ export const v = id => { const s = S.states.get(id); return s ? s.state : undefi
 export const num = id => { const x = parseFloat(v(id)); return Number.isFinite(x) ? x : NaN; };
 export const level = () => { const x = num('sensor.tekla_poziom_dostepu'); return Number.isFinite(x) ? x : 0; };
 // Role skonsolidowane w grupy (patrz AttrGroup w firmware/engine.cpp): encja osobna nie istnieje juz w
-// odczycie, wartosc jest atrybutem encji grupy - ta sama mapa co w teklapelletcan-modern-card.js (GROUP_OF).
+// odczycie, wartosc jest atrybutem encji grupy - ta sama mapa co w teklapelletmodern-card.js (GROUP_OF).
 const GROUP_OF = {
   p_prefeed: 'palnik_nastawy_p1', p_feed_max: 'palnik_nastawy_p1', p_photo: 'palnik_nastawy_p1', p_blow_ign: 'palnik_nastawy_p1',
   p_blow_glow: 'palnik_nastawy_p1', p_blow_stop: 'palnik_nastawy_p1', p_glow_time: 'palnik_nastawy_p1', p_glow_fuel: 'palnik_nastawy_p1',

@@ -1,6 +1,6 @@
-// teklapelletcan-modern-card: nowa karta w stylu aplikacji Android (pulpit z grafikami Tekli, schemat instalacji,
+// teklapelletmodern-card: nowa karta w stylu aplikacji Android (pulpit z grafikami Tekli, schemat instalacji,
 // nastawy, harmonogramy, alarmy). Wylacznie integracja TeklaPelletCAN – urzadzenie z rejestru HA, jak w
-// teklapelletcan-card. Punkty adresowane po ID z firmware (atrybut "tpc_id" na kazdej encji integracji),
+// teklapelletclassic-card. Punkty adresowane po ID z firmware (atrybut "tpc_id" na kazdej encji integracji),
 // WIEC bez zgadywania po nazwach encji – metadane (zakres/krok/poziom) z teklapelletcan-points.js, generowanych
 // z tego samego zrodla co firmware (rejestry/*.csv). PIN tylko do poziomu menu (1/2), jak w oryginalnej karcie –
 // bez biometrii (to przegladarka HA, nie telefon).
@@ -634,10 +634,10 @@ class TeklaModernCard extends HTMLElement {
     return root;
   }
 
-  static getConfigElement() { return document.createElement('teklapelletcan-modern-card-editor'); }
+  static getConfigElement() { return document.createElement('teklapelletmodern-card-editor'); }
   static getStubConfig() { return { boiler_image: '13' }; }
 }
-if (!customElements.get('teklapelletcan-modern-card')) customElements.define('teklapelletcan-modern-card', TeklaModernCard);
+if (!customElements.get('teklapelletmodern-card')) customElements.define('teklapelletmodern-card', TeklaModernCard);
 
 class TeklaModernCardEditor extends HTMLElement {
   setConfig(c) { this._cfg = Object.assign({ boiler_image: '13' }, c || {}); this._draw(); }
@@ -670,9 +670,9 @@ class TeklaModernCardEditor extends HTMLElement {
     this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: cfg }, bubbles: true, composed: true }));
   }
 }
-if (!customElements.get('teklapelletcan-modern-card-editor')) customElements.define('teklapelletcan-modern-card-editor', TeklaModernCardEditor);
+if (!customElements.get('teklapelletmodern-card-editor')) customElements.define('teklapelletmodern-card-editor', TeklaModernCardEditor);
 
 window.customCards = window.customCards || [];
-if (!window.customCards.some(c => c.type === 'teklapelletcan-modern-card')) {
-  window.customCards.push({ type: 'teklapelletcan-modern-card', name: 'TeklaPelletModern-card', description: 'Panel kotła w stylu aplikacji Android – pulpit, instalacja, nastawy, parametry, harmonogramy, alarmy.', preview: true });
+if (!window.customCards.some(c => c.type === 'teklapelletmodern-card')) {
+  window.customCards.push({ type: 'teklapelletmodern-card', name: 'TeklaPelletModern-card', description: 'Panel kotła w stylu aplikacji Android – pulpit, instalacja, nastawy, parametry, harmonogramy, alarmy.', preview: true });
 }
