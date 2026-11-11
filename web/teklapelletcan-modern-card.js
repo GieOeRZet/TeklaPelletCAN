@@ -68,11 +68,18 @@ const TANK = (pct, w = 96) => {
     <text x="64" y="412" font-size="42" font-weight="700" fill="#f5a21a" font-family="Roboto,sans-serif">E</text></svg>`;
 };
 const HOPPER = (pct, h = 54) => TANK(pct, Math.round(h * 0.62));
+// Ikona grzejnika (kafelek CO) - ten sam glif "mdi:radiator" co w aplikacji (android/ui/js/views.js),
+// zeby obie karty wygladaly spojnie.
+const RADI_SVG = `<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M7.95,3L6.53,5.19L7.95,7.4H7.94L5.95,10.5L4.22,9.6L5.64,7.39L4.22,5.19L6.22,2.09L7.95,3M13.95,2.89L12.53,5.1L13.95,7.3L13.94,7.31L11.95,10.4L10.22,9.5L11.64,7.3L10.22,5.1L12.22,2L13.95,2.89M20,2.89L18.56,5.1L20,7.3V7.31L18,10.4L16.25,9.5L17.67,7.3L16.25,5.1L18.25,2L20,2.89M2,22V14A2,2 0 0,1 4,12H20A2,2 0 0,1 22,14V22H20V20H4V22H2M6,14A1,1 0 0,0 5,15V17A1,1 0 0,0 6,18A1,1 0 0,0 7,17V15A1,1 0 0,0 6,14M10,14A1,1 0 0,0 9,15V17A1,1 0 0,0 10,18A1,1 0 0,0 11,17V15A1,1 0 0,0 10,14M14,14A1,1 0 0,0 13,15V17A1,1 0 0,0 14,18A1,1 0 0,0 15,17V15A1,1 0 0,0 14,14M18,14A1,1 0 0,0 17,15V17A1,1 0 0,0 18,18A1,1 0 0,0 19,17V15A1,1 0 0,0 18,14Z"/></svg>`;
 
 const CSS = `
-:root { --bg:#111318; --card:#1c1f27; --card2:#12151b; --line:#2b303b; --txt:#e8eaf0; --dim:#9aa1b2; --acc:#ff7a1a; --ok:#4cc38a; --err:#ef5350; --blue:#4a86e8; --warn:#f2b441; }
+/* UWAGA: zmienne MUSZA byc na ":host", nie ":root" - "root" to zawsze <html> DOKUMENTU, ktory lezy
+   POZA tym shadow DOM, wiec regula na ":root" wewnatrz stylu karty nigdy by nic nie dopasowala i
+   wszystkie var(--cos) ponizej cicho spadalyby na wartosc domyslna (tlo kafelkow/sekcji przezroczyste,
+   kolor akcentu/ok/err bez efektu - tak bylo do tej pory, niezauwazone bo tekst i tak dziedziczyl
+   jasny kolor ze strony-gospodarza, a wiele teł mialo zahardkodowany hex zamiast zmiennej). */
+:host { --bg:#111318; --card:#1c1f27; --card2:#12151b; --line:#2b303b; --txt:#e8eaf0; --dim:#9aa1b2; --acc:#ff7a1a; --ok:#4cc38a; --err:#ef5350; --blue:#4a86e8; --warn:#f2b441; display:block; }
 * { box-sizing:border-box; }
-:host { display:block; }
 /* Ten sam ksztalt co karta classic (768:437, szeroki/niski "ekran") zamiast poprzedniej pionowej proporcji
    4:5 - glownym widokiem (pulpit) jest teraz uklad poziomy (jak tryb landscape aplikacji), wiec karta ma
    wyglądać tak jak oryginał: STAŁA wysokość, dolny pasek nawigacji (ikony+etykiety, jak w aplikacji) ZAWSZE
@@ -100,9 +107,14 @@ const CSS = `
 .pill { display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; font-weight:600; background:rgba(76,195,138,.16); color:var(--ok); }
 .pill.o { background:rgba(255,122,26,.16); color:var(--acc); } .pill.r { background:rgba(239,83,80,.16); color:var(--err); }
 .g2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
-.cd { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:9px 11px; min-height:76px; text-align:left; width:100%; color:inherit; cursor:pointer; border:1px solid var(--line); }
+.cd { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:9px 11px; min-height:76px; text-align:left; width:100%; color:inherit; cursor:pointer; border:1px solid var(--line); position:relative; overflow:hidden; }
 .cd small { color:var(--dim); font-size:10px; text-transform:uppercase; letter-spacing:.5px; display:block; }
 .cd b { font-size:21px; font-weight:500; } .cd .u { color:var(--dim); font-size:11px; }
+/* Grafiki na kafelkach (palnik/bojler/grzejnik) - te same obrazki/glif co w aplikacji (android/ui/js/
+   views.js), w prawym gornym rogu kafelka, za tekstem. */
+.cd img, .cd .ico { position:absolute; right:8px; top:8px; }
+.cd img { height:34px; }
+.cd .ico { height:28px; width:24px; fill:var(--dim); opacity:.9; }
 .cd.full { grid-column:span 2; min-height:56px; display:flex; align-items:center; gap:10px; }
 .ok { color:var(--ok); } .er { color:var(--err); } .wr { color:var(--warn); } .dim { color:var(--dim); }
 .sec { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; margin:10px 0; }
@@ -143,6 +155,8 @@ const CSS = `
 .l2 .cd small { font-size:10px; }
 .l2 .cd b { font-size:18px; }
 .l2 .cd .u { font-size:10px; }
+.l2 .cd img { height:26px; right:6px; top:6px; }
+.l2 .cd .ico { height:22px; width:19px; right:6px; top:6px; }
 `;
 
 const SCH = [['CWU', 'sch_cwu_txt', 0], ['CO', 'sch_co_txt', 1], ['Kocioł', 'sch_boil_txt', 2]];
@@ -466,9 +480,9 @@ class TeklaModernCard extends HTMLElement {
           <div class="pill ${/alarm/i.test(this.pv('burner_state_text') || '') ? 'r' : /modulacj/i.test(this.pv('burner_state_text') || '') ? '' : 'o'}">${esc(this.pv('burner_state_text') || '–')}${Number.isFinite(this.pn('burner_power')) ? ' · ' + fmt(this.pn('burner_power'), 0) + ' %' : ''}</div></div>
         <div class="st">zadana ${fmt(this.pn('boiler_set_result'), 0)} °C · tryb ${esc(this.pv('boiler_mode_text') || '–')}</div></div>
       <div class="g2">
-        <button class="cd" data-go="instalacja"><small>Palnik</small><b>${fmt(this.pn('burner_power'), 0)}</b><span class="u"> %</span><div class="u">${esc(this.pv('burner_state_text') || '–')}</div></button>
-        <button class="cd" data-go="nastawy"><small>CWU</small><b>${f1(this.pn('hw_temp'))}</b><span class="u"> °C</span><div class="u">zadana ${fmt(this.pn('hw_set_result'), 0)} · pompa ${this.pb('hw_pump') ? '<span class="ok">wł.</span>' : 'wył.'}</div></button>
-        <button class="cd" data-go="nastawy"><small>CO</small><b>${f1(this.pn('ch1_temp'))}</b><span class="u"> °C</span><div class="u">zadana ${fmt(this.pn('ch1_set_result'), 0)} · pompa ${this.pb('ch1_pump') ? '<span class="ok">wł.</span>' : 'wył.'}</div></button>
+        <button class="cd" data-go="instalacja"><small>Palnik</small><b>${fmt(this.pn('burner_power'), 0)}</b><span class="u"> %</span><div class="u">${esc(this.pv('burner_state_text') || '–')}</div><img src="${this._assetBase}img/palnik.webp" alt=""></button>
+        <button class="cd" data-go="nastawy"><small>CWU</small><b>${f1(this.pn('hw_temp'))}</b><span class="u"> °C</span><div class="u">zadana ${fmt(this.pn('hw_set_result'), 0)} · pompa ${this.pb('hw_pump') ? '<span class="ok">wł.</span>' : 'wył.'}</div><img src="${this._assetBase}img/bojler.webp" alt=""></button>
+        <button class="cd" data-go="nastawy"><small>CO</small><b>${f1(this.pn('ch1_temp'))}</b><span class="u"> °C</span><div class="u">zadana ${fmt(this.pn('ch1_set_result'), 0)} · pompa ${this.pb('ch1_pump') ? '<span class="ok">wł.</span>' : 'wył.'}</div>${RADI_SVG}</button>
         <button class="cd" data-fuel="1"><small>Paliwo</small><b>${fmt(this.pn('tank_kg'), 0)}</b><span class="u"> kg</span><div class="u">${Number.isFinite(this.pn('fuel_days')) ? 'ok. ' + fmt(this.pn('fuel_days'), 0) + ' dni' : fmt(this.pn('tank_pct'), 0) + ' %'}</div></button>
         <button class="cd" data-go="instalacja"><small>Zewnętrzna</small><b>${f1(this.pn('outside_temp'))}</b><span class="u"> °C</span><div class="u">powrót ${f1(this.pn('ret_temp'))} °C</div></button>
         <button class="cd" data-go="instalacja"><small>Moc palnika</small><b>${fmt(this.pn('burner_kw'), 1)}</b><span class="u"> kW</span><div class="u">palnik ${f1(this.pn('burner_temp'))} °C</div></button>
