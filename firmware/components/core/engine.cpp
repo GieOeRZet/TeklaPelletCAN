@@ -397,15 +397,26 @@ void Engine::recompute(uint32_t now) {
     const double bs = value_of("burner_state", &ok1);
     if (ok1) set_text("burner_state_code", num_str(bs));
 
-    // moc palnika [kW] i spalanie [kg/h]
+    // moc palnika [kW]: preferuj bezposredni odczyt z panelu (k_pwr - to samo co panel sam liczy i pokazuje),
+    // bez kalibracji/przyblizenia. Wzor (ilosc paliwa x wartosc opalowa x moc% x sprawnosc, przeniesiony 1:1
+    // ze starej integracji ESPHome) zostaje tylko jako zapasowe przyblizenie, gdy odczyt bezposredni akurat
+    // niedostepny - dlatego dotychczas pokazywana wartosc czasem rozjezdzala sie z prawdziwym panelem
+    // (sprawnosc 0,90 byla dobrana "na oko" raz, do jednego egzemplarza kotla, nie jest to pomiar).
+    bool okDirect;
+    const double directKw = value_of("k_pwr", &okDirect);
     const double test = value_of("fuel_test", &ok1), tmax = value_of("p_feed_max", &ok2), per = value_of("p_feeder_period", &ok3);
     const double cv = value_of("fuel_heat", &ok4), p = value_of("burner_power", &ok5);
-    if (ok1 && ok2 && ok3 && ok4 && ok5 && per > 0) {
+    bool haveKw = okDirect;
+    double kw = okDirect ? directKw : 0.0;
+    if (!okDirect && ok1 && ok2 && ok3 && ok4 && ok5 && per > 0) {
         const double kgh100 = test * tmax / per;
-        const double kw = kgh100 * cv * cfg_.burner_eff_kw * p / 100.0;
-        set_text("burner_kw", num_str(std::round(kw * 10.0) / 10.0));
-        set_text("burner_fuel_rate", num_str(std::round(kw / (cv * cfg_.burner_eff_fuel) * 10.0) / 10.0));
+        kw = kgh100 * cv * cfg_.burner_eff_kw * p / 100.0;
+        haveKw = true;
     }
+    if (haveKw) set_text("burner_kw", num_str(std::round(kw * 10.0) / 10.0));
+    // spalanie [kg/h]: wciaz przyblizenie (brak bezposredniego rejestru) - ale liczone juz z prawdziwej
+    // mocy (kw powyzej), gdy ta jest dostepna, wiec dokladniejsze niz dotychczas.
+    if (haveKw && ok4) set_text("burner_fuel_rate", num_str(std::round(kw / (cv * cfg_.burner_eff_fuel) * 10.0) / 10.0));
     // zbiornik, rezerwa, zużycie 24 h i prognoza
     const double cap = value_of("tank_cap", &ok1), kg = value_of("tank_kg", &ok2);
     if (ok1 && ok2 && cap > 0) set_text("tank_pct", num_str(std::round(kg * 100.0 / cap)));
