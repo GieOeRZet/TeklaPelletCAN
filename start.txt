@@ -1,0 +1,7 @@
+Starting: Intent { cmp=pl.gieoerzet.teklapelletcan/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: pl.gieoerzet.teklapelletcan/.MainActivity
+TotalTime: 2750
+WaitTime: 2862
+Complete

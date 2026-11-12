@@ -1,0 +1,9 @@
+11-12 15:41:30.879 W/ziparchive( 2657): Unable to open '/data/app/~~MfuX1a3bhB0O5NN0yzNoeQ==/pl.gieoerzet.teklapelletcan-2_IipNE2ts6-qUvJiXBvwg==/base.dm': No such file or directory
+11-12 15:41:30.879 W/ziparchive( 2657): Unable to open '/data/app/~~MfuX1a3bhB0O5NN0yzNoeQ==/pl.gieoerzet.teklapelletcan-2_IipNE2ts6-qUvJiXBvwg==/base.dm': No such file or directory
+11-12 15:41:31.806 W/chromium( 2657): [WARNING:dns_config_service_android.cc(115)] Failed to read DnsConfig.
+11-12 15:41:32.745 W/ziparchive(  522): Unable to open '/data/app/~~MfuX1a3bhB0O5NN0yzNoeQ==/pl.gieoerzet.teklapelletcan-2_IipNE2ts6-qUvJiXBvwg==/base.dm': No such file or directory
+11-12 15:41:32.759 W/InputManager-JNI(  522): Input channel object 'c44f60b Splash Screen pl.gieoerzet.teklapelletcan (client)' was disposed without first being removed with the input manager!
+11-12 15:41:33.725 W/chromium( 1891): [1112/154133.725815:WARNING:dns_config_service_android.cc(81)] Failed to read DnsConfig.
+11-12 15:41:34.654 W/.teklapelletcan( 2657): Long monitor contention with owner ThreadPoolForeg (2877) at org.chromium.net.AndroidCertVerifyResult OB0.h(byte[][], java.lang.String, java.lang.String)(chromium-TrichromeWebViewGoogle6432.apk-stable-567263637:242) waiters=0 in org.chromium.net.AndroidCertVerifyResult OB0.h(byte[][], java.lang.String, java.lang.String) for 135ms
+11-12 15:41:34.719 W/JobServiceContext(  522): Sending onNetworkChanged for a job that isn't started. JobStatus{1785fa1 #u0a134/110 com.google.android.webview/org.chromium.android_webview.nonembedded.AwComponentUpdateService u=0 s=10134 NET READY}
+11-12 15:41:36.096 W/cr_AWNetworkFetcherTask( 3264): 	at org.chromium.android_webview.nonembedded.NetworkFetcherTask.download(chromium-TrichromeWebViewGoogle6432.apk-stable-567263637:48)
