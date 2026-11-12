@@ -862,7 +862,12 @@
     if (C.prototype.__v85) return;
     C.prototype.__v85 = true;
 
-    const BASE = new URL('.', import.meta.url).pathname + 'img/';
+    // CDN zamiast katalogu obok pliku karty, ale TYLKO gdy plik jest serwowany przez HACS (/hacsfiles/...):
+    // HACS przy instalacji karty Lovelace kopiuje lokalnie tylko pliki JS (ten plus to, co jest w nich
+    // jawnie importowane) - katalog img/ nigdy nie trafia na dysk HA. Strona urzadzenia i reczna instalacja
+    // (katalog img/ faktycznie obok pliku) uzywaja lokalnej sciezki jak dotychczas.
+    const DIR0 = new URL('.', import.meta.url).pathname;
+    const BASE = DIR0.includes('/hacsfiles/') ? 'https://cdn.jsdelivr.net/gh/GieOeRZet/TeklaPelletClassic-card@main/img/' : (DIR0 + 'img/');
     const EXT = ['png', 'webp', 'jpg', 'jpeg', 'svg'];
     const stamp = Date.now(); // plik jest pobierany swiezo przy kazdym odswiezeniu strony
     const IM = window.__igneoImg = window.__igneoImg || {};
@@ -970,7 +975,8 @@
     C.prototype._go = function (s, b) { if (this._lite && LITE_GO.includes(s)) return; return og2.call(this, s, b); };
     // ---- pakiet oryginalnych grafik panela: img/panel/NNN.png (numery jak w tablicy bitmap FW panela) ----
     await (async () => {
-      const PB = new URL('.', import.meta.url).pathname + 'img/panel/';
+      const DIR1 = new URL('.', import.meta.url).pathname;
+      const PB = DIR1.includes('/hacsfiles/') ? 'https://cdn.jsdelivr.net/gh/GieOeRZet/TeklaPelletClassic-card@main/img/panel/' : (DIR1 + 'img/panel/');
       const stamp = Date.now();
       const has = n => new Promise(r => { const im = new Image(); im.onload = () => r(true); im.onerror = () => r(false); im.src = PB + String(n).padStart(3, '0') + '.png?v=' + stamp; });
       if (!(await has(54))) return;   // brak pakietu = zostaja wektory (wystarczy zbiornik: 48, 49, 50, 54)

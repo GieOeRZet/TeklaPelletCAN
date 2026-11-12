@@ -6,11 +6,14 @@
 // bez biometrii (to przegladarka HA, nie telefon).
 import { TPC_POINTS, TPC_POINTS_BY_ID } from './teklapelletcan-points.js';
 
-// Baza zasobow (img/) wyliczona wzgledem adresu TEGO pliku – dziala i w HA (/teklapelletcan_static/...),
-// i w testach lokalnych (karta serwowana z korzenia web/), bez zalezenia od adresu strony/dashboardu.
+// Baza zasobow (img/) wyliczona wzgledem adresu TEGO pliku – dziala i w testach lokalnych (karta serwowana
+// z korzenia web/), bez zalezenia od adresu strony/dashboardu. WYJATEK: HACS (/hacsfiles/...) kopiuje przy
+// instalacji karty Lovelace tylko pliki JS (ten plus jawne importy) - katalog img/ nigdy nie trafia na dysk
+// HA, wiec w tym jednym przypadku obrazki ladujemy z repozytorium karty przez CDN zamiast lokalnie.
 // Mozna nadpisac w configu karty (asset_base) – przydatne, gdy sam plik karty jest serwowany z innego
 // miejsca niz obrazki (np. karta wgrana tymczasowo do /local/ do testow, obrazki wciaz w /teklapelletcan_static/).
-const DEFAULT_ASSET_BASE = new URL('.', import.meta.url).href;
+const _dir = new URL('.', import.meta.url);
+const DEFAULT_ASSET_BASE = _dir.pathname.includes('/hacsfiles/') ? 'https://cdn.jsdelivr.net/gh/GieOeRZet/TeklaPelletModern-card@main/' : _dir.href;
 
 const DOMAIN = 'teklapelletcan';
 const LOCK_MS = 300000;
@@ -85,7 +88,7 @@ const CSS = `
    wyglądać tak jak oryginał: STAŁA wysokość, dolny pasek nawigacji (ikony+etykiety, jak w aplikacji) ZAWSZE
    widoczny, a tresc ekranu przewija sie we wlasnym wnetrzu (.body) nad nim - klikniecie w cokolwiek otwiera
    dolny arkusz (patrz _openSheet) albo podmienia caly ekran, nigdy nie rozpycha karty w dol. */
-.wrap { background:var(--bg); color:var(--txt); font:15px/1.4 Roboto, system-ui, sans-serif; border-radius:var(--ha-card-border-radius,12px); overflow:hidden; display:flex; flex-direction:column; width:100%; aspect-ratio:768/437; }
+.wrap { background:var(--bg); color:var(--txt); font:15px/1.4 Roboto, system-ui, sans-serif; border-radius:var(--ha-card-border-radius,12px); overflow:hidden; display:flex; flex-direction:column; width:100%; aspect-ratio:768/437; min-height:600px; }
 .hdr { flex:0 0 auto; display:flex; align-items:center; gap:10px; padding:8px 12px; }
 .hdr b { flex:1; font-size:16px; }
 .ico { width:36px; height:36px; border-radius:50%; background:var(--card); border:0; color:inherit; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer; }
