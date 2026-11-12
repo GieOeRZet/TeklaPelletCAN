@@ -1,0 +1,48 @@
+{
+  "channels": {
+    "beta": {
+      "version": "0.17.0",
+      "build": 180,
+      "full": "0.17.0+180",
+      "file": "beta/teklapelletcan.bin",
+      "sig": "beta/teklapelletcan.bin.sig",
+      "embedded": true,
+      "sha256": "988e7c297d8986b5cb454aee16ea1eb61e591145309a96a4b1e4ee8a38b7b3c2",
+      "size": 1580472,
+      "commit": "93d4ba54c2ba3e96ebfed40241917f91b142d9b6",
+      "notes": "Analiza Ghidra firmware FW2213TK: funkcje, stringi, dekompilacja",
+      "changelog": [
+        "Analiza Ghidra firmware FW2213TK: funkcje, stringi, dekompilacja"
+      ],
+      "date": "2026-11-12 15:43 UTC"
+    },
+    "stable": {
+      "version": "0.17.0",
+      "build": 179,
+      "full": "0.17.0+179",
+      "file": "stable/teklapelletcan.bin",
+      "sig": "stable/teklapelletcan.bin.sig",
+      "embedded": true,
+      "sha256": "9d929a699a2d4e7ce3321e44c086f6639c79e526c9088dc41e186d4c66e5e3ee",
+      "size": 1580472,
+      "commit": "db03dc0c1c0fb741355dfd798044b2d644dfa5b1",
+      "notes": "Karty HA: grafiki przez CDN (HACS nie kopiuje katalogu img/), karta Modern wyższa",
+      "changelog": [
+        "Karty HA: grafiki przez CDN (HACS nie kopiuje katalogu img/), karta Modern wyższa"
+      ],
+      "date": "2026-11-12 05:23 UTC"
+    }
+  },
+  "app": {
+    "version": "0.17.0",
+    "build": 179,
+    "full": "0.17.0+179",
+    "tag": "v0.17.0",
+    "url": "https://github.com/GieOeRZet/TeklaPelletCAN/releases/tag/v0.17.0",
+    "apk": "https://github.com/GieOeRZet/TeklaPelletCAN/releases/download/v0.17.0/teklapelletcan.apk",
+    "notes": "Karty HA: grafiki przez CDN (HACS nie kopiuje katalogu img/), karta Modern wyższa",
+    "changelog": [
+      "Karty HA: grafiki przez CDN (HACS nie kopiuje katalogu img/), karta Modern wyższa"
+    ]
+  }
+}
