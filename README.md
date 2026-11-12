@@ -13,7 +13,7 @@ do osobnych, dedykowanych repozytoriów (patrz niżej), żeby każdy element da�
 |---|---|---|
 | Firmware (ESP32-C6) | [Wydania tego repo](../../releases) – wgrywane przez USB lub OTA | `firmware/` |
 | Integracja Home Assistant (HACS) | [GieOeRZet/TeklaPelletCAN_HA](https://github.com/GieOeRZet/TeklaPelletCAN_HA) | `custom_components/teklapelletcan/` |
-| Karta classic (replika panelu Igneo Touch) | [GieOeRZet/TeklaPelletClassic-card](https://github.com/GieOeRZet/TeklaPelletClassic-card) | `web/pelletcan-card.js`, `web/tekla-panel-card.js`, `web/teklapelletclassic-card.js` |
+| Karta classic (replika panelu Igneo Touch) | [GieOeRZet/TeklaPelletClassic-card](https://github.com/GieOeRZet/TeklaPelletClassic-card) | `web/teklapelletclassic-card.js` (jedyny zasób HA), `web/teklapelletclassic-engine.js`, `web/tekla-panel-card.js` |
 | Karta modern (styl aplikacji Android) | [GieOeRZet/TeklaPelletModern-card](https://github.com/GieOeRZet/TeklaPelletModern-card) | `web/teklapelletmodern-card.js` |
 | Aplikacja Android | [GieOeRZet/TeklaPelletDroid](https://github.com/GieOeRZet/TeklaPelletDroid) | `android/` |
 

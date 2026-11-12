@@ -1,4 +1,4 @@
-/* PelletCAN-card: tlumaczenia (generowane z docs/lang/pelletcan-lang.txt przez tools/gen_lang.py - nie edytuj recznie).
+/* teklapelletclassic-lang: tlumaczenia karty TeklaPelletClassic-card (generowane z docs/lang/pelletcan-lang.txt przez tools/gen_lang.py - nie edytuj recznie).
    Klucz = tekst polski (zrodlo), {n} = dowolny fragment. Brak tlumaczenia = zostaje tekst polski. */
 export default {
  "names": {

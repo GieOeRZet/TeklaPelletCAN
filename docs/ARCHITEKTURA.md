@@ -80,7 +80,7 @@ Wersja `v1`, JSON, `http://<ip>/api/v1/...`.
 - Karty Lovelace NIE są częścią integracji (ani jej kreatora konfiguracji) – instaluje się je osobno z HACS, z dedykowanych repozytoriów (TeklaPelletClassic-card, TeklaPelletModern-card). Integracja tylko wystawia encje i usługi; `teklapelletclassic-card`/`pelletcan-card` je znajdują i obsługują, ale żadna z nich nie jest wymuszana ani wstrzykiwana automatycznie.
 
 ## 10. Karty (`web/`)
-Silnik renderowania (`tekla-panel-card.js`/`pelletcan-card.js`) jest wspólny dla strony urządzenia i dla HA: tłumaczenia (11 języków), tryb demo, edytor wizualny. Kod startowy przeniesiony z `dist/` projektu PelletCAN i przepięty z encji ESPHome na model punktów. Dwa punkty wejścia na tym silniku:
+Silnik renderowania (`tekla-panel-card.js`/`teklapelletclassic-engine.js`) jest wspólny dla strony urządzenia i dla HA: tłumaczenia (11 języków), tryb demo, edytor wizualny. Kod startowy przeniesiony z `dist/` projektu PelletCAN i przepięty z encji ESPHome na model punktów. Dwa punkty wejścia na tym silniku:
 - **`pelletcan-card`** – ogólna, kompatybilna wstecz: wykrywa dowolne urządzenie (ESPHome PelletCAN albo TeklaPelletCAN) po prefiksie encji w CAŁYM Home Assistant (ręczny `entity_prefix` albo zgadywanie po „kotwicach”). Używana na stronie WWW urządzenia (tam zawsze jest tylko jedno urządzenie – samo siebie).
 - **`teklapelletclassic-card`** (`web/teklapelletclassic-card.js`) – wyłącznie dla integracji TeklaPelletCAN: urządzenie znajduje przez rejestr urządzeń HA (`identifiers[0] === "teklapelletcan"`), nie przez zgadywanie po całym HA, więc nie myli się z ESPHome ani inną integracją. Przy kilku urządzeniach integracji w jednym HA pokazuje wybór w edytorze karty (`device_id`); bez wyboru używa pierwszego i pokazuje baner. Konfiguracja: urządzenie (opcjonalnie), grafiki (domyślnie pełne), obraz kotła 11–14, język, ekran startowy – bez ręcznego mapowania encji. Polecana karta dla integracji; `pelletcan-card` zostaje dla strony WWW urządzenia i starych dashboardów.
 
@@ -139,7 +139,7 @@ ESP **nie ma internetu**, więc nie sprawdza wersji samo. Robi to klient, który
 ## 13. Decyzje
 - Hasło AP: `qwerty123` (domyślne, zmienialne).
 - Odczyt bez parowania: domyślnie włączony (wyłączalny); zapis tylko z tokenem.
-- Sprzęt: XIAO ESP32-C6; interfejs w 11 językach (z `pelletcan-lang.js`).
+- Sprzęt: XIAO ESP32-C6; interfejs w 11 językach (z `teklapelletclassic-lang.js`).
 - Czas od klienta, bez internetu na ESP.
 
 ## 14. Otwarte

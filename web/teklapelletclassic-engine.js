@@ -1,9 +1,11 @@
-/* PelletCAN-card - JEDEN plik wejsciowy karty Tekla/Estyma Igneo Touch (wersja karty: patrz CARD_VER nizej i version.json).
-   Rejestruje karte custom:pelletcan-card (stary typ custom:tekla-panel-card dziala dalej; tryb lite: lite: true w konfiguracji karty; typ tekla-panel-card_lite = alias).
+/* teklapelletclassic-engine - silnik renderowania karty TeklaPelletClassic-card (wersja: patrz CARD_VER nizej i version.json).
+   Rejestruje karte custom:pelletcan-card (wewnetrzny alias silnika, nie pokazywany w selektorze kart; tryb lite:
+   lite: true w konfiguracji karty; typ tekla-panel-card_lite = alias).
    Dziala tak: pobiera rdzen tekla-panel-card.js (z tego samego katalogu) (baza v6.9), naklada poprawki (lista EDITS) i dolacza moduly:
      poprawki ekranow (menu, PROGRAM, NASTAWY) | paski harmonogramu | poziomy dostepu z ESP + parametry palnika/CWU | Antylegionella | Ogrzewanie 1
      | czas podawania | historia alarmow z kotla | grafiki z folderu img/ | autor na ekranie INFO | v9.2: automatyczne wykrywanie encji, tryb lite (lite: true w YAML), nowy edytor.
-   Zasob w HA: tylko ten plik. Po zmianie podbij ?v= w adresie zasobu i zrob Ctrl+F5. */
+   Zasob w HA: NIE rejestruje sie osobno - ladowany automatycznie (dynamic import) przez teklapelletclassic-card.js,
+   ktory jest jedynym zasobem dashboardu tej karty. Po zmianie podbij ?v= w adresie ponizej i zrob Ctrl+F5. */
 (async () => {
   if (window.__igneoCard) return;
   window.__igneoCard = true;
@@ -1437,13 +1439,13 @@
 
     })();
 
-    // ---- modul v1.4: tlumaczenia (language: pl|en|da|de|sv|lt|sk|cs|es|ro|et|auto; slownik w pelletcan-lang.js) ----
+    // ---- modul v1.4: tlumaczenia (language: pl|en|da|de|sv|lt|sk|cs|es|ro|et|auto; slownik w teklapelletclassic-lang.js) ----
     await (async () => {
       const C = customElements.get('tekla-panel-card');
       if (C.prototype.__lang) return;
       C.prototype.__lang = true;
       let LG = window.__pcLang;
-      if (!LG) { try { LG = (await import(DIR + 'pelletcan-lang.js?v=14')).default; window.__pcLang = LG; } catch (e) { LG = { names: {}, dict: {} }; console.warn('pelletcan-card: brak pelletcan-lang.js - interfejs po polsku', e); } }
+      if (!LG) { try { LG = (await import(DIR + 'teklapelletclassic-lang.js?v=14')).default; window.__pcLang = LG; } catch (e) { LG = { names: {}, dict: {} }; console.warn('teklapelletclassic-engine: brak teklapelletclassic-lang.js - interfejs po polsku', e); } }
       const ALIAS = { dk: 'da', se: 'sv', cz: 'cs', est: 'et', ee: 'et', gb: 'en', us: 'en', no: 'da', pl_pl: 'pl' };
       const LBL = { pl: 'PL', en: 'EN', da: 'DK', de: 'DE', sv: 'SE', lt: 'LT', sk: 'SK', cs: 'CZ', es: 'ES', ro: 'RO', et: 'EST' };
       const LOC = { pl: 'pl-PL', en: 'en-GB', da: 'da-DK', de: 'de-DE', sv: 'sv-SE', lt: 'lt-LT', sk: 'sk-SK', cs: 'cs-CZ', es: 'es-ES', ro: 'ro-RO', et: 'et-EE' };

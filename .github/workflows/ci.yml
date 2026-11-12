@@ -374,8 +374,8 @@ jobs:
         run: |
           rm -rf /tmp/pub && mkdir -p /tmp/pub
           git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/GieOeRZet/TeklaPelletClassic-card.git" /tmp/pub
-          rm -f /tmp/pub/teklapelletcan-card.js   # stara nazwa pliku (niezgodna z nazwa repo) - usuwana przy pierwszej synchronizacji po zmianie nazwy
-          for f in pelletcan-card.js pelletcan-lang.js tekla-panel-card.js teklapelletclassic-card.js teklapelletcan-points.js; do cp "web/$f" /tmp/pub/"$f"; done
+          rm -f /tmp/pub/teklapelletcan-card.js /tmp/pub/pelletcan-card.js /tmp/pub/pelletcan-lang.js   # stare nazwy plikow - usuwane przy pierwszej synchronizacji po zmianie nazwy
+          for f in teklapelletclassic-engine.js teklapelletclassic-lang.js tekla-panel-card.js teklapelletclassic-card.js teklapelletcan-points.js; do cp "web/$f" /tmp/pub/"$f"; done
           rsync -a --delete web/img/ /tmp/pub/img/
           cd /tmp/pub
           git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"

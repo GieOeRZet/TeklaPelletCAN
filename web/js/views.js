@@ -649,7 +649,7 @@ export function alarmy() {
 // Przynaleznosc punktu do ekranu domenowego - NIE zgadywana po nazwie (nazwy czesto zwodza, np. "Palnik
 // dawka wstepna g"/"Wymiennik interwal czyszczenia" naleza w oryginale do menu Palnik mimo brzmienia, a
 // "Korekta powietrza"/"Moc min/max"/"Wartosc opalowa" tez do Palnik, nie Kociol). Zrodlo: katalog
-// "Menu -> X -> NASTAWY" w web/pelletcan-card.js (zweryfikowane na prawdziwym kotle), ta sama przynaleznosc
+// "Menu -> X -> NASTAWY" w web/teklapelletclassic-engine.js (zweryfikowane na prawdziwym kotle), ta sama przynaleznosc
 // co w karcie classic i co w konsolidacji encji (patrz AttrGroup w firmware/engine.cpp).
 const POINT_GROUP = {
   boiler_hyst_on: 'Kocioł', boiler_hyst_off: 'Kocioł', boiler_pump_min: 'Kocioł', boil_pump_run: 'Kocioł',

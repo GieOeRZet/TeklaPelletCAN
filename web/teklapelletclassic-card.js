@@ -1,14 +1,17 @@
 // teklapelletclassic-card: karta Lovelace WYŁĄCZNIE dla integracji TeklaPelletCAN (domena "teklapelletcan").
 // Nie zgaduje encji po całym Home Assistant jak oryginalna pelletcan-card (entity_prefix/auto) – urządzenie
 // znajduje przez rejestr urządzeń HA (identifiers[0] === "teklapelletcan"), więc nie myli się z ESPHome
-// ani z innymi integracjami. Renderuje się przez silnik tekla-panel-card (ten sam co pelletcan-card),
+// ani z innymi integracjami. Renderuje się przez silnik teklapelletclassic-engine.js (ta sama baza co pelletcan-card),
 // żeby mieć 1:1 tę samą funkcjonalność (ekrany, PIN-y, grafiki), bez przepisywania 1500 linii renderowania.
+// JEDYNY zasób dashboardu tej karty: ten plik sam dociąga silnik (dynamic import, ten sam katalog HACS) –
+// nie trzeba osobno dodawać drugiego zasobu w Ustawienia → Panele → Zasoby.
 // Konfiguracja: tylko urządzenie (gdy więcej niż jedno), grafiki (domyślnie pełne), obraz kotła, język, ekran startowy.
 (async () => {
-  // poczekaj na tekla-panel-card (rejestrowana przez pelletcan-card.js, ładowaną wcześniej przez integrację)
+  const DIR = new URL('.', import.meta.url).pathname;
+  if (!customElements.get('tekla-panel-card')) { try { await import(DIR + 'teklapelletclassic-engine.js'); } catch (e) { console.error('teklapelletclassic-card: nie udało się załadować silnika renderowania', e); } }
   await customElements.whenDefined('tekla-panel-card').catch(() => {});
   const Base = customElements.get('tekla-panel-card');
-  if (!Base) { console.warn('teklapelletclassic-card: brak tekla-panel-card (pelletcan-card.js nie załadowana)'); return; }
+  if (!Base) { console.warn('teklapelletclassic-card: brak silnika renderowania (teklapelletclassic-engine.js)'); return; }
   for (let i = 0; i < 50 && !window.__igneoFind; i++) await new Promise(r => setTimeout(r, 100));
   const IF = window.__igneoFind || {};
 

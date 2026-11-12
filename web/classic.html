@@ -20,7 +20,7 @@ window.__tpcDevice = true;   // karta działa na stronie urządzenia (ma /settin
 import './ha-icon.js';
 import { DeviceHass } from './shim.js';
 try { const i = await (await fetch('/api/v1/info')).json(); if (!i.password_set) { location.replace('/portal.html'); } } catch (e) { /* offline */ }
-await import('./pelletcan-card.js');
+await import('./teklapelletclassic-engine.js');
 await customElements.whenDefined('pelletcan-card');
 const hass = new DeviceHass('');
 const card = document.createElement('pelletcan-card');
