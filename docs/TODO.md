@@ -35,6 +35,7 @@
 - [ ] Zsynchronizować wybór grafiki/obrazu kotła z ustawieniem na samym urządzeniu (dziś niezależne – urządzenie nie wystawia tego jako encja HA).
 - [ ] Karta `TeklaPelletCAN-modern` w stylu nowej aplikacji Android (patrz niżej) – projekt do zrobienia.
 - [ ] Rozważyć `CARD_DOMAIN_ONLY` flag / translation_key na encjach integracji, żeby karta mogła odróżniać urządzenia bez polegania tylko na `identifiers`.
+- [ ] Po dokończeniu wyglądu karty classic (odwzorowanie 1:1 panelu): dopiąć uśrednioną temperaturę zewnętrzną pod temperaturą zewnętrzną na ekranie głównym. Rejestry już namierzone: `0x3720` okres uśredniania [h] (domyślnie 12h), `0x3721` "Outside temperature averaged" (s16, jeszcze NIE wykorzystany) – patrz `rejestry/katalog-rejestrow.csv`. Łańcuch: `rejestry/punkty.csv` → `tools/gen_points.py` (firmware) → odczyt w karcie, mniejszą czcionką pod temperaturą zewnętrzną (pozycja na ekranie głównym do ustalenia razem z resztą layoutu).
 
 ## Karta TeklaPelletCAN-modern (do zaprojektowania, nie zaczęte)
 Styl spójny z nową aplikacją Android (pulpit z grafikami Tekli, schemat instalacji, harmonogramy, poziomy 1/2 z PIN-em jak w oryginale – bez biometrii, bo to środowisko przeglądarki HA). Te same proporcje karty co `teklapelletclassic-card`/oryginał (żeby komponowała się w istniejące dashboardy). Pomysł na modułowość: osobne mniejsze karty (pulpit/instalacja/harmonogram/alarmy) albo jedna karta z zakładkami – do decyzji przy starcie prac.

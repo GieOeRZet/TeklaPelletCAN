@@ -121,7 +121,9 @@ const PROG_LBL = ['WODA', 'OGRZEWANIE', 'KOCIOŁ']; // kind: 0 = CWU, 1 = CO, 2 
 const CDLG = {
   co: { lo1: 15, hi1: 30, lo2: 10, hi2: 30, step: 0.5, dec: 1, w1: 2, w2: 3, ck: 'co_comfort', ek: 'co_eco', mk: 'co_mode' },
   cwu: { lo1: 20, hi1: 70, lo2: 20, hi2: 70, step: 1, dec: 0, w1: 0, w2: 1, ck: 'cwu_comfort', ek: 'cwu_eco', mk: 'cwu_mode' } };
-const MX = [28, 42.5, 57, 71.5]; // środki ikon trybów w oknach (cqw); suwak trybu: left 24, width 52
+const MX = [28, 42.5, 57, 71.5]; // środki ikon trybów w oknach (cqw); suwak trybu: left MX[0], width MX[3]-MX[0]
+                                   // (tor musi sie konczyc dokladnie na skrajnych ikonach, inaczej wskaznik
+                                   // nigdy nie dojezdza do konca przy pierwszej/ostatniej wybranej opcji)
 // poziom menu (serwis): odblokowanie PIN-em, wazne 5 min od ostatniej aktywnosci w karcie (pamiec modulu + sessionStorage)
 const LVL = window.__teklaLvl = window.__teklaLvl || { t: 0 };
 try { LVL.t = Math.max(LVL.t, +sessionStorage.getItem('tekla_lvl') || 0); } catch (e) {}
@@ -223,7 +225,7 @@ class TeklaPanelCard extends HTMLElement {
       `<ha-icon icon="mdi:clock-outline"></ha-icon><sup>A</sup>`, `<ha-icon icon="mdi:clock-outline"></ha-icon><sup>M</sup>`, '<u class="plq">AUTO</u>', '<u class="plq">MAN</u>'];
     return `<div class="qd"><div class="qx" data-act="cancel"></div><div class="qbg"></div>${top}
       ${ic.map((h, i) => this._mdiIcon(`data-act="bm" data-i="${i}"`, MX[i], 45, h, d.mode === i)).join('')}
-      ${this._sl('data-act="bmslide"', 24, 49.6, 52, (MX[d.mode] - 24) / 52)}
+      ${this._sl('data-act="bmslide"', MX[0], 49.6, MX[3] - MX[0], (MX[d.mode] - MX[0]) / (MX[3] - MX[0]))}
       <div class="qok" data-act="ok">OK</div></div>`;
   }
   // okno ustawień obiegu (CO / CWU): komfort, eco, tryb
@@ -245,7 +247,7 @@ class TeklaPanelCard extends HTMLElement {
     return `<div class="qd"><div class="qx" data-act="cancel"></div><div class="qbg"></div>
       ${blk('comf', 8.4, c.lo1, c.hi1, d.comf, 'mdi:white-balance-sunny', 'comf')}${blk('eco', 24, c.lo2, c.hi2, d.eco, 'mdi:moon-waning-crescent', 'eco')}
       ${MODES.map((m, i) => this._mdiIcon(`data-act="cm" data-i="${i}"`, MX[i], 45, `<ha-icon icon="${m.ic}"></ha-icon>${m.sup ? `<sup>${m.sup}</sup>` : ''}`, d.mode === i)).join('')}
-      ${this._sl('data-act="cmslide"', 24, 49.6, 52, (MX[d.mode] - 24) / 52)}
+      ${this._sl('data-act="cmslide"', MX[0], 49.6, MX[3] - MX[0], (MX[d.mode] - MX[0]) / (MX[3] - MX[0]))}
       <div class="qok" data-act="ok">OK</div></div>`;
   }
   _commit() {
@@ -443,11 +445,11 @@ class TeklaPanelCard extends HTMLElement {
       else if (act === 'bdlg') this._bOpen();
       else if (act === 'cdlg') this._cOpen(a.dataset.k);
       else if (act === 'bm') { this._bd.mode = +a.dataset.i; this._render(true); }
-      else if (act === 'bmslide') { const x = 24 + this._slFrac(a, e) * 52; this._bd.mode = MX.reduce((b, v, i) => Math.abs(v - x) < Math.abs(MX[b] - x) ? i : b, 0); this._render(true); }
+      else if (act === 'bmslide') { const x = MX[0] + this._slFrac(a, e) * (MX[3] - MX[0]); this._bd.mode = MX.reduce((b, v, i) => Math.abs(v - x) < Math.abs(MX[b] - x) ? i : b, 0); this._render(true); }
       else if (act === 'bval') { this._bd.val = Math.max(60, Math.min(80, this._bd.val + +a.dataset.d)); this._render(true); }
       else if (act === 'bslide') { this._bd.val = Math.round(60 + this._slFrac(a, e) * 20); this._render(true); }
       else if (act === 'cm') { this._cd.mode = +a.dataset.i; this._render(true); }
-      else if (act === 'cmslide') { const x = 24 + this._slFrac(a, e) * 52; this._cd.mode = MX.reduce((b, v, i) => Math.abs(v - x) < Math.abs(MX[b] - x) ? i : b, 0); this._render(true); }
+      else if (act === 'cmslide') { const x = MX[0] + this._slFrac(a, e) * (MX[3] - MX[0]); this._cd.mode = MX.reduce((b, v, i) => Math.abs(v - x) < Math.abs(MX[b] - x) ? i : b, 0); this._render(true); }
       else if (act === 'cval' || act === 'cslide') {
         const c = CDLG[this._cd.k], w = a.dataset.w, lo = w === 'comf' ? c.lo1 : c.lo2, hi = w === 'comf' ? c.hi1 : c.hi2, cur = this._cd[w];
         let v = act === 'cval' ? cur + +a.dataset.d * c.step : lo + this._slFrac(a, e) * (hi - lo);
