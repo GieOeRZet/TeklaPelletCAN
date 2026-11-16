@@ -70,12 +70,11 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   await p.waitForFunction(() => /Nie udało się połączyć/.test(document.getElementById('msg').textContent), null, { timeout: 20000 });
   check('zmiana Wi-Fi: komunikat przy zlym hasle', true);
 
-  // 3a. grafiki panelu: domyslnie PELNE (bez ustawienia w konfiguracji karty); 'domyslne' wylacza. Czerwony kociol = img/panel/013.png
+  // 3a. grafiki panelu: zawsze PELNE (jeden zestaw grafik, bez przelacznika domyslne/pelne). Czerwony kociol = img/panel/013.png
   const panelFiles = async q => { const pg = await b.newPage({ viewport: { width: 520, height: 420 } }); const f = new Set(); pg.on('request', r => { if (r.url().includes('/img/panel/')) f.add(r.url().split('/img/panel/')[1].split('?')[0]); });
     await pg.goto(BASE + '/classic.html' + q); await pg.waitForTimeout(7000); await pg.close(); return f; };
-  const fDefault = await panelFiles(''), fBasic = await panelFiles('?grafiki=domyslne');
+  const fDefault = await panelFiles('');
   check('grafiki pelne domyslnie (karta bez ustawienia): oryginalny kociol Estyma', fDefault.has('013.png'), [...fDefault].join(','));
-  check('grafiki: domyslne wylacza pelne (bez kotla Estyma)', !fBasic.has('013.png'), [...fBasic].join(','));
 
   // 3a2. grafika kotla: wybor w ustawieniach (bez restartu) i geometria na karcie (ta sama podstawa i srodek dla kazdego typu)
   await p.reload(); await p.waitForTimeout(2500);
