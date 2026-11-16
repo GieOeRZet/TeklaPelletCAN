@@ -1052,7 +1052,7 @@
         .bpm.pl:active{background-image:url(${U(119)}),url(${U(169)})!important}
         .bpm i,.bpm i+i{display:none!important}
         .qok{background:url(${U(110)}) center/100% 100% no-repeat!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:transparent!important}
-        .qbg{background:url(${U(114)}) center/100% 100% no-repeat!important;border:0!important;border-radius:0!important;box-shadow:none!important;position:relative;overflow:hidden}
+        .qbg{background:url(${U(114)}) 0 center/auto 100% repeat-x!important;border:0!important;border-radius:0!important;box-shadow:none!important;position:relative;overflow:hidden}
         .qbg::before,.qbg::after{content:'';position:absolute;top:0;height:100%;aspect-ratio:10/242;background:center/100% 100% no-repeat}
         .qbg::before{left:0;background-image:url(${U(112)})}
         .qbg::after{right:0;background-image:url(${U(113)})}
