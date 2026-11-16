@@ -1006,8 +1006,8 @@
         .tr .tb{background:url(${U(19)}) 0 0/100% 100% no-repeat!important;border:0!important;border-radius:0!important;width:6.25cqw!important;height:6.46cqw!important}.tr .tb.ck{background-image:url(${U(20)})!important}.tr .tb svg{display:none!important}
         .sl i{background:url(${U(70)}) center/100% 100% no-repeat!important;box-shadow:none!important;border-radius:0!important;width:6.5cqw!important;height:6.5cqw!important;top:-2.15cqw!important;margin-left:-3.25cqw!important}
         .sl[data-act="slider"] i{width:5.5cqw!important;height:5.5cqw!important;margin-left:-2.75cqw!important;top:-1.65cqw!important}
-        .cell{border-left-color:transparent!important;background:url(${U(23)}) left/.5cqw 100% no-repeat,url(${U('76b')}) center/100% 100% no-repeat!important}
-        .cell:has(.ind){background:url(${U(75)}) center/100% 100% no-repeat!important}
+        .cell{border-left-color:transparent!important;background:url(${U(23)}) left/.5cqw 100% no-repeat,url(${U('76b')}) center/100% 100% no-repeat!important;background-origin:border-box!important}
+        .cell:has(.ind){background:url(${U(23)}) left/.5cqw 100% no-repeat,url(${U(75)}) center/100% 100% no-repeat!important;background-origin:border-box!important}
         .cell>.mn{position:absolute;inset:0;display:block}
         .cell[data-go=heat]>.radi{top:5.47cqw;left:calc(50% + 0.5cqw);display:block}.cell[data-go=heat] .radi svg{width:5.02cqw!important;height:6.14cqw!important;display:block}
         .cell[data-go=heat] .radi img{width:6.99cqw!important;height:6.14cqw!important;display:block}
@@ -1056,7 +1056,10 @@
         .qbg::before,.qbg::after{content:'';position:absolute;top:0;height:100%;aspect-ratio:10/242;background:center/100% 100% no-repeat}
         .qbg::before{left:0;background-image:url(${U(112)})}
         .qbg::after{right:0;background-image:url(${U(113)})}
-        .qd{background:rgba(26,28,31,.75)!important}` : '');
+        .qd{background:rgba(26,28,31,.75)!important}
+        .bbar{background:linear-gradient(#787d86,#424242)!important}
+        .screen{background:#282828!important}
+        .s-main,.s-water,.s-heat,.s-burn,.s-alarm,.is-sub{background:#282828!important}` : '');
       };
       // od teraz jeden, pelny zestaw grafik panelu (bez opcji "domyslne") - FULL zawsze prawda
       const FULL = () => true;
