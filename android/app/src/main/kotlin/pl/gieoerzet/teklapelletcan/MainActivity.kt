@@ -305,6 +305,7 @@ class MainActivity : Activity() {
         deviceBar.visibility = if (showBar) View.VISIBLE else View.GONE
         ui.visibility = View.GONE
         deviceBox.visibility = View.VISIBLE
+        event(JSONObject().put("type", "device_opened"))
         deviceLoadDone = false
         val seq = ++deviceLoadSeq
         device.loadUrl(base + path)
