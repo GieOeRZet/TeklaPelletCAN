@@ -327,6 +327,7 @@ jobs:
           } > notes.md
           mapfile -t FILES < <(find art -type f \( -name 'teklapelletcan*.bin' -o -name 'teklapelletcan*.sig' -o -name 'teklapelletcan*.apk' \) | sort)
           echo "zalaczniki: ${FILES[*]}"
+          gh release view "$TAG" >/dev/null 2>&1 && gh release delete "$TAG" --yes
           gh release create "$TAG" --target "$GITHUB_SHA" --title "TeklaPelletCAN $TAG" --notes-file notes.md "${FILES[@]}"
 
   # Od tego miejsca: publikacja do osobnych repozytoriów (HACS instaluje stamtad, nie z tego monorepo). Tylko na
