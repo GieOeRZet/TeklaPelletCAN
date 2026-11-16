@@ -42,19 +42,6 @@
     return d.length ? d[0].p : '';
   }
 
-  // Kolory suwaków (silnik czyta je z this._cfg.slider_* - patrz teklapelletclassic-engine.js _css()).
-  // Domyślne wartości = oryginalny, 4-stopniowy gradient bazowego silnika (uproszczony do 3 punktów).
-  const SLIDER_DEFAULTS = { slider_value_min: '#3fd0ff', slider_value_mid: '#e9e14a', slider_value_max: '#ff2a22', slider_mode_color: '#3fd0ff' };
-  function hexToRgb(hex) {
-    const m = /^#?([0-9a-f]{6})$/i.exec(hex || '');
-    const n = m ? parseInt(m[1], 16) : 0xffffff;
-    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  }
-  function rgbToHex(rgb) {
-    if (!Array.isArray(rgb) || rgb.length < 3) return '';
-    return '#' + rgb.slice(0, 3).map(x => Math.max(0, Math.min(255, x | 0)).toString(16).padStart(2, '0')).join('');
-  }
-
   class TeklaPelletCanCard extends Base {
     setConfig(c) {
       if (!c || typeof c !== 'object') throw new Error('Nieprawidłowa konfiguracja karty');
@@ -71,7 +58,7 @@
         language: t.language || 'auto',
         boiler_image: ['11', '12', '13', '14'].includes(String(t.boiler_image)) ? String(t.boiler_image) : '13',
       }, extra);
-      Object.keys(SLIDER_DEFAULTS).forEach(k => { if (t[k]) cfg[k] = t[k]; });
+      if (t.show_bezel === false) cfg.show_bezel = false;
       return cfg;
     }
     // WAZNE: tekla-panel-card.setConfig() resetuje biezacy ekran karty (this._scr = ...screen...). Dlatego
@@ -135,14 +122,7 @@
         { name: 'screen', label: 'Ekran startowy karty', selector: { select: { mode: 'dropdown', options: (D.SCREEN_OPTS || []).map(o => ({ value: o[0], label: o[1] })) } } },
         { name: 'language', label: 'Język / Language', selector: { select: { mode: 'dropdown', options: [{ value: 'auto', label: 'Auto (język Home Assistant)' }].concat(Object.keys((window.__pcLang || {}).names || {}).map(k => ({ value: k, label: window.__pcLang.names[k] }))) } } },
         { name: 'boiler_image', label: 'Obraz kotła', selector: { select: { mode: 'dropdown', options: [{ value: '11', label: 'Typ 11' }, { value: '12', label: 'Typ 12' }, { value: '13', label: 'Typ 13' }, { value: '14', label: 'Typ 14' }] } } },
-        {
-          type: 'expandable', title: 'Kolory suwaków', schema: [
-            { name: 'slider_value_min', label: 'Suwak wartości – kolor minimum (temperatury, ustawienia)', selector: { color_rgb: {} } },
-            { name: 'slider_value_mid', label: 'Suwak wartości – kolor środek', selector: { color_rgb: {} } },
-            { name: 'slider_value_max', label: 'Suwak wartości – kolor maksimum', selector: { color_rgb: {} } },
-            { name: 'slider_mode_color', label: 'Suwak trybu – kolor (off/eco/auto/komfort)', selector: { color_rgb: {} } },
-          ],
-        },
+        { name: 'show_bezel', label: 'Pokaż obudowę (czarna ramka z lampkami)', selector: { boolean: {} } },
       ];
       if (devs.length > 1) {
         schema.unshift({
@@ -151,8 +131,7 @@
         });
       }
       this._form.schema = schema;
-      const data = Object.assign({}, this._cfg, { device_id: this._cfg.device_id || 'auto' });
-      Object.keys(SLIDER_DEFAULTS).forEach(k => { data[k] = hexToRgb(this._cfg[k] || SLIDER_DEFAULTS[k]); });
+      const data = Object.assign({}, this._cfg, { device_id: this._cfg.device_id || 'auto', show_bezel: this._cfg.show_bezel !== false });
       this._form.data = data;
       if (this._hass) this._form.hass = this._hass;
     }
@@ -162,10 +141,7 @@
         boiler_image: v.boiler_image || '13',
       });
       if (v.device_id && v.device_id !== 'auto') cfg.device_id = v.device_id; else delete cfg.device_id;
-      Object.keys(SLIDER_DEFAULTS).forEach(k => {
-        const hex = rgbToHex(v[k]) || SLIDER_DEFAULTS[k];
-        if (hex.toLowerCase() === SLIDER_DEFAULTS[k].toLowerCase()) delete cfg[k]; else cfg[k] = hex;
-      });
+      if (v.show_bezel === false) cfg.show_bezel = false; else delete cfg.show_bezel;
       this._cfg = cfg;
       this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: cfg }, bubbles: true, composed: true }));
     }

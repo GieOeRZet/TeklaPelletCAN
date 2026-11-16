@@ -988,17 +988,21 @@
         const BS = { 11: [105, 126], 12: [100.4, 131.1], 14: [73.9, 136.9] } /* 14: wąska szafa 54x100 skalowana do wysokości zbliżonej do pozostałych typów */, bt = this._cfg && FULL(this) ? BS[+this._cfg.boiler_image] : null;
         // obrazy kotla 11/12 maja inne proporcje niz domyslny: skala 1:1 jak w panelu, srodek i podstawa jak dla kociola domyslnego
         const boil = bt ? `.boil{width:${(bt[0] * K).toFixed(2)}cqw!important;left:${(15 - bt[0] * K / 2).toFixed(2)}cqw!important;top:${(35.5 - bt[1] * K).toFixed(2)}cqw!important;height:auto!important}` : '';
-        // kolory suwakow - konfigurowalne z edytora karty HA (this._cfg), z domyslnymi wartosciami
-        // identycznymi jak oryginalny, 4-stopniowy gradient bazowego silnika (.sl b): suwaki WARTOSCI
-        // (temperatury, ustawienia liczbowe - oryginalnie teczowa bitmapa) dostaja gradient
-        // 3-punktowy (min/srodek/max), suwaki TRYBU (off/eco/auto/comf - okno szybkich ustawien
-        // + duze ekrany Ogrzewanie/Woda) - jeden, plaski kolor (dyskretny wybor, nie wartosc ciagla).
         const cfgS = this._cfg || {};
-        const slMin = cfgS.slider_value_min || '#3fd0ff', slMid = cfgS.slider_value_mid || '#e9e14a', slMax = cfgS.slider_value_max || '#ff2a22';
-        const slMode = cfgS.slider_mode_color || '#3fd0ff';
-        const sliderCss = `.sl[data-act="bslide"] b,.sl[data-act="cslide"] b,.sl[data-act="prslide"] b,.sl[data-act="spslide"] b,.sl[data-act="q2slide"] b{background-image:linear-gradient(90deg,${slMin},${slMid} 50%,${slMax})!important}
-        .sl[data-act="slider"] b,.sl[data-act="bmslide"] b,.sl[data-act="cmslide"] b{background-image:none!important;background-color:${slMode}!important}`;
-        return oc.call(this) + boil + sliderCss + `.sp{position:relative;display:inline-block;line-height:0}.sp img,.mbs{mix-blend-mode:screen}.sp img{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}.sp img:first-child{opacity:1}
+        // suwaki WARTOSCI (temperatury, ustawienia liczbowe) zostaja na natywnym, teczowym gradiencie
+        // bazowego silnika (.sl b) - bez zadnego nadpisania. Suwaki TRYBU (off/eco/auto/comf - okno
+        // szybkich ustawien + duze ekrany Ogrzewanie/Woda) dostaja jeden, staly, niebieski kolor
+        // (dyskretny wybor, nie wartosc ciagla) - bez mozliwosci konfiguracji z karty HA.
+        const sliderCss = `.sl[data-act="slider"] b,.sl[data-act="bmslide"] b,.sl[data-act="cmslide"] b{background-image:url(${U(165)})!important;background-size:100% 100%!important;background-repeat:no-repeat!important}
+        .sl[data-act="bslide"] b,.sl[data-act="cslide"] b,.sl[data-act="prslide"] b,.sl[data-act="spslide"] b,.sl[data-act="q2slide"] b{background-image:url(${U(167)})!important;background-size:100% 100%!important;background-repeat:no-repeat!important}`;
+        // "Pokaz obudowe" - konfigurowalne z edytora karty HA (this._cfg.show_bezel, domyslnie wlaczone/true):
+        // wylaczone usuwa zaokraglona czarna obudowe z bocznymi lampkami (.bezel/.strip), zostaje sam plaski ekran.
+        const bezelCss = cfgS.show_bezel === false
+          ? `.bezel{display:block!important;background:none!important;border-radius:0!important;padding:0!important;box-shadow:none!important}
+        .strip{display:none!important}
+        .screen{border-radius:0!important}`
+          : '';
+        return oc.call(this) + boil + sliderCss + bezelCss + `.sp{position:relative;display:inline-block;line-height:0}.sp img,.mbs{mix-blend-mode:screen}.sp img{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}.sp img:first-child{opacity:1}
         .sp.on img{animation:spfr .45s linear infinite}.sp.on img:nth-child(2){animation-delay:.15s}.sp.on img:nth-child(3){animation-delay:.3s}
         @keyframes spfr{0%,33.3%{opacity:1}33.4%,100%{opacity:0}}.sp.on img:first-child{opacity:0}.sp.slow img{animation-duration:1.5s}.sp.slow img:nth-child(2){animation-delay:.5s}.sp.slow img:nth-child(3){animation-delay:1s}
         .ftk.pk{background:url(${U(54)}) 0 0/100% 100% no-repeat!important;border:0!important}.ftk.pk .fth,.ftk.pk .fhd{display:none}
@@ -1014,7 +1018,7 @@
         .row .tgq.on i,.tgq.on i{left:77.778%!important;right:auto!important}
         .fmp{background:url(${U(56)}) 0 0/100% 100% no-repeat!important;border:0!important;box-shadow:none!important;width:4.17cqw!important;height:4.17cqw!important;margin:-2.08cqw 0 0 -2.08cqw!important}.fmp.sel{background-image:url(${U(57)})!important}
         .tr .tb{background:url(${U(19)}) 0 0/100% 100% no-repeat!important;border:0!important;border-radius:0!important;width:6.25cqw!important;height:6.46cqw!important}.tr .tb.ck{background-image:url(${U(20)})!important}.tr .tb svg{display:none!important}
-        .sl{border-radius:0!important}
+        .sl{border-radius:0!important;background:url(${U(163)}) left/100% 100% no-repeat!important;box-shadow:none!important}
         .sl i{background:url(${U(70)}) center/100% 100% no-repeat!important;box-shadow:none!important;border-radius:0!important;width:6.5cqw!important;height:6.5cqw!important;top:-2.15cqw!important;margin-left:-3.25cqw!important}
         .cell{border:0!important;background:linear-gradient(#6a696a,#5a585a)!important}
         .cell+.cell::before{content:'';position:absolute;left:-.5cqw;top:0;width:.5cqw;height:100%;background:url(${U(23)}) center/100% 100% no-repeat;pointer-events:none}
@@ -1024,10 +1028,12 @@
         .cell[data-go=heat] .radi sup{right:auto;left:calc(100% + .9cqw);top:-.1cqw;font-size:2.7cqw;line-height:1}
         .ind{background:#4a4e55!important}
         .ind.g{background:#86e61f!important;box-shadow:0 0 1.4cqw #86e61f!important}
-        .ind.pulse{background:#FBAD32!important;box-shadow:0 0 1.4cqw #FBAD32!important;animation:indpulse 1.1s steps(1) infinite}
-        .ind.pulse-g{background:#86e61f!important;box-shadow:0 0 1.4cqw #86e61f!important;animation:indpulse 1.1s steps(1) infinite}
-        .ind.pulse-r{background:#ff3b30!important;box-shadow:0 0 1.4cqw #ff3b30!important;animation:indpulse 1.1s steps(1) infinite}
+        .ind.pulse{background:#FBAD32!important;box-shadow:0 0 1.4cqw #FBAD32!important;animation:indpulse 3s ease-in-out infinite}
+        .ind.pulse-g{background:#86e61f!important;box-shadow:0 0 1.4cqw #86e61f!important;animation:indpulse 3s ease-in-out infinite}
+        .ind.pulse-r{background:#ff3b30!important;box-shadow:0 0 1.4cqw #ff3b30!important;animation:indpulse 3s ease-in-out infinite}
         @keyframes indpulse{50%{opacity:.12}}
+        .alic{animation:alb2 3s ease-in-out infinite!important}
+        @keyframes alb2{50%{opacity:.12}}
         .fbt{background:url(${U(168)}) center/100% 100% no-repeat!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:transparent!important}
         .fbt:active{background-image:url(${U(169)})!important}
         .fbt:not(.fma)[data-d="1"]{background-image:url(${U(119)}),url(${U(168)})!important;background-size:35% 35%,100% 100%!important;background-repeat:no-repeat!important;background-position:center,center!important}
@@ -1063,6 +1069,10 @@
         .bpm:active{background-image:url(${U(104)}),url(${U(169)})!important}
         .bpm.pl:active{background-image:url(${U(119)}),url(${U(169)})!important}
         .bpm i,.bpm i+i{display:none!important}
+        .bpm:not(.sm){background:url(${U(102)}) center/100% 100% no-repeat!important}
+        .bpm.pl:not(.sm){background:url(${U(117)}) center/100% 100% no-repeat!important}
+        .bpm:not(.sm):active{background-image:url(${U(103)})!important}
+        .bpm.pl:not(.sm):active{background-image:url(${U(118)})!important}
         .qok{background:url(${U(110)}) center/100% 100% no-repeat!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:transparent!important}
         .qbg{background:url(${U(114)}) 0 center/auto 100% repeat-x!important;border:0!important;border-radius:0!important;box-shadow:none!important;position:relative;overflow:hidden}
         .qbg::before,.qbg::after{content:'';position:absolute;top:0;height:100%;aspect-ratio:10/242;background:center/100% 100% no-repeat}
