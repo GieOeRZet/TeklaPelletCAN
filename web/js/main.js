@@ -181,8 +181,15 @@ onEvent(e => {
     closeSheet();
     refreshChip();
     toast('Poziom kotła zablokowany' + (e.reason === 'idle' ? ' (bezczynność)' : ''));
+  } else if (e.type === 'device_opened') {
+    // okno z oryginalna karta/konfiguracja (OTA itp.) laczy sie bezposrednio z urzadzeniem - jego wlasny,
+    // ograniczony serwer WWW ma mało jednoczesnych polaczen. Odpytywanie pulpitu co 2 s w tle (dalej
+    // dziala, nawet gdy to okno jest na wierzchu) potrafilo zajac wszystkie gniazda i zerwac duzy upload
+    // OTA (dzialalo bez problemu przez zwykla przegladarke, bez tego tla). Wstrzymujemy je na czas okna.
+    stopPolling();
   } else if (e.type === 'device_closed') {
     refreshChip();
+    startPolling();   // wznawiamy pelny pull() (punkty/info/config/states) - zatrzymane przy otwarciu okna
     // po powrocie z konfiguracji urzadzenia (mogla tam byc instalacja aktualizacji OTA) odswiez fw i,
     // jesli jestesmy na pulpicie, przerysuj go - inaczej baner "dostepna aktualizacja" wisi do nastepnej nawigacji
     refreshInfo().then(() => { if (location.hash === '#/d/pulpit') render(); });
