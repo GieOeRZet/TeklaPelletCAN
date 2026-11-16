@@ -28,14 +28,14 @@ if a.embedded and data[-72:-64] != b"TPCSIG01":
 mf = d / "manifest.json"
 m = json.loads(mf.read_text()) if mf.exists() else {"channels": {}}
 m.setdefault("channels", {})[a.channel] = {
-    "version": a.version, "build": a.build, "full": f"{a.version}+{a.build}",
+    "version": a.version, "build": a.build, "full": a.version,
     "file": f"{a.channel}/teklapelletcan.bin", "sig": f"{a.channel}/teklapelletcan.bin.sig",
     "embedded": a.embedded, "sha256": hashlib.sha256(data).hexdigest(), "size": len(data), "commit": a.commit,
     "notes": a.notes.strip()[:400], "changelog": [l.strip()[:200] for l in a.changelog.splitlines() if l.strip()][:15], "date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
 }
 if a.app_tag and a.channel == "stable":
     base = f"https://github.com/{a.repo}/releases"
-    m["app"] = {"version": a.version, "build": a.build, "full": f"{a.version}+{a.build}", "tag": a.app_tag,
+    m["app"] = {"version": a.version, "build": a.build, "full": a.version, "tag": a.app_tag,
                 "url": f"{base}/tag/{a.app_tag}", "apk": f"{base}/download/{a.app_tag}/teklapelletcan.apk",
                 "notes": a.notes.strip()[:400], "changelog": [l.strip()[:200] for l in a.changelog.splitlines() if l.strip()][:15]}
 mf.write_text(json.dumps(m, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
