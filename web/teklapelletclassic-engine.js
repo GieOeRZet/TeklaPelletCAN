@@ -1401,7 +1401,7 @@
         const c = this._cfg, ids = this._ids(), pf = pfOf(c, ids), keys = keysAll(), ex = c.entities || {};
         const d = {
           screen: c.screen || 'main', language: ({ dk: 'da', se: 'sv', cz: 'cs', est: 'et' }[String(c.language || 'pl').toLowerCase()] || c.language || 'pl'), device: c.entity_prefix ? String(c.entity_prefix) : 'auto',
-          esphome_node: c.esphome_node || '', grafiki: c.grafiki === 'domyslne' ? 'domyslne' : 'pelne', boiler_image: [11, 12, 13, 14].includes(+c.boiler_image) ? String(c.boiler_image) : '13', lite: !!c.lite, demo: !!c.demo, mirror_mode: typeof c.mirror === 'boolean' ? (c.mirror ? 'on' : 'off') : 'auto',
+          esphome_node: c.esphome_node || '', boiler_image: [11, 12, 13, 14].includes(+c.boiler_image) ? String(c.boiler_image) : '13', lite: !!c.lite, demo: !!c.demo, mirror_mode: typeof c.mirror === 'boolean' ? (c.mirror ? 'on' : 'off') : 'auto',
         };
         Object.keys(keys).forEach(r => { d['e_' + r] = ex[r] || (ids.length ? findRole(ids, r, keys[r], pf, this._hass.states) : ''); });   // pola od razu pokazuja wykryte encje
         return d;
@@ -1429,8 +1429,7 @@
             { name: 'screen', label: 'Ekran startowy karty', selector: { select: { mode: 'dropdown', options: D.SCREEN_OPTS.map(o => ({ value: o[0], label: o[1] })) } } },
             { name: 'language', label: 'Język / Language', selector: { select: { mode: 'dropdown', options: [{ value: 'auto', label: 'Auto (język Home Assistant)' }].concat(Object.keys((window.__pcLang || {}).names || {}).map(k => ({ value: k, label: window.__pcLang.names[k] }))) } } },
             { name: 'device', label: 'Urządzenie (prefiks encji)', selector: { select: { mode: 'dropdown', custom_value: true, options: [{ value: 'auto', label: 'Automatycznie' + (devs.length ? ' (' + pf + ')' : '') }].concat(devs.map(d => ({ value: d.p, label: d.p }))) } } },
-            { name: 'grafiki', label: 'Grafiki panela', selector: { select: { mode: 'dropdown', options: [{ value: 'domyslne', label: 'Domyślne (tylko zbiornik paliwa)' }, { value: 'pelne', label: 'Pełne (wentylator, podajniki, zawór, grzałka, kocioł, palnik)' }] } } },
-            { name: 'boiler_image', label: 'Obraz kotła (grafiki pełne)', selector: { select: { mode: 'dropdown', options: [{ value: '11', label: 'Typ 11' }, { value: '12', label: 'Typ 12' }, { value: '13', label: 'Typ 13 (domyślny)' }, { value: '14', label: 'Typ 14' }] } } },
+            { name: 'boiler_image', label: 'Obraz kotła', selector: { select: { mode: 'dropdown', options: [{ value: '11', label: 'Typ 11' }, { value: '12', label: 'Typ 12' }, { value: '13', label: 'Typ 13 (domyślny)' }, { value: '14', label: 'Typ 14' }] } } },
           ],
         }, {
           type: 'expandable', title: 'Zaawansowane (zwykle zbędne)', flatten: true, schema: [
@@ -1472,7 +1471,6 @@
         else Object.keys(keys).forEach(r => { const x = v['e_' + r]; if (x) entities[r] = x; });
         if (Object.keys(entities).length) cfg.entities = entities; else delete cfg.entities;
         const nd = (v.esphome_node || '').trim(); if (nd) cfg.esphome_node = nd; else delete cfg.esphome_node;
-        if (v.grafiki === 'domyslne') cfg.grafiki = 'domyslne'; else delete cfg.grafiki;   // pelne = domyślne w karcie
         if (v.boiler_image && v.boiler_image !== '13') cfg.boiler_image = +v.boiler_image; else delete cfg.boiler_image;
         if (v.lite) cfg.lite = true; else delete cfg.lite;
         if (v.demo) cfg.demo = true; else delete cfg.demo;

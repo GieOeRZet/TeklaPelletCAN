@@ -98,16 +98,14 @@ async function cardText(page) {
     await ctx.close();
   }
 
-  // ---- grafiki pełne domyślnie, boiler_image z konfiguracji ----
+  // ---- boiler_image z konfiguracji przekazany do karty wewnetrznej ----
   {
     const ctx = await b.newContext({ viewport: { width: 480, height: 900 }, deviceScaleFactor: 2 });
     const p = await ctx.newPage();
     await p.goto(BASE + '/test/hacard.html?mode=one&cfg=' + encodeURIComponent(JSON.stringify({ boiler_image: '11' })));
     await p.waitForFunction(() => window.__ready === true, null, { timeout: 15000 });
     await sleep(2500);
-    const grafiki = await p.evaluate(() => document.querySelector('#root teklapelletclassic-card')._cfg.grafiki);
     const img = await p.evaluate(() => document.querySelector('#root teklapelletclassic-card')._cfg.boiler_image);
-    check('grafiki pełne domyślnie (bez ustawiania w configu)', grafiki === 'pelne', grafiki);
     check('boiler_image przekazany do karty wewnętrznej', img === '11', img);
     await ctx.close();
   }
