@@ -1016,8 +1016,7 @@
         .tr .tb{background:url(${U(19)}) 0 0/100% 100% no-repeat!important;border:0!important;border-radius:0!important;width:6.25cqw!important;height:6.46cqw!important}.tr .tb.ck{background-image:url(${U(20)})!important}.tr .tb svg{display:none!important}
         .sl{border-radius:0!important}
         .sl i{background:url(${U(70)}) center/100% 100% no-repeat!important;box-shadow:none!important;border-radius:0!important;width:6.5cqw!important;height:6.5cqw!important;top:-2.15cqw!important;margin-left:-3.25cqw!important}
-        .cell{border:0!important;background:url(${U('76b')}) center/100% 100% no-repeat!important}
-        .cell:has(.ind){background:url(${U(75)}) center/100% 100% no-repeat!important}
+        .cell{border:0!important;background:linear-gradient(#6a696a,#5a585a)!important}
         .cell+.cell::before{content:'';position:absolute;left:-.5cqw;top:0;width:.5cqw;height:100%;background:url(${U(23)}) center/100% 100% no-repeat;pointer-events:none}
         .cell>.mn{position:absolute;inset:0;display:block}
         .cell[data-go=heat]>.radi{top:5.47cqw;left:calc(50% + 0.5cqw);display:block}.cell[data-go=heat] .radi svg{width:5.02cqw!important;height:6.14cqw!important;display:block}
