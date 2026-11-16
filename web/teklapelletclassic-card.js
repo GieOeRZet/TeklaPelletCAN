@@ -42,6 +42,19 @@
     return d.length ? d[0].p : '';
   }
 
+  // Kolory suwaków (silnik czyta je z this._cfg.slider_* - patrz teklapelletclassic-engine.js _css()).
+  // Domyślne wartości = oryginalny, 4-stopniowy gradient bazowego silnika (uproszczony do 3 punktów).
+  const SLIDER_DEFAULTS = { slider_mode_min: '#3fd0ff', slider_mode_mid: '#e9e14a', slider_mode_max: '#ff2a22', slider_value_color: '#3fd0ff' };
+  function hexToRgb(hex) {
+    const m = /^#?([0-9a-f]{6})$/i.exec(hex || '');
+    const n = m ? parseInt(m[1], 16) : 0xffffff;
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  function rgbToHex(rgb) {
+    if (!Array.isArray(rgb) || rgb.length < 3) return '';
+    return '#' + rgb.slice(0, 3).map(x => Math.max(0, Math.min(255, x | 0)).toString(16).padStart(2, '0')).join('');
+  }
+
   class TeklaPelletCanCard extends Base {
     setConfig(c) {
       if (!c || typeof c !== 'object') throw new Error('Nieprawidłowa konfiguracja karty');
@@ -51,13 +64,15 @@
     }
     _innerConfig(extra) {
       const t = this._tcfg || {};
-      return Object.assign({
+      const cfg = Object.assign({
         type: 'custom:pelletcan-card',
         service_domain: DOMAIN,
         screen: t.screen || 'main',
         language: t.language || 'auto',
         boiler_image: ['11', '12', '13', '14'].includes(String(t.boiler_image)) ? String(t.boiler_image) : '13',
       }, extra);
+      Object.keys(SLIDER_DEFAULTS).forEach(k => { if (t[k]) cfg[k] = t[k]; });
+      return cfg;
     }
     // WAZNE: tekla-panel-card.setConfig() resetuje biezacy ekran karty (this._scr = ...screen...). Dlatego
     // setConfig wolno wywolac ponownie TYLKO gdy faktycznie zmienilo sie urzadzenie (albo konfiguracja karty
@@ -120,6 +135,14 @@
         { name: 'screen', label: 'Ekran startowy karty', selector: { select: { mode: 'dropdown', options: (D.SCREEN_OPTS || []).map(o => ({ value: o[0], label: o[1] })) } } },
         { name: 'language', label: 'Język / Language', selector: { select: { mode: 'dropdown', options: [{ value: 'auto', label: 'Auto (język Home Assistant)' }].concat(Object.keys((window.__pcLang || {}).names || {}).map(k => ({ value: k, label: window.__pcLang.names[k] }))) } } },
         { name: 'boiler_image', label: 'Obraz kotła', selector: { select: { mode: 'dropdown', options: [{ value: '11', label: 'Typ 11' }, { value: '12', label: 'Typ 12' }, { value: '13', label: 'Typ 13' }, { value: '14', label: 'Typ 14' }] } } },
+        {
+          type: 'expandable', title: 'Kolory suwaków', schema: [
+            { name: 'slider_mode_min', label: 'Suwak trybu – kolor minimum (off)', selector: { color_rgb: {} } },
+            { name: 'slider_mode_mid', label: 'Suwak trybu – kolor środek (eco/auto)', selector: { color_rgb: {} } },
+            { name: 'slider_mode_max', label: 'Suwak trybu – kolor maksimum (komfort)', selector: { color_rgb: {} } },
+            { name: 'slider_value_color', label: 'Suwak wartości – kolor (temperatury, ustawienia)', selector: { color_rgb: {} } },
+          ],
+        },
       ];
       if (devs.length > 1) {
         schema.unshift({
@@ -128,7 +151,9 @@
         });
       }
       this._form.schema = schema;
-      this._form.data = Object.assign({}, this._cfg, { device_id: this._cfg.device_id || 'auto' });
+      const data = Object.assign({}, this._cfg, { device_id: this._cfg.device_id || 'auto' });
+      Object.keys(SLIDER_DEFAULTS).forEach(k => { data[k] = hexToRgb(this._cfg[k] || SLIDER_DEFAULTS[k]); });
+      this._form.data = data;
       if (this._hass) this._form.hass = this._hass;
     }
     _changed(v) {
@@ -137,6 +162,10 @@
         boiler_image: v.boiler_image || '13',
       });
       if (v.device_id && v.device_id !== 'auto') cfg.device_id = v.device_id; else delete cfg.device_id;
+      Object.keys(SLIDER_DEFAULTS).forEach(k => {
+        const hex = rgbToHex(v[k]) || SLIDER_DEFAULTS[k];
+        if (hex.toLowerCase() === SLIDER_DEFAULTS[k].toLowerCase()) delete cfg[k]; else cfg[k] = hex;
+      });
       this._cfg = cfg;
       this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: cfg }, bubbles: true, composed: true }));
     }

@@ -988,7 +988,17 @@
         const BS = { 11: [105, 126], 12: [100.4, 131.1], 14: [73.9, 136.9] } /* 14: wąska szafa 54x100 skalowana do wysokości zbliżonej do pozostałych typów */, bt = this._cfg && FULL(this) ? BS[+this._cfg.boiler_image] : null;
         // obrazy kotla 11/12 maja inne proporcje niz domyslny: skala 1:1 jak w panelu, srodek i podstawa jak dla kociola domyslnego
         const boil = bt ? `.boil{width:${(bt[0] * K).toFixed(2)}cqw!important;left:${(15 - bt[0] * K / 2).toFixed(2)}cqw!important;top:${(35.5 - bt[1] * K).toFixed(2)}cqw!important;height:auto!important}` : '';
-        return oc.call(this) + boil + `.sp{position:relative;display:inline-block;line-height:0}.sp img,.mbs{mix-blend-mode:screen}.sp img{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}.sp img:first-child{opacity:1}
+        // kolory suwakow - konfigurowalne z edytora karty HA (this._cfg), z domyslnymi wartosciami
+        // identycznymi jak oryginalny, 4-stopniowy gradient bazowego silnika (.sl b): suwaki TRYBU
+        // (off/eco/auto/comf - okno szybkich ustawien + duze ekrany Ogrzewanie/Woda) dostaja gradient
+        // 3-punktowy (min/srodek/max), suwaki WARTOSCI (temperatury, ustawienia liczbowe) - jeden,
+        // plaski kolor zamiast gradientu (nie ma to sensu dla ciaglej wartosci liczbowej).
+        const cfgS = this._cfg || {};
+        const slMin = cfgS.slider_mode_min || '#3fd0ff', slMid = cfgS.slider_mode_mid || '#e9e14a', slMax = cfgS.slider_mode_max || '#ff2a22';
+        const slVal = cfgS.slider_value_color || '#3fd0ff';
+        const sliderCss = `.sl[data-act="slider"] b,.sl[data-act="bmslide"] b,.sl[data-act="cmslide"] b{background-image:linear-gradient(90deg,${slMin},${slMid} 50%,${slMax})!important}
+        .sl[data-act="bslide"] b,.sl[data-act="cslide"] b,.sl[data-act="prslide"] b,.sl[data-act="spslide"] b,.sl[data-act="q2slide"] b{background-image:none!important;background-color:${slVal}!important}`;
+        return oc.call(this) + boil + sliderCss + `.sp{position:relative;display:inline-block;line-height:0}.sp img,.mbs{mix-blend-mode:screen}.sp img{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}.sp img:first-child{opacity:1}
         .sp.on img{animation:spfr .45s linear infinite}.sp.on img:nth-child(2){animation-delay:.15s}.sp.on img:nth-child(3){animation-delay:.3s}
         @keyframes spfr{0%,33.3%{opacity:1}33.4%,100%{opacity:0}}.sp.on img:first-child{opacity:0}.sp.slow img{animation-duration:1.5s}.sp.slow img:nth-child(2){animation-delay:.5s}.sp.slow img:nth-child(3){animation-delay:1s}
         .ftk.pk{background:url(${U(54)}) 0 0/100% 100% no-repeat!important;border:0!important}.ftk.pk .fth,.ftk.pk .fhd{display:none}
@@ -1004,14 +1014,17 @@
         .row .tgq.on i,.tgq.on i{left:77.778%!important;right:auto!important}
         .fmp{background:url(${U(56)}) 0 0/100% 100% no-repeat!important;border:0!important;box-shadow:none!important;width:4.17cqw!important;height:4.17cqw!important;margin:-2.08cqw 0 0 -2.08cqw!important}.fmp.sel{background-image:url(${U(57)})!important}
         .tr .tb{background:url(${U(19)}) 0 0/100% 100% no-repeat!important;border:0!important;border-radius:0!important;width:6.25cqw!important;height:6.46cqw!important}.tr .tb.ck{background-image:url(${U(20)})!important}.tr .tb svg{display:none!important}
+        .sl{border-radius:0!important}
         .sl i{background:url(${U(70)}) center/100% 100% no-repeat!important;box-shadow:none!important;border-radius:0!important;width:6.5cqw!important;height:6.5cqw!important;top:-2.15cqw!important;margin-left:-3.25cqw!important}
         .sl[data-act="slider"] i{width:5.5cqw!important;height:5.5cqw!important;margin-left:-2.75cqw!important;top:-1.65cqw!important}
-        .cell{border-left-color:transparent!important;background:url(${U(23)}) left/.5cqw 100% no-repeat,url(${U('76b')}) center/100% 100% no-repeat!important;background-origin:border-box!important}
-        .cell:has(.ind){background:url(${U(23)}) left/.5cqw 100% no-repeat,url(${U(75)}) center/100% 100% no-repeat!important;background-origin:border-box!important}
+        .cell{border:0!important;background:url(${U('76b')}) center/100% 100% no-repeat!important}
+        .cell:has(.ind){background:url(${U(75)}) center/100% 100% no-repeat!important}
+        .cell+.cell::before{content:'';position:absolute;left:-.5cqw;top:0;width:.5cqw;height:100%;background:url(${U(23)}) center/100% 100% no-repeat;pointer-events:none}
         .cell>.mn{position:absolute;inset:0;display:block}
         .cell[data-go=heat]>.radi{top:5.47cqw;left:calc(50% + 0.5cqw);display:block}.cell[data-go=heat] .radi svg{width:5.02cqw!important;height:6.14cqw!important;display:block}
         .cell[data-go=heat] .radi img{width:6.99cqw!important;height:6.14cqw!important;display:block}
         .cell[data-go=heat] .radi sup{right:auto;left:calc(100% + .9cqw);top:-.1cqw;font-size:2.7cqw;line-height:1}
+        .ind{background:#4a4e55!important}
         .ind.g{background:#86e61f!important;box-shadow:0 0 1.4cqw #86e61f!important}
         .ind.pulse{background:#FBAD32!important;box-shadow:0 0 1.4cqw #FBAD32!important;animation:indpulse 1.1s steps(1) infinite}
         .ind.pulse-g{background:#86e61f!important;box-shadow:0 0 1.4cqw #86e61f!important;animation:indpulse 1.1s steps(1) infinite}
@@ -1043,6 +1056,7 @@
         .tag .chipb{display:block;width:7cqw;height:3cqw;background-repeat:no-repeat;background-size:129.6% 336.4%;background-position:50% 50%;align-self:flex-start;margin-top:1.2cqw}
         .box{background:url(${U(6)}) center/100% 100% no-repeat!important;border:0!important}
         .box:active{background-image:url(${U(7)})!important}
+        .brow{background:#424242!important}
         .brow>div{border-left:.3cqw solid #5a5e65!important;background:linear-gradient(#5a5e65,#3d4147)!important}
         .brow .cg{background:url(${U(160)}) center/100% 100% no-repeat!important}
         .brow .cg:active{background-image:url(${U(161)})!important}
@@ -1057,7 +1071,7 @@
         .qbg::before{left:0;background-image:url(${U(112)})}
         .qbg::after{right:0;background-image:url(${U(113)})}
         .qd{background:rgba(26,28,31,.75)!important}
-        .bbar{background:linear-gradient(#787d86,#424242)!important}
+        .bbar{background:#282828!important;gap:.5cqw!important}
         .screen{background:#282828!important}
         .s-main,.s-water,.s-heat,.s-burn,.s-alarm,.is-sub{background:#282828!important}` : '');
       };
