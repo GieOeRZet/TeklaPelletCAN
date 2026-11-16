@@ -63,9 +63,11 @@ class MainActivity : Activity() {
     companion object {
         const val UI_HOST = "ui.tpc"
         const val DEMO_HOST = "demo.tpc"
+        const val CACHE_HOST = "cache.tpc"     // panel oryginalny z ostatnich zapamietanych odczytow, gdy urzadzenie nieosiagalne
         const val SETUP_URL = "http://10.77.77.1/"
         const val REQ_FILE = 71
         const val IDLE_MS = 300_000L
+        const val DEVICE_LOAD_TIMEOUT_MS = 4000L
     }
 
     private lateinit var ui: WebView
@@ -92,6 +94,8 @@ class MainActivity : Activity() {
     private var netCallback: ConnectivityManager.NetworkCallback? = null
     private var wasUnlocked = false
     private var screenReceiver: BroadcastReceiver? = null
+    @Volatile private var deviceLoadSeq = 0        // identyfikuje biezaca probe otwarcia okna urzadzenia (watchdog timeout)
+    @Volatile private var deviceLoadDone = false   // true gdy onPageFinished/onReceivedError juz obsluzyly biezaca probe
 
     // ------------------------------------------------------------------ cykl życia
 
@@ -287,7 +291,12 @@ class MainActivity : Activity() {
     /** Okno z oryginalną kartą lub konfiguracją urządzenia (zapisy idą wtedy poza proxy, poza blokadą zapisu,
      * ktorej juz nie ma - PIN aplikacji chroni tylko start, nie otwieranie tego okna). showBar=false dla repliki
      * oryginalnego panelu - ten ekran ma wlasna nawigacje (ikona "ekran glowny"), wiec natywny pasek z drugim
-     * "wstecz" nad nim byl zbedny; wyjscie dalej dziala przez systemowy gest/przycisk wstecz (onBackPressed). */
+     * "wstecz" nad nim byl zbedny; wyjscie dalej dziala przez systemowy gest/przycisk wstecz (onBackPressed).
+     *
+     * Proba bezposredniego polaczenia z prawdziwym urzadzeniem moze "wisiec" dlugo (np. telefon na danych
+     * komorkowych, bez dostepu do lokalnego IP kotla) zanim WebView w ogole zglosi blad - stad watchdog:
+     * jesli po DEVICE_LOAD_TIMEOUT_MS strona wciaz sie nie zaladowala ani nie zglosila bledu, pokazujemy
+     * ekran ostatnich zapamietanych danych (cache.tpc, ten sam cache co ekran glowny) zamiast dalej czekac. */
     private fun openDeviceWindow(path: String, title: String, showBar: Boolean = true) {
         gate.unlock()
         val demoMode = backend?.isDemo == true
@@ -296,7 +305,27 @@ class MainActivity : Activity() {
         deviceBar.visibility = if (showBar) View.VISIBLE else View.GONE
         ui.visibility = View.GONE
         deviceBox.visibility = View.VISIBLE
+        deviceLoadDone = false
+        val seq = ++deviceLoadSeq
         device.loadUrl(base + path)
+        if (!demoMode) {
+            main.postDelayed({
+                if (seq == deviceLoadSeq && !deviceLoadDone && deviceBox.visibility == View.VISIBLE) {
+                    deviceLoadDone = true
+                    showDeviceFallback(path, base + path)
+                }
+            }, DEVICE_LOAD_TIMEOUT_MS)
+        }
+    }
+
+    /** Gdy zywego polaczenia z urzadzeniem nie udalo sie nawiazac (blad albo watchdog powyzej): jesli mamy
+     * jakikolwiek zapamietany odczyt tego urzadzenia w cache (ten sam, ktory zasila ekran glowny offline),
+     * pokazujemy ta sama strone urzadzenia z danych w cache (cache.tpc) zamiast golego komunikatu o bledzie -
+     * dziala tylko do odczytu (bez zywego urzadzenia zapisy i tak nie maja gdzie pojsc). */
+    private fun showDeviceFallback(path: String, failedUrl: String) {
+        val hasCache = backend != null && cache.get(backend!!.key, "/api/v1/states") != null
+        if (hasCache) device.loadUrl("https://$CACHE_HOST/$path")
+        else device.loadDataWithBaseURL(null, errorPage(failedUrl), "text/html", "utf-8", null)
     }
 
     // ------------------------------------------------------------------ sieć
@@ -332,7 +361,7 @@ class MainActivity : Activity() {
         wv.webViewClient = object : WebViewClient() {
             override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
                 val host = request.url.host ?: return null
-                if (host == UI_HOST || host == DEMO_HOST) return serveLocal(request, host, trusted)
+                if (host == UI_HOST || host == DEMO_HOST || host == CACHE_HOST) return serveLocal(request, host, trusted)
                 return null
             }
 
@@ -343,12 +372,20 @@ class MainActivity : Activity() {
             }
 
             override fun onPageFinished(view: WebView, url: String) {
+                if (!trusted) deviceLoadDone = true
                 if (!trusted && clearHistoryAfterBlank && url == "about:blank") { clearHistoryAfterBlank = false; view.clearHistory() }
             }
 
             override fun onReceivedError(view: WebView, request: WebResourceRequest, error: android.webkit.WebResourceError) {
                 if (!trusted && request.isForMainFrame) {
-                    view.loadDataWithBaseURL(null, errorPage(request.url.toString()), "text/html", "utf-8", null)
+                    deviceLoadDone = true
+                    val host = request.url.host
+                    if (host != CACHE_HOST) {
+                        val p = (request.url.path ?: "/").trimStart('/')
+                        showDeviceFallback(p, request.url.toString())
+                    } else {
+                        view.loadDataWithBaseURL(null, errorPage(request.url.toString()), "text/html", "utf-8", null)
+                    }
                 }
             }
         }
@@ -430,6 +467,16 @@ class MainActivity : Activity() {
             val r = d.request(request.method ?: "GET", path, request.url.query ?: "", request.requestHeaders["Authorization"] ?: "", ByteArray(0))
             val extra = if (r.disposition.isNotEmpty()) mapOf("Content-Disposition" to r.disposition) else emptyMap()
             return reply(r.status, r.ctype, r.body, extra)
+        }
+        // cache.tpc: ta sama karta oryginalna jak na zywym urzadzeniu, ale /api/* odpowiada z tego samego
+        // proxy+cache co ekran glowny (ostatnie zapamietane odczyty) - zadnego zywego polaczenia nie wymaga.
+        // WebView nie udostepnia tu ciala zadania POST, wiec zapisy i tak nie przejda (jak przy braku urzadzenia).
+        if (host == CACHE_HOST && path.startsWith("/api/")) {
+            val px = proxy ?: return reply(503, "application/json", "{\"ok\":false,\"error\":\"offline\"}".toByteArray())
+            val pq = path + (request.url.query?.let { "?$it" } ?: "")
+            val r = px.handle(request.method ?: "GET", pq, "")
+            val extra = if (r.disposition.isNotEmpty()) mapOf("Content-Disposition" to r.disposition) else emptyMap()
+            return reply(r.status, r.ctype, r.body.toByteArray(Charsets.UTF_8), extra)
         }
         val base = if (host == UI_HOST) "ui" else "web"
         var p = path
