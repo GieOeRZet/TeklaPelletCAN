@@ -989,15 +989,15 @@
         // obrazy kotla 11/12 maja inne proporcje niz domyslny: skala 1:1 jak w panelu, srodek i podstawa jak dla kociola domyslnego
         const boil = bt ? `.boil{width:${(bt[0] * K).toFixed(2)}cqw!important;left:${(15 - bt[0] * K / 2).toFixed(2)}cqw!important;top:${(35.5 - bt[1] * K).toFixed(2)}cqw!important;height:auto!important}` : '';
         // kolory suwakow - konfigurowalne z edytora karty HA (this._cfg), z domyslnymi wartosciami
-        // identycznymi jak oryginalny, 4-stopniowy gradient bazowego silnika (.sl b): suwaki TRYBU
-        // (off/eco/auto/comf - okno szybkich ustawien + duze ekrany Ogrzewanie/Woda) dostaja gradient
-        // 3-punktowy (min/srodek/max), suwaki WARTOSCI (temperatury, ustawienia liczbowe) - jeden,
-        // plaski kolor zamiast gradientu (nie ma to sensu dla ciaglej wartosci liczbowej).
+        // identycznymi jak oryginalny, 4-stopniowy gradient bazowego silnika (.sl b): suwaki WARTOSCI
+        // (temperatury, ustawienia liczbowe - oryginalnie teczowa bitmapa) dostaja gradient
+        // 3-punktowy (min/srodek/max), suwaki TRYBU (off/eco/auto/comf - okno szybkich ustawien
+        // + duze ekrany Ogrzewanie/Woda) - jeden, plaski kolor (dyskretny wybor, nie wartosc ciagla).
         const cfgS = this._cfg || {};
-        const slMin = cfgS.slider_mode_min || '#3fd0ff', slMid = cfgS.slider_mode_mid || '#e9e14a', slMax = cfgS.slider_mode_max || '#ff2a22';
-        const slVal = cfgS.slider_value_color || '#3fd0ff';
-        const sliderCss = `.sl[data-act="slider"] b,.sl[data-act="bmslide"] b,.sl[data-act="cmslide"] b{background-image:linear-gradient(90deg,${slMin},${slMid} 50%,${slMax})!important}
-        .sl[data-act="bslide"] b,.sl[data-act="cslide"] b,.sl[data-act="prslide"] b,.sl[data-act="spslide"] b,.sl[data-act="q2slide"] b{background-image:none!important;background-color:${slVal}!important}`;
+        const slMin = cfgS.slider_value_min || '#3fd0ff', slMid = cfgS.slider_value_mid || '#e9e14a', slMax = cfgS.slider_value_max || '#ff2a22';
+        const slMode = cfgS.slider_mode_color || '#3fd0ff';
+        const sliderCss = `.sl[data-act="bslide"] b,.sl[data-act="cslide"] b,.sl[data-act="prslide"] b,.sl[data-act="spslide"] b,.sl[data-act="q2slide"] b{background-image:linear-gradient(90deg,${slMin},${slMid} 50%,${slMax})!important}
+        .sl[data-act="slider"] b,.sl[data-act="bmslide"] b,.sl[data-act="cmslide"] b{background-image:none!important;background-color:${slMode}!important}`;
         return oc.call(this) + boil + sliderCss + `.sp{position:relative;display:inline-block;line-height:0}.sp img,.mbs{mix-blend-mode:screen}.sp img{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}.sp img:first-child{opacity:1}
         .sp.on img{animation:spfr .45s linear infinite}.sp.on img:nth-child(2){animation-delay:.15s}.sp.on img:nth-child(3){animation-delay:.3s}
         @keyframes spfr{0%,33.3%{opacity:1}33.4%,100%{opacity:0}}.sp.on img:first-child{opacity:0}.sp.slow img{animation-duration:1.5s}.sp.slow img:nth-child(2){animation-delay:.5s}.sp.slow img:nth-child(3){animation-delay:1s}
@@ -1016,7 +1016,6 @@
         .tr .tb{background:url(${U(19)}) 0 0/100% 100% no-repeat!important;border:0!important;border-radius:0!important;width:6.25cqw!important;height:6.46cqw!important}.tr .tb.ck{background-image:url(${U(20)})!important}.tr .tb svg{display:none!important}
         .sl{border-radius:0!important}
         .sl i{background:url(${U(70)}) center/100% 100% no-repeat!important;box-shadow:none!important;border-radius:0!important;width:6.5cqw!important;height:6.5cqw!important;top:-2.15cqw!important;margin-left:-3.25cqw!important}
-        .sl[data-act="slider"] i{width:5.5cqw!important;height:5.5cqw!important;margin-left:-2.75cqw!important;top:-1.65cqw!important}
         .cell{border:0!important;background:url(${U('76b')}) center/100% 100% no-repeat!important}
         .cell:has(.ind){background:url(${U(75)}) center/100% 100% no-repeat!important}
         .cell+.cell::before{content:'';position:absolute;left:-.5cqw;top:0;width:.5cqw;height:100%;background:url(${U(23)}) center/100% 100% no-repeat;pointer-events:none}

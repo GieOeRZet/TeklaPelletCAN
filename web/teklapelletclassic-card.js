@@ -44,7 +44,7 @@
 
   // Kolory suwaków (silnik czyta je z this._cfg.slider_* - patrz teklapelletclassic-engine.js _css()).
   // Domyślne wartości = oryginalny, 4-stopniowy gradient bazowego silnika (uproszczony do 3 punktów).
-  const SLIDER_DEFAULTS = { slider_mode_min: '#3fd0ff', slider_mode_mid: '#e9e14a', slider_mode_max: '#ff2a22', slider_value_color: '#3fd0ff' };
+  const SLIDER_DEFAULTS = { slider_value_min: '#3fd0ff', slider_value_mid: '#e9e14a', slider_value_max: '#ff2a22', slider_mode_color: '#3fd0ff' };
   function hexToRgb(hex) {
     const m = /^#?([0-9a-f]{6})$/i.exec(hex || '');
     const n = m ? parseInt(m[1], 16) : 0xffffff;
@@ -137,10 +137,10 @@
         { name: 'boiler_image', label: 'Obraz kotła', selector: { select: { mode: 'dropdown', options: [{ value: '11', label: 'Typ 11' }, { value: '12', label: 'Typ 12' }, { value: '13', label: 'Typ 13' }, { value: '14', label: 'Typ 14' }] } } },
         {
           type: 'expandable', title: 'Kolory suwaków', schema: [
-            { name: 'slider_mode_min', label: 'Suwak trybu – kolor minimum (off)', selector: { color_rgb: {} } },
-            { name: 'slider_mode_mid', label: 'Suwak trybu – kolor środek (eco/auto)', selector: { color_rgb: {} } },
-            { name: 'slider_mode_max', label: 'Suwak trybu – kolor maksimum (komfort)', selector: { color_rgb: {} } },
-            { name: 'slider_value_color', label: 'Suwak wartości – kolor (temperatury, ustawienia)', selector: { color_rgb: {} } },
+            { name: 'slider_value_min', label: 'Suwak wartości – kolor minimum (temperatury, ustawienia)', selector: { color_rgb: {} } },
+            { name: 'slider_value_mid', label: 'Suwak wartości – kolor środek', selector: { color_rgb: {} } },
+            { name: 'slider_value_max', label: 'Suwak wartości – kolor maksimum', selector: { color_rgb: {} } },
+            { name: 'slider_mode_color', label: 'Suwak trybu – kolor (off/eco/auto/komfort)', selector: { color_rgb: {} } },
           ],
         },
       ];
