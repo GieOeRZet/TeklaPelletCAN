@@ -995,7 +995,11 @@
         .sq{position:relative;display:inline-block;line-height:0}.sq img{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0;mix-blend-mode:screen;animation:spf4 2s linear infinite}.sq img:nth-child(2){animation-delay:.5s}.sq img:nth-child(3){animation-delay:1s}.sq img:nth-child(4){animation-delay:1.5s}
         @keyframes spf4{0%,25%{opacity:1}25.01%,100%{opacity:0}}`
           + (FULL(this) ? `.tgq,.row .tgq{background:url(${U(184)}) 0 0/100% 100% no-repeat!important;box-shadow:none!important;border-radius:0!important;height:auto!important;aspect-ratio:45/20}.tgq.on,.row .tgq.on{background-image:url(${U(185)})!important}.tgq i,.tgq::before,.tgq::after,.row .tgq::before,.row .tgq::after{display:none!important}
-        .row .tgq{position:relative!important;left:auto!important;top:auto!important;width:7.4cqw!important;margin-left:auto!important;flex:none!important}
+        .row .tgq{position:relative!important;left:auto!important;top:auto!important;width:10cqw!important;margin-left:auto!important;flex:none!important}
+        .tg{background:#4a4e55 url(${U(184)}) 0 0/100% 100% no-repeat!important;box-shadow:none!important;border-radius:0!important;height:auto!important;aspect-ratio:45/20;width:10cqw!important}
+        .tg.on{background-image:url(${U(185)})!important}
+        .tg i{position:absolute!important;top:50%!important;height:130%!important;width:auto!important;aspect-ratio:1/1;left:22.222%!important;right:auto!important;margin:0!important;transform:translate(-50%,-50%);background:url(${U(70)}) center/100% 100% no-repeat!important;border-radius:0!important}
+        .tg.on i{left:77.778%!important;right:auto!important}
         .row .tgq i,.tgq i{display:block!important;position:absolute!important;top:50%!important;height:130%!important;width:auto!important;aspect-ratio:1/1;left:22.222%!important;right:auto!important;margin:0!important;transform:translate(-50%,-50%);background:url(${U(70)}) center/100% 100% no-repeat!important;border-radius:0!important}
         .row .tgq.on i,.tgq.on i{left:77.778%!important;right:auto!important}
         .fmp{background:url(${U(56)}) 0 0/100% 100% no-repeat!important;border:0!important;box-shadow:none!important;width:4.17cqw!important;height:4.17cqw!important;margin:-2.08cqw 0 0 -2.08cqw!important}.fmp.sel{background-image:url(${U(57)})!important}
