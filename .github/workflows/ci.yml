@@ -382,6 +382,10 @@ jobs:
           git add -A
           if git diff --cached --quiet; then echo "brak zmian w karcie classic"; else git commit -q -m "Synchronizacja z TeklaPelletCAN${TAG:+ ($TAG)}"; fi
           git push origin HEAD:main
+          if [ -n "$TAG" ]; then
+            gh release view "$TAG" --repo GieOeRZet/TeklaPelletClassic-card >/dev/null 2>&1 && gh release delete "$TAG" --repo GieOeRZet/TeklaPelletClassic-card --yes
+            gh release create "$TAG" --repo GieOeRZet/TeklaPelletClassic-card --target main --title "TeklaPelletClassic-card $TAG" --notes "Synchronizacja z głównego repo TeklaPelletCAN $TAG."
+          fi
 
   publish-card-modern:
     needs: [host-tests, web-ui]
@@ -405,6 +409,10 @@ jobs:
           git add -A
           if git diff --cached --quiet; then echo "brak zmian w karcie modern"; else git commit -q -m "Synchronizacja z TeklaPelletCAN${TAG:+ ($TAG)}"; fi
           git push origin HEAD:main
+          if [ -n "$TAG" ]; then
+            gh release view "$TAG" --repo GieOeRZet/TeklaPelletModern-card >/dev/null 2>&1 && gh release delete "$TAG" --repo GieOeRZet/TeklaPelletModern-card --yes
+            gh release create "$TAG" --repo GieOeRZet/TeklaPelletModern-card --target main --title "TeklaPelletModern-card $TAG" --notes "Synchronizacja z głównego repo TeklaPelletCAN $TAG."
+          fi
 
   publish-apk:
     needs: android
