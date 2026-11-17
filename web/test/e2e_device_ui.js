@@ -97,7 +97,7 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   }
 
   // 3b2. karta: ekran "Informacje o programie" pokazuje nowa wersje modulu i changelog z manifestu
-  const mf = { channels: { beta: { version: '0.3.0', build: 99, full: '0.3.0+99', date: '2026-11-08 20:00 UTC', notes: 'x', changelog: ['Pierwsza zmiana testowa', 'Druga zmiana testowa'] } } };
+  const mf = { channels: { stable: { version: '0.3.0', build: 99, full: '0.3.0+99', date: '2026-11-08 20:00 UTC', notes: 'x', changelog: ['Pierwsza zmiana testowa', 'Druga zmiana testowa'] } } };
   const ip2 = await b.newPage({ viewport: { width: 520, height: 420 } });
   await ip2.route('**/updates/manifest.json*', r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(mf) }));
   await ip2.goto(BASE + '/classic.html?screen=info'); await ip2.waitForTimeout(8000);
@@ -112,7 +112,7 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   // 3c. aktualizacja jednym kliknieciem: manifest + plik + podpis "z internetu" (przechwycone), wgranie do urzadzenia
   const fs = require('fs');
   const good = fs.readFileSync(OTA + '/good.bin'), goodSig = fs.readFileSync(OTA + '/good.sig', 'utf8').trim(), pkg = fs.readFileSync(OTA + '/good.pkg.bin');
-  const manifest = { channels: { beta: { version: '0.3.0', build: 99, full: '0.3.0+99', file: 'beta/teklapelletcan.bin', sig: 'beta/teklapelletcan.bin.sig',
+  const manifest = { channels: { stable: { version: '0.3.0', build: 99, full: '0.3.0+99', file: 'beta/teklapelletcan.bin', sig: 'beta/teklapelletcan.bin.sig',
     sha256: 'ab'.repeat(32), embedded: true, size: pkg.length, notes: 'Test aktualizacji', date: '2026-11-08 20:00 UTC' } } };
   await p.route('**/fake-updates/manifest.json*', r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(manifest) }));
   await p.route('**/fake-updates/beta/teklapelletcan.bin*', r => r.fulfill({ status: 200, contentType: 'application/octet-stream', headers: { 'access-control-allow-origin': '*' }, body: pkg }));
@@ -190,6 +190,21 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   const diag = await (await fetch(BASE + '/api/v1/diag')).json();
   check('diagnostyka: silnik widzi ramki CAN', diag.engine.rx_frames > 0 && diag.engine.sdo_ok > 0, JSON.stringify(diag.engine));
   await p.screenshot({ path: '/tmp/claude-0/ui_settings.png', fullPage: true });
+
+  // 3d. tryb developera: PIN "1948" na ekranie "Poziom kotla" (zamiast isc do kotla) odblokowuje wybor kanalu
+  // aktualizacji (beta) - ukryty przed zwyklymi uzytkownikami (patrz DOKUMENTACJA/AKTUALIZACJE-OTA.md).
+  await p.goto(BASE + '/index.html#/d/menu'); await p.waitForTimeout(800);
+  const upchanBefore = await p.evaluate(() => { const e = document.querySelector('#upchan'); return e ? getComputedStyle(e).display : 'brak'; });
+  check('bez trybu developera: wybor kanalu niewidoczny w ustawieniach', upchanBefore === 'none' || upchanBefore === 'brak', upchanBefore);
+  await p.click('#lvl'); await p.waitForTimeout(300);
+  for (const d of ['1', '9', '4', '8']) { await p.click(`button[data-k="${d}"]`); await p.waitForTimeout(60); }
+  await p.click('button[data-k="ok"]'); await p.waitForTimeout(500);
+  check('PIN "1948" otwiera tryb developera (bez wyslania do kotla)', /#\/d\/dev$/.test(p.url()), p.url());
+  check('tryb developera zapamietany (localStorage)', (await p.evaluate(() => localStorage.getItem('tpc_devmode'))) === '1');
+  await p.selectOption('#devchan', 'beta');
+  await p.goto(BASE + '/settings.html'); await p.waitForTimeout(500);
+  const upchanAfter = await p.evaluate(() => ({ disp: getComputedStyle(document.querySelector('#upchan')).display, val: document.querySelector('#upchan').value }));
+  check('po odblokowaniu: wybor kanalu widoczny i ustawiony na beta', upchanAfter.disp === 'block' && upchanAfter.val === 'beta', JSON.stringify(upchanAfter));
 
   check('brak bledow JS', errs.length === 0, JSON.stringify(errs));
   await b.close();

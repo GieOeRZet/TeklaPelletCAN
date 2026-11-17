@@ -1633,7 +1633,7 @@
     C.prototype.__v93 = true;
     const CARD_VER = '1.40';
     const MAN = (() => { try { return localStorage.getItem('tpc_manifest_url'); } catch (e) { return ''; } })() || 'https://raw.githubusercontent.com/GieOeRZet/TeklaPelletCan/updates/manifest.json';   // manifest wydań firmware TeklaPelletCAN
-    const CHAN = () => { try { return localStorage.getItem('tpc_channel') || 'beta'; } catch (e) { return 'beta'; } };
+    const CHAN = () => { try { return localStorage.getItem('tpc_channel') || 'stable'; } catch (e) { return 'stable'; } };
     const SK = 'igneo_upd_skip';
     const U = window.__igneoUpd = window.__igneoUpd || { m: null, t: 0 };
     const cmp = (a, b) => { const x = String(a).split(/[.+]/).map(Number), y = String(b).split(/[.+]/).map(Number); for (let i = 0; i < Math.max(x.length, y.length); i++) { const d = (x[i] || 0) - (y[i] || 0); if (d) return d; } return 0; };

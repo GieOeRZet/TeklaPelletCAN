@@ -4,7 +4,7 @@ export const MANIFEST_DEFAULT = 'https://raw.githubusercontent.com/GieOeRZet/Tek
 
 const ls = k => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
 export const manifestUrl = () => ls('tpc_manifest_url') || MANIFEST_DEFAULT;
-export const channel = () => ls('tpc_channel') || 'beta';
+export const channel = () => ls('tpc_channel') || 'stable';
 
 // "0.3.0+17" -> [0,3,0,17]; wersja nieznana (np. symulator) -> null
 export function parseVer(s) {

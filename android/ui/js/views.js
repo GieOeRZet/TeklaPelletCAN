@@ -1,4 +1,4 @@
-// Widoki: pulpit, instalacja, kocioł, alarmy, parametry, menu.
+// Widoki: pulpit, instalacja, kocioł, alarmy, parametry, menu, tryb developera.
 import { nat, api } from './native.js';
 import { S, v, num, pv, pn, level, subscribe } from './store.js';
 import { $, el, esc, f1, fmt, toast, openSheet, closeSheet, ensureUnlocked, editPoint, callService, writePoint, confirmSheet } from './ui.js';
@@ -795,4 +795,36 @@ export function harmonogram() {
   draw();
   let sig = '';
   return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); const s = SCH.map((_, i) => schedSig(i)).join('#'); if (s !== sig) { sig = s; draw(); } } };
+}
+
+/** "Tryb developera" - dostep przez PIN "1948" na ekranie "Poziom kotla" (patrz ui.js: isDevPin, enterLevelPin;
+ * zaszyfrowany jako hash, zeby nie bylo widac goly PIN w kodzie). Jedyne co tu robimy: wybor kanalu aktualizacji
+ * (beta/stabilny) - zwykli uzytkownicy widza/instaluja TYLKO stabilny (web/js/updates.js, baner na pulpicie,
+ * zawsze czyta channels.stable - bez zmian). Samo pobranie/wgranie firmware zostaje w "Konfiguracji urzadzenia"
+ * (web/settings.html, juz ma cala, przetestowana logike OTA) - ten ekran tylko ustawia kanal i tam odsyla,
+ * zeby nie duplikowac logiki pobierania/wgrywania w dwoch miejscach.
+ */
+export function devMode() {
+  const chan = (() => { try { return localStorage.getItem('tpc_channel') || 'stable'; } catch (e) { return 'stable'; } })();
+  const root = el(`<div>
+    <div class="sec"><h5>Tryb developera</h5>
+      <div class="hint" style="margin-bottom:10px">Wersje beta mogą być niestabilne. Zwykli użytkownicy nigdy nie
+        widzą ani nie dostają powiadomienia o becie - to ustawienie dotyczy tylko tego urządzenia/telefonu.</div>
+      <label for="devchan">Kanał aktualizacji</label>
+      <select id="devchan" style="width:100%;margin-bottom:12px">
+        <option value="stable">Kanał: stabilny</option>
+        <option value="beta">Kanał: beta (testowy)</option>
+      </select>
+      <button class="row nav2" id="devcfg"><span>Otwórz konfigurację urządzenia</span></button>
+      <button class="row nav2" id="devoff" style="margin-top:8px"><span>Wyłącz tryb developera</span></button>
+    </div>
+  </div>`);
+  $('#devchan', root).value = chan;
+  $('#devchan', root).onchange = e => { try { localStorage.setItem('tpc_channel', e.target.value); } catch (err) {} };
+  $('#devcfg', root).onclick = () => nat.openDeviceSettings();
+  $('#devoff', root).onclick = () => {
+    try { localStorage.removeItem('tpc_devmode'); localStorage.setItem('tpc_channel', 'stable'); } catch (e) {}
+    toast('Tryb developera wyłączony'); history.back();
+  };
+  return { node: root, update() {} };
 }

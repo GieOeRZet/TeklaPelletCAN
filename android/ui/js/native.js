@@ -1,5 +1,8 @@
 // Cienka warstwa nad mostem natywnym (TPCNative): żądania API do wybranego urządzenia, blokada zapisu, urządzenia.
 const N = window.TPCNative;
+// "Tryb developera" (patrz ui.js: isDevPin) - ustawiony w tym samym origin co ten plik (assety apki), wiec
+// trzeba go osobno przekazac przy otwieraniu Konfiguracji urzadzenia (inny origin - strona z samego urzadzenia).
+const devModeOn = () => { try { return localStorage.getItem('tpc_devmode') === '1'; } catch (e) { return false; } };
 let seq = 0;
 const pending = new Map();
 const listeners = new Set();
@@ -42,7 +45,7 @@ export const nat = {
   clearCache: () => N.clearCache(),
   resetSecurity: () => N.resetSecurity(),
   openOriginal: () => N.openOriginal(),
-  openDeviceSettings: () => N.openDeviceSettings(),
+  openDeviceSettings: () => N.openDeviceSettings(devModeOn()),
   openSetup: () => N.openSetup(),
   openExternal: url => N.openExternalUrl(url),
   summary: base => j(N.deviceSummary(base)),

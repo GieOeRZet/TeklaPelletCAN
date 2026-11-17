@@ -54,7 +54,7 @@ async function showUpdateBanners(container, which) {
 }
 
 // ------------------------------------------------------------------ router
-const TITLES = { pulpit: 'Pulpit', instalacja: 'Instalacja', harmonogram: 'Harmonogram', kociol: 'Kocioł', palnik: 'Palnik', co: 'Ogrzewanie (CO)', cwu: 'Ciepła woda (CWU)', test: 'Test wyjść', konf: 'Konfiguracja', alarmy: 'Alarmy', menu: 'Menu', params: 'Parametry' };
+const TITLES = { pulpit: 'Pulpit', instalacja: 'Instalacja', harmonogram: 'Harmonogram', kociol: 'Kocioł', palnik: 'Palnik', co: 'Ogrzewanie (CO)', cwu: 'Ciepła woda (CWU)', test: 'Test wyjść', konf: 'Konfiguracja', alarmy: 'Alarmy', menu: 'Menu', params: 'Parametry', dev: 'Tryb developera' };
 const NAVS = [['pulpit', '▦', 'Pulpit'], ['instalacja', '⇵', 'Instalacja'], ['harmonogram', '◷', 'Harmonogram'], ['alarmy', '⚠', 'Alarmy'], ['menu', '≡', 'Menu']];
 
 export function go(r) { location.hash = '#/' + r; }
@@ -139,6 +139,7 @@ async function render() {
     else if (page === 'cwu') view = V.cieplaWoda();
     else if (page === 'test') view = V.testWyjsc();
     else if (page === 'konf') view = V.konfiguracja();
+    else if (page === 'dev') view = V.devMode();
     else if (page === 'harmonogram') view = V.harmonogram();
     else if (page === 'alarmy') view = V.alarmy();
     else if (page === 'menu') return viewMenu();
@@ -353,7 +354,11 @@ function viewMenu() {
   const sc = chrome('Menu', body, 'main');
   $('#lvv', body).textContent = level() > 0 ? 'poziom ' + level() : 'poziom 0';
   body.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
-  $('#lvl', body).onclick = async () => { if (await enterLevelPin()) { toast('Poziom kotła ' + level()); $('#lvv', body).textContent = 'poziom ' + level(); } };
+  $('#lvl', body).onclick = async () => {
+    const r = await enterLevelPin();
+    if (r === 'dev') { try { localStorage.setItem('tpc_devmode', '1'); } catch (e) {} go('d/dev'); return; }
+    if (r) { toast('Poziom kotła ' + level()); $('#lvv', body).textContent = 'poziom ' + level(); }
+  };
   $('#fuel', body).onclick = fuelSheet;
   $('#pwr', body).onclick = zasilanieSheet;
   // PIN aplikacji chroni tylko start apki - otwarcie oryginalu/konfiguracji nie wymaga PIN-u.

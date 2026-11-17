@@ -701,7 +701,7 @@ class MainActivity : Activity() {
 
         // --- okna urządzenia i narzędzia
         @JavascriptInterface fun openOriginal() { main.post { openDeviceWindow("classic.html", "Panel kotła (oryginał)", showBar = false) } }
-        @JavascriptInterface fun openDeviceSettings() { main.post { openDeviceWindow("settings.html", "Konfiguracja modułu") } }
+        @JavascriptInterface fun openDeviceSettings(dev: Boolean) { main.post { openDeviceWindow(if (dev) "settings.html?dev=1" else "settings.html", "Konfiguracja modułu") } }
         @JavascriptInterface fun openSetup() {
             main.post {
                 backend = HttpBackend(SETUP_URL.trimEnd('/')); deviceBase = SETUP_URL; deviceName = "Nowe urządzenie"

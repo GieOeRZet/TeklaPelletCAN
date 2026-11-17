@@ -49,9 +49,10 @@
   <div class="card">
     <h2>Aktualizacja oprogramowania</h2>
     <div class="row">
-      <select id="upchan" style="flex:1 1 140px"><option value="beta">Kanał: beta (testowy)</option><option value="stable">Kanał: stabilny</option></select>
+      <select id="upchan" style="flex:1 1 140px;display:none"><option value="stable">Kanał: stabilny</option><option value="beta">Kanał: beta (testowy)</option></select>
       <button id="upcheck" style="flex:1 1 160px">Sprawdź aktualizacje</button>
     </div>
+    <div class="hint" id="devhint" style="display:none">Tryb developera: wybrany kanał dotyczy tylko tego urządzenia/przeglądarki.</div>
     <div class="msg" id="upmsg"></div>
     <div class="row" style="margin-top:8px"><button id="upgo" class="acc" style="display:none">Pobierz i zainstaluj</button></div>
     <progress id="otaprog" value="0" max="100" style="display:none;margin-top:8px"></progress>
@@ -129,7 +130,13 @@ async function load() {
   installedFw = i.fw || '';
   const isDemo = /demo/i.test(installedFw);
   if (isDemo) { const c = $('upgo').closest('.card'); if (c) { c.style.display = 'none'; c.insertAdjacentHTML('afterend', '<div class="card"><h2>Aktualizacja oprogramowania</h2><div class="hint">Tryb demo: wirtualne urządzenie nie ma własnego firmware, więc aktualizacje są niedostępne.</div></div>'); } }
-  $('upchan').value = lsGet('tpc_channel') || 'beta'; $('manifest').value = lsGet('tpc_manifest_url');
+  // Tryb developera: ?dev=1 w adresie (apka Android - inny origin niz lokalny localStorage tej strony) albo
+  // juz zapamietany w tej przegladarce/WebView (portal - ten sam origin co ekran "Poziom kotla", wiec
+  // wystarczy sam localStorage). Zwykli uzytkownicy nigdy nie widza wyboru kanalu - zawsze "stable".
+  const devMode = new URLSearchParams(location.search).get('dev') === '1' || lsGet('tpc_devmode') === '1';
+  if (devMode) { lsSet('tpc_devmode', '1'); $('upchan').style.display = ''; $('devhint').style.display = ''; }
+  $('upchan').value = devMode ? (lsGet('tpc_channel') || 'stable') : 'stable';
+  $('manifest').value = lsGet('tpc_manifest_url');
   loadLog(); loadClients(); if (!isDemo) doCheck(true);
 }
 async function loadLog() { try { const t = await fetch('/api/v1/log').then(r => r.text()); const p = $('log'); p.textContent = t.split('\n').slice(-120).join('\n') || '(pusty)'; p.scrollTop = p.scrollHeight; } catch (e) { $('log').textContent = 'błąd: ' + e.message; } }

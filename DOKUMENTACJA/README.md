@@ -15,6 +15,7 @@ rzeczy wypracowanych (często metodą prób i błędów) w listopadzie 2026.
 | **Mapa bitmap panelu** (`img/panel/*.png`) — co która przedstawia, gdzie użyta, metodologia weryfikacji | [`BITMAPY-PANELU.md`](BITMAPY-PANELU.md) |
 | **Aplikacja Android — warstwa natywna, UI, synchronizacja z portalem** | [`APLIKACJA-ANDROID.md`](APLIKACJA-ANDROID.md) (uzupełnia [`../docs/APLIKACJA_ANDROID.md`](../docs/APLIKACJA_ANDROID.md)) |
 | **Integracja Home Assistant — pliki, encje, czego brakuje** | [`INTEGRACJA-HA.md`](INTEGRACJA-HA.md) |
+| **Aktualizacje OTA — kanał stabilny domyślnie, ukryty tryb developera** | [`AKTUALIZACJE-OTA.md`](AKTUALIZACJE-OTA.md) |
 | Pierwsze uruchomienie urządzenia | [`../docs/PIERWSZE_URUCHOMIENIE.md`](../docs/PIERWSZE_URUCHOMIENIE.md) |
 | Budowanie firmware/aplikacji lokalnie | [`../docs/BUDOWANIE.md`](../docs/BUDOWANIE.md) |
 | Zdalne wgranie firmware (bez fizycznego dostępu) | [`../docs/WGRANIE_ZDALNE.md`](../docs/WGRANIE_ZDALNE.md) |

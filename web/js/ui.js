@@ -8,6 +8,16 @@ export const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&
 export const fmt = (x, d = 1) => Number.isFinite(x) ? x.toFixed(d).replace(/\.0+$/, d === 0 ? '' : '.0') : '–';
 export const f1 = x => Number.isFinite(x) ? x.toFixed(1) : '–';
 
+// Haszujemy PIN zamiast trzymac go jawnie w kodzie (SHA-256, bez soli - nie jest to sekret
+// kryptograficzny chroniacy cokolwiek wrazliwego, tylko "ukryte drzwi" do trybu developera;
+// chodzi o to, zeby nie bylo widac samej liczby w grep/diff/czytaniu kodu).
+async function sha256Hex(s) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+const DEV_PIN_SHA256 = '03b0bd366e8184f8d871c3a7c7cc26c73c25b54ff54c64b28b10b898242cdc8a';
+export async function isDevPin(p) { return (await sha256Hex(p)) === DEV_PIN_SHA256; }
+
 let toastT = null;
 export function toast(t) {
   const e = $('#toast'); e.textContent = t; e.style.display = 'block';
@@ -147,9 +157,11 @@ export async function ensureLevel(need) {
  * czekania az wygasnie poprzednia sesja), i akceptuje KAZDY poprawny PIN poziomu (1 lub 2), nie tylko taki,
  * ktory daje poziom >= jakiegos wymaganego minimum. Zwraca true po poprawnym PIN-ie (dowolnego poziomu). */
 export async function enterLevelPin() {
+  let dev = false;
   const pin = await pinSheet({
     title: 'Poziom dostępu kotła', sub: 'Podaj PIN poziomu (jak w panelu kotła). Wygasa po 5 minutach bezczynności.', digits: [4, 6],
     check: async p => {
+      if (await isDevPin(p)) { dev = true; return null; }   // "drzwi" do trybu developera - nic nie idzie do kotla
       const r = await api('POST', '/api/v1/call', { domain: 'teklapelletcan', service: 'tekla_estyma_unlock', data: { pin: parseInt(p, 10) } });
       if (r.status !== 200) return 'Brak połączenia z kotłem';
       let cur = r.json.level || 0;
@@ -162,6 +174,7 @@ export async function enterLevelPin() {
       return cur > 0 ? null : 'Zły PIN poziomu';
     },
   });
+  if (dev) return 'dev';
   if (pin !== null) S.levelAt = Date.now();
   await pullNow();
   return pin !== null;
