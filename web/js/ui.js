@@ -1,6 +1,6 @@
 // Wspólne elementy interfejsu: okna dolne, klawiatura PIN, powiadomienia, formatowanie.
 import { nat, onEvent, api } from './native.js';
-import { S, pv, pn, level, refreshSoon, pullNow } from './store.js';
+import { S, pv, pn, level, refreshSoon, pullNow, pausePolling, resumePolling } from './store.js';
 
 export const $ = (s, r = document) => r.querySelector(s);
 export const el = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstElementChild; };
@@ -135,14 +135,22 @@ export async function ensureUnlocked() {
  * Zwraca true, gdy poziom >= need. */
 export async function ensureLevel(need) {
   if (level() >= need) return true;
+  pausePolling();   // patrz store.js: wstrzymanie na czas PIN-u, zeby w tle lecace pull() nie wyscigowo
+  // nadpisal swiezy poziom starsza wartoscia (numer seryjny w pull() chroni tylko przed odwrotna kolejnoscia)
   const pin = await pinSheet({
     title: 'Poziom dostępu kotła', sub: `Ta pozycja wymaga poziomu ${need}. Podaj PIN poziomu (jak w panelu kotła). Wygasa po 5 minutach bezczynności.`, digits: [4, 6],
     check: async p => {
       const r = await api('POST', '/api/v1/call', { domain: 'teklapelletcan', service: 'tekla_estyma_unlock', data: { pin: parseInt(p, 10) } });
       if (r.status !== 200) return 'Brak połączenia z kotłem';
-      // odczyt poziomu potwierdzany asynchronicznie przez urzadzenie - pojedyncze 700ms nie zawsze wystarcza
-      // (wolniejsza siec/urzadzenie), wiec odpytujemy do skutku zamiast raz, do ok. 4 s.
-      let cur = r.json.level || 0;
+      // UWAGA: r.json.level z odpowiedzi POST jest JUZ aktualny (silnik aktualizuje go synchronicznie),
+      // ale osobny endpoint GET /api/v1/states (na ktorym opiera sie cala reszta interfejsu - pull(),
+      // pullNow()) potrafi pokazac STARA wartosc jeszcze przez ok. 2 s po udanym odblokowaniu. Jesli
+      // zaufamy tu r.json.level i przez to pominiemy petle ponizej (co bylo dawnym bledem - "cur" od razu
+      // >= need, petla z warunkiem "cur < need" nigdy sie nie wykonywala), funkcja zwroci sukces, ZANIM
+      // GET faktycznie zacznie widziec nowy poziom - kolejny pullNow() (i caly reszta UI) pokaze wtedy
+      // przez chwile stary poziom. Dlatego cur startuje od 0 i ZAWSZE czekamy na GET-owe potwierdzenie,
+      // niezaleznie od tego, co juz zglosil POST.
+      let cur = 0;
       for (let i = 0; i < 10 && cur < need; i++) {
         await new Promise(res => setTimeout(res, 400));
         const s = await api('GET', '/api/v1/states');
@@ -154,6 +162,7 @@ export async function ensureLevel(need) {
   });
   if (pin !== null) S.levelAt = Date.now();   // liczniik sesji poziomu w naglowku (patrz main.js chip())
   await pullNow();   // widoki od razu widzą nowy poziom
+  resumePolling();
   return pin !== null;
 }
 
@@ -163,13 +172,15 @@ export async function ensureLevel(need) {
  * ktory daje poziom >= jakiegos wymaganego minimum. Zwraca true po poprawnym PIN-ie (dowolnego poziomu). */
 export async function enterLevelPin() {
   let dev = false;
+  pausePolling();   // jak w ensureLevel() - patrz store.js
   const pin = await pinSheet({
     title: 'Poziom dostępu kotła', sub: 'Podaj PIN poziomu (jak w panelu kotła). Wygasa po 5 minutach bezczynności.', digits: [4, 6],
     check: async p => {
       if (isDevPin(p)) { dev = true; return null; }   // "drzwi" do trybu developera - nic nie idzie do kotla
       const r = await api('POST', '/api/v1/call', { domain: 'teklapelletcan', service: 'tekla_estyma_unlock', data: { pin: parseInt(p, 10) } });
       if (r.status !== 200) return 'Brak połączenia z kotłem';
-      let cur = r.json.level || 0;
+      // patrz ensureLevel() wyzej - nie ufamy r.json.level, zawsze czekamy na potwierdzenie przez GET.
+      let cur = 0;
       for (let i = 0; i < 10 && cur < 1; i++) {
         await new Promise(res => setTimeout(res, 400));
         const s = await api('GET', '/api/v1/states');
@@ -179,9 +190,10 @@ export async function enterLevelPin() {
       return cur > 0 ? null : 'Zły PIN poziomu';
     },
   });
-  if (dev) return 'dev';
-  if (pin !== null) S.levelAt = Date.now();
+  if (pin !== null && !dev) S.levelAt = Date.now();   // "1948" nie jest prawdziwym PIN-em poziomu
   await pullNow();
+  resumePolling();
+  if (dev) return 'dev';
   return pin !== null;
 }
 

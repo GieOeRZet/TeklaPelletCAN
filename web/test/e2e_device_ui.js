@@ -191,6 +191,17 @@ const check = (name, cond, extra = '') => { console.log((cond ? 'OK   ' : 'FAIL 
   check('diagnostyka: silnik widzi ramki CAN', diag.engine.rx_frames > 0 && diag.engine.sdo_ok > 0, JSON.stringify(diag.engine));
   await p.screenshot({ path: '/tmp/claude-0/ui_settings.png', fullPage: true });
 
+  // 3c2. PIN poziomu (0900): komunikat musi pokazac PRAWDZIWY, AKTUALNY poziom od razu po potwierdzeniu,
+  // nie poziom sprzed chwili. Blad (naprawiony): r.json.level z odpowiedzi POST /unlock byl juz aktualny,
+  // wiec petla czekajaca na potwierdzenie przez GET /api/v1/states (ktory potrafi pokazywac STARY poziom
+  // jeszcze ok. 2 s) byla pomijana - komunikat i caly interfejs (pullNow) na chwile pokazywaly stary poziom.
+  await p.goto(BASE + '/index.html#/d/menu'); await p.waitForTimeout(800);
+  await p.click('#lvl'); await p.waitForTimeout(300);
+  for (const d of ['0', '9', '0', '0']) { await p.click(`button[data-k="${d}"]`); await p.waitForTimeout(60); }
+  await p.click('button[data-k="ok"]'); await p.waitForTimeout(600);
+  const toastPin = await p.evaluate(() => document.getElementById('toast').textContent);
+  check('PIN 0900: komunikat pokazuje poziom 1 od razu (bez opoznienia)', toastPin === 'Poziom kotła 1', toastPin);
+
   // 3d. tryb developera: PIN "1948" na ekranie "Poziom kotla" (zamiast isc do kotla) odblokowuje wybor kanalu
   // aktualizacji (beta) - ukryty przed zwyklymi uzytkownikami (patrz DOKUMENTACJA/AKTUALIZACJE-OTA.md).
   await p.goto(BASE + '/index.html#/d/menu'); await p.waitForTimeout(800);

@@ -84,6 +84,16 @@ export async function startPolling() {
   timer = setInterval(pull, 2000);
 }
 export function stopPolling() { if (timer) clearInterval(timer); timer = null; }
+// Wstrzymanie/wznowienie BEZ pelnego resetu stanu (w odroznieniu od stopPolling+startPolling, ktory
+// czysci S.states/S.points/S.info/S.config i odpytuje je od nowa - za ciezkie na krotka przerwe).
+// Uzywane w oknach, gdzie trwajacy w tle pull() co 2 s mogby wyscigowo nadpisac swiezy stan ustawiony
+// wlasnym, jednorazowym zapytaniem - PIN poziomu dostepu jest dokladnie takim przypadkiem: pull() w tle
+// moze wystartowac PRZED odblokowaniem i wrocic PO jednorazowym pullNow() wywolanym zaraz po PIN-ie,
+// z wyzszym numerem seryjnym (bo pull() w tle zdazyl wystartowac pozniej) ale starsza wartoscia poziomu
+// (bo zapytanie w tle wyslano, zanim urzadzenie zdazylo zglosic nowy poziom) - numer seryjny w pull()
+// chroni tylko przed odwrotna kolejnoscia (stara odpowiedz PO nowej), nie przed tym przypadkiem.
+export function pausePolling() { if (timer) clearInterval(timer); timer = null; }
+export function resumePolling() { if (!timer) timer = setInterval(pull, 2000); }
 export const refreshSoon = () => setTimeout(pull, 450);
 export const pullNow = pull;
 

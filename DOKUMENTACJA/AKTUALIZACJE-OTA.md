@@ -59,9 +59,33 @@ drugim.
 `settings.html` odczytuje `?dev=1` z adresu (oprócz swojego własnego `localStorage.tpc_devmode`, na wypadek gdy
 ktoś otworzy tę stronę bezpośrednio w przeglądarce na urządzeniu) i dopiero wtedy odkrywa ukryty wybór kanału.
 
+## Dwa dodatkowe błędy znalezione i naprawione przy okazji (PIN poziomu/trybu developera)
+
+**1. `crypto.subtle` wymaga "bezpiecznego kontekstu".** `isDevPin()` pierwotnie używał Web Crypto
+(`crypto.subtle.digest`) do haszowania PIN-u. Ten interfejs działa tylko w HTTPS albo
+`localhost`/`127.0.0.1` — strona urządzenia w realnej sieci domowej to zwykły `http://<adres-ip>`, gdzie
+`crypto.subtle` jest `undefined`. Każdy PIN (nie tylko `1948`) kończył się tam nieobsłużonym wyjątkiem.
+Własne testy tego nie złapały, bo używały `127.0.0.1` (traktowany przez przeglądarkę jako wyjątkowo
+bezpieczny mimo HTTP). Naprawione: prosty, synchroniczny hash FNV-1a, bez żadnej zależności od kontekstu
+bezpieczeństwa.
+
+**2. Komunikat po PIN-ie pokazywał poprzedni poziom przez ok. 2 sekundy.** Odpowiedź `POST /api/v1/call`
+(`tekla_estyma_unlock`) zwraca już **aktualny** poziom (silnik aktualizuje go synchronicznie) — ale osobny
+endpoint `GET /api/v1/states` (na którym opiera się cała reszta interfejsu: `pull()`, `pullNow()`) potrafi
+pokazywać **starą** wartość jeszcze przez około 2 sekundy po udanym odblokowaniu. Kod w `ensureLevel()`/
+`enterLevelPin()` miał pętlę czekającą właśnie na to potwierdzenie przez GET — ale startowała od
+`r.json.level` (wartości z POST), więc jeśli POST już zgłosił sukces, pętla z warunkiem `cur < need` nigdy
+się nie wykonywała i funkcja zwracała sukces, **zanim** GET faktycznie zaczął widzieć nowy poziom. Fix:
+`cur` zawsze startuje od `0` — zawsze czekamy na GET-owe potwierdzenie, niezależnie od tego, co już zgłosił
+POST. Dodano też `pausePolling()`/`resumePolling()` (`store.js`) wokół obu funkcji jako dodatkowe
+zabezpieczenie przed współbieżnym, działającym w tle odpytywaniem (`setInterval(pull, 2000)`), które mogłoby
+nadpisać świeży stan starszą odpowiedzią — ten sam wzorzec co przy naprawie OTA-vs-pollingu wcześniej w tym
+projekcie.
+
 ## Zasięg zmiany (pliki)
 
-`android/ui/js/ui.js`, `android/ui/js/main.js`, `android/ui/js/views.js` (+ zsynchronizowane kopie w `web/js/`
-przez `tools/sync_web.py` — `native.js` jest wyjątkiem, ma dwa celowo różne warianty), `web/settings.html`,
-`web/update.js`, `web/teklapelletclassic-engine.js`, `android/app/src/main/kotlin/.../MainActivity.kt`. Test
-regresyjny: `web/test/e2e_device_ui.js` (sekcja "tryb developera").
+`android/ui/js/ui.js`, `android/ui/js/main.js`, `android/ui/js/views.js`, `android/ui/js/store.js`
+(+ zsynchronizowane kopie w `web/js/` przez `tools/sync_web.py` — `native.js` jest wyjątkiem, ma dwa celowo
+różne warianty), `web/settings.html`, `web/update.js`, `web/teklapelletclassic-engine.js`,
+`android/app/src/main/kotlin/.../MainActivity.kt`. Testy regresyjne: `web/test/e2e_device_ui.js` (sekcje
+"PIN poziomu" i "tryb developera").
