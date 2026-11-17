@@ -979,7 +979,13 @@
       const PB = DIR1.includes('/hacsfiles/') ? 'https://cdn.jsdelivr.net/gh/GieOeRZet/TeklaPelletClassic-card@main/img/panel/' : (DIR1 + 'img/panel/');
       const stamp = Date.now();
       const has = n => new Promise(r => { const im = new Image(); im.onload = () => r(true); im.onerror = () => r(false); im.src = PB + String(n).padStart(3, '0') + '.png?v=' + stamp; });
-      if (!(await has(54))) return;   // brak pakietu = zostaja wektory (wystarczy zbiornik: 48, 49, 50, 54)
+      // proba 054.png bywa wykonywana od razu po (ponownym) wczytaniu strony - np. gdy karta/aplikacja
+      // wraca z tla i system robi swieze przeladowanie - a siec LAN do urzadzenia moze wtedy jeszcze nie
+      // byc gotowa. Jedna nieudana proba trwale wylaczala tekstury do nastepnego recznego odswiezenia -
+      // kilka prob z krotka przerwa (jak w module obrazkow kotla/palnika nizej) usuwa ten falszywy negatyw.
+      let ok54 = await has(54);
+      for (let i = 0; i < 5 && !ok54; i++) { await new Promise(r => setTimeout(r, 400)); ok54 = await has(54); }
+      if (!ok54) return;   // brak pakietu po kilku probach = zostaja wektory (wystarczy zbiornik: 48, 49, 50, 54)
       const U = n => PB + String(n).padStart(3, '0') + '.png?v=' + stamp, K = 0.2083;   // 1 px panelu = 0,2083 cqw (480 px = 100 cqw)
       const img = (n, st) => `<img src="${U(n)}" draggable="false" style="${st || ''}">`;
       const seq = (ns, w, h, on) => `<span class="sp ${on ? 'on' : ''}" style="width:${(w * K).toFixed(2)}cqw;height:${(h * K).toFixed(2)}cqw">${ns.map(n => img(n)).join('')}</span>`;
