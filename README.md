@@ -30,6 +30,40 @@ z którego korzystasz.
   <img src="docs/img/pulpit_light.png" alt="Pulpit – motyw jasny" width="260">
   <img src="docs/img/wyglad.png" alt="Menu Wygląd – motyw i domyślny styl" width="260">
 </p>
+<p>
+  <img src="docs/img/karta_classic.png" alt="Karta Classic – replika panelu Igneo Touch" width="420">
+</p>
+
+## Jak to działa (komunikacja)
+
+```
+Kocioł (CANopen, węzeł 4) ─CAN 125 kbit/s─ MCP2515 ─SPI─ ESP32-C6
+                                                            │
+                                     REST API + WebSocket (http://<adres-urządzenia>/api/v1/...)
+                                                            │
+                        ┌───────────────────────────────────┼───────────────────────────────────┐
+                        ▼                                    ▼                                    ▼
+              przeglądarka (portal/karta             integracja Home Assistant          aplikacja Android
+                 urządzenia, ten sam               (encje + usługi, wykrywanie          (natywny proxy +
+                  silnik co karty HA)                przez zeroconf lub IP)              cache + tryb demo)
+```
+
+Urządzenie **nie łączy się z internetem** — każdy klient (przeglądarka, HA, aplikacja) ustawia mu czas przy
+połączeniu. Zapis parametru zawsze wymaga poziomu dostępu (PIN jak w panelu kotła) i tokenu parowania klienta;
+sam odczyt jest dostępny bez parowania (opcja do wyłączenia). Pełny opis API i bezpieczeństwa:
+[docs/ARCHITEKTURA.md](docs/ARCHITEKTURA.md) §7–8, oraz szczegóły rzeczywistej implementacji w
+[DOKUMENTACJA/FIRMWARE.md](DOKUMENTACJA/FIRMWARE.md).
+
+## Dokumentacja
+
+- [DOKUMENTACJA/](DOKUMENTACJA/README.md) — mapa bitmap panelu, architektura karty Classic, rzeczywista
+  architektura firmware/Android/integracji HA (uzupełnienie poniższych dokumentów o szczegóły wypracowane
+  podczas rozwoju).
+- [rejestry/](rejestry/README.md) — **pełna dokumentacja rejestrów kotła** (CANopen, kodowanie wartości,
+  dekompilacja firmware panelu Igneo Touch, metodologia skanowania różnicowego).
+- [docs/ARCHITEKTURA.md](docs/ARCHITEKTURA.md) — ogólna architektura projektu, API, bezpieczeństwo, OTA.
+- [docs/PIERWSZE_URUCHOMIENIE.md](docs/PIERWSZE_URUCHOMIENIE.md), [docs/BUDOWANIE.md](docs/BUDOWANIE.md),
+  [docs/WGRANIE_ZDALNE.md](docs/WGRANIE_ZDALNE.md).
 
 ## Jak zacząć
 
