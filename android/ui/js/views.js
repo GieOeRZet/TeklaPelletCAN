@@ -480,7 +480,7 @@ export function palnik() {
  * poziomu 1, ostatnia pozycja ("Dmuchawa z HALL") dopiero od poziomu 2 - identycznie jak w oryginale. */
 export function konfiguracja() {
   const root = el('<div><div id="bn"></div></div>');
-  let shownLevel = -1;
+  let shownLevel = -1, sig = '';
   const draw = () => {
     shownLevel = level();
     root.innerHTML = ''; root.appendChild(el('<div id="bn"></div>'));
@@ -514,8 +514,15 @@ export function konfiguracja() {
     row('Kopiuj nastawy z innego sterownika', '-');
     if (shownLevel >= 2) row('Dmuchawa z HALL', onoff(17));
   };
+  sig = (v('sensor.tekla_konfiguracja_kotla') || '') + '#' + num('sensor.tekla_zbiornik_pojemnosc');
   draw();
-  return { node: root, update() { $('#bn', root).innerHTML = offlineBanner(); if (level() !== shownLevel) draw(); } };
+  // Ekran byl martwy po otwarciu (wartosci rysowane raz, bez odswiezania) - teraz jak inne ekrany:
+  // sygnatura ze zrodlowego sensora + pojemnosci zbiornika, przerysowanie gdy sie zmieni.
+  return { node: root, update() {
+    $('#bn', root).innerHTML = offlineBanner();
+    const s = (v('sensor.tekla_konfiguracja_kotla') || '') + '#' + num('sensor.tekla_zbiornik_pojemnosc');
+    if (level() !== shownLevel || s !== sig) { sig = s; draw(); }
+  } };
 }
 
 /** "Test wyjść" jak w oryginale (21 pozycji, dokladnie w tej kolejnosci i z tymi rejestrami co na prawdziwym
