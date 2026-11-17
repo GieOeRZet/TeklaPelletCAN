@@ -154,6 +154,8 @@ export async function ensureLevel(need) {
       for (let i = 0; i < 10 && cur < need; i++) {
         await new Promise(res => setTimeout(res, 400));
         const s = await api('GET', '/api/v1/states');
+        if (s.cachedAt) continue;   // odpowiedz podstawiona z pamieci podrecznej (urzadzenie chwilowo nieosiagalne)
+        // - nie jest potwierdzeniem nowego poziomu, moze byc stara z poprzedniej sesji - probuj dalej
         const lv = (s.json.states || []).find(x => x.entity_id === 'sensor.tekla_poziom_dostepu');
         if (lv) cur = parseInt(lv.state, 10);
       }
@@ -184,6 +186,7 @@ export async function enterLevelPin() {
       for (let i = 0; i < 10 && cur < 1; i++) {
         await new Promise(res => setTimeout(res, 400));
         const s = await api('GET', '/api/v1/states');
+        if (s.cachedAt) continue;   // patrz ensureLevel() wyzej - odpowiedz z cache nie potwierdza nic nowego
         const lv = (s.json.states || []).find(x => x.entity_id === 'sensor.tekla_poziom_dostepu');
         if (lv) cur = parseInt(lv.state, 10);
       }

@@ -278,8 +278,11 @@ class TeklaModernCard extends HTMLElement {
     const pin = await this._pinSheet('Poziom dostępu kotła', `Ta pozycja wymaga poziomu ${need}. Podaj PIN (jak w panelu kotła).`, async p => {
       const ok = await this._call('unlock', { pin: parseInt(p, 10) });
       if (!ok) return 'Błąd połączenia';
-      await new Promise(r => setTimeout(r, 700));
-      const cur = this.level();
+      // jedno sztywne odczekanie 700ms nie wystarczalo, gdy trasa urzadzenie->integracja HA->websocket
+      // zajmie dluzej (np. zdalnie, przez chmure/VPN) - this.level() wtedy widzial jeszcze stary poziom.
+      // Powtarzamy odczyt (jak w appce/portalu), zamiast ufac jednemu, zbyt krotkiemu oknu czasowemu.
+      let cur = this.level();
+      for (let i = 0; i < 10 && cur < need; i++) { await new Promise(r => setTimeout(r, 400)); cur = this.level(); }
       return cur >= need ? null : (cur > 0 ? `Ten PIN daje tylko poziom ${cur}` : 'Zły PIN poziomu');
     });
     if (pin !== null) this._unlockedAt = Date.now();
