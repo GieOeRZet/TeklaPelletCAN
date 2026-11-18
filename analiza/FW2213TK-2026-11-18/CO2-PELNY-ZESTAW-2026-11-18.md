@@ -178,3 +178,14 @@ Przykład:
 - raw `0x4D948` → runtime/Ghidra `0x0805D948`.
 
 W dalszej analizie adresy będą oznaczane jako **raw** i **Ghidra/runtime** osobno. Nie zmienia to samych instrukcji ani wniosków o strukturze kodu; zmienia jedynie ich prawidłową numerację w przestrzeni Ghidra.
+
+
+## 13. CO2 — granica pewności po ponownym zestawieniu rejestrów
+
+POTWIERDZONE z mapy panel-ID: 0x2065 = ID 168 = Tryb CO 2; 0x2032 = ID 170 = CO temperatura komfort; 0x2048 = ID 171 = CO temperatura eko; 0x2166 = ID 172; 0x2064 = ID 191 = Tryb CO 1; 0x2126 = ID 192 = Harmonogram CO1 poniedziałek.
+
+POTWIERDZONE z rejestru FW: duża grupa parametrów CH ma count=4, m.in. 0x2032, 0x2048, 0x2064, 0x2126..0x213E, 0x2142, 0x2146, 0x214A, 0x2166, 0x22A5..0x22F9, 0x4001 i 0x400C.
+
+WAŻNE: count=4 oznacza cztery instancje w mechanizmie firmware. Nie będę sztucznie tworzył osobnych CAN-ID dla CO2. Dla emulatora trzeba odtworzyć index + instancję.
+
+NIEPOTWIERDZONE: że wszystkie te parametry mają instancję CO2 dokładnie jako +1 względem CO1; że osiem podobnych konstruktorów UI oznacza osiem obwodów; że komponent Ogrzewanie 2 jest pełnym ekranem parametrów. Te punkty wymagają dalszego śledzenia kodu.
