@@ -388,3 +388,33 @@ Wcześniejsze nazwy typu „konstruktor 0x08046D2C” należy więc czytać jako
 Dodatkowo `functions.txt` pokazuje funkcję `FUN_08056D04`, co potwierdza, że właściwa przestrzeń adresowa Ghidra jest przesunięta o `0x10000` względem pomocniczego ELF.
 
 Od teraz w dokumentacji będę podawał przede wszystkim **raw + Ghidra/runtime**, żeby nie było już dwuznaczności.
+
+## 12. Vtable potwierdza dwa różne typy komponentów CO1/CO2
+
+W surowym BIN znaleziono tablice metod w obszarze około raw `0x7EE20` i `0x7F778`.
+
+Pierwsza zawiera m.in. wskaźnik:
+- `0x08056D2D` (Thumb) → kod znajdujący się przy raw `0x46D2C`.
+
+Druga zawiera:
+- `0x0805B619` (Thumb) → kod znajdujący się przy raw `0x4B618`.
+
+Obie tablice mają bardzo podobny układ pozostałych wpisów:
+- wspólny pierwszy zestaw metod,
+- różny wpis odpowiadający implementacji komponentu CO1/CO2,
+- wspólne kolejne metody.
+
+**[FW]** nie są to tylko dwa wywołania tego samego tekstu. Firmware posiada **dwa warianty klasy/obiektu UI**, których implementacje różnią się właśnie w metodzie wskazywanej przez te wpisy.
+
+To jest kolejny mocny dowód na odrębność komponentów „Ogrzewanie 1” i „Ogrzewanie 2”.
+
+### Następny krok
+
+Trzeba teraz:
+1. zidentyfikować rodzicielski obiekt, który posiada każdą z tych tablic metod;
+2. prześledzić, kto dodaje ten obiekt do ekranu;
+3. znaleźć metody odpowiedzialne za rysowanie/aktualizację;
+4. połączyć je z bitmapami i wartościami dynamicznymi.
+
+To powinno dać pełny łańcuch:
+`Home -> element CO2 -> vtable -> widgety -> bitmapy/teksty -> dane`.
