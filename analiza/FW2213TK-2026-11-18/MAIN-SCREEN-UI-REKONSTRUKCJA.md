@@ -418,3 +418,63 @@ Trzeba teraz:
 
 To powinno dać pełny łańcuch:
 `Home -> element CO2 -> vtable -> widgety -> bitmapy/teksty -> dane`.
+
+## 14. Vtable i rzeczywiste odwołanie do komponentu CO2
+
+Dalsze przeszukanie surowego BIN potwierdziło konkretne tablice metod.
+
+### Vtable komponentu CO2
+
+RAW 0x7EE20 zawiera m.in.:
+- +0x00 -> 0x08043A33
+- +0x04 -> 0x08056D2D — metoda związana z komponentem CO2
+- +0x08 -> 0x080A60EB
+- +0x0C -> 0x080570F5
+- +0x10 -> 0x08043C73
+- +0x14 -> 0x08043E3B
+- +0x18 -> 0x08043F39
+- +0x1C -> 0x080570F7
+- +0x20 -> 0x080A60ED
+- +0x2C -> 0x0809DE09
+- +0x34 -> 0x08043A33
+- +0x38 -> 0x0805B33D
+- +0x3C -> 0x080A60EB
+- +0x40 -> 0x0805B4D1
+
+### Vtable komponentu CO1
+
+RAW 0x7F778 zawiera analogiczny układ, ale inny zestaw metod:
+- +0x00 -> 0x08043A33
+- +0x04 -> 0x0805B619
+- +0x08 -> 0x080A60EB
+- +0x0C -> 0x0808447F
+- +0x10 -> 0x08043C73
+- +0x14 -> 0x08043E3B
+- +0x18 -> 0x08043F39
+- +0x1C -> 0x0807ED61
+- +0x20 -> 0x080A60ED
+- +0x2C -> 0x0808B75B
+- +0x34 -> 0x08043A33
+- +0x38 -> 0x080A60C9
+- +0x3C -> 0x080A60EB
+- +0x40 -> 0x080A60CB
+
+**[FW]** Obie vtable są rzeczywiście różne, mimo wspólnego szkieletu metod.
+
+### Bezpośredni call znaleziony w kodzie
+
+Skan Thumb-2 dla BL wykazał:
+
+raw 0x46D3C -> 0x0805D948
+
+czyli fragment komponentu CO2 wykonuje bezpośrednie wywołanie konstruktora znajdującego się przy runtime 0x0805D948.
+
+To jest niezależne potwierdzenie relacji:
+
+komponent CO2 -> jeden z powtarzalnych konstruktorów parametrów/UI.
+
+Nie znaleziono jeszcze bezpośredniego BL do samego konstruktora komponentu CO2 z innych funkcji. Jest to zgodne z tym, że obiekt może być tworzony przez mechanizm klasy bazowej/virtual dispatch lub przez kod, którego Ghidra nie rozpoznał jako funkcji.
+
+### Ważne
+
+Vtable nie daje jeszcze prawa do powiedzenia, który wpis odpowiada draw() albo handleClick(). Najpierw trzeba rozwiązać wspólną klasę bazową i znaczenie offsetów vtable. W dokumencie nie przypisujemy więc tych metod do nazw z TouchGFX bez dowodu.
