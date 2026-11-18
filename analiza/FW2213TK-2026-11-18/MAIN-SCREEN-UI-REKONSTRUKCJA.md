@@ -634,3 +634,53 @@ Nie będziemy już śledzić `+0x12B` jako numeru CO2. Następny konkretny cel t
 3. dla każdego znaleźć `setGeometry` i rodzica;
 4. osobno znaleźć miejsce, gdzie `0x08056D2C`/CO2 jest dodawany do hierarchii ekranu;
 5. dopiero wtedy połączyć CO2 z konkretnymi wartościami CAN.
+## 19. Rewalidacja `0x080612E0` bez pośrednictwa Ghidry
+
+Ponownie odczytałem bezpośrednio RAW `FW2213TK.bin` dla funkcji runtime `0x080612E0` (RAW `0x512E0`, 224 B).
+
+### Twardo potwierdzone
+
+Pierwszy układ wywołań w tej funkcji przygotowuje:
+- `H = 0x110 = 272` jako argument na stosie;
+- `W = 0x1E0 = 480` w `r3`;
+- `Y = 0` w `r2`;
+- `X = 0` w `r1`;
+- obiekt `this + 0x48` jako `r0`;
+- następnie `BL 0x08030358`.
+
+Zatem `this + 0x48` dostaje geometrię **0,0,480,272** przez potwierdzony helper geometrii.
+
+### Wywołania zidentyfikowane w całym bloku 224 B
+
+`0x080612E0` wykonuje BL do:
+- `0x080393B2`
+- `0x08030354`
+- `0x08030358`
+- `0x08039474`
+- `0x080307BC`
+- `0x080314BA`
+- `0x08027DEC`
+- `0x080313A4`
+- `0x08039424`
+- `0x08031426`
+- `0x0804272C`
+- `0x080347DC`
+- `0x0803A0F8`.
+
+To daje nam znacznie lepszy punkt zaczepienia do rozpoznania typu widgetu: szczególnie ważne są `0x080313A4`, `0x080314BA`, `0x08030358`, `0x0804272C` oraz `0x080347DC`.
+
+### Korekta wcześniejszego zapisu o TypedText 436/454
+
+Sprawdzenie RAW `0x512E0..0x513BF` **nie znajduje literalnych wartości 436 (`0x01B4`) ani 454 (`0x01C6`) w tej funkcji**.
+
+Nie należy więc przypisywać na podstawie tego bloku `TypedText 436/454` bez dodatkowego dowodu. Wcześniejszy zapis o ustawieniu tych dwóch ID przez `0x080612E0` zostaje oznaczony jako **nieweryfikowany / do usunięcia z mapy FW**, dopóki nie znajdziemy dokładnego call-site.
+
+To jest świadoma korekta: przy reverse engineeringu liczy się wynik z BIN, a nie wcześniejsza hipoteza.
+
+### Bardzo ważny następny krok
+
+Teraz rozpracowujemy funkcje:
+
+`0x080313A4` -> `0x080314BA` -> `0x08030358` -> `0x0804272C`
+
+bo to one prawdopodobnie odpowiadają za ustawianie tekstu/formatu/geometrii lub wspólnej klasy widgetu. Ich wejścia można odczytać bezpośrednio z call-site `0x080612E0`.
