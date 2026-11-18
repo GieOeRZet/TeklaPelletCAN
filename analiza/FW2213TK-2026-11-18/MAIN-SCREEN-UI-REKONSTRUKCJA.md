@@ -570,3 +570,67 @@ To jest znacznie bardziej użyteczne niż samo znalezienie vtable, bo mamy już 
 ### Granica dowodu
 
 Nie twierdzę jeszcze, że global `0x20024814` jest całym ekranem głównym ani że `+0x12B` oznacza numer obwodu. To wymaga znalezienia miejsc, które zapisują te pola i miejsca, z których globalny obiekt jest dodawany do hierarchii UI.
+## 17. Ważna korekta: switch +0x12B nie wybiera obwodu CO
+
+Po ponownym odczytaniu tabeli TBB w `0x0805D948` wcześniejsza mapa była częściowo błędna.
+
+### Dokładna mapa TBB
+
+`[object + 0x12B]` jest porównywane z `10`, a następnie wykonywane jest `TBB`.
+
+| wartość +0x12B | TypedText ID | tekst PL |
+|---:|---:|---|
+| 0 | 40 | BIG |
+| 1 | 42 | STD |
+| 2 | 43 | $ |
+| 3 | 44 | $ |
+| 4 | 45 | $ |
+| 5 | 46 | $ |
+| 6 | 49 | $ |
+| 7 | 47 | $ |
+| 8 | 161 | Test pompy |
+| 9 | 48 | $ |
+| 10 | 41 | MINI |
+| >10 | 161 | Test pompy |
+
+Teksty są odczytane z rzeczywistej polskiej tablicy TypedText w firmware.
+
+**[FW]** Wartość `+0x12B` nie może być obecnie interpretowana jako numer obwodu CO. Wręcz przeciwnie: wartości `0/1/10` wybierają teksty `BIG/STD/MINI`, więc pole wygląda raczej na typ/tryb obiektu lub rodzaj urządzenia/modułu.
+
+To usuwa wcześniejsze ryzyko błędnej interpretacji tego pola jako „numeru obwodu”.
+
+## 18. 0x080612E0 jako konstruktor wspólnego elementu UI
+
+`0x0805D948` wykonuje:
+
+`BL 0x080612E0`
+
+a `0x080612E0` ma rozmiar 224 B i wykonuje m.in.:
+
+- tworzenie/konfigurację elementu pod `this + 0x48`;
+- geometrię `X=0, Y=0, W=480, H=272` dla `this + 0x48`;
+- konfigurację kolejnych pól obiektu;
+- ustawia TypedText ID **436** = `Uszkodzenie czujnika temp. zewnętrznej` na obiekcie `this + 0x11C`;
+- ustawia TypedText ID **454** = `Próg zmniejszania stopnia mocy [%]` na obiekcie `this + 0x23C`.
+
+**[FW]** 480×272 nie jest tutaj wnioskiem z fotografii — wartości są literalami przekazywanymi do helpera geometrii.
+
+### Co to oznacza dla architektury
+
+Najbardziej prawdopodobny, ale jeszcze nieudowodniony model C++ jest:
+
+`0x0805D948` -> konstruktor większego komponentu
+`    -> 0x080612E0 -> konstruktor/konfiguracja wspólnego elementu bazowego`
+`    -> kolejne widgety i pola stanu
+
+To jest **[STRONG INFERENCE]**, a nie [FW], dopóki nie znajdziemy zapisu vptr/wywołania zewnętrznego tworzącego obiekt.
+
+### Co teraz ma największą wartość
+
+Nie będziemy już śledzić `+0x12B` jako numeru CO2. Następny konkretny cel to:
+
+1. rozpracować `0x0805D948` od `+0x12B` dalej;
+2. zidentyfikować wszystkie `BL 0x080313A4` i odpowiadające im TypedText IDs;
+3. dla każdego znaleźć `setGeometry` i rodzica;
+4. osobno znaleźć miejsce, gdzie `0x08056D2C`/CO2 jest dodawany do hierarchii ekranu;
+5. dopiero wtedy połączyć CO2 z konkretnymi wartościami CAN.
