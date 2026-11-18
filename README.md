@@ -11,7 +11,7 @@ do osobnych, dedykowanych repozytoriów (patrz niżej), żeby każdy element da�
 
 | Co | Gdzie zainstalować | Źródło w tym repo |
 |---|---|---|
-| Firmware (ESP32-C6) | [Wydania tego repo](../../releases) – wgrywane przez USB lub OTA | `firmware/` |
+| Firmware (ESP32-C6) | [Instalator WWW](https://gieoerzet.github.io/TeklaPelletCAN/) (USB, bez ESPHome) lub [wydania tego repo](../../releases) – ręczne USB albo OTA | `firmware/` |
 | Integracja Home Assistant (HACS) | [GieOeRZet/TeklaPelletCAN_HA](https://github.com/GieOeRZet/TeklaPelletCAN_HA) | `custom_components/teklapelletcan/` |
 | Karta classic (replika panelu Igneo Touch) | [GieOeRZet/TeklaPelletClassic-card](https://github.com/GieOeRZet/TeklaPelletClassic-card) | `web/teklapelletclassic-card.js` (jedyny zasób HA), `web/teklapelletclassic-engine.js`, `web/tekla-panel-card.js` |
 | Karta modern (styl aplikacji Android) | [GieOeRZet/TeklaPelletModern-card](https://github.com/GieOeRZet/TeklaPelletModern-card) | `web/teklapelletmodern-card.js` |
@@ -67,7 +67,10 @@ sam odczyt jest dostępny bez parowania (opcja do wyłączenia). Pełny opis API
 
 ## Jak zacząć
 
-1. Wgraj firmware na ESP32-C6 (patrz [docs/BUDOWANIE.md](docs/BUDOWANIE.md)).
+1. Wgraj firmware na ESP32-C6 — najprościej przez **instalator WWW w przeglądarce**
+   ([gieoerzet.github.io/TeklaPelletCAN](https://gieoerzet.github.io/TeklaPelletCAN/), Chrome/Edge/Opera, kabel
+   USB, bez instalowania ESPHome/esptool na komputerze) albo ręcznie przez `esptool` (patrz
+   [docs/BUDOWANIE.md](docs/BUDOWANIE.md)).
 2. Połącz się z siecią Wi-Fi `TeklaPelletCAN-XXXX` wystawianą przez urządzenie i skonfiguruj hasło + Wi-Fi domowe.
 3. Otwórz `http://<adres-urządzenia>/` w przeglądarce — gotowe, sterowanie działa od razu.
 4. Opcjonalnie: zainstaluj integrację Home Assistant i/lub kartę, i/lub aplikację Android z repozytoriów w tabeli wyżej.
