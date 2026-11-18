@@ -91,3 +91,54 @@ Nowy dowód z firmware panela pokazuje pełne rodziny czterech instancji. Dla ni
 Następny etap: odnaleźć w kodzie TouchGFX, gdzie wybierany jest numer instancji obiegu. Wtedy będziemy mogli powiązać:
 **ekran CO1/CO2 → TypedText → widget → numer instancji → indeks SDO → adres CO2**,
 a następnie odtworzyć ekran 1:1.
+
+
+## Nowe potwierdzenie z kodu UI — osobne komponenty dla „Ogrzewanie 2” i „Ogrzewanie 1”
+
+W kolejnym przebiegu znaleziono dwa bardzo podobne konstruktory, których Ghidra nie wpisał do `functions.txt` jako osobnych funkcji, ale kod jest jednoznaczny:
+
+### Komponent CO2 / „Ogrzewanie 2”
+
+**Ghidra:** `0x08046D2C`
+
+Najważniejszy fragment:
+- `movs r0,#0x3A`
+- zapis ID na stos,
+- `r5 = r4 + 0xA4`,
+- `FUN_080313A4(r5, 0x3A)`.
+
+TypedText ID `58 = Ogrzewanie 2`.
+
+Dodatkowo:
+- `[r4+0x12A] = 2`,
+- `[r4+0xAC] = *0x200247C8`,
+- dalsza część konstruktora tworzy/konfiguruje kolejne obiekty pod offsetami `+0x8B4`, `+0x8E8`, `+0x8EC`, `+0x924`, `+0x930` itd.
+
+### Komponent CO1 / „Ogrzewanie 1”
+
+**Ghidra:** `0x0804B618`
+
+Najważniejszy fragment:
+- `movs r0,#0x39`
+- zapis ID na stos,
+- `r5 = r4 + 0xA4`,
+- `FUN_080313A4(r5, 0x39)`.
+
+TypedText ID `57 = Ogrzewanie 1`.
+
+Dodatkowo:
+- `[r4+0x12A] = 2`,
+- `[r4+0xAC] = *0x200247C8`,
+- dalsza struktura jest bardzo podobna do komponentu 0x08046D2C.
+
+### Wniosek
+
+To jest znacznie mocniejszy dowód niż samo występowanie tekstów w bazie.
+
+**[FW]** Firmware zawiera dwa osobne, bardzo podobne komponenty UI:
+- `0x08046D2C` → TypedText 58 → **Ogrzewanie 2**,
+- `0x0804B618` → TypedText 57 → **Ogrzewanie 1**.
+
+**[SILNA INFERENCJA]** Są to komponenty odpowiadające dwóm pozycjom/elementom UI związanym z obwodami ogrzewania. Ich dokładne miejsce na Home Screen (np. dolny pasek) wymaga jeszcze prześledzenia referencji do konstruktorów/vtable, więc nie przypisujemy im jeszcze współrzędnych ekranu.
+
+Istotne: oba komponenty korzystają z tego samego RAM `0x200247C8` w pokazanym fragmencie. Nie oznacza to, że CO1 i CO2 mają ten sam zestaw parametrów; ten adres może być wspólną wartością prezentacyjną.
