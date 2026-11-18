@@ -125,3 +125,18 @@ Jedyne miejsce, gdzie trzeba pamiętać o ręcznej synchronizacji, to **downstre
 `publish-card-classic`), więc zmiana w tym repo nie jest widoczna u użytkowników HACS, dopóki nie zrobi się
 release'u. (To był dokładnie ten błąd, który spowodował "wracanie starej karty" opisane w historii commitów —
 `web/teklapelletclassic-card.js`, czyli źródło synchronizacji CI, było nieaktualne względem downstream repo.)
+
+## Błąd: tekstury (bitmapy) czasem gasły trwale po samoczynnym odświeżeniu (naprawione w v1.0.8)
+
+Moduł "pakiet oryginalnych grafik panela" (`teklapelletclassic-engine.js`, ok. linii 976) sprawdzał **jednorazowo**,
+czy `img/panel/054.png` się wczyta (`has(54)`), zanim zainstalował nadpisanie `_css()` z teksturami. Cały silnik
+jest chroniony globalną flagą `window.__igneoCard` — wykonuje się raz na całe życie dokumentu, więc odtwarza się
+od zera tylko przy faktycznym przeładowaniu całej strony (np. karta/aplikacja w tle na telefonie, system usypia
+WebView, po powrocie robi świeże przeładowanie). Jeśli akurat w tym jednym momencie urządzenie/sieć LAN nie
+odpowiadało jeszcze (typowe tuż po wybudzeniu WiFi), `has(54)` zwracało `false` i **cała** nadkładka tekstur nigdy
+się nie instalowała — karta zostawała na samych wektorach do następnego **ręcznego** hard-refresh.
+
+**Fix:** zamiast jednego sprawdzenia, do 5 prób z przerwą ~400 ms (ten sam wzorzec co już istniejący moduł
+obrazków kotła/palnika/bojlera, linia ~889 tego samego pliku) przed trwałym przełączeniem na wektory. Zweryfikowane
+testem symulującym 2 nieudane próby z rzędu (textury wracają po 3. próbie) oraz testem kontrolnym (urządzenie
+naprawdę nieosiągalne — poprawny, łagodny fallback do wektorów, bez błędów JS).

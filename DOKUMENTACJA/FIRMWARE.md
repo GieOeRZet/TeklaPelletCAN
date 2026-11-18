@@ -73,3 +73,37 @@ REST (`/api/v1/...`) + WebSocket (push zmian)
 Szczegóły formatu API: `docs/ARCHITEKTURA.md` §7 (tabela endpointów) — wciąż aktualna technicznie.
 Szczegóły rejestrów/kodowania: [`../rejestry/`](../rejestry/README.md) — **to jest jedyne, w pełni aktualne i
 wyczerpujące źródło** o rejestrach kotła, kodowaniu wartości i metodologii skanowania.
+
+## OTA — dwie partycje, co faktycznie robi "rollback" (listopad 2026)
+
+**NIE jest to oparte na ESPHome** — `firmware/` to czysty ESP-IDF (CMake), ESPHome nie występuje nigdzie w
+build-systemie ani w runtime. Jedyny związek z ESPHome to historyczny: część urządzeń mogła wcześniej działać
+jako węzły ESPHome, stąd dopisek "(np. ESPHome)" przy przycisku rollbacku (patrz niżej) i ewentualne użycie
+dashboardu ESPHome do **pierwszego** wgrania (zastąpione teraz instalatorem WWW, patrz
+[`INSTALATOR-WWW.md`](INSTALATOR-WWW.md)).
+
+**Tabela partycji** (`firmware/partitions.csv`) — dwa równoprawne sloty OTA, bez osobnej partycji `factory`:
+```
+otadata,  data, ota,     0xf000,   0x2000
+ota_0,    app,  ota_0,   0x20000,  0x1D0000
+ota_1,    app,  ota_1,   0x1F0000, 0x1D0000
+```
+
+**Co robi przycisk "Wróć do poprzedniego firmware"** (`web/settings.html` → `POST /api/v1/ota/rollback` →
+`ota_rollback_previous()` w `firmware/main/ota_idf.cpp`): ustawia jako startową partycję **tę, która aktualnie
+NIE jest uruchomiona** (`esp_ota_get_next_update_partition`). To **nie jest** powrót do "pierwotnego, pierwszego
+wgranego" obrazu — nie ma czegoś takiego jak nietykalna kopia zapasowa. Konsekwencje:
+- Zaraz po pierwszym ręcznym wgraniu (gdy w drugim slocie wciąż leży to, co było tam wcześniej — np. ESPHome) —
+  przycisk faktycznie wraca do tamtego obrazu.
+- Po **pierwszej** aktualizacji OTA tego firmware — drugi slot to już poprzednia wersja TEGO firmware, nie
+  cokolwiek innego.
+- Po **drugiej** aktualizacji — oba sloty to już wersje tego firmware; kliknięcie wraca do przedostatniej. Drugie
+  kliknięcie bez nowego OTA między nimi wraca do tej, z której się właśnie zeszło (ping-pong tylko między dwiema
+  ostatnimi wersjami — brak głębszej historii, bo są tylko dwa sloty).
+
+**Automatyczny rollback przy zawieszeniu** (`ota_idf.cpp:51-67`, `CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE=y` w
+`sdkconfig`) — osobny, już istniejący mechanizm, niezależny od przycisku: po OTA nowa wersja ma 25 s na
+"potwierdzenie się" (`esp_ota_mark_app_valid_cancel_rollback()`, wywoływane z `health_task`). Jeśli zawiesi się
+lub zrestartuje wcześniej — **bootloader ESP-IDF sam** wraca na poprzednią partycję, bez udziału użytkownika i
+bez żadnego kodu aplikacyjnego w tym momencie (dzieje się na poziomie bootloadera, zanim nowa aplikacja zdąży
+się w pełni uruchomić).
