@@ -104,7 +104,7 @@ Po wskazaniu rejestru: `sdo_write` z wartością inną niż obecna (w kodowaniu 
 
 ### Źródła rejestrów
 - **Skan kotła** (węzeł 4, sub 1): 593 rejestry odpowiadają.
-- **Firmware panela FW2213TK** (analiza kodu): 448 parametrów z nazwą, typem, zakresem, wartością domyślną i dostępem – [`panel-fw-parametry-FW2213TK.csv`](panel-fw-parametry-FW2213TK.csv); mapa indeks ↔ ID panela (420 par) – [`panel-fw-mapa-indeks-id.csv`](panel-fw-mapa-indeks-id.csv).
+- **Firmware panela FW2213TK** (analiza kodu): 448 parametrów z nazwą, typem, zakresem, wartością domyślną i dostępem – [`panel-fw-parametry-FW2213TK.csv`](panel-fw-parametry-FW2213TK.csv); mapa indeks ↔ ID panela (420 par) – [`panel-fw-mapa-indeks-id.csv`](panel-fw-mapa-indeks-id.csv). Jak korzystać z tych plików i z surowej dekompilacji Ghidra (`firmware/FW2213TK-ghidra/`), czego ta tabela może NIE pokrywać, i pełne ustalenia researchu nt. rejestrów obwodu CO2 – [`GHIDRA-FW2213TK-PRZEWODNIK.md`](GHIDRA-FW2213TK-PRZEWODNIK.md).
 - **Katalog** ([`katalog-rejestrow.csv`](katalog-rejestrow.csv), 693 wiersze) łączy oba źródła (`tools/scal_nazwy_panela.py`): nazwy z panela dopisane do 225 wcześniej bezimiennych rejestrów, a 76 parametrów znanych tylko z firmware panela dodane jako osobne wiersze (status „ODNALEZIONY – TYLKO W FW PANELA”). Kolumna „wykorzystany” jest przeliczana przez `tools/oznacz_uzycie.py`.
 
 ### Znalezione i wykorzystane w firmware
