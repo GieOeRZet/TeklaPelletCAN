@@ -12,12 +12,14 @@ rzeczy wypracowanych (często metodą prób i błędów) w listopadzie 2026.
 | Ogólna architektura projektu (cele, nazewnictwo, API, bezpieczeństwo, partycje flash) | [`../docs/ARCHITEKTURA.md`](../docs/ARCHITEKTURA.md) — techniczne sekcje aktualne, status implementacji miejscami przeterminowany (patrz [`FIRMWARE.md`](FIRMWARE.md) dla korekty). |
 | **Firmware — rzeczywista struktura modułów, komunikacja, status** | [`FIRMWARE.md`](FIRMWARE.md) |
 | **Karta Classic — mechanizm patchowania silnika, trzy miejsca użycia, pułapki CSS** | [`ARCHITEKTURA-KARTY-CLASSIC.md`](ARCHITEKTURA-KARTY-CLASSIC.md) |
+| **Karta Modern — prosta, bez patchowania, adresowanie po `tpc_id`** | [`ARCHITEKTURA-KARTY-MODERN.md`](ARCHITEKTURA-KARTY-MODERN.md) |
 | **Mapa bitmap panelu** (`img/panel/*.png`) — co która przedstawia, gdzie użyta, metodologia weryfikacji | [`BITMAPY-PANELU.md`](BITMAPY-PANELU.md) |
 | **Aplikacja Android — warstwa natywna, UI, synchronizacja z portalem** | [`APLIKACJA-ANDROID.md`](APLIKACJA-ANDROID.md) (uzupełnia [`../docs/APLIKACJA_ANDROID.md`](../docs/APLIKACJA_ANDROID.md)) |
 | **Integracja Home Assistant — pliki, encje, czego brakuje** | [`INTEGRACJA-HA.md`](INTEGRACJA-HA.md) |
 | **Aktualizacje OTA — kanał stabilny domyślnie, ukryty tryb developera** | [`AKTUALIZACJE-OTA.md`](AKTUALIZACJE-OTA.md) |
 | **Poziomy dostępu/PIN (0900/0999) — cztery niezależne implementacje, cztery naprawione błędy** | [`POZIOMY-DOSTEPU-PIN.md`](POZIOMY-DOSTEPU-PIN.md) |
 | **Instalator WWW (ESP Web Tools) — wgranie firmware bez ESPHome, przez przeglądarkę** | [`INSTALATOR-WWW.md`](INSTALATOR-WWW.md) |
+| **CI i wydania — co robi każde zadanie `publish-*`, pułapki (`rsync --delete`, płytkie klony), jak testować lokalnie** | [`CI-I-WYDANIA.md`](CI-I-WYDANIA.md) |
 | Pierwsze uruchomienie urządzenia | [`../docs/PIERWSZE_URUCHOMIENIE.md`](../docs/PIERWSZE_URUCHOMIENIE.md) |
 | Budowanie firmware/aplikacji lokalnie | [`../docs/BUDOWANIE.md`](../docs/BUDOWANIE.md) |
 | Zdalne wgranie firmware (bez fizycznego dostępu) | [`../docs/WGRANIE_ZDALNE.md`](../docs/WGRANIE_ZDALNE.md) |
