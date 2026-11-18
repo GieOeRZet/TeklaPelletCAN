@@ -42,6 +42,8 @@ jobs:
           "
       - name: Konfiguracja Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Przygotowanie artefaktu
         uses: actions/upload-pages-artifact@v3
         with:
