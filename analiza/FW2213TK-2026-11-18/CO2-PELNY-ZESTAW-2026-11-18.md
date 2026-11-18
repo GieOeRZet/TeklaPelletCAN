@@ -163,3 +163,18 @@ oraz inne pola z tego samego zestawu.
 **[FW]** Teksty CO są więc rzeczywiście podpinane do obiektów UI przez kod wykonawczy, a nie tylko przechowywane w bazie TypedText.
 
 **[WAŻNE]** Nie traktujemy jednak jeszcze adresu tych konstruktorów jako „ekranu CO2”. Są to komponenty/reużywalne fragmenty UI. Dopiero znalezienie instancji/indeksu obwodu oraz ścieżki wejścia z Home Screen pozwoli przypisać konkretny obiekt do CO1 albo CO2.
+
+## Korekta adresów: raw-disassembly vs Ghidra/runtime
+
+Wcześniejsze wpisy tego dokumentu używające adresów `0x08046D2C`, `0x0804B618`, `0x0804D948` itd. odnosiły się do **syntetycznych adresów pomocniczego ELF z bazą 0x08000000**.
+
+Po zestawieniu z rzeczywistymi wskaźnikami w BIN właściwa przestrzeń Ghidra/runtime jest przesunięta o `0x10000`:
+
+`Ghidra/runtime = 0x08010000 + raw_offset`
+
+Przykład:
+- raw `0x46D2C` → runtime/Ghidra `0x08056D2C`;
+- raw `0x4B618` → runtime/Ghidra `0x0805B618`;
+- raw `0x4D948` → runtime/Ghidra `0x0805D948`.
+
+W dalszej analizie adresy będą oznaczane jako **raw** i **Ghidra/runtime** osobno. Nie zmienia to samych instrukcji ani wniosków o strukturze kodu; zmienia jedynie ich prawidłową numerację w przestrzeni Ghidra.
