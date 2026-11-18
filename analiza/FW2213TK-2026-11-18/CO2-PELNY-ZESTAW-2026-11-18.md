@@ -142,3 +142,24 @@ To jest znacznie mocniejszy dowód niż samo występowanie tekstów w bazie.
 **[SILNA INFERENCJA]** Są to komponenty odpowiadające dwóm pozycjom/elementom UI związanym z obwodami ogrzewania. Ich dokładne miejsce na Home Screen (np. dolny pasek) wymaga jeszcze prześledzenia referencji do konstruktorów/vtable, więc nie przypisujemy im jeszcze współrzędnych ekranu.
 
 Istotne: oba komponenty korzystają z tego samego RAM `0x200247C8` w pokazanym fragmencie. Nie oznacza to, że CO1 i CO2 mają ten sam zestaw parametrów; ten adres może być wspólną wartością prezentacyjną.
+
+
+## Dalszy ślad UI parametrów CO
+
+Znaleziono także konstruktor/fragment UI przy **Ghidra 0x08046164** (Ghidra nie wydzielił go jako osobnej funkcji w functions.txt), który bezpośrednio ustawia:
+
+- TypedText **172** = „Wsp. korekcji t. CO [°C/°C]”
+- TypedText **179** = „Stała pompa”
+
+W tym samym komponencie występują również kolejne pola tekstowe i obiekty wartościowe. Konstrukcja jest analogiczna do innych ekranów/komponentów parametrów.
+
+W innym dużym konstruktorze **FUN_0804C410** występują bezpośrednie settery dla:
+- TypedText **159** = „Temp. maksymalna [°C]”
+- TypedText **170** = „Temperatura CO dla 0°C [°C]”
+- TypedText **171** = „Temperatura CO dla 10°C [°C]”
+
+oraz inne pola z tego samego zestawu.
+
+**[FW]** Teksty CO są więc rzeczywiście podpinane do obiektów UI przez kod wykonawczy, a nie tylko przechowywane w bazie TypedText.
+
+**[WAŻNE]** Nie traktujemy jednak jeszcze adresu tych konstruktorów jako „ekranu CO2”. Są to komponenty/reużywalne fragmenty UI. Dopiero znalezienie instancji/indeksu obwodu oraz ścieżki wejścia z Home Screen pozwoli przypisać konkretny obiekt do CO1 albo CO2.
