@@ -494,3 +494,79 @@ To jest istotne dla dalszego reverse engineeringu: będziemy szukać również *
 ### Korekta metodologiczna
 
 Nie znaleziono w surowym BIN prostego 32-bitowego wskaźnika do adresów vtable `0x0807EE20` / `0x0807F778`. Nie traktujemy więc samej lokalizacji tych tablic jako dowodu sposobu ich przypisania do instancji. Kolejny krok to identyfikacja zapisów vptr przez analizę konstruktorów i instrukcji PC-relative, a nie zgadywanie na podstawie samego adresu tablicy.
+## 16. Korekta i konkretny łańcuch CO2: 0x08056D2C -> globalny obiekt -> 0x0805D948
+
+Bezpośrednia disassembly z surowego BIN pozwoliła rozstrzygnąć rzecz, której wcześniej nie wolno było zgadywać.
+
+### 0x080414BA nie jest konstruktorem bazowym
+
+Instrukcja `BL` z początku komponentu CO2 prowadzi do `0x080414BA`.
+Ten adres leży wewnątrz funkcji `FUN_0804148A`, a sam fragment pod `0x080414BA` wykonuje:
+
+`LDR.W r0, [PC,#...]` -> odczyt adresu `0x20024814` -> `LDR r0,[r0]` -> `BX LR`.
+
+**[FW]** `0x080414BA` jest więc accessor-em zwracającym wskaźnik przechowywany w globalnej zmiennej RAM `0x20024814`. Nie jest to „base constructor”.
+
+### Początek komponentu CO2
+
+RAW `0x46D2C` / runtime `0x08056D2C`:
+
+- `BL 0x080414BA`
+- `r1 = 2`
+- zapis bajtu `+0x12A` w obiekcie zwróconym przez accessor
+- `BL 0x0805D948`
+
+To oznacza, że przed wejściem do dalszej konfiguracji UI kod ustawia wartość `2` w polu `+0x12A` obiektu wskazywanego przez global `0x20024814`.
+
+### 0x0805D948 — konstruktor/konfigurator wywoływany przez CO2
+
+RAW `0x4D948` / runtime `0x0805D948` zaczyna się od:
+
+- `BL 0x080414BA`
+- zapis `2` do `+0x12A` zwróconego obiektu
+- `BL 0x080612E0` z `r0 = r4`
+- ponownie `BL 0x080414BA`
+- odczyt bajtu `+0x12B`
+- switch dla wartości `0..10`.
+
+Funkcja `0x080612E0` istnieje w `functions.txt` jako `FUN_080612E0`, rozmiar 224 B.
+
+### Twardo odczytana mapa switcha +0x12B
+
+Dla wartości `+0x12B` kod wybiera TypedText:
+
+| wartość +0x12B | TypedText ID |
+|---:|---:|
+| 0 | 40 |
+| 1 | 42 |
+| 2 | 43 |
+| 3 | 44 |
+| 4 | 45 |
+| 5 | 46 |
+| 6 | 49 |
+| 7 | 47 |
+| 8 | 48 |
+| pozostałe / default | 41 |
+
+**[FW]** To jest bezpośrednio z instrukcji switcha w BIN, a nie interpretacja z nazw.
+
+Jest to szczególnie ważne dla późniejszej rekonstrukcji UI: `+0x12B` jest używane jako indeks wyboru tekstu w tym komponencie.
+
+### Wniosek
+
+Mamy już konkretny łańcuch:
+
+`CO2 @ 0x08056D2C`
+` -> accessor 0x080414BA`
+` -> globalny obiekt *0x20024814`
+` -> ustawienie pola +0x12A = 2`
+` -> BL 0x0805D948`
+` -> kolejny komponent konfiguracyjny`
+` -> odczyt +0x12B`
+` -> wybór TypedText 40..49`.
+
+To jest znacznie bardziej użyteczne niż samo znalezienie vtable, bo mamy już **realne pola obiektu i warunkowy wybór tekstu**.
+
+### Granica dowodu
+
+Nie twierdzę jeszcze, że global `0x20024814` jest całym ekranem głównym ani że `+0x12B` oznacza numer obwodu. To wymaga znalezienia miejsc, które zapisują te pola i miejsca, z których globalny obiekt jest dodawany do hierarchii UI.
