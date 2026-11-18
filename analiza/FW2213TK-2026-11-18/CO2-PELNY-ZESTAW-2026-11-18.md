@@ -189,3 +189,22 @@ POTWIERDZONE z rejestru FW: duża grupa parametrów CH ma count=4, m.in. 0x2032,
 WAŻNE: count=4 oznacza cztery instancje w mechanizmie firmware. Nie będę sztucznie tworzył osobnych CAN-ID dla CO2. Dla emulatora trzeba odtworzyć index + instancję.
 
 NIEPOTWIERDZONE: że wszystkie te parametry mają instancję CO2 dokładnie jako +1 względem CO1; że osiem podobnych konstruktorów UI oznacza osiem obwodów; że komponent Ogrzewanie 2 jest pełnym ekranem parametrów. Te punkty wymagają dalszego śledzenia kodu.
+
+
+## 2026-11-19 — twarde potwierdzenie rodziny indeksów CO2
+
+Po ponownym odczycie katalogu indeksów nie ma już potrzeby traktować CO2 jako domysłu wynikającego tylko z nazwy. Dla parametrów oznaczonych w FW jako count=4 katalog zawiera kolejne indeksy SDO +1/+2/+3. Przykłady: 0x2032→0x2033..0x2035, 0x2048→0x2049..0x204B, 0x2064→0x2065..0x2067, 0x2142→0x2143..0x2145 oraz 0x4001→0x4002..0x4004. Firmware dodatkowo ma osobno nazwany 0x2065 = Tryb CO 2.
+
+### Konkretny wynik dla CO2
+
+Dla poniższych pozycji indeks CO2 jest drugim elementem rodziny (CO1 + 1): 0x2033, 0x2049, 0x2065, 0x2127..0x213F, 0x2143, 0x2147, 0x214B, 0x2167, 0x229A, 0x229E, 0x22A2, 0x22A6, 0x22AE, 0x22B2, 0x22B6, 0x22BA, 0x22BE, 0x22C2, 0x22C6/0x22CA/0x22CE, 0x22D2, 0x22D6, 0x22DA, 0x22E6, 0x22EA, 0x22F2, 0x22F6, 0x22FA, 0x22FE, 0x2302, 0x2306, 0x230A, 0x230E, 0x2312, 0x2316, 0x231A, 0x2322/0x2326/0x232A, 0x4002, 0x400D.
+
+### Czego nadal NIE udajemy, że wiemy
+
+Nie znaleziono jeszcze w samym kodzie wykonawczym jednoznacznego wzoru adresowania RAM typu base + instance*stride. Dlatego powyższa lista jest twarda na poziomie indeksów CAN/SDO i count=4, ale nie jest jeszcze twardą mapą adresów RAM CO2.
+
+To rozdzielenie jest ważne: indeks CO2 jest potwierdzony; RAM CO2 jeszcze nie.
+
+### Korekta tropu code=0x0801825E
+
+W raw firmware 0x1825E znajduje się instrukcja CBZ w funkcji FUN_080181EC. Ten fragment nie jest mechanizmem indeksowania parametrów CO. Nie używamy już adresu code=0x0801825E z CSV jako dowodu mapowania CO.
