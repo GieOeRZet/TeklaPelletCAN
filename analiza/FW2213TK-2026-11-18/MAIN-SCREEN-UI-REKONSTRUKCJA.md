@@ -478,3 +478,19 @@ Nie znaleziono jeszcze bezpośredniego BL do samego konstruktora komponentu CO2 
 ### Ważne
 
 Vtable nie daje jeszcze prawa do powiedzenia, który wpis odpowiada draw() albo handleClick(). Najpierw trzeba rozwiązać wspólną klasę bazową i znaczenie offsetów vtable. W dokumencie nie przypisujemy więc tych metod do nazw z TouchGFX bez dowodu.
+## 15. Nowy punkt: BL do 0x0805D948 jest rzeczywisty, ale Ghidra nie utworzył tam funkcji
+
+Ponownie zweryfikowano instrukcję BL w komponencie CO2.
+
+- RAW `0x46D3C` zawiera `06 F0 04 FE`.
+- Dekoder Thumb-2 daje cel **`0x0805D948`**.
+- `0x0805D948` odpowiada RAW `0x4D948`, czyli dokładnie początkowi kodu wcześniej wytypowanego jako jeden z powtarzalnych konstruktorów.
+- `functions.txt` nie ma funkcji rozpoczynającej się pod `0x0805D948`.
+
+**[FW]** Nie wolno więc utożsamiać listy funkcji Ghidra z pełnym zbiorem funkcji wykonywalnych. Ten konkretny adres jest osiągalny rzeczywistym BL, mimo że automatyczna analiza nie oznaczyła go jako osobnej funkcji.
+
+To jest istotne dla dalszego reverse engineeringu: będziemy szukać również **wejść do kodu osiągalnych przez BL, których Ghidra nie zarejestrował jako funkcje**, szczególnie w obszarach UI.
+
+### Korekta metodologiczna
+
+Nie znaleziono w surowym BIN prostego 32-bitowego wskaźnika do adresów vtable `0x0807EE20` / `0x0807F778`. Nie traktujemy więc samej lokalizacji tych tablic jako dowodu sposobu ich przypisania do instancji. Kolejny krok to identyfikacja zapisów vptr przez analizę konstruktorów i instrukcji PC-relative, a nie zgadywanie na podstawie samego adresu tablicy.
