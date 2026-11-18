@@ -1,0 +1,13 @@
+{
+  "name": "TeklaPelletCAN",
+  "version": "1.0.8",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32-C6",
+      "parts": [
+        { "path": "teklapelletcan-factory.bin", "offset": 0 }
+      ]
+    }
+  ]
+}

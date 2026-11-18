@@ -9,6 +9,7 @@ __pycache__/
 .venv/
 build-host/
 docs/do_wgrania/
+docs/install/teklapelletcan-factory.bin
 .gradle/
 android/local.properties
 *.apk

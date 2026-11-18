@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TeklaPelletCAN — instalator WWW</title>
+<script type="module" src="https://cdn.jsdelivr.net/npm/esp-web-tools@10.1.1/dist/web/install-button.js?module"></script>
+<style>
+  :root { --bg:#12151b; --card:#1c1f27; --line:#2b303b; --txt:#e8eaf0; --dim:#9aa1b2; --acc:#ff7a1a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt); font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 32px 20px 60px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: var(--dim); margin: 0 0 28px; font-size: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 18px; }
+  .card h2 { font-size: 15px; margin: 0 0 10px; }
+  .card p, .card li { font-size: 13.5px; line-height: 1.55; color: var(--dim); }
+  .card ol, .card ul { margin: 0; padding-left: 20px; }
+  .btnrow { margin-top: 14px; }
+  esp-web-install-button { --esp-tools-button-background-color: var(--acc); --esp-tools-button-text-color: #1a1a1a; }
+  .warn { background: #2a2210; border: 1px solid #5a4a16; color: #f2c14e; border-radius: 10px; padding: 12px 14px; font-size: 13px; margin-bottom: 18px; }
+  .unsupported { display: none; }
+  a { color: var(--acc); }
+  .foot { color: var(--dim); font-size: 12px; margin-top: 30px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>TeklaPelletCAN — instalator WWW</h1>
+  <p class="sub">Wgranie firmware przez USB bezpośrednio z przeglądarki — bez ESPHome, bez instalowania czegokolwiek na komputerze.</p>
+
+  <div class="warn">Wymaga przeglądarki <b>Chrome, Edge lub Opera</b> na komputerze (Web Serial). Telefony i Firefox/Safari nie są obsługiwane przez tę metodę — na nich użyj ręcznego wgrania (niżej).</div>
+
+  <div class="card">
+    <h2>1. Podłącz urządzenie</h2>
+    <p>Podłącz moduł TeklaPelletCAN do komputera kablem USB. Jeśli to pierwsze wgranie na nowym module (lub wcześniej był na nim inny firmware, np. ESPHome), instalator zapyta o wymazanie flash przed wgraniem — potwierdź.</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Zainstaluj najnowszą wersję</h2>
+    <p>Przycisk poniżej pobierze i wgra <b>najnowszą wydaną wersję</b> firmware (pełny obraz: bootloader + partycje + aplikacja). Po zakończeniu urządzenie uruchomi się automatycznie.</p>
+    <div class="btnrow">
+      <esp-web-install-button manifest="manifest.json">
+        <button slot="activate">Połącz i zainstaluj</button>
+        <span slot="unsupported" class="unsupported"></span>
+        <span slot="not-allowed" class="unsupported"></span>
+      </esp-web-install-button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Alternatywa: ręczne wgranie (esptool)</h2>
+    <p>Jeśli Twoja przeglądarka nie wspiera Web Serial (np. Firefox, Safari, telefon), wgraj ten sam obraz ręcznie:</p>
+    <pre style="background:#0f1116;border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12.5px;color:#cfd3dc">pip install esptool
+esptool --chip esp32c6 --port /dev/ttyUSB0 write_flash 0x0 teklapelletcan-factory.bin</pre>
+    <p>Plik <code>teklapelletcan-factory.bin</code> — <a href="https://github.com/GieOeRZet/TeklaPelletCAN/releases/latest/download/teklapelletcan-factory.bin">pobierz z najnowszego wydania</a> (ten sam plik, który wgrywa instalator powyżej).</p>
+  </div>
+
+  <div class="card">
+    <h2>Po wgraniu</h2>
+    <p>Urządzenie uruchomi własny portal konfiguracyjny WiFi (sieć <code>TeklaPelletCAN-XXXX</code>). Dalsze kroki — w <a href="https://github.com/GieOeRZet/TeklaPelletCAN/blob/main/docs/PIERWSZE_URUCHOMIENIE.md">dokumentacji pierwszego uruchomienia</a>.</p>
+  </div>
+
+  <div class="foot">TeklaPelletCAN jest niezależnym, otwartym firmware (ESP-IDF) — ESPHome nie jest wymagane do niczego w tym projekcie.<br>
+  <a href="https://github.com/GieOeRZet/TeklaPelletCAN">github.com/GieOeRZet/TeklaPelletCAN</a></div>
+</div>
+</body>
+</html>

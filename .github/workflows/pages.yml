@@ -1,0 +1,51 @@
+name: Instalator WWW (GitHub Pages)
+
+# Wdraza docs/install/ (strona z esp-web-tools) na GitHub Pages po kazdym opublikowanym
+# wydaniu - dociaga najnowszy teklapelletcan-factory.bin i wpisuje jego wersje do manifest.json,
+# zeby instalator zawsze wgrywal aktualna wersje bez zadnej recznej aktualizacji.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pobierz najnowszy firmware i zaktualizuj manifest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG=$(gh release view --json tagName -q .tagName)
+          VER="${TAG#v}"
+          gh release download "$TAG" -p 'teklapelletcan-factory.bin' -D docs/install --clobber
+          python3 -c "
+          import json
+          p = 'docs/install/manifest.json'
+          m = json.load(open(p))
+          m['version'] = '$VER'
+          json.dump(m, open(p, 'w'), indent=2, ensure_ascii=False)
+          "
+      - name: Konfiguracja Pages
+        uses: actions/configure-pages@v5
+      - name: Przygotowanie artefaktu
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/install
+      - name: Wdrożenie
+        id: deployment
+        uses: actions/deploy-pages@v4
