@@ -222,3 +222,79 @@ To wygląda jak duża część UI, ale bez mapy vtable nie przypisujemy jej jesz
 ### Komponent 0xA26C
 
 FUN_08047E54 jest mały i zapisuje obiekt pod +0x328; nie zawiera bezpośredniego TypedText w pokazanym konstruktorze. Może odpowiadać za wartość/element liczbowy, ale to na razie tylko hipoteza.
+
+## 9. Nowe ustalenia z bezpośredniej disassemblacji konstruktorów
+
+Przeanalizowano surowy Thumb-2 dla fragmentów, których Ghidra nie wydzielił poprawnie jako funkcje.
+
+### CO2 tile / komponent „Ogrzewanie 2”
+
+Adres **0x08046D2C**:
+
+- zapisuje `[r4+0x12A] = 2`;
+- ustawia TypedText **58 = „Ogrzewanie 2”**;
+- następnie tworzy kilka niezależnych obiektów UI;
+- wywołuje osobny konstruktor **0x0804D948**;
+- ustawia TypedText **348 = „Błąd wygaszania”** na obiekcie `r4+0x8B4`;
+- dla tego obiektu przekazuje do helpera geometrii cztery stałe: `0xCD, 0xC3, 0xC8, 0x46`;
+- ustawia TypedText **460 = „Liczba kotłów slave”** na obiekcie `r4+0x8EC`;
+- drugi obiekt dostaje parametry geometrii `0x140, 0xC3, 0xC8, 0x46`;
+- później ustawia TypedText **68 = „Moc 2”** na obiekcie `r4+0x85C`.
+
+To jest bardzo mocny dowód, że komponent „Ogrzewanie 2” jest złożonym widgetem, a nie samym napisem.
+
+### CO1
+
+Adres **0x0804B618** analogicznie:
+
+- `[r4+0x12A] = 2`;
+- TypedText **57 = „Ogrzewanie 1”**;
+- tworzy serię powtarzalnych podkomponentów;
+- ma strukturę bardzo podobną do CO2.
+
+### Ważne: to nadal nie jest cały ekran CO2
+
+0x08046D2C wygląda na **komponent/element „Ogrzewanie 2”**, prawdopodobnie element większego UI. Nie utożsamiamy go jeszcze z pełnoekranowym widokiem parametrów CO2.
+
+### Odkrycie 8 powtarzalnych konstruktorów
+
+W firmware znajduje się osiem bardzo podobnych konstruktorów:
+
+- `0x0804C410`
+- `0x0804C78C`
+- `0x0804CA94`
+- `0x0804CD9C`
+- `0x0804D00C`
+- `0x0804D320`
+- `0x0804D634`
+- `0x0804D948`
+
+Każdy ma tę samą charakterystyczną strukturę:
+- wybór jednego z TypedText ID **40–49** zależnie od bajtu `[+0x12B]`;
+- TypedText **159 = „Temp. maksymalna [°C]”**;
+- TypedText **170 = „Temperatura CO dla 0°C [°C]”**;
+- TypedText **171 = „Temperatura CO dla 10°C [°C]”**;
+- kilka tych samych widgetów wartościowych.
+
+Każdy z ośmiu konstruktorów jest wywoływany z innego dużego komponentu. Przykładowo:
+- `0x08046D2C -> 0x0804D948`.
+
+**[FW]** osiem kopii istnieje fizycznie w firmware.
+
+**[HIPOTEZA]** Nie zakładamy jeszcze, że oznacza to osiem obwodów CO. To może być osiem instancji/reużywalnych ekranów lub komponentów innych funkcji.
+
+### Helper geometrii
+
+Funkcja **0x08030358** pobiera cztery wartości przekazane przez caller i przekazuje je do trzech metod vtable obiektu. Jest więc ewidentnie częścią ustawiania geometrii/layoutu widgetu.
+
+Na tym etapie nie przypisujemy jeszcze nazw tych czterech argumentów do `x/y/width/height`, dopóki nie rozwiążemy metod vtable `+0x34/+0x38/+0x3C`.
+
+To jest celowo zachowane jako [FW]/[HIPOTEZA], a nie zgadywane.
+
+### Wniosek dla dalszej rekonstrukcji
+
+Najbliższy cel to:
+1. rozwiązać vtable używane przez 0x08030358;
+2. ustalić dokładne znaczenie czterech parametrów geometrii;
+3. znaleźć instancję/rodzica odpowiadającego pełnemu widokowi CO2;
+4. dopiero wtedy narysować layout 1:1.
