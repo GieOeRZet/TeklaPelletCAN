@@ -298,3 +298,69 @@ Najbliższy cel to:
 2. ustalić dokładne znaczenie czterech parametrów geometrii;
 3. znaleźć instancję/rodzica odpowiadającego pełnemu widokowi CO2;
 4. dopiero wtedy narysować layout 1:1.
+
+## 10. Przełom: 0x08030358 = ustawienie geometrii X/Y/W/H
+
+Bezpośrednia analiza funkcji **0x08030358** pozwala już rozstrzygnąć znaczenie czterech argumentów.
+
+Kod:
+- zachowuje `r3`,
+- wywołuje metodę vtable `+0x34` z `r0=this, r1, r2`,
+- wywołuje metodę vtable `+0x38` z `r0=this, r1=r3`,
+- wywołuje metodę vtable `+0x3C` z `r0=this, r1=[sp+0x10]`.
+
+Czyli caller przekazuje:
+
+`setGeometry(object, X, Y, W, H)`
+
+jako:
+- r1 = X
+- r2 = Y
+- r3 = W
+- [sp] = H
+
+### Niezależne potwierdzenie
+
+W funkcji **0x0805F87C** wywołanie ma:
+- X = 0
+- Y = 0
+- W = 0x1E0 = **480**
+- H = 0x110 = **272**
+
+To jest pełny obszar wyświetlacza **480×272**.
+
+### Konkretny przypadek CO2-komponentu 0x08046D2C
+
+Dwa obiekty:
+
+1. `r4 + 0x8B4`
+   - TypedText **348 = „Błąd wygaszania”**
+   - geometry:
+     - X = **0xCD = 205**
+     - Y = **0xC3 = 195**
+     - W = **0xC8 = 200**
+     - H = **0x46 = 70**
+
+2. `r4 + 0x8EC`
+   - TypedText **460 = „Liczba kotłów slave”**
+   - geometry:
+     - X = **0x140 = 320**
+     - Y = **0xC3 = 195**
+     - W = **0xC8 = 200**
+     - H = **0x46 = 70**
+
+To są **rzeczywiste współrzędne z firmware**, nie rekonstrukcja wizualna.
+
+### Ważna interpretacja
+
+Te dwa prostokąty częściowo się nakładają, więc nie należy ich traktować jako dwóch jednocześnie widocznych pól na ekranie. Są to najpewniej alternatywne/warunkowe elementy tego komponentu albo obiekty obsługujące różne stany. Sam kod nie daje jeszcze prawa do stwierdzenia, który jest widoczny w danej konfiguracji.
+
+To jednak pierwszy twardy punkt, w którym mamy **rzeczywistą geometrię UI z firmware**.
+
+### Co z tego wynika
+
+Od teraz możemy dla każdego znalezionego komponentu budować tabelę:
+
+`obiekt -> TypedText/Bitmap -> X,Y,W,H -> rodzic -> akcja`
+
+To jest dokładnie format potrzebny później do odtworzenia panelu 1:1.
