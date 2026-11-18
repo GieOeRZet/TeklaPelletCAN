@@ -173,3 +173,52 @@ oraz równolegle:
 - **[HIPOTEZA]** — wymaga dalszego potwierdzenia.
 
 Nie będziemy wpisywać do mapy 1:1 rzeczy tylko dlatego, że „pasują wizualnie”.
+
+## 8. Dokładniejszy rozkład kandydata na Home/Main UI
+
+FUN_0803E5AC nie jest pojedynczym widgetem. Konstruktor składa duży obiekt z wielu podkomponentów. Potwierdzone wywołania:
+
+| offset obiektu | konstruktor | obserwacja |
+|---:|---|---|
+| +0x041C | FUN_08047230 | mały komponent |
+| +0x042C | FUN_0800DCD4 | inicjalizacja tablicy/serii obiektów |
+| +0x84F4 | FUN_0802E716 | osobny komponent |
+| +0x8F70 | FUN_08047244 | komponent tekstowo-graficzny |
+| +0x92DC | FUN_08047290 | seria dokładnie 6 elementów |
+| +0x963C | FUN_08047604 | duży komponent z wieloma podelementami |
+| +0xA26C | FUN_08047E54 | mały komponent |
+| +0xA5FC | FUN_08038ED0 | komponent |
+| +0xA628 | FUN_08038ED0 | komponent |
+| +0xA654 | FUN_0802DF08 | komponent z wartością początkową 0xFFFF |
+| +0xA680 | FUN_0802DF08 | drugi taki komponent |
+| +0xA6AC | FUN_08047FD4 | komponent |
+| +0xA6BC | FUN_08047FE8 | komponent |
+| +0xA6CC | FUN_08047FFC | komponent |
+| +0xA6DC | FUN_08047FE8 | komponent |
+
+### Sześciokrotny komponent
+
+FUN_08047290 wywołuje ogólny konstruktor tablicy FUN_0800DCD4 z:
+- stride = 0x40,
+- liczba elementów = 6.
+
+Następnie w pętli 0..5 zapisuje kolejne elementy do tablicy.
+
+**[FW]** liczba elementów = 6.
+
+**[SILNA INFERENCJA]** To jest bardzo dobry kandydat na sześć powtarzalnych elementów dolnego paska ze zrzutu, ale nadal nie przypisujemy bez dowodu: MENU, paliwo, palnik, CO1, CWU/CO2, power.
+
+### Komponent 0x963C
+
+FUN_08047604 jest znacznie większy (1158 B) i zawiera:
+- kilka tablic obiektów tworzonych przez FUN_0800DCD4,
+- serie po 5 elementów,
+- ustawianie pozycji/wymiarów,
+- tekst TypedText ID 0x1D4 (468) w jednym z podkomponentów,
+- kolejne elementy powtarzane po stałych krokach.
+
+To wygląda jak duża część UI, ale bez mapy vtable nie przypisujemy jej jeszcze do konkretnego fragmentu zrzutu.
+
+### Komponent 0xA26C
+
+FUN_08047E54 jest mały i zapisuje obiekt pod +0x328; nie zawiera bezpośredniego TypedText w pokazanym konstruktorze. Może odpowiadać za wartość/element liczbowy, ale to na razie tylko hipoteza.
