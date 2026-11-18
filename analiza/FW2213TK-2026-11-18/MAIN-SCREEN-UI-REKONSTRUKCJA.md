@@ -2,27 +2,31 @@
 
 ## 1. Korekta mapowania adresów
 
-Wcześniejsze notatki mieszały dwa układy adresów. W tej analizie rozdzielamy:
+W firmware występują **co najmniej dwa istotne układy adresowe** i nie wolno ich mieszać.
 
-- **offset surowego FW2213TK.bin** — indeks bajtowy w pliku,
-- **adres używany przez Ghidra** — adres kodu/danych widoczny w `functions.txt` i `strings.txt`.
+### Kod i klasyczny obszar danych
 
-Dla analizowanej części obrazu firmware działa praktyczna zależność:
+Dla adresów funkcji z `functions.txt` oraz dla tabel takich jak mapa CANopen↔panel-ID praktyczne mapowanie jest bezpośrednie:
 
-`Ghidra = raw_offset + 0x08010000`
+`Ghidra address = 0x08000000 + raw_offset`
 
-czyli:
+Przykład:
+- `FUN_0801143c` znajduje się w pliku przy raw `0x1143C`;
+- raw `0x37576` odpowiada adresowi `0x08037576`.
 
-`raw_offset = Ghidra_address - 0x08010000`
+### Obszar tekstów/assetów
 
-Dowód bezpośredni:
-- tablica TypedText PL znajduje się w pliku przy raw `0x5BD80`;
-- odpowiada jej adres Ghidra `0x0806BD80`;
+Wskaźniki zapisane w tablicach TypedText wskazują natomiast adresy przesunięte o `0x10000` względem surowego offsetu tekstu.
+
+Dowód:
+- tablica PL jest w pliku przy raw `0x5BD80`;
 - wpis ID 120 zawiera wskaźnik `0x08098B58`;
-- w pliku przy raw `0x88B58` znajduje się dokładnie `Ogrzewanie obwód 2`;
+- tekst `Ogrzewanie obwód 2` znajduje się w pliku przy raw `0x88B58`;
 - `0x08098B58 - 0x08010000 = 0x88B58`.
 
-To mapowanie należy stosować przy łączeniu wyników Ghidra z offsetami z surowego BIN.
+To nie jest powód do przesuwania adresów funkcji. Oznacza to, że **tekst/asset pointer space ma własne przesunięcie**. W dalszej analizie będę jawnie podawał `raw`, `Ghidra/code address` i — gdy potrzebne — `asset pointer address`.
+
+To wyjaśnia wcześniejsze pozorne rozbieżności między adresami kodu i wskaźnikami tekstów.
 
 ## 2. Baza tekstów TouchGFX — potwierdzone ID
 
