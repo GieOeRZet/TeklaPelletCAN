@@ -364,3 +364,27 @@ Od teraz możemy dla każdego znalezionego komponentu budować tabelę:
 `obiekt -> TypedText/Bitmap -> X,Y,W,H -> rodzic -> akcja`
 
 To jest dokładnie format potrzebny później do odtworzenia panelu 1:1.
+
+## 11. Korekta numeracji adresów po zestawieniu z rzeczywistymi wskaźnikami
+
+**Bardzo ważne:** w poprzednich sekcjach używałem adresów z pomocniczego ELF/disassembly, który został zlinkowany z bazą `0x08000000`. Są to **adresy syntetyczne do czytania raw BIN**, a nie zawsze adresy Ghidra.
+
+Bezpośredni dowód z BIN:
+- raw offset `0x46D2C` zawiera kod zaczynający się od fragmentu `b5 f8 04 46...`;
+- w firmware istnieje wskaźnik `0x08056D2D` do tego samego obszaru kodu (Thumb bit = 1);
+- `0x08056D2D - 0x08010000 = 0x46D2D`.
+
+Dlatego dla dalszej pracy stosujemy:
+- **raw offset** = pozycja bajtowa w BIN,
+- **Ghidra/runtime address** = `0x08010000 + raw_offset`,
+- **syntetyczny adres z naszego ELF** = `0x08000000 + raw_offset`.
+
+Przykład:
+- syntetyczne `0x08046D2C` = raw `0x46D2C`,
+- właściwy adres runtime/Ghidra dla tego raw = **`0x08056D2C`**.
+
+Wcześniejsze nazwy typu „konstruktor 0x08046D2C” należy więc czytać jako **raw-disassembly @ raw 0x46D2C**, a nie jako potwierdzony adres funkcji Ghidra.
+
+Dodatkowo `functions.txt` pokazuje funkcję `FUN_08056D04`, co potwierdza, że właściwa przestrzeń adresowa Ghidra jest przesunięta o `0x10000` względem pomocniczego ELF.
+
+Od teraz w dokumentacji będę podawał przede wszystkim **raw + Ghidra/runtime**, żeby nie było już dwuznaczności.
