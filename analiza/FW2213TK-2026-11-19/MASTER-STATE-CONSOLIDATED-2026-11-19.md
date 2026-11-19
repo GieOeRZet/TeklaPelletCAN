@@ -2198,3 +2198,46 @@ FUN_0803C5B4
 3. Recover all W/H/visibility writes for +0x85C.
 4. Resolve resource-registry records 11/12/13.
 5. Differentiate the three sibling instances into concrete Home/Main roles.
+
+
+# PERSISTENT CONTINUATION OVERRIDE — 2026-11-19
+
+**This section is the current checkpoint for every future chat/agent. It overrides older handoff sections when they conflict.**
+Persistent memory file:
+`analiza/FW2213TK-2026-11-19/BATCH-PERSISTENT-CONTINUATION-MEMORY-2026-11-19.md`
+
+## User operating contract
+The investigation is continuous across chats. GitHub is the durable memory. A new chat must read the persistent memory file and this MASTER, then continue from the CURRENT START POINT below. Do not restart from the beginning. User expects several deep passes: find -> analyze -> continue -> return to main chain -> repeat. Do not stop at small findings. Never invent graphics, geometry, class names, vtables or callbacks.
+
+## Verified raw firmware
+`FW2213TK_kopia.bin`
+SHA-256:
+`1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071`
+
+## CLOSED 370A -> Bitmap chain
+`0x370A -> internal 0x121 -> FUN_08036FF2 -> table 0x08037984 -> FUN_08037094 -> FUN_080115F6 -> record +0x0C -> 0x20021FA6 -> value 1..3 -> FUN_0803CB2C -> FUN_0803CACC -> Bitmap +0x85C -> FUN_080307BC -> resource 11/12/13`.
+
+Therefore: 1->11, 2->12, 3->13. This is hard executable-code proof.
+
+## CLOSED C33E geometry facts
+`FUN_0803C33E` creates six Bitmap children: +0x330, +0x35C, +0x85C, +0x888, +0x8B4, +0x8E0.
+Exactly three direct callers: 08039A48, 08039B30, 08039C18.
+`FUN_0803CB04` = constructor/wiring; `FUN_0803CB2C` = runtime update.
+`FUN_0803C5B4` sets +0x85C to X=40,Y=70 and attaches it via parent+0x04. It later sets +0x8E0 to resource 0x7A, X=398,Y=runtime.
+Resource dimensions: 11=105x126, 12=108x141, 13=82x145.
+
+## CRITICAL CORRECTION
+`+0x84C` is NOT proven to be the container/parent of +0x85C. It is separately initialized by `FUN_080424C4`. Current status: separate helper/object, semantics OPEN.
+
+## CURRENT START POINT FOR NEXT CHAT
+1. Resolve indirect dispatch reaching `FUN_0803C5B4`.
+2. Decode `FUN_080424C4` and +0x84C semantics.
+3. Enumerate all resource/X/Y/W/H/visibility/clipping/attachment mutations of +0x85C,+0x888,+0x8B4,+0x8E0.
+4. Recover runtime BitmapData/resource records for 11/12/13 and correlate with 011.png/012.png/013.png.
+5. Compare the three C33E siblings to identify concrete screen semantics.
+6. Only after that render anything, and only with real assets/geometry.
+
+Keep 0x158/0x11C cascade branch and resource 14 separate from 370A unless a new hard bridge is found. Keep 0x0801AB7E separate; it is raw data/resource, not the 370A runtime callback.
+
+Latest previous MASTER commit: `972e39e85170e8c821cf60eaa96a2b6410d41dd4`.
+Latest previous batch: `2551d0b130ba5b051d3bb6ab103d9878ffb5f344`.
