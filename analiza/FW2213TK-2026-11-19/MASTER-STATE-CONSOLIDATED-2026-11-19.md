@@ -2813,3 +2813,25 @@ To jest mocniejsze niż identyfikacja bitmap po wyglądzie, bo mamy pełny łań
 [FW] 65–67 są sterowane przez 0x2253 Burner igniter. Konkretne znaczenie klatek OPEN.
 
 [OPEN] Resource 39: 30x18 + A8, używany w osobnym komponencie UI razem z 168/169. Hipoteza „ikona drugiego kafelka magazynu paliwa” nadal niezamknięta.
+
+## 2026-11-20 — MULTIPASS ANIMATION CONTROL / TIMING
+
+Batch: analiza/FW2213TK-2026-11-20/BATCH-ANIMATION-ENGINE-AND-ACTUATOR-MAPS-2026-11-20.md
+Latest batch commit: 5d919426aa9c59b5af7b58080fb0094ce03db424
+
+[FW] Wspólny konstruktor agregatu 0x08042EEC ustawia dla 36..38, 40..42, 65..67, 8..10 i 58..59 direction=0, enable=1. Tick counts:
+- 36..38 = 14
+- 40..42 = 14
+- 65..67 = 18
+- 8..10 = 6
+- 58..59 = 25
+
+[FW] FUN_08030640: direction +0x36=0 prowadzi resource od first do last; !=0 od last do first.
+
+[FW] FUN_08043954: wejściowy enable nie jest dla wszystkich kanałów bezpośrednim +0x37 silnika animacji. Index 0/1/2/4 zapisują bool do pól parenta i odświeżają odpowiedni obiekt; index 3 jawnie ustawia animation object 8..10 na direction=0, enable=1.
+
+[FW] internal 0x23 -> panel 0x216A. Z kolejności katalogu parametrów: 0x216A = Burner state. Funkcja 0x0803C8D2 pobiera 0x23, zapisuje bool do parent+0x931 i odświeża +0x90C = 36..38. To daje bezpośredni firmware'owy związek Burner state -> stan obiektu podajnika paliwa.
+
+[FW] Resource 39 jest używany w osobnym komponencie 0x0802F9FC przy parent+0xA8 razem z 168/169; nie należy go łączyć z silnikiem 36..42. Hipoteza „ikona drugiego kafelka magazynu paliwa” pozostaje OPEN.
+
+[OPEN] 60..61, 43..44 i index 5/+0xA38 nadal wymagają osobnego trace.
