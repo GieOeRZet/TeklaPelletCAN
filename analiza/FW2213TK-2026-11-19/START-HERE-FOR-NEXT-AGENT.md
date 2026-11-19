@@ -666,3 +666,10 @@ Latest batch: `analiza/FW2213TK-2026-11-19/BATCH-METHOD-CLUSTER-C5B4-CACC-CB2C-2
 NEXT: recover boundaries -> method-table/function-pointer storage -> indirect C5B4 dispatch -> 424C4/+0x84C -> full Bitmap mutations -> three sibling differentiation.
 
 Do not re-prove 370A -> 11/12/13.
+
+
+# CURRENT OVERRIDE — PASS 5B
+
+New [FW]/[STRONG] finding: FUN_080424C4 is also absent from functions.txt and lies inside the gap between FUN_0804204A (ends 0x08042116) and FUN_0804272C. Therefore C33E/C5B4/424C4/CACC/CB04/CB2C form a recurring hidden UI-method recovery problem.
+
+NEXT: map known recovered methods to function-list gaps -> recover nearby method-table/function-pointer storage -> test C5B4/C33E/424C4/CB04/CB2C membership -> then decode +0x84C and Bitmap cluster.
