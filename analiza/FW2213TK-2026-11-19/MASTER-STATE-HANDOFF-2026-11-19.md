@@ -967,3 +967,167 @@ Geometry widgetów należy dalej szukać w warstwie obiektów TouchGFX, a nie w 
 7. następnie przejście z renderingu do konkretnych widgetów/bitmap.
 
 Status: [FW] pixel pipeline; [STRONG] framebuffer/pixel format; geometry widgetów nadal otwarta.
+
+# 24. NOWY KRĘGOSŁUP EKRANU GŁÓWNEGO — ZDJĘCIE PANELU + FW
+
+Data: 2026-11-19. To jest bezpośrednie połączenie obrazu referencyjnego użytkownika z rzeczywistymi ścieżkami FW. Nie traktować screenshotu jako dowodu adresu sam w sobie; adresy poniżej wynikają z FW/mapy.
+
+## 24.1 Referencyjny układ ekranu
+
+Dostarczony screenshot pokazuje ekran główny 480×272 z:
+- górą: czas, dzień, temperatura zewnętrzna;
+- lewa część: grafika kotła/zasobnika;
+- centrum: duża wartość 63.8 + napis Modulacja;
+- prawa góra: 60 + znacznik AUTO;
+- dół obszaru głównego: 24 kg oraz ikony/stany;
+- dolny pasek: MENU, burner/status, ogrzewanie, CWU, zasilanie.
+
+Najważniejsze: ten ekran nie jest jednym parametrem. FW ma osobne komponenty aktualizujące jego części, które są następnie składane w jeden ekran.
+
+## 24.2 63.8 / Modulacja — twarde powiązanie
+
+[FW] FUN_0803CF54() pobiera panel index 0x3B:
+FUN_08036FF2(...,0x3B).
+
+[DATA] mapa panela:
+id_panelu 59 -> CAN 0x4005 -> "Burner power [%]".
+
+[DATA] katalog FW:
+0x4005 = Burner power [%], u16, 0..100, RAM 0x20020D3C, code 0x08013E06.
+
+Wniosek:
+duża wartość 63.8 / "Modulacja" na ekranie głównym jest związana z parametrem 0x4005.
+Format z jedną cyfrą po przecinku nadal wymaga ustalenia w ścieżce formatowania/renderingu; sam parametr jest u16 0..100 i nie należy na tym etapie twierdzić, że surowa wartość jest dokładnie 638 bez obserwacji kodu konwersji.
+
+FUN_0803CF54() oprócz 0x4005 pobiera również:
+- 0x39 / id 57 -> CAN 0x3703 (Max exhaust gas temp.),
+- 0x3A / id 58 -> CAN 0x2276 (nieopisany),
+- 0x3E / id 62 -> CAN 0x2007 (Burner state),
+- 0x3F / id 63 -> CAN 0x2250 (jasność płomienia),
+- 0x40 / id 64 -> CAN 0x2119,
+- dalsze parametry stanu palnika.
+
+To oznacza, że wartość modulacji, stan palnika i dane palnika są jednym komponentem aktualizacji, a nie przypadkowym zestawem odczytów.
+
+## 24.3 60 / AUTO — dwie zależne ścieżki
+
+[DATA] mapa:
+- panel id 16 -> CAN 0x2003 = Boiler set manual temp [C],
+- panel id 11 -> CAN 0x2002 = Boiler program,
+- panel id 15 -> CAN 0x2004 = Boiler set result temp [C].
+
+[FW] FUN_08031CCC():
+- pobiera id 0x0B (panel 11 / 0x2002),
+- pobiera id 0x10 (panel 16 / 0x2003),
+- przekazuje je do osobnych funkcji UI, w tym FUN_0802D524() i FUN_0802D48A().
+
+To daje konkretny model:
+Boiler program/mode (0x2002) -> wybór ścieżki AUTO/MAN
+oraz
+Boiler manual setpoint (0x2003) -> wartość zadana.
+
+[STRONG] Screenshot 60 AUTO jest zgodny z rzeczywistym rozdzieleniem FW na tryb zadawania + temperaturę ręczną. Nie zakładać jeszcze, że wartość 60 zawsze pochodzi bezpośrednio z 0x2003; w trybie wynikowym FW może używać 0x2004.
+
+## 24.4 11.7 — temperatura zewnętrzna
+
+[DATA] panel id 1 -> CAN 0x215F = Outside temperature.
+
+[FW] FUN_08031CCC() pobiera panel index 1 i przekazuje go do logiki głównego ekranu (FUN_0802D572 razem z parametrem wariantu).
+
+To jest bezpośredni most:
+0x215F -> panel id 1 -> main screen data.
+
+## 24.5 24 kg / zasobnik — osobny podsystem paliwa
+
+[DATA] panel id 328 -> CAN 0x3601 = How much fuel left in tank [kg].
+[DATA] panel id 329 -> CAN 0x3600 = Tank capacity [kg].
+[DATA] panel id 330 -> CAN 0x3603 = Fuel reserve [kg].
+[DATA] panel id 332 -> CAN 0x3602 = Is fuel reserve.
+
+[FW] FUN_08031CCC() pobiera:
+- id 0x147 = 327 -> CAN 0x3740 (FW opisuje obecnie jako nieznany),
+- id 0x148 = 328 -> CAN 0x3601,
+- id 0x14A = 330 -> CAN 0x3603,
+i liczy:
+(id327 * 100) / id328
+po czym przekazuje wynik do FUN_0802DA54().
+
+[STRONG] To jest ścieżka wizualnego wskaźnika zasobnika/paliwa: FW jawnie wylicza procent i podaje próg/rezerwę do komponentu UI. Dokładna semantyka id327 wymaga dalszego rozwiązania, więc nie nazywać go jeszcze pojemnością.
+
+## 24.6 Dolny pasek — nie jest statycznym obrazkiem
+
+[FW] FUN_08031CCC() ma osobne bramki widoczności dla kilku elementów:
+- panel id 11 (0x2002) steruje podstawowym zestawem stanów,
+- id 172 (0x2166) steruje elementem 1,
+- id 215 (0x404E) steruje elementem 2,
+- id 220 (0x201A) steruje elementem 3,
+- id 271 (0x2105) steruje kolejnym elementem/warstwą,
+- id 270 (0x3505) ma progi >0 i >1,
+- id 16 (0x2003) bierze udział w wyborze wyświetlanej zadanej.
+
+W szczególności:
+- id270 / 0x3505 -> FUN_0802D3BC(..., value>0, ...) i FUN_0802D3CE(..., value>1, ...);
+- id271 / 0x2105 -> FUN_0802D3E0(...) i FUN_0802D91C(...);
+- id11 / 0x2002 -> przełącza widoczność grup;
+- id59 / 0x4005 -> przez osobny komponent FUN_0803CF54() dostarcza modulację palnika.
+
+[STRONG] To jest pierwszy pełny dowód, że ekran główny jest składany z kilku logicznych komponentów zależnych od konfiguracji i stanu, a nie renderowany jako pojedynczy "main widget".
+
+## 24.7 Ważna korekta: 3505 nie jest profilem sprzętowym
+
+[DATA] aktualna mapa:
+id270 -> 0x3505 -> Outside temperature sensor configuration.
+
+Profil sprzętowy pozostaje:
+0x3500 Main module type,
+0x3502 CH expansion module type,
+0x350B Profile number.
+
+Nie mieszać 3505 z 350B.
+
+## 24.8 Aktualny model ekranu głównego
+
+BOOT
+ -> root/application object
+ -> main screen/controller
+ -> FUN_08031CCC() [główny refresh/configuration controller]
+      ├─ 0x215F / id1       -> outside temperature
+      ├─ 0x2002 / id11      -> boiler program/mode / visibility
+      ├─ 0x2003 / id16      -> manual setpoint
+      ├─ 0x3505 / id270     -> outside sensor configuration / visibility thresholds
+      ├─ 0x2105 / id271     -> heating configuration / UI state
+      ├─ 0x3601 / id328     -> fuel remaining
+      ├─ 0x3603 / id330     -> fuel reserve
+      ├─ 0x3740 / id327     -> unresolved fuel-related value
+      └─ child components
+            └─ FUN_0803CF54()
+                 ├─ 0x4005 / id59 -> burner modulation/power
+                 ├─ 0x2007 / id62 -> burner state
+                 ├─ 0x2250 / id63 -> flame brightness
+                 └─ additional burner/status parameters
+
+To jest obecnie znacznie lepszy "spine" dla repliki niż analizowanie pojedynczych rejestrów osobno.
+
+## 24.9 Następne cele wynikające bezpośrednio ze screenshotu
+
+1. Odzyskać dokładny parent/child/vtable dla FUN_08031CCC() i FUN_0803CF54().
+2. Zidentyfikować, które UI obiekty odpowiadają za:
+   - 63.8 + Modulacja,
+   - 60 + AUTO,
+   - 24 kg,
+   - pięć dolnych kafli.
+3. Przejść z funkcji update do konstruktorów i odzyskać:
+   bitmap / TypedText / X / Y / W / H / visibility / callback.
+4. Rozwiązać id327 -> 0x3740 i sprawdzić, czy jest to wartość obliczana/czujnikowa dla zasobnika.
+5. Rozwiązać id172 -> 0x2166, bo jest używany bezpośrednio w widoczności elementu głównego ekranu.
+6. Zidentyfikować id215 -> 0x404E w kontekście głównego ekranu; nie zakładać, że jest to tylko komenda resetu alarmów.
+7. Równolegle kontynuować DAT_08037B4C, DAT_0803C218 i pośrednie wejście do C064.
+8. Dopiero po tym przypinać konkretne X/Y/W/H do elementów screenshotu.
+
+Status nowych ustaleń:
+- [FW] 0x4005 -> component modulacji.
+- [FW/DATA] 0x2002/0x2003 -> tryb + setpoint.
+- [FW/DATA] 0x215F -> outside temp.
+- [FW/DATA] 0x3601/0x3603 -> fuel level/reserve.
+- [STRONG] main screen is composite, state/config driven.
+- [HYPOTHESIS] exact pixel/format mapping of each displayed number still open.
