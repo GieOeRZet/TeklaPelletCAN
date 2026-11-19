@@ -326,3 +326,34 @@ Nie zakładaj jeszcze, że 469E8 korzysta z tego samego helpera.
 Jeżeli raw BIN nadal nie jest dostępny:
 **nie wymyślaj bajtów**. Kontynuuj tor vtable/update i oznacz raw boundary jako OPEN.
 
+
+
+# RAW BIN AVAILABLE — START HERE AFTER COMMIT add3f95d1dd71284d49105c483f4a0f11667752b
+
+A raw firmware copy is now available and verified:
+`FW2213TK_kopia.bin`
+SHA-256:
+`1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071`
+
+IMPORTANT CORRECTIONS:
+1. `0x0801AB7E` is raw data/resource in the BIN, NOT normal Thumb code.
+2. `DAT_08046CC4` resolves to `0x08079F00), which is UTF-16 text, NOT a vtable.
+3. Do NOT continue using the old graph `DAT_08046CC4 -> vtable +0x50` as a fact.
+4. `FUN_080317AE +0x50` itself IS real and must be retained as the generic runtime indirect-dispatch boundary.
+5. NEW strongest concrete path:
+   `FUN_0803E45C -> model[0x158] + model[0x11C] -> FUN_08047040 -> four repeated 469E8-instance state bytes`.
+6. The bridge `370A/RAM 0x20021FA6 -> model[0x158]` is now the key unresolved link.
+
+Next pass:
+- resolve why a registered 469E8 object can have a text pointer at +0 while 317AE expects a dispatch table there;
+- identify model indices 0x158 and 0x11C;
+- trace their upstream reads and find whether 0x20021FA6 reaches 0x158;
+- trace +0x25 state bytes into visibility/update behavior;
+- only then recover resource ID selection and 011/012/013/014 mapping.
+
+Full details are in:
+`MASTER-STATE-CONSOLIDATED-2026-11-19.md` §47
+and
+`BATCH-RAW-BIN-RECOVERY-469E8-47040-370A-CORRECTION-2026-11-19.md`.
+
+Do not restart the investigation from the old vtable hypothesis.
