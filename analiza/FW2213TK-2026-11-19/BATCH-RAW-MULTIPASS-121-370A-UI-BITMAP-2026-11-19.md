@@ -223,3 +223,69 @@ The variable 370A Bitmap path is structurally distinct from the investigated FUN
 
 This is an architectural separation, not merely a naming difference.
 Resource 14 therefore cannot be used as evidence against the 370A value+10 mapping.
+## 14. THIRD PASS — CONSTRUCTOR STRUCTURE AND BITMAP WRITER REVALIDATED
+
+Raw BIN was re-disassembled directly from FW2213TK_kopia.bin.
+
+FUN_0803C33E exact constructor sequence:
+- parent +0x330 -> FUN_0802DF08, initial resource 0xFFFF;
+- parent +0x35C -> FUN_0802DF08, initial resource 0xFFFF;
+- parent +0x85C -> FUN_0802DF08, initial resource 0xFFFF;
+- parent +0x888 -> FUN_0802DF08, initial resource 0xFFFF;
+- parent +0x8B4 -> FUN_0802DF08, initial resource 0xFFFF;
+- parent +0x8E0 -> FUN_0802DF08, initial resource 0xFFFF.
+
+This corrects an earlier simplification: the composite contains more than only the four +0x85C-family Bitmaps. The +0x330 and +0x35C Bitmap children are also explicitly constructed.
+
+However the 370A update still targets only +0x85C.
+
+FUN_080307BC exact behavior:
+- reads uint16 resource ID from argument object;
+- stores it at Bitmap child +0x26;
+- derives width through FUN_0803439C;
+- invokes Bitmap vtable slot +0x38 with the new width;
+- derives height through FUN_080343EA;
+- invokes Bitmap vtable slot +0x3C with the new height;
+- recomputes clipping/visibility state and stores a flag at +0x29.
+
+[FW] The selector update is therefore a real Bitmap resource replacement, followed by automatic dimension recalculation. It is not merely changing an ID field.
+
+## 15. THIRD PASS — RESOURCE DIMENSIONS ARE CONSISTENT WITH EXTRACTED ASSETS
+
+Repository extraction records the firmware bitmap dimensions:
+- 011.png = 105x126
+- 012.png = 108x141
+- 013.png = 82x145
+- 014.png = 54x100
+
+The Bitmap constructor/writer derives dimensions from the resource itself rather than hardcoding these dimensions in FUN_0803CACC.
+
+[STRONG] The three 370A-selected resources are therefore expected to drive three different Bitmap dimensions at runtime. This explains why the widget constructor uses resource 0xFFFF initially and later updates the actual resource.
+
+Resource 14 remains independently constructed by FUN_080469E8 with fixed ID 14.
+
+## 16. THIRD PASS — CLASS/VTABLE CLAIM MUST REMAIN CONSERVATIVE
+
+Raw object construction writes pointer-like values at object +0, but several such values resolve into UTF-16/data regions rather than a conventional executable vtable.
+
+Therefore we can safely say:
+- FUN_0802DF08 is the firmware's Bitmap-construction routine;
+- FUN_080307BC is the firmware's Bitmap resource setter/update routine;
+- Bitmap methods are dispatched through object-relative slots +0x38/+0x3C;
+- exact C++ vtable/class identity is still OPEN.
+
+Do NOT label the literal at object +0 as a recovered C++ vtable until a separate executable method-table proof is found.
+
+## 17. THIRD PASS — 370A PATH VS FIXED 14 PATH
+
+Two resource-setting mechanisms now have independent raw proof:
+
+Variable selector:
+FUN_0803CB04 -> FUN_0803CACC -> parent+0x85C -> FUN_080307BC -> 11..13
+
+Fixed visual:
+FUN_080469E8 -> child+0x13C -> FUN_080307BC -> 14
+
+They share the same low-level Bitmap resource writer but not the same Bitmap child or constructor.
+
+[FW] This is the correct level of consolidation: shared Bitmap subsystem, separate higher-level UI components.
