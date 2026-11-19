@@ -1445,3 +1445,51 @@ porównanie 469E8 z istniejącym dynamicznym Bitmap patternem `FUN_08030762`.
 Dopiero po A/B/C:
 `370A → resource ID → 011/012/013/014`.
 
+
+
+# 46. MULTIPASS — PARAMETER RECORD ENGINE ≠ 370A CODE TABLE — 2026-11-19
+
+Nowy istotny rozdział po zejściu do `FUN_0801143C / 115F6 / 1167A / 11812`.
+
+[FW] `FUN_0801143C` rejestruje runtime record o stride `0x2C`:
+- +0x08 = panel/CAN index,
+- +0x0C = source/storage pointer,
+- +0x10 = type,
+- +0x14 = value/descriptor,
+- +0x1C = second value/limit,
+- +0x24 = third descriptor,
+- +0x2C = access/flag byte,
+- +0x30 = metadata.
+
+[FW] `FUN_080115F6`, `FUN_0801167A`, `FUN_080116E6` wyszukują rekord po indeksie i odczytują odpowiednio descriptor/value/alternate value.
+
+[FW] `FUN_08011812` wykonuje typowanie, zakresy i zapis do storage wskazanego przez record +0x0C.
+
+[STRONG] To jest runtime **record engine**, a nie miejsce przechowywania adresu 0x0801AB7E.
+
+Wniosek architektoniczny:
+
+```
+PARAMETER CONFIG / PANEL TABLE
+   |
+   +-- ID 370A
+   +-- RAM 0x20021FA6
+   +-- code/handler boundary 0x0801AB7E
+   |
+   +--------------------+
+                        |
+                        v
+                 parameter engine
+                        |
+                        v
+               runtime record 0x2C
+                        |
+                        +-- storage/CAN/value
+```
+
+Nie wolno więc szukać `0x0801AB7E` jako pola w rekordzie `FUN_0801143C`.
+
+To zawęża dalszy atak: trzeba odzyskać **osobną konfigurację parametru** oraz kod, który interpretuje jej code/handler field, a nie próbować wciskać 370A do record stride 0x2C.
+
+[OPEN] Dokładny layout konfiguracji parametrów i dispatcher consuming `0x0801AB7E` nadal wymaga raw/data-region recovery.
+
