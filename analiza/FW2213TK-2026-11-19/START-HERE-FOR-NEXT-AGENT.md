@@ -768,3 +768,39 @@ Previous notes that treated 69/70 only as a slider/knob pair were also incomplet
 User confirms that bitmap IDs **130–137** are the four mode icons used above the sliders. The UI composition has four icon positions per slider, with active/inactive states (4x2 states). The previously supplied screenshot is only a visual reference; exact dimensions, colors and layout must still come from the direct-BIN bitmap data and firmware call-sites.
 
 Do not treat 130–137 as generic unrelated mode/time icons anymore: they are now user-confirmed as the slider mode-icon family. The exact mapping of each ID to icon position and active/inactive state remains to be established from firmware/resource references.
+
+
+# FINAL OVERRIDE — CHAT START PACKAGE / BITMAP PREVIEW — 2026-11-19
+
+**Po otwarciu nowego chata agent ma dostać ten zestaw bez dodatkowego pytania o kontekst.**
+
+### Obowiązkowe pliki w kolejności
+1. `MASTER-STATE-CONSOLIDATED-2026-11-19.md`
+2. `START-HERE-FOR-NEXT-AGENT.md`
+3. `CHAT-CONTINUITY-2026-11-19.md`
+4. `BITMAP-MAP-DIRECT-BIN-2026-11-19.md`
+5. `BITMAP-PREVIEW-MAP-2026-11-19.md`
+6. dopiero potem batch-notes potrzebne do konkretnego toru.
+
+### Bitmap preview — MUSI BYĆ W PAMIĘCI OD STARTU
+Pełne 188 ID: **000..187**. Szybki podgląd i kluczowe role są w:
+`BITMAP-PREVIEW-MAP-2026-11-19.md`.
+
+Nie wykonuj ponownie ekstrakcji bitmap. Nie używaj starego atlasu jako źródła prawdy.
+
+### Ostatni punkt pracy
+Najbliższy atak:
+**051/052 → wszystkie referencje resource ID 51/52 → konstruktor/writer → parent/widget → pellet quantity register/model → threshold/state.**
+
+Równolegle:
+**160/161 → call-site/parent/geometry/callback**
+oraz
+**130..137 → exact ID/state mapping z firmware**.
+
+### Krytyczne zakazy
+- 47290 ≠ bottom bar; to pionowa lista 6 slotów.
+- 056/057 ≠ 151/152.
+- 0x0801AB7E ≠ funkcja.
+- DAT_08046CC4 ≠ udowodniony vtable.
+- 0x158/0x11C ≠ 370A.
+- nie mapować 370A na 011/012/013/014 bez twardego call-site.
