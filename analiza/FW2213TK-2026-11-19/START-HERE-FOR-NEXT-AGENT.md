@@ -512,3 +512,39 @@ The following are CLOSED:
 5. Keep resource 14/469E8 separate.
 
 User wants several passes before reporting. Continue finding -> analyzing -> tracing -> returning to the main chain, then consolidate.
+
+# THIRD RAW PASS HANDOFF — 2026-11-19
+
+Latest commits:
+- batch: d136cffe0399462988097dad9f27e01c5b4ab836
+- MASTER: b580e27a0157f83e34bbf38ed2d783311bbbf186
+
+## NEW FACTS
+
+FUN_0803C33E explicitly constructs six Bitmap children:
++0x330, +0x35C, +0x85C, +0x888, +0x8B4, +0x8E0.
+All start with resource 0xFFFF through FUN_0802DF08.
+
+370A still targets exactly +0x85C through FUN_0803CACC.
+
+FUN_080307BC is the true Bitmap resource replacement routine:
+resource -> Bitmap +0x26 -> derive width -> slot +0x38 -> derive height -> slot +0x3C -> recompute clipping/visibility.
+
+## CLOSED
+- 0x121 -> 0x370A
+- 0x370A -> 0x20021FA6
+- 370A value 1/2/3 -> resource 11/12/13
+- target +0x85C is a real Bitmap object
+- resource 14 is a separate higher-level path
+
+## IMPORTANT CAUTION
+Exact C++ vtable/class identity is NOT closed. Object +0 literals can point into data/text regions. Name the concrete routines, but do not invent vtable identities.
+
+## NEXT MULTIPASS ATTACK
+1. Trace +0x85C parent back to Home/Main root.
+2. Recover actual geometry/placement around +0x84C/+0x85C.
+3. Resolve which of 08039A48 / 08039B30 / 08039C18 is the main boiler screen.
+4. Trace visibility/state callbacks around 0803CB04.
+5. Then map resources 11/12/13 to concrete screen variant semantics.
+
+Continue several passes before reporting. Find -> analyze -> continue -> consolidate. Do not stop on small findings.
