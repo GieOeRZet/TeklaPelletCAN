@@ -2420,3 +2420,52 @@ oraz
 `130..137 -> resource references -> exact four positions + state mapping`.
 
 Nie powtarzać direct-BIN extraction.
+
+
+# 54. 051/052 — PELLET HOPPER TRACE — 2026-11-19
+
+New batch: `BATCH-051-052-PELLET-HOPPER-TRACE-2026-11-19.md`
+Commit: `61eace0b3181971898b80d6a89d7ff18efcce39b`
+
+## 54.1 Strong upstream fuel path
+
+The existing Home refresh path in `FUN_08031CCC` reads:
+- panel ID 328 -> CAN `0x3601` = fuel remaining [kg],
+- panel ID 330 -> CAN `0x3603` = fuel reserve [kg],
+- panel ID 327 -> `0x3740`, still unresolved.
+
+It then calculates:
+
+`(value_327 * 100) / value_328 -> FUN_0802DA54`
+
+This is the strongest currently recovered firmware bridge from actual pellet quantity to the hopper UI component.
+
+## 54.2 051/052 status
+
+User-confirmed:
+- 051/052 are the second Home tile from the left;
+- their state depends on pellet quantity/level.
+
+Firmware:
+- 051 = 34x29,
+- 052 = 34x29,
+- 053 = 34x29,
+- no directly indexed hard-coded `FUN_080307BC(...,0x33)` / `(...,0x34)` writer was recovered in the current artifact index.
+
+Therefore the correct current graph is:
+
+`0x3601 -> ID328 -> FUN_08031CCC -> percentage -> FUN_0802DA54 -> [OPEN hopper widget/resource state] -> 051/052(/053)`
+
+Do NOT invent the threshold yet.
+
+## 54.3 Next attack
+
+The next high-value raw target is the complete body of `FUN_0802DA54`:
+- all child offsets,
+- BL/BLX targets,
+- bitmap/progress/container fields,
+- resource/table selection,
+- percentage comparisons,
+- state transition to 051/052/053.
+
+This takes priority over returning to closed bitmap extraction or the unrelated 47290/370A branches.
