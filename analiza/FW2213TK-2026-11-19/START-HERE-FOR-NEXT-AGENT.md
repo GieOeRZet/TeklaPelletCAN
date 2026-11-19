@@ -115,3 +115,20 @@ Nowa nota: `analiza/FW2213TK-2026-11-19/BATCH-SPINE-HOME-HEATING-INSTANCE-WIDGET
 [STRONG] `FUN_0803E5AC` nadal jest kandydatem na duży Home/Main root, a `+0x92DC -> FUN_08047290` tworzy dokładnie 6 powtarzalnych elementów. Bez bezpośredniego call-site nie utożsamiać jeszcze `FUN_0803E714` z rootem.
 
 Następny priorytet: odzyskać `DAT_0803EEC0` / `DAT_0803C218`, rozwinąć `FUN_080480C0/FUN_0804842C/FUN_0804E5BC` do konkretnych widgetów i znaleźć vtable/indirect entry do `FUN_0803E714` oraz parent/add() dla CO1/CO2.
+
+
+## NOWY BATCH — PIERWSZY FRAGMENT UI JUŻ BUDOWALNY — 2026-11-19
+
+Nota: `analiza/FW2213TK-2026-11-19/BATCH-UI-FRAGMENT-ALREADY-BUILDABLE-2026-11-19.md`
+
+[STRONG] Mamy już wystarczający materiał do zbudowania pierwszego funkcjonalnego fragmentu Home/Main 480×272: canvas, sześć osobnych elementów dolnego paska, dynamiczny blok 63.8/Modulacja, temperaturę zewnętrzną, AUTO/MAN + setpoint oraz logikę zasobnika.
+
+[FW] `FUN_080436B4`: raw 638 -> `63.8` z CAN `0x4005`.
+[FW] `FUN_08030358`: `setGeometry(X,Y,W,H)`.
+[FW] `FUN_080612E0`: element `this+0x48` ma `0,0,480,272`.
+[FW] CO2: `TypedText 348` @ `(205,195,200,70)` i `TypedText 460` @ `(320,195,200,70)`.
+[STRONG] `FUN_08047290` tworzy dokładnie 6 powtarzalnych obiektów w komponencie `root+0x92DC`; przypisanie nazw sześciu kafli nadal wymaga bitmap/vtable proof.
+
+To jest moment, w którym można zacząć budować pierwszą działającą replikę UI zamiast tylko mapy rejestrów. Nie oznaczać jej jeszcze jako pixel-perfect.
+
+Następny cel: pełny rekord `widget -> parent -> X/Y/W/H -> TypedText/Bitmap -> visibility -> callback -> panel ID -> CAN` dla pierwszego elementu Home/Main.
