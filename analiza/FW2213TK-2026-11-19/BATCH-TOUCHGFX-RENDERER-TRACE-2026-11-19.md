@@ -79,3 +79,46 @@ Nie utożsamiać jeszcze `FUN_08001ce8` z BitmapDatabase. Jest to hipoteza opart
 - firmware panela: `firmware/FW2213TK-ghidra/strings.txt`
 - funkcje: `firmware/FW2213TK-ghidra/functions.txt`
 - TouchGFX 4.10 BitmapData: publiczna dokumentacja ST.
+
+
+## NOWY PRZEBIEG — 2026-11-19
+
+### Namierzone adresy frameworka TouchGFX
+Z `strings.txt`:
+- `0x08034630` -> ścieżka `touchgfx/.../Bitmap.cpp`; bezpośrednio wcześniej `0x080345f3` assert "Bitmap database has not been initialized.".
+- `0x080555be` -> `touchgfx/.../platform/driver/lcd/LCD16bpp.cpp`; assert przy `0x08055534` blokujący RGB888 na ekranie 16-bit.
+- `0x080568fc` -> `touchgfx/.../hal/HAL.cpp`.
+- `0x08056ffc` -> `touchgfx/.../hal/DMA.cpp`.
+
+W `functions.txt` w sąsiedztwie tych regionów są m.in.:
+- `FUN_080346dc` 128 B
+- `FUN_0803475c` 30 B
+- `FUN_080347dc` 76 B
+- `FUN_0805570e` 466 B
+- `FUN_080561b0` 36 B
+- `FUN_0805644c` 180 B
+- `FUN_08056500` 180 B
+- `FUN_0805676c` 44 B
+- `FUN_080567ac` 26 B
+- `FUN_08056a04` 42 B
+- `FUN_08056b0c` 238 B
+- `FUN_08056c7e` 134 B
+- `FUN_08056d04` 164 B
+- `FUN_08056df0` 76 B
+- `FUN_08056e78` 36 B
+
+To zawęża dalsze szukanie: `FUN_0805570e` i okolice są głównym kandydatem dla LCD16bpp/bitmap blit path; `FUN_080568xx+` to HAL/blit/DMA path.
+
+### Decoder został poprawiony
+`tools/extract_fw_bitmap_table_direct.py` nie używa już Pillow `RGB;16`. Zastosowano jawny little-endian RGB565:
+- R = bits 11..15
+- G = bits 5..10
+- B = bits 0..4
+- rozszerzenie do 8 bitów przez bit replication.
+
+Commit: `531125b87572842cb313f179e219280280c7e148`.
+
+To jest korekta implementacji wynikająca z kontrolowanego testu `0xF800`, nie arbitralna zamiana kanałów.
+
+### Nadal otwarte
+Nie mamy jeszcze bezpośredniego dowodu z disassembly, która z funkcji `FUN_0805570e` / `FUN_08056xxx` wykonuje konkretny pixel loop. Następny przebieg ma zrekonstruować argumenty i instrukcje tych funkcji oraz znaleźć odwołania do formatów/alpha.
