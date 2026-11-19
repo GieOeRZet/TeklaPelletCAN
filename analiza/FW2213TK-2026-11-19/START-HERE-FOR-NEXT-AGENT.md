@@ -701,3 +701,33 @@ New [DATA]/[FW]/[STRONG] checkpoint:
 The closed 370A -> internal 0x121 -> storage 0x20021FA6 -> value 1..3 -> +0x85C -> resources 11/12/13 chain must NOT be re-proved.
 
 Continue multi-pass before reporting. Persist the next substantial checkpoint.
+
+
+# CURRENT OVERRIDE — PASS BITMAP DIRECT-BIN — 2026-11-19
+
+**Do not redo bitmap extraction.** Complete direct raw-BIN bitmap map is committed in:
+`analiza/FW2213TK-2026-11-19/BITMAP-MAP-DIRECT-BIN-2026-11-19.md`
+
+Hard facts:
+- firmware size 0x1F0000;
+- correct load base = 0x08010000;
+- bitmap descriptor table file 0x54450 / runtime 0x08064450;
+- descriptor stride 0x14;
+- 188 real firmware bitmap records, IDs 000..187;
+- descriptor = data ptr, extraData ptr, W,H, solidRect x/y/w/h;
+- RGB565 payload = W*H*2;
+- non-zero extraData = A8 payload W*H;
+- 76b is generated/historical and NOT a firmware resource.
+
+**Critical correction:** runtime pointer -> file offset uses `ptr - 0x08010000`, NOT `ptr - 0x08000000`. The latter produces the previously observed garbage images.
+
+Directly verified semantic anchors:
+- 056/057 = graph point pair;
+- 151/152 = 47290 state pair;
+- 160/161 = real lower configuration/settings button pair;
+- 011/012/013/014 = boiler-related original graphics;
+- 102/103, 117/118, 168/169, 184/185 = known UI state pairs.
+
+Use the direct-BIN map and its dimension groups as the canonical bitmap inventory. Do not rediscover the table, base address, descriptor layout, or 188-record count.
+
+Next analysis remains the UI/resource call-site problem: map bitmap IDs to constructors/widgets/parents/geometry, especially 160/161 bottom bar and 151/152 vertical 47290 list, then continue Home/Main variant tracing.
