@@ -731,3 +731,13 @@ Directly verified semantic anchors:
 Use the direct-BIN map and its dimension groups as the canonical bitmap inventory. Do not rediscover the table, base address, descriptor layout, or 188-record count.
 
 Next analysis remains the UI/resource call-site problem: map bitmap IDs to constructors/widgets/parents/geometry, especially 160/161 bottom bar and 151/152 vertical 47290 list, then continue Home/Main variant tracing.
+
+
+## BITMAP PAIR CORRECTION — 2026-11-19
+
+Direct-BIN visual check confirms two similar circular state pairs:
+- 056/057 = 20x20 graph point normal/selected; 057 has cyan/green center.
+- 151/152 = 30x31 47290 vertical-selector normal/selected; 152 has cyan/green center.
+They are distinct resources with distinct firmware call-sites. Do not merge them. 184/185 is a separate 45x20 toggle pair.
+
+The canonical bitmap map was updated with this conclusion and hash anchors. Continue from the map; do not redo direct extraction.
