@@ -161,3 +161,10 @@ Nota: BATCH-DUZA-TOZSAMOSC-KOTLA-TOUCHGFX-WARIANT-GRAFIKA-2026-11-19.md
 [HYPOTHESIS] FUN_08038ED0 występuje dwa razy w kandydacie Home/Main (+0xA5FC, +0xA628) i może być konstruktorem WheelSelectorExtra; wymagany vptr proof.
 [PRIORYTET] Pionowy trace: 0x370A -> Bitmap ID -> widget -> geometry; oraz vptr root+0xA5FC/+0xA628 -> WheelSelectorExtra.
 [PRIORYTET] Następnie 0x2125/0x3665 -> wariant UI. SERIAL zostawić na później, dopóki nie ma call-chainu.
+
+## KOREKTA — WHEELSELECTOREXTRA GRANICA COMPILE UNIT (2026-11-19)
+Patrz: BATCH-WHEELSELECTOR-SOURCE-BOUNDARY-2026-11-19.md
+[STRONG] 0x08038D74 assert i 0x08038D9C path do WheelSelectorExtra.cpp leżą bezpośrednio po końcu FUN_08038CF4 (126 B, koniec 0x08038D71). To jest obecnie najlepszy adres funkcji związanej z tym assert-em.
+[CORRECTION] Nie nazywać FUN_08038ED0 konstruktorem WheelSelectorExtra. Nadal: root+0xA5FC/+0xA628 -> FUN_08038ED0, ale vptr proof brak.
+[STRONG] Gęsty blok 38CF4..390FC jest bardzo mocnym kandydatem na metody customowego komponentu/compile unitu, ale konkretne role metod wymagają vtable/call-site.
+[STRONG] Rozbieżność 370A=1..3 vs bitmapy 011..014 oznacza, że nie ma prostego mapowania 1:1; trzeba znaleźć dodatkową warstwę wyboru.
