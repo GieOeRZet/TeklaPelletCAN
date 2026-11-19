@@ -2469,3 +2469,38 @@ The next high-value raw target is the complete body of `FUN_0802DA54`:
 - state transition to 051/052/053.
 
 This takes priority over returning to closed bitmap extraction or the unrelated 47290/370A branches.
+
+
+
+# 2026-11-19 — BITMAP BASE ADDRESS CORRECTION / RETURN TO MAIN REVERSE ENGINEERING
+
+[CRITICAL] Bitmap investigation is closed at the extraction level and must not derail the main firmware analysis.
+
+The 188 TouchGFX BitmapData records are decoded with ONE universal firmware-to-file mapping:
+`file_offset = runtime_pointer - 0x08010000`
+
+Firmware size:
+- 0x1F0000 = 2,031,616 bytes
+- bitmap descriptor table: file 0x54450 / runtime 0x08064450
+- descriptor stride: 0x14
+- IDs 000..187
+- RGB565 payload W*H*2
+- optional A8 payload W*H
+
+[CRITICAL CORRECTION] The previously used `ptr - 0x08000000` mapping was wrong and caused the garbage/striped renders. There is NOT a different offset for different bitmap groups. All bitmap pointers use the same base `0x08010000`.
+
+With the corrected universal base, the bitmap map renders coherently, including 051/052, 151/152, 160/161 and 184/185.
+
+The bitmap work is now a baseline/resource inventory, not the main investigation target. Do not redo extraction or spend the next pass on atlas generation.
+
+## RETURN TO MAIN TASK
+
+Resume the firmware UI/model reverse-engineering chain:
+1. 051/052 -> all resource-ID references -> writer/constructor -> parent/widget -> pellet quantity register/model -> threshold/state.
+2. FUN_0802DA54 is the immediate high-value target; recover all child offsets, calls, resource selection and percentage/state comparisons.
+3. 160/161 -> call-sites -> parent -> geometry -> callback.
+4. 130..137 -> exact ID/state/position mapping from firmware resource references.
+5. Continue the broader parameter -> callback -> model database -> active module -> binding -> widget chain.
+6. Continue the hidden UI-method/function-pointer cluster around C33E/C5B4/424C4/CACC/CB04/CB2C only where it supports the active UI path.
+
+Do not reopen closed 370A/47290/056-057 hypotheses unless new hard evidence requires it.
