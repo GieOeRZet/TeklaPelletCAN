@@ -577,3 +577,32 @@ Closed 370A chain:
 6. Keep resource 14 and 0x0801AB7E separate until a hard bridge appears.
 
 Continue multi-pass: find -> analyze -> continue -> return to main chain -> consolidate. Do not stop on a small finding.
+
+
+# HANDOFF AFTER FOURTH RAW PASS — 2026-11-19
+
+Latest batch commit: `2551d0b130ba5b051d3bb6ab103d9878ffb5f344`
+Latest MASTER commit: `972e39e85170e8c821cf60eaa96a2b6410d41dd4`
+
+## New closed/strong facts
+
+- Full raw BL scan finds exactly three direct C33E callers: 08039AD6, 08039BBE, 08039CA6, belonging to 08039A48/08039B30/08039C18.
+- Those three sibling constructors instantiate the same C33E visual composite and wire CB04 updater objects.
+- C33E has six Bitmap children (+330,+35C,+85C,+888,+8B4,+8E0) plus several helper/UI objects.
+- +0x84C is a helper/container immediately before +0x85C, initialized by FUN_080424C4 with parent + two literal parameters.
+- C5B4 uses +0x85C at X=40,Y=70 and attaches it through parent+0x04.
+- C5B4 later uses +0x8E0 with fixed resource 0x7A, X=398, Y from runtime state.
+- C5B4 dispatch itself is still OPEN: no direct BL or raw function-pointer occurrence was found.
+
+## Next attack
+
+Do not repeat the selector chain or the X/Y=40/70 proof.
+
+1. Search indirect dispatch/vtable tables for C5B4.
+2. Decode +0x84C helper/container.
+3. Enumerate W/H/visibility writes to +0x85C across all methods.
+4. Recover runtime resource records 11/12/13.
+5. Compare 08039A48/39B30/39C18 beyond common C33E to identify Home/Main.
+6. Keep resource 14 and 0x0801AB7E separate.
+
+Continue multi-pass before reporting.
