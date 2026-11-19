@@ -99,3 +99,19 @@ Nowa nota: `analiza/FW2213TK-2026-11-19/BATCH-UI-CO2-SCREEN-SIZE-OBJECT-CHAIN-20
 Kontynuacja:
 `0x08056D2C -> 0x0805D948 -> 0x080612E0`
 i dalej: `0x080313A4, 0x080314BA, 0x08030358, 0x0804272C, 0x080347DC` -> vptr -> parent/child -> TypedText/Bitmap -> callback -> parametr.
+
+
+## NOWY SKONSOLIDOWANY SPINE — 2026-11-19
+
+Nowa nota: `analiza/FW2213TK-2026-11-19/BATCH-SPINE-HOME-HEATING-INSTANCE-WIDGET-2026-11-19.md`
+
+[FW] Najważniejszy aktualny most:
+`+0x12B=1..4 -> FUN_0803E714 -> 12/11 ID parametrów -> FUN_08036FF2(+0x12C) -> FUN_0804842C -> widget record (index*0x338+0x42C) -> FUN_0804E5BC -> FUN_08032316 refresh`.
+
+[STRONG] To pokazuje wspólny builder UI dla klas CO1..CO4; `+0x12C` zmienia instancję w engine parametrów, zamiast tworzyć cztery niezależne drzewa UI.
+
+[FW] `+0x158` jest osobnym gate'em wariantu UI; nie jest numerem CO.
+
+[STRONG] `FUN_0803E5AC` nadal jest kandydatem na duży Home/Main root, a `+0x92DC -> FUN_08047290` tworzy dokładnie 6 powtarzalnych elementów. Bez bezpośredniego call-site nie utożsamiać jeszcze `FUN_0803E714` z rootem.
+
+Następny priorytet: odzyskać `DAT_0803EEC0` / `DAT_0803C218`, rozwinąć `FUN_080480C0/FUN_0804842C/FUN_0804E5BC` do konkretnych widgetów i znaleźć vtable/indirect entry do `FUN_0803E714` oraz parent/add() dla CO1/CO2.
