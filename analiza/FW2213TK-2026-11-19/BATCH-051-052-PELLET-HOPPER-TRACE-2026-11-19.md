@@ -51,7 +51,7 @@ Następny właściwy krok:
 0x3602 = Is fuel reserve
 0x3603 = Fuel reserve [kg]
 0x3604 = Fuel reserve stop [kg]
-Panel map: 328 -> 0x3601; 329 -> 0x3600; 330 -> 0x3603.
+RAW MAPPING (corrected): internal 0x147 (327) -> 0x3601; 0x148 (328) -> 0x3600; 0x149 (329) -> 0x3603; 0x14A (330) -> 0x3602.
 
 ## 7. Hipoteza progu — NIE ZAMYKAĆ
 Nie wpisywać np. 20% albo 40% jako progu 051↔052 bez body 2DA54 / kolejnego caller chain.
