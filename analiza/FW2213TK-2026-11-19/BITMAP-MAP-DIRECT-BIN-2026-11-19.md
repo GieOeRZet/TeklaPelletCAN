@@ -278,3 +278,18 @@ Semantic interpretation to preserve:
 - exact state-to-ID mapping (which of 051/052 corresponds to which pellet level/state) is not yet asserted unless confirmed by firmware call-site or further user evidence.
 
 Do not infer the exact threshold or register address from this note alone. The next firmware pass should trace references to resource IDs 051 and 052 and connect them to the pellet-quantity register/model value.
+
+
+# 2026-11-19 — USER SEMANTIC CONFIRMATIONS / HANDOFF OVERRIDE
+
+- 051/052: second tile from left; state depends on pellet hopper amount/level register. Exact threshold and 051-vs-052 state still OPEN.
+- 130..137: four slider mode icons, each OFF/ON; thinner = OFF, thicker/bold = ON. Exact ID-to-position mapping OPEN.
+- 112/113/114: reusable configuration-window construction: 112 left, 114 repeated middle/fill, 113 right.
+- 184/185: reusable ON/OFF toggle family across Power screen and settings/action screens.
+- 069/070: reusable selector/knob family, used with 184/185 and multiple sliders.
+- 47290: vertical six-slot list/selector, never bottom bar.
+- 160/161: real lower configuration/settings button.
+- 056/057 and 151/152 are distinct circular pairs (20x20 vs 30x31).
+
+For immediate visual orientation use:
+`analiza/FW2213TK-2026-11-19/BITMAP-PREVIEW-MAP-2026-11-19.md`.
