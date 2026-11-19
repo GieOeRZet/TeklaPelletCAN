@@ -2301,3 +2301,16 @@ Batch: `analiza/FW2213TK-2026-11-19/BATCH-METHOD-CLUSTER-C5B4-CACC-CB2C-2026-11-
 6. Then differentiate 39A48/39B30/39C18.
 
 Do not reopen the closed 370A -> 11/12/13 chain.
+
+
+# PASS 5B — +0x84C CONSTRUCTOR CONFIRMS HIDDEN-METHOD PATTERN — 2026-11-19
+
+Batch: `analiza/FW2213TK-2026-11-19/BATCH-METHOD-CLUSTER-C5B4-CACC-CB2C-2026-11-19.md`
+
+[FW] `FUN_0804204A` has size 204 bytes and ends exactly at `0x08042116`; the next functions.txt entry is `FUN_0804272C`. Yet raw analysis independently recovers `FUN_080424C4`, the constructor of +0x84C. Thus 424C4 is another executable procedure inside a Ghidra function-recognition gap.
+
+The manually recovered UI procedures outside normal functions.txt now include C33E, C5B4, 424C4, CACC, CB04 and CB2C.
+
+[STRONG] This is a recurring custom-UI method recovery problem, not an isolated missing C5B4 caller. The dispatch investigation should therefore recover the method-table/function-pointer structure first, then test membership of these procedures.
+
+Do not promote this to a specific vtable/class identity yet.
