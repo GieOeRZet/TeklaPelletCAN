@@ -293,3 +293,40 @@ Do not infer the exact threshold or register address from this note alone. The n
 
 For immediate visual orientation use:
 `analiza/FW2213TK-2026-11-19/BITMAP-PREVIEW-MAP-2026-11-19.md`.
+
+
+
+## 2026-11-19 — CRITICAL BASE-ADDRESS CORRECTION
+
+All 188 bitmap payload pointers use ONE universal mapping:
+
+`file_offset = runtime_pointer - 0x08010000`
+
+**Do NOT use `runtime_pointer - 0x08000000`.**
+
+Firmware file:
+- size: 0x1F0000
+- bitmap descriptor table: file 0x54450 / runtime 0x08064450
+- record stride: 0x14
+- IDs: 000..187
+- RGB565 payload: W*H*2
+- optional A8 payload: W*H
+
+This correction is global. There is no evidence for per-bitmap/per-region offsets.
+
+The previous garbage/striped renders of 151/152/160/161/184/185 were caused by reading payloads 0x10000 bytes too far forward in the BIN. After applying the single base 0x08010000, those resources render coherently.
+
+### VISUAL CHECKPOINT
+Verified coherent corrected renders:
+- 051 = pellet hopper/tile state
+- 052 = pellet hopper/tile state
+- 053 = alternate pellet hopper state
+- 151/152 = circular selector pair
+- 160/161 = lower configuration/settings button pair
+- 184/185 = ON/OFF toggle pair
+
+### STATUS
+Direct-BIN extraction is now a **closed baseline**. The next task is not to improve the bitmap atlas. Use bitmap IDs as resource anchors and trace their firmware references/call-sites.
+
+Next:
+`051/052 -> resource references -> widget -> pellet quantity model/register -> threshold/state`.
