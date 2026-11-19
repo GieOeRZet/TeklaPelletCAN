@@ -655,3 +655,14 @@ NEXT:
 6. then differentiate 39A48/39B30/39C18.
 
 Do not re-prove 370A -> 11/12/13.
+
+
+# CURRENT START OVERRIDE — PASS 5 HIDDEN METHOD CLUSTER
+
+Latest batch: `analiza/FW2213TK-2026-11-19/BATCH-METHOD-CLUSTER-C5B4-CACC-CB2C-2026-11-19.md`
+
+[STRONG] C5B4, CACC, CB04, CB2C and C33E are manually recovered procedures inside gaps not represented as normal functions in functions.txt. Treat this as a hidden UI-method cluster.
+
+NEXT: recover boundaries -> method-table/function-pointer storage -> indirect C5B4 dispatch -> 424C4/+0x84C -> full Bitmap mutations -> three sibling differentiation.
+
+Do not re-prove 370A -> 11/12/13.
