@@ -529,3 +529,34 @@ Extractor został poprawiony: jawny little-endian RGB565 zamiast Pillow `RGB;16`
 Batch: `BATCH-TOUCHGFX-RENDERER-TRACE-2026-11-19.md`, commit `1f2764fc273351df915dc5fcfe6d36e958768e7d`.
 
 Następny krok: zrekonstruować instrukcje/argumenty FUN_0805570e i FUN_08056xxx oraz znaleźć pixel loop, alpha i format handling. Nie zamykać jeszcze problemu pasków/rozjechanych przejść.
+
+
+## 24. PRZEŁOM TOUCHGFX PIXEL LOOP — 2026-11-19
+
+Odnaleziono i odczytano `FUN_0805570E` z `decompiled.c`. To bezpośredni renderer/blit pixel loop.
+
+### Twardy dowód formatu
+Sygnatura: `FUN_0805570e(int param_1,int param_2,undefined4 param_3,undefined4 param_4,byte param_5)`.
+- param_1 = RGB565 source; odczyt przez `ushort*`, indeksowanie `pixelIndex*2`.
+- param_2 = A8 source; odczyt przez `byte*`, 1 B/pixel.
+- framebuffer = `ushort*`, adresowanie 2 B/pixel.
+
+Pętle inkrementują source RGB, alpha i framebuffer po 1 pikselu oraz po wierszu pomijają `stride-width`. To dowodzi klasycznego row-major RGB565+A8, bez tile/bit-packing.
+
+### Dokładny blending
+Maski: R `0xf800`, G `0x07e0`, B `0x001f`.
+Dla global alpha 0xff:
+- A8=0 -> skip,
+- A8=255 -> bezpośrednia kopia RGB565,
+- pośrednia alpha: `((A*src + (256-A)*dst)>>8)` osobno dla każdego kanału.
+Dla global alpha != 0xff: efektywna waga `A8*globalAlpha`, normalizacja `>>16`.
+
+### Wniosek
+Renderer potwierdza definitywnie, że bitmapy są przechowywane jako liniowe RGB565 + A8. Nie ma dodatkowego kodeka ani tile layoutu. Nie należy zmieniać/tilować danych przy ekstrakcji.
+
+### Co z paskami
+Jeżeli po poprawie R/B nadal będą paski geometryczne, problem trzeba szukać w konkretnym descriptorze/pointerze/rozmiarze/format field, a nie w rendererze. Możliwe też, że wcześniejsze paski były skutkiem błędnej interpretacji danych.
+
+Batch: `BATCH-TOUCHGFX-RENDERER-TRACE-2026-11-19.md`, commit `32fa9aa180c73dfd96727c5e7e385ff079084997`.
+
+Następny krok: zastosować poprawiony decoder do realnego firmware i wizualnie/testowo zweryfikować 002/003 oraz 011-014; następnie sprawdzić wszystkie 188 descriptorów pod kątem spójności pointer+size+format.
