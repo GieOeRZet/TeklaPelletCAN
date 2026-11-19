@@ -286,6 +286,14 @@ Mapper przekazuje `sVar3` do `FUN_08037094()`.
 `FUN_080116E6()` analogicznie czyta:
 `record + 0x1C`.
 
+### G. Zapis wartości
+`FUN_08037212(context,param_2,value)` wykonuje ten sam mechanizm rodziny 4:
+- pobiera bieżące `object+0x12C`,
+- dla pierwszej tabeli wylicza `base + instance - 1`,
+- następnie wywołuje `FUN_08011812()` na rozstrzygniętym rekordzie/indexie.
+
+To oznacza, że `+0x12C` nie jest tylko selektorem odczytu UI. Ten sam selektor uczestniczy również w **zapisie parametru**. To jest twardy dowód dwukierunkowego mechanizmu instancji.
+
 To daje konkretny most:
 **panelowy indeks -> grupa 4 -> +0x12C -> resolved index -> rekord 0x2C -> wartość**.
 
@@ -350,7 +358,7 @@ Panel index:
 - `FUN_0802D3E0()`,
 - `FUN_0802D91C()`.
 
-Czyli **0x2105 realnie steruje UI**.
+Czyli **0x2105 realnie steruje UI**. W `FUN_08031CCC` dokładnie ten sam mapper `FUN_08036FF2()` pobiera `0x10E` i `0x10F`: `0x10E` steruje dwoma warunkami widoczności (`>0`, `>1`), a `0x10F` jest przekazywane do `FUN_0802D3E0()` i `FUN_0802D91C()`.
 
 Jednocześnie nie znaleziono dowodu:
 `0x2105 -> create N CO objects`.
