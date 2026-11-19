@@ -170,3 +170,41 @@ Then:
 **Current branch head / resume point:** `75bd2b2f5fe092653ff2e3ed53e54fb533195cd8`
 
 When a new chat starts, read this file and MASTER/START-HERE from the branch head above. Continue from CURRENT START POINT; do not restart.
+
+
+# PASS 5M — RESOURCE 0x7A / +0x8E0 GEOMETRY CLOSED — 2026-11-19
+
+[DATA] `0x7A` is decimal `122`. The repository's extracted firmware bitmap table contains `122.png` at `35x37`. The bitmap extraction is independently documented as 189 PNGs originating from the firmware bitmap table at `0x54450`.
+
+Therefore the earlier geometric test:
+
+`X=398 + W == 480`
+
+is **false** for the fixed resource installed into `+0x8E0`.
+
+Exact result:
+- resource ID = `0x7A = 122`
+- extracted bitmap = `122.png`
+- W = `35`
+- H = `37`
+- X = `398`
+- horizontal box = `(398, Yruntime) -> (433, Yruntime+37)`
+
+So `+0x8E0` is **not** a right-edge 480-px bitmap. There is a 47-px gap from its right edge to the panel edge.
+
+This is a useful correction because it removes a tempting but wrong screen-geometry hypothesis. The object is a small 35x37 resource positioned near the right side, with runtime-controlled Y.
+
+[STRONG] The fixed resource at `+0x8E0` is much more consistent with a small status/icon/indicator element than with a full-height or edge-filling boiler illustration. This is only semantic classification, not yet a named icon.
+
+Do NOT map resource 122 to a screenshot element until the parent/class and surrounding child geometry are recovered.
+
+## NEXT MULTIPASS FROM THIS CHECKPOINT
+
+1. Enumerate all geometry/resource/visibility mutations of `+0x8E0`, then `+0x888`/`+0x8B4`/`+0x85C`.
+2. Decode `FUN_080424C4` and the object at `+0x84C`.
+3. Attack indirect dispatch for `FUN_0803C5B4` through method-table/function-pointer storage.
+4. Compare the three C33E siblings after the common constructor.
+5. Recover runtime BitmapData records for resources 11/12/13.
+
+Do not reopen the closed 370A -> 1..3 -> 11/12/13 chain.
+
