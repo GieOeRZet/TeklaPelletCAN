@@ -1493,3 +1493,131 @@ To zawęża dalszy atak: trzeba odzyskać **osobną konfigurację parametru** or
 
 [OPEN] Dokładny layout konfiguracji parametrów i dispatcher consuming `0x0801AB7E` nadal wymaga raw/data-region recovery.
 
+
+
+# 47. RAW BIN RECOVERY — 469E8/47040/370A MAJOR CORRECTION — 2026-11-19
+
+Raw firmware is now available and verified:
+- file: `FW2213TK_kopia.bin`
+- size: `0x1F0000` = 2,031,616 bytes
+- SHA-256: `1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071`
+- vector table: SP `0x20013F28`, reset `0x080A3209`
+- flat mapping `raw = address - 0x08000000` is confirmed.
+
+## 47.1 370A / 0x0801AB7E — HARD CORRECTION
+
+Raw offset `0x1AB7E` is data/resource, not executable Thumb code. The bytes are repeated pixel/table-like values. Therefore the field `370A -> 0x0801AB7E` must NOT be called a direct function pointer.
+
+Neighboring fields are heterogeneous:
+- 3709 -> `0x0801425C`: executable code inside a larger block,
+- 370A -> `0x0801AB7E`: raw data/resource region,
+- 370B -> `0x08015CCC`: data/table region,
+- 370C -> `0x0801659E`: executable code inside `FUN_080164F4`,
+- 370D -> `0x08016614`: executable code inside the same routine.
+
+Conservative term: **handler/code/data boundary**, not uniform callback pointer.
+
+## 47.2 DAT_08046CC4 — HARD CORRECTION
+
+Raw `FUN_080469E8` loads:
+- `DAT_08046CC0 = 0x0807C660`
+- `DAT_08046CC4 = 0x08079F00`
+
+Both addresses point into UTF-16 localization strings. `0x08079F00` begins with text equivalent to `"žeistas kambario daviklis 2"`.
+
+Therefore the previous statement "DAT_08046CC4 = vtable" is invalidated.
+
+The raw BIN proves:
+- 469E8 is a real composite visual widget,
+- it creates Bitmap child +0x4F,
+- it writes Bitmap/resource ID 14,
+- it creates multiple text children,
+- it registers itself,
+but its first word is not a persistent vtable pointer as previously assumed.
+
+## 47.3 317AE +0x50 remains real
+
+Raw `FUN_080317AE` proves the runtime traversal:
+`registered_object -> *(object+0) -> *(vtable+0x50) -> BLX`.
+
+Thus +0x50 is a real indirect dispatch boundary.
+
+The unresolved contradiction is now explicit: a registered 469E8 object finishes with a text/resource pointer at +0 while 317AE expects a dispatch table there. The next pass must find where/when the runtime object representation changes, or prove that 469E8 registration participates in a different registry state than assumed.
+
+## 47.4 NEW — FUN_08047040 is a concrete 1..3 visual selector
+
+Raw code at `0x08047040` directly controls four repeated 469E8-instance-local bytes:
+
+```
+parent+0x969 = instance(+0x944)+0x25
+parent+0xB05 = instance(+0xAE0 )+0x25
+parent+0xCA1 = instance(+0xC7C )+0x25
+parent+0xE3D = instance(+0xE18 )+0x25
+```
+
+For enable != 0:
+- selector 1 -> +0xB05 = 1
+- selector 2 -> +0xB05 = 1, +0xCA1 = 1
+- selector 3 -> +0xB05 = 1, +0xCA1 = 1, +0xE3D = 1
+- +0x969 always receives enable.
+
+For enable == 0 all four state bytes are cleared.
+
+This is the first raw-proof 1..3 selector path touching the four repeated 469E8 instances.
+
+## 47.5 NEW — FUN_0803E45C supplies the selector
+
+There is one direct raw call to `FUN_08047040`, from `FUN_0803E45C`.
+
+Immediately before the call:
+- model index `0x158` is converted to u8 and passed as selector,
+- model index `0x11C` is converted to u8 and passed as enable.
+
+Therefore:
+
+```
+model[0x158], model[0x11C]
+        ↓
+FUN_08047040
+        ↓
+four repeated 469E8 instance state bytes
+```
+
+Do NOT yet rename `model[0x158]` as 370A. The bridge remains open.
+
+## 47.6 New architecture
+
+```
+370A
+  ├─ RAM 0x20021FA6
+  └─ table field 0x0801AB7E
+       └─ data/descriptor/dispatcher boundary [OPEN]
+
+MODEL / HOME UPDATE
+  └─ FUN_0803E45C
+       ├─ model[0x158]
+       ├─ model[0x11C]
+       └─ FUN_08047040
+            ├─ parent+0x969
+            ├─ parent+0xB05
+            ├─ parent+0xCA1
+            └─ parent+0xE3D
+
+469E8
+  ├─ child +0x4F
+  ├─ Bitmap ID 14 at construction
+  ├─ text children
+  └─ registration via FUN_080318B4
+```
+
+## 47.7 Next attack
+
+1. Resolve the runtime object representation contradiction around 469E8 +0 and 317AE.
+2. Identify semantics of model indices `0x158` and `0x11C`.
+3. Search raw code/data for the bridge between RAM `0x20021FA6` and model `0x158`.
+4. Trace state bytes +0x25 to actual visibility/update behavior.
+5. Only then map 370A to resource IDs.
+6. Keep 011/012/013/014 mapping OPEN.
+
+Full raw pass: `BATCH-RAW-BIN-RECOVERY-469E8-47040-370A-CORRECTION-2026-11-19.md`.
+
