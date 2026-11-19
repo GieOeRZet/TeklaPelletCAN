@@ -221,3 +221,51 @@ oryginalny source trace
  -> CAN/storage
 ```
 
+
+# AKTUALIZACJA HANDOFF — PO MULTIPASS 2026-11-19
+
+**Ostatni skonsolidowany commit:** 5e12b87454fca34c1540684e8716a197a7e052c0
+**Najważniejszy dokument:** MASTER-STATE-CONSOLIDATED-2026-11-19.md
+
+## CO ZMIENIŁ TEN PRZEBIEG
+1. Potwierdzono, że pole callback/code parametrów nie musi wskazywać początku funkcji. Sąsiednie callbacki 3709/370C/370D wskazują także wnętrza większych funkcji.
+2. 0x0801AB7E pozostaje nierozpoznanym wejściem, a nie nazwą funkcji do znalezienia.
+3. 469E8 → FUN_080318B4 jest rejestracją widgetu w timer/update registry, nie bezpośrednim bindingiem 370A.
+4. FUN_080317AE → vtable +0x50 jest właściwym runtime update boundary dla 469E8.
+
+## INSTRUKCJA DLA AGENTA
+Nie pytaj użytkownika o kontekst. Nie zaczynaj od zera.
+Przeczytaj najpierw cały MASTER, szczególnie §§37–44. Następnie prowadź analizę wieloprzebiegowo:
+3709..370D callback comparison → 0x0801AB7E → DAT_08046CC4+0x50 → 469E8 update → variable Bitmap ID → 370A → 011/012/013/014
+Przy każdym odkryciu wykonuj dalej trace. Nie kończ przebiegu na pojedynczym adresie. Jeżeli znajdziesz mniejszy trop, analizuj go i wracaj do głównego łańcucha.
+
+### PRIORYTET A — CALLBACK ENGINE
+- porównaj 0x0801425C, 0x08015CCC, 0x0801659E, 0x08016614 z 0x0801AB7E;
+- ustal wspólny sposób użycia pola callback przez parameter engine;
+- dla każdego dostępnego callbacku określ poprzedni/następny blok i efekty;
+- nie zakładaj, że callback = osobna funkcja.
+
+### PRIORYTET B — 469E8 VTABLE
+Odzyskaj DAT_08046CC4 + 0x50.
+Następnie prześledź całą metodę: model read → condition → child +0x4F → resource/Bitmap/visibility.
+
+### PRIORYTET C — 370A MAPPING
+Dopiero po A/B szukaj: 0x20021FA6 → state → resource ID → 011/012/013/014.
+Nie zakładaj 1→011, 2→012, 3→013.
+
+### JEŚLI BRAKUJE RAW BIN
+Nie udawaj, że bajty można odzyskać z decompiled.c. Wtedy:
+- wykorzystaj istniejący decompiled.c, functions.txt i batch notes;
+- kontynuuj tor DAT_08046CC4/vtable/update;
+- wskaż dokładnie, jaki raw region jest potrzebny;
+- nie zatrzymuj całej analizy.
+
+## ZASADA KONSOLIDACJI
+Po dużym przebiegu:
+1. utwórz/uzupełnij batch note,
+2. zaktualizuj MASTER,
+3. zaktualizuj ten START-HERE, jeśli zmienił się punkt startowy,
+4. commit,
+5. podaj następnemu agentowi commit SHA i link do dokumentu.
+
+Nigdy nie zostawiaj wiedzy tylko w odpowiedzi czatu.
