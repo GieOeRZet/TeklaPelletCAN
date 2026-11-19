@@ -1180,3 +1180,22 @@ Twarde końce nadal są dwa:
 Nie ma jeszcze dowodu mapowania `370A=1/2/3 -> 011..014`. Następny atak ma znaleźć rzeczywisty call-site Bitmap/BitmapData zależny od wariantu i dopiero wtedy spiąć selector -> bitmap -> widget -> geometria Home.
 
 Pełny batch: `analiza/FW2213TK-2026-11-19/BATCH-HOME-ROOT-BOILER-GRAPHICS-SPINE-2026-11-19.md`.
+
+
+# 34. KOREKTA GEOMETRII HOME — 480x200 = CONTENT AREA, NIE GRAFIKA KOTŁA — 2026-11-19
+
+Użytkownik zweryfikował geometrię na realnych screenshotach Home. Ekran firmware ma `480x272`; screenshot pełnego ekranu zachowuje proporcję ~480:272. Drugi screenshot jest praktycznie dokładnie wycinkiem/projekcją obszaru `480x200`. Pozostałe ~72 px odpowiadają dolnemu paskowi nawigacyjnemu.
+
+Wniosek: `FUN_08047604` i jego cztery obiekty `+0x1D7` nie należy interpretować jako „grafika kotła”. Ich `480x200` odpowiada całemu obszarowi content/Home, w którym siedzi wiele niezależnych elementów UI.
+
+Co więcej, kod pokazuje dla 4 instancji:
+- W = `0x1E0 = 480`, H = `0xC8 = 200`;
+- X kolejno: baza, baza+`0x140` (320), baza+`0x280` (640), baza+`0x3C0` (960);
+- Y = baza;
+- stride obiektu = `0x54`.
+
+To oznacza cztery instancje tego samego typu obiektu ustawione względem siebie co 320 px, przy szerokości 480 px. Nie są to cztery „kotły”. Są to raczej cztery pełne warstwy/panele/strony/obszary tego samego komponentu, potencjalnie przesuwane lub zarządzane jako zestaw. Kod dodatkowo wywołuje `FUN_0804E218(piVar8,param_1+0x22b)`, co wzmacnia hipotezę o związaniu tych obiektów z mechanizmem nadrzędnym/pozycjonowaniem.
+
+Dlatego następny krok dla grafiki kotła musi zejść **wewnątrz obiektu z `+0x1D7` / jego vptr `DAT_08047E34` oraz do funkcji obsługujących jego dzieci**, zamiast utożsamiać jego prostokąt z bitmapą.
+
+Geometria użytkownika jest zgodna z firmware i bardzo cenna: `480x200` to praktycznie dokładnie **główna powierzchnia Home nad paskiem 72 px**. To jest właściwy „canvas” do rozpisania wszystkich widgetów.
