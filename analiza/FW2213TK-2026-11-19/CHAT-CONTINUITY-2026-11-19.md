@@ -560,3 +560,54 @@ Jeżeli po poprawie R/B nadal będą paski geometryczne, problem trzeba szukać 
 Batch: `BATCH-TOUCHGFX-RENDERER-TRACE-2026-11-19.md`, commit `32fa9aa180c73dfd96727c5e7e385ff079084997`.
 
 Następny krok: zastosować poprawiony decoder do realnego firmware i wizualnie/testowo zweryfikować 002/003 oraz 011-014; następnie sprawdzić wszystkie 188 descriptorów pod kątem spójności pointer+size+format.
+
+
+
+# 2026-11-19 — CHECKPOINT: BITMAP DETOUR CLOSED / MAIN TASK RESUMED
+
+The recent bitmap-rendering investigation produced one critical correction:
+
+**ALL 188 bitmap pointers use the same load/file base:**
+`file_offset = runtime_pointer - 0x08010000`
+
+Firmware:
+- size 0x1F0000
+- descriptor table file 0x54450 / runtime 0x08064450
+- 20-byte TouchGFX BitmapData records
+- 188 records, IDs 000..187
+- RGB565 + optional A8
+
+The earlier `runtime - 0x08000000` conversion was wrong. It shifted every payload by 0x10000 and explains why some images looked correct while others were garbage only as an artifact of reading adjacent flash data. There is no per-group offset rule.
+
+Corrected visual verification:
+- 051/052/053 decode coherently;
+- 151/152 decode as the expected circular selector states;
+- 160/161 decode as the long lower UI/settings button pair;
+- 184/185 decode as the expected ON/OFF toggle pair.
+
+This bitmap result is now **baseline knowledge**. Do not return to atlas/extraction work unless a specific descriptor/rendering anomaly blocks a firmware call-site analysis.
+
+## MAIN TASK FROM HERE
+
+Highest priority:
+`051/052 -> all resource references -> widget/constructor -> pellet quantity model/register -> threshold/state`
+
+Immediate function:
+`FUN_0802DA54`
+
+Known upstream path:
+`ID328 -> CAN 0x3601 fuel remaining -> FUN_08031CCC -> percentage calculation -> FUN_0802DA54`
+
+Known:
+- ID328 = CAN 0x3601 fuel remaining [kg]
+- ID330 = CAN 0x3603 fuel reserve [kg]
+- ID327 = CAN 0x3740 unresolved
+- percentage = `(value_327 * 100) / value_328`
+
+Secondary targets:
+- 160/161 call-sites and parent/geometry/callback
+- 130..137 exact ID/state mapping
+- parameter -> callback -> model database -> active module -> binding -> widget
+- hidden UI-method dispatch around C33E/C5B4/424C4/CACC/CB04/CB2C where it intersects active UI paths
+
+Continue multi-pass analysis and persist every substantial checkpoint.
