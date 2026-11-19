@@ -1,3 +1,5 @@
+> **NOWY GŁÓWNY HANDOFF:** przeczytaj również `analiza/FW2213TK-2026-11-19/HANDOFF-NOWY-CHAT-2026-11-19.md`. Zawiera pełny kontekst, zamknięte korekty i aktualny punkt wznowienia 6-slot menu. Następnie przeczytaj MASTER i wszystkie batch-notes.
+
 # TeklaPelletCAN — START HERE — NOWY CHAT / AGENT
 Data: 2026-11-19
 Branch: ccr-be8a1bcb-5t76j0
