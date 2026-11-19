@@ -1282,3 +1282,55 @@ Równolegle obiekt +0x213 z FUN_080469D4 ma vptr DAT_080469E4 i przechowuje pare
 469E8 = Bitmap ID 14 -> 014.png 54x100.
 
 Pełny batch: BATCH-469E8-BITMAP-WRITER-VTABLE-TRACE-2026-11-19.md.
+
+
+# 39. 370A CALLBACK BOUNDARY — NOWY WYNIK MULTIPASS — 2026-11-19
+
+[FW] Sąsiednie wpisy tabeli: 3709→0x0801425C, 370A→0x0801AB7E, 370B→0x08015CCC, 370C→0x0801659E, 370D→0x08016614. Callback fields nie muszą wskazywać początku nazwanej funkcji.
+
+[FW] 0x0801425C leży wewnątrz FUN_0801417C (do ok. 0x080143DE); 0x0801659E i 0x08016614 leżą wewnątrz FUN_080164F4 (0x080164F4..0x080166B8); 0x08015CCC nie jest początkiem nazwanej funkcji. To jest twardy dowód, że pole callback/code może wskazywać wewnętrzny punkt większego bloku.
+
+[STRONG] 0x0801AB7E pozostaje nierozpoznanym wejściem pomiędzy FUN_08019462 a FUN_0802BDF0. Nie wolno nazywać go zwykłą funkcją. Trzeba odzyskać dispatcher/branch/continuation z raw BIN albo przez porównanie sąsiednich callbacków.
+
+Nowy model: parameter engine → callback/code 0x0801AB7E → dispatcher/internal entry → use/write RAM 0x20021FA6 → model notification → Home/469E8.
+
+# 40. 469E8 — REJESTRACJA ≠ UPDATE — 2026-11-19
+
+[FW] FUN_080469E8 ustawia vptr DAT_08046CC4, tworzy Bitmap child +0x4F, zapisuje ID 14 przez FUN_080307BC, pobiera active module przez FUN_080314BA i rejestruje obiekt przez FUN_080318B4.
+
+[FW] FUN_080318B4 jest registry timer/update, nie bindingiem parametru. FUN_080317AE później dispatchuje zarejestrowany obiekt przez vtable slot +0x50.
+
+Aktualny brak: DAT_08046CC4 + 0x50 → konkretny update method → model read/370A? → child +0x4F/resource ID.
+
+# 41. DWIE NIEZALEŻNE GRANICE
+
+Gałąź A:
+370A → RAM 0x20021FA6 → callback 0x0801AB7E → UNKNOWN DISPATCH.
+
+Gałąź B:
+active module → FUN_080318B4 → FUN_080317AE → DAT_08046CC4+0x50 → UNKNOWN UPDATE → 469E8 child +0x4F → Bitmap/resource.
+
+Bez dowodu nie łączyć ich bezpośrednio.
+
+# 42. PRIORYTET NASTĘPNEGO PRZEBIEGU
+
+1. Porównać callbacki 3709..370D i ich dokładne wejścia/wyjścia.
+2. Odzyskać raw boundary 0x0801AB7E.
+3. Odzyskać DAT_08046CC4 + 0x50.
+4. Prześledzić update 469E8.
+5. Znaleźć zmienny Bitmap ID.
+6. Dopiero wtedy zamknąć 370A→011/012/013/014.
+
+# 43. STATUS
+
+[FW] 370A = Boiler image selector, u8 1..3, RAM 0x20021FA6, snapshot raw 259→3, callback 0x0801AB7E.
+[FW] 469E8 = Bitmap ID 14 / asset 014.png 54x100.
+[FW] Bitmap writer = FUN_080307BC → child +0x26.
+[FW] 469E8 registration = FUN_080318B4; real runtime dispatch = FUN_080317AE → vtable +0x50.
+[STRONG] 370A→469E8 nadal niezamknięte.
+
+# 44. PUNKT STARTOWY NOWEGO AGENTA
+
+Nie zaczynaj od bitmap, CO1..CO4 ani ogólnego Home. Zacznij od §39–44 tego mastera, następnie wykonaj: callback comparison 3709..370D → 0x0801AB7E → DAT_08046CC4+0x50 → 469E8 update → variable Bitmap ID → 370A mapping.
+
+Jeżeli raw BIN nie jest dostępny, nie udawaj rekonstrukcji bajtów z decompiled.c. Kontynuuj drugi tor vtable/update i dokładnie oznacz brakujący raw region.
