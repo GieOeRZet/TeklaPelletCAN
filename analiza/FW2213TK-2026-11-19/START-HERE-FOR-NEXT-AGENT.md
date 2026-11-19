@@ -184,7 +184,7 @@ Nie twierdź:
 - +0x12B = numer CO,
 - +0x158 = numer CO,
 - 0x2105 na pewno tworzy N obiektów CO,
-- 370A 1/2/3 = bitmapy 011/012/013,
+- 370A 1/2/3 = zakres parametru; MAPOWANIE do bitmap 011..014 nadal NIEUDOWODNIONE,
 - FUN_08038ED0 = konstruktor WheelSelectorExtra,
 - SERIAL = runtime selector modelu.
 
