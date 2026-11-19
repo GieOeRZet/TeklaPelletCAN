@@ -265,3 +265,16 @@ Thus the window/background is assembled as a tiled/segmented structure:
 **112 + 114×N + 113**.
 
 The supplied screen is a visual reference for how the composed window looks; it is not authoritative for exact dimensions, colors, spacing, or repetition count. Exact geometry must still be taken from the direct-BIN resource dimensions and firmware construction code.
+
+
+## USER-CONFIRMED BITMAP 051/052 — PELLET BIN TILE — 2026-11-19
+
+User confirms that bitmap resources **051 and 052** are displayed on the **second tile from the left**, with the selected/used resource depending on the register that describes the amount/level of pellets in the hopper (pellet reservoir).
+
+Semantic interpretation to preserve:
+- location: second tile from the left;
+- controlling data: a register describing pellet quantity/level in the hopper;
+- resources: 051/052;
+- exact state-to-ID mapping (which of 051/052 corresponds to which pellet level/state) is not yet asserted unless confirmed by firmware call-site or further user evidence.
+
+Do not infer the exact threshold or register address from this note alone. The next firmware pass should trace references to resource IDs 051 and 052 and connect them to the pellet-quantity register/model value.
