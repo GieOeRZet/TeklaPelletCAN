@@ -769,3 +769,140 @@ Nie trzeba rozpracowywać każdego bajtu liniowo. Najpierw budować „kręgosł
 9. dopiero potem drobne funkcje i edge cases.
 
 Każdy kolejny duży commit ma zachowywać pełny stan projektu, a następnie dodawać nowe dowody i instrukcję kontynuacji. Nie tworzyć izolowanych notatek, które zmuszają kolejnego agenta do odtwarzania kontekstu.
+
+
+# 22. NOWY PUNKT KRYTYCZNY — STARTUP / UTWORZENIE GŁÓWNEGO OBIEKTU PANELU
+
+W dalszym trace po całym firmware znaleziono konkretny łańcuch tworzenia warstwy aplikacyjnej panelu.
+
+## 22.1 FUN_0805fd2a — utworzenie głównego obiektu UI/aplikacji
+
+FUN_0805fd2a() wywołuje:
+
+    FUN_0806024c(
+        DAT_0805ff38 + 8,
+        DAT_0805ff38 + 0xAB4,
+        DAT_0805ff38 + 0xAB0,
+        0x1E0,
+        0x110,
+        0, 0, 0
+    )
+
+Twarde:
+- 0x1E0 = 480,
+- 0x110 = 272.
+
+Czyli firmware ma jawnie zakodowaną rozdzielczość/obszar panelu 480×272 w ścieżce tworzenia obiektu.
+
+Po utworzeniu obiektu:
+- wywoływany jest vtable slot +0x6C z argumentami 0xC0000000, 0x10, 1, 1,
+- object+0x14 = 2,
+- object+0x10 = 10.
+
+## 22.2 FUN_0806024c — wejście aplikacji
+
+FUN_0806024c():
+1. tworzy/pobiera obiekt przez FUN_08060fd4(),
+2. wykonuje FUN_080561B0(),
+3. pobiera dwa obiekty przez FUN_0805444A() / FUN_08054444(),
+4. przekazuje je do FUN_080342B4(),
+5. wykonuje FUN_080391D6(0),
+6. zapisuje DAT_080602B4 do DAT_080602B8 (+4),
+7. ustawia globalny kontekst przez FUN_08061014(iVar1),
+8. jednorazowo tworzy główny obiekt aplikacyjny przez FUN_08061020(DAT_080602C0),
+9. przekazuje wynik do FUN_0800DD22(...),
+10. pobiera aktualny obiekt przez FUN_080314BA(),
+11. wywołuje na obiekcie vtable slot +0x4C.
+
+To pokazuje, że FUN_08061020 jest częścią jednorazowej inicjalizacji głównego obiektu aplikacyjnego.
+
+## 22.3 FUN_08061020 — skład głównego obiektu
+
+FUN_08061020(param_1) buduje strukturę obejmującą:
+- param_1,
+- pod-obiekty przy +0x14, +0x108, +0xA7FC,
+- główny obiekt modułu przy param_1 + 0x2A17.
+
+Następnie:
+- FUN_08037CA4(puVar1, param_1+0x2A70, param_1),
+- FUN_08036D60(param_1+0x2A70),
+- FUN_08037E9C(puVar1).
+
+Czyli wcześniej zidentyfikowany obiekt z +0x12B/+0x12C jest rzeczywiście tworzony w głównym obiekcie aplikacyjnym podczas inicjalizacji.
+
+## 22.4 Startup/UI hardware — FUN_0805fd78
+
+FUN_0805fd78() wykonuje m.in.:
+- FUN_080602CC() — konfiguracja,
+- FUN_0805FBB2() — konfiguracja kontrolera/display,
+- FUN_0806075E(...,1),
+- FUN_08060770(1),
+- FUN_0806069C(1),
+- FUN_08056B0C(),
+- FUN_0806089E(),
+- FUN_08060A14(),
+- FUN_08060A60(),
+- FUN_08060AFC(),
+- FUN_08060B6C(0x7D),
+- FUN_08060CB0(),
+- FUN_08018A9C(0x100,1).
+
+To jest mocny kandydat na łańcuch inicjalizacji sprzętu/display/TouchGFX, a nie logikę menu.
+
+## 22.5 FUN_0805FBB2 — ustawienia sprzętowe panelu
+
+W FUN_0805FBB2() występują jawne wartości związane z konfiguracją wyświetlania:
+- 0x3C3,
+- 0x3C0,
+- 0x110,
+- 0x11B,
+- 0x20A/20B,
+- 0x21C,
+- 0x120,
+- 0x28,
+- 0x2B.
+
+Nie przypisywać im jeszcze znaczeń X/Y/W/H bez rozpoznania struktur FUN_08060604 / FUN_080606C8. To jest następny trop do geometrycznej rekonstrukcji panelu.
+
+## 22.6 Wniosek dla repliki ESP
+
+Mamy teraz trzy rozdzielone warstwy:
+
+    FUN_0805fd78
+       ↓
+    hardware/display/TouchGFX init
+       ↓
+    FUN_0805fd2a
+       ↓
+    FUN_0806024c
+       ↓
+    FUN_08061020
+       ↓
+    główny obiekt aplikacyjny
+       ↓
+    FUN_08037CA4 / FUN_08037E9C
+       ↓
+    obiekt +0x12B/+0x12C
+       ↓
+    parameter engine / CAN / UI
+
+Dla własnego ESP trzeba odtworzyć te warstwy osobno:
+1. display geometry,
+2. root/application object,
+3. state/config,
+4. parameter engine,
+5. screen/widget tree.
+
+Nie kopiować architektury binarki mechanicznie — odtwarzamy zachowanie, ale te granice są ważne dla poprawnej repliki.
+
+## 22.7 Następne priorytety po tym odkryciu
+
+1. FUN_08060604 — ustalić strukturę parametrów geometrycznych.
+2. FUN_080606C8 — ustalić pola descriptorów display/widget.
+3. FUN_0805fd2a / FUN_0806024c — odzyskać root object i pierwszą warstwę ekranów.
+4. Trace vtable slot +0x4C po FUN_080314BA().
+5. Trace FUN_080561B0, FUN_080342B4, FUN_0805444A, FUN_08054444.
+6. Równolegle kontynuować DAT_08037B4C, DAT_0803C218, C064.
+7. Odnalezione geometrie łączyć z bitmapami web/img/panel/*.png tylko po potwierdzeniu źródła bitmapy.
+
+Nie traktować 0x3C0/0x3C3/0x20A/0x20B jako wymiarów widgetów bez dalszego trace.
