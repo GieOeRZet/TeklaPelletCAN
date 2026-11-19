@@ -132,3 +132,20 @@ Nota: `analiza/FW2213TK-2026-11-19/BATCH-UI-FRAGMENT-ALREADY-BUILDABLE-2026-11-1
 To jest moment, w którym można zacząć budować pierwszą działającą replikę UI zamiast tylko mapy rejestrów. Nie oznaczać jej jeszcze jako pixel-perfect.
 
 Następny cel: pełny rekord `widget -> parent -> X/Y/W/H -> TypedText/Bitmap -> visibility -> callback -> panel ID -> CAN` dla pierwszego elementu Home/Main.
+
+
+## NOWY KIERUNEK — IDENTYFIKACJA KOTŁA / WARIANT / GRAFIKA (2026-11-19)
+
+[FW] Odnaleziono trzy istotne parametry identyfikacyjne: 0x2125 Device type, 0x3664 soft. version, 0x3665 igneTouch boiler short name.
+
+[FW] Odnaleziono parametr 0x370A = Boiler image selector, u8, zakres 1..3, RAM 0x20021FA6, kod rejestracji 0x0801AB7E. W aktualnym zrzucie raw=259, czyli wartość 3 po kodowaniu flagi 256+n.
+
+[FW] Istnieje osobna warstwa wariantu sprzętowego: 0x3500 Main module type + 0x3502 CH expansion module type + 0x350B Profile number -> wybór całych zestawów struktur/pointerów. Nie mieszać tego z 0x2105.
+
+[FW] Strings firmware zawierają PASSWORD:, SERIAL:, PIN: %u i SERIAL: %u. Brak jeszcze call-chainu do konkretnego numeru seryjnego kotła. Nie twierdzić, że SERIAL = numer seryjny producenta bez dalszego dowodu.
+
+[PRIORYTET] Trace 0x370A -> UI/bitmap selector; 0x3664/0x3665 -> usages; SERIAL string call-sites; mapowanie 370A 1/2/3 -> konkretne bitmapy; następnie wariant Home/Main przez 3500/3502/350B.
+
+[RENDER] Nie wracać do projektowego mockupu. Następny render ma korzystać z dowodowych komponentów TouchGFX, TypedText, bitmap i geometrii 480x272; każdą niepewną część oznaczać jako inferencję i nie „upiększać” ekranu.
+
+Szczegóły: BATCH-IDENTYFIKACJA-KOTLA-FW-VARIANT-GRAFIKA-2026-11-19.md
