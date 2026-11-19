@@ -1621,3 +1621,77 @@ MODEL / HOME UPDATE
 
 Full raw pass: `BATCH-RAW-BIN-RECOVERY-469E8-47040-370A-CORRECTION-2026-11-19.md`.
 
+
+
+# 48. RAW CORRECTION — INTERNAL 0x121 = 0x370A; 0x158/0x11C = CASCADE — 2026-11-19
+
+The raw mapping table around `0x08037984` proves:
+`0x121 -> 0x370A`.
+
+This is the internal-index representation of the external Boiler image selector.
+
+The same raw table proves:
+- `0x158 -> 0x351A` = Cascade slaves number, 1..3
+- `0x11C -> 0x350C` = Is this device cascade master, 0..1.
+
+Therefore the previously recovered path:
+`FUN_0803E45C -> 0x158/0x11C -> FUN_08047040`
+is a **cascade UI path**, not the 370A path. It must be kept separate.
+
+## 48.1 47040 semantic closure
+
+`FUN_08047040` is a cascade selector:
+- selector 1/2/3 controls how many of four repeated components receive state byte +0x25,
+- enable is the cascade-master flag.
+
+This explains the 1..3 selector without invoking 370A.
+
+## 48.2 469E8 raw bitmap-child correction
+
+Raw `FUN_080469E8` sets resource ID 14 by calling `FUN_080307BC` with object:
+`parent + 0x13C`.
+
+Therefore:
+- resource ID 14 remains hard fact,
+- bitmap child = parent +0x13C,
+- old `+0x4F` attribution is withdrawn.
+
+## 48.3 370A raw data boundary
+
+`0x0801AB7E` is raw data/table, not Thumb code.
+
+The heterogeneous neighboring parameter fields now strongly support a generic handler/conversion/metadata field:
+- 3709 code,
+- 370A data,
+- 370B data,
+- 370C code,
+- 370D code.
+
+## 48.4 370A RAM reference
+
+No direct literal occurrence of absolute `0x20021FA6` was found in raw code, nor a MOVW/MOVT construction of that address. The storage is therefore likely reached through the generic parameter/configuration object rather than direct absolute access.
+
+## 48.5 Revised graph
+
+```
+external 0x370A
+      ↓
+internal index 0x121
+      ↓
+generic parameter engine [OPEN]
+      ├── storage 0x20021FA6 [KNOWN]
+      └── data handler 0x0801AB7E [KNOWN DATA]
+
+SEPARATE:
+0x351A / 0x350C
+      ↓
+FUN_0803E45C
+      ↓
+FUN_08047040
+      ↓
+four 469E8 composites
+      ↓
+Bitmap ID 14 at child +0x13C
+```
+
+The 370A -> Bitmap 011/012/013/014 mapping remains OPEN.
