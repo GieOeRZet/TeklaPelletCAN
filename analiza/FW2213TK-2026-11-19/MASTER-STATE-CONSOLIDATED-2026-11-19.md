@@ -1213,3 +1213,16 @@ To daje bardzo mocny model dolnego paska: 47244 + 47290[6] = 7 wizualnych stref.
 Górny obszar jest osobnym dużym kompozytem FUN_08047604. Konstruktor ma wiele childów, grupę 5 elementów stride 0xE4, grupę 5 tekstów stride 0x0C, cztery duże obiekty stride 0x54 o geometrii 480x200 oraz dodatkowe obiekty. Zatem 480x200 jest obszarem content, a nie grafiką kotła.
 
 Pełny batch: BATCH-HOME-SCREEN-ZONES-7x-BOTTOM-UPPER-WIDGET-TREE-2026-11-19.md.
+
+
+# 36. KOREKTA — 47290 NIE JEST DOLNYM PASKIEM — 2026-11-19
+
+Ponowna analiza pełnego `FUN_08047334` wykazała, że sześć slotów `FUN_08047290` jest ustawianych **pionowo**. Dla 6 pozycji wartości Y wynikają z kodu jako około `50,84,118,152,186,220` px. To wyklucza wcześniejszą interpretację `47244 + 47290[6] = 7 poziomych stref dolnego paska 480x72`.
+
+Wcześniejszy zapis tej korelacji zostaje anulowany. `47290` jest obecnie klasyfikowane jako **sześciopozycyjna lista/menu/selektor**, bez przypisania do konkretnego ekranu.
+
+Również `47604` zostało rozstrzygnięte jako komponent wykresowy: 5 serii/punktów, normalizacja X/Y, `FUN_08047C1A`, oraz cztery przesuwane obszary 480x200. Nie jest to grafika kotła ani dolny pasek.
+
+Nowy ciekawy komponent to `47E54 -> 2DF80`. `2DF80` tworzy wieloelementowy kompozyt małych elementów rozmieszczonych w dwóch rzędach, a `47E54` ustawia dodatkowo TypedText `0x1D4=468` przy X=135, Y=60, W=200. Semantyka tego komponentu pozostaje otwarta.
+
+Pełny batch korekty: `BATCH-HOME-47290-ROLE-CORRECTION-2026-11-19.md`.
