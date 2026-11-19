@@ -232,7 +232,7 @@ Kod robi:
 Konkretnie w kodzie:
 `sVar3 = table_base + (group_index << 2) + (byte)(object+0x12C) - 1`.
 
-To jest **bezpośredni kod implementujący count=4 / instance 1..4**.
+To jest **bezpośredni kod implementujący count=4 / instance 1..4**. Uwaga korekcyjna: starsza notatka C064 podawała 31 pozycji dla tej tabeli; bieżący `decompiled.c` ma literalnie `iVar2 = 0x31` w `FUN_080370C0/0803716E`, czyli **49** pozycji. Aktualny decompiled.c ma pierwszeństwo.
 
 Dalsza część mappera ma osobny obszar singletonów:
 - pierwsza część: **49 grup po 4**,
