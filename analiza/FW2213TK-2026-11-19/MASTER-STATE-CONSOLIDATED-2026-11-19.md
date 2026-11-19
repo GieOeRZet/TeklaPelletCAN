@@ -1695,3 +1695,187 @@ Bitmap ID 14 at child +0x13C
 ```
 
 The 370A -> Bitmap 011/012/013/014 mapping remains OPEN.
+
+
+# 49. RAW MULTIPASS — 0x121 → 0x370A → 0x20021FA6 → VARIABLE BITMAP 11..13 — 2026-11-19
+
+This section **supersedes the remaining OPEN parts of §48 concerning the 370A runtime path**.
+
+## 49.1 Internal 0x121 is definitively 0x370A
+
+Raw mapping table around 0x08037934 is a sequence of 16-bit internal/external parameter pairs.
+
+Exact entry:
+- 0x08037984 = 0x0121
+- 0x08037986 = 0x370A
+
+[FW] Therefore internal model index 0x121 is the runtime representation of external Boiler image selector 0x370A.
+
+The same table independently proves:
+- 0x158 -> 0x351A = Cascade slaves number,
+- 0x11C -> 0x350C = Cascade master flag.
+
+Therefore 0x158/0x11C remains a separate cascade branch.
+
+## 49.2 FUN_08036FF2 is the generic resolver
+
+FUN_08036FF2:
+1. reads the current object's +0x12C instance;
+2. searches the internal-index mapping table;
+3. resolves 0x121 to external 0x370A;
+4. combines the mapped ID with the instance component;
+5. passes the resolved external ID to FUN_08037094.
+
+[FW] This closes the internal-index -> external-parameter namespace boundary.
+
+## 49.3 FUN_08037094 -> FUN_080115F6 -> runtime record
+
+FUN_08037094 passes the resolved external ID to FUN_080115F6.
+
+FUN_080115F6 searches runtime records with stride 0x2C. The relevant fields are:
+- +0x08 = external/CAN index,
+- +0x0C = backing storage pointer,
+- +0x10 = type.
+
+The lookup then dereferences record +0x0C to obtain the current value.
+
+FUN_08014734 extracts the value according to type. For the 370A u8 parameter, the resulting value is consumed as a byte.
+
+[FW] This proves that 370A reaches its backing RAM through the generic record engine.
+
+## 49.4 370A registration closes the RAM address
+
+The raw registration sequence for 370A contains:
+
+movw r0,#0x16BA
+adds r2,r4,r0
+movw r1,#0x370A
+...
+BL FUN_0801143C
+
+Inside FUN_0801143C:
+- record +0x08 receives the external ID,
+- record +0x0C receives r2,
+- record +0x10 receives the type.
+
+The relevant configuration base is the literal 0x200208EC.
+
+Therefore:
+
+0x200208EC + 0x16BA = 0x20021FA6
+
+[FW] The exact storage chain is now:
+
+0x121 -> 0x370A -> runtime record -> 0x20021FA6 -> u8 value.
+
+No direct MOVW/MOVT reference to 0x20021FA6 is necessary.
+
+## 49.5 0x0801AB7E is no longer part of the 370A runtime chain
+
+Raw bytes at 0x0801AB7E are pixel/table-like data, not executable Thumb code.
+
+More importantly, the complete runtime path above reaches 0x20021FA6 through the record engine without using 0x0801AB7E.
+
+[CORRECTION] The previous interpretation of 0x0801AB7E as a 370A callback/handler is withdrawn.
+
+Do not:
+- treat 0x0801AB7E as a normal function,
+- put it into the 0x2C runtime record,
+- use it as the 370A -> UI bridge.
+
+Its independent data/resource provenance remains OPEN.
+
+## 49.6 UI directly requests internal 0x121
+
+FUN_0803CB04 contains the exact call sequence:
+
+ldr r0,[r4,#0x8]
+movw r1,#0x121
+BL FUN_08036FF2
+UXTB r1,r0
+ldr r0,[r4,#0xC]
+BL FUN_0803CACC
+
+[FW] The visual component therefore reads the Boiler image selector through the same generic 0x121 resolver.
+
+## 49.7 FUN_0803CACC closes the variable Bitmap/resource selection
+
+Raw FUN_0803CACC:
+
+adds r1,#0xA
+strh r1,[sp]
+addw r0,r0,#0x85C
+mov r1,sp
+BL FUN_080307BC
+
+Therefore:
+- resource ID = 370A value + 10,
+- target Bitmap object = UI parent +0x85C,
+- FUN_080307BC writes the resource ID.
+
+This is direct executable proof.
+
+## 49.8 Exact 370A -> resource mapping is now CLOSED
+
+370A metadata:
+- u8,
+- range 1..3,
+- name: Boiler image selector.
+
+Code:
+resource_id = value + 10.
+
+Therefore:
+
+| 370A value | resource ID |
+|---:|---:|
+| 1 | 11 |
+| 2 | 12 |
+| 3 | 13 |
+
+[FW] The earlier suspected mapping 1->011, 2->012, 3->013 is now proven by executable code, not inferred from filenames.
+
+Resource 14 remains separate: FUN_080469E8 independently constructs a Bitmap with fixed ID 14. Do not merge that branch with 370A.
+
+## 49.9 New complete architecture
+
+Boiler image path:
+
+0x370A
+  -> internal 0x121
+  -> FUN_08036FF2
+  -> mapping table
+  -> FUN_08037094
+  -> FUN_080115F6
+  -> record +0x0C
+  -> 0x20021FA6
+  -> u8 value 1..3
+  -> FUN_0803CB04
+  -> FUN_0803CACC
+  -> +10
+  -> FUN_080307BC
+  -> Bitmap object +0x85C
+  -> resource 11..13
+
+Separate cascade path:
+
+0x351A / 0x350C
+  -> FUN_0803E45C
+  -> FUN_08047040
+  -> four 469E8 composites
+  -> fixed resource 14
+
+## 49.10 Next attack
+
+The 370A value-to-resource bridge is closed. Do not spend another pass proving it.
+
+Next:
+1. identify the exact C++ class/vtable behind FUN_0803CB04;
+2. recover constructor/parent path for Bitmap object +0x85C;
+3. recover direct BitmapData/resource-table proof for resource IDs 11, 12, 13 and match them to 011/012/013;
+4. recover X/Y/W/H and visibility for +0x85C;
+5. determine the independent role of resource 14;
+6. resolve 0x0801AB7E only as a separate data/resource question.
+
+Full batch:
+BATCH-RAW-MULTIPASS-121-370A-UI-BITMAP-2026-11-19.md
