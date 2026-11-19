@@ -673,3 +673,29 @@ Do not re-prove 370A -> 11/12/13.
 New [FW]/[STRONG] finding: FUN_080424C4 is also absent from functions.txt and lies inside the gap between FUN_0804204A (ends 0x08042116) and FUN_0804272C. Therefore C33E/C5B4/424C4/CACC/CB04/CB2C form a recurring hidden UI-method recovery problem.
 
 NEXT: map known recovered methods to function-list gaps -> recover nearby method-table/function-pointer storage -> test C5B4/C33E/424C4/CB04/CB2C membership -> then decode +0x84C and Bitmap cluster.
+
+
+# CURRENT OVERRIDE — PASS 5M — 0x7A / +0x8E0 GEOMETRY CORRECTION
+
+New [DATA]/[FW]/[STRONG] checkpoint:
+
+- `FUN_0803C5B4` sets `+0x8E0` to resource `0x7A`.
+- `0x7A = 122` decimal.
+- Extracted firmware bitmap `122.png` is `35x37`.
+- Therefore `+0x8E0` at X=398 has right edge X=433, **not 480**.
+- The earlier `398+82=480` edge-alignment hypothesis is withdrawn.
+
+[STRONG] `+0x8E0` is a small right-side UI element with runtime Y; exact semantic/icon identity remains OPEN.
+
+## NEXT — DO NOT RESTART
+
+1. Enumerate every `+0x8E0` resource/X/Y/visibility/clipping mutation.
+2. Enumerate `+0x888` and `+0x8B4` mutations.
+3. Decode `FUN_080424C4` / `+0x84C`.
+4. Recover indirect method-table/function-pointer dispatch to `FUN_0803C5B4`.
+5. Compare `39A48/39B30/39C18`.
+6. Recover runtime BitmapData records for 11/12/13.
+
+The closed 370A -> internal 0x121 -> storage 0x20021FA6 -> value 1..3 -> +0x85C -> resources 11/12/13 chain must NOT be re-proved.
+
+Continue multi-pass before reporting. Persist the next substantial checkpoint.
