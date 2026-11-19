@@ -611,3 +611,61 @@ Secondary targets:
 - hidden UI-method dispatch around C33E/C5B4/424C4/CACC/CB04/CB2C where it intersects active UI paths
 
 Continue multi-pass analysis and persist every substantial checkpoint.
+
+
+
+# 2026-11-19 — RAW MULTIPASS CHECKPOINT: HOPPER BREAKTHROUGH
+
+The main reverse-engineering task has moved forward substantially.
+
+## HARD RAW-BIN FACTS
+
+### Mapping table
+Around runtime `0x08037984`:
+- internal 0x147 -> CAN 0x3601
+- internal 0x148 -> CAN 0x3600
+- internal 0x149 -> CAN 0x3603
+- internal 0x14A -> CAN 0x3602
+
+### FUN_08031CCC
+The end of the function contains:
+- `MOVW r7,#0x147`
+- lookup 0x147 -> fuel remaining
+- lookup 0x148 -> tank capacity
+- `100 * remaining / capacity`
+- lookup 0x14A -> reserve flag
+- `UXTB` reserve flag
+- BL to 0x0802DA54
+
+Exact semantic call:
+`FUN_0802DA54(context, fuel_percent, reserve_flag)`
+
+### FUN_0802DA54
+Raw 176-byte disassembly (function table reports 172 B; final POP is outside the reported size boundary):
+- `param_3` stored at +0x2C3
+- reserve=0 -> resource 0x33 / bitmap 051 on +0x5A8
+- reserve!=0 -> resource 0x35 / bitmap 053 on +0x5A8
+- percentage math updates +0x5DE/+0x5DA/+0x966/+0x96A
+- common refresh calls FUN_08032316 for +0x5A8 and +0x5D4
+
+### 052
+Constructor/setup raw trace:
+- +0x5A8 and +0x5D4 are initialized as Bitmap objects with resource 0xFFFF.
+- setup function beginning at 0x0802C294 assigns resource 0x34 / bitmap 052 to +0x5D4.
+
+### Interpretation
+This strongly establishes a two-layer hopper component:
+- fixed 052 layer
+- dynamic 051/053 layer
+
+The percentage is NOT a simple 051↔052 bitmap threshold inside FUN_0802DA54. The reserve flag controls the 051/053 branch; percentage is used for geometry.
+
+## OLD NOTE SUPERSEDED
+
+Do not reuse:
+`ID328 -> 0x3601, ID329 -> 0x3600, ID330 -> 0x3603`
+
+Use the raw mapping table above.
+
+## NEXT
+Resolve exact overlap/geometry of +0x5A8/+0x5D4 and continue parallel UI/CAN/model traces. Avoid another bitmap detour.
