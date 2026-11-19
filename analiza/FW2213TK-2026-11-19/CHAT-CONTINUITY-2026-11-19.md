@@ -463,3 +463,52 @@ Ostatni punkt:
 **051/052 → resource references → widget → pellet quantity parameter → threshold/state.**
 
 Nie ponawiać ekstrakcji 188 bitmap.
+
+
+# 22. NOWY TOR — TOUCHGFX RENDERER / BITMAPDATABASE — 2026-11-19
+
+Użytkownik nakazał kontynuować analizę firmware panela TouchGFX oraz po zakończeniu zaktualizować plik ciągłości rozmowy na GitHub.
+
+### Twarde ustalenia
+W `firmware/FW2213TK-ghidra/strings.txt` są bezpośrednie ślady skompilowanego TouchGFX:
+- `touchgfx/framework/source/touchgfx/Bitmap.cpp`
+- assert `Bitmap database has not been initialized.`
+- `touchgfx/framework/source/platform/driver/lcd/LCD16bpp.cpp`
+- assert `bitmap.getFormat() != Bitmap::RGB888 && "RGB888 is not supported on 16 bit displays"`
+- `HAL.cpp` i inne elementy frameworka.
+
+Publiczna dokumentacja TouchGFX 4.10 potwierdza, że stary `BitmapData` ma dokładnie 20 B: data + extraData + width + height + solidRect x/y/w/h, przy czym 3-bitowy format jest upakowany w końcowych bitach `solidRect_height`. To odpowiada dokładnie rekordom naszego `FW2213TK.bin`.
+
+### Krytyczne wyjaśnienie R/B
+Obecny extractor używał Pillow:
+`Image.frombytes("RGB", ..., "raw", "RGB;16")`.
+
+Test kontrolowany wykazał:
+- firmware RGB565 `0xF800` = czerwony;
+- Pillow `RGB;16` dla little-endian bajtów tego słowa daje niebieski;
+- Pillow `BGR;16` daje czerwony;
+- `0x001F` analogicznie zamienia czerwony/niebieski;
+- `0x07E0` pozostaje zielony.
+
+Zatem obserwowane przez użytkownika „burner czerwony/orange -> wygenerowany niebieski” jest zgodne z R/B swap w obecnym dekoderze Pillow. Nie jest to dowód na złą bazę ani alternatywny codec.
+
+### Renderer path
+TouchGFX `LCD16bpp` ma `drawPartialBitmap` oraz `blitCopy(sourceData, sourceFormat, ... alpha, hasTransparentPixels)`; renderer wykonuje kopiowanie/blending do framebuffer. `extraData` jest alpha/CLUT zależnie od formatu.
+
+Nie ma obecnie podstaw do hipotez QOI/paleta/RGB888 dla naszych 188 rekordów.
+
+### Otwarte
+R/B jest wyjaśnione. Nadal trzeba ustalić źródło zgłaszanych pasków/„rozjechanych” przejść i potwierdzić dokładną ścieżkę rendererów w dekompilacji.
+
+Nie zakładać jeszcze, że `FUN_08001ce8` jest BitmapDatabase — to hipoteza do potwierdzenia strukturą i referencjami.
+
+### Nowy batch
+`analiza/FW2213TK-2026-11-19/BATCH-TOUCHGFX-RENDERER-TRACE-2026-11-19.md`
+commit: `fc952b6ed32729e51e776a608a983ccbb699c9f0`
+
+### Następne kroki
+1. jawny decoder RGB565 przez maski bitowe;
+2. zachować A8 osobno;
+3. test 011-014 oraz 002/003;
+4. namierzyć w dekompilacji odpowiedniki Bitmap::drawPartialBitmap, LCD16bpp::blitCopy, getData/getExtraData/getFormat;
+5. dopiero potem poprawić extractor i regenerować 000..187.
