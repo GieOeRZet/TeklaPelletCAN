@@ -804,3 +804,53 @@ oraz
 - DAT_08046CC4 ≠ udowodniony vtable.
 - 0x158/0x11C ≠ 370A.
 - nie mapować 370A na 011/012/013/014 bez twardego call-site.
+
+
+
+# 2026-11-19 — LATEST HANDOFF: BITMAP BASE FIXED, MAIN TASK RESUMED
+
+## IMPORTANT
+The bitmap extraction detour is complete. Do NOT restart bitmap extraction.
+
+Universal correct mapping:
+`file_offset = runtime_pointer - 0x08010000`
+
+The wrong `-0x08000000` mapping was the cause of the earlier striped/garbage images. This is one global correction, not a per-bitmap/per-region offset.
+
+The 188-resource inventory is therefore considered stable:
+- 000..187
+- RGB565 + optional A8
+- descriptor table 0x54450
+- stride 0x14
+- firmware size 0x1F0000
+
+## START WORK HERE
+
+Primary target:
+`051/052 -> resource references -> widget/constructor -> pellet quantity model/register -> state/threshold`
+
+Immediate function:
+`FUN_0802DA54`
+
+Known upstream:
+- panel ID 328 -> CAN 0x3601 fuel remaining [kg]
+- panel ID 330 -> CAN 0x3603 fuel reserve [kg]
+- panel ID 327 -> CAN 0x3740 unresolved
+- `(value_327 * 100) / value_328 -> FUN_0802DA54`
+
+Recover the full body of FUN_0802DA54 before making a threshold claim.
+
+Secondary:
+- 160/161 -> call-site/parent/geometry/callback
+- 130..137 -> exact four positions + ON/OFF state mapping
+- continue parameter/model/binding/widget chain
+- hidden UI method dispatch only where relevant
+
+## CLOSED / DO NOT RE-DISCOVER
+- 188 bitmap record count and descriptor structure
+- universal bitmap base 0x08010000
+- RGB565/A8 storage and TouchGFX pixel-loop behavior
+- 47290 = vertical six-slot selector
+- 056/057 != 151/152
+- 160/161 = lower configuration/settings button
+- 370A closed chain
