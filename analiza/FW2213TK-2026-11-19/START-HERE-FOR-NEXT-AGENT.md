@@ -149,3 +149,15 @@ Następny cel: pełny rekord `widget -> parent -> X/Y/W/H -> TypedText/Bitmap ->
 [RENDER] Nie wracać do projektowego mockupu. Następny render ma korzystać z dowodowych komponentów TouchGFX, TypedText, bitmap i geometrii 480x272; każdą niepewną część oznaczać jako inferencję i nie „upiększać” ekranu.
 
 Szczegóły: BATCH-IDENTYFIKACJA-KOTLA-FW-VARIANT-GRAFIKA-2026-11-19.md
+
+## DUŻY BATCH — TOŻSAMOŚĆ KOTŁA / CUSTOM TOUCHGFX / WARIANT GRAFIKI (2026-11-19)
+Nota: BATCH-DUZA-TOZSAMOSC-KOTLA-TOUCHGFX-WARIANT-GRAFIKA-2026-11-19.md
+[FW] 0x2125 Device type = 0x3B9BDB71; RAM 0x20022088.
+[FW] 0x3665 igneTouch boiler short name = 0x54450000; RAM 0x20008D4C. Hipoteza: bajty 54 45 = TE, ale nie utożsamiać jeszcze TE z Tekla.
+[FW] 0x3664 soft. version: default 2213, snapshot 2118; RAM 0x200114E8. Nie utożsamiać automatycznie nazwy FW2213TK z bieżącą wartością.
+[FW] 0x370A Boiler image selector: 1..3, aktualnie raw 259 -> wartość 3; RAM 0x20021FA6.
+[FW] 0x3500/3502/350B wybierają cały pakiet wariantu struktur, nie tylko grafikę.
+[FW] Prawdziwy custom source trace: C:\Estyma\igneoTOUCH\app\nasze\igneoTFT\gui\src\components\WheelSelectorExtra.cpp, assert extraTextIndex < NUMBER_OF_EXTRA_TEXTS.
+[HYPOTHESIS] FUN_08038ED0 występuje dwa razy w kandydacie Home/Main (+0xA5FC, +0xA628) i może być konstruktorem WheelSelectorExtra; wymagany vptr proof.
+[PRIORYTET] Pionowy trace: 0x370A -> Bitmap ID -> widget -> geometry; oraz vptr root+0xA5FC/+0xA628 -> WheelSelectorExtra.
+[PRIORYTET] Następnie 0x2125/0x3665 -> wariant UI. SERIAL zostawić na później, dopóki nie ma call-chainu.
