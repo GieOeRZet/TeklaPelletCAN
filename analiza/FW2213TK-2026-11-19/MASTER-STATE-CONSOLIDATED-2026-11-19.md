@@ -2712,3 +2712,66 @@ r1 = parent + 0x5AE
 - ustalić czy jest to crop, animation, frame selection czy inny mechanizm.
 
 Bez tego nie nazywać +0x5DA „crop Y” ani „progress field” jako faktu.
+
+
+---
+
+# 2026-11-20 — MULTIPASS ANIMATION ENGINE / ACTUATOR MAP
+
+Batch: `analiza/FW2213TK-2026-11-20/BATCH-ANIMATION-ENGINE-AND-ACTUATOR-MAPS-2026-11-20.md`
+Commit: `a53e2cebf4e9dd901185d27ba7dc9bcf9cb1f1f1`
+
+## NEW [FW] — wspólny silnik animacji
+
+Potwierdzone procedury:
+- `FUN_0803079A`: +0x30 = first resource, +0x32 = last resource
+- `FUN_080307AE`: +0x34 = tick count, +0x35 = frame counter
+- `FUN_08030708`: stan kierunku/enable w +0x36/+0x37
+- `FUN_08030640`: okresowy krok; przechodzi resource +0x26 pomiędzy +0x30 i +0x32 i instaluje klatkę przez `FUN_080307BC`
+
+To zamyka wcześniejszą niepewność: te pola są rzeczywistym mechanizmem animacji w tej rodzinie obiektów.
+
+## [FW] 138–143 — pompa
+
+W wielu konstruktorach występuje:
+`FUN_0803079A(object,+0x8A,+0x8F)` = zakres resource 138..143.
+Powtarzalne wystąpienia: 0x080426F4, 0x08044CE6, 0x0804C618, 0x0804C994, 0x0804CC9C, 0x0804CF68, 0x0804D214, 0x0804D528, 0x0804D83C, 0x0804DB50.
+
+[STRONG] To jest współdzielona rodzina animacji sześciu klatek; zgodna z użytkownikową identyfikacją pracującej pompy. Nie zamykamy jeszcze, które wystąpienia są CO/CWU/Home.
+
+## [FW] 105–107 — mieszacz
+
+`FUN_0803C4C4` ustawia 105 i 107. `FUN_0803C550(state)` przełącza:
+- state 1 -> 106
+- state 2 -> 107
+- baza -> 105
+
+Caller `FUN_0803CBD6` pobiera parametr panelu 0x29 i przekazuje jego wartość do dispatchera `FUN_0803CA6E`.
+
+[STRONG] 106/107 są kierunkowymi stanami mieszacza; open/close nadal wymaga rozstrzygnięcia wartości 0x29.
+
+## [FW] Sześciokanałowy agregat animacji
+
+`FUN_08043954(index,enable)` wybiera:
+- 0 -> +0x948
+- 1 -> +0x90C
+- 2 -> +0x984
+- 3 -> +0x9C0
+- 4 -> +0x9FC
+- 5 -> +0xA38
+
+W konstruktorze `0x08042EEC` zamknięto zakresy:
+- +0x90C = 36..38
+- +0x948 = 40..42
+- +0x984 = 65..67
+- +0x9C0 = 8..10
+- +0x9FC = 58..59
+- +0xA38 = nadal OPEN
+
+[STRONG] To jest firmware'owy sześciokanałowy mechanizm animacji/actuator icons. Użytkownikowe „podajnik, ruszt, grzałka, wentylator” pasuje do tej rodziny, ale mapowanie nazw do indeksów wymaga kolejnego trace.
+
+[OPEN]
+- 36..44: zamknięte 36..38 i 40..42; 43/44 nie są jeszcze przypisane do tego samego engine.
+- 138..143: semantyka pompy zamknięta na poziomie asset family, ale ekran/instancja nadal OPEN.
+- 8..10: zakres animacyjny zamknięty; nazwa „wentylator” = STRONG.
+- 105..107: stan mieszacza zamknięty; kierunek open/close OPEN.
