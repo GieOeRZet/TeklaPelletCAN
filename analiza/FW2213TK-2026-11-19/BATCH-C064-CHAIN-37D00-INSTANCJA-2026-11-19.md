@@ -129,3 +129,14 @@ Nie będziemy udawać konkretnego caller-a bez odzyskania tej warstwy.
 Nie wracamy do geometrii UI.
 Nie przywracamy wycofanego tropu 0x08042146.
 Nie traktujemy 0x2105 jako bezpośredniego settera +0x12C bez dowodu.
+
+
+## Konsolidacja dalszego trace — 2026-11-19
+
+Potwierdzono wspólną ścieżkę Heating dla klas +0x12B=1..4: FUN_0803E714 -> FUN_0803EFDA(param_1, DAT_0803EEC0+0x62, 0x0C) -> 12 kolejnych 16-bitowych ID -> FUN_08036FF2(context,id) -> widget. Przy +0x158 != 0 dochodzi 11 kolejnych ID z DAT_0803EEC0+0x6E. +0x158 jest osobnym gate'em wariantu/UI, nie numerem obwodu.
+
+Znane rodziny count=4: 0x2032..0x2035 (CH comfort temperature), 0x2048..0x204B (CH eco temperature), 0x2064..0x2067 (CH program). Engine wykonuje base+instance-1, więc mechanizm CO1..CO4 jest rzeczywisty, ale nie dowodzi jeszcze źródła liczby aktywnych obwodów.
+
+DAT_0804107C/08040FC2 sklasyfikowano jako Test I/O (pompy/mieszacze CO1..CO4), nie jako źródło C064. Aktualny brakujący łańcuch: unknown indirect caller/vtable -> C064(param_1,param_2) -> DAT_0803C218[param_2] -> class 1..4 -> +0x12B -> D00 -> +0x12C -> instance-aware engine.
+
+Najcenniejszy brakujący artefakt: surowy eksport 0x0803EEC0..0x0803F008, 0x0803C218..0x0803C283 oraz vtable 0x08038694/98/9C.
