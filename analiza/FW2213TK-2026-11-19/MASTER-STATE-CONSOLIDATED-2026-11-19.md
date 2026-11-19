@@ -2241,3 +2241,42 @@ Keep 0x158/0x11C cascade branch and resource 14 separate from 370A unless a new 
 
 Latest previous MASTER commit: `972e39e85170e8c821cf60eaa96a2b6410d41dd4`.
 Latest previous batch: `2551d0b130ba5b051d3bb6ab103d9878ffb5f344`.
+
+
+# PASS 5 — HIDDEN UI METHOD CLUSTER — 2026-11-19
+
+Batch:
+`analiza/FW2213TK-2026-11-19/BATCH-METHOD-CLUSTER-C5B4-CACC-CB2C-2026-11-19.md`
+
+## New [FW]/[STRONG] finding
+
+Canonical `functions.txt` shows:
+- `FUN_0803C550` starts at 0x0803C550 and has size 100 bytes,
+- therefore ends exactly at 0x0803C5B4,
+- but `0x0803C5B4` has no own functions.txt entry even though raw analysis identifies real code there.
+
+Likewise key recovered procedures `FUN_0803CACC`, `FUN_0803CB04`, and `FUN_0803CB2C` do not appear as normal entries in functions.txt.
+
+C33E has the same class of problem: `FUN_0803C284` ends at 0x0803C312, next listed function is 0x0803C4C4, while raw analysis independently recovers `FUN_0803C33E` inside that gap.
+
+This means the current C33E/C5B4/CB04/CB2C area contains a **hidden/unrecognized method cluster** relative to the automatic Ghidra function list.
+
+## Interpretation
+
+[STRONG] This does not yet prove a C++ vtable slot. It does, however, strongly explain why:
+- direct BL scans miss C5B4,
+- literal function-pointer scans may miss C5B4,
+- object methods can exist outside the Ghidra call graph.
+
+The next dispatch attack should therefore search the **hidden method cluster and method-table/function-pointer storage**, not only literal BL targets.
+
+## Current continuation
+
+1. Recover exact boundaries of C33E/C5B4/CACC/CB04/CB2C and neighboring unrecognized procedures.
+2. Search nearby/associated method-table or function-pointer storage.
+3. Test whether C5B4 is an indirect target.
+4. Decode FUN_080424C4/+0x84C.
+5. Enumerate all mutations of +0x85C/+0x888/+0x8B4/+0x8E0.
+6. Compare 39A48/39B30/39C18 only after the method cluster is understood.
+
+Do not reopen the closed 370A -> 11/12/13 chain.
