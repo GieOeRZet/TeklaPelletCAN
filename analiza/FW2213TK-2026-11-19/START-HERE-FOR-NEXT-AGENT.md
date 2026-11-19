@@ -83,3 +83,19 @@ Oznaczaj: [FW], [DATA], [STRONG], [HYPOTHESIS].
 Każdą korektę wcześniejszego wniosku zapisz jawnie.
 Nie analizuj pojedynczych rejestrów w izolacji, jeśli można zbudować pełny łańcuch.
 Najważniejszy most: prawdziwy projekt TouchGFX producenta -> zdekompilowany firmware -> konkretne widgety -> zasoby/geometria -> parametry CAN.
+
+## NAJNOWSZY BATCH — 2026-11-19
+Nowa nota: `analiza/FW2213TK-2026-11-19/BATCH-UI-CO2-SCREEN-SIZE-OBJECT-CHAIN-2026-11-19.md`
+
+[FW] Utrwalony łańcuch UI:
+`raw 0x46D2C / runtime 0x08056D2C -> 0x080414BA -> global 0x20024814 -> +0x12A=2 -> 0x0805D948 -> 0x080612E0 -> child this+0x48 -> geometry 0,0,480,272`.
+
+[FW] `0x08030358` jest już rozpoznanym helperem `X,Y,W,H`; nie traktować geometrii jako nierozwiązanej.
+
+[STRONG] Następny cel to odzyskanie vptr/parent-child dla `this+0x48` i właściciela komponentu CO2, a nie ponowna analiza rejestrów.
+
+[CORRECTION] Nie utożsamiać +0x12B z numerem CO; w `0x0805D948` wybiera szersze typy/teksty (BIG/STD/MINI/Test pompy). Instancja parametrów nadal jest w +0x12C.
+
+Kontynuacja:
+`0x08056D2C -> 0x0805D948 -> 0x080612E0`
+i dalej: `0x080313A4, 0x080314BA, 0x08030358, 0x0804272C, 0x080347DC` -> vptr -> parent/child -> TypedText/Bitmap -> callback -> parametr.
