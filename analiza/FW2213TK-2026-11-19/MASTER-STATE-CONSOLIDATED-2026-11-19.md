@@ -991,3 +991,45 @@ Od razu:
 
 Cel:
 **pierwszy pełny, dowodowy widget oryginalnego Home/Heating od C++/firmware aż do assetu, geometrii i źródła danych.**
+
+
+---
+
+# 31. NOWY WYNIK — CO2 / 0x080612E0 / GRANICA UI ↔ MODEL — 2026-11-19
+
+[FW] Kontynuacja łańcucha:
+`CO2 0x08056D2C -> 0x0805D948 -> 0x080612E0`.
+
+[FW] `FUN_080314BA()` nie jest kolejnym konstruktorem UI. Jest wcześniej potwierdzonym accessorem aktywnego obiektu:
+`FUN_080314BA() -> *DAT_08031A8C`.
+
+[FW] `FUN_080612E0` wykonuje BL m.in. do:
+`0x080393B2, 0x08030354, 0x08030358, 0x08039474, 0x080307BC, 0x080314BA, 0x08027DEC, 0x080313A4, 0x08039424, 0x08031426, 0x0804272C, 0x080347DC, 0x0803A0F8`.
+
+[FW] `0x08030358` = helper geometrii X/Y/W/H, a `this+0x48` dostaje `0,0,480,272`.
+
+[STRONG] `FUN_080313A4(object, typedTextId)` jest setterem/konfiguratorem pola tekstowego: komponent CO1 wywołuje go z `object=r4+0xA4, id=0x39` (TypedText 57 = „Ogrzewanie 1”), a CO2 analogicznie z `id=0x3A` (TypedText 58 = „Ogrzewanie 2”).
+
+[STRONG] Granica UI/model nie przebiega dopiero po `0x080612E0`. Wewnątrz tego łańcucha występują równocześnie:
+- konfiguracja child/widgetów i geometria,
+- dostęp do aktywnego obiektu modelu przez `FUN_080314BA`,
+- pola obiektu `+0x12A/+0x12B/+0x12C`.
+
+Właściwy model:
+```
+CO2 0x08056D2C
+  -> 0x0805D948
+      -> 0x080612E0
+          -> UI child +0x48 / geometry 0,0,480,272
+          -> TypedText/config helpers
+          -> FUN_080314BA() -> active model object
+          -> dalsze value/visibility helpers
+```
+
+[CORRECTION] Nie traktować `FUN_080314BA` jako widgetu ani kolejnego konstruktora. Nie nadawać jeszcze nazw klas TouchGFX funkcjom `0x0804272C/0x080347DC` bez vtable/call-convention proof.
+
+Następny atak:
+`0x080612E0 -> 0x080313A4 / 0x0804272C / 0x080347DC -> vptr/child -> value/visibility -> panel index -> FUN_08036FF2 -> CAN`.
+
+Pełny batch:
+`analiza/FW2213TK-2026-11-19/BATCH-CO2-612E0-HELPER-BOUNDARY-2026-11-19.md`
