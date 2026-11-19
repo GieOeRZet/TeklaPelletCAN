@@ -122,3 +122,61 @@ To jest korekta implementacji wynikająca z kontrolowanego testu `0xF800`, nie a
 
 ### Nadal otwarte
 Nie mamy jeszcze bezpośredniego dowodu z disassembly, która z funkcji `FUN_0805570e` / `FUN_08056xxx` wykonuje konkretny pixel loop. Następny przebieg ma zrekonstruować argumenty i instrukcje tych funkcji oraz znaleźć odwołania do formatów/alpha.
+
+
+## PRZEŁOM — FUN_0805570E ODNALEZIONA I ZDEKOMPILOWANA
+
+Mamy bezpośredni pixel loop z firmware, a nie tylko poszlaki.
+
+Sygnatura:
+`FUN_0805570e(int param_1, int param_2, undefined4 param_3, undefined4 param_4, byte param_5)`
+
+### Co robi param_1 / param_2
+- `param_1` jest źródłem RGB565: wskaźnik jest liczony jako `param_1 + pixelIndex*2`, a następnie czytany przez `ushort *puVar14`.
+- `param_2` jest źródłem A8: `byte *pbVar12 = param_2 + pixelIndex`.
+- To jest dokładnie nasz model `RGB565 + A8`.
+
+### Co robi renderer
+Framebuffer jest pobierany przez wirtualne wywołanie `DAT_08055dcc + 0x20`; wynik jest traktowany jako `ushort*puVar8` i adresowany jako:
+`framebuffer + (x + y*framebufferStride)*2`.
+
+Pętla robi zwykły row-major traversal:
+- RGB: `puVar14++`
+- alpha: `pbVar12++`
+- framebuffer: `puVar8++`
+- po każdym wierszu pomija `stride - width` elementów.
+
+To jest **dowód, że dane RGB565 bitmapy nie mają żadnego tajemniczego tile/packing layoutu**. Są czytane liniowo, piksel po pikselu.
+
+### Dokładny alpha blending
+Dla `param_5 == 0xff`:
+- alpha 0 -> nic,
+- alpha 255 -> kopia RGB565,
+- 0 < alpha < 255 -> każdy kanał RGB565 jest mieszany osobno:
+  `((alpha*srcChannel + (256-alpha)*dstChannel) >> 8)`.
+
+Maski są dokładnie:
+- R: `0xf800`
+- G: `0x07e0`
+- B: `0x001f`.
+
+Dla globalnego alpha `param_5 != 0xff`, efektywna waga to `A8 * param_5`, a normalizacja jest przez `0x10000`.
+
+### Wniosek dla ekstraktora
+Nie wolno mieszać A8 z RGB przy ekstrakcji. PNG powinien zachować:
+`RGB565 source -> jawny R5/G6/B5 -> RGB`
+plus:
+`A8 source -> PNG alpha`.
+
+**Nie ma podstaw, by przekształcać/tilować/rozpakowywać RGB565.**
+
+### Bardzo ważna konsekwencja dla problemu „pasków”
+Jeżeli po poprawie R/B nadal występują geometryczne paski/rozjazdy, przyczyna nie leży w rendererze TouchGFX ani w tajemniczym codec. Trzeba wtedy sprawdzić:
+1. czy `data_ptr` rzeczywiście wskazuje początek bitmap payload;
+2. czy `width*height*2` jest właściwym rozmiarem;
+3. czy są bitmapy z innym formatem mimo wcześniejszego założenia format=0;
+4. czy oglądany PNG nie jest efektem błędnego odczytu wskaźnika/offsetu dla konkretnego ID;
+5. czy wcześniejsze „paski” były w istocie efektem błędnej interpretacji kanałów.
+
+### Najważniejszy fakt
+`FUN_0805570E` nie wykonuje żadnej konwersji RGB565 do RGB888. Operuje bezpośrednio na 16-bitowym słowie i maskach RGB565. To praktycznie zamyka hipotezę o alternatywnym formacie pikseli.
