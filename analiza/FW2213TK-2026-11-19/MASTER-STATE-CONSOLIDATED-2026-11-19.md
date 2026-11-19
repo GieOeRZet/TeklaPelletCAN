@@ -609,18 +609,22 @@ panel id 1 → CAN 0x215F
 
 Nie utożsamiać „60°C” wyłącznie z 0x2003 w każdym trybie.
 
-### Zasobnik
-- id 327 → 0x3740 — nadal nierozwiązana wartość,
-- id 328 → 0x3601 — fuel remaining [kg],
-- id 330 → 0x3603 — fuel reserve [kg].
+### Zasobnik — KOREKTA 2026-11-19
+Raw-BIN mapping i caller `FUN_08031CCC` zamykają ten fragment:
+
+- internal 0x147 → CAN 0x3601 = fuel remaining [kg],
+- internal 0x148 → CAN 0x3600 = tank capacity [kg],
+- internal 0x149 → CAN 0x3603 = fuel reserve [kg],
+- internal 0x14A → CAN 0x3602 = is fuel reserve.
 
 Kod:
 ```
-(id327 * 100) / id328
- → FUN_0802DA54
+percentage = 100 * value(0x147) / value(0x148)
+FUN_0802DA54(context, percentage, (uint8)value(0x14A))
 ```
 
-**[STRONG]** zasobnik jest dynamicznym komponentem.
+**[CORRECTION]** Starsze mapowanie 328/329/330 było przesunięte i nie jest już obowiązujące.
+**[STRONG]** zasobnik jest dynamicznym komponentem z osobną flagą rezerwy.
 
 ---
 
