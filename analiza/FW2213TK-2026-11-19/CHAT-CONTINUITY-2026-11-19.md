@@ -439,3 +439,10 @@ Therefore:
 - do not assume the visual arrangement shown is the firmware arrangement;
 - use the screenshot only to understand that the real composed control contains four mode icons above each slider and each icon has active/inactive states;
 - bitmap identity must be established from direct-BIN extraction + resource references/call-sites + geometry.
+
+
+## USER-CONFIRMED SLIDER MODE ICONS — 2026-11-19
+
+User confirms that bitmap IDs **130–137** are the four mode icons used above the sliders. The UI composition has four icon positions per slider, with active/inactive states (4x2 states). The previously supplied screenshot is only a visual reference; exact dimensions, colors and layout must still come from the direct-BIN bitmap data and firmware call-sites.
+
+Do not treat 130–137 as generic unrelated mode/time icons anymore: they are now user-confirmed as the slider mode-icon family. The exact mapping of each ID to icon position and active/inactive state remains to be established from firmware/resource references.
