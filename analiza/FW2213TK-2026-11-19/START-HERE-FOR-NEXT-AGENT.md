@@ -914,3 +914,93 @@ D. Parallel UI tracks:
 - parameter -> callback -> model -> binding -> widget chain.
 
 Do not return to bitmap extraction unless a specific resource pointer blocks one of these traces.
+
+
+---
+
+# ACTIVE OVERRIDE — MULTIPASS HOPPER/CAN/GEOMETRY — 2026-11-19
+
+Read this after the previous overrides. Do NOT restart bitmap extraction.
+
+Batch:
+`BATCH-MULTIPASS-HOPPER-CAN-GEOMETRY-2026-11-19.md`
+
+Latest MASTER commit:
+`0346cdb9c8f134ea607ef58c2b951d78a91315af`
+
+## START DIRECTLY HERE
+
+### Hopper closed spine
+```
+internal 0x147 -> CAN 0x3601 remaining kg
+internal 0x148 -> CAN 0x3600 capacity kg
+internal 0x14A -> CAN 0x3602 reserve flag
+100*remaining/capacity
+        |
+        v
+FUN_0802DA54
+        |
+        +-> +0x5A8 resource 051 or 053
+        +-> progress fields +0x966/+0x96A/+0x5DA
+        +-> refresh +0x5A8/+0x5D4/+0x5360
+        |
++0x5D4 has static resource 052
++0x960 is the matching geometry child/container candidate
+```
+
+### Critical mapping correction
+Use:
+```
+0x147 -> 0x3601
+0x148 -> 0x3600
+0x149 -> 0x3603
+0x14A -> 0x3602
+0x14B -> 0x3604
+0x14C -> 0x3607
+```
+Older 328/329/330 mapping is stale.
+
+### Exact hopper geometry already proven
+For +0x5A8:
+```
+X = parentX + (parentW - bitmapW)/2
+Y = parentY + 0x20
+W=34 H=29
+```
+
+### Important helpers
+- `0x080307BC` = Bitmap resource setter.
+- `0x08030380` = add-child linked-list helper.
+- `0x0802DA54` = dynamic hopper updater.
+- `0x08032188` = secondary fuel aggregator using 0x116/149/148/147.
+- `0x0802D828` = callback target of that aggregator.
+
+### New CAN mappings
+```
+0x116 -> 0x3606
+0x160 -> 0x3521
+0x161 -> 0x3529
+0x130 -> 0x3739
+0x131 -> 0x373A
+0x132 -> 0x373B
+0x133 -> 0x3722
+0x134 -> 0x3723
+0x135 -> 0x3728
+0x136 -> 0x373C
+0x137 -> 0x373D
+0x151 -> 0x3515
+0x152 -> 0x3516
+```
+
+## NEXT MULTIPASS ATTACK
+
+1. Trace consumers of +0x5DA/+0x966/+0x96A -> actual draw/clipping.
+2. Recover +0x960 class/vptr semantics.
+3. Trace 0x0802D828 -> exact 0x3606 meaning.
+4. Trace 0x3602/0x3607 runtime consumers.
+5. 160/161 -> all call-sites -> parent -> geometry -> callback.
+6. 130..137 -> exact resource call-sites -> 4x2 state assignment.
+7. 151/152 -> 47290 selector call-site -> model.
+8. Then continue parameter -> callback -> model -> binding -> widget.
+
+Do not report a small isolated address as completion. Close vertical chains.
