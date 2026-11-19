@@ -476,3 +476,112 @@ parameter/index
 ```
 
 Kolejny duży checkpoint ma zamknąć przynajmniej jeden taki pionowy łańcuch.
+
+
+---
+
+# 17. NOWY PASS — KOREKTA SEMANTYKI +0x5DA/+0x5DE
+
+To jest ważna korekta poprzedniej interpretacji.
+
+## [FW] +0x5DA i +0x5DE są wewnątrz obiektu +0x5A8
+
+`r1 = parent + 0x5AE` w `FUN_0802DA54`, więc:
+- `[r1]` = parent+0x5AE = child+0x06
+- `[r1,#4]` = parent+0x5B2 = child+0x0A
+- `[r1,#0x2C]` = parent+0x5DA = child+0x32
+- `[r1,#0x30]` = parent+0x5DE = child+0x36
+
+Czyli poprzednie określenie ich jako „zewnętrzne pola progress” było zbyt luźne.
+
+## [FW] Standardowy Bitmap constructor
+
+`FUN_0802DF08`:
+- ustawia vptr Bitmap,
+- resource ID -> +0x26,
+- width -> +0x08,
+- height -> +0x0A,
+- status/flags -> +0x28.
+
+Bitmap vtable dla tego obiektu zaczyna się pod runtime `0x0807F1E0`.
+
+## [FW] Resource setter
+
+`FUN_080307BC`:
+- resource -> Bitmap+0x26,
+- wywołuje vtable+0x38 z szerokością z BitmapData,
+- vtable+0x3C z wysokością,
+- następnie aktualizuje stan geometryczny.
+
+To zamyka, że +0x08/+0x0A są standardowym W/H Bitmap.
+
+## [STRONG] Co wynika z +0x30/+0x32/+0x36
+
+W firmware istnieje osobny kod pod `0x0803008C` i `0x08030640`, który operuje na polach +0x30/+0x32/+0x34/+0x36/+0x37 oraz na resource ID +0x26. Nie ma jeszcze bezpośredniego dowodu, że jest to dokładnie klasa Bitmap z hoppera, więc nie utożsamiać automatycznie.
+
+Natomiast w samym hopperze:
+```
++0x5DA = child(+0x32)
++0x5DE = child(+0x36)
+```
+
+i `FUN_0802DA54` robi:
+```
+value = percentage * signed16(child+0x36)
+fill = fixed_point_div100(value)
+
+child+0x32 = fill - child+0x0A
++0x966/+0x96A = pochodne fill/geometry
+```
+
+## [OPEN] Najważniejszy następny test
+
+Nie nazywać jeszcze +0x5DA „crop Y” ani „progress field”.
+
+Trzeba teraz:
+1. ustalić, kto ustawia child+0x36 przed pierwszym wywołaniem `FUN_0802DA54`,
+2. znaleźć funkcje czytające/ustawiające +0x32/+0x36 w tej samej klasie/vtable,
+3. porównać je z kodem `0x0803008C/0x08030640`,
+4. dopiero wtedy nazwać mechanizm jako crop/animation/clip.
+
+## [FW] +0x960 nadal jest osobnym obiektem geometry/container-like
+
+Setup:
+```
++0x960 geometry = geometry +0x5A8
+add +0x960 to parent
+add +0x5D4 to +0x960
+```
+
+`FUN_0802BDF0` nie wykonuje prostego `+0x960 -> Bitmap constructor`; `+0x960` przechodzi przez osobny initializer `FUN_0802DD4C` w setupie. To wzmacnia rozdział:
+- +0x5A8 = Bitmap,
+- +0x960 = inny widget/container-like object,
+- +0x5D4 = Bitmap child.
+
+Nie przypisywać jeszcze konkretnej klasy TouchGFX bez vptr proof.
+
+---
+
+# 18. NOWY WNIOSEK O STRUKTURZE
+
+Najbardziej bezpieczny model na tym etapie:
+
+```
+HOPPER ROOT
+  |
+  +-- Bitmap @ +0x5A8
+  |      |
+  |      +-- resource 051/053
+  |      +-- standard W/H @ +0x08/+0x0A
+  |      +-- custom/extended fields around +0x30..+0x37 [OPEN]
+  |
+  +-- object @ +0x960
+         |
+         +-- Bitmap @ +0x5D4
+                |
+                +-- resource 052
+```
+
+[FW] Ten model jest zgodny z kolejnością konstrukcji, resource assignment, geometry i add-child.
+
+[OPEN] Nadal brakuje jednego mostu: dokładnej klasy +0x960 oraz funkcji konsumującej wynik procentu.
