@@ -250,3 +250,18 @@ For the slider mode-icon family 130–137, the user confirms the visual state co
 - **thicker/bold icon = ON / active**
 
 This is user-observed UI evidence. Exact ID-to-icon-position pairing remains to be established from firmware/resource call-sites. Do not infer the individual numeric ordering from thickness alone until the BIN/reference analysis confirms it.
+
+
+## USER-CONFIRMED CONFIG WINDOW TILE CONSTRUCTION — 2026-11-19
+
+User confirms that bitmap resources **112, 113, 114** form a reusable construction used by some configuration windows, including the type of configuration window shown in the supplied screen/reference.
+
+Confirmed semantic assembly:
+- **112 = left element**
+- **113 = right element**
+- **114 = repeated fill/middle element** (114, 114, 114, ...)
+
+Thus the window/background is assembled as a tiled/segmented structure:
+**112 + 114×N + 113**.
+
+The supplied screen is a visual reference for how the composed window looks; it is not authoritative for exact dimensions, colors, spacing, or repetition count. Exact geometry must still be taken from the direct-BIN resource dimensions and firmware construction code.
