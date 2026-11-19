@@ -2673,3 +2673,42 @@ Direct string->record xref is still OPEN, so keep this [STRONG], not [FW].
 5. Find 160/161 call-site, parent, geometry, callback.
 6. Find 130..137 resource call-sites and exact 4x2 active/inactive assignment.
 7. Continue 151/152 vertical selector call-site.
+
+
+---
+
+# 2026-11-19 — HOPPER FIELD SEMANTICS REFINEMENT
+
+Batch:
+`BATCH-MULTIPASS-HOPPER-CAN-GEOMETRY-2026-11-19.md`
+
+[CORRECTION] Wcześniejsze określenie `+0x5DA/+0x966/+0x96A` jako pewnych „progress fields” było zbyt mocne.
+
+W `FUN_0802DA54`:
+```
+r1 = parent + 0x5AE
+[r1]       = child(+0x06)
+[r1,#4]   = child(+0x0A)
+[r1,#0x2C] = child(+0x32) = parent+0x5DA
+[r1,#0x30] = child(+0x36) = parent+0x5DE
+```
+
+[FW] `FUN_0802DF08` jest standardowym Bitmap constructor:
+- vptr,
+- resource +0x26,
+- width +0x08,
+- height +0x0A,
+- status +0x28.
+
+[FW] `FUN_080307BC` pobiera W/H z BitmapData i podaje je do vtable+0x38/+0x3C.
+
+[STRONG] +0x5DA/+0x5DE należą do rozszerzonego obszaru obiektu Bitmap +0x5A8, ale ich dokładne znaczenie nadal wymaga proof.
+
+[OPEN] Firmware ma osobne funkcje `0x0803008C` i `0x08030640`, które operują na polach +0x30/+0x32/+0x34/+0x36/+0x37 i resource ID +0x26. Nie utożsamiać ich jeszcze bezpośrednio z klasą hoppera.
+
+[OPEN] Najważniejszy następny krok:
+- znaleźć kto inicjalizuje child+0x36 przed pierwszym `FUN_0802DA54`,
+- znaleźć wszystkie operacje na child+0x32/+0x36,
+- ustalić czy jest to crop, animation, frame selection czy inny mechanizm.
+
+Bez tego nie nazywać +0x5DA „crop Y” ani „progress field” jako faktu.
