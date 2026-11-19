@@ -2119,3 +2119,82 @@ OPEN:
 - independent provenance of 0x0801AB7E
 
 Batch: `BATCH-370A-UPDATE-GEOMETRY-2026-11-19.md`.
+
+
+# 53. FOURTH RAW PASS — DIRECT COMPOSITE CALLERS + GEOMETRY CORRELATION — 2026-11-19
+
+## 53.1 FUN_0803C33E has exactly three direct raw callers
+
+Full Thumb BL scan of FW2213TK_kopia.bin finds direct calls to FUN_0803C33E at:
+- 0x08039AD6
+- 0x08039BBE
+- 0x08039CA6
+
+These belong to FUN_08039A48, FUN_08039B30 and FUN_08039C18 respectively.
+
+Immediately after C33E returns, each sibling constructor wires the returned composite into a FUN_0803CB04 updater when the relevant second component exists.
+
+[FW] This closes the fact that the three sibling constructors instantiate the same visual composite rather than merely sharing similar code.
+
+## 53.2 C33E has more structure than the four 85C-family Bitmaps
+
+Direct raw disassembly:
+- +0x330 Bitmap, resource 0xFFFF
+- +0x35C Bitmap, resource 0xFFFF
+- +0x388 helper/object
+- +0x464 helper/object
+- +0x498 helper/object
+- +0x84C helper/container
+- +0x85C Bitmap, resource 0xFFFF
+- +0x888 Bitmap, resource 0xFFFF
+- +0x8B4 Bitmap, resource 0xFFFF
+- +0x8E0 Bitmap, resource 0xFFFF
+- +0x90C/+0x948/+0x97C and later additional UI objects
+
+[FW] +0x84C is initialized through FUN_080424C4 with parent pointer plus two literal parameters and sits directly before the 370A Bitmap at +0x85C. Exact semantic class of this helper remains OPEN.
+
+## 53.3 C5B4 geometry is independently hard
+
+FUN_0803C5B4 uses:
+- child = parent +0x85C
+- X=0x28 (40)
+- Y=0x46 (70)
+- FUN_0804272C(child,40,70)
+- FUN_08030380(parent+0x04,child)
+
+It later configures +0x8E0 with fixed resource 0x7A and X=0x18E (398), Y from runtime state, and attaches it through the same parent+0x04 mechanism.
+
+[STRONG] This is now a genuine multi-child layout/initialization path, not merely an isolated coordinate assignment.
+
+## 53.4 C5B4 dispatch remains OPEN
+
+A raw BL scan finds no direct call to FUN_0803C5B4 and no literal function-pointer occurrence of 0x0803C5B5.
+
+Therefore do not claim a direct C33E -> C5B4 call or an exact vtable slot. The proven relation is structural: C33E constructs the object layout; C5B4 operates on that same offset layout and supplies hard geometry.
+
+## 53.5 Three-instance architecture
+
+The strongest current model is:
+
+SIBLING CONSTRUCTOR
+ -> FUN_0803C33E
+ -> common composite (+0x330/+0x35C/+0x85C/+0x888/+0x8B4/+0x8E0 + helpers)
+ -> FUN_0803CB04
+ -> FUN_0803CB2C
+ -> internal 0x121 / 370A
+ -> FUN_0803CACC
+ -> +0x85C
+ -> resource 11/12/13
+
+Separate layout method:
+FUN_0803C5B4
+ -> +0x85C at (40,70)
+ -> +0x8E0 at (398,Yruntime)
+
+## 53.6 Next attack
+
+1. Resolve indirect dispatch into C5B4.
+2. Identify +0x84C helper/container.
+3. Recover all W/H/visibility writes for +0x85C.
+4. Resolve resource-registry records 11/12/13.
+5. Differentiate the three sibling instances into concrete Home/Main roles.
