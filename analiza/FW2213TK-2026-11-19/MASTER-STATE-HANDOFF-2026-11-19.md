@@ -906,3 +906,64 @@ Nie kopiować architektury binarki mechanicznie — odtwarzamy zachowanie, ale t
 7. Odnalezione geometrie łączyć z bitmapami web/img/panel/*.png tylko po potwierdzeniu źródła bitmapy.
 
 Nie traktować 0x3C0/0x3C3/0x20A/0x20B jako wymiarów widgetów bez dalszego trace.
+
+
+# 23. REWALIDACJA WARSTWY DISPLAY — WAŻNA KOREKTA
+
+Po wejściu w FUN_08060604/FUN_080606C8 okazało się, że są to funkcje zapisu konfiguracji kontrolera/peryferium display, a nie bezpośrednie konstruktory geometrii widgetów.
+
+## 23.1 FUN_08060604
+
+Funkcja pakuje pola param_1[0..14] do rejestrów/struktur wskazywanych przez DAT_08060778, DAT_0806077C i DAT_08060780.
+
+Nie należy więc interpretować wartości z FUN_0805FBB2 jako X/Y/W/H tylko dlatego, że są liczbami podobnymi do wymiarów.
+
+## 23.2 FUN_080606C8
+
+Analogicznie zapisuje parametry do struktury kontrolera pod param_1:
+- +0x04, +0x08, +0x10, +0x14, +0x18, +0x1C,
+- +0x28, +0x2C, +0x30.
+
+To jest konfiguracja sprzętowa/formatowa, nie widget tree.
+
+## 23.3 RZECZYWISTY TROP FRAMEBUFFER
+
+FUN_0805676C(param_1,param_2,param_3,param_4) wylicza adres bufora pikseli:
+
+    param_2 = param_3 * *(ushort *)(DAT_08056814 + 8) + param_2
+
+następnie zależnie od trybu:
+- iVar2 == 0x10 -> offset param_2 * 2,
+- inaczej -> param_2 * 3.
+
+To jest bardzo silny trop do rzeczywistego modelu framebuffer/pixel format.
+
+FUN_0805570E() również operuje na pikselach 16-bitowych i wykonuje blend RGB565:
+- maski 0x1F,
+- 0x7E0,
+- 0xF800.
+
+Czyli firmware ma realną ścieżkę renderingu RGB565.
+
+## 23.4 Wniosek dla repliki
+
+Dla ESP nie trzeba emulować hardware controller 1:1. Trzeba natomiast odtworzyć:
+- 480×272,
+- właściwy pixel format,
+- framebuffer stride,
+- kolejność/blending warstw,
+- widget geometry.
+
+Geometry widgetów należy dalej szukać w warstwie obiektów TouchGFX, a nie w 08060604/080606C8.
+
+### Następny konkretny trop
+
+1. DAT_08056814 i pole +8,
+2. FUN_0805252C,
+3. FUN_08052552,
+4. FUN_0805644C,
+5. FUN_08056500,
+6. obiekty wywołujące te funkcje,
+7. następnie przejście z renderingu do konkretnych widgetów/bitmap.
+
+Status: [FW] pixel pipeline; [STRONG] framebuffer/pixel format; geometry widgetów nadal otwarta.
