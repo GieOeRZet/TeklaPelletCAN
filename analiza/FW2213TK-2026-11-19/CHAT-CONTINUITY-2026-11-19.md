@@ -382,3 +382,26 @@ C) Home variant -> CO1/CO2;
 D) resource ID -> call-site -> parent -> geometry -> callback.
 
 Nie wykonuj ponownie ekstrakcji 188 bitmap ani ustalania bazy 0x08010000.
+
+
+## 2026-11-19 — dodatkowa weryfikacja podobnych par bitmap
+
+Użytkownik zwrócił uwagę na podobne pary bitmap z/bez kolorowego środka. Bez zgadywania zidentyfikowano dwa podobne wizualnie zestawy:
+
+- 056/057 — 20x20; 056 normalny punkt bez kolorowego środka, 057 selected z cyan/green środkiem. To para punktu wykresu modulacji dmuchawy.
+- 151/152 — 30x31; 151 normalny selektor bez kolorowego środka, 152 selected z cyan/green środkiem. To para używana bezpośrednio przez FUN_08047290/FUN_08047334.
+- 184/185 — 45x20; duży toggle normal/active, inna geometria; nie zaliczać do dwóch podobnych par okrągłych.
+
+Wniosek:
+- podobieństwo 056/057 i 151/152 jest rzeczywiste wizualnie;
+- nie są tym samym zasobem i mają różne rozmiary oraz różne call-site'y;
+- aktualny direct-BIN extraction pokazuje środek selected jako cyan/green; określenie „żółty” nie jest obecnie potwierdzone i nie należy go utrwalać jako faktu.
+
+Canonical mapa została rozszerzona o ten wniosek i hash anchors:
+- 056: 9d6fe5ce7f99495a1388be8bc97e29537fa1cd6d3ac9eecfa35ddb0286f4b3a2
+- 057: ae19e8557619fd9bbbf2caf49c3a7b6da00205bb244436662415abc595cdcb5f
+- 151: 6084705837b101fa56d4b5e517792037986e2f2440107cfa58f56b8dd1c79a16
+- 152: de91aab8b30f9eb29d0d4c0a7fc236e1d1fd606868e176fc4287d49a4b163b9c
+
+Direct-BIN working set: /mnt/data/tekla_bitmap_extract_directbin_2026-11-19/png/000.png ... 187.png
+188 PNGs, decoded from FW2213TK_kopia.bin using base 0x08010000, table 0x54450, stride 0x14, RGB565 + optional A8.
