@@ -1334,3 +1334,114 @@ Bez dowodu nie łączyć ich bezpośrednio.
 Nie zaczynaj od bitmap, CO1..CO4 ani ogólnego Home. Zacznij od §39–44 tego mastera, następnie wykonaj: callback comparison 3709..370D → 0x0801AB7E → DAT_08046CC4+0x50 → 469E8 update → variable Bitmap ID → 370A mapping.
 
 Jeżeli raw BIN nie jest dostępny, nie udawaj rekonstrukcji bajtów z decompiled.c. Kontynuuj drugi tor vtable/update i dokładnie oznacz brakujący raw region.
+
+
+# 45. MULTIPASS — CALLBACK ENGINE + 469E8 RUNTIME DISPATCH — 2026-11-19
+
+Nowy batch: `BATCH-CALLBACK-ENGINE-317AE-469E8-VTABLE-2026-11-19.md`.
+
+[FW] Pełny eksport `decompiled.c` został ponownie odzyskany z blob SHA `9620d0c85259d34bb6a20d3b03b038945dfe4c1a`. Repo nadal nie zawiera surowego BIN, więc nie rekonstruujemy bajtów 0x0801AB7E ani vtable z domysłów.
+
+## 45.1 317AE — zamknięta semantyka
+
+`FUN_080317AE`:
+- registry count = object +0x64,
+- object pointers = +0x04 + index*4,
+- active/reference bytes = +0x68 + index,
+- dla aktywnego wpisu wywołuje registered_object->vtable +0x50,
+- dopiero później usuwa wpisy nieaktywne.
+
+Zatem:
+
+`318B4 = register/retain`  
+`3193A = release/unregister`  
+`317AE = runtime/tick traversal → vtable +0x50`.
+
+[STRONG] +0x50 jest rzeczywistą granicą metody runtime, nie hipotezą o "update gdzieś dalej".
+
+## 45.2 469E8 — dokładny obiekt rejestrowany
+
+`FUN_080469E8`:
+- finalny vptr = DAT_08046CC4,
+- Bitmap child = +0x4F,
+- konstruktor zapisuje resource ID 14,
+- pozycjonuje Bitmap,
+- tworzy 4 dzieci tekstowe,
+- rejestruje **parent 469E8**, a nie Bitmap child, przez `FUN_080318B4`.
+
+Brakująca krawędź jest więc dokładnie:
+
+`DAT_08046CC4 + 0x50 → concrete 469E8 runtime method`.
+
+## 45.3 Dynamiczny Bitmap pattern odzyskany gdzie indziej
+
+`FUN_08030762` pokazuje istniejący w firmware wzorzec:
+
+`unregister Bitmap → wybór ID z pól obiektu → FUN_080307BC(variable ID) → Bitmap vtable +0x14`.
+
+To nie jest jeszcze dowód dla 469E8, ale jest teraz najlepszym wzorcem porównawczym dla jego nieznanej metody.
+
+## 45.4 Callback field — korekta nazewnictwa
+
+Zweryfikowane zakresy:
+- 3709 → 0x0801425C = FUN_0801417C +0xE0,
+- 370A → 0x0801AB7E = brak nazwanej funkcji,
+- 370B → 0x08015CCC = brak nazwanej funkcji,
+- 370C → 0x0801659E = FUN_080164F4 +0xAA,
+- 370D → 0x08016614 = FUN_080164F4 +0x120.
+
+[STRONG] Pole tabeli nie może być obecnie nazywane zwykłym "callback function pointer". Konserwatywna nazwa: **handler/code boundary**.
+
+Szczególnie ważne:
+- FUN_0801417C jest builderem/tabelą nazw modeli kotłów,
+- FUN_080164F4 jest realną funkcją stanu/logiki,
+- 0x08015CCC i 0x0801AB7E leżą poza nazwanymi funkcjami.
+
+To oznacza, że dopiero raw dispatch może powiedzieć, jak te adresy są konsumowane.
+
+## 45.5 Aktualny graf architektury
+
+```
+PARAMETER TABLE
+   |
+   +-- 370A
+   |    +-- RAM 0x20021FA6
+   |    +-- handler/code boundary 0x0801AB7E
+   |             |
+   |             +-- UNKNOWN parameter dispatch
+   |
+   +-- neighboring handler boundaries 3709/370B/370C/370D
+
+ACTIVE MODULE
+   |
+   +-- FUN_080318B4
+   |      |
+   |      +-- timer/update registry
+   |
+   +-- FUN_080317AE
+          |
+          +-- registered_object.vtable +0x50
+                  |
+                  +-- 469E8 concrete runtime method [OPEN]
+                          |
+                          +-- child +0x4F [KNOWN]
+                          |
+                          +-- Bitmap ID 14 at construction [KNOWN]
+                          |
+                          +-- dynamic ID/update [OPEN]
+```
+
+## 45.6 Następny przebieg
+
+Priorytet A:
+`DAT_08046CC4 + 0x50` → concrete method → model/state read → child/resource.
+
+Priorytet B:
+raw `0x0801AB7E` → dispatcher → read/write/notification of `0x20021FA6`.
+
+Priorytet C:
+porównanie 469E8 z istniejącym dynamicznym Bitmap patternem `FUN_08030762`.
+
+Dopiero po A/B/C:
+`370A → resource ID → 011/012/013/014`.
+
