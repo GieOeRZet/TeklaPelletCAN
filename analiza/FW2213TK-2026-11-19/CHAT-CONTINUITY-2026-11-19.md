@@ -446,3 +446,20 @@ Therefore:
 User confirms that bitmap IDs **130–137** are the four mode icons used above the sliders. The UI composition has four icon positions per slider, with active/inactive states (4x2 states). The previously supplied screenshot is only a visual reference; exact dimensions, colors and layout must still come from the direct-BIN bitmap data and firmware call-sites.
 
 Do not treat 130–137 as generic unrelated mode/time icons anymore: they are now user-confirmed as the slider mode-icon family. The exact mapping of each ID to icon position and active/inactive state remains to be established from firmware/resource references.
+
+
+# 21. FINAL CHAT PACKAGE — 2026-11-19
+
+Nowy chat ma rozpocząć od:
+- MASTER-STATE-CONSOLIDATED-2026-11-19.md
+- START-HERE-FOR-NEXT-AGENT.md
+- CHAT-CONTINUITY-2026-11-19.md
+- BITMAP-MAP-DIRECT-BIN-2026-11-19.md
+- BITMAP-PREVIEW-MAP-2026-11-19.md
+
+Szybka mapa bitmap została wydzielona do osobnego pliku, żeby można ją było wkleić do promptu nowego chata bez szukania po historii.
+
+Ostatni punkt:
+**051/052 → resource references → widget → pellet quantity parameter → threshold/state.**
+
+Nie ponawiać ekstrakcji 188 bitmap.
