@@ -289,3 +289,51 @@ oraz:
 6. dopiero potem identyfikować ekran 39A48/39B30/39C18.
 
 **Nie raportować po jednym adresie. Kolejny raport dopiero po zamknięciu kilku zależnych elementów.**
+
+
+# PASS 5B — +0x84C CONSTRUCTOR ALSO SITS OUTSIDE functions.txt
+
+A further boundary check on `functions.txt`:
+
+- `0804204a FUN_0804204a 204`
+- 204 bytes ends exactly at `0x08042116`
+- next listed function is `0804272c FUN_0804272c`
+
+Yet the raw pass identifies `FUN_080424C4` as the constructor used for object +0x84C.
+
+Therefore:
+
+[FW] `FUN_080424C4` is another manually recovered executable procedure located inside a Ghidra function-recognition gap.
+
+This is important because +0x84C is not merely an unexplained data slot: the constructor itself belongs to the same broader pattern of **UI procedures that Ghidra did not emit as normal functions**.
+
+The current hidden-method evidence set is now:
+
+- C33E — recovered inside gap between recognized functions
+- C5B4 — exactly at the end boundary of FUN_0803C550, absent as its own entry
+- 424C4 — inside gap after FUN_0804204A
+- CACC — absent as normal entry
+- CB04 — absent as normal entry
+- CB2C — absent as normal entry
+
+[STRONG] The most productive interpretation is now not "one missing C5B4 caller", but a recurring **custom UI method recovery problem** in this firmware region.
+
+This raises the priority of recovering the underlying method-table/function-pointer structures before trying to name C++ classes.
+
+## Updated next attack
+
+A. Map every known manually recovered procedure to the nearest functions.txt boundaries.
+
+B. Identify the data/function-pointer regions used by the generic object calls:
+- vptr-like +0
+- method slots +0x2C/+0x30
+- attachment helper FUN_08030380
+- Bitmap methods +0x38/+0x3C
+
+C. Use the known generic setters as anchors to find the custom class method table.
+
+D. From that table, test C5B4 / C33E / CB04 / CB2C / 424C4 membership or adjacency.
+
+E. Only then decode +0x84C semantics.
+
+[OPEN] Exact vtable address/class remains unresolved.
