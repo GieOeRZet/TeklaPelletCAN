@@ -682,3 +682,90 @@ Każdy kolejny większy commit/notatka ma zawierać:
 7. wyraźne oddzielenie [FW] / [STRONG INFERENCE] / [HYPOTHESIS].
 
 Nie tworzyć małych notatek typu „znaleziono jeden adres”. Konsolidować kilka sukcesów w jeden większy handoff.
+
+
+# 21. NADRZĘDNY CEL PROJEKTU — PANEL 1:1 / REIMPLEMENTACJA ESP
+
+Cel projektu został doprecyzowany i ma pierwszeństwo przed pojedynczymi tropami reverse-engineeringu:
+
+**Odtworzyć działanie całego panelu FW2213TK we własnym sofcie na ESP, możliwie 1:1.**
+
+„1:1” oznacza nie tylko wygląd. Docelowo trzeba odtworzyć:
+- ekrany, bitmapy, teksty, fonty, pozycje X/Y, W/H, kolejność warstw i stany widoczności,
+- nawigację, callbacki, przyciski, gesty/touch i przejścia między ekranami,
+- konfigurację i warunki pojawiania się elementów,
+- inicjalizację/startup, boot, błędy i stany pośrednie,
+- parametry CAN, indeksy, rejestry, typy, zakresy, wartości domyślne, zapis/odczyt,
+- zależności między parametrami,
+- CO1..CO4 i wszystkie mechanizmy instancjonowania,
+- warianty sprzętowe i konfiguracje funkcjonalne,
+- tryby pracy, menu serwisowe/testowe, wejścia/wyjścia,
+- alarmy, statusy, timery i automaty stanu,
+- komunikację CAN/CANopen i mapowanie danych,
+- persistent storage / konfigurację lokalną,
+- logikę ograniczania/opcji dostępnych w UI,
+- zachowanie po braku/obecności modułów i różnych konfiguracjach,
+- pełne zależności między warstwą UI, logiką aplikacji i CAN.
+
+### Zasada prowadzenia reverse-engineeringu
+
+Nie optymalizować pracy pod „najbliższy mały wynik”. Priorytetem jest **zrozumienie całego softu**.
+
+Kolejność śledztwa może być zmieniana dynamicznie. Jeżeli jakiś inny obszar daje szybciej twarde zależności potrzebne do repliki panelu, należy go analizować przed obecnym lokalnym tropem.
+
+Jednocześnie nie porzucać głównego celu CO/instancji — jest on jednym z fundamentów repliki.
+
+### Docelowa mapa systemu
+
+Reverse engineering ma doprowadzić do mapy:
+
+```
+BOOT / INIT
+  ↓
+HW / MODULE DISCOVERY
+  ↓
+CONFIG / PERSISTENT STATE
+  ↓
+CAN / PARAMETER ENGINE
+  ↓
+APPLICATION STATE MACHINE
+  ↓
+SCREEN / MENU DISPATCH
+  ↓
+WIDGET TREE
+  ↓
+BITMAP / TEXT / GEOMETRY
+  ↓
+TOUCH / CALLBACK
+  ↓
+PARAMETER READ/WRITE
+  ↓
+CAN / STORAGE / SIDE EFFECTS
+```
+
+Każdy ważny element powinien być docelowo opisany w kategoriach:
+**wejście → warunek → funkcja → stan → wyjście → efekt uboczny → zależności.**
+
+### Status oznaczeń
+
+- **[FW]** — bezpośrednio potwierdzone w binarce/dekompilacji.
+- **[DATA]** — bezpośrednio potwierdzone w surowych danych/tabeli/assetach.
+- **[STRONG]** — bardzo mocny wniosek z kilku niezależnych dowodów.
+- **[HYPOTHESIS]** — hipoteza wymagająca potwierdzenia.
+
+Hipotez nie mieszać z faktami w dokumentacji.
+
+### Strategia
+
+Nie trzeba rozpracowywać każdego bajtu liniowo. Najpierw budować „kręgosłup” systemu:
+1. startup i inicjalizacja,
+2. globalny model obiektów,
+3. parameter engine / CAN,
+4. UI dispatcher i ekrany,
+5. widget/bitmap/text geometry,
+6. callbacki/touch,
+7. zależności i konfiguracja,
+8. moduły serwisowe/testowe,
+9. dopiero potem drobne funkcje i edge cases.
+
+Każdy kolejny duży commit ma zachowywać pełny stan projektu, a następnie dodawać nowe dowody i instrukcję kontynuacji. Nie tworzyć izolowanych notatek, które zmuszają kolejnego agenta do odtwarzania kontekstu.
