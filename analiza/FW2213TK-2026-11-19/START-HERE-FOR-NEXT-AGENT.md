@@ -357,3 +357,29 @@ and
 `BATCH-RAW-BIN-RECOVERY-469E8-47040-370A-CORRECTION-2026-11-19.md`.
 
 Do not restart the investigation from the old vtable hypothesis.
+
+
+# NEW RAW CORRECTION — START FROM §48 / COMMIT 9bbf8484531e8ff9ea50d58e1815e0a38bc24359
+
+Do NOT use the old `0x158 -> 370A` hypothesis.
+
+Raw mapping table proves:
+- internal `0x121 -> external 0x370A`
+- internal `0x158 -> external 0x351A` (Cascade slaves number)
+- internal `0x11C -> external 0x350C` (Cascade master flag)
+
+Thus:
+`0x158/0x11C -> FUN_08047040` is cascade UI, not Boiler image selector.
+
+Raw `FUN_080469E8` also corrected:
+- Bitmap/resource child is `parent +0x13C`
+- constructor writes resource ID 14 there
+- old `+0x4F` attribution is withdrawn
+- DAT_08046CC4 is not proven vtable; raw value points into UTF-16 text/resource area.
+
+370A:
+`0x370A -> internal 0x121 -> generic parameter engine -> storage 0x20021FA6 + data handler/table 0x0801AB7E`.
+
+The next target is the **generic parameter path for internal index 0x121**. Find the structure/lookup that takes internal index 0x121 and resolves the 370A storage and handler/data descriptor.
+
+Do not reconnect 370A to the cascade/469E8 branch without a hard call/data edge.
