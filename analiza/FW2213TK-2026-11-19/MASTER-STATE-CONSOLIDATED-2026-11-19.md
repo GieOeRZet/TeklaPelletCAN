@@ -2347,3 +2347,76 @@ This is a **correction**, not a weakening: we have eliminated one false geometri
 5. Three sibling constructors: distinguish `39A48/39B30/39C18` by upstream/downstream evidence.
 
 No render yet.
+
+
+# 50. FINAL CHAT CHECKPOINT — BITMAP MAP + CONTINUITY PACKAGE — 2026-11-19
+
+Ten rozdział jest **obowiązkowym punktem startowym kolejnego chata**.
+
+## 50.1 Co ma zrobić nowy agent po otwarciu chata
+
+Nie zaczynać od zera. Nie ponawiać ekstrakcji bitmap.
+
+Kolejność:
+1. przeczytać ten MASTER,
+2. przeczytać `START-HERE-FOR-NEXT-AGENT.md`,
+3. przeczytać `CHAT-CONTINUITY-2026-11-19.md`,
+4. przeczytać `BITMAP-MAP-DIRECT-BIN-2026-11-19.md`,
+5. przeczytać `BITMAP-PREVIEW-MAP-2026-11-19.md`,
+6. dopiero potem wybrane batch-notes,
+7. kontynuować od ostatniego **OPEN**, a nie od zamkniętych torów.
+
+## 50.2 Direct-BIN bitmap baseline — ZAMKNIĘTE
+
+Pełna mapa 188 bitmap została odzyskana bezpośrednio z `FW2213TK_kopia.bin`.
+
+- firmware: 2,031,616 B = 0x1F0000
+- SHA-256: `1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071`
+- descriptor table: file 0x54450 / runtime 0x08064450
+- stride: 0x14
+- IDs: 000..187
+- RGB565 + optional A8
+- poprawna baza wskaźników bitmap: `file_offset = runtime_pointer - 0x08010000`
+
+**Nie wykonywać ponownie tej ekstrakcji.**
+
+Canonical:
+`analiza/FW2213TK-2026-11-19/BITMAP-MAP-DIRECT-BIN-2026-11-19.md`
+
+Preview:
+`analiza/FW2213TK-2026-11-19/BITMAP-PREVIEW-MAP-2026-11-19.md`
+
+## 50.3 Najważniejsze potwierdzenia użytkownika
+
+[USER] 051/052 = drugi kafelek od lewej; stan zależy od rejestru ilości/poziomu pelletu w zasobniku. Adres rejestru i próg oraz dokładne 051-vs-052 pozostają do udowodnienia w firmware.
+
+[USER] 130..137 = cztery ikony trybu nad suwakiem, każda ma OFF/ON; cieńsza = OFF, grubsza/bold = ON. Dokładne ID→pozycja/state nadal do zamknięcia z BIN.
+
+[USER] 112/113/114 = okno konfiguracyjne: 112 lewy, 113 prawy, 114 powtarzany środek.
+
+[USER] 184/185 = wielokrotnie używana rodzina ON/OFF, m.in. główny ekran Power i ustawienia.
+
+[USER] 069/070 = rodzina pokrętła/selektora używana zarówno z 184/185, jak i w wielu suwakach.
+
+## 50.4 Najważniejsze korekty, których NIE WOLNO odwrócić
+
+- `FUN_08047290` = **pionowa lista/selector 6 slotów**, NIE bottom bar.
+- `056/057` = 20x20 graph points; `151/152` = 30x31 selector states. Nie mieszać.
+- `160/161` = realny bottom configuration/settings button.
+- `0x0801AB7E` = raw data/table, NIE funkcja.
+- `DAT_08046CC4` nie jest potwierdzonym vtable; raw wskazuje UTF-16 text/resource.
+- `0x158/0x11C` = cascade branch (351A/350C), NIE 370A.
+- 370A = internal 0x121 -> external 0x370A -> generic record engine -> RAM 0x20021FA6.
+- Nie zakładać mapowania 370A -> 011/012/013 bez kolejnego dowodu call-site.
+
+## 50.5 Ostatni realny punkt dalszej pracy
+
+Po zamknięciu bitmap baseline najbliższy sensowny tor to:
+`051/052 -> resource references -> widget -> pellet quantity parameter -> threshold/state`.
+
+Równolegle:
+`160/161 -> call-site -> parent -> geometry -> callback`
+oraz
+`130..137 -> resource references -> exact four positions + state mapping`.
+
+Nie powtarzać direct-BIN extraction.
