@@ -214,3 +214,23 @@ Extraction reproducibility:
 057.png SHA-256: ae19e8557619fd9bbbf2caf49c3a7b6da00205bb244436662415abc595cdcb5f
 151.png SHA-256: 6084705837b101fa56d4b5e517792037986e2f2440107cfa58f56b8dd1c79a16
 152.png SHA-256: de91aab8b30f9eb29d0d4c0a7fc236e1d1fd606868e176fc4287d49a4b163b9c
+
+
+## UI RESOURCE SEMANTICS — USER CONFIRMATION 2026-11-19
+
+The user has now confirmed from the real UI/screens that bitmap resources 184/185 and 69/70 are reused across multiple controls/screens. Treat these as user-observed semantic evidence, separate from firmware call-site proof.
+
+### 184/185 — large ON/OFF toggle
+- 184/185 form the ON/OFF toggle itself.
+- One state is used with the knob/selector resources 69/70 in the main Power view, lower-right corner, for boiler ON/OFF.
+- The same 184/185 toggle mechanism is reused in settings such as DHW/CWU -> Menu -> Anti-legionella and other places, including 'heat now' and other ON/OFF-type controls.
+- Therefore 184/185 must NOT be documented merely as a generic settings-row toggle; it is a reusable toggle control family used in the main power view and multiple settings/action screens.
+
+### 69/70 — selector/knob resources with multiple roles
+- 69/70 are used as part of the 184/185 ON/OFF selector/knob mechanism in the main Power view and elsewhere.
+- The pair is also reused in sliders for temperature and heating mode for CO/DHW (CWU), and in additional slider controls elsewhere.
+- Do not assign 69 or 70 exclusively to one widget. Their exact per-state/per-widget role must be established from firmware call-sites and visual geometry.
+
+### Important correction to previous documentation
+Previous notes that described 184/185 simply as a generic 'large toggle' were incomplete. The canonical interpretation is now: **reusable ON/OFF toggle family, including main Power-screen boiler ON/OFF and multiple settings/action screens**.
+Previous notes that treated 69/70 only as a slider/knob pair were also incomplete: **they participate both in toggle controls and in multiple slider controls**.
