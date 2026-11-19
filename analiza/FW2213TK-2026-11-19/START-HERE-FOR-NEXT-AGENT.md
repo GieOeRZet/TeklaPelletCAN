@@ -636,3 +636,22 @@ E. compare 39A48/39B30/39C18 to identify actual screen
 F. only then render.
 
 For every useful finding, continue tracing before reporting. Persist the next substantial checkpoint to GitHub. Do not ask the user to repeat context.
+
+
+# CURRENT START OVERRIDE — PASS 5 HIDDEN METHOD CLUSTER
+
+Latest batch:
+`analiza/FW2213TK-2026-11-19/BATCH-METHOD-CLUSTER-C5B4-CACC-CB2C-2026-11-19.md`
+
+New key finding:
+`FUN_0803C550` size=100 ends exactly at `0x0803C5B4`, while C5B4 is not a functions.txt entry despite raw evidence of real code. CACC/CB04/CB2C are also absent from functions.txt. C33E sits in a similar gap between recognized functions. Treat this as a hidden/unrecognized UI method cluster.
+
+NEXT:
+1. recover boundaries of C33E/C5B4/CACC/CB04/CB2C;
+2. search method-table/function-pointer storage;
+3. test indirect C5B4 dispatch;
+4. decode 424C4/+0x84C;
+5. enumerate full Bitmap cluster mutations;
+6. then differentiate 39A48/39B30/39C18.
+
+Do not re-prove 370A -> 11/12/13.
