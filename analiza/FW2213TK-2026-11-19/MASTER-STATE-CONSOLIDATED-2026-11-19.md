@@ -1033,3 +1033,114 @@ Następny atak:
 
 Pełny batch:
 `analiza/FW2213TK-2026-11-19/BATCH-CO2-612E0-HELPER-BOUNDARY-2026-11-19.md`
+
+
+---
+
+# 32. NOWY TWARDY SPINE — +0x12C -> dynamic CAN index -> record 0x2C — 2026-11-19
+
+To jest istotne uzupełnienie mastera, którego brakowało w poprzedniej konsolidacji.
+
+## [FW] Dynamiczny lookup instancji jest bezpośrednio odtworzony
+
+W runtime/raw `0x080470C0 / raw 0x370C0` firmware wykonuje:
+
+```
+ldrh r0,[r7,#2]      ; base CAN/index z rekordu pomocniczego
+ldrb r1,[r6,#1]      ; instance
+adds r0,r0,r1
+subs r2,r0,#1
+uxth r2,r2
+BL 0x0802167A
+```
+
+Globalny stan pomocniczy jest pod `0x200248D4`; bajt `+1` jest numerem instancji używanym przez lookup.
+
+Wzór jest więc **literalnie**:
+
+```
+lookup_index = base_index + instance - 1
+```
+
+Przykłady z firmware:
+
+- `0x2032 + 2 - 1 = 0x2033`
+- `0x2048 + 2 - 1 = 0x2049`
+- `0x2064 + 2 - 1 = 0x2065`
+- `0x4001 + 2 - 1 = 0x4002`
+
+## [FW] 0x1167A wybiera rekord po obliczonym indeksie
+
+`0x0802167A` przeszukuje rekordy o rozmiarze `0x2C`. Rejestracja przez `0x0802143C` zapisuje m.in.:
+
+- record+`0x08` = CAN/index,
+- record+`0x0C` = źródło wartości,
+- record+`0x10` = typ,
+- kolejne pola = struktury/metadane.
+
+To oznacza, że brak literalnych rejestracji `0x2033/0x2034/0x2035` nie obala mechanizmu CO2..CO4. Indeks instancji jest tworzony **dopiero w runtime lookup**.
+
+## [STRONG] Pełny fragment ścieżki instancji
+
+```
+module +0x12C
+       |
+       v
+global 0x200248D4 + 1
+       |
+       v
+base_index + instance - 1
+       |
+       v
+0x0802167A
+       |
+       v
+record 0x2C
+       |
+       v
+parameter storage / CAN mapping
+```
+
+Dla CO:
+
+```
+CO base 0x2032 -> instance 1/2/3/4
+                 -> 0x2032/2033/2034/2035
+
+CO base 0x2048 -> instance 1/2/3/4
+                 -> 0x2048/2049/204A/204B
+
+CO base 0x2064 -> instance 1/2/3/4
+                 -> 0x2064/2065/2066/2067
+```
+
+To jest mocniejszy dowód niż samo `count=4`: znamy dokładną instrukcję tworzącą indeks instancji.
+
+## [CORRECTION]
+
+Nie próbujemy już znaleźć statycznych `0x2033/34/35` jako osobnych wywołań rejestracji. To był zły poziom poszukiwania.
+
+Nadal NIE wiemy:
+- gdzie dokładnie powstają rekordy dla instancji 2..4,
+- jaki RAM jest przypisany do CO2/CO3/CO4,
+- skąd dokładnie przychodzi pierwszy zapis do `module+0x12C).
+
+Ale wiemy już bezpośrednio, jak `+0x12C` kończy się na konkretnym indeksie CAN.
+
+## [FW] Znaczenie dla dalszego reverse engineeringu
+
+Dalszy trace można teraz podzielić na dwa niezależne problemy:
+
+**A — źródło instancji**
+`C064 / D00 / inne źródło -> +0x12B/+0x12C`
+
+**B — konsumpcja instancji**
+`+0x12C -> 0x200248D4+1 -> base+instance-1 -> 0x1167A -> record`
+
+Problem B jest już zamknięty na poziomie mechanizmu.
+
+Następny atak koncentrujemy więc wyłącznie na problemie A oraz na Home/UI:
+`0x0803E5AC -> 0x08047290` i `CO component -> parent/add -> widget`.
+
+Pełny batch źródłowy:
+`analiza/FW2213TK-2026-11-19/1167A-CO-INSTANCE-LOOKUP.md`
