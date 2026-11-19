@@ -854,3 +854,63 @@ Secondary:
 - 056/057 != 151/152
 - 160/161 = lower configuration/settings button
 - 370A closed chain
+
+
+
+# 2026-11-19 — NEW START POINT AFTER RAW MULTIPASS
+
+## HIGHEST-VALUE CLOSED RESULT
+
+The pellet hopper chain is now directly proven from raw BIN.
+
+`FUN_08031CCC`:
+- 0x147 -> CAN 0x3601 (remaining kg)
+- 0x148 -> CAN 0x3600 (capacity kg)
+- `100 * remaining / capacity`
+- 0x14A -> CAN 0x3602 (reserve flag)
+- calls `FUN_0802DA54(context, percent, reserve_flag)`
+
+`FUN_0802DA54`:
+- reserve=0 -> Bitmap 051 on `parent+0x5A8`
+- reserve!=0 -> Bitmap 053 on `parent+0x5A8`
+- updates common refresh for `+0x5A8` and `+0x5D4`
+
+Constructor/setup:
+- `+0x5A8` and `+0x5D4` are Bitmap objects initially 0xFFFF.
+- `+0x5D4` gets resource 052 (0x34) in the setup function beginning at 0x0802C294.
+
+Thus 051/052/053 are a two-layer hopper component, not three independent random assets.
+
+## CRITICAL ID-MAPPING CORRECTION
+
+The raw mapping table proves:
+`0x147 -> 0x3601`
+`0x148 -> 0x3600`
+`0x149 -> 0x3603`
+`0x14A -> 0x3602`
+
+The old notes that assigned 0x3601/0x3600/0x3603 to decimal IDs 328/329/330 were off by one and must not be reused.
+
+## NEXT MULTIPASS ATTACK
+
+A. Hopper geometry:
+- resolve exact geometry/position of +0x5A8 and +0x5D4;
+- resolve +0x5DE, +0x5DA, +0x966, +0x96A;
+- prove whether the percentage controls vertical fill/placement.
+
+B. CAN/model:
+- resolve exact semantics of 0x3602 from raw parameter metadata and runtime use;
+- independently verify 0x3601/0x3600 scaling/type.
+
+C. Parent/widget:
+- recover constructor name/function boundary around 0x0802BDF0 / 0x0802C294;
+- identify parent registration and update callback;
+- trace every caller that reaches the hopper parent.
+
+D. Parallel UI tracks:
+- 160/161 bottom configuration button;
+- 130..137 four mode icons;
+- 151/152 six-slot selector;
+- parameter -> callback -> model -> binding -> widget chain.
+
+Do not return to bitmap extraction unless a specific resource pointer blocks one of these traces.
