@@ -2280,3 +2280,24 @@ The next dispatch attack should therefore search the **hidden method cluster and
 6. Compare 39A48/39B30/39C18 only after the method cluster is understood.
 
 Do not reopen the closed 370A -> 11/12/13 chain.
+
+
+# PASS 5 — HIDDEN UI METHOD CLUSTER — 2026-11-19
+
+Batch: `analiza/FW2213TK-2026-11-19/BATCH-METHOD-CLUSTER-C5B4-CACC-CB2C-2026-11-19.md`
+
+[FW] `FUN_0803C550` starts at 0x0803C550 and has size 100 bytes, therefore ends exactly at 0x0803C5B4. Yet 0x0803C5B4 has no functions.txt entry although raw analysis identifies real code there. 
+
+[FW] `FUN_0803CACC`, `FUN_0803CB04`, and `FUN_0803CB2C` likewise have no normal functions.txt entries despite independently recovered executable behavior. C33E sits in an analogous functions.txt gap: FUN_0803C284 ends at 0x0803C312 and the next listed function is 0x0803C4C4, while raw analysis recovers C33E at 0x0803C33E.
+
+[STRONG] The C33E/C5B4/CB04/CB2C area contains a hidden/unrecognized UI-method cluster relative to the automatic Ghidra function list. This does not by itself prove a vtable, but it explains why direct call-graph evidence is incomplete and changes the dispatch attack.
+
+## CURRENT CONTINUATION
+1. Recover exact boundaries of C33E/C5B4/CACC/CB04/CB2C and neighboring unrecognized procedures.
+2. Search method-table/function-pointer storage associated with this cluster.
+3. Test whether C5B4 is an indirect target.
+4. Decode FUN_080424C4/+0x84C.
+5. Enumerate all mutations of +0x85C/+0x888/+0x8B4/+0x8E0.
+6. Then differentiate 39A48/39B30/39C18.
+
+Do not reopen the closed 370A -> 11/12/13 chain.
