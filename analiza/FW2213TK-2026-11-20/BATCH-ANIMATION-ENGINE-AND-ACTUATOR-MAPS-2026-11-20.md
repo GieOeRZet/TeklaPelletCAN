@@ -108,5 +108,15 @@ Konfiguracja `138..143` jest powtarzana w ośmiu miejscach konstrukcyjnych. To s
 4. Rozstrzygnąć open/close dla 106/107 na podstawie runtime parametru 0x29.
 5. Sprawdzić, czy 43/44 należą do innego mechanizmu animacji.
 
+## USER CORRECTIONS — 2026-11-20
+
+- 8–10 = wentylator/dmuchawa palnika.
+- 58–59 = ruch rusztu palnika; okoliczności uruchomienia OPEN.
+- 65–67 = animacja grzałki palnika; dokładne stany OPEN.
+- 60–61 = semantyka nieznana; nie przypisywać bez call-site.
+- 138–143 = pracująca pompa; użytkownik potwierdza CO i CWU; Home pozostaje do sprawdzenia w BIN.
+
+Dla 36–38 i 40–42 nadal szukamy konkretnego urządzenia.
+
 ## Najważniejsza korekta względem wcześniejszego tropu hoppera
 Pola `+0x30/+0x32/+0x34/+0x36/+0x37` są teraz częściowo zamknięte jako pola mechanizmu animacji w konkretnych obiektach. Nie wolno jednak automatycznie przenosić tej semantyki na `parent+0x5A8` hoppera bez proof, ponieważ hopper ma własny kontekst i może współdzielić strukturę tylko częściowo.
