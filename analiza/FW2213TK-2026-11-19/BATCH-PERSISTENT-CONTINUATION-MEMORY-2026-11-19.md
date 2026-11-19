@@ -156,3 +156,17 @@ C33E/CB04 source trace -> Home root -> six widgets -> WheelSelectorExtra -> heat
 ## LAST CONSOLIDATED COMMITS BEFORE THIS MEMORY FILE
 - latest MASTER before this checkpoint: 972e39e85170e8c821cf60eaa96a2b6410d41dd4
 - latest batch before this checkpoint: 2551d0b130ba5b051d3bb6ab103d9878ffb5f344
+
+
+# CHECKPOINT COMMIT CHAIN — FINALIZED
+
+This memory file was created in commit:
+`cb6b7f727fb9c85c076dd753977e039721595a98`
+
+Then:
+- MASTER consolidated: `29921134bd88829eaa8bef679ac5b67e3809ba44`
+- START-HERE consolidated: `75bd2b2f5fe092653ff2e3ed53e54fb533195cd8`
+
+**Current branch head / resume point:** `75bd2b2f5fe092653ff2e3ed53e54fb533195cd8`
+
+When a new chat starts, read this file and MASTER/START-HERE from the branch head above. Continue from CURRENT START POINT; do not restart.
