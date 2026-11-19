@@ -1131,3 +1131,71 @@ Status nowych ustaleń:
 - [FW/DATA] 0x3601/0x3603 -> fuel level/reserve.
 - [STRONG] main screen is composite, state/config driven.
 - [HYPOTHESIS] exact pixel/format mapping of each displayed number still open.
+
+# 25. DOPRECYZOWANIE EKRANU GŁÓWNEGO — 63.8 JEST JUŻ WYJAŚNIONE
+
+[FW] FUN_0803CF54() pobiera:
+- panel id 95 / 0x5F -> CAN 0x299F (Burning type),
+- panel id 59 / 0x3B -> CAN 0x4005 (Burner power [%]),
+a następnie przekazuje wartość 0x4005 do FUN_080436B4().
+
+[FW] FUN_080436B4() wykonuje jawne dzielenie przez 10 i buduje zapis:
+- część całkowita = value / 10,
+- część dziesiętna = value % 10,
+czyli dla raw 638 powstaje dokładnie 63.8.
+
+To jest bezpośredni dowód formatowania liczby widocznej na screenshotcie:
+CAN 0x4005 raw 638 -> UI "63.8".
+Nie jest to już hipoteza o sposobie formatowania.
+
+Dodatkowo FUN_080436B4() jest aktywowane tylko przy odpowiednim warunku z id95 / 0x299F, więc wartość i sposób jej prezentacji zależą od typu spalania.
+
+## 25.1 Znaczenie sąsiednich parametrów komponentu palnika
+
+Z tego samego FUN_0803CF54():
+- id57 / 0x3703 -> FUN_08043A74() — dodatkowy stan/warunek palnika,
+- id58 / 0x2276 -> FUN_0804368A() — Grate move indicator,
+- id59 / 0x4005 -> FUN_080436B4() — główna liczba modulacji/palnika,
+- id62 / 0x2007 -> FUN_08043746() — burner state,
+- id63 / 0x2250 -> FUN_08043760() — flame brightness,
+- id64 / 0x2119 -> dodatkowy parametr palnika.
+
+[DATA] 0x2276 jest opisany jako Grate move indicator, u8 0..2.
+[DATA] 0x2166 jest opisany jako CH res [dC], u16 0..500, komenda.
+[DATA] 0x404E jest Request reset alarm memory, u8 0..1, komenda.
+
+To koryguje wcześniejsze nieznane etykiety i pokazuje, że główny ekran korzysta również z parametrów statusowych/komendowych, nie tylko z klasycznych pomiarów.
+
+## 25.2 0x3505 — dokładna semantyka kodowania
+
+0x3505 = Outside temperature sensor configuration.
+FW kataloguje go jako u8 0..2, a w dokumentacji SDO wartość jest reprezentowana z przesunięciem 256 (np. raw 257 = wartość 1).
+
+Nie wolno więc opisywać 0x3505 jako zwykłego surowego 0..2 bez uwzględnienia kodowania panela.
+
+## 25.3 Nowy twardy model fragmentu głównego ekranu
+
+FUN_08031CCC()
+    |
+    +--> id1 / 0x215F -> temperatura zewnętrzna
+    |
+    +--> id11 / 0x2002 -> tryb zadawania / AUTO-MAN
+    |
+    +--> id16 / 0x2003 -> ręczna temperatura zadana
+    |
+    +--> id270 / 0x3505 -> konfiguracja czujnika zewnętrznego / widoczność
+    |
+    +--> id271 / 0x2105 -> konfiguracja Heating / stan UI
+    |
+    +--> id327,id328,id330 -> wizualizacja zasobnika
+    |
+    +--> child burner component
+             |
+             +--> id59 / 0x4005 -> raw 638 -> "63.8"
+             +--> id62 / 0x2007 -> stan palnika
+             +--> id63 / 0x2250 -> jasność płomienia
+             +--> id58 / 0x2276 -> ruszt
+             +--> id95 / 0x299F -> typ spalania / warunek formatowania
+
+To jest obecnie pierwszy naprawdę konkretny fragment mapy:
+wartość na ekranie -> panel index -> CAN -> raw value -> formatowanie -> UI component.
