@@ -2314,3 +2314,36 @@ The manually recovered UI procedures outside normal functions.txt now include C3
 [STRONG] This is a recurring custom-UI method recovery problem, not an isolated missing C5B4 caller. The dispatch investigation should therefore recover the method-table/function-pointer structure first, then test membership of these procedures.
 
 Do not promote this to a specific vtable/class identity yet.
+
+
+# PASS 5M — RESOURCE 0x7A / +0x8E0 GEOMETRY CORRECTION — 2026-11-19
+
+Batch:
+`analiza/FW2213TK-2026-11-19/BATCH-PERSISTENT-CONTINUATION-MEMORY-2026-11-19.md`
+
+[DATA] The firmware bitmap extraction maps resource IDs to PNG assets. `0x7A` is decimal `122`, and `DOKUMENTACJA/bitmap_sizes.tsv` records `122.png = 35x37`.
+
+This closes the previously proposed edge-alignment test for `+0x8E0`:
+
+- `+0x8E0` resource = `0x7A = 122`
+- X = `398`
+- W = `35`
+- right edge = `433`, not 480
+- H = `37`
+- Y = runtime value
+
+[FW] The firmware still proves the runtime placement `X=398, Y=runtime`; the resource table now proves the fixed bitmap dimensions.
+
+[STRONG] Therefore `+0x8E0` is a small right-side UI element, not a bitmap aligned to the physical right edge of the 480-px display. Do not use the old `398+82=480` hypothesis.
+
+This is a **correction**, not a weakening: we have eliminated one false geometric interpretation and narrowed the role of `+0x8E0` to a small UI resource.
+
+## ACTIVE NEXT ATTACK
+
+1. `+0x8E0`: find every resource/X/Y/visibility/clipping mutation.
+2. `+0x888` and `+0x8B4`: recover resource and geometry mutations.
+3. `FUN_080424C4` / `+0x84C`: exact object semantics.
+4. Hidden method cluster: indirect dispatch to `FUN_0803C5B4`.
+5. Three sibling constructors: distinguish `39A48/39B30/39C18` by upstream/downstream evidence.
+
+No render yet.
