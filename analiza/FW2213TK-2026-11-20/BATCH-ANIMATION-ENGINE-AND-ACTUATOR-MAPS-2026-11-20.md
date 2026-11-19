@@ -191,3 +191,83 @@ Bitmap 039 ma 30x18 + A8. Resource 0x27=39 występuje w osobnym komponencie przy
 4. Trace 0x2254 i sprawdzić logikę 8/9/10.
 5. Trace 0x2251/0x2252 i rozdzielić dokładną logikę klatek feederów.
 6. Trace parent/widget resource 39.
+
+## [FW] MULTIPASS 2026-11-20 — PARAMETRY + TIMER + KIERUNEK
+
+Pełny raw disassembly potwierdza nie tylko zakresy resource, ale także parametry czasowe i stan startowy silnika.
+
+### [FW] Konstruktor agregatu 0x08042EEC
+
+Dla wszystkich pięciu zamkniętych kanałów konstruktor przekazuje do FUN_08030708:
+- direction = 0
+- enable = 1
+
+Następnie ustawia tick count:
+- 36..38: ticks = 14
+- 40..42: ticks = 14
+- 65..67: ticks = 18
+- 8..10: ticks = 6
+- 58..59: ticks = 25
+
+W FUN_08030640 kierunek +0x36=0 oznacza inkrementację resource, a +0x36!=0 dekrementację. Przy standardowej konfiguracji startowej wszystkie pięć kanałów ma ruch first -> last.
+
+### [FW] FUN_08043954 nie ustawia bezpośrednio kierunku dla kanałów 0/1/2/4
+
+- index 0: zapisuje bool do parent+0x96D i odświeża +0x948
+- index 1: zapisuje bool do parent+0x931 i odświeża +0x90C
+- index 2: zapisuje bool do parent+0x9A9 i odświeża +0x984
+- index 3: jawnie wywołuje FUN_08030708 na +0x9C0 z direction=0, enable=1; wejściowy bool trafia do parent+0xBB5
+- index 4: zapisuje bool do parent+0xA21 i odświeża +0x9FC
+
+Wniosek: wejściowy enable FUN_08043954 nie jest automatycznie polem +0x37 silnika animacji dla wszystkich kanałów.
+
+### [STRONG] Konsekwencja
+
+Nie należy jeszcze mówić, że parametr 0x2251 bezpośrednio włącza/wyłącza timer animacji 36..38. Twardo wiemy, że wartość steruje flagą powiązaną z tym kanałem i powoduje refresh; sam obiekt animacyjny jest konfigurowany niezależnie.
+
+### [FW] 0x23 -> 0x216A i kontekst nazw
+
+W FUN_08036FF2 internal 0x23 mapuje się przez tabelę file 0x375CC na panel parameter 0x216A.
+
+Parametry 0x216A..0x216F są rejestrowane kolejno około 0x302E..0x3252. W katalogu stringów występuje kolejność:
+- Burner state
+- Burner storage feeder
+- Burner burner feeder
+- Burner igniter
+- Burner blower
+- Burner storage feeding time [dS]
+
+[STRONG] Z wysoką pewnością:
+0x216A = Burner state
+0x216B = Burner storage feeder
+0x216C = Burner burner feeder
+0x216D = Burner igniter
+0x216E = Burner blower
+0x216F = Burner storage feeding time [dS].
+
+### [FW] Nowy trop dla 36..38
+
+Funkcja około 0x0803C8D2:
+- pobiera internal parameter 0x23
+- mapowanie daje 0x216A
+- zamienia wynik na bool
+- zapisuje go do parent+0x931
+- odświeża obiekt +0x90C = zakres 36..38.
+
+To nie dowodzi jeszcze, że 36..38 są animowane wyłącznie podczas konkretnego stanu palnika, ale jest bezpośredni firmware'owy związek Burner state -> stan obiektu 36..38.
+
+### [FW] Resource 39 — osobny komponent
+
+Funkcja 0x0802F9FC ustawia komponent przy parent+0xA8. W zależności od stanu ustawia resource 39 oraz parę 168/169; 168/169 są zamieniane miejscami między wariantami.
+
+To jest osobny mechanizm od agregatu FUN_08043954.
+
+[OPEN] Brak jeszcze bezpośredniego parent/widget -> konkretny kafelek menu „Magazyn paliwa”.
+
+### [FW] Resource 60/61
+
+W bezpośredniej konstrukcji agregatu 0x08042EEC nie występuje zakres 60..61. Nie ma dowodu, że 60/61 należą do tego samego sześciokanałowego silnika. Pozostają OPEN.
+
+### [FW] Resource 43/44
+
+Nie ma bezpośredniego zakresu 43..44 w konstruktorze agregatu. 43/44 pozostają poza tym engine i wymagają osobnego trace.
