@@ -81,3 +81,16 @@ Po większym batchu:
 - wskazać co nadal jest hipotezą,
 - zapisać wynik na GitHubie,
 - w odpowiedzi podać link do commita, aby użytkownik mógł wkleić go do nowego chatu jako punkt kontynuacji.
+
+
+## NADRZĘDNY CEL — ODWZOROWANIE PANELA 1:1
+
+Celem reverse engineeringu nie jest samo znalezienie mapy CO/CAN, lecz odtworzenie zachowania FW2213TK panela 1:1: UI, konfiguracji, warunków widoczności, wyboru logicznych obiektów/instancji, obsługi wejścia TOUCH, odczytu/zapisu parametrów oraz końcowego ruchu CAN do modułów wykonawczych i z powrotem.
+
+Model roboczy architektury: IGNEO Touch jest nadrzędnym regulatorem/UI/logiką systemu, a CAN I/O BIG i pozostałe moduły CAN są warstwą wykonawczą/I/O. Ten model ma być nadal potwierdzany kodem, ale wszystkie nowe ścieżki należy interpretować w jego ramach zamiast traktować pojedyncze funkcje testowe jako główny mechanizm panela.
+
+Priorytet analizy: znaleźć pełne przepływy TOUCH event -> parametr/obiekt -> konfiguracja funkcjonalna -> wariant sprzętowy -> instancja -> CAN TX/RX -> aktualizacja UI. Szczególnie ważne są: 0x2105..0x2108, 0x3500/0x3502/0x350B, +0x16C1/+0x16D5, mechanizm +0x12B/+0x12C oraz warunki aktywacji CO1..CO4.
+
+DAT_0804107C/FUN_08040FC2 traktować obecnie jako prawdopodobną warstwę Test I/O, a nie główny mechanizm tworzenia CO. Nie wolno na tej podstawie budować architektury panela.
+
+Następne wyniki mają być konsolidowane w większe logiczne pakiety; nie raportować pojedynczych adresów jako osobnych sukcesów.
