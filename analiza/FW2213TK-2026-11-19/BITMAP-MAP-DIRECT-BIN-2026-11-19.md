@@ -166,3 +166,51 @@ The contact sheets are orientation maps only. For a semantic claim, inspect the 
 3. Do not use `0x08000000` as the pointer-to-file base for this firmware.
 4. Do not call 76b a firmware resource.
 5. Do not infer semantics from bitmap number order alone.
+
+## VISUAL PAIR CHECK — 056/057 vs 151/152 — 2026-11-19
+
+Direct-BIN PNGs were visually checked side-by-side. There are **two genuinely similar circular indicator pairs** that must not be conflated:
+
+### Pair A — bitmap 056/057
+- 056 = 20x20, normal/unselected circular point, no colored center.
+- 057 = 20x20, selected circular point, cyan/green colored center.
+- Firmware/card evidence identifies this pair as the five-point fan-modulation graph marker.
+- The five graph registers previously identified are 0x2261..0x2265 (20/40/60/80/100%).
+
+### Pair B — bitmap 151/152
+- 151 = 30x31, normal/unselected circular control, no colored center.
+- 152 = 30x31, selected circular control, cyan/green colored center.
+- Raw firmware call-site evidence identifies this pair specifically with FUN_08047290 / FUN_08047334.
+- 47290 is the six-slot **vertical** list/selector; it is NOT the bottom bar.
+
+### Important visual conclusion
+The visual similarity is real, but the dimensions and firmware call-sites are different:
+056/057 = 20x20 graph points
+151/152 = 30x31 47290 selector states
+
+The direct-BIN extraction currently shows the center as cyan/green in these selected variants. **Do not label it yellow without a separate color-space check or original display evidence.**
+
+### Additional related state pair
+- 184/185 = 45x20 large toggle normal/active. This is a different geometry and should not be grouped with the two circular pairs above.
+
+## DIRECT-BIN EXTRACTED ARTIFACT SET
+
+The working extraction produced the complete 188-image set from FW2213TK_kopia.bin under the local analysis path:
+`/mnt/data/tekla_bitmap_extract_directbin_2026-11-19/png/000.png ... 187.png`
+
+The set is accompanied by a generated manifest containing W/H, PNG byte size and SHA-256 for every image. The repository's canonical documentation records the extraction parameters and dimension map; the separate PNG set should be treated as the exact decoded output of that pass, not as the older web/img/panel atlas.
+
+Extraction reproducibility:
+- source: FW2213TK_kopia.bin
+- load base: 0x08010000
+- descriptor table: file 0x54450
+- stride: 0x14
+- records: 188
+- RGB565 + optional A8
+
+## HASH ANCHORS FOR THE TWO CONFUSABLE PAIRS
+
+056.png SHA-256: 9d6fe5ce7f99495a1388be8bc97e29537fa1cd6d3ac9eecfa35ddb0286f4b3a2
+057.png SHA-256: ae19e8557619fd9bbbf2caf49c3a7b6da00205bb244436662415abc595cdcb5f
+151.png SHA-256: 6084705837b101fa56d4b5e517792037986e2f2440107cfa58f56b8dd1c79a16
+152.png SHA-256: de91aab8b30f9eb29d0d4c0a7fc236e1d1fd606868e176fc4287d49a4b163b9c
