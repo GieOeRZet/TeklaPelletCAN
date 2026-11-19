@@ -179,3 +179,47 @@ Separate cascade path:
 [FW] 0x121 -> 0x370A; FUN_08036FF2; FUN_08037094; FUN_080115F6; 370A registration +0x16BA; base 0x200208EC; RAM 0x20021FA6; UI read of 0x121; FUN_0803CACC; value+10; FUN_080307BC.
 
 [STRONG] The Boiler image selector path is now closed from parameter ID through storage to variable Bitmap resource ID.
+## 11. SECOND PASS — +0x85C IS PROVEN TO BE A REAL BITMAP CHILD
+
+The previous pass established that FUN_0803CACC writes the variable resource ID to parent +0x85C.
+
+A further raw pass resolves the constructor of that same parent.
+
+FUN_0803C33E builds the visual parent used by the 370A update component.
+
+Critical constructor sequence:
+- parent +0x84C is initialized by a visual helper;
+- parent +0x85C -> FUN_0802DF08 with initial resource ID 0xFFFF;
+- parent +0x888 -> FUN_0802DF08 with initial resource ID 0xFFFF;
+- parent +0x8B4 -> FUN_0802DF08 with initial resource ID 0xFFFF;
+- parent +0x8E0 -> FUN_0802DF08 with initial resource ID 0xFFFF.
+
+FUN_0802DF08 is the concrete Bitmap constructor pattern: it calls the base visual constructor, installs Bitmap class data, writes the initial 16-bit resource ID into child +0x26, and calculates/stores dimensions from that resource.
+
+[FW] parent +0x85C is a concrete Bitmap child object, not an arbitrary byte/field.
+
+Closed path is now:
+370A -> 0x121 -> 0x20021FA6 -> FUN_0803CACC -> parent+0x85C Bitmap -> resource 11..13
+
+## 12. SECOND PASS — THE VISUAL PARENT IS A REPEATED COMPOSITE
+
+FUN_0803C33E is called from three sibling constructors:
+- FUN_08039A48
+- FUN_08039B30
+- FUN_08039C18
+
+Each creates the same 0x85C/0x888/0x8B4/0x8E0 Bitmap family.
+Each sibling also creates a FUN_0803CB04 update component, whose update routine reads model indices including 0x121.
+
+[STRONG] The firmware has a repeated visual composite with four Bitmap children, and the Boiler image selector specifically controls the first Bitmap child at +0x85C.
+
+Do not yet assign the three composites to specific screen names or cascade boilers; that requires additional model/parent/vtable evidence.
+
+## 13. SECOND PASS — RESOURCE 14 IS A DIFFERENT CONSTRUCTION PATH
+
+The variable 370A Bitmap path is structurally distinct from the investigated FUN_080469E8 path:
+- 370A path: FUN_0803C33E -> Bitmap child +0x85C -> FUN_0803CACC -> resource 11..13.
+- 469E8 path: FUN_080469E8 -> Bitmap child +0x13C -> fixed resource 14.
+
+This is an architectural separation, not merely a naming difference.
+Resource 14 therefore cannot be used as evidence against the 370A value+10 mapping.
