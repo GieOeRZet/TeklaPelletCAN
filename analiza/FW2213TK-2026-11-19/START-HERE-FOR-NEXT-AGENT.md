@@ -269,3 +269,60 @@ Po dużym przebiegu:
 5. podaj następnemu agentowi commit SHA i link do dokumentu.
 
 Nigdy nie zostawiaj wiedzy tylko w odpowiedzi czatu.
+
+## AKTUALNY PUNKT STARTOWY — PASS 2026-11-19 / CALLBACK ENGINE + 469E8
+
+Nowy batch:
+`analiza/FW2213TK-2026-11-19/BATCH-CALLBACK-ENGINE-317AE-469E8-VTABLE-2026-11-19.md`
+
+Najpierw czytaj MASTER §45.
+
+### Zamknięte w tym przebiegu
+
+`FUN_080317AE`:
+- registry count +0x64,
+- pointers +0x04 + index*4,
+- active bytes +0x68 + index,
+- aktywne obiekty dostają wywołanie vtable +0x50,
+- cleanup następuje dopiero po update loop.
+
+`FUN_080318B4` = register/retain.  
+`FUN_0803193A` = release/unregister.
+
+`FUN_080469E8`:
+- final vptr DAT_08046CC4,
+- Bitmap child +0x4F,
+- fixed constructor Bitmap ID 14,
+- rejestruje parent 469E8 do timer registry.
+
+### Nowa korekta callbacków
+
+Nie nazywaj pól 3709..370D "callback functions".
+
+- 3709 → 0x0801425C = FUN_0801417C +0xE0
+- 370A → 0x0801AB7E = brak named function
+- 370B → 0x08015CCC = brak named function
+- 370C → 0x0801659E = FUN_080164F4 +0xAA
+- 370D → 0x08016614 = FUN_080164F4 +0x120
+
+Używaj nazwy: **handler/code boundary**.
+
+### Natychmiastowy następny trace
+
+1. `DAT_08046CC4 + 0x50`
+2. concrete method
+3. wszystkie model/state reads tej metody
+4. child +0x4F / Bitmap/resource
+5. równolegle raw `0x0801AB7E`
+6. dispatcher consuming parameter-table code field
+7. dopiero potem merge z `0x20021FA6` i mapowaniem Bitmap.
+
+Ważny wzorzec porównawczy:
+`FUN_08030762` już pokazuje dynamiczny Bitmap update:
+unregister → variable resource ID → FUN_080307BC → Bitmap vtable +0x14.
+
+Nie zakładaj jeszcze, że 469E8 korzysta z tego samego helpera.
+
+Jeżeli raw BIN nadal nie jest dostępny:
+**nie wymyślaj bajtów**. Kontynuuj tor vtable/update i oznacz raw boundary jako OPEN.
+
