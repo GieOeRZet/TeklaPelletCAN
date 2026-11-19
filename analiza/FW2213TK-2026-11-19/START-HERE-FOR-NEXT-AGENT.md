@@ -548,3 +548,32 @@ Exact C++ vtable/class identity is NOT closed. Object +0 literals can point into
 5. Then map resources 11/12/13 to concrete screen variant semantics.
 
 Continue several passes before reporting. Find -> analyze -> continue -> consolidate. Do not stop on small findings.
+
+# HANDOFF UPDATE — AFTER 370A UPDATE/GEOMETRY PASS
+
+Latest consolidated commit: `d4d0902f294b0f8e1a07c4b1cd88015fae7d6525`
+Batch: `BATCH-370A-UPDATE-GEOMETRY-2026-11-19.md`
+
+## New corrections / facts
+
+- `FUN_0803CB04` = constructor/wiring of the visual update object.
+- `FUN_0803CB2C` = actual update/refresh method; it reads internal index `0x121` and calls `FUN_0803CACC`.
+- `FUN_0804272C(object,X,Y)` is behaviorally an X/Y setter via object slots +0x2C/+0x30.
+- `FUN_0803C5B4` explicitly targets Bitmap +0x85C with X=40, Y=70 and attaches it through parent+0x04.
+- The dispatch mechanism into `FUN_0803C5B4` is still OPEN; do not promote it to a proven direct caller.
+
+## DO NOT REPEAT
+
+Closed 370A chain:
+`0x370A -> 0x121 -> FUN_08036FF2 -> runtime record -> 0x20021FA6 -> u8 1..3 -> FUN_0803CB2C -> FUN_0803CACC -> +0x85C -> resource 11/12/13`.
+
+## NEXT ATTACK
+
+1. Find the indirect dispatch / method-table mechanism that reaches `FUN_0803C5B4`.
+2. Enumerate every geometry/visibility mutation of +0x85C, +0x888, +0x8B4, +0x8E0.
+3. Resolve W/H and visibility of +0x85C after resources 11/12/13 are installed.
+4. Trace 08039A48 / 08039B30 / 08039C18 upstream into the Home/Main root.
+5. Recover runtime BitmapData records for IDs 11/12/13 from the resource registry around 0x2002454C.
+6. Keep resource 14 and 0x0801AB7E separate until a hard bridge appears.
+
+Continue multi-pass: find -> analyze -> continue -> return to main chain -> consolidate. Do not stop on a small finding.
