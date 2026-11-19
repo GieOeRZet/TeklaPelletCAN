@@ -1144,3 +1144,39 @@ Następny atak koncentrujemy więc wyłącznie na problemie A oraz na Home/UI:
 
 Pełny batch źródłowy:
 `analiza/FW2213TK-2026-11-19/1167A-CO-INSTANCE-LOOKUP.md`
+
+
+# 33. HOME/MAIN ROOT + GRAFIKA KOTŁA — NOWY TWARDY SPINE — 2026-11-19
+
+Po powrocie do surowego `decompiled.c` zamknięto ważną korektę architektury Home/Main. `FUN_0803E5AC` rzeczywiście składa duży root i bezpośrednio tworzy kluczowe podkomponenty:
+
+```
++0x23DC -> FUN_08047244
++0x24B7 -> FUN_08047290
++0x258F -> FUN_08047604
++0x289B -> FUN_08047E54
++0x297F -> FUN_08038ED0
++0x298A -> FUN_08038ED0
+```
+
+### 33.1 47290 — korekta „6 widgetów”
+`FUN_08047290` nie jest sześcioma konstruktorami widgetów. Tworzy/organizuje dwa bloki po 6 elementów i w pętli stride `0x40` wiąże sześć slotów ze wspólnymi obiektami pod `+0x20/+0x24`. To jest sześcioslotowy komponent/rekord, nie sześć niezależnych klas.
+
+### 33.2 47604 — duży komponent Home/Main
+`FUN_08047604` tworzy m.in. cztery obiekty pod `+0x1D7`, stride `0x54`. Każdy dostaje przez vtable geometrię:
+- X/Y z pól rodzica,
+- W = `0x1E0 = 480`,
+- H = `200`,
+po czym jest dołączany przez `FUN_08030380`. Nie ma jeszcze dowodu, że są to cztery bitmapy kotłów; nie zgadujemy.
+
+### 33.3 38ED0
+`FUN_08038ED0` jest krótkim konstruktorem z vptr `DAT_08038EE4` i zerowaniem pola +0x28. W Home/Main występuje trzy razy. Bez vptr proof nie utożsamiać go automatycznie z WheelSelectorExtra.
+
+### 33.4 Kierunek grafiki kotła
+Twarde końce nadal są dwa:
+- FW `0x370A` = **Boiler image selector**, 1..3, RAM `0x20021FA6`, snapshot = 3;
+- prawdziwe bitmapy firmware: `011.png` 105x126, `012.png` 108x141, `013.png` 82x145, `014.png` 54x100.
+
+Nie ma jeszcze dowodu mapowania `370A=1/2/3 -> 011..014`. Następny atak ma znaleźć rzeczywisty call-site Bitmap/BitmapData zależny od wariantu i dopiero wtedy spiąć selector -> bitmap -> widget -> geometria Home.
+
+Pełny batch: `analiza/FW2213TK-2026-11-19/BATCH-HOME-ROOT-BOILER-GRAPHICS-SPINE-2026-11-19.md`.
