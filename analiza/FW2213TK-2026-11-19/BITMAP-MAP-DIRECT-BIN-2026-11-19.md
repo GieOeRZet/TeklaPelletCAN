@@ -241,3 +241,12 @@ Previous notes that treated 69/70 only as a slider/knob pair were also incomplet
 User confirms that bitmap IDs **130–137** are the four mode icons used above the sliders. The UI composition has four icon positions per slider, with active/inactive states (4x2 states). The previously supplied screenshot is only a visual reference; exact dimensions, colors and layout must still come from the direct-BIN bitmap data and firmware call-sites.
 
 Do not treat 130–137 as generic unrelated mode/time icons anymore: they are now user-confirmed as the slider mode-icon family. The exact mapping of each ID to icon position and active/inactive state remains to be established from firmware/resource references.
+
+
+## USER-CONFIRMED 130–137 STATE RULE — 2026-11-19
+
+For the slider mode-icon family 130–137, the user confirms the visual state convention:
+- **thinner icon = OFF / inactive**
+- **thicker/bold icon = ON / active**
+
+This is user-observed UI evidence. Exact ID-to-icon-position pairing remains to be established from firmware/resource call-sites. Do not infer the individual numeric ordering from thickness alone until the BIN/reference analysis confirms it.
