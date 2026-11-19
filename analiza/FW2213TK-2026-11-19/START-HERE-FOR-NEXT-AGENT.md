@@ -454,3 +454,61 @@ Go directly to:
 6. separate provenance of 0x0801AB7E.
 
 User expects several passes before a report. Find -> analyze -> continue -> return to main chain -> consolidate. Do not stop on a small finding.
+
+
+# SECOND RAW PASS HANDOFF — 370A TARGET BITMAP +0x85C CLOSED — 2026-11-19
+
+Latest commits:
+- batch: 7322fe63e46d6bf9497c01cdefeee6c7864b502e
+- MASTER: 64bd9f7ddb3995dc84ad3c300ef60fca0df07914
+
+## NEW CLOSED FACT
+
+FUN_0803C33E constructs a repeated visual composite with four real Bitmap children:
+- +0x85C
+- +0x888
+- +0x8B4
+- +0x8E0
+
+All four are created through FUN_0802DF08, the concrete Bitmap constructor pattern.
+
+The 370A update path specifically targets +0x85C:
+
+0x370A
+ -> internal 0x121
+ -> FUN_08036FF2
+ -> 0x20021FA6
+ -> FUN_0803CB04
+ -> FUN_0803CACC
+ -> +10
+ -> FUN_080307BC
+ -> Bitmap +0x85C
+ -> resource 11..13
+
+FUN_0803C33E is instantiated by:
+- FUN_08039A48
+- FUN_08039B30
+- FUN_08039C18
+
+So there are three sibling composites using this visual structure.
+
+## DO NOT REPEAT
+
+The following are CLOSED:
+- 0x121 -> 0x370A
+- 370A -> 0x20021FA6
+- 370A value 1/2/3 -> resource IDs 11/12/13
+- target +0x85C is a real Bitmap object
+- 469E8 resource 14 is a separate path
+
+0x0801AB7E is raw data/resource and is NOT the 370A runtime callback.
+
+## NEXT MULTIPASS TARGET
+
+1. Identify exact class/vtable/source trace of FUN_0803C33E / FUN_0803CB04.
+2. Recover X/Y/W/H of parent +0x85C and siblings +0x888/+0x8B4/+0x8E0.
+3. Resolve resource IDs 11/12/13 to the actual extracted BitmapData entries.
+4. Determine which of the three repeated composites is the Home/main boiler graphic.
+5. Keep resource 14/469E8 separate.
+
+User wants several passes before reporting. Continue finding -> analyzing -> tracing -> returning to the main chain, then consolidate.
