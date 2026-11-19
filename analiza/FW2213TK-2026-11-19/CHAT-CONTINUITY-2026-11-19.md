@@ -512,3 +512,20 @@ commit: `fc952b6ed32729e51e776a608a983ccbb699c9f0`
 3. test 011-014 oraz 002/003;
 4. namierzyć w dekompilacji odpowiedniki Bitmap::drawPartialBitmap, LCD16bpp::blitCopy, getData/getExtraData/getFormat;
 5. dopiero potem poprawić extractor i regenerować 000..187.
+
+
+## 23. TOUCHGFX — KOLEJNY PRZEBIEG 2026-11-19
+
+Namierzone adresy z `strings.txt`:
+- 0x08034630 = ścieżka `touchgfx/.../Bitmap.cpp`, assert Bitmap database przy 0x080345f3;
+- 0x080555be = `LCD16bpp.cpp`, assert RGB888 unsupported przy 0x08055534;
+- 0x080568fc = `HAL.cpp`;
+- 0x08056ffc = `DMA.cpp`.
+
+Funkcje w tych regionach z `functions.txt`: 080346dc, 0803475c, 080347dc oraz 0805570e (466 B), 080561b0, 0805644c, 08056500, 0805676c, 080567ac, 08056a04, 08056b0c, 08056c7e, 08056d04, 08056df0, 08056e78. `FUN_0805570e` jest obecnie głównym kandydatem LCD16bpp bitmap/blit path; region 080568xx+ to HAL/DMA/blit.
+
+Extractor został poprawiony: jawny little-endian RGB565 zamiast Pillow `RGB;16`. Commit `531125b87572842cb313f179e219280280c7e148`. To eliminuje potwierdzony R/B swap (0xF800 czerwony był generowany jako niebieski).
+
+Batch: `BATCH-TOUCHGFX-RENDERER-TRACE-2026-11-19.md`, commit `1f2764fc273351df915dc5fcfe6d36e958768e7d`.
+
+Następny krok: zrekonstruować instrukcje/argumenty FUN_0805570e i FUN_08056xxx oraz znaleźć pixel loop, alpha i format handling. Nie zamykać jeszcze problemu pasków/rozjechanych przejść.
