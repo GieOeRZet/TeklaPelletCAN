@@ -425,3 +425,17 @@ The user has now confirmed from the real UI/screens that bitmap resources 184/18
 ### Important correction to previous documentation
 Previous notes that described 184/185 simply as a generic 'large toggle' were incomplete. The canonical interpretation is now: **reusable ON/OFF toggle family, including main Power-screen boiler ON/OFF and multiple settings/action screens**.
 Previous notes that treated 69/70 only as a slider/knob pair were also incomplete: **they participate both in toggle controls and in multiple slider controls**.
+
+
+## UI REFERENCE CLARIFICATION — SLIDER ICONS — 2026-11-19
+
+User clarification: the supplied slider screenshot is only a visual reference for the **composition of the real UI**, not evidence of exact bitmap dimensions, colors, positions, or spacing.
+
+Above each slider there are **4 icon positions, each with 2 states (active/inactive)**, i.e. 4x2 icon states per slider. The screenshot is a user-made interpretation and its icon sizes, colors, exact layout and proportions are NOT authoritative.
+
+Therefore:
+- do not infer bitmap IDs from the screenshot;
+- do not infer exact dimensions or colors from the screenshot;
+- do not assume the visual arrangement shown is the firmware arrangement;
+- use the screenshot only to understand that the real composed control contains four mode icons above each slider and each icon has active/inactive states;
+- bitmap identity must be established from direct-BIN extraction + resource references/call-sites + geometry.
