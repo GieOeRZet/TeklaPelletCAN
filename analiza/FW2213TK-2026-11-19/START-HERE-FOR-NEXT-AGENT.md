@@ -383,3 +383,74 @@ Raw `FUN_080469E8` also corrected:
 The next target is the **generic parameter path for internal index 0x121**. Find the structure/lookup that takes internal index 0x121 and resolves the 370A storage and handler/data descriptor.
 
 Do not reconnect 370A to the cascade/469E8 branch without a hard call/data edge.
+
+
+# FINAL HANDOFF UPDATE — RAW MULTIPASS 0x121 -> 0x370A -> BITMAP — 2026-11-19
+
+Latest commits:
+- batch: ab05fda54dbb6a87fb12ae15536139af086821f5
+- MASTER: 4afb8524463c648f760e858335b364067fa620d9
+
+Read MASTER §49 and batch:
+BATCH-RAW-MULTIPASS-121-370A-UI-BITMAP-2026-11-19.md
+
+## CLOSED — DO NOT REPEAT
+
+The Boiler image selector chain is now hard-proven:
+
+0x370A
+ -> internal index 0x121
+ -> FUN_08036FF2
+ -> mapping table @ 0x08037984
+ -> FUN_08037094
+ -> FUN_080115F6
+ -> record +0x0C
+ -> storage 0x20021FA6
+ -> u8 value 1..3
+ -> FUN_0803CB04
+ -> FUN_0803CACC
+ -> value + 10
+ -> FUN_080307BC
+ -> Bitmap object +0x85C
+ -> resource IDs 11,12,13
+
+Therefore:
+1 -> 11
+2 -> 12
+3 -> 13
+
+This is now executable-code proof. Do NOT call this mapping a hypothesis anymore.
+
+## IMPORTANT CORRECTION
+
+0x0801AB7E is raw pixel/table data and is NOT the runtime 370A callback.
+
+Do not continue trying to route:
+370A -> 0x0801AB7E -> UI.
+
+The actual runtime route is through FUN_0801143C / FUN_080115F6 and the storage pointer:
+0x200208EC + 0x16BA = 0x20021FA6.
+
+## ALSO KEEP SEPARATE
+
+0x158 -> 0x351A = Cascade slaves number
+0x11C -> 0x350C = Cascade master
+
+Those feed:
+FUN_0803E45C -> FUN_08047040 -> four 469E8 composites -> fixed Bitmap resource 14.
+
+Do not reconnect this cascade branch to 370A without a new hard edge.
+
+## NEXT ATTACK
+
+Do not spend time proving 370A -> 11/12/13 again.
+
+Go directly to:
+1. FUN_0803CB04 class/vtable and constructor;
+2. parent object containing Bitmap child +0x85C;
+3. direct BitmapData/resource-table proof for resource IDs 11,12,13 and match to 011/012/013;
+4. X/Y/W/H and visibility of +0x85C;
+5. role of fixed resource 14;
+6. separate provenance of 0x0801AB7E.
+
+User expects several passes before a report. Find -> analyze -> continue -> return to main chain -> consolidate. Do not stop on a small finding.
