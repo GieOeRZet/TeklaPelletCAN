@@ -1249,3 +1249,36 @@ Nadal otwarte jest kluczowe połączenie:
 Konstruktor `469E8` ustawia ID 14 statycznie, więc trzeba znaleźć metodę aktualizującą child `+0x4F` po zmianie modelu.
 
 Pełny batch: `BATCH-HOME-BOILER-WIDGET-469E8-2026-11-19.md`.
+
+
+# 38. 469E8 — WRITER BITMAP ID ZAMKNIĘTY, 370A NADAL OTWARTE — 2026-11-19
+
+[FW] Surowy decompiled.c zamyka rolę FUN_080307BC: zapisuje Bitmap/resource ID bezpośrednio do pola child +0x26, a następnie przez vtable +0x38/+0x3C pobiera/ustawia zależne wymiary zasobu.
+
+[FW] W FUN_080469E8 child grafiki znajduje się pod +0x4F. Konstruktor wykonuje:
+- child +0x4F,
+- FUN_080307BC(..., 0x0E),
+- pozycjonowanie przez vtable +0x2C/+0x30,
+- Y = 20,
+- attach przez FUN_08030380.
+
+[FW] Finalny vptr komponentu 469E8 = DAT_08046CC4.
+
+[FW] Parent 469E8 ma literalne W=70, H=150. Bitmap ID=14, asset 014.png=54x100.
+
+[FW] FUN_0803E34C tworzy cztery instancje 469E8 pod +0x251, +0x2B8, +0x31F i +0x386, ze stride 0x19C bajta.
+
+[FW] Ważny wynik negatywny: w całym eksportowanym decompiled.c nie znaleziono bezpośredniego, statycznego wywołania FUN_080307BC na tych czterech adresach poza konstruktorem FUN_0803E34C. Nie dowodzi to braku zmiany bitmapy, bo nadal możliwa jest ścieżka pośrednia/vtable/parent traversal.
+
+[CORRECTION] Nie szukamy już ogólnie „writera Bitmap ID”. Writer jest zamknięty: FUN_080307BC -> child+0x26. Szukamy teraz call-site, który podaje do tego writera zmienny resource ID.
+
+[STRONG] Nowy najlepszy atak:
+DAT_08046CC4 -> vtable/metody klasy 469E8 -> parent/model binding -> ewentualny pośredni wybór Bitmap ID.
+
+Równolegle obiekt +0x213 z FUN_080469D4 ma vptr DAT_080469E4 i przechowuje parent + callback/object metadata; to jest obecnie mocny kandydat na most między czterema instancjami wizualnymi a modelem.
+
+[STRONG] Nadal NIE zamykamy 370A -> 11/12/13/14. Fakty pozostają rozdzielone:
+370A = Boiler image selector, 1..3, RAM 0x20021FA6, snapshot=3;
+469E8 = Bitmap ID 14 -> 014.png 54x100.
+
+Pełny batch: BATCH-469E8-BITMAP-WRITER-VTABLE-TRACE-2026-11-19.md.
