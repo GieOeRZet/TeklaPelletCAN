@@ -1,0 +1,384 @@
+# TeklaPelletCAN — CIĄGŁOŚĆ ROZMOWY — 2026-11-19
+
+Cel: trwały checkpoint rozmowy i ustaleń. Kolejny agent ma korzystać z tego pliku zamiast ponownie wykonywać zamknięte analizy.
+
+## 1. Instrukcja użytkownika
+
+Użytkownik wymaga wielopoziomowego, wielowątkowego reverse engineeringu:
+- działaj -> sprawdzaj -> analizuj -> szukaj -> wracaj do wcześniejszych punktów -> powtarzaj;
+- kilka/kilkanaście/kilkadziesiąt przebiegów przed podsumowaniem;
+- po znalezieniu faktu idź dalej jego łańcuchem;
+- nie dawaj okruchów bez kontynuacji;
+- zapisuj zamknięte ustalenia do GitHub, aby nie powielać roboty.
+
+## 2. Żądanie: 151/152
+
+Użytkownik najpierw poprosił o pokazanie bitmap 151 i 152. Następnie wyraźnie nakazał rozszarpanie binarki, bez polegania tylko na wcześniejszym atlasie.
+
+## 3. Direct-BIN bitmap extraction — zamknięte
+
+Źródło: FW2213TK_kopia.bin
+Rozmiar: 2,031,616 B = 0x1F0000
+
+Twarda korekta:
+runtime pointer -> file offset:
+file_offset = runtime_pointer - 0x08010000
+
+Nie używać 0x08000000. Ta błędna baza powoduje śmieciowe obrazy.
+
+Tabela bitmap:
+- file offset 0x54450
+- runtime 0x08064450
+- rekord 20 B
+- 188 prawdziwych rekordów
+- IDs 000..187
+
+Układ rekordu:
++00 u32 RGB/data pointer
++04 u32 extraData/A8 pointer lub 0
++08 u16 width
++0A u16 height
++0C u16 solidRect.x
++0E u16 solidRect.y
++10 u16 solidRect.width
++12 u16 solidRect.height
+
+RGB = RGB565, 2 B/pixel.
+Jeśli extraData != 0, kanał A8 ma W*H bajtów.
+
+## 4. Bitmapy 151/152 z BIN
+
+151:
+descriptor 0x5501C
+RGB 0x081C5638
+A8 0x081E4C7C
+30x31
+
+152:
+descriptor 0x55030
+RGB 0x081C5D7C
+A8 0x081E5020
+30x31
+
+Różnica RGB pointerów = 0x744 = 30*31*2. To potwierdza kolejne RGB565 payloady.
+
+## 5. 151/152 -> FUN_08047290
+
+Raw disassembly potwierdził:
+FUN_08047290
+ -> sześć rekordów, stride 0x40
+ -> FUN_08047334
+ -> FUN_0804C392
+ -> FUN_0804C320
+ -> resource IDs 151/151/152/152
+
+Czyli 151/152 są prawdziwą parą stanów komponentu 47290.
+
+Nie łączyć ich z wykresem 056/057.
+
+## 6. 056/057
+
+Ekran „Moc dmuchawy modulacja [%]” ma pięć punktów wykresu.
+
+Web/card:
+.fmp -> U(56)
+.fmp.sel -> U(57)
+
+Czyli:
+056 = punkt normalny
+057 = punkt selected
+
+To osobny mechanizm od 151/152.
+
+## 7. FUN_08047290 — korekta krytyczna
+
+47290 jest pionowym komponentem sześciu slotów, NIE dolnym paskiem.
+
+Geometria:
+X = 100
+Y = 50, 84, 118, 152, 186, 220
+stride = 0x40
+
+47290:
+- rejestruje się przez FUN_080318B4;
+- jest aktualizowany przez registry/vtable +0x50;
+- używa bitmap 151/152;
+- pobiera TypedText dynamicznie.
+
+Caller:
+0803EE30 -> 080484B0 -> 08047334
+
+W 0803EE30:
+record+0x08 jest pointerem przekazywanym dalej jako argument 7.
+W 47334:
+TypedTextID = param_7[slot]
+
+## 8. Home root
+
+Home root = FUN_0803E5AC.
+
+Potwierdzone bezpośrednie konstrukcje/attach:
++0x380 -> 08038ED0
++0x3BC -> 08041E1C
++0x3EC -> 08041E1C
++0x41C -> 08047230
++0x42C -> repeated constructor przez 0800DCD4
++0x84F4 -> 0802E716
++0x8F70 -> 08047244
++0x92DC -> 08047290
++0x963C -> 08047604
++0xA26C -> 08047E54
++A5FC/+A628 -> 08038ED0
++A654/+A680 -> 0802DF08
++A6AC -> 08047FD4
++A6BC -> 08047FE8
++A6CC -> 08047FFC
++A6DC -> 08047FE8
+
+Parent/add helper = FUN_08030380:
+child parent at +0x14 and child linked into parent +0x28 chain.
+
+Uwaga: drzewo obiektów jest twarde, ale semantyka każdego dziecka nie wynika automatycznie z samego miejsca konstrukcji.
+
+## 9. Prawdziwy bottom bar
+
+47290 NIE jest bottom bar.
+
+Najmocniejszy obecny trop:
+160/161, rozmiar 241x49.
+
+Są wizualnie zgodne z dużym ciemnym przyciskiem konfiguracji/settings na pokazanym ekranie.
+
+Jeszcze otwarte:
+160/161 -> call-site -> constructor -> parent -> geometry -> callback -> konkretny ekran.
+
+## 10. 370A / boiler graphic
+
+Zamknięty łańcuch:
+370A
+ -> internal +0x121
+ -> FUN_08036FF2
+ -> runtime record
+ -> RAM 0x20021FA6
+ -> u8 1..3
+ -> FUN_0803CB2C
+ -> FUN_0803CACC
+ -> FUN_0803C33E
+ -> child +0x85C
+ -> resource 11/12/13
+
+370A:
+- Boiler image selector
+- u8 1..3
+- default 1
+- RAM 0x20021FA6
+- callback/registration 0x0801AB7E
+
+Nie zakładać, że wartość pochodzi z device type/serial.
+
+## 11. C33E/C5B4
+
+0803CACC:
+- input + 0x0A
+- wynik jako resource ID
+- destination +0x85C
+- FUN_080307BC
+
+Input 1/2/3 -> bitmap 11/12/13.
+
+0803C33E:
+- helper +0x84C
+- FUN_080424C4
+- +0x85C pozostaje bitmap child
+
+0803C5B4 nie ma bezpośredniego BL; prawdopodobnie ścieżka vtable/indirect.
+
+## 12. Cascade
+
+0803E45C
+ -> model[0x158] + model[0x11C]
+ -> 08047040
+ -> 4 x 080469E8
+ -> bitmap 14
+
+Niezależna gałąź. Nie utożsamiać automatycznie z główną grafiką Home.
+
+## 13. CO1/CO2
+
+CO2:
+raw około 0x46D2C, runtime 0x08056D2C, TypedText 58 = Ogrzewanie 2, osobny vtable.
+
+CO1:
+raw około 0x4B618, runtime 0x0805B618, TypedText 57 = Ogrzewanie 1, osobny vtable.
+
+CO2:
+TypedText 348 „Błąd wygaszania” X205 Y195 W200 H70
+TypedText 460 „Liczba kotłów slave” X320 Y195 W200 H70
+TypedText 68 „Moc 2” przy child +0x85C
+
+08030358 = geometry helper.
+0805F87C = X0 Y0 W480 H272.
+
+Rodzina ośmiu konstruktorów:
+0804C410
+0804C78C
+0804CA94
+0804CD9C
+0804D00C
+0804D320
+0804D634
+0804D948
+
+TypedText:
+40..49 zależnie od +0x12B
+159 = Temp. maksymalna [°C]
+170 = Temperatura CO dla 0°C [°C]
+171 = Temperatura CO dla 10°C [°C]
+99..102 = OGRZEWANIE 1..4
+119..122 = Ogrzewanie obwód 1..4
+57 = Ogrzewanie 1
+58 = Ogrzewanie 2
+
+Otwarte:
+parent/add CO1/CO2, wybór przez Home variant, dynamiczne bitmap writers.
+
+## 14. Home variants
+
+Obiekt:
++0x16BF = 0x3500 Main module type
++0x16C0 = 0x3502 CH expansion
++0x16CC = 0x350B Profile
++0x16C1 = dodatkowe pole konfiguracji
++0x16D5 = osobny warunek inicjalizacji
+
+Main=0:
+expansion=0: profile 1/2/3 -> variant 2/3/4
+expansion=1: profile 1/2/3 -> variant 5/6/7
+
+Main=1/2 mają osobne gałęzie.
+
+## 15. 0x2105
+
+0x2105 = Heating configuration, zakres 0..4.
+
+Nie ma dowodu:
+0x2105 -> liczba CO
+0x2105 -> +0x12C
+
+Nie powielać tych hipotez.
+
+0x2106..0x2108 = dodatkowa konfiguracja grzania.
+C064 = dispatcher class/instance, nie dowód aktywacji CO.
+DAT_0804107C / podobne = Test I/O dla pomp/mieszaczy CO1..CO4.
+
+## 16. Inne ważne komponenty
+
+0802E716:
+- host/container
+- 648 B
+- konstrukcja m.in. 08034866, 080349F4, 08034784
+- callbacks 08034A2C..08034A68
+- rectangle 480x300
+- element 1000x1000
+- nie jest bezpośrednim writerem 0B..0E
+
+08047604:
+- duży komponent Home
+- grupy 5 elementów i 5 tekstów
+- 4 obszary 480x200
+- prawdopodobny graph/chart
+- nie traktować tych regionów jako literalnych boiler bitmaps bez dowodu
+
+08047E54:
+- 0802DF80
+- resources 0x1B6..0x1B9
+- TypedText 468 około X135 Y60 W200
+- rola nadal otwarta
+
+## 17. Canonical bitmap inventory
+
+188 bitmap IDs 000..187.
+
+Najważniejsze:
+011/012/013/014 = boiler graphics
+019/020 = checkbox
+056/057 = graph points
+070 = slider handle
+102/103 = large minus
+104 + 168/169 = small minus
+110/111 = large OK
+112/113/114 = slider dialog pieces
+117/118 = large plus
+120..137 = mode/time icons
+138..143 = circular selector/arrow family
+151/152 = 47290 state
+160/161 = real lower settings button
+163 = slider track
+165 = mode slider fill
+167 = value slider fill
+168/169 = small button background
+184/185 = large toggle
+186/187 = thin/value-slider elements
+
+Pełna mapa wymiarów znajduje się w:
+analiza/FW2213TK-2026-11-19/BITMAP-MAP-DIRECT-BIN-2026-11-19.md
+
+## 18. GitHub artifacts / commits
+
+HANDOFF:
+analiza/FW2213TK-2026-11-19/HANDOFF-NOWY-CHAT-2026-11-19.md
+commit e1f75d9895eb029b01d043081ade89c719ccb550
+
+START-HERE:
+analiza/FW2213TK-2026-11-19/START-HERE-FOR-NEXT-AGENT.md
+commit 2ea42a92174eadf59c9f9b760954785af759d29d
+
+BATCH-REORIENTACJA-HOME-CASCADE-2026-11-19.md
+commit 84be7eb7cbe44b591338a89f8d7656944bd4602a
+
+BATCH-CO1-CO2-VARIANT-GEOMETRIA-2026-11-19.md
+commit f78987d007f8068f7b75d790cc5391311629f80c
+
+BATCH-47290-UPDATE-REGISTRY-2026-11-19.md
+commit 9c29bb6eacd496584135b30ff2c2766631879b2c
+
+CORRECTION-47290-VERTICAL-NOT-BOTTOM-2026-11-19.md
+commit 119ebc0a59a551972810fb4913ff44e8dc856f24
+
+BATCH-MULTIPASS-47290-C33E-39XXX-2026-11-19.md
+commit 3c3ba0953cb2eca11ccaa54a37953292825d3bf1
+
+BATCH-RAW-151-152-47290-AND-BOTTOM-BAR-2026-11-19.md
+commit 7968fb5eb8580c64fc45d2ca465ad235e69ac54e
+
+BITMAP-MAP-DIRECT-BIN-2026-11-19.md
+commit 06fcc9b6e80ad4141cd18ed4fa88511ddc0a5398
+
+tools/extract_fw_bitmap_table_direct.py
+commit 36200e0ce3c7ced25fe47fdde53fc7fac6e1a5e9
+
+START-HERE direct-BIN checkpoint update:
+commit ea973136c76fda0e6278ccc1ada140dc9b8814a4
+
+## 19. Ostatnie żądanie użytkownika w tej rozmowie
+
+Użytkownik poprosił:
+„Zapis całą tą rozmowę na githubie aby była ciągłość.”
+
+Ten plik jest odpowiedzią na to żądanie i ma być traktowany jako bieżący checkpoint rozmowy.
+
+## 20. Następny agent — nie zaczynaj od początku
+
+Najpierw przeczytaj:
+1. ten plik;
+2. START-HERE-FOR-NEXT-AGENT.md;
+3. BITMAP-MAP-DIRECT-BIN-2026-11-19.md;
+4. BATCH-RAW-151-152-47290-AND-BOTTOM-BAR-2026-11-19.md.
+
+Następnie kontynuuj równoległe ścieżki:
+A) 160/161 -> realny bottom bar;
+B) 151/152 -> dokładna semantyka 47290;
+C) Home variant -> CO1/CO2;
+D) resource ID -> call-site -> parent -> geometry -> callback.
+
+Nie wykonuj ponownie ekstrakcji 188 bitmap ani ustalania bazy 0x08010000.
