@@ -1957,3 +1957,76 @@ Attack:
 3. connect resource IDs 11/12/13 to the actual extracted BitmapData entries;
 4. determine which of the three repeated composites is the Home/main boiler graphic;
 5. only then investigate the separate fixed resource 14 path.
+
+# 51. THIRD RAW PASS — BITMAP CONSTRUCTOR/WRITER REVALIDATION — 2026-11-19
+
+## 51.1 FUN_0803C33E contains six explicit Bitmap children
+
+Direct raw disassembly shows:
+- +0x330 -> FUN_0802DF08, initial resource 0xFFFF
+- +0x35C -> FUN_0802DF08, initial resource 0xFFFF
+- +0x85C -> FUN_0802DF08, initial resource 0xFFFF
+- +0x888 -> FUN_0802DF08, initial resource 0xFFFF
+- +0x8B4 -> FUN_0802DF08, initial resource 0xFFFF
+- +0x8E0 -> FUN_0802DF08, initial resource 0xFFFF
+
+[FW] Earlier shorthand saying the composite had only the four +0x85C-family Bitmaps was incomplete. The constructor explicitly creates six Bitmap children.
+The 370A path nevertheless targets only +0x85C.
+
+## 51.2 FUN_080307BC is a true Bitmap resource replacement operation
+
+Raw code:
+- resource ID is read from argument;
+- stored at Bitmap +0x26;
+- width is derived by FUN_0803439C and passed through object slot +0x38;
+- height is derived by FUN_080343EA and passed through object slot +0x3C;
+- clipping/visibility state is recomputed and a flag is stored at +0x29.
+
+[FW] FUN_0803CACC therefore performs a genuine runtime Bitmap resource replacement, not a cosmetic ID write.
+
+## 51.3 Extracted resource dimensions
+
+The repository's firmware extraction records:
+- resource 11 / 011.png = 105x126
+- resource 12 / 012.png = 108x141
+- resource 13 / 013.png = 82x145
+- resource 14 / 014.png = 54x100
+
+Because the Bitmap writer derives dimensions from the resource, the three 370A choices naturally produce different runtime dimensions.
+
+## 51.4 Conservative class identity
+
+Object +0 contains pointer-like values, but raw values seen in this region can resolve into UTF-16/data areas. Therefore:
+
+[FW] We can name the concrete routines:
+- FUN_0802DF08 = Bitmap constructor
+- FUN_080307BC = Bitmap resource setter/update
+- Bitmap object methods are dispatched through relative slots +0x38/+0x3C.
+
+[OPEN] Exact C++ vtable/class identity remains unproven.
+Do not promote object +0 literals to recovered vtables without executable method-table evidence.
+
+## 51.5 Shared low-level Bitmap subsystem, separate higher-level paths
+
+Variable selector:
+FUN_0803CB04
+ -> FUN_0803CACC
+ -> parent+0x85C
+ -> FUN_080307BC
+ -> resources 11..13
+
+Separate fixed path:
+FUN_080469E8
+ -> child+0x13C
+ -> FUN_080307BC
+ -> fixed resource 14
+
+[FW] The two paths share the same Bitmap resource setter but use different higher-level components/children.
+
+## 51.6 Next attack
+
+1. Trace the constructor's +0x85C parent into its actual Home/Main root.
+2. Recover placement/geometry around +0x84C/+0x85C.
+3. Determine which of 08039A48 / 08039B30 / 08039C18 corresponds to the main boiler screen.
+4. Trace visibility/state callbacks around FUN_0803CB04.
+5. Only after that, connect the three resource images to concrete screen variant semantics.
