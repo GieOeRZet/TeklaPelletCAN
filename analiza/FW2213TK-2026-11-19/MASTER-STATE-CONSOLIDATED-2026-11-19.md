@@ -2775,3 +2775,41 @@ W konstruktorze `0x08042EEC` zamknięto zakresy:
 - 138..143: semantyka pompy zamknięta na poziomie asset family, ale ekran/instancja nadal OPEN.
 - 8..10: zakres animacyjny zamknięty; nazwa „wentylator” = STRONG.
 - 105..107: stan mieszacza zamknięty; kierunek open/close OPEN.
+
+
+## 2026-11-20 — NOWE ZAMKNIĘCIE: ACTUATOR INDEX -> PARAMETER -> ASSET
+
+Batch: analiza/FW2213TK-2026-11-20/BATCH-ANIMATION-ENGINE-AND-ACTUATOR-MAPS-2026-11-20.md
+Latest batch commit: ff20d9ebd5a0aa04a3a73d516555fff41478e5c5
+
+[FW] Bezpośrednie call-site'y FUN_08043954:
+- 0x0803D100: index 1 <- internal 0x41
+- 0x0803D112: index 0 <- internal 0x45
+- 0x0803D124: index 2 <- internal 0x46
+- 0x0803D136: index 3 <- internal 0x47
+- 0x0803D148: index 4 <- internal 0x75
+
+[FW] FUN_08036FF2 mapuje te internal IDs na parametry panela:
+- 0x41 -> 0x2251 = Burner storage feeder
+- 0x45 -> 0x2252 = Burner burner feeder
+- 0x46 -> 0x2253 = Burner igniter
+- 0x47 -> 0x2254 = Burner blower
+- 0x75 -> 0x2276 = Grate move indicator
+
+[FW] Zamknięta mapa:
+- index 0 / +0x948 / 40..42 = podajnik palnika
+- index 1 / +0x90C / 36..38 = podajnik paliwa
+- index 2 / +0x984 / 65..67 = zapalarka/grzałka
+- index 3 / +0x9C0 / 8..10 = dmuchawa palnika
+- index 4 / +0x9FC / 58..59 = ruch rusztu
+- index 5 / +0xA38 = OPEN
+
+To jest mocniejsze niż identyfikacja bitmap po wyglądzie, bo mamy pełny łańcuch: parameter -> internal ID -> actuator index -> object -> resource range.
+
+[USER] 36–38 = podajnik paliwa, 40–42 = podajnik palnika. BIN niezależnie to potwierdza.
+
+[FW] 58–59 są sterowane przez 0x2276 Grate move indicator. Warunki/kierunek nadal OPEN.
+
+[FW] 65–67 są sterowane przez 0x2253 Burner igniter. Konkretne znaczenie klatek OPEN.
+
+[OPEN] Resource 39: 30x18 + A8, używany w osobnym komponencie UI razem z 168/169. Hipoteza „ikona drugiego kafelka magazynu paliwa” nadal niezamknięta.
