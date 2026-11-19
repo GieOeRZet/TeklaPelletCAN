@@ -234,3 +234,10 @@ The user has now confirmed from the real UI/screens that bitmap resources 184/18
 ### Important correction to previous documentation
 Previous notes that described 184/185 simply as a generic 'large toggle' were incomplete. The canonical interpretation is now: **reusable ON/OFF toggle family, including main Power-screen boiler ON/OFF and multiple settings/action screens**.
 Previous notes that treated 69/70 only as a slider/knob pair were also incomplete: **they participate both in toggle controls and in multiple slider controls**.
+
+
+## USER-CONFIRMED SLIDER MODE ICONS — 2026-11-19
+
+User confirms that bitmap IDs **130–137** are the four mode icons used above the sliders. The UI composition has four icon positions per slider, with active/inactive states (4x2 states). The previously supplied screenshot is only a visual reference; exact dimensions, colors and layout must still come from the direct-BIN bitmap data and firmware call-sites.
+
+Do not treat 130–137 as generic unrelated mode/time icons anymore: they are now user-confirmed as the slider mode-icon family. The exact mapping of each ID to icon position and active/inactive state remains to be established from firmware/resource references.
