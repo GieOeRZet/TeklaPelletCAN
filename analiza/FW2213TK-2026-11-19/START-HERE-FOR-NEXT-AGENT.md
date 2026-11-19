@@ -606,3 +606,33 @@ Do not repeat the selector chain or the X/Y=40/70 proof.
 6. Keep resource 14 and 0x0801AB7E separate.
 
 Continue multi-pass before reporting.
+
+
+# CURRENT START OVERRIDE — 2026-11-19
+
+**Read this section last. It is the active continuation point and overrides older START-HERE instructions.**
+Persistent memory:
+`analiza/FW2213TK-2026-11-19/BATCH-PERSISTENT-CONTINUATION-MEMORY-2026-11-19.md`
+Latest MASTER after this checkpoint will be the parent document.
+
+## DO NOT RESTART
+The following are CLOSED and must not be rediscovered:
+- 370A -> internal 0x121 -> storage 0x20021FA6 -> value 1..3 -> Bitmap +0x85C -> resources 11/12/13.
+- 1->11, 2->12, 3->13.
+- +0x85C is a real Bitmap.
+- +0x85C X=40,Y=70 in C5B4.
+- C33E has six Bitmap children: +330,+35C,+85C,+888,+8B4,+8E0.
+- C33E has exactly three direct callers: 39A48,39B30,39C18.
+- +0x84C is NOT proven as the parent/container; treat as separate OPEN helper.
+- 0x0801AB7E is raw data/resource, not 370A callback.
+- 0x158/0x11C cascade and resource 14 are separate.
+
+## NEXT MULTIPASS
+A. indirect dispatch -> FUN_0803C5B4
+B. FUN_080424C4 -> exact semantics of +0x84C
+C. all geometry/visibility/resource mutations of +0x85C/+0x888/+0x8B4/+0x8E0
+D. resource registry -> BitmapData for 11/12/13 -> extracted 011/012/013
+E. compare 39A48/39B30/39C18 to identify actual screen
+F. only then render.
+
+For every useful finding, continue tracing before reporting. Persist the next substantial checkpoint to GitHub. Do not ask the user to repeat context.
