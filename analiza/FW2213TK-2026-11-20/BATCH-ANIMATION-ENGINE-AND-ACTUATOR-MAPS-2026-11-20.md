@@ -120,3 +120,74 @@ Dla 36–38 i 40–42 nadal szukamy konkretnego urządzenia.
 
 ## Najważniejsza korekta względem wcześniejszego tropu hoppera
 Pola `+0x30/+0x32/+0x34/+0x36/+0x37` są teraz częściowo zamknięte jako pola mechanizmu animacji w konkretnych obiektach. Nie wolno jednak automatycznie przenosić tej semantyki na `parent+0x5A8` hoppera bez proof, ponieważ hopper ma własny kontekst i może współdzielić strukturę tylko częściowo.
+
+## [FW] 2026-11-20 — ZAMKNIĘCIE INDEKSÓW 0..4 PRZEZ UPSTREAM DATAFLOW
+
+Nowy twardy krok względem wcześniejszego „index -> asset”.
+
+FUN_08043954(object, index, enable) ma 5 bezpośrednich call-site'ów:
+- 0x0803D100: index=1, enable = U8(FUN_08036FF2(ctx, 0x41))
+- 0x0803D112: index=0, enable = U8(FUN_08036FF2(ctx, 0x45))
+- 0x0803D124: index=2, enable = U8(FUN_08036FF2(ctx, 0x46))
+- 0x0803D136: index=3, enable = U8(FUN_08036FF2(ctx, 0x47))
+- 0x0803D148: index=4, enable = U8(FUN_08036FF2(ctx, 0x75))
+
+W pełnym skanie bezpośrednich BL nie ma call-site FUN_08043954(..., index=5, ...). +0xA38 ma więc inną ścieżkę sterowania.
+
+### [FW] internal ID -> panel parameter ID
+
+FUN_08036FF2 skanuje tablicę mapującą internal IDs na identyfikatory parametrów panela. Tablica jest adresowana przez ADR z tej funkcji; jej baza runtime to 0x0803757C, czyli file offset 0x357C.
+
+Interesujące rekordy:
+- file 0x37640: 0x46 -> 0x2253, 0x47 -> 0x2254, 0x41 -> 0x2251
+- file 0x37650: 0x45 -> 0x2252
+- file 0x376A0: 0x75 -> 0x2276
+
+### [FW/DATA] Semantyka parametrów
+
+Nazwy zapisane w firmware / katalogu parametrów:
+- 0x2251 = Burner storage feeder
+- 0x2252 = Burner burner feeder
+- 0x2253 = Burner igniter
+- 0x2254 = Burner blower
+- 0x2276 = Grate move indicator
+
+### [FW] Zamknięte mapowanie indeksów
+
+| index | obiekt | resource range | enable source | semantyka |
+|---:|---|---|---|---|
+| 0 | +0x948 | 40..42 | 0x45 -> 0x2252 | podajnik palnika |
+| 1 | +0x90C | 36..38 | 0x41 -> 0x2251 | podajnik paliwa / storage feeder |
+| 2 | +0x984 | 65..67 | 0x46 -> 0x2253 | zapalarka / grzałka palnika |
+| 3 | +0x9C0 | 8..10 | 0x47 -> 0x2254 | dmuchawa palnika |
+| 4 | +0x9FC | 58..59 | 0x75 -> 0x2276 | ruch rusztu |
+| 5 | +0xA38 | OPEN | brak bezpośredniego call-site | OPEN |
+
+### [STRONG + USER] 36–42
+
+Użytkownik potwierdza:
+- 36–38 = podajnik paliwa
+- 40–42 = podajnik palnika
+
+BIN potwierdza to niezależnym łańcuchem dataflow: storage feeder -> 0x2251 -> index 1 -> 36..38; burner feeder -> 0x2252 -> index 0 -> 40..42.
+
+### [FW] 58–59
+
+0x2276 = Grate move indicator, więc 58..59 mają zamknięte źródło sterowania: wskaźnik ruchu rusztu. Dokładny warunek/kierunek ruchu pozostaje OPEN.
+
+### [FW] 65–67
+
+0x2253 = Burner igniter, więc 65..67 są sterowane przez parametr zapalarki. To mocniejszy dowód niż sama grafika; rozdział klatek 65/66/67 na konkretne stany pozostaje OPEN.
+
+### [OPEN] 39
+
+Bitmap 039 ma 30x18 + A8. Resource 0x27=39 występuje w osobnym komponencie przy runtime około 0x0802FA00, razem z resource 168/169. Dowodzi to użycia 39 w UI, ale nie dowodzi jeszcze, że jest to dokładnie ikona drugiego kafelka „Magazyn paliwa”. Wizualnie pasuje do małej grafiki mechanizmu/transportera; parent/widget nadal wymaga trace.
+
+## [OPEN] Następne przebiegi
+
+1. Trace index 5 / +0xA38.
+2. Trace 0x2276 i zamknąć warunki 58/59.
+3. Trace 0x2253 i rozdzielić 65/66/67.
+4. Trace 0x2254 i sprawdzić logikę 8/9/10.
+5. Trace 0x2251/0x2252 i rozdzielić dokładną logikę klatek feederów.
+6. Trace parent/widget resource 39.
