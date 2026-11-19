@@ -1199,3 +1199,17 @@ To oznacza cztery instancje tego samego typu obiektu ustawione względem siebie 
 Dlatego następny krok dla grafiki kotła musi zejść **wewnątrz obiektu z `+0x1D7` / jego vptr `DAT_08047E34` oraz do funkcji obsługujących jego dzieci**, zamiast utożsamiać jego prostokąt z bitmapą.
 
 Geometria użytkownika jest zgodna z firmware i bardzo cenna: `480x200` to praktycznie dokładnie **główna powierzchnia Home nad paskiem 72 px**. To jest właściwy „canvas” do rozpisania wszystkich widgetów.
+
+# 35. HOME — 7 DOLNYCH STREF + ZŁOŻONY GÓRNY CONTENT — 2026-11-19
+
+Najmocniejsza korelacja screenshot ↔ kod do tej pory: dolny pasek widoczny jako 7 stref odpowiada strukturze 1 + 6.
+
+- FUN_08047244 tworzy osobny komponent z childem +0x18, vptr DAT_0804728c, pozycja X=50, Y=55.
+- FUN_08047290 tworzy dokładnie 6 slotów: elementy +0x2A stride 0x40 count 6 oraz teksty +0x8A stride 0x34 count 6.
+- FUN_08047334 pokazuje, że każdy slot ma własny element wizualny, TypedText, geometrię, kolor i kolejne dzieci.
+
+To daje bardzo mocny model dolnego paska: 47244 + 47290[6] = 7 wizualnych stref. Każda strefa jest sama w sobie kompozytem widgetów, co zgadza się z obserwacją użytkownika.
+
+Górny obszar jest osobnym dużym kompozytem FUN_08047604. Konstruktor ma wiele childów, grupę 5 elementów stride 0xE4, grupę 5 tekstów stride 0x0C, cztery duże obiekty stride 0x54 o geometrii 480x200 oraz dodatkowe obiekty. Zatem 480x200 jest obszarem content, a nie grafiką kotła.
+
+Pełny batch: BATCH-HOME-SCREEN-ZONES-7x-BOTTOM-UPPER-WIDGET-TREE-2026-11-19.md.
