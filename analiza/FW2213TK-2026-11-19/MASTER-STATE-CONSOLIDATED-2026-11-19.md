@@ -1879,3 +1879,81 @@ Next:
 
 Full batch:
 BATCH-RAW-MULTIPASS-121-370A-UI-BITMAP-2026-11-19.md
+
+
+# 50. SECOND RAW PASS — 370A TARGET +0x85C IS A REAL BITMAP CHILD — 2026-11-19
+
+Further raw analysis closes the widget side left open in §49.
+
+## 50.1 FUN_0803C33E constructs the target parent
+
+FUN_0803C33E creates a repeated visual composite.
+
+It constructs four Bitmap children with FUN_0802DF08:
+- parent +0x85C, initial resource 0xFFFF,
+- parent +0x888, initial resource 0xFFFF,
+- parent +0x8B4, initial resource 0xFFFF,
+- parent +0x8E0, initial resource 0xFFFF.
+
+FUN_0802DF08 is the concrete Bitmap constructor pattern: it initializes the visual object, installs Bitmap class data, stores the 16-bit resource ID at child +0x26, and derives/stores dimensions from that resource.
+
+[FW] Therefore parent +0x85C is a real Bitmap child object.
+
+## 50.2 The same visual composite is instantiated three times
+
+FUN_0803C33E is called by:
+- FUN_08039A48,
+- FUN_08039B30,
+- FUN_08039C18.
+
+These sibling constructors also create FUN_0803CB04 update components.
+
+FUN_0803CB04 reads internal model indices including 0x121. The 0x121 read is then sent to FUN_0803CACC, which writes value+10 into the Bitmap at parent +0x85C.
+
+[STRONG] This establishes a repeated visual composite whose first Bitmap child is directly controlled by Boiler image selector 370A.
+
+Do not yet assign the three instances to screen names or specific boilers without more parent/model proof.
+
+## 50.3 370A and 469E8 are now structurally separate
+
+370A path:
+FUN_0803C33E
+ -> Bitmap child +0x85C
+ -> FUN_0803CACC
+ -> resource 11..13
+
+469E8 path:
+FUN_080469E8
+ -> Bitmap child +0x13C
+ -> fixed resource 14
+
+[FW] Resource 14 is not part of the 370A value+10 selector path.
+
+## 50.4 Updated closed graph
+
+0x370A
+ -> internal 0x121
+ -> FUN_08036FF2
+ -> mapping table
+ -> FUN_08037094
+ -> FUN_080115F6
+ -> record +0x0C
+ -> 0x20021FA6
+ -> u8 value 1..3
+ -> FUN_0803CB04
+ -> FUN_0803CACC
+ -> value +10
+ -> FUN_080307BC
+ -> Bitmap child +0x85C
+ -> resource 11..13
+
+## 50.5 Next attack
+
+The next useful target is no longer the selector chain itself.
+
+Attack:
+1. identify the exact class/vtable/source trace of FUN_0803C33E and FUN_0803CB04;
+2. recover geometry X/Y/W/H of parent +0x85C and sibling Bitmap children;
+3. connect resource IDs 11/12/13 to the actual extracted BitmapData entries;
+4. determine which of the three repeated composites is the Home/main boiler graphic;
+5. only then investigate the separate fixed resource 14 path.
