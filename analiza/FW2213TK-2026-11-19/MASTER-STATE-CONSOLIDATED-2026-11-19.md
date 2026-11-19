@@ -1226,3 +1226,26 @@ Również `47604` zostało rozstrzygnięte jako komponent wykresowy: 5 serii/pun
 Nowy ciekawy komponent to `47E54 -> 2DF80`. `2DF80` tworzy wieloelementowy kompozyt małych elementów rozmieszczonych w dwóch rzędach, a `47E54` ustawia dodatkowo TypedText `0x1D4=468` przy X=135, Y=60, W=200. Semantyka tego komponentu pozostaje otwarta.
 
 Pełny batch korekty: `BATCH-HOME-47290-ROLE-CORRECTION-2026-11-19.md`.
+
+
+# 37. TWARDY KANDYDAT GRAFIKI KOTŁA — FUN_080469E8 -> BITMAP 14 — 2026-11-19
+
+W firmware znaleziono komponent `FUN_080469E8`, który w konstruktorze jawnie wykonuje `FUN_080307bc(..., 0x0E)`. Z tabeli zasobów `DOKUMENTACJA/bitmap_sizes.tsv` wynika `014.png = 54x100`.
+
+Ten sam komponent buduje lokalny kompozyt około 70 px szerokości z bitmapą 54x100 oraz czterema elementami TypedText:
+- ID 493, X=0, Y=130, W=70, H=70,
+- ID 493, X=25, Y=40, W=50, H=45,
+- ID 494, X=0, Y=50, W=50, H=70,
+- ID 493, X=30, Y=100, W=100, H=45.
+
+Bitmapa jest ustawiana na Y=20, a X jest wyliczane z szerokości 70 i wymiaru zasobu. Na końcu komponent wiąże się z aktywnym modelem przez `FUN_080314BA -> FUN_080318B4`.
+
+`FUN_0803E34C` tworzy cztery identyczne instancje `FUN_080469E8` w stride `0x19C` bajta. Nie jest jeszcze dowiedzione, że `FUN_0803E34C` jest bezpośrednim rodzicem Home/Main ani że wszystkie cztery są widoczne równocześnie.
+
+To jest obecnie **najmocniejszy znaleziony kandydat na rzeczywisty widget grafiki kotła**: geometria kompozytu i bitmapa 54x100 bardzo dobrze odpowiadają screenshotowi użytkownika.
+
+Nadal otwarte jest kluczowe połączenie:
+`0x370A (Boiler image selector, 1..3) -> aktualizacja Bitmap ID -> 011/012/013/014`.
+Konstruktor `469E8` ustawia ID 14 statycznie, więc trzeba znaleźć metodę aktualizującą child `+0x4F` po zmianie modelu.
+
+Pełny batch: `BATCH-HOME-BOILER-WIDGET-469E8-2026-11-19.md`.
