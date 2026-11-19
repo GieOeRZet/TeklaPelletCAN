@@ -2030,3 +2030,92 @@ FUN_080469E8
 3. Determine which of 08039A48 / 08039B30 / 08039C18 corresponds to the main boiler screen.
 4. Trace visibility/state callbacks around FUN_0803CB04.
 5. Only after that, connect the three resource images to concrete screen variant semantics.
+
+# 52. RAW MULTIPASS — 370A UPDATE BODY + FIRST HARD GEOMETRY — 2026-11-19
+
+[FW] Important function-role correction: `FUN_0803CB04` is the constructor/wiring routine for the visual update object. The actual refresh method starts at `FUN_0803CB2C`.
+
+`FUN_0803CB2C` reads a sequence of model indices and performs UI mutations. Its 370A operation is exact:
+
+```
+ldr r0,[r4,#0x8]
+movw r1,#0x121
+BL FUN_08036FF2
+UXTB r1,r0
+ldr r0,[r4,#0xC]
+BL FUN_0803CACC
+```
+
+Thus the closed path should use `CB2C` as the actual update body:
+
+```
+0x370A
+ -> internal 0x121
+ -> FUN_08036FF2
+ -> runtime record
+ -> 0x20021FA6
+ -> u8 1..3
+ -> FUN_0803CB2C
+ -> FUN_0803CACC
+ -> Bitmap +0x85C
+ -> resource 11..13
+```
+
+## 52.1 First hard geometry
+
+`FUN_0804272C` is behaviorally a two-coordinate setter: it forwards r1 through object slot +0x2C and r2 through slot +0x30.
+
+A nearby layout/update routine `FUN_0803C5B4` explicitly does:
+
+```
+r0 = parent + 0x85C
+r1 = 0x28
+r2 = 0x46
+BL FUN_0804272C
+```
+
+[STRONG] Therefore Bitmap child +0x85C is positioned at:
+- X = 40
+- Y = 70
+
+The same routine then calls `FUN_08030380(parent+0x04, parent+0x85C)`, proving attachment of that child to the parent/container structure in this layout path.
+
+Caveat: the flat-code scan currently has no direct BL caller for `FUN_0803C5B4`; therefore its dispatch mechanism and exact C++ class identity remain OPEN. The coordinate behavior and values are hard raw evidence.
+
+## 52.2 Composite structure
+
+`FUN_0803C33E` explicitly constructs six Bitmap children:
+- +0x330
+- +0x35C
+- +0x85C
+- +0x888
+- +0x8B4
+- +0x8E0
+
+All start with resource 0xFFFF. Only +0x85C is directly controlled by 370A.
+
+The same `FUN_0803C5B4` layout path later targets +0x8E0 with resource 0x7A and X=398, further supporting that it is a multi-child layout/update routine.
+
+## 52.3 Resource dimensions
+
+`FUN_0803439C` / `FUN_080343EA` select resource records from a runtime registry rooted around 0x2002454C and return width/height fields at record +0x08/+0x0A. This confirms the dimensions of the 370A Bitmap are resource-driven after `FUN_080307BC`.
+
+## 52.4 Current status
+
+CLOSED:
+- 0x121 -> 0x370A
+- 370A -> 0x20021FA6
+- 370A 1/2/3 -> resources 11/12/13
+- actual update body = FUN_0803CB2C
+- target Bitmap = +0x85C
+- first hard geometry = X40/Y70
+
+OPEN:
+- dispatch path into FUN_0803C5B4
+- W/H and visibility for +0x85C
+- exact parent/Home/Main mapping of the three 08039A48/39B30/39C18 instances
+- direct BitmapData table entries for resources 11/12/13
+- fixed resource 14 role
+- independent provenance of 0x0801AB7E
+
+Batch: `BATCH-370A-UPDATE-GEOMETRY-2026-11-19.md`.
