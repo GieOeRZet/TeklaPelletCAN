@@ -2559,3 +2559,113 @@ Now attack:
 3. Identify the semantic meaning of `CAN 0x3602` from the parameter database and runtime behavior.
 4. Trace all callers/registration of the hopper parent object.
 5. Continue parallel UI/model/CAN investigation rather than returning to asset extraction.
+
+
+---
+
+# 2026-11-19 — MULTIPASS HOPPER/CAN/GEOMETRY CHECKPOINT
+
+Batch:
+`analiza/FW2213TK-2026-11-19/BATCH-MULTIPASS-HOPPER-CAN-GEOMETRY-2026-11-19.md`
+
+## CLOSED / STRONG
+
+[FW] `FUN_08031CCC`:
+```
+0x147 -> CAN 0x3601 = fuel remaining [kg]
+0x148 -> CAN 0x3600 = tank capacity [kg]
+0x14A -> CAN 0x3602 = is fuel reserve
+percentage = 100 * remaining / capacity
+FUN_0802DA54(context, percentage, reserve_flag)
+```
+
+[FW] Correct raw mapping table:
+```
+0x147 -> 0x3601
+0x148 -> 0x3600
+0x149 -> 0x3603
+0x14A -> 0x3602
+0x14B -> 0x3604
+0x14C -> 0x3607
+```
+This supersedes the older off-by-one mapping in earlier sections.
+
+[FW] `FUN_0802DA54`:
+- reserve=0 -> Bitmap 051 on `+0x5A8`
+- reserve!=0 -> Bitmap 053 on `+0x5A8`
+- percentage does not choose 051/053
+- percentage writes progress fields `+0x966/+0x96A/+0x5DA`
+- refreshes `+0x5A8`, `+0x5D4`, `+0x5360`
+
+[FW] Constructor/setup:
+- `+0x5A8` = Bitmap initially 0xFFFF
+- `+0x5D4` = Bitmap initially 0xFFFF
+- setup assigns resource 052 to `+0x5D4`
+- `+0x960` gets geometry matching `+0x5A8` and receives `+0x5D4` as child
+
+[FW] Hopper Bitmap 051/053 geometry:
+```
+X = parentX + (parentW - bitmapW)/2
+Y = parentY + 0x20
+W = 34
+H = 29
+```
+
+[FW] `FUN_080307BC` is the real Bitmap resource setter: resource ID -> Bitmap+0x26 -> width/height setters -> geometry/visibility recomputation.
+
+[FW] `FUN_08030380` is the add-child linked-list helper used by the setup.
+
+[FW] Secondary fuel aggregator at `0x08032188` reads:
+```
+0x116, 0x149, 0x148, 0x147
+```
+and sends them together to `0x0802D828`.
+
+[DATA] `0x116 -> CAN 0x3606`.
+
+[DATA] Additional mapping:
+```
+0x160 -> 0x3521
+0x161 -> 0x3529
+0x130 -> 0x3739
+0x131 -> 0x373A
+0x132 -> 0x373B
+0x133 -> 0x3722
+0x134 -> 0x3723
+0x135 -> 0x3728
+0x136 -> 0x373C
+0x137 -> 0x373D
+0x151 -> 0x3515
+0x152 -> 0x3516
+```
+
+## STRONG INTERPRETATION
+
+Firmware strings at 0x26F14+:
+- Tank capacity [kg]
+- How much fuel left in tank [kg]
+- Fuel reserve [kg]
+- Is fuel reserve
+- Input IN17 config
+- Reserve sensor state
+
+Strong correlation:
+```
+148 = capacity
+147 = fuel left
+149 = reserve threshold
+14A = reserve boolean
+14B = IN17 config
+14C = reserve sensor state
+```
+Direct string->record xref is still OPEN, so keep this [STRONG], not [FW].
+
+## NEXT
+
+1. Find all consumers of `+0x5DA/+0x966/+0x96A` and close the actual fill/clipping draw method.
+2. Recover the class/vptr semantics of `+0x960`.
+3. Trace `0x0802D828` and close the meaning of CAN 0x3606.
+4. Trace 0x3602/0x3607 runtime consumers.
+5. Find 160/161 call-site, parent, geometry, callback.
+6. Find 130..137 resource call-sites and exact 4x2 active/inactive assignment.
+7. Continue 151/152 vertical selector call-site.
