@@ -1199,3 +1199,119 @@ FUN_08031CCC()
 
 To jest obecnie pierwszy naprawdę konkretny fragment mapy:
 wartość na ekranie -> panel index -> CAN -> raw value -> formatowanie -> UI component.
+
+# 26. KRYTYCZNY TROP: ŚLADY PRAWDZIWEGO PROJEKTU TOUCHGFX
+
+Data: 2026-11-19.
+
+[FW/DATA] W firmware zachował się nie tylko framework TouchGFX, ale również ślad ścieżki własnego kodu producenta:
+
+C:\Estyma\igneoTOUCH\app\nasze\igneoTFT\gui\src\components\WheelSelectorExtra.cpp
+
+To jest szczególnie istotne, bo wskazuje na rzeczywisty układ źródłowego projektu, a nie tylko użycie gotowej biblioteki.
+
+Potwierdzone nazwy/ścieżki klas TouchGFX obecne w materiale firmware:
+- touchgfx/framework/source/touchgfx/Color.cpp
+- touchgfx/framework/source/touchgfx/containers/Container.cpp
+- touchgfx/framework/source/touchgfx/Application.cpp
+- touchgfx/framework/source/touchgfx/Bitmap.cpp
+- touchgfx/framework/source/touchgfx/containers/Slider.cpp
+- touchgfx/framework/source/platform/driver/lcd/LCD16bpp.cpp
+- touchgfx/TypedText.hpp
+- touchgfx/Bitmap.hpp
+- touchgfx/widgets/RadioButtonGroup.hpp
+- touchgfx/widgets/canvas/Canvas.cpp
+- touchgfx/hal/HAL.cpp
+- touchgfx/mvp/MVPApplication.hpp
+
+[STRONG] Wniosek metodologiczny:
+Nie szukać już hipotetycznej jednej funkcji typu DRAW_SCREEN. Oryginalny panel należy rekonstruować jako drzewo TouchGFX:
+Screen/Application -> Container -> Image/Bitmap/TypedText/TextArea/Button/RadioButtonGroup/Slider/WheelSelector -> callback/update -> model parametrów -> CAN.
+
+## 26.1 Dlaczego WheelSelectorExtra.cpp jest przełomowy
+
+Nazwa własnego pliku producenta daje potencjalny klucz do identyfikacji:
+- własnych klas UI,
+- nazw metod,
+- wzorców konstruktorów,
+- callbacków,
+- relacji parent/child,
+- sposobu tworzenia i aktualizacji widgetów.
+
+Jeżeli kompilator pozostawił więcej nazw własnych komponentów, należy je systematycznie wyłapać i grupować, zamiast analizować każdy adres osobno.
+
+## 26.2 Nowy cel: odtwarzanie projektu źródłowego, nie tylko binarki
+
+Dla każdego istotnego ekranu należy docelowo zrekonstruować rekord:
+
+Screen
+ -> parent/container
+ -> child widget
+ -> widget type
+ -> X/Y/W/H
+ -> bitmap/resource
+ -> TypedText/text ID
+ -> font/language
+ -> initial state
+ -> visibility condition
+ -> callback/touch
+ -> model/parameter ID
+ -> CAN index
+ -> read/write side effect
+
+To ma być podstawowy format analizy 1:1.
+
+## 26.3 Połączenie z dotychczasowym ekranem głównym
+
+Nowy trop należy połączyć bezpośrednio z już ustalonym kręgosłupem:
+- FUN_08031CCC() = główny kontroler aktualizacji/konfiguracji ekranu głównego;
+- FUN_0803CF54() = komponent palnika;
+- id59 / 0x4005 -> raw 638 -> "63.8";
+- id11 / 0x2002 + id16 / 0x2003 -> tryb + zadana;
+- id1 / 0x215F -> temperatura zewnętrzna;
+- id328 / 0x3601 + id330 / 0x3603 + id327 / 0x3740 -> zasobnik;
+- id270 / 0x3505 + id271 / 0x2105 -> konfiguracja/widoczność.
+
+Nowe zadanie nie brzmi więc "znaleźć wartości na ekranie", tylko:
+**znaleźć obiekt TouchGFX, który otrzymuje te wartości, i odtworzyć jego konstrukcję oraz relacje z parentem.**
+
+## 26.4 Materiał już istniejący — NIE POWTARZAĆ
+
+Istnieje wcześniejsza nota:
+analiza/FW2213TK-2026-11-18/TOUCHGFX-REPLIKA-1-1.md
+
+Potwierdza ona:
+- framework TouchGFX,
+- własny kod projektu,
+- obecność bitmap w repo,
+- warstwy zasoby -> kod UI -> model parametrów -> CANopen,
+- cel rekonstrukcji widget -> pozycja/rozmiar -> bitmapa -> tekst -> font -> stan -> callback -> parametr.
+
+Bitmap NIE należy ponownie ekstraktować bez powodu. Najpierw szukać referencji kodowych do już odzyskanych zasobów.
+
+## 26.5 INSTRUKCJA DLA NOWEGO CHATA / AGENTA
+
+Start:
+1. Przeczytaj ten MASTER-STATE-HANDOFF od końca do początku, zwracając szczególną uwagę na sekcje 24-26.
+2. Następnie przeczytaj:
+   analiza/FW2213TK-2026-11-18/TOUCHGFX-REPLIKA-1-1.md
+3. Przejrzyj ostatnie commity gałęzi ccr-be8a1bcb-5t76j0. Nie zaczynaj analizy od zera.
+4. Nie wracaj do wycofanego mapowania 0x10E -> 0x38130 ani 0x32146 jako setterów instancji.
+5. Nie traktuj count=4 jako dowodu, że cztery obwody są aktywne jednocześnie. +0x12B = typ/klasyfikacja, +0x12C = instancja.
+6. Nie traktuj 0x2105 jako udowodnionego "licznika CO". To stan/konfiguracja Heating UI.
+7. Nie analizuj pojedynczych rejestrów w izolacji, jeżeli można zbudować pełny łańcuch ekran -> widget -> parametr -> CAN.
+8. Priorytet A: znaleźć więcej nazw własnych komponentów/projektowych ścieżek TouchGFX i odtworzyć strukturę klas.
+9. Priorytet B: zejść z FUN_08031CCC() i FUN_0803CF54() do parent/child/vtable oraz konstruktorów widgetów.
+10. Priorytet C: dla każdego elementu screenshotu odzyskać X/Y/W/H, bitmapę, TypedText, font, widoczność, callback i źródło danych.
+11. Priorytet D: połączyć ekran główny z mechanizmem CO1-CO4, +0x12C oraz CAN/record engine.
+12. Priorytet E: dopiero potem przenosić model na pozostałe ekrany, menu serwisowe, test I/O i konfigurację.
+13. Każdy większy postęp zapisz w GitHubie razem z instrukcją kontynuacji. Nie twórz serii drobnych notatek bez konsolidacji.
+14. Każdy wniosek oznacz jako [FW], [DATA], [STRONG] albo [HYPOTHESIS]. Fakty i hipotezy nie mogą się mieszać.
+15. Jeżeli znajdziesz korektę wcześniejszego wniosku, zapisz ją jawnie, aby następny agent jej nie odtworzył.
+
+## 26.6 OSTATNI PUNKT STOP / NAJLEPSZY NASTĘPNY RUCH
+
+Najbardziej obiecujący kierunek:
+**nazwy własne TouchGFX + funkcje aktualizacyjne głównego ekranu -> konstruktor/parent -> widgety -> zasoby.**
+
+Nie wracać teraz do przypadkowego skanowania rejestrów. Mamy już wystarczający kręgosłup danych, żeby szukać konkretnego drzewa UI.
