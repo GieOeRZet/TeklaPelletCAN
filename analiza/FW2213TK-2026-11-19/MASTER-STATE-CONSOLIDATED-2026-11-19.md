@@ -2504,3 +2504,58 @@ Resume the firmware UI/model reverse-engineering chain:
 6. Continue the hidden UI-method/function-pointer cluster around C33E/C5B4/424C4/CACC/CB04/CB2C only where it supports the active UI path.
 
 Do not reopen closed 370A/47290/056-057 hypotheses unless new hard evidence requires it.
+
+
+
+# 2026-11-19 — MAJOR RAW-BIN BREAKTHROUGH: HOPPER CHAIN CLOSED
+
+The hopper path is substantially more resolved than before.
+
+### Exact raw chain
+
+`FUN_08031CCC`:
+- internal `0x147` -> external CAN `0x3601` fuel remaining [kg]
+- internal `0x148` -> external CAN `0x3600` tank capacity [kg]
+- computes `100 * remaining / capacity`
+- internal `0x14A` -> external CAN `0x3602` reserve state/flag
+- calls `FUN_0802DA54(context, percentage, reserve_flag)`
+
+### FUN_0802DA54
+
+Raw BIN disassembly proves:
+- reserve_flag == 0 -> resource 0x33 = bitmap 051 on child `parent+0x5A8`
+- reserve_flag != 0 -> resource 0x35 = bitmap 053 on child `parent+0x5A8`
+- common refresh path updates both `+0x5A8` and `+0x5D4`
+
+### Bitmap 052
+
+Constructor/setup trace proves:
+- `parent+0x5A8` and `parent+0x5D4` are Bitmap objects initially at resource 0xFFFF.
+- `parent+0x5D4` receives resource 0x34 = bitmap 052 during the setup function beginning at 0x0802C294.
+
+Therefore the 051/052/053 subsystem is a two-layer hopper component:
+- fixed 052 layer
+- dynamic 051/053 layer
+
+The previous statement that a direct `FUN_080307BC(...,0x33/0x34)` writer for the hopper had not been found is now superseded: the raw BIN directly proves the 051 writer inside 2DA54, while 052 is assigned through the constructor/setup resource path.
+
+### Critical mapping correction
+
+Raw mapping table around 0x08037984 proves:
+- 0x147 -> 0x3601
+- 0x148 -> 0x3600
+- 0x149 -> 0x3603
+- 0x14A -> 0x3602
+
+Do not carry forward the old ID328/329/330 -> 0x3601/3600/3603 interpretation.
+
+### Next target after this breakthrough
+
+Do not keep grinding bitmap extraction.
+
+Now attack:
+1. `parent+0x5A8` / `parent+0x5D4` geometry and exact overlap coordinates.
+2. `parent+0x5DE`, `+0x5DA`, `+0x966), `+0x96A` and determine the exact fill/position formula.
+3. Identify the semantic meaning of `CAN 0x3602` from the parameter database and runtime behavior.
+4. Trace all callers/registration of the hopper parent object.
+5. Continue parallel UI/model/CAN investigation rather than returning to asset extraction.
