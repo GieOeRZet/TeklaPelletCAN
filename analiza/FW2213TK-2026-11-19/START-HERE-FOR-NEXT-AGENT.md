@@ -1248,3 +1248,30 @@ C. Trace `Default settings request`.
 D. Resolve `FUN_080144B4` runtime registry.
 E. Determine boiler-dependent PIN mechanism.
 F. Verify boiler type preservation during 6666 reset.
+
+
+---
+# CURRENT START OVERRIDE — 6154 / LEVEL 3 UI GATES — 2026-11-20
+
+Read batch:
+`analiza/FW2213TK-2026-11-20/BATCH-6154-LEVEL3-UI-GATES-MULTIPASS-2026-11-20.md`
+Commit: `12efc1b11136f559bcdd33093cfc99c85a25bf19`
+
+6154 (0x180A) -> access level 3.
+
+Hard-proven level-3 behavior:
+- 17 distinct UI setup paths test access >=3;
+- if true, they add child parent+0x23C;
+- common FUN_0802FB04 proves +0x23C is increment/+;
+- +0x284 is decrement/-;
+- +0x23C increments parent+0x60 up to parent+0x64.
+
+Do not call 6154 a generic service PIN without proof.
+
+Next:
+1. map all 17 constructors to screen classes/vtables;
+2. identify the parameter represented by +0x60/+0x64;
+3. identify resource 0x1C6;
+4. trace touch callback;
+5. resolve exact title/label;
+6. resolve parameter/CAN side effect.
