@@ -627,3 +627,23 @@ Trace branches from UI to model to CAN and back from configuration to visibility
 Keep the entire system map in view.
 Persist every important result.
 The objective is firmware-faithful reconstruction of the whole software, not a collection of isolated discoveries.
+
+
+## 25. Latest execution checkpoint — 2026-11-20 / MULTIPASS-21
+
+Execution-only pass requested by the external deep-analysis agent:
+- inspected 0x89440..0x89490;
+- extracted raw table bytes 0x08B4C8..0x08B4EE;
+- recorded 32-bit words and derived relative targets 0x0784F5 and 0x06E68D;
+- captured requested raw code windows around those targets;
+- no contiguous source payload for destination 0x20011534..0x20011669 was identified in this specific table pass.
+
+Full raw execution evidence:
+- analiza/FW2213TK-2026-11-20/MULTIPASS-21-IAR-INIT-TABLE-EXECUTION-2026-11-20.md
+
+Current workflow rule from the user:
+- external deep agent performs semantic analysis;
+- this assistant executes requested BIN/Git extraction and verification tasks;
+- requested raw material should be returned as one copyable block when asked;
+- do not add assistant-side analysis until the user explicitly asks for consolidation/own analysis;
+- persist substantial execution results and conversation continuity in Git.
