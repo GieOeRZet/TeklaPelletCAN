@@ -294,3 +294,36 @@ Mapping correction/update commit:
 8860ededfb891779177ccaf57c0edf221bda3e1c
 
 Ten dokument jest zapisem decyzji i kontekstu rozmowy z 2026-11-20. Nie jest literalnym transcriptem czatu; jest trwałym handoffem technicznym.
+
+
+## MULTIPASS-20 UPDATE — 2026-11-20
+
+### New hard configuration spine
+
+Current internal -> CAN mapping is:
+- 0x10D -> 0x3505 = Outside temperature sensor configuration
+- 0x10E -> 0x2105 = Heating configuration
+- 0x10F -> 0x2106 = Hot water configuration
+- 0x110 -> 0x2108 = Solar configuration
+- 0x111 -> 0x2107 = Buffer configuration
+
+**Superseded:** older 2026-11-19 notes that mapped 0x10E -> 0x3505 and 0x10F -> 0x2105.
+
+### 0x2105 is now closed at capability/visibility level
+
+FUN_0803C178 directly maps:
+- selector 1 -> internal 0x10E / 0x2105, visible iff >=1
+- selector 2 -> 0x2105, visible iff >=2
+- selector 3 -> 0x2105, visible iff >=3
+- selector 4 -> 0x2105, visible iff >=4
+
+Because selectors 1..4 are the proven CO1..CO4 menu entries, this is direct firmware proof that Heating configuration controls CO1..CO4 capability/visibility.
+
+Still OPEN: whether the same value directly triggers C064 object creation or +0x12C assignment. Keep capability resolution separate from object-instantiation resolution.
+
+### Documentation correlation
+
+Official Estyma/Tekla documentation explicitly states that "Ilość obwodów grzewczych" determines the number of CO circuits and that IgneoTouch supports up to 4 CO circuits. Profiles/module types remain a separate axis.
+
+Full report:
+`analiza/FW2213TK-2026-11-20/MULTIPASS-20-DEEP-CONFIG-ACCESS-SOURCE-OF-TRUTH-2026-11-20.md`
