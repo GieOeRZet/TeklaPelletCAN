@@ -501,3 +501,99 @@ Next exact work:
 - connect it to context 3 resource choice
 
 This is now a high-priority resolver target.
+
+
+---
+
+## PASS 23 — THE +0x12B 0x10/0x11 SETTERS ARE DISPATCH CASES 16/17
+
+Raw TBB decoding of FUN_0803C064:
+
+The selector byte is loaded from RAM table pointer 0x20005EF0.
+
+TBB entries 0..20 resolve to:
+0 -> 0x3C08C
+1 -> 0x3C098
+2 -> 0x3C0A0
+3 -> 0x3C0A8
+4 -> 0x3C0B0
+5 -> 0x3C0BE
+6 -> 0x3C0D6
+7 -> 0x3C0E2
+8 -> 0x3C0EE
+9 -> 0x3C0FA
+10 -> 0x3C0CA
+11 -> 0x3C106
+12 -> 0x3C12A
+13 -> 0x3C16A
+14 -> 0x3C176
+15 -> 0x3C13C
+16 -> 0x3C15E
+17 -> 0x3C152
+18 -> 0x3C146
+19 -> 0x3C112
+20 -> 0x3C11E
+
+Critical cases:
+- selector 16 -> 0x3C15E -> calls FUN_0803856C -> writes context +0x12B = 0x11
+- selector 17 -> 0x3C152 -> calls FUN_08038568 -> writes context +0x12B = 0x10
+- selector 18 -> 0x3C146 -> calls FUN_08038574 (different path)
+
+[FW] This closes the immediate dispatcher relationship.
+
+---
+
+## PASS 24 — PRODUCER IS A RECORD-REGISTRY DISPATCHER
+
+Only direct caller of FUN_0803C064 is around 0x0807EB00.
+
+That function:
+- walks records beginning at object +0x3B4
+- record stride = 0x274 bytes
+- record count = byte at object +0x3B8
+- compares the incoming pointer/value against record base + 0x274*index
+- when matched, calls FUN_0803C064 with index 0..N-1
+
+[FW]
+
+Therefore selector 16/17/18 is not an arbitrary local number. It is the index of a registered record in a firmware registry.
+
+[OPEN] exact semantic names of registry entries 16/17/18.
+
+This is a much better target than guessing from the UI.
+
+---
+
+## PASS 25 — +0x12B VALUE SOURCE IS NOW A RESOLVER TARGET
+
+The chain is now:
+
+registered record index
+ -> FUN_0803C064
+ -> selector 16/17/18
+ -> +0x12B = 0x11 / 0x10 / alternate path
+ -> page-family resource selection
+
+This gives a concrete route for resolving the human meaning of +0x12B:
+1. recover the registry table at object +0x3B4;
+2. identify the record objects for indices 16,17,18;
+3. trace their titles/IDs/parameter bindings;
+4. connect those records to the page constructors.
+
+No guess should be introduced before that chain is recovered.
+
+---
+
+## PASS 26 — 0x20005EF0 IS RAM STATE, NOT A FLASH TABLE
+
+The literal at 0x0803C218 is:
+0x20005EF0.
+
+Therefore the selector array itself lives in SRAM.
+
+[FW] The firmware image contains the pointer but not the live runtime contents at that RAM address in the code section.
+
+[OPEN] initialization source for that RAM table (startup .data copy / runtime construction / persistent state).
+
+This is an important distinction: the TBB dispatch table is closed; the selector-value table contents are not directly available from this code pointer alone.
+
