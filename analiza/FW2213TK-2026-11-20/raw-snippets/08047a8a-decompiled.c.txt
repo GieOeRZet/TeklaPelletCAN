@@ -1,0 +1,61 @@
+// 08047a8a
+
+void FUN_08047a8a(int param_1,int *param_2,int param_3,undefined4 param_4,undefined4 param_5,
+                 undefined2 param_6)
+
+{
+  short sVar1;
+  short sVar2;
+  int iVar3;
+  uint uVar4;
+  int *piVar5;
+  short *local_30;
+  
+  *(char *)(param_1 + 0x60) = (char)param_3;
+  FUN_0802e652(param_1,param_6);
+  *(int *)(param_1 + 100) = *param_2;
+  *(int *)(param_1 + 0x68) = *param_2;
+  if (param_3 == 0) {
+    uVar4 = 0;
+    goto LAB_08047b54;
+  }
+  piVar5 = param_2;
+  iVar3 = param_3;
+  do {
+    if (*piVar5 < *(int *)(param_1 + 100)) {
+      *(int *)(param_1 + 100) = *piVar5;
+    }
+    if (*(int *)(param_1 + 0x68) < *piVar5) {
+      *(int *)(param_1 + 0x68) = *piVar5;
+    }
+    piVar5 = piVar5 + 2;
+    iVar3 = iVar3 + -1;
+  } while (iVar3 != 0);
+  uVar4 = 0;
+  iVar3 = param_1 + 0xb08;
+  piVar5 = (int *)(param_1 + 0x9dc);
+  local_30 = (short *)(param_1 + 0x2ec);
+  do {
+    *(undefined4 *)(param_1 + 0x6c) = param_4;
+    *(undefined4 *)(param_1 + 0x70) = param_5;
+    FUN_08047c1a(param_1,uVar4,*param_2,param_2[1]);
+    sVar1 = *(short *)(param_1 + 0xd6);
+    sVar2 = *(short *)(param_1 + 0xda);
+    (**(code **)(*piVar5 + 0x2c))(piVar5,(int)(short)(*(short *)(param_1 + 0xd4) + *local_30));
+    (**(code **)(*piVar5 + 0x30))(piVar5,(int)(short)(sVar2 + sVar1));
+    FUN_08031134(iVar3,5,&DAT_08047b7c,*param_2);
+    FUN_08032316(piVar5);
+    uVar4 = uVar4 + 1;
+    piVar5 = piVar5 + 0xe;
+    iVar3 = iVar3 + 0xc;
+    param_2 = param_2 + 2;
+    local_30 = local_30 + 0x72;
+  } while ((int)uVar4 < param_3);
+  for (; (int)uVar4 < 5; uVar4 = uVar4 + 1 & 0xff) {
+LAB_08047b54:
+    *(undefined1 *)(param_1 + uVar4 * 0x38 + 0xa01) = 0;
+    *(undefined1 *)(uVar4 * 0xe4 + param_1 + 0x30d) = 0;
+  }
+  return;
+}
+
