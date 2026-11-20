@@ -116,3 +116,31 @@ Run-level findings:
 - FUN_08035786 remains explicitly excluded as a CAN writer.
 
 The complete raw ChatGPT transcript is still not available through the GitHub connector, so this is a continuity record, not a fabricated raw transcript.
+
+
+## Latest execution checkpoint — MULTIPASS-21 / IAR init-table task — 2026-11-20
+
+User workflow instruction reinforced:
+- while the external deep-analysis agent is directing the investigation, execute its requested BIN/Git tasks only;
+- return requested raw results as one copyable block when requested;
+- do not replace the external agent's analysis with assistant-side interpretation;
+- update Git documentation and continuity after each substantial execution pass;
+- user will explicitly signal when the assistant should stop execution-only mode and perform a consolidated analysis.
+
+Execution performed on FW2213TK_kopia.bin:
+- disassembly 0x89440..0x89490;
+- raw table dump 0x08B4C8..0x08B4EE;
+- derived relative handler targets 0x0784F5 and 0x06E68D;
+- requested raw disassembly windows around both targets;
+- preserved exact table bytes and words in MULTIPASS-21-IAR-INIT-TABLE-EXECUTION-2026-11-20.md.
+
+Important raw results persisted:
+- table bytes: 70 47 00 00 29 d0 fe ff c4 e9 00 00 28 5f 01 20 00 00 00 00 b1 31 fe ff 34 ac 00 00 74 10 00 00 00 00 00 20 61 0c 00 00
+- 32-bit words: 0x00004770, 0xFFFED029, 0x0000E9C4, 0x20015F28, 0x00000000, 0xFFFE31B1, 0x0000AC34, 0x00001074, 0x20000000, 0x00000C61
+- no contiguous raw source payload covering 0x20011534..0x20011669 was identified during this specific table pass.
+
+Persistent report:
+- MULTIPASS-21-IAR-INIT-TABLE-EXECUTION-2026-11-20.md
+- commit: 1a94201ec14a728d091978d1e4f954cf6c9dc368
+
+This checkpoint is execution evidence, not a semantic conclusion.
