@@ -1204,3 +1204,47 @@ C. Row object at object+0x380+n*0x274 -> constructor/vtable/children +0x60/+0x8C
 D. RAM 0x20005F08 -> producer/writer and 21-byte semantics.
 E. Touch/navigation callback chain from each row.
 F. Exact geometry and visibility of the 21 row family.
+
+
+---
+# CURRENT START OVERRIDE — PIN / ACCESS / SPECIAL CODES — 2026-11-20
+
+Read batch:
+`analiza/FW2213TK-2026-11-20/BATCH-PIN-ACCESS-AND-RESET-MULTIPASS-2026-11-20.md`
+Commit: `99e32ac4e5c2c0ebed6862411ae8121e91fbf707`
+
+## CLOSED
+
+Four-digit decoder: `FUN_08042024`.
+
+Access resolver: `FUN_08037E74`:
+- 900 -> level 1
+- 999 -> level 2
+- 6154 -> level 3
+- 0 -> level 0
+- unmatched nonzero -> preserve current level.
+
+Thus access is numeric 0..3, not binary.
+
+## SPECIAL
+
+`FUN_08018634` handles:
+- 1992
+- 6666
+- 0
+- runtime registry lookup.
+
+6666 sets special-state flag context+0x07.
+User semantics: factory reset without boiler-type change.
+Firmware downstream reset operation: OPEN.
+
+1992: real special code, semantic role OPEN.
+
+## NEXT
+
+A. Trace context+0x07 consumers.
+B. Trace +0x1A/+0x1C/+0xE6.
+C. Trace `Default settings request`.
+D. Resolve `FUN_080144B4` runtime registry.
+E. Determine boiler-dependent PIN mechanism.
+F. Verify boiler type preservation during 6666 reset.
