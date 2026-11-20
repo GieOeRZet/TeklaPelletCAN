@@ -53,3 +53,22 @@ A true raw archive must be produced from the platform's conversation transcript/
 - model memory != raw transcript
 
 No missing chat text should be invented.
+
+
+## Latest 2026-11-20 multipass checkpoint
+
+After the user's instruction to continue with maximum resources and many passes, the analysis continued through additional independent firmware passes.
+
+New persistent batch:
+- BATCH-6154-CONTEXT-INSTANCE-AND-PAGE-FAMILY-MULTIPASS-2026-11-20.md
+
+New closed/strong results recorded there:
+- +0x12A has at least six distinct context/page-family values: 0..5.
+- +0x12C is a separate active-instance selector with values 1..4 in the traced paths.
+- +0x12B is a separate variant/context selector.
+- Context 3 explicitly uses +0x12B to choose bitmap resources 0x35 / 0x37 / 0x32 for values 0x10 / 0x11 / other.
+- Context 2 and repeated page families use +0x12B as a resource-family switch.
+- The 6154 level-3 gate remains a real widget-tree/interaction gate.
+
+The user explicitly asked that this kind of continuity be persisted after each major run. This status file records that requirement and the latest persistent checkpoint.
+
