@@ -52,9 +52,10 @@ Firmware contains direct TouchGFX source references: Bitmap.cpp, LCD16bpp.cpp, H
 The firmware contains a large explicit mapping table around 0x37580..0x37Bxx.
 Important examples:
 - 0x10E -> 0x2105 = Heating configuration
-- 0x10F -> 0x2106
-- 0x110 -> 0x2108
-- 0x111 -> 0x2107
+- 0x10F -> 0x2106 = Hot water configuration [STRONG]
+- 0x110 -> 0x2108 = Solar configuration [STRONG]
+- 0x111 -> 0x2107 = Buffer configuration [STRONG]
+The 2105..2108 sequence is registered consecutively at 0x0800A5A2..0x0800A6D0 and matches the firmware configuration-string catalog order: Heating, Hot water, Buffer, Solar. The selector logic in FUN_0803C178 independently corroborates 0x10F as the hot-water gate, 0x110 as the solar gate and 0x111 as the buffer gate.
 - 0x112 -> 0x3500 = Main module type
 - 0x113 -> 0x3502 = CH expansion module type
 - 0x114 -> 0x3501
@@ -85,7 +86,7 @@ Therefore the original UI/application has real installation-dependent branching 
 
 ### PASS 08 — Dynamic parameter selection
 FUN_0803C178 reads a runtime table at RAM 0x20005EF0 and maps selector values to internal parameters: selector 6 -> 0x110; 7 -> 0x111; 5 -> 0x10F; 8 -> 0x11C; 1..4 -> 0x10E; 9 -> 0x122.
-It then checks the selected configuration parameter and returns a boolean visibility/eligibility result. This is direct evidence that original UI rows are dynamically enabled/disabled from configuration.
+It then checks the selected configuration parameter and returns a boolean visibility/eligibility result. This is direct evidence that original UI rows are dynamically enabled/disabled from configuration. In particular, selector 5 is gated by 0x10F (CWU), selector 6 by 0x110 (solar), selector 7 by 0x111 (buffer), while selectors 1..4 are gated by 0x10E (heating configuration / CO count).
 
 ### PASS 09 — Profile normalization
 The firmware contains explicit profile state: internal 0x11B, panel 0x350B. Profile is independent from boiler image, module type and heating configuration.
