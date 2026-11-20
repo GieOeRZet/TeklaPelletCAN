@@ -3344,3 +3344,27 @@ Next priority:
 2. trace exact row tree for first 15,
 3. map all +0x158 access consumers,
 4. only then freeze the machine-readable main-menu resolver.
+
+
+# 2026-11-20 — MAIN-MENU FORENSICS CORRECTION
+
+New batch:
+analiza/FW2213TK-2026-11-20/BATCH-MAIN-MENU-ROW-FORENSICS-MULTIPASS-2026-11-20.md
+
+CRITICAL:
+The 0x42348 data block has 21 records, but constructor 0x42160 processes only the first 15 records in each of its two loops. Therefore the old "21-row main menu" statement is withdrawn.
+
+Proven first group selector order:
+0,10,1,2,3,4,5,6,7,8,9,11,13,17,15
+
+Semantics:
+Kocioł, Palnik, CO1, CO2, CO3, CO4, CWU, Solar, Buffer, Cascade, Additional fuel storage, Alarm history, Program information, Configuration, Menu level/PIN.
+
+Trailing six records:
+0:(12,73), 90:(14,75), 97:(18,78), 100:(16,79), 98:(19,80), 95:(20,81)
+
+Asset extraction proves the trailing six are a different resource family (boiler images, panels, long bars/lines, etc.), so they must not be merged into the first 15 rows.
+
+The first 15 records use A/B bitmap pairs where B is strongly the semantic menu icon and A is a state/selection/decoration layer.
+
+Next target is now exact: find the consumer/context of the trailing six and close the first 15 row class/geometry/touch tree.
