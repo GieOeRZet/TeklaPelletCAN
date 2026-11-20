@@ -80,3 +80,15 @@ Extra/boost/exhaust fan configuration:
 resolver 0x68 -> FUN_08043A36 -> Podajnik palnika / Wentylator wspomagający -> configuration gate -> 0x2268..0x227A.
 
 Do not lose the global 1:1 reconstruction objective while closing this branch.
+
+
+## External heavy-analysis agent packet — 2026-11-20
+
+Prepared an evidence/data package for an independent high-compute agent:
+- `EXTERNAL-AGENT-RAW-DATA-PACK-0x68-GRAPH-REGISTRY-2026-11-20.md`
+- `RAW-DECOMPILED-SNIPPET-BUNDLE-0x68-GRAPH-REGISTRY-2026-11-20.md`
+- `raw-snippets/` contains 25 isolated Ghidra decompiled function blocks, including 0803CF54, 08043A36, 0803EC18, 08048624, 0807EB36, 0804752C, 08047604, 08048520, 0803C064, 08036FF2, 08031CCC and parameter/model writer helpers.
+
+Priority tasks for that agent: parse all 16-byte entries from raw table 0x3F008; identify registry keys 0x47/0x48 and pointer 0x0807F5EC; identify actual hardware/configuration gate for Family B 0x2268/0x226E/0x226F/0x2275/0x227A; independently trace 0x300B writer/persistence. Critical correction: resolver 0x68 -> 0x300B Stop burning wood, not extra-fan enable gate.
+
+Packet commit: `0f63658bfd2876c017176c2027f10b6bc72389ad`.
