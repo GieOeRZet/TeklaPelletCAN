@@ -1078,3 +1078,33 @@ Do not resurrect:
 Read batch: analiza/FW2213TK-2026-11-20/BATCH-CONFIG-ACCESS-RESOLVER-MULTIPASS-2026-11-20.md
 
 Critical correction: +0x158 is access level. Raw PIN mapping is 0900->1, 0999->2, 6154->3, 0->0. Configuration resolver FUN_0803C178 gates selectors 1..9 from 0x2105/2106/2108/2107/350C/3525. Next target: exact 21-row screen tree at FUN_0804227A.
+
+## 2026-11-20 — MAIN MENU / ACCESS / CONFIGURATION CLOSED SLICE
+
+Read:
+analiza/FW2213TK-2026-11-20/BATCH-CONFIG-ACCESS-RESOLVER-MULTIPASS-2026-11-20.md
+
+Critical:
+- +0x158 = access level.
+- PIN 0900 -> level 1.
+- PIN 0999 -> level 2.
+- PIN 6154 -> level 3.
+- 0 -> level 0.
+- Previous 0x1BF1 claim is withdrawn.
+
+Raw configuration gates:
+- selector 1..4 <- 0x2105 thresholds 1..4
+- selector 5 <- 0x2106
+- selector 6 <- 0x2108
+- selector 7 <- 0x2107
+- selector 8 <- 0x350C
+- selector 9 <- 0x3525
+
+Raw main-menu selector order:
+0,10,1,2,3,4,5,6,7,8,9,11,13,17,15,0,90,97,100,98,95
+
+Strong semantic order:
+Kocioł, Palnik, CO1..CO4, CWU, Solar, Buffer, Cascade, Additional fuel storage, Alarm history, Program info, Configuration/Menu-level/Language/Sound/Test/Statistics/Network with exact selector IDs recorded in the batch.
+
+Next:
+trace FUN_0804227A and its 21 row objects down to exact parent, bitmap, text, touch callback and navigation target. Do not start renderer implementation yet.
