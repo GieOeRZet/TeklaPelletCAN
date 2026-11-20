@@ -3006,3 +3006,43 @@ BOOT
 12. Touch/write path through record engine to CAN/storage.
 
 Do not restart bitmap extraction. Do not reduce the investigation to a single screen.
+
+
+---
+
+# 2026-11-20 — PRODUCTION ORIGINAL-TOUCH HOME SCREEN
+
+Implemented production bitmap layer:
+`web/teklapelletclassic-touch-main.js`
+
+Enabled from:
+`web/teklapelletclassic-card.js`
+
+Documentation:
+`analiza/FW2213TK-2026-11-20/BATCH-ORIGINAL-TOUCH-HOME-IMPLEMENTATION-2026-11-20.md`
+
+Commits:
+- `8ad13e86bd2e184d11a6886b206968eebcc0c261` — bitmap Home layer
+- `c775014700eba670596b552be105a98c8bb92b76` — enable production layer
+- `7c17bace8c4f81cd06d637001de75b6b9eef5cd7` — analysis documentation
+
+## What changed
+
+The Home renderer still comes from `TeklaPanelCard._main()`; the new layer calls the original renderer first and replaces only selected SVG graphics with verified firmware bitmaps.
+
+Production resources:
+- 051/052/053 — hopper states
+- 077 — MENU
+- 115 — quick/power
+- 144 — CO1
+- 174 — CWU
+
+Existing `data-act` / `data-go` / HA service behavior is preserved.
+
+If the bitmap package cannot be loaded completely, the patch aborts and the original renderer remains active.
+
+## Scope
+
+This is the first production step toward the complete original Touch visual layer. It is intentionally not a new independent UI engine.
+
+Next: quick-settings dialog → CO → CWU → burner → menu/program/settings, replacing graphics with verified firmware assets while preserving the existing working interaction and CAN/HA path.
