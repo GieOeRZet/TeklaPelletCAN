@@ -1,0 +1,28 @@
+// 08047ba6
+
+longlong FUN_08047ba6(int param_1,int param_2,int param_3,uint param_4)
+
+{
+  int iVar1;
+  uint uVar2;
+  
+  if (param_2 != 0) {
+    iVar1 = (short)param_2 * 0x54 + param_1;
+    uVar2 = (uint)*(short *)(iVar1 + 0x73c);
+    iVar1 = iVar1 + 0x708;
+    FUN_0804e410(iVar1,(int)((uVar2 + ((uVar2 & 0xfffff) >> 0xf)) * 0x10000) >> 0x15,0xa0 - param_3)
+    ;
+    FUN_0804e354(iVar1);
+  }
+  if (param_2 < 4) {
+    param_1 = (short)param_2 * 0x54 + param_1;
+    iVar1 = param_1 + 0x75c;
+    uVar2 = (uint)*(short *)(param_1 + 0x78c);
+    FUN_0804e454(iVar1,(int)((uVar2 + ((uVar2 & 0xfffff) >> 0xf)) * 0x10000) >> 0x15,0xa0 - param_3)
+    ;
+    FUN_0804e354(iVar1);
+    return CONCAT44(param_4,1);
+  }
+  return (ulonglong)param_4 << 0x20;
+}
+
