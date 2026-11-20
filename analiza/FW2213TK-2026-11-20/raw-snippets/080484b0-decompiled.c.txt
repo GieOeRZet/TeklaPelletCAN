@@ -1,0 +1,16 @@
+// 080484b0
+
+void FUN_080484b0(int param_1,undefined2 param_2,undefined4 param_3,undefined4 param_4,
+                 undefined4 param_5,undefined4 param_6,undefined4 param_7)
+
+{
+  int iVar1;
+  
+  *(undefined1 *)(param_1 + 0x9301) = 1;
+  iVar1 = param_1 + 0x92dc;
+  FUN_08047334(iVar1,param_2,param_3,param_4,param_5,param_6,param_7);
+  FUN_0802eade(param_1 + 0x84f4,iVar1);
+  FUN_08032316(iVar1);
+  return;
+}
+
