@@ -733,3 +733,29 @@ Completed requested execution pass:
 - commit: c33eeeee26327aeefbab3b67dcb20d96803d95e0
 
 The corrected option-table bytes are now the authoritative raw extraction for this branch.
+
+## 29. HOME SCREEN 02 — 2026-11-20 execution checkpoint
+
+External-agent execution request completed against the verified firmware ELF.
+
+Raw Thumb windows executed exactly as requested:
+- 0x0802CA50..0x0802CEE0
+- 0x0802CEE0..0x0802D050
+
+Purpose:
+- Home tile geometry / parent-child extraction;
+- five activity-indicator geometry extraction.
+
+No semantic reinterpretation was added by the execution layer. The complete raw disassembly was returned as a single copyable package to the external deep-analysis agent.
+
+HOME-01 closures persisted in Git:
+- REJECTED: no-direct-literal-load assumption for bitmap IDs 115/144/174;
+- HARD: ButtonWithIcon tile state/background/icon configuration;
+- HARD: CO1/CO2/CWU offsets and configuration/CAN gates;
+- HARD: five activity indicator object/visibility offsets;
+- HARD: Home summer/winter, WiFi and boiler-image setter paths;
+- HARD: Buffer setter is no-op in Home path.
+
+HOME-01 updated commit: 91e59c433f850f047fe1b2c958f1c74797a8e5ee
+
+Next semantic step: derive exact X/Y/W/H and parent-child hierarchy from the raw 0x2CA50..0x2D050 windows, without replacing raw evidence by inference.
