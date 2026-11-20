@@ -161,3 +161,54 @@ OPEN:
 6. geometry/clipping/visibility;
 7. contradiction/stale-hypothesis check;
 8. synthetic access x capability matrix.
+
+
+---
+# 2026-11-20 — PIN / ACCESS MULTIPASS RESULT
+
+Batch:
+`analiza/FW2213TK-2026-11-20/BATCH-PIN-ACCESS-AND-RESET-MULTIPASS-2026-11-20.md`
+Commit: `99e32ac4e5c2c0ebed6862411ae8121e91fbf707`
+
+## USER OBSERVATION CONFIRMED BY RAW BIN
+
+The user's tier model is correct:
+- level 0 base
+- 0900 -> level 1
+- 0999 -> level 2
+- a further level exists.
+
+Firmware closes the third code:
+- 6154 -> level 3.
+
+The mapping is implemented by `FUN_08037E74`, storing level at +0x158.
+
+## SPECIAL CODES
+
+Separate from access levels:
+- 1992
+- 6666
+
+6666 writes special flag +0x07. The exact reset sequence is still OPEN.
+
+## METHODOLOGY
+
+This batch used independent passes over:
+- raw PIN digit decoder;
+- callback/control flow;
+- access mapping;
+- decimal/hex cross-check;
+- invalid-code behavior;
+- global has-access state;
+- special-code handler;
+- 6666 downstream consumer;
+- 1992 path;
+- all direct callers;
+- immediate-constant search;
+- contradiction/stale-hypothesis checks.
+
+Do not collapse special codes into access levels.
+
+## NEXT
+
+Prioritize 6666 -> Default settings request -> persistence/reset path, then boiler-dependent PIN mechanism.
