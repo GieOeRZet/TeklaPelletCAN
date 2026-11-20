@@ -624,3 +624,70 @@ The duplicate selector 0 needs separate trace:
 - prove whether it is a home/quick-action row or a duplicate menu resource.
 
 Do not remove it from the model until the parent screen/callback path is closed.
+
+
+# 2026-11-20 CORRECTION — 21-ENTRY TABLE ≠ 21 ROWS CONSUMED BY THIS CONSTRUCTOR
+
+The previous wording "21-row main menu closed" was too strong and is corrected here.
+
+Raw table at 0x42348 contains 21 triples (selector, bitmap_A, bitmap_B):
+
+0:(60,83)
+10:(61,85)
+1:(62,86)
+2:(63,86)
+3:(64,86)
+4:(65,86)
+5:(66,88)
+6:(71,87)
+7:(67,84)
+8:(70,82)
+9:(69,99)
+11:(72,78)
+13:(74,89)
+17:(77,159)
+15:(76,96)
+0:(12,73)
+90:(14,75)
+97:(18,78)
+100:(16,79)
+98:(19,80)
+95:(20,81)
+
+However, the constructor at 0x42160 initializes its first-pass count to 15 (movs r5,#15) and the loop at 0x421e8 processes exactly the first 15 table records. The second loop also uses count 15. Therefore this constructor does NOT consume all 21 records.
+
+The first 15 selectors are:
+0,10,1,2,3,4,5,6,7,8,9,11,13,17,15
+
+The remaining six:
+0,90,97,100,98,95
+
+must NOT yet be assigned to this constructor's main-menu row set. They are currently an unresolved secondary/alternate context or another resource group.
+
+This correction supersedes any statement that the complete 21-entry table has already been proven as one 21-row screen.
+
+## Evidence for two-pass structure
+
+At 0x421dc:
+- r5 = 15
+- r9 = ADR 0x42348
+- r10 = ADR 0x42346 (two bytes before table)
+
+First loop:
+- r9 advances +6 each iteration
+- row builder FUN_0804BC6C gets table[selector], table[bitmap_A], table[bitmap_B]
+
+After first loop:
+- access-level byte copied to model/UI object
+- second loop starts with r7=0 and count still 15
+- r10 advances +6
+- row builder receives selector from r10+2 and bitmap_A from r10+4
+- special checks test r10[0] against 0x0C/0x0E
+
+Thus the second pass is not a generic continuation over records 16..21.
+
+## Evidence that the six trailing records are not yet closed
+
+No independent code reference to table start 0x42348 was found besides the 0x42160 constructor's ADR setup. The six trailing records are therefore retained as data, but their consumer is OPEN.
+
+Do not remove them. Do not call them normal main-menu rows until another consumer/call path proves it.
