@@ -1,0 +1,10 @@
+// 0803eecc
+
+void FUN_0803eecc(int param_1,undefined4 param_2)
+
+{
+  FUN_08037212(*(undefined4 *)(param_1 + 8),
+               (int)*(short *)(param_1 + (uint)*(ushort *)(param_1 + 0xea) * 2 + 0x20),param_2);
+  return;
+}
+
