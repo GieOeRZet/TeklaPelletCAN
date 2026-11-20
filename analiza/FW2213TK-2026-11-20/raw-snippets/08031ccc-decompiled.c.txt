@@ -1,0 +1,141 @@
+// 08031ccc
+
+void FUN_08031ccc(int param_1)
+
+{
+  undefined1 uVar1;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  undefined2 uVar5;
+  undefined2 uVar6;
+  int iVar7;
+  undefined4 uVar8;
+  undefined4 uVar9;
+  int iVar10;
+  byte local_2c;
+  undefined1 local_2b;
+  undefined1 local_2a;
+  undefined1 local_29;
+  undefined1 local_28 [2];
+  undefined2 local_26 [3];
+  
+  FUN_080372f6(*(undefined4 *)(param_1 + 8),local_28,&local_29,&local_2c);
+  FUN_08037372(*(undefined4 *)(param_1 + 8),&local_2a,&local_2b,local_26);
+  FUN_0802d238(*(undefined4 *)(param_1 + 0xc),local_28[0],local_29,local_2c);
+  FUN_0802d2f4(*(undefined4 *)(param_1 + 0xc),local_2a,local_2b,local_26[0]);
+  iVar7 = FUN_080372b0(*(undefined4 *)(param_1 + 8));
+  FUN_0802d29c(*(undefined4 *)(param_1 + 0xc),iVar7 != 0);
+  iVar7 = FUN_080372c8(*(undefined4 *)(param_1 + 8));
+  FUN_0802d2e4(*(undefined4 *)(param_1 + 0xc),iVar7 == 0);
+  iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x135);
+  FUN_0802d2c0(*(undefined4 *)(param_1 + 0xc),~-(uint)(iVar7 == 0) >> 0x1f);
+  uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),1);
+  uVar9 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x10d);
+  FUN_0802d572(*(undefined4 *)(param_1 + 0xc),uVar1,uVar9,uVar8);
+  iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xb);
+  if (iVar7 == 0) {
+    FUN_0802d344(*(undefined4 *)(param_1 + 0xc),4,0);
+    FUN_0802d344(*(undefined4 *)(param_1 + 0xc),0,0);
+    FUN_0802d344(*(undefined4 *)(param_1 + 0xc),1,0);
+    FUN_0802d344(*(undefined4 *)(param_1 + 0xc),2,0);
+    FUN_0802d344(*(undefined4 *)(param_1 + 0xc),3,0);
+    FUN_08037212(*(undefined4 *)(param_1 + 8),0x68,1);
+  }
+  else {
+    FUN_0802d344(*(undefined4 *)(param_1 + 0xc),4,1);
+    iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xac);
+    FUN_0802d344(*(undefined4 *)(param_1 + 0xc),1,iVar7 != 0);
+    iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xd7);
+    FUN_0802d344(*(undefined4 *)(param_1 + 0xc),2,iVar7 != 0);
+    iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xdc);
+    FUN_0802d344(*(undefined4 *)(param_1 + 0xc),3,iVar7 != 0);
+  }
+  iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x39);
+  if (((iVar7 == 0) || (iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x39), iVar7 == 9)) ||
+     (iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x39), iVar7 == 10)) {
+    uVar8 = 0;
+  }
+  else {
+    uVar8 = 1;
+  }
+  FUN_0802d344(*(undefined4 *)(param_1 + 0xc),0,uVar8);
+  uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xb);
+  FUN_0802d398(*(undefined4 *)(param_1 + 0xc),uVar8);
+  uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xac);
+  iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x10e);
+  FUN_0802d3bc(*(undefined4 *)(param_1 + 0xc),0 < iVar7,uVar8);
+  uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xd7);
+  iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x10e);
+  FUN_0802d3ce(*(undefined4 *)(param_1 + 0xc),1 < iVar7,uVar8);
+  uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xdc);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x10f);
+  FUN_0802d3e0(*(undefined4 *)(param_1 + 0xc),uVar1,uVar8);
+  uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xc);
+  FUN_0802d440(*(undefined4 *)(param_1 + 0xc),uVar8);
+  uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xe);
+  FUN_0802d48a(*(undefined4 *)(param_1 + 0xc),uVar8);
+  iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0xb);
+  if (iVar7 == 0) {
+    uVar8 = 4;
+  }
+  else {
+    uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x10);
+  }
+  FUN_0802d524(*(undefined4 *)(param_1 + 0xc),uVar8);
+  uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),local_2c + 0x18);
+  FUN_0802d79a(*(undefined4 *)(param_1 + 0xc),uVar8);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x39);
+  FUN_0802d7a4(*(undefined4 *)(param_1 + 0xc),uVar1);
+  uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x43);
+  FUN_0802d7e8(*(undefined4 *)(param_1 + 0xc),uVar8);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x42);
+  FUN_0802d81e(*(undefined4 *)(param_1 + 0xc),uVar1);
+  uVar8 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x147);
+  FUN_0802d7f4(*(undefined4 *)(param_1 + 0xc),uVar8);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x14c);
+  FUN_0802db04(*(undefined4 *)(param_1 + 0xc),uVar1);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x10f);
+  FUN_0802d91c(*(undefined4 *)(param_1 + 0xc),uVar1);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x111);
+  FUN_0802d996(*(undefined4 *)(param_1 + 0xc),uVar1);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x121);
+  FUN_0802db0e(*(undefined4 *)(param_1 + 0xc),uVar1);
+  iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x10e);
+  if (iVar7 < 1) {
+    FUN_0802d998(*(undefined4 *)(param_1 + 0xc),1,0);
+  }
+  else {
+    FUN_0802d998(*(undefined4 *)(param_1 + 0xc),1,1);
+    iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x10e);
+    if (1 < iVar7) {
+      uVar8 = 1;
+      goto LAB_08031fde;
+    }
+  }
+  uVar8 = 0;
+LAB_08031fde:
+  FUN_0802d998(*(undefined4 *)(param_1 + 0xc),2,uVar8);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x14a);
+  iVar7 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x147);
+  iVar10 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x148);
+  FUN_0802da54(*(undefined4 *)(param_1 + 0xc),(iVar7 * 100) / iVar10,uVar1);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x133);
+  uVar5 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x134);
+  FUN_0802d4a4(*(undefined4 *)(param_1 + 0xc),uVar5,uVar1);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),10);
+  uVar2 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),9);
+  uVar5 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),5);
+  uVar6 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),3);
+  uVar3 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),4);
+  uVar4 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x10d);
+  FUN_0802d18c(*(undefined4 *)(param_1 + 0xc),uVar4,uVar3,uVar6,uVar5,uVar2,uVar1);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),7);
+  FUN_0802db2e(*(undefined4 *)(param_1 + 0xc),uVar1);
+  uVar1 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x137);
+  uVar2 = FUN_08036ff2(*(undefined4 *)(param_1 + 8),0x136);
+  FUN_0802db54(*(undefined4 *)(param_1 + 0xc),uVar2,uVar1);
+  return;
+}
+
