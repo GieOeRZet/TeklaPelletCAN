@@ -1,0 +1,8 @@
+SELF-CONTAINED EXTERNAL-AGENT PACKET
+
+The authoritative transferable packet was generated in this chat as:
+TEKLAPELLETCAN_EXTERNAL_AGENT_SINGLE_FILE_HARD_TASK_2026-11-20.txt
+
+IMPORTANT: The external agent has NO GitHub access. Therefore this repository file is archival only; the user must transfer the single file itself to the external agent.
+
+The packet contains all currently recovered surrounding source bodies, known hard facts, rejected hypotheses, graph-family facts, and exact analysis tasks. The exact raw bodies of FUN_0802DDCA (66 B), FUN_0802EADE (340 B), and FUN_0807F5EC were not successfully recovered and are explicitly marked missing; they must not be fabricated.
