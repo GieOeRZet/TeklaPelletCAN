@@ -91,3 +91,73 @@ C. Trace FUN_0804BC6C object geometry and child tree.
 D. Trace touch callbacks/navigation from each row.
 E. Map all +0x158 consumers to concrete widget families and access thresholds.
 F. Build a machine-readable capability/menu resolver only after the above distinctions are retained.
+
+
+---
+# 2026-11-20 — CRITICAL MENU SECOND-PASS CORRECTION / LARGE MULTIPASS RESULT
+
+Batch:
+`analiza/FW2213TK-2026-11-20/BATCH-MAIN-MENU-ACCESS-SECOND-PASS-21-RECORD-CORRECTION-MULTIPASS-2026-11-20.md`
+Commit: `d05254d7a6052c7c1eb80a812a3134ab91c375a7`
+
+## User-requested process rule
+The user requires maximum-resource RE: many independent passes, multiple analytical levels, orthogonal threads, contradiction checks, stale-hypothesis checks, and automatic persistence after every major run. This run follows that protocol and **corrects the previous menu interpretation rather than preserving a stale conclusion**.
+
+## Major correction
+Previous continuity said:
+“constructor consumes only first 15; trailing six remain OPEN.”
+
+That is withdrawn.
+
+Raw code proves:
+- first loop consumes 0..14;
+- access != 0 enables second loop consuming 15..20;
+- r4 is intentionally continued, not reset;
+- r5 becomes 21;
+- a later pass iterates all 21 row slots with stride 0x274;
+- another function iterates all 21 slots against RAM 0x20005F08.
+
+Thus the correct model is a **21-slot row family with access-dependent construction of slots 15..20**.
+
+## Important pointer detail
+r10 begins as table-2. After 15 increments it points to record14+4. This is deliberate look-behind alignment:
+- r10+2 -> next record’s A field,
+- r10+4 -> next record’s B field,
+- r10[0] -> previous record’s B field.
+
+The 0x0C/0x0E comparison is therefore a look-behind field test, not proof of selectors 12/14.
+
+## New architectural fact
+The 21 row objects are stored at:
+```
+object + 0x380 + n*0x274, n=0..20
+```
+and FUN_0803C178(model,n) is applied to every slot afterward.
+
+A separate function at 0x422C8 iterates the same 21-slot structure and consults a runtime byte array at RAM 0x20005F08, gated by access state.
+
+## Status
+CLOSED:
+- full 21-record consumption path;
+- access-dependent second-stage construction;
+- 21-row-object stride/base;
+- 21-slot capability pass;
+- 21-slot access/update pass existence.
+
+OPEN:
+- row class/vtable;
+- exact child tree and geometry;
+- selectors 0/90/97/100/98/95 semantic destinations in the second stage;
+- RAM 0x20005F08 producer/meaning;
+- touch/navigation callbacks;
+- FUN_08032F08 / FUN_0803C270 exact semantics.
+
+## Mandatory next passes
+1. raw xrefs/writers of 0x20005F08;
+2. control/data flow FUN_08032F08;
+3. control/data flow FUN_0803C270;
+4. row object constructor/vtable and children;
+5. selector navigation/touch;
+6. geometry/clipping/visibility;
+7. contradiction/stale-hypothesis check;
+8. synthetic access x capability matrix.
