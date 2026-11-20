@@ -720,3 +720,16 @@ Current priority remains the OPEN branch around `FUN_080480C0`, resolver/index `
 Source package note:
 - The uploaded ZIP was inspected successfully from the conversation sandbox.
 - Its contents match the consolidated report already represented in the project handoff; no contradiction was found in the supplied package.
+
+
+## 28. MULTIPASS-25 — 47290 / 0x47 / 0x48 option tables + PIN wrapper — 2026-11-20
+
+Completed requested execution pass:
+- corrected previous 0x7F58C address-base mistake;
+- extracted real file offset 0x6F58C..0x6F5FF, 116 bytes;
+- disassembled 0x4E9DC..0x4EA50;
+- recorded requested HARD closures for FUN_080480C0 presenter-list filtering and 480x50 access-level separators;
+- report: analiza/FW2213TK-2026-11-20/MULTIPASS-25-47290-47-48-OPTION-TABLES-PIN-4E9DC-2026-11-20.md
+- commit: c33eeeee26327aeefbab3b67dcb20d96803d95e0
+
+The corrected option-table bytes are now the authoritative raw extraction for this branch.
