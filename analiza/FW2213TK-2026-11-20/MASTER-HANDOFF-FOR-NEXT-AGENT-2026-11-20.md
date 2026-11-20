@@ -686,3 +686,37 @@ Workflow:
 - external deep-analysis agent performs semantic analysis;
 - this assistant executes requested BIN/Git extraction and verification;
 - raw requested material is returned as one copyable block when asked.
+
+
+## 27. Consolidated checkpoint — uploaded FW2213TK analysis package + current execution state — 2026-11-20
+
+The user supplied the previous analysis package `FW2213TK_wyniki_analizy_2026-11-20.zip`. It was inspected directly. The package contains:
+- `RAPORT-FW2213TK-LZ77-I-PARAMETRY-2026-11-20.md`
+- `FUN_0803E714_parametry_wg_PIN.json`
+- `FUN_0803E714_parametry_wg_PIN.csv`
+
+The package independently confirms and consolidates the following already-established HARD facts:
+- firmware SHA-256: `1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071`;
+- IAR startup/data-init chain through `__iar_lz77_init3` and `__iar_zero_init3`;
+- reconstructed SRAM image length `0x118B3` / 71859 bytes;
+- reconstructed list block `0x20011534..0x20011669` (310 bytes);
+- complete FUN_0803E714 parameter lists by access level;
+- `0x47` = Palnik / case 10 / first level-1 element at `0x200115D0`;
+- `0x48` = Kocioł / case 0 / first level-1 element at `0x200115B0`;
+- `0x47` graph family = `0x2261..0x2265`;
+- `0x48` graph family = `0x2268,0x226E,0x226F,0x2275,0x227A`;
+- 6154 is level 3, but FUN_0803E714 itself only has level-2 branching; level-3 UI exposure occurs through separate gates.
+
+The uploaded report also preserves the raw 310-byte SRAM dump and the parameter-list JSON/CSV, so these are now treated as an external corroborating source package, not as a replacement for firmware-derived evidence.
+
+Current execution-only state:
+- the latest raw execution package sent to Gemini contains the complete `FUN_080480C0` Thumb window and raw `0x7F58C..0x7F5EB` span;
+- Gemini is currently performing semantic analysis of that material;
+- no new semantic conclusion is to be invented by the execution layer while Gemini is working;
+- next work should execute Gemini's requested addresses/tables/helpers exactly and return raw evidence in one copyable block.
+
+Current priority remains the OPEN branch around `FUN_080480C0`, resolver/index `0x68`, extra/boost/exhaust fan configuration, and the relation to graph family `0x48`, followed by the global software reconstruction queue.
+
+Source package note:
+- The uploaded ZIP was inspected successfully from the conversation sandbox.
+- Its contents match the consolidated report already represented in the project handoff; no contradiction was found in the supplied package.
