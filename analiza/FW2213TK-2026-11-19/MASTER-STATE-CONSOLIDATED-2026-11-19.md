@@ -3260,3 +3260,58 @@ Outer screen/menu dispatcher may add more conditions. This is not yet the final 
 Trace 0x0804227A and identify the exact 21-row widget/resource/text table, then correlate each selector with the real screen/menu. In parallel trace all +0x158 consumers and classify which widget families require level 1/2/3.
 
 Do not start renderer work yet.
+
+
+# 2026-11-20 — RAW 21-ROW MAIN MENU TABLE CLOSED
+
+Batch:
+analiza/FW2213TK-2026-11-20/BATCH-CONFIG-ACCESS-RESOLVER-MULTIPASS-2026-11-20.md
+
+FUN_0804227A uses a raw 21-entry table at 0x42348. Each entry is selector + two bitmap resources.
+
+Raw ordered selectors:
+0, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 17, 15, 0, 90, 97, 100, 98, 95.
+
+Strong semantic correlation:
+- 0 Kocioł
+- 10 Palnik
+- 1..4 Ogrzewanie obwód 1..4
+- 5 CWU
+- 6 Solar
+- 7 Buffer
+- 8 Cascade branch
+- 9 Additional fuel storage
+- 11 Alarm history
+- 13 Program info
+- 15 Menu level/PIN
+- 90 Language
+- 97 Sound alarm
+- 17 Configuration
+- 100 Output test
+- 98 Statistics
+- 95 Network
+
+The raw gate resolver already proves:
+1..4 -> 0x2105 thresholds 1..4
+5 -> 0x2106
+6 -> 0x2108
+7 -> 0x2107
+8 -> 0x350C
+9 -> 0x3525
+
+Thus the main menu is now a firmware-derived ordered capability list, not a hard-coded UI assumption.
+
+Important unresolved point:
+selector 0 occurs twice with different bitmap pairs. Do not collapse the duplicate until its parent/context path is closed.
+
+Asset cross-check:
+- 86 shared by selectors 1..4, heating/radiator family
+- 88 faucet -> CWU
+- 87 solar-like -> Solar
+- 84 tank -> Buffer
+- 82 multi-module -> Cascade
+- 99 storage/silo-like -> Additional storage
+- 96 user+lock -> Menu level
+- 159 gears -> Configuration
+
+External documentation corroborates the menu families but does not override raw firmware semantics or PIN values.
