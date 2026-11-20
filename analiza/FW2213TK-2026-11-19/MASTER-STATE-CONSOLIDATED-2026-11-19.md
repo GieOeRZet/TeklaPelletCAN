@@ -2835,3 +2835,174 @@ Latest batch commit: 5d919426aa9c59b5af7b58080fb0094ce03db424
 [FW] Resource 39 jest używany w osobnym komponencie 0x0802F9FC przy parent+0xA8 razem z 168/169; nie należy go łączyć z silnikiem 36..42. Hipoteza „ikona drugiego kafelka magazynu paliwa” pozostaje OPEN.
 
 [OPEN] 60..61, 43..44 i index 5/+0xA38 nadal wymagają osobnego trace.
+
+
+---
+
+# 2026-11-20 — WHOLE-SOFTWARE MULTIPASS SCOPE / ARCHITECTURE MAP
+
+New batch:
+`analiza/FW2213TK-2026-11-20/BATCH-WHOLE-SOFTWARE-MULTIPASS-2026-11-20.md`
+
+Commit:
+`1c324fe3ba6f463fae9c62889f026cd12489db92`
+
+The investigation scope is explicitly expanded from the current Home/hopper vertical slice to the **whole firmware application**.
+
+## [FW] Broad raw-BIN architecture inventory
+
+The firmware contains direct evidence for:
+- STM32 startup/vector table,
+- 480×272 RGB565 TouchGFX display stack,
+- TouchGFX Bitmap/Container/Slider/Canvas/TypedText infrastructure,
+- parameter family-of-4 + singleton resolver,
+- 0x2C-byte record engine,
+- large internal-ID → panel-parameter table,
+- large internal-ID → CAN table,
+- major UI constructor clusters,
+- hundreds of parent/child operations,
+- animation engine,
+- burner actuator aggregation,
+- pump animation family 138..143,
+- mixer family 105..107,
+- hopper/fuel subsystem,
+- CH/CO1..CO4,
+- CWU,
+- external fuel storage,
+- buffer,
+- solar,
+- schedules,
+- statistics,
+- service/configuration,
+- hardware/profile/identity variants.
+
+## [FW] Newly consolidated CAN map block
+
+Raw table around 0x0378F0..0x037B34 directly contains mappings such as:
+
+```
+0x112 -> 0x3500
+0x113 -> 0x3502
+0x10D -> 0x3505
+0x114 -> 0x3501
+0x117 -> 0x3506
+0x116 -> 0x3606
+0x121 -> 0x370A
+0x11B -> 0x350B
+0x11C -> 0x350C
+
+0x130 -> 0x3739
+0x131 -> 0x373A
+0x132 -> 0x373B
+0x133 -> 0x3722
+0x134 -> 0x3723
+0x135 -> 0x3728
+0x136 -> 0x373C
+0x137 -> 0x373D
+
+0x147 -> 0x3601
+0x148 -> 0x3600
+0x149 -> 0x3603
+0x14A -> 0x3602
+0x14B -> 0x3604
+0x14C -> 0x3607
+
+0x14D -> 0x3511
+0x14E -> 0x3512
+0x14F -> 0x3513
+0x150 -> 0x3514
+0x151 -> 0x3515
+0x152 -> 0x3516
+0x153 -> 0x3517
+0x154 -> 0x3518
+0x155 -> 0x351B
+0x156 -> 0x351C
+0x157 -> 0x3519
+0x158 -> 0x351A
+
+0x159 -> 0x351E
+0x15A -> 0x351F
+0x15B -> 0x3522
+0x15C -> 0x3523
+0x15D -> 0x3524
+0x15E -> 0x3520
+0x15F -> 0x3526
+0x160 -> 0x3521
+0x161 -> 0x3529
+0x162 -> 0x352A
+0x163 -> 0x3527
+0x164 -> 0x3528
+0x165 -> 0x352B
+```
+
+This supersedes any earlier partial CAN mapping that omitted the surrounding table context.
+
+## [FW] UI scale
+
+Raw call scans now give approximately:
+- 180 calls to standard Bitmap constructor FUN_0802DF08,
+- 542 calls to add-child helper FUN_08030380,
+- 210 direct calls to Bitmap resource setter FUN_080307BC.
+
+These are architectural counts, not screen counts. They demonstrate that the UI is a large object graph.
+
+## [FW] Repeated module families
+
+Major constructor clusters include:
+```
+0x02BDF0
+0x02C294
+0x03242C
+0x03279C
+0x032F20
+0x03C33E
+0x03C5B4
+0x03D19C
+0x03E1BC
+0x03E5AC
+0x042EEC
+0x043DDC
+0x045070
+0x045A8C
+0x04Cxxx..0x04DBxx
+```
+
+The repeated 0x04Cxxx..0x04DBxx family repeatedly constructs animation objects with resources 138..143, strongly indicating reusable pump widgets/components across multiple screens.
+
+## [STRONG] Scope decision
+
+The Home/hopper work is a vertical slice used to close architecture. It is not the project target.
+
+The target is now tracked as:
+```
+BOOT
+→ DISPLAY/HAL
+→ ROOT APPLICATION
+→ CONFIG/PROFILE
+→ PARAMETER ENGINE
+→ CAN
+→ APPLICATION STATE
+→ SCREEN DISPATCH
+→ TOUCHGFX WIDGET TREE
+→ RESOURCES/GEOMETRY
+→ TOUCH/CALLBACK
+→ READ/WRITE
+→ CAN/STORAGE/SIDE EFFECTS
+```
+
+## Next whole-software priorities
+
+1. Screen/navigation dispatch.
+2. Home/Main full tree.
+3. CO1..CO4 family and instance-specific widgets.
+4. CWU family using the repeated 138..143 pump constructors.
+5. Burner/service state and actuator paths.
+6. 130..137 exact resource/state/position mapping.
+7. 160/161 settings/configuration button path.
+8. Resource 39 + 168/169 component.
+9. 60/61, 43/44 and actuator index 5/+0xA38.
+10. 370A → resource → widget → geometry.
+11. WheelSelectorExtra vptr/vtable and methods.
+12. Touch/write path through record engine to CAN/storage.
+
+Do not restart bitmap extraction. Do not reduce the investigation to a single screen.
