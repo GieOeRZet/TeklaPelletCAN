@@ -3493,3 +3493,45 @@ Next:
 4. verify preservation of boiler type;
 5. search all PIN UI/callback resources;
 6. synthetic access/special-code matrix.
+
+
+---
+# ACTIVE OVERRIDE — 6154 / ACCESS LEVEL 3 — 2026-11-20
+
+**Batch:** `analiza/FW2213TK-2026-11-20/BATCH-6154-LEVEL3-UI-GATES-MULTIPASS-2026-11-20.md`
+**Commit:** `12efc1b11136f559bcdd33093cfc99c85a25bf19`
+
+## CRITICAL RESULT
+
+The fixed access PIN is **6154**, not 6164.
+
+6154 = 0x180A -> access level 3.
+
+Level 3 has a concrete UI behavior beyond menu visibility.
+
+There are 17 distinct UI constructor/setup paths with:
+
+`access_level >= 3 -> add parent+0x23C to the child tree`
+
+The common handler FUN_0802FB04 proves:
+- parent+0x23C = increment/+ control;
+- parent+0x284 = decrement/- control;
+- +0x23C increments parent+0x60 while below parent+0x64.
+
+Therefore 6154 unlocks an additional increment control in a family of parameter editors/setup screens.
+
+## VERIFIED LEVEL-3 GATE LOCATIONS
+
+0x4A566, 0x4AA42, 0x4B22A, 0x4C15A, 0x4EA32, 0x4F456, 0x4F79A, 0x4FEF2, 0x501F2, 0x504AE, 0x5076A, 0x50A7E, 0x50D3A, 0x50FF6, 0x512B2, 0x5156E, 0x5FB0A.
+
+## IMPORTANT DISTINCTION
+
+The 21-row main-menu second stage uses access != 0, so 6154 does not uniquely create those six rows. Level 1 already enables that branch.
+
+6154-specific behavior is the explicit >=3 gates above.
+
+## OPEN
+
+Exact human-readable screen names and exact parameter/CAN function behind each of the 17 + controls are still OPEN.
+
+Do not label them generically as service/installer/diagnostic/factory without tracing the resource, binding, and callback paths.
