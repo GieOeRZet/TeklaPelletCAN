@@ -3046,3 +3046,105 @@ If the bitmap package cannot be loaded completely, the patch aborts and the orig
 This is the first production step toward the complete original Touch visual layer. It is intentionally not a new independent UI engine.
 
 Next: quick-settings dialog → CO → CWU → burner → menu/program/settings, replacing graphics with verified firmware assets while preserving the existing working interaction and CAN/HA path.
+
+
+---
+
+# 31. ARCHITECTURE RESET — 2026-11-20 — FINAL SCOPE
+
+**This section supersedes any earlier implementation-oriented interpretation.**
+
+The final project is **not a modification/reimplementation of the existing TeklaPelletCAN software**.
+
+We are building a new software implementation for ESP + CAN that must reproduce the original Estyma/igneoTouch firmware behavior as 1:1 as the firmware evidence permits. Only the physical platform is changed (ST Touch panel -> ESP-based implementation).
+
+The existing TeklaPelletCAN JS/card/engine is **not behavioral authority**. It may be reused only as a low-level rendering/DOM/HA transport substrate if useful and only after each behavior has been independently justified by firmware.
+
+## Final source-of-truth order
+
+1. [FW] direct BIN evidence
+2. [DATA] extracted firmware tables/assets
+3. [DOC] official Estyma documentation
+4. [STRONG] multi-path inference
+5. [OPEN] unresolved hypothesis
+
+## Final reconstruction scope
+
+Must reproduce:
+- installation/configuration dependencies,
+- menu/screen availability,
+- CO1..CO4 instance logic,
+- CWU/buffer/solar/cascade/additional fuel storage presence,
+- module/profile variants,
+- access levels,
+- alarms/status/timers/state machines,
+- widgets and parent-child tree,
+- exact geometry,
+- clipping/layers/visibility,
+- original bitmap/TypedText/font assets,
+- animation resource ranges and timing,
+- touch callbacks,
+- parameter read/write,
+- record engine,
+- CAN/storage side effects,
+- persistence.
+
+## Configuration resolver — first closed vertical slice
+
+Firmware mappings:
+- internal 0x10E -> panel 0x2105 = Heating configuration
+- internal 0x10F -> 0x2106 = Hot water configuration [STRONG]
+- internal 0x110 -> 0x2108 = Solar configuration [STRONG]
+- internal 0x111 -> 0x2107 = Buffer configuration [STRONG]
+
+FUN_0803C178 selector gates:
+- selector 5 -> 0x10F -> CWU
+- selector 6 -> 0x110 -> Solar
+- selector 7 -> 0x111 -> Buffer
+- selectors 1..4 -> 0x10E -> heating/CO
+
+This is the beginning of the original installation/capability resolver and must be implemented before final UI reconstruction.
+
+## Geometry/color rule
+
+Earlier generated Home preview is **not** pixel-perfect and is not a source of truth. Final rendering must use verified firmware geometry and assets. Do not invent approximate colors or positions.
+
+## Synthetic configurations are mandatory
+
+The implementation must be testable without owning every physical installation:
+- CO1
+- CO1+CWU
+- CO1+CO2+CWU
+- CO1+CO2+CWU+buffer
+- CO1..CO4+CWU
+- CO1..CO4+CWU+buffer+solar
+- +additional fuel storage
+- +cascade master
+- module/profile variants
+- restricted user
+- installer/service user
+
+## Persistent handoff
+
+Read these before continuing:
+- `analiza/FW2213TK-2026-11-19/MASTER-STATE-CONSOLIDATED-2026-11-19.md`
+- `analiza/FW2213TK-2026-11-19/START-HERE-FOR-NEXT-AGENT.md`
+- `analiza/FW2213TK-2026-11-20/BATCH-WHOLE-SOFTWARE-MULTIPASS-2026-11-20.md`
+- `analiza/FW2213TK-2026-11-20/BATCH-ANIMATION-ENGINE-AND-ACTUATOR-MAPS-2026-11-20.md`
+- `analiza/FW2213TK-2026-11-20/BATCH-ORIGINAL-TOUCH-HOME-IMPLEMENTATION-2026-11-20.md`
+- `analiza/FW2213TK-2026-11-20/BATCH-ORIGINAL-SOFTWARE-ARCHITECTURE-RESET-2026-11-20.md`
+- `analiza/FW2213TK-2026-11-20/CHAT-CONTINUITY-2026-11-20-ARCHITECTURE-RESET.md`
+
+Git commits:
+- reset document: `0c17cdb6fd28cb8f69deac3cfc9c28ce77ffc598`
+- configuration mapping correction: `8860ededfb891779177ccaf57c0edf221bda3e1c`
+- continuity handoff: `a4693b35f315f6f8fb1a480bcfd7dd00c2941895`
+
+## Absolute rule for future agents
+
+Do not start by editing the current card.
+
+First reconstruct:
+`parameter model -> configuration resolver -> capability resolver -> screen dispatcher -> widget tree -> touch/write path`.
+
+Only then implement the new ESP software.
