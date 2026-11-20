@@ -784,3 +784,167 @@ undefined8 FUN_08032316(int *param_1,undefined4 param_2,undefined4 param_3,undef
 | SRAM 108 B | [OPEN] |
 | vtable literal bytes | [OPEN] |
 | CO1..CO4 complete 1:1 mapping | [OPEN] |
+
+# ETAP 8 — KOMPLET DANYCH DLA GEMINI
+
+## ### RAW EXPORT — zakresy i status literalnego RAW
+
+[CONFIRMED-REPEAT] functions.txt potwierdza dokładne rozmiary:
+- 0x080618A0 / 120 B
+- 0x08061930 / 18 B
+- 0x08061942 / 20 B
+- 0x08062638 / 718 B
+- 0x08062920 / 212 B
+- 0x08062D82 / 238 B
+- 0x08062F18 / 324 B
+- 0x0804E4F8 / 160 B
+- 0x0804E598 / 36 B
+- 0x0804E5BC / 362 B
+- 0x0804E740 / 26 B
+- 0x0804E75A / 26 B
+- 0x08032316 / 30 B
+
+[NEW-HARD] Pełny decompiled.c został odzyskany bezpośrednio przez Git blob SHA 9620d0c85259d34bb6a20d3b03b038945dfe4c1a. Rozmiar odzyskanej treści: 1,095,461 B.
+
+[NEW-HARD] W sekcji RAW EXPORT tego pliku znajdują się literalne bloki dekompilacji Ghidry dla wszystkich 13 wskazanych funkcji obecnych w blobie.
+
+[OPEN] Te bloki są dekompilacją C, nie HEX maszynowym. Do HEX/Thumb potrzebny jest oryginalny BIN/ELF lub memory export.
+
+## ### XREF / CALLGRAPH
+
+### CAN/TASK
+- FUN_08061874 -> FUN_080618A0
+- FUN_080618A0 -> FUN_08061930
+- FUN_08061930 -> FUN_08061942
+- FUN_08062638 -> FUN_08062920
+- FUN_08062920 -> FUN_0803BBF4, FUN_0803BC3C, FUN_0803BB58
+- FUN_08062D82 tworzy GUITask, EstymaTask, CanRxTask i CanTxTask przez FUN_08057630
+- FUN_08062F18 -> FUN_08060AC4, FUN_0804EC28, FUN_0806307C
+
+[CONFIRMED-REPEAT] strings.txt:
+0x08062ED0 = CanRxTask
+0x08062EDC = CanTxTask
+0x08065553 = @CanMessagesToTransmit
+
+[OPEN] W odzyskanym decompiled.c nie występuje literalny tekst CanMessagesToTransmit; producer kolejki, encoder, mailbox/HAL i ACK/SDO pozostają OPEN.
+
+### UI
+- FUN_080480C0 -> FUN_0804E4F8
+- FUN_080480C0 -> FUN_0804E598
+- FUN_080480C0 -> FUN_0804E5BC
+- FUN_080480C0 -> FUN_0804E740
+- FUN_080480C0 -> FUN_0804E75A
+- FUN_0804842C -> FUN_0804E5BC
+- FUN_0804E5BC -> FUN_08032316
+
+### VTABLE
+- FUN_08037CA4 zapisuje DAT_08038694 jako pierwszy word obiektu
+- *DAT_08038698 = param_1
+- następnie pierwszy word obiektu = DAT_0803869C
+- występują indirect calls przez sloty +0x04, +0x08, +0x0C, +0x10, +0x14, +0x28
+
+[OPEN] Literalne wartości DAT_08038694/98/9C i targety slotów nie są materializowane w decompiled.c.
+
+## ### SRAM 0x20005EF0..0x20005F5B
+
+[CONFIRMED-REPEAT] DAT_0803C218 = 0x20005EF0.
+
+[CONFIRMED-REPEAT] FUN_0803C064 wykonuje switch na byte[DAT_0803C218 + param_2].
+
+[NEW-HARD] Zakres 0x20005EF0..0x20005F5B mieści się wewnątrz zrekonstruowanego SRAM 0x20000000..0x200118B3.
+
+[OPEN] Brak literalnego dumpu 108 B i brak potwierdzonego źródła runtime initialization. Nie rekonstruowano bajtów z semantyki selectorów.
+
+[CONFIRMED-REPEAT] Znana semantyka selectorów:
+1..4 -> +0x12B=1..4 oraz +0x12C=1..4
+5 -> FUN_080381E4
+6 -> FUN_080383B0
+7 -> FUN_08038278
+8 -> FUN_080382CA
+9 -> FUN_080382A6
+10 -> FUN_0803809C
+16 -> +0x12B=0x11
+17 -> +0x12B=0x10
+18 -> DAT_080387B8
+19 -> DAT_080387D0/080387D8
+20 -> +0x12B=0x13
+
+## ### VTABLE 0x08038694..0x080386C7
+
+[OPEN] Literalne 52 B z zakresu 0x08038694..0x080386C7 nie zostały odzyskane.
+
+[CONFIRMED-REPEAT] Używane sloty: +0x04, +0x08, +0x0C, +0x10, +0x14, +0x28.
+
+[OPEN] Dla każdego slotu brak literalnej wartości pointera i jednoznacznej klasyfikacji code/data z samego decompiled.c.
+
+## ### CO1..CO4
+
+[NEW-HARD] FUN_0803E714 dla object+299 == 1,2,3,4 wykonuje:
+FUN_0803EFDA(param_1, DAT_0803EEC0 + 0x62, 0x0C)
+czyli wspólną 12-elementową listę 16-bitowych ID.
+
+[NEW-HARD] Następnie pętla wykonuje:
+FUN_08036FF2(context, id) -> FUN_0804842C(container, index, value).
+
+[CONFIRMED-REPEAT] FUN_0804842C używa widget:
+container + 0x42C + index * 0x338
+i wywołuje FUN_0804E5BC(value) -> FUN_08032316(refresh).
+
+[NEW-HARD] FUN_080480C0 operuje na rekordach resource stride 0x10; używa pól +0x02, +0x04, +0x06, +0x07, +0x08, +0x0C.
+
+[NEW-HARD] Resource dispatch:
+type 1 -> FUN_0804E598, wynik do widget+0x270
+type 2 -> FUN_0804E740
+type 3 -> FUN_0804E75A
+type 5 -> FUN_0804E740
+inne -> FUN_0804E5BC(value,10)
+
+[CONFIRMED-REPEAT] TypedText:
+57 = Ogrzewanie 1
+58 = Ogrzewanie 2
+99..102 = OGRZEWANIE 1..4
+119..122 = Ogrzewanie obwód 1..4
+
+[OPEN] Brak literalnej tabeli DAT_0803EEC0 + 0x62 i +0x6E, więc dokładne 12+11 ID Heating pozostają OPEN.
+
+[OPEN] Brak twardego 1:1:
+CO1 -> widget N -> resource record -> TypedText 119 -> Bitmap -> callback/write
+oraz analogicznie CO2/CO3/CO4.
+
+[REJECTED] Nie utożsamiać 0x0037 / TypedText 55 z TypedText 119..122. 0x0807F5EC jest osobnym rekordem dla kluczy 0x47/0x48, type 5.
+
+[REJECTED] Nie utożsamiać 0x2105 bezpośrednio ze źródłem FUN_0803C064 ani bezpośrednim licznikiem obiektów CO.
+
+## ### STATUS
+
+| Wymaganie | Status |
+|---|---|
+| odzyskanie dużego decompiled.c | [NEW-HARD] |
+| 13 wskazanych bloków dekompilacji | [NEW-HARD] |
+| literalne HEX 7 zakresów TX | [OPEN] |
+| Thumb disassembly 7 TX | [OPEN] |
+| xref/callgraph TX | [NEW-HARD] częściowo; indirect/queue path OPEN |
+| CanTxTask / CanRxTask | [CONFIRMED-REPEAT] |
+| @CanMessagesToTransmit | [CONFIRMED-REPEAT] string; producer OPEN |
+| UI helper bodies | [NEW-HARD] |
+| UI helper callgraph | [NEW-HARD] |
+| SRAM 108 B | [OPEN] |
+| SRAM initialization source | [OPEN] |
+| vtable 52 B | [OPEN] |
+| vtable slot usage | [CONFIRMED-REPEAT] |
+| CO1..CO4 wspólna ścieżka | [NEW-HARD] |
+| CO1..CO4 exact TypedText/Bitmap/callback | [OPEN] |
+| DAT_0803EEC0 exact 12+11 IDs | [OPEN] |
+
+## ### ANTY-DUBLOWANIE
+
+[CONFIRMED-REPEAT] Nie przedstawiono jako nowych:
+FUN_08037212 -> FUN_08011812
+CAN RX 0x62AE4 -> 0x62B22
+base + instance - 1
+DAT_0803C218 = 0x20005EF0
+FUN_0803C064
+FUN_0803E714 -> FUN_08036FF2 -> FUN_0804842C
+widget +0x42C, stride 0x338
+TypedText 119..122
+0x2105 jako Heating configuration bez bezpośredniego utożsamiania z liczbą CO
