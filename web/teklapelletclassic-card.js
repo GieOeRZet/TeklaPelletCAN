@@ -12,6 +12,8 @@
 (async () => {
   const DIR = new URL('.', import.meta.url).pathname;
   if (!customElements.get('tekla-panel-card')) { try { await import(DIR + 'teklapelletclassic-engine.js'); } catch (e) { console.error('teklapelletclassic-card: nie udało się załadować silnika renderowania', e); } }
+  // Produkcyjna warstwa wizualna Home: prawdziwe bitmapy z FW2213, bez duplikowania logiki dotyku/HA.
+  try { await import(DIR + 'teklapelletclassic-touch-main.js?v=1'); } catch (e) { console.warn('teklapelletclassic-card: warstwa Touch Home niedostępna, zostaje renderer bazowy', e); }
   await customElements.whenDefined('tekla-panel-card').catch(() => {});
   const Base = customElements.get('tekla-panel-card');
   if (!Base) { console.warn('teklapelletclassic-card: brak silnika renderowania (teklapelletclassic-engine.js)'); return; }
