@@ -1292,3 +1292,14 @@ Next:
 4. trace touch callback;
 5. resolve exact title/label;
 6. resolve parameter/CAN side effect.
+
+
+> **2026-11-20 MULTIPASS-22 — DEEP CROSS-CHECK ADDED**
+>
+> New report: `analiza/FW2213TK-2026-11-20/MULTIPASS-22-DEEP-CROSSCHECK-174-2105-MANUFACTURER-2026-11-20.md`
+>
+> Key result: official Tekla/Estyma documentation independently corroborates the multi-circuit CO architecture and profiles, while firmware FUN_0803C178 directly gates selectors 1..4 from 0x2105 at thresholds >=1..4. This makes the semantic role of 0x2105 as heating-circuit configuration STRONG; only the exact C064/+0x12C construction bridge remains OPEN.
+>
+> Home anchors remain user-verified: 144=CO1 slot 4, 174=CWU slot 6, 115=lower-right slot 7. 174 is explicitly treated as reusable because the user sees the same asset inside a CWU/tank composition on another screen. Next attack order: 0x2106/CWU fan-out -> 174/175/176/179 consumer graph -> Home root/factory -> CO instance construction.
+>
+> Commit: `fb88fd03d695392b6e0d3617c2ba653df1e66558`
