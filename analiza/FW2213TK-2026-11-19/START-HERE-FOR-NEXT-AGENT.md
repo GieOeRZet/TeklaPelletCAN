@@ -1072,3 +1072,9 @@ Do not resurrect:
 - current TeklaPelletCAN menu as original behavior
 - generated Home preview as original geometry/color
 - FUN_08038ED0 as proven WheelSelectorExtra constructor
+
+
+## 2026-11-20 NEW CLOSED SPINE
+Read batch: analiza/FW2213TK-2026-11-20/BATCH-CONFIG-ACCESS-RESOLVER-MULTIPASS-2026-11-20.md
+
+Critical correction: +0x158 is access level. Raw PIN mapping is 0900->1, 0999->2, 6154->3, 0->0. Configuration resolver FUN_0803C178 gates selectors 1..9 from 0x2105/2106/2108/2107/350C/3525. Next target: exact 21-row screen tree at FUN_0804227A.
