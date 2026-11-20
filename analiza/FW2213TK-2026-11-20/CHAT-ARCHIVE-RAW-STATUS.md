@@ -92,3 +92,27 @@ Persistent batch updated:
 
 The user requested that every major run be persisted; this checkpoint records the latest run as well.
 
+
+
+## Current run — MULTIPASS-13 / 6154 numeric-control binding — 2026-11-20
+
+User instruction persisted for this run:
+- continue autonomously with many independent passes;
+- use maximum practical analysis depth and multiple branches/levels;
+- do not stop at a single discovery;
+- persist continuity after each major run.
+
+Persistent report:
+- MULTIPASS-13-6154-NUMERIC-CONTROL-PARAM-BINDING-2026-11-20.md
+- commit: 7f80e18870a976e178be7a0aab1370c5debb770a
+
+Run-level findings:
+- 4A510 is concretely anchored to TypedText ID 454 / "Próg zmniejszania stopnia mocy [%]" at child +0x23C, X=439 Y=0 W=40 H=30.
+- This gives a human-readable semantic anchor for one of the 17 level-3 gated components.
+- Repeated sibling component setup functions were revalidated as a broader family, but their individual parameter bindings remain OPEN.
+- 6154 remains an interaction-tree permission; it is not itself a parameter selector.
+- +0x12B/+0x12C/FUN_08036FF2 and the configuration resolver remain separate orthogonal layers.
+- +0x3D8 remains unresolved as an actual model/record binding.
+- FUN_08035786 remains explicitly excluded as a CAN writer.
+
+The complete raw ChatGPT transcript is still not available through the GitHub connector, so this is a continuity record, not a fabricated raw transcript.
