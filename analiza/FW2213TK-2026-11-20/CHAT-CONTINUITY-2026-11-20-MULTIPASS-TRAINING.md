@@ -212,3 +212,34 @@ Do not collapse special codes into access levels.
 ## NEXT
 
 Prioritize 6666 -> Default settings request -> persistence/reset path, then boiler-dependent PIN mechanism.
+
+
+---
+# 2026-11-20 — 6154 / LEVEL 3 MULTIPASS RESULT
+
+Batch:
+`analiza/FW2213TK-2026-11-20/BATCH-6154-LEVEL3-UI-GATES-MULTIPASS-2026-11-20.md`
+Commit: `12efc1b11136f559bcdd33093cfc99c85a25bf19`
+
+User asked what "6164" does. Raw firmware corrects this to 6154.
+
+Independent passes closed:
+- fixed code constant;
+- decimal/hex conversion;
+- access-level storage;
+- all direct +0x158 level-3 comparisons;
+- 17 distinct gate locations;
+- child-tree insertion;
+- common event handler;
+- + / - semantics;
+- comparison against 0900/0999 behavior;
+- contradiction and stale-hypothesis check.
+
+New architectural fact:
+6154 is not only a menu visibility level. It adds an increment control to a family of parameter-editor/setup screens.
+
+Still OPEN:
+- exact screen labels;
+- exact parameter binding per gate;
+- exact CAN/write side effect;
+- whether these are all service/installer functions or a mixture of normal editors with elevated adjustment capability.
