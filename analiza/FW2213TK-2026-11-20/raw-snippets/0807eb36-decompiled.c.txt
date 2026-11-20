@@ -1,0 +1,15 @@
+// 0807eb36
+
+void FUN_0807eb36(int param_1,int param_2)
+
+{
+  uint uVar1;
+  
+  for (uVar1 = 0; (int)uVar1 < (int)(uint)*(byte *)(param_1 + 0x3b8); uVar1 = uVar1 + 1) {
+    if (param_2 == *(int *)(param_1 + 0x3b4) + uVar1 * 0x274) {
+      FUN_0803ec18(*(undefined4 *)(param_1 + 0x3c),uVar1 & 0xffff);
+    }
+  }
+  return;
+}
+
