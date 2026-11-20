@@ -3315,3 +3315,32 @@ Asset cross-check:
 - 159 gears -> Configuration
 
 External documentation corroborates the menu families but does not override raw firmware semantics or PIN values.
+
+
+# 2026-11-20 — MULTIPASS TRAINING + MENU-TABLE CORRECTION
+
+The user requires maximum-resource reverse engineering: many independent passes, multiple levels, parallel/orthogonal analytical threads, contradiction checks, stale-hypothesis checks, and persistent continuity.
+
+New continuity file:
+analiza/FW2213TK-2026-11-20/CHAT-CONTINUITY-2026-11-20-MULTIPASS-TRAINING.md
+
+New/corrected batch:
+analiza/FW2213TK-2026-11-20/BATCH-CONFIG-ACCESS-RESOLVER-MULTIPASS-2026-11-20.md
+
+IMPORTANT CORRECTION:
+The raw table at 0x42348 contains 21 records, but the constructor at 0x42160 processes only the first 15 records in each of its two loops. Therefore "21-row main menu closed" is withdrawn. First 15 selectors are:
+0,10,1,2,3,4,5,6,7,8,9,11,13,17,15.
+Trailing six are:
+0,90,97,100,98,95.
+Their consumer/context remains OPEN.
+
+Do not use the trailing six as proven rows of the same screen until a separate consumer/call path is found.
+
+The multi-pass protocol is now explicitly part of continuity:
+raw bytes -> disassembly -> xrefs -> data mapper -> strings -> assets -> widget/vtable -> geometry -> touch/callback -> config gate -> access gate -> synthetic matrix -> contradiction search -> stale-hypothesis check -> implementation model.
+
+Next priority:
+1. identify the consumer/context of the trailing six records,
+2. trace exact row tree for first 15,
+3. map all +0x158 access consumers,
+4. only then freeze the machine-readable main-menu resolver.
