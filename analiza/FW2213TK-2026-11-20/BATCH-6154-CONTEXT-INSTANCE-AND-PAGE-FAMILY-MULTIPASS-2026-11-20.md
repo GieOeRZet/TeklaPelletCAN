@@ -346,3 +346,158 @@ These are either corrected or still [OPEN].
 The firmware is exposing a multi-dimensional UI state machine. 6154 is one dimension (interaction permission), +0x12C is another (active instance), +0x12A/+0x12B are page/context dimensions, and configuration resolver gates are yet another dimension.
 
 That is exactly why the final ESP implementation must be a resolver-driven reconstruction rather than a copied/static menu.
+
+
+---
+
+## PASS 16 — COMPLETE +0x12A VALUE INVENTORY
+
+A full immediate-store inventory found context +0x12A assignments with values:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+
+Representative sites:
+- 0x08031CC4 -> 0
+- 0x0803C05C -> 1
+- 0x0803C5C2 -> 2
+- 0x0804216C -> 1
+- 0x0804804C -> 3
+- 0x080411A8 -> 4
+- 0x0804B348 -> 5
+- many later page constructors -> 2
+
+[STRONG] +0x12A is a compact page-family/context selector with at least six distinct states, not a simple access level and not the active CO instance.
+
+This gives a new concrete resolver dimension.
+
+---
+
+## PASS 17 — CONTEXT 3 HAS EXPLICIT +0x12B VARIANT MAPPING
+
+Constructor around 0x08048040:
+
+1. calls FUN_080314BA -> global context
+2. sets context +0x12A = 3
+3. reads context +0x12B
+4. chooses the page bitmap resource:
+
++0x12B == 0x10 -> resource 0x35
++0x12B == 0x11 -> resource 0x37
+otherwise -> resource 0x32
+
+[FW]
+
+Resource meanings from the closed bitmap inventory:
+- 0x32 = bitmap 050 (57x43)
+- 0x35 = bitmap 053 (34x29, orange/yellow E-style reserve/warning)
+- 0x37 = bitmap 055 (35x37)
+
+[STRONG] +0x12B is therefore a real page/variant selector used to alter visual composition within context 3.
+
+Its human semantic name remains [OPEN].
+
+---
+
+## PASS 18 — CONTEXT 2 ALSO USES +0x12B FOR A 0..10 RESOURCE FAMILY
+
+Constructor 0x080424EC:
+- sets +0x12A = 2
+- reads +0x12B
+- switch 0..10
+- selects:
+  0 -> 0x29
+  1 -> 0x28
+  2 -> 0x2A
+  3 -> 0x2B
+  4 -> 0x2C
+  5 -> 0x2D
+  6 -> 0x2E
+  7 -> 0x31
+  8 -> 0x2F
+  9 -> 0x30
+  10 -> 0x29
+
+The same table exists in:
+- 0x0804D00C
+- 0x0804D634
+- 0x0804D948
+
+and related constructors:
+- 0x0804A2EA
+- 0x0805FA52
+
+[STRONG] these are a repeated resource-family dispatch keyed by the same context byte.
+
+Do not yet translate the 0..10 values into human labels.
+
+---
+
+## PASS 19 — CONTEXT 1 HAS A DISTINCT RESOURCE FAMILY
+
+Constructor 0x08042160:
+- sets +0x12A = 1
+- first bitmap resource = 0x27
+- bitmap 0x27 = inventory bitmap 039, 30x18 + A8
+
+The same firmware region contains the page/resource machinery around this constructor.
+
+[STRONG] context 1 is not merely a numeric duplicate of context 2; it has its own visual/resource family.
+
+User's earlier interpretation that bitmap 039 may be a second fuel-storage menu tile remains [USER]/[OPEN], but the firmware proves that resource 039 belongs to a context-1 constructor.
+
+---
+
+## PASS 20 — CONTEXT 3 / +0x12B IS NOT ACTIVE CO INSTANCE
+
+Independent cross-check:
+- +0x12C has direct writes of values 1..4.
+- +0x12B has a separate write path producing 0x10/0x11.
+- context 3 uses +0x12B to choose resources 0x35/0x37/0x32.
+
+[STRONG] +0x12B and +0x12C encode different dimensions.
+
+This eliminates a previous ambiguity that could have caused the ESP resolver to merge boiler variant and CO instance.
+
+---
+
+## PASS 21 — +0x12A CONTEXT VALUES SHOULD BE MODELED AS A STATE ENUM
+
+The firmware has at least:
+context 0,1,2,3,4,5.
+
+The safest reconstruction representation is:
+
+enum UiContextFamily {
+  Context0,
+  Context1,
+  Context2,
+  Context3,
+  Context4,
+  Context5
+}
+
+with +0x12B and +0x12C held as separate orthogonal state.
+
+Do NOT expose these raw numeric names to the user-facing UI; they are internal firmware evidence.
+
+---
+
+## PASS 22 — NEW TARGET: RESOLVE THE PRODUCER OF +0x12B = 0x10 / 0x11
+
+Direct setter path:
+0x0803C15A -> FUN_08038568 -> +0x12B = 0x10
+0x0803C166 -> FUN_0803856C -> +0x12B = 0x11
+
+The dispatcher at 0x0803C064 selects these cases from a lookup table.
+
+Next exact work:
+- decode the table at 0x0803C218
+- identify which input selector reaches 0x3C15A/0x3C166
+- trace upstream caller and semantic source
+- connect it to context 3 resource choice
+
+This is now a high-priority resolver target.
