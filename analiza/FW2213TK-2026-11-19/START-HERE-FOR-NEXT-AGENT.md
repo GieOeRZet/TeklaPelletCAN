@@ -941,7 +941,7 @@ internal 0x14A -> CAN 0x3602 reserve flag
 FUN_0802DA54
         |
         +-> +0x5A8 resource 051 or 053
-        +-> progress fields +0x966/+0x96A/+0x5DA
+        +-> extended object fields (semantics still OPEN; do not call them progress fields)
         +-> refresh +0x5A8/+0x5D4/+0x5360
         |
 +0x5D4 has static resource 052
@@ -1004,3 +1004,71 @@ W=34 H=29
 8. Then continue parameter -> callback -> model -> binding -> widget.
 
 Do not report a small isolated address as completion. Close vertical chains.
+
+
+---
+
+# FINAL SCOPE RESET — 2026-11-20
+
+The project target is now explicitly **a new implementation 1:1 compatible with the original Estyma/igneoTouch firmware**, running on ESP instead of the original ST hardware.
+
+The existing TeklaPelletCAN card/engine is NOT the source of behavior. It may only be reused as a low-level renderer/DOM/HA transport substrate when it does not impose behavior.
+
+Do not use the current card to decide:
+- configuration,
+- available screens,
+- menu entries,
+- module presence,
+- CO count,
+- CWU/buffer/solar/cascade behavior,
+- parameter semantics,
+- write paths,
+- dependencies.
+
+## First configuration resolver slice already closed
+
+- 0x10E -> 0x2105 = Heating configuration
+- 0x10F -> 0x2106 = Hot water configuration [STRONG]
+- 0x110 -> 0x2108 = Solar configuration [STRONG]
+- 0x111 -> 0x2107 = Buffer configuration [STRONG]
+
+FUN_0803C178:
+- selector 5 -> 0x10F -> CWU gate
+- selector 6 -> 0x110 -> Solar gate
+- selector 7 -> 0x111 -> Buffer gate
+- selectors 1..4 -> 0x10E -> heating/CO gate
+
+This is the basis for the final capability resolver.
+
+## Geometry/color rule
+
+Earlier generated previews are NOT original pixel-perfect output. Do not reuse their geometry or colors as truth. Use firmware-derived:
+- X/Y/W/H
+- parent/child tree
+- clipping/layers
+- RGB565/A8 bitmaps
+- TypedText/font assets
+- widget colors/Canvas drawing only when proven.
+
+## Synthetic installation matrix is mandatory
+
+At minimum test:
+CO1; CO1+CWU; CO1+CO2+CWU; CO1+CO2+CWU+Buffer; CO1..CO4+CWU; CO1..CO4+CWU+Buffer+Solar; +additional fuel storage; +cascade master; module/profile variants; restricted access; installer/service.
+
+## Required reading before any new work
+
+1. MASTER-STATE-CONSOLIDATED-2026-11-19.md
+2. this START-HERE file
+3. BATCH-WHOLE-SOFTWARE-MULTIPASS-2026-11-20.md
+4. BATCH-ANIMATION-ENGINE-AND-ACTUATOR-MAPS-2026-11-20.md
+5. BATCH-ORIGINAL-SOFTWARE-ARCHITECTURE-RESET-2026-11-20.md
+6. CHAT-CONTINUITY-2026-11-20-ARCHITECTURE-RESET.md
+
+## Critical withdrawn hypotheses
+
+Do not resurrect:
+- +0x5DA/+0x5DE/+0x966/+0x96A as proven progress fields
+- 370A -> bitmap 011/012/013 direct mapping
+- current TeklaPelletCAN menu as original behavior
+- generated Home preview as original geometry/color
+- FUN_08038ED0 as proven WheelSelectorExtra constructor
