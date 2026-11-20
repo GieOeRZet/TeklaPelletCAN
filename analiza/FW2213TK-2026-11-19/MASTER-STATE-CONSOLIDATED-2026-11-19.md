@@ -3435,3 +3435,61 @@ Replace with:
 - second-stage semantics remain to be traced.
 
 Next priority: FUN_08032F08, FUN_0803C270, row object class/vtable, RAM 0x20005F08 producer, selector navigation, exact second-stage visual semantics.
+
+
+---
+# ACTIVE OVERRIDE — PIN / ACCESS / SPECIAL CODES — 2026-11-20
+
+**Batch:** `analiza/FW2213TK-2026-11-20/BATCH-PIN-ACCESS-AND-RESET-MULTIPASS-2026-11-20.md`
+**Commit:** `99e32ac4e5c2c0ebed6862411ae8121e91fbf707`
+
+## CLOSED ACCESS LEVELS
+
+The firmware's four-digit PIN path is proven:
+
+`FUN_08042024 -> FUN_08042328 -> FUN_0803C21C -> FUN_08037E74`
+
+Access-level mapping:
+- 0900 / 900 -> level 1
+- 0999 / 999 -> level 2
+- 6154 / 0x180A -> level 3
+- 0000 -> level 0
+
+Unmatched nonzero PINs leave the current level unchanged.
+
+Therefore the user's cumulative access observation is firmware-confirmed.
+
+## SEPARATE SPECIAL-CODE PATH
+
+`FUN_0803C21C` also calls `FUN_08018634`.
+
+Closed special constants:
+- 1992 / 0x7C8
+- 6666 / 0x1A0A
+- 0
+
+6666 sets context+0x07 = 1.
+The user reports this is factory reset without changing boiler type. Firmware proves the special-state activation, but the exact downstream reset operation is still OPEN.
+
+1992 is also a real special code; its semantic purpose remains OPEN.
+
+## IMPORTANT
+
+Do not model:
+`6666 -> access level`.
+
+It is NOT part of the 0..3 access mapping.
+
+Do not yet model 1992 as service PIN.
+
+## REMAINING BOILER-DEPENDENT PIN QUESTION
+
+The only unresolved branch in the exact PIN input path is the `FUN_080144B4` lookup used by `FUN_08018634`. Determine whether its runtime registry keys can encode/generated boiler-dependent codes.
+
+Next:
+1. resolve 144B4 registry semantics;
+2. trace context+0x07;
+3. connect 6666 special state to "Default settings request";
+4. verify preservation of boiler type;
+5. search all PIN UI/callback resources;
+6. synthetic access/special-code matrix.
