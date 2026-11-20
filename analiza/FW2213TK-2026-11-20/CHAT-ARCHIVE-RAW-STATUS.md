@@ -5,6 +5,15 @@ Date: 2026-11-20
 
 The user explicitly requires that the **entire conversation/chat be preserved in Git**, not merely a technical summary, so that a future chat/agent can continue with the full conversational context.
 
+The user has now explicitly reinforced the workflow:
+> Po każdym chacie/przebiegu dopisuj gdzieś rozmowy, a teraz robisz swoje.
+> Wykorzystaj maksymalnie zasoby. Kilkadziesiąt, kilkanaście przebiegów. Na wielu poziomach, wiele wątków itd.
+
+Operational interpretation:
+- after each major analysis run, persist a continuity/handoff record in Git;
+- continue deep multi-pass analysis without waiting for the user after every pass;
+- preserve the user's direction, corrections and rejected hypotheses in the continuity record.
+
 ## Important limitation
 
 The GitHub connector available to this agent does NOT expose a function that retrieves the complete ChatGPT conversation transcript, including messages that are no longer present in the current tool-visible context or messages represented internally as skipped/truncated turns.
@@ -15,8 +24,7 @@ It would be incorrect to fabricate missing messages or call a summary a full tra
 
 ## What is currently persisted
 
-The following are persistent technical/context handoffs:
-
+Persistent technical/context handoffs include:
 - MASTER-STATE-CONSOLIDATED-2026-11-19.md
 - START-HERE-FOR-NEXT-AGENT.md
 - BATCH-WHOLE-SOFTWARE-MULTIPASS-2026-11-20.md
@@ -24,6 +32,10 @@ The following are persistent technical/context handoffs:
 - BATCH-ORIGINAL-TOUCH-HOME-IMPLEMENTATION-2026-11-20.md
 - BATCH-ORIGINAL-SOFTWARE-ARCHITECTURE-RESET-2026-11-20.md
 - CHAT-CONTINUITY-2026-11-20-ARCHITECTURE-RESET.md
+- MULTIPASS-12-6154-DEEP-AUDIT-2026-11-20.md
+- BATCH-6154-CONTEXT-INSTANCE-AND-PAGE-FAMILY-MULTIPASS-2026-11-20.md
+
+The latest batch explicitly records the current chat's instruction to continue with maximum-resource multi-pass analysis and the new findings on context offsets 0x12A/0x12B/0x12C, 6154 gates, page families, and unresolved callback paths.
 
 ## Current scope rule
 
