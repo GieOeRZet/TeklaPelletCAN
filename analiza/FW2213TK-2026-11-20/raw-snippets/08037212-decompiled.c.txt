@@ -1,0 +1,47 @@
+// 08037212
+
+undefined4 FUN_08037212(undefined4 param_1,int param_2,undefined4 param_3)
+
+{
+  undefined4 uVar1;
+  byte *pbVar2;
+  int iVar3;
+  int iVar4;
+  undefined2 *puVar5;
+  short *psVar6;
+  uint uVar7;
+  
+  iVar3 = FUN_080314ba();
+  pbVar2 = DAT_08037558;
+  uVar1 = DAT_0803754c;
+  psVar6 = &DAT_08037b48;
+  *DAT_08037558 = *(byte *)(iVar3 + 300);
+  iVar3 = 0x31;
+  while ((*psVar6 != param_2 ||
+         (iVar4 = FUN_08011812(uVar1,psVar6[1] + (ushort)*pbVar2 + -1,param_3,5,1,1), iVar4 != 0)))
+  {
+    psVar6 = psVar6 + 2;
+    iVar3 = iVar3 + -1;
+    if (iVar3 == 0) {
+      uVar7 = 0;
+      puVar5 = &DAT_0803757a;
+      do {
+        if ((short)puVar5[-1] == param_2) {
+          iVar3 = FUN_08011812(uVar1,*puVar5,param_3,5,1,1);
+          if (iVar3 == 0) {
+            return 1;
+          }
+          *(short *)(pbVar2 + 2) = (short)uVar7;
+          *(short *)(pbVar2 + 6) = (short)param_2;
+          *(undefined4 *)(pbVar2 + 8) = param_3;
+          *(undefined2 *)(pbVar2 + 4) = *puVar5;
+        }
+        uVar7 = uVar7 + 1;
+        puVar5 = puVar5 + 2;
+      } while (uVar7 < 0x174);
+      return 0;
+    }
+  }
+  return 1;
+}
+
