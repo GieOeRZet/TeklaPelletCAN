@@ -72,3 +72,23 @@ New closed/strong results recorded there:
 
 The user explicitly asked that this kind of continuity be persisted after each major run. This status file records that requirement and the latest persistent checkpoint.
 
+
+
+## Latest continuation checkpoint — dispatcher/registry pass
+
+Additional passes were completed after the context/instance batch.
+
+New persistent findings:
+- FUN_0803C064 TBB dispatch was decoded exactly.
+- selector 16 -> +0x12B=0x11
+- selector 17 -> +0x12B=0x10
+- selector 18 -> alternate setter path
+- selector source is a RAM table at 0x20005EF0.
+- direct caller around 0x0807EB00 walks a registry at object +0x3B4 with 0x274-byte record stride and passes matched record index into the dispatcher.
+- exact semantic identity of registry entries 16/17/18 remains open.
+
+Persistent batch updated:
+- BATCH-6154-CONTEXT-INSTANCE-AND-PAGE-FAMILY-MULTIPASS-2026-11-20.md
+
+The user requested that every major run be persisted; this checkpoint records the latest run as well.
+
