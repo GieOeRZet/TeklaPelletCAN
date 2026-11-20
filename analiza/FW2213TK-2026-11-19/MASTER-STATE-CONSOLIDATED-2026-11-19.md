@@ -3148,3 +3148,115 @@ First reconstruct:
 `parameter model -> configuration resolver -> capability resolver -> screen dispatcher -> widget tree -> touch/write path`.
 
 Only then implement the new ESP software.
+
+
+# 2026-11-20 — NEW CLOSED SPINE: CONFIGURATION + ACCESS RESOLVER
+
+New batch:
+analiza/FW2213TK-2026-11-20/BATCH-CONFIG-ACCESS-RESOLVER-MULTIPASS-2026-11-20.md
+
+Raw BIN SHA-256:
+1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071
+
+## [FW][CLOSED] Configuration internal-index -> CAN
+
+Closed mapping:
+0x10D->0x3505 outside-temperature configuration
+0x10E->0x2105 heating configuration
+0x10F->0x2106 hot-water configuration
+0x110->0x2108 solar configuration
+0x111->0x2107 buffer configuration
+0x112->0x3500 main module type
+0x113->0x3502 CH expansion module type
+0x114->0x3501 autoconfig
+0x115->0x2123
+0x116->0x3606 Input IN17 config
+0x117->0x3506 sound alarm
+0x118->0x3508 silence from
+0x119->0x3509 silence to
+0x11A->0x350A return sensor
+0x11B->0x350B profile
+0x11C->0x350C cascade-master flag
+0x11D->0x350D pressure sensor
+0x11E->0x3707 EGT sensor type
+0x11F->0x3629 energy meter type
+0x120->0x362B airflow meter
+0x121->0x370A boiler image selector
+0x122->0x3525 additional fuel storage
+
+Fuel block remains:
+0x147->0x3601
+0x148->0x3600
+0x149->0x3603
+0x14A->0x3602
+0x14B->0x3604
+0x14C->0x3607
+
+## [FW][CLOSED] Configuration UI resolver
+
+FUN_0803C178 is a row eligibility resolver. Its only direct caller is 0x0804227A, which iterates 21 selector slots (0..20).
+
+Exact gates:
+selector 1 -> 0x2105 >= 1
+selector 2 -> 0x2105 >= 2
+selector 3 -> 0x2105 >= 3
+selector 4 -> 0x2105 >= 4
+selector 5 -> 0x2106 >= 1
+selector 6 -> 0x2108 >= 1
+selector 7 -> 0x2107 >= 1
+selector 8 -> 0x350C != 0
+selector 9 -> 0x3525 != 0
+selectors 0 and 10..20 -> true at this resolver layer
+
+This is the first firmware-proven capability resolver. Do not hard-code menu membership in the final ESP UI.
+
+## [FW][CLOSED] +0x158 is ACCESS LEVEL
+
+Previous interpretation of +0x158 as a generic UI variant is withdrawn.
+
+Raw chain:
+0x42024 -> 4-digit decimal value
+0x42328 -> callback boundary
+0x3C21C -> access-code handler
+0x37E74 -> access-level resolver
+model +0x158 -> resulting level
+
+Exact codes:
+0 -> level 0
+0900 (0x0384) -> level 1
+0999 (0x03E7) -> level 2
+6154 (0x180A) -> level 3
+
+Previous 0x1BF1 claim is withdrawn.
+
+FUN_08037CA4 initializes +0x158 to 0.
+
+## [FW][STRONG] Access thresholds
+
+Independent constructors consume +0x158 with:
+- zero/nonzero tests -> level >=1
+- cmp #2 / blt -> level >=2
+- cmp #3 / blt -> level >=3
+
+Therefore access is an orthogonal gate from installation configuration.
+
+Do not call level 3 "service" as a proven UI label yet; only the hierarchy and PIN mapping are closed.
+
+## Synthetic resolver baseline
+
+The first firmware-derived capability model is:
+- heating_config 0..4 -> CO1..CON
+- hot_water_config >=1 -> CWU capability
+- solar_config >=1 -> Solar capability
+- buffer_config >=1 -> Buffer capability
+- cascade-master flag -> cascade branch
+- additional-fuel-storage flag -> external storage branch
+- access level 0..3 -> second independent UI filter
+
+Outer screen/menu dispatcher may add more conditions. This is not yet the final menu specification.
+
+## Immediate next target
+
+Trace 0x0804227A and identify the exact 21-row widget/resource/text table, then correlate each selector with the real screen/menu. In parallel trace all +0x158 consumers and classify which widget families require level 1/2/3.
+
+Do not start renderer work yet.
