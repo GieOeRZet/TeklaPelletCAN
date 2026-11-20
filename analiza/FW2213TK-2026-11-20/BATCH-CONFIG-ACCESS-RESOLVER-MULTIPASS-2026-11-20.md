@@ -451,3 +451,176 @@ Priority 5:
 synthetic configuration engine + test matrix.
 
 No renderer work until these semantic branches are closed.
+
+
+# PASS 13 — raw 21-entry menu row table
+
+The constructor around FUN_0804227A uses a 21-entry table at raw 0x42348. Each entry is 6 bytes:
+
+[selector, bitmap_A, bitmap_B]
+
+Raw entries:
+
+0  -> 60,83
+10 -> 61,85
+1  -> 62,86
+2  -> 63,86
+3  -> 64,86
+4  -> 65,86
+5  -> 66,88
+6  -> 71,87
+7  -> 67,84
+8  -> 70,82
+9  -> 69,99
+11 -> 72,78
+13 -> 74,89
+17 -> 77,159
+15 -> 76,96
+0  -> 12,73
+90 -> 14,75
+97 -> 18,78
+100 -> 16,79
+98 -> 19,80
+95 -> 20,81
+
+The first field is consumed as the row/menu selector; the other two fields are passed to the row/icon builder FUN_0804BC6C, which installs bitmap resources through the normal Bitmap resource setter.
+
+The selector order is therefore NOT numerical. The firmware's actual menu order is encoded by this table.
+
+[FW][DATA][CLOSED]
+
+---
+
+# PASS 14 — selector -> menu semantic correlation
+
+Using:
+A) the raw selector/gate function,
+B) the icon resources,
+C) the firmware menu strings,
+D) official IGNEO Touch documentation only as external corroboration,
+
+the following are strongly closed:
+
+- selector 0 -> Kocioł / Boiler
+- selector 10 -> Palnik / Burner
+- selector 1 -> Ogrzewanie obwód 1
+- selector 2 -> Ogrzewanie obwód 2
+- selector 3 -> Ogrzewanie obwód 3
+- selector 4 -> Ogrzewanie obwód 4
+- selector 5 -> Ciepła woda użytkowa / Hot Water
+- selector 6 -> Solary / Solar
+- selector 7 -> Bufor / Buffer
+- selector 8 -> cascade branch (installation-gated by 0x350C)
+- selector 9 -> Additional fuel storage (installation-gated by 0x3525)
+- selector 11 -> Historia alarmów
+- selector 13 -> Informacje o programie
+- selector 15 -> Poziom menu (PIN)
+- selector 90 -> Język / Language
+- selector 97 -> Alarm dźwiękowy / Sound alarm
+- selector 17 -> Konfiguracja
+- selector 100 -> Test wyjść
+- selector 98 -> Statystyki
+- selector 95 -> Sieć / Net
+
+For selectors 8 and 9 the firmware gate is stronger than documentation: selector 8 is tied directly to 0x350C and selector 9 directly to 0x3525.
+
+For selectors 0,10,11,13,15,90,97,17,100,98,95 the exact semantic labels are corroborated by the firmware string catalog and the documented menu structure, while the raw selector/bitmap table provides the actual implementation order.
+
+[FW][DATA][STRONG][DOC]
+
+---
+
+# PASS 15 — configuration gate + main menu order
+
+The main menu can now be represented as a firmware-derived ordered list:
+
+1. selector 0 — Kocioł
+2. selector 10 — Palnik
+3. selector 1 — CO1
+4. selector 2 — CO2
+5. selector 3 — CO3
+6. selector 4 — CO4
+7. selector 5 — CWU
+8. selector 6 — Solar
+9. selector 7 — Buffer
+10. selector 8 — Cascade branch
+11. selector 9 — Additional fuel storage
+12. selector 11 — Alarm history
+13. selector 13 — Program info
+14. selector 15 — Menu level/PIN
+15. selector 90 — Language
+16. selector 97 — Sound alarm
+17. selector 17 — Configuration
+18. selector 100 — Output test
+19. selector 98 — Statistics
+20. selector 95 — Network
+
+The raw table contains 21 records because selector 0 occurs twice with different bitmap pairs. This indicates that the table is not a simple unique-ID catalog; one occurrence is a distinct row/resource state or alternate context.
+
+Do not collapse the two selector-0 records until their parent/row construction context is proven.
+
+---
+
+# PASS 16 — visual asset cross-check of the menu table
+
+Extracted firmware assets independently show:
+
+- 62–65 are distinct small UI symbols used by selectors 1..4.
+- 86 is shared by selectors 1..4 and visually matches a heating/radiator family.
+- 88 is a faucet symbol, matching selector 5 / CWU.
+- 87 is a solar-panel-like symbol, matching selector 6 / Solar.
+- 84 is a tall tank symbol, matching selector 7 / Buffer.
+- 82 is a multi-module/cascade-like symbol, matching selector 8.
+- 99 is a storage/silo-like symbol, matching selector 9 / Additional fuel storage.
+- 96 is a user+lock symbol, matching selector 15 / Menu level.
+- 159 is a gears symbol, matching selector 17 / Configuration.
+
+This is an independent asset-level corroboration of the configuration gates and menu selector semantics.
+
+The exact pixel appearance remains governed by the raw RGB565/A8 assets; no generated graphics are used as specification.
+
+[DATA][STRONG]
+
+---
+
+# PASS 17 — external documentation sanity check, not source of truth
+
+Official/producer documentation for IGNEO Touch describes the menu families:
+Kocioł, Palnik, Heating circuits 1..4, Hot Water, Solar, Buffer, Alarm history, Program info, Menu level/PIN, Language, Sound alarm, Configuration, Output test, Statistics and Network. Some versions additionally show Additional fuel storage.
+
+This matches the raw selector table's semantic order.
+
+Important:
+- documentation versions differ,
+- some older manuals show different PINs,
+- therefore documentation is NOT used to override the raw FW access-code mapping.
+For FW2213TK the raw BIN remains authoritative.
+
+[DOC][STRONG]
+
+---
+
+# PASS 18 — capability matrix now has exact main-menu order
+
+The synthetic resolver should emit an ordered menu vector, not a dictionary sorted by ID.
+
+Example for Heating=2, HW=1, Solar=0, Buffer=0, CascadeMaster=0, AdditionalStorage=0:
+
+[0,10,1,2,5,11,13,15,90,97,17,100,98,95]
+
+For maximum configuration with all branches enabled:
+
+[0,10,1,2,3,4,5,6,7,8,9,11,13,15,90,97,17,100,98,95]
+
+This is the first directly firmware-derived menu ordering usable by the final implementation.
+
+---
+
+# New open issue
+
+The duplicate selector 0 needs separate trace:
+- identify which of the two selector-0 rows is the normal Kocioł menu item,
+- identify the second context/state,
+- prove whether it is a home/quick-action row or a duplicate menu resource.
+
+Do not remove it from the model until the parent screen/callback path is closed.
