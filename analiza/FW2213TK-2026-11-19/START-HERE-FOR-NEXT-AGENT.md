@@ -1161,3 +1161,46 @@ Asset extraction proves the trailing six are a different resource family (boiler
 The first 15 records use A/B bitmap pairs where B is strongly the semantic menu icon and A is a state/selection/decoration layer.
 
 Next target is now exact: find the consumer/context of the trailing six and close the first 15 row class/geometry/touch tree.
+
+
+---
+# CURRENT START OVERRIDE — 2026-11-20 — 21-RECORD SECOND-PASS CORRECTION
+
+**Read this last. It supersedes the previous “first 15 only / trailing six OPEN” menu instructions.**
+
+Read batch:
+`analiza/FW2213TK-2026-11-20/BATCH-MAIN-MENU-ACCESS-SECOND-PASS-21-RECORD-CORRECTION-MULTIPASS-2026-11-20.md`
+Commit: `d05254d7a6052c7c1eb80a812a3134ab91c375a7`
+
+## CLOSED NOW
+
+FUN_08042160 has a two-stage row construction:
+1. records 0..14 always;
+2. records 15..20 only when access-level byte != 0.
+
+The second stage is real. r4 is not reset after the first loop; r5 becomes 0x15 and the loop continues through 20.
+
+The 21 raw records at 0x42348 therefore all belong to this constructor’s row family, but the last six are access-dependent.
+
+After construction, a separate loop iterates 21 row slots at object+0x380 with stride 0x274 and calls FUN_0803C178(model,slot). Another 21-iteration access/update path starts at 0x422C8 and uses runtime byte array 0x20005F08.
+
+## DO NOT REPEAT
+
+Do not claim:
+- only 15 records are consumed;
+- trailing six have no consumer;
+- the 21-record table is unrelated tail data.
+
+Also do not yet claim:
+- exact semantic destination of selectors 0/90/97/100/98/95;
+- exact class/vtable of each row;
+- exact access-level visual effect.
+
+## NEXT TRACE
+
+A. FUN_08032F08 -> selected row behavior.
+B. FUN_0803C270 -> model/access side effect.
+C. Row object at object+0x380+n*0x274 -> constructor/vtable/children +0x60/+0x8C/+0xF8.
+D. RAM 0x20005F08 -> producer/writer and 21-byte semantics.
+E. Touch/navigation callback chain from each row.
+F. Exact geometry and visibility of the 21 row family.
