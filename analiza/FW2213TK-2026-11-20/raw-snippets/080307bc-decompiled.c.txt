@@ -1,0 +1,36 @@
+// 080307bc
+
+undefined8 FUN_080307bc(int *param_1,undefined2 *param_2,undefined4 param_3,undefined4 param_4)
+
+{
+  undefined1 uVar1;
+  short sVar2;
+  int iVar3;
+  undefined4 uStack_10;
+  short local_c;
+  short local_a;
+  
+  local_c = (short)param_4;
+  local_a = (short)((uint)param_4 >> 0x10);
+  *(undefined2 *)((int)param_1 + 0x26) = *param_2;
+  uStack_10 = param_3;
+  sVar2 = FUN_0803439c((int)param_1 + 0x26);
+  (**(code **)(*param_1 + 0x38))(param_1,(int)sVar2);
+  sVar2 = FUN_080343ea((int)param_1 + 0x26);
+  (**(code **)(*param_1 + 0x3c))(param_1,(int)sVar2);
+  FUN_08034438(&uStack_10,(int)param_1 + 0x26);
+  iVar3 = FUN_0803439c((int)param_1 + 0x26);
+  if (iVar3 <= local_c) {
+    FUN_08034438(&uStack_10,(int)param_1 + 0x26);
+    iVar3 = FUN_080343ea((int)param_1 + 0x26);
+    if (iVar3 <= local_a) {
+      uVar1 = 0;
+      goto LAB_08030822;
+    }
+  }
+  uVar1 = 1;
+LAB_08030822:
+  *(undefined1 *)((int)param_1 + 0x29) = uVar1;
+  return CONCAT26(local_a,CONCAT24(local_c,uStack_10));
+}
+
