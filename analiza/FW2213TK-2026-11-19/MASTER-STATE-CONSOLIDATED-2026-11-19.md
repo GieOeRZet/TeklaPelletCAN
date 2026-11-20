@@ -3368,3 +3368,70 @@ Asset extraction proves the trailing six are a different resource family (boiler
 The first 15 records use A/B bitmap pairs where B is strongly the semantic menu icon and A is a state/selection/decoration layer.
 
 Next target is now exact: find the consumer/context of the trailing six and close the first 15 row class/geometry/touch tree.
+
+
+---
+# ACTIVE OVERRIDE — 2026-11-20 — 21-RECORD MENU SECOND-PASS CORRECTION
+
+**Batch:** `analiza/FW2213TK-2026-11-20/BATCH-MAIN-MENU-ACCESS-SECOND-PASS-21-RECORD-CORRECTION-MULTIPASS-2026-11-20.md`
+**Commit:** `d05254d7a6052c7c1eb80a812a3134ab91c375a7`
+
+## CRITICAL CORRECTION — supersedes the immediately preceding menu-table correction
+
+The previous claim that FUN_08042160 consumes only the first 15 records and leaves records 15..20 outside the constructor is **WRONG and withdrawn**.
+
+Raw control flow proves:
+- first loop: records 0..14;
+- if access level byte != 0: second loop records 15..20;
+- after that: a separate 21-slot capability pass over row objects.
+
+The earlier miss came from stopping at the first loop. r4 is **not reset**; it remains 0x0F, r5 becomes 0x15, and the second loop continues through 0x14.
+
+### Hard proof
+0x421DA: r5=0x0F.
+0x421E8: first-loop exit test r4>=0x0F.
+0x42204: access byte gate.
+0x42208: second-stage FUN_0804BC6C call.
+0x4221A: r5=0x15.
+0x42248: r4++, r10+=6; 0x4224E compares r4 against 0x15.
+
+Therefore records 15..20 are genuinely consumed by the same constructor, but **only for access level != 0**.
+
+### 21-slot object model
+After construction, 0x4226E..0x42290 iterates exactly 21 row slots:
+- base = object + 0x380
+- stride = 0x274
+- resolver = FUN_0803C178(model,slot)
+
+A separate function at 0x422C8 also iterates 21 row slots and uses a runtime byte array at RAM 0x20005F08 together with the access-state byte.
+
+### Correct current model
+Do not use:
+- “15-row menu + six unrelated trailing resources”
+- “21 rows always constructed”
+
+Use:
+```
+21 logical row slots
+ ├─ rows 0..14: always constructed
+ └─ rows 15..20: constructed only when access_level != 0
+        ↓
+21-slot capability pass
+        ↓
+separate access/update processing
+```
+
+The semantic identities of selectors 0/90/97/100/98/95 in the second-stage context are still OPEN even though their consumption is now CLOSED.
+
+### Stale-hypothesis withdrawals
+Withdraw:
+- “trailing six consumer/context OPEN because table tail is not referenced”
+- “constructor processes only first 15”
+- “21-row statement fully withdrawn”
+
+Replace with:
+- constructor consumes all 21 across two access-dependent stages;
+- exact 21-slot row architecture is proven;
+- second-stage semantics remain to be traced.
+
+Next priority: FUN_08032F08, FUN_0803C270, row object class/vtable, RAM 0x20005F08 producer, selector navigation, exact second-stage visual semantics.
