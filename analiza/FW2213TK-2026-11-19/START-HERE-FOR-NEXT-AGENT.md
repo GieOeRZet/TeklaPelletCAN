@@ -1,3 +1,20 @@
+> **2026-11-20 SOURCE-OF-TRUTH OVERRIDE — READ FIRST**
+>
+> The newest configuration mapping correction is:
+> - internal **0x10D -> CAN 0x3505** = Outside temperature sensor configuration
+> - internal **0x10E -> CAN 0x2105** = Heating configuration
+> - internal **0x10F -> CAN 0x2106** = Hot water configuration
+> - internal **0x110 -> CAN 0x2108** = Solar configuration
+> - internal **0x111 -> CAN 0x2107** = Buffer configuration
+>
+> Older notes in this file that say **0x10E -> 0x3505** or **0x10F -> 0x2105** are superseded historical material. Do not use that old chain.
+>
+> New hard closure: **FUN_0803C178 directly gates CO1..CO4 selectors 1..4 from internal 0x10E / CAN 0x2105 with thresholds >=1, >=2, >=3, >=4.** This proves the firmware-level capability/visibility fan-out of Heating configuration, but does not yet prove the C064/+0x12C object-instantiation bridge.
+>
+> Full correction report: `analiza/FW2213TK-2026-11-20/MULTIPASS-20-DEEP-CONFIG-ACCESS-SOURCE-OF-TRUTH-2026-11-20.md`
+>
+> Commit: `9ad094f8803093bc81c7d6b2cfb5d31f7bc169de`
+
 > **NOWY GŁÓWNY HANDOFF:** przeczytaj również `analiza/FW2213TK-2026-11-19/HANDOFF-NOWY-CHAT-2026-11-19.md`. Zawiera pełny kontekst, zamknięte korekty i aktualny punkt wznowienia 6-slot menu. Następnie przeczytaj MASTER i wszystkie batch-notes.
 
 # TeklaPelletCAN — START HERE — NOWY CHAT / AGENT
