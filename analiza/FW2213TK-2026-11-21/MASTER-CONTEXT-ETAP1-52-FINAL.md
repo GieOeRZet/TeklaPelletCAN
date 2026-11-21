@@ -1167,3 +1167,38 @@ OPEN pozostaje bez zmian:
 > znaleźć pierwszy rzeczywisty runtime write do `[0x20008D60]`, ustalić jego wartość, wskazany vtable/interface i slot 0, a następnie udowodnić cały łańcuch do TX queue `0x200244EC`.
 
 Metodologia na dalsze etapy: **pracujemy na canonical BIN**. Adresy RE_PACK mogą być podawane wyłącznie jako pomocnicze mapowanie, nie jako źródło dowodów.
+
+
+# 46. OPEN1-P5 — wynik Pass 1 + autonomiczny Pass 2 (2026-11-21)
+
+Źródło dowodowe: canonical `FW2213TK_kopia.bin` (0x1F0000, SHA-256 `1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071`). RE_PACK nie był używany jako źródło bajtów.
+
+## CAN2 RX dispatcher
+Dispatcher `PROJECT 0x08063B80` zawiera **36 wywołań BL** do **12 unikalnych rodzin handlerów**. Zidentyfikowane obiekty RAM są pobierane bezpośrednio z poprzedzających literalów. Najważniejsze:
+- `0x08062A90` -> obiekt `0x2002466C`: StdId `0x0240..0x0257` oraz `0x0584` z dodatkowymi warunkami;
+- `0x0806369E`: dynamiczne `object[+0x14]+0x584` oraz alternatywnie `+0x772`;
+- `0x0800F894`: stałe zakresy `0x0701..0x077F` i `0x0581..0x05FF`;
+- pozostałe rodziny używają baz ID pobieranych z pól obiektów i offsetów `+0x180/+0x280`, `+0x380/+0x480`, `+0x600` itd. — bez podstaw do nadawania nazw urządzeń na tym etapie.
+
+## Startup
+`PROJECT 0x0808B4A8` nie jest inicjalizatorem .data/.bss: wykonuje dostęp do `SCB CPACR 0xE000ED88`, ustawia bity FPU i DSB/ISB, po czym wraca.
+
+`PROJECT 0x08089440` jest natomiast względnym iteratorem wywołań: wyznacza początek/koniec tablicy, pobiera względny offset funkcji, wykonuje `BLX` z `r0 = entry+4` i iteruje do znacznika końca. To jest zgodne z mechanizmem inicjalizacyjnym/rejestracyjnym, ale **nie daje jeszcze dowodu**, że inicjalizuje `0x20008CD0..0x20008D68`.
+
+Pierwszy względny target z obszaru `0x08B4CC` prowadzi do Thumb `0x0784F5` (funkcja rozpoczyna się `0x0784F4`) wyglądająca na procedurę przetwarzania/dekompresji danych. Format wpisu i jego calling convention wymagają osobnego domknięcia; nie wolno z tego etapu wyciągać wniosku o zapisie do D60.
+
+## SDO 0x0584 parser
+Pełny disassembly `PROJECT 0x08062B22` potwierdza:
+- `param_id = Data[4] | Data[5]<<8`;
+- `0x3722/0x3723` ustawiają specjalną flagę i wychodzą normalną ścieżką bez resolvera/commit;
+- normalna ścieżka wywołuje `0x080115F6`, resolver `0x08010FC2`, a następnie wymaga typu `1..5` oraz `Data[6] == 1`;
+- typy: 1→`0x08014710`, 2→`0x08014708`, 3→`0x08014700`, 4→`0x08014720`, 5→`0x08014718`;
+- każda gałąź przygotowuje wariant/wartość i wywołuje `0x08011812` jako commit/update.
+
+## OPEN po P5
+1. Pierwszy rzeczywisty runtime write do `[0x20008D60]` nadal **OPEN**.
+2. Trzeba domknąć format/łańcuch względnego iteratora `0x08089440` i ewentualnej dekompresji/scatter-loading.
+3. Dispatcher ma już kompletną mapę wywołań i obiektów, ale semantyczne nazwy handlerów pozostają OPEN.
+4. Kolejny przebieg powinien skupić się na computed-address writes do `0x20008CD0 + 0x90` oraz na łańcuchu inicjalizacyjnym, bez ponownego analizowania zamkniętej warstwy CAN2 RX.
+
+RAW artifact z pełnym wynikiem: `analiza/FW2213TK-2026-11-21/RAW_PACKET8_OPEN1_P5.txt` (lokalny plik wynikowy przekazany użytkownikowi; w GitHubie zapisano tracking artefaktu i niniejszy kontekst).
