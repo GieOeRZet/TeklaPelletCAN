@@ -27,3 +27,11 @@ RAW dumps are evidence, not automatically interpreted conclusions. Existing mast
 
 ## Source discipline
 For current OPEN1 work, the canonical BIN is the evidence source. RE_PACK is not to be used as a byte source; it may only serve as auxiliary address mapping when explicitly useful.
+
+
+## OPEN1-P5
+- `RAW_PACKET8_OPEN1_P5.txt` — pełny lokalny RAW wynik Pass 1 + autonomicznego Pass 2 na canonical BIN. Zawiera dispatcher 0x08063B80, 12 rodzin handlerów / 36 BL, startup 0x0808B4A8 i 0x08089440 oraz pełny parser 0x08062B22.
+- P5 potwierdził, że 0x0808B4A8 to FPU enable, nie .data/.bss init. 0x08089440 jest względnym iteratorem wywołań i wymaga osobnego domknięcia formatu/scatter-loading.
+- D60 first runtime write nadal OPEN.
+
+**Uwaga:** pełny tekstowy RAW P5 jest przekazany użytkownikowi jako plik wynikowy. GitHubowy katalog `analiza/` pozostaje miejscem prowadzenia kontekstu i indeksu projektu.
