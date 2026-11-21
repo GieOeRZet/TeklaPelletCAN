@@ -19,3 +19,11 @@ ETAP31 through ETAP52 are preserved in the handoff archive. ETAP44 and ETAP45 al
 
 ## Important
 RAW dumps are evidence, not automatically interpreted conclusions. Existing master documents contain the evidence classification and rejected hypotheses.
+
+
+## OPEN1-P4
+- `RAW_PACKET7_OPEN1_P4.txt` — RAW evidence from canonical `FW2213TK_kopia.bin`; confirms vtable `0x080A4568 -> 0x080629FC`, exact `+0x0A := 1` store at `0x08062A86`, CAN2_RX0 path and startup findings; D60 slot-0 target remains OPEN.
+- `CONTINUATION-PROMPT-OPEN1-P5.md` — next-agent task focused exclusively on finding the first runtime write to `[0x20008D60]` and proving its slot-0 TX path.
+
+## Source discipline
+For current OPEN1 work, the canonical BIN is the evidence source. RE_PACK is not to be used as a byte source; it may only serve as auxiliary address mapping when explicitly useful.
