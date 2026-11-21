@@ -1,0 +1,52 @@
+{
+  "channels": {
+    "beta": {
+      "version": "1.0.8",
+      "build": 640,
+      "full": "1.0.8",
+      "file": "beta/teklapelletcan.bin",
+      "sig": "beta/teklapelletcan.bin.sig",
+      "embedded": true,
+      "sha256": "d9a4256d153cfaef698b945291fb9bc819d8e93e2f5138433357acc2ff64734f",
+      "size": 1600984,
+      "commit": "392d4aa9287ebba1a278dbf4c879738438a7c3fe",
+      "notes": "Index OPEN1 P5 result and findings",
+      "changelog": [
+        "Index OPEN1 P5 result and findings"
+      ],
+      "date": "2026-11-21 09:02 UTC"
+    },
+    "stable": {
+      "version": "1.0.8",
+      "build": 219,
+      "full": "1.0.8",
+      "file": "stable/teklapelletcan.bin",
+      "sig": "stable/teklapelletcan.bin.sig",
+      "embedded": true,
+      "sha256": "03e912d1b714614a37a6307630c750f43972c35f0180cccee2ee1d6a53b5225f",
+      "size": 1598808,
+      "commit": "fd10249a7b0acc7e7361b3b26b935d880bf47cef",
+      "notes": "Wersja 1.0.8",
+      "changelog": [
+        "Wersja 1.0.8",
+        "Fix: PIN poziomu 2 bywal fałszywie ograniczany do poziomu 1",
+        "Fix: tekstury karty czasem gasly trwale po samoczynnym odswiezeniu"
+      ],
+      "date": "2026-11-17 10:19 UTC"
+    }
+  },
+  "app": {
+    "version": "1.0.8",
+    "build": 219,
+    "full": "1.0.8",
+    "tag": "v1.0.8",
+    "url": "https://github.com/GieOeRZet/TeklaPelletCAN/releases/tag/v1.0.8",
+    "apk": "https://github.com/GieOeRZet/TeklaPelletCAN/releases/download/v1.0.8/teklapelletcan.apk",
+    "notes": "Wersja 1.0.8",
+    "changelog": [
+      "Wersja 1.0.8",
+      "Fix: PIN poziomu 2 bywal fałszywie ograniczany do poziomu 1",
+      "Fix: tekstury karty czasem gasly trwale po samoczynnym odswiezeniu"
+    ]
+  }
+}
