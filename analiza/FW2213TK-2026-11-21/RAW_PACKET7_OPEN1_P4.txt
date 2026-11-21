@@ -1,0 +1,55 @@
+RAW_PACKET7_OPEN1_P4 (PASS 1 + AUTONOMIC PASS 2)
+Source: FW2213TK_kopia.bin
+Size: 0x1f0000
+SHA-256: 1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071
+
+=== SOURCE DISCIPLINE ===
+Analysis source is the canonical BIN only. RE_PACK is NOT used as a source of bytes. Address mapping may be shown for reference only.
+
+=== HARD FINDINGS ===
+1. VTABLE RAW 0x094568 / PROJECT 0x08094568 / RE_PACK 0x080A4568:
+   slot 0 = 0x080729FD -> RAW 0x0629FC / PROJECT 0x080629FC.
+
+2. Object 0x2002466C constructor at PROJECT 0x080103EC sets vtable 0x080A4568 and scheduler period 0x1E.
+
+3. Slot 0 method 0x080629FC contains:
+   0x08062A84: movs r0,#1
+   0x08062A86: strb r0,[r4,#0x0A]
+   Therefore [object+0x0A] := 1 is HARD-confirmed.
+   Immediate condition: helper 0x08062C78 returned >= 0x1F.
+
+4. Helper 0x08062C78 returns uint16 loaded through literal at 0x062C80. Exact global target remains OPEN.
+
+5. Helper 0x08062AE4 builds READ payload:
+   StdId = 0x0604
+   Data[3] = 0x40
+   Data[4..5] = parameter index
+   Data[6] = 0x01
+   and dispatches through [object+0x14] -> vtable slot 0.
+
+6. CAN2 RX0 vector[80]/offset 0x140 = 0x0807F9F9 -> RAW 0x06F9F8 / PROJECT 0x0806F9F8.
+   This is the RX producer using CAN2 base 0x40006800 and queue handle 0x200244DC.
+
+7. Hardware RX serializer 0x080617DC reads bxCAN2 registers at CAN2 + mailbox*0x10 + 0x1B0 and fills the 20-byte EstymaCanFrame.
+
+8. Dispatcher PROJECT 0x08063B80 calls parser 0x08062A90 from RAW 0x063C6E.
+
+9. Startup RAW 0x094644 -> 0x08F74C -> 0x062D82. 0x062D82 copies 0x7C000 bytes from 0x08010000 to 0x40023000; it is NOT a conventional .data/.bss copy to 0x20008D60.
+
+10. Direct LE32 occurrences in the whole BIN:
+    0x20008D60 = 0
+    0x080A4544 = 0
+    0x080A4568 = 1, at RAW 0x010414 (literal in 0x2002466C constructor)
+    0x080729FD = 1, at RAW 0x094568 (vtable slot 0)
+
+=== OPEN POINTS ===
+1. Exact runtime write/value of [0x20008D60].
+2. Exact global address behind literal 0x062C80.
+3. Full semantics of 0x08062B22 / 0x08011812 for all types 1..5.
+4. Full dispatcher handler map at 0x08063B80.
+5. CAN1 RX0/RX1 and CAN2 RX1 semantics.
+6. Complete initializer/source graph for D60 beyond direct literal search.
+
+=== VERDICT ===
+Confirmed: 0x080A4568 -> 0x080629FC; +0x0A := 1 at 0x08062A86; 0x08062AE4 READ generator; CAN2_RX0 -> 0x0806F9F8 -> 0x080617DC.
+Still OPEN: first write to [0x20008D60] and its slot-0 target.
