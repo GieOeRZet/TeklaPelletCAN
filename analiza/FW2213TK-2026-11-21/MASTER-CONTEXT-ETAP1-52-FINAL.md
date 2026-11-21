@@ -1147,3 +1147,23 @@ Local handoff package contains:
 - full OpenAI summary.
 
 GitHub documentation should remain text-based and evidence-focused; large binary/RAW packages are preserved locally as the current handoff archive unless separately committed through an appropriate binary mechanism.
+
+
+# 45. OPEN1-P4 — wykonanie bezpośrednio na canonical BIN (2026-11-21)
+
+Źródło: `FW2213TK_kopia.bin` wyłącznie; RE_PACK nie był używany jako źródło bajtów. SHA-256: `1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071`.
+
+RAW artifact: `analiza/FW2213TK-2026-11-21/RAW_PACKET7_OPEN1_P4.txt`.
+
+Najważniejsze nowe HARD:
+- vtable `0x080A4568` -> slot 0 `0x080629FC` dla obiektu `0x2002466C`;
+- w `0x080629FC`, dokładnie `0x08062A86`, znajduje się `strb r0,[r4,#0x0A]` po `movs r0,#1`; warunek: wynik `0x08062C78 >= 0x1F`;
+- `0x08062AE4` buduje request READ: StdId `0x0604`, marker `0x40`, index w Data[4..5], Data[6]=1;
+- CAN2_RX0 vector -> `0x0806F9F8` -> hardware serializer `0x080617DC` -> kolejka RX -> dispatcher `0x08063B80`;
+- startup `0x08094644 -> 0x0808F74C -> 0x08062D82`; `0x08062D82` nie jest klasycznym copy .data/.bss do `0x20008D60`;
+- w całym BIN brak LE32 dla `0x20008D60` i `0x080A4544`; `0x080A4568` występuje raz jako literal konstruktora `0x2002466C`.
+
+OPEN pozostaje bez zmian:
+> znaleźć pierwszy rzeczywisty runtime write do `[0x20008D60]`, ustalić jego wartość, wskazany vtable/interface i slot 0, a następnie udowodnić cały łańcuch do TX queue `0x200244EC`.
+
+Metodologia na dalsze etapy: **pracujemy na canonical BIN**. Adresy RE_PACK mogą być podawane wyłącznie jako pomocnicze mapowanie, nie jako źródło dowodów.
