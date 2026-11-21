@@ -1,0 +1,1 @@
+RAW_PACKET8_OPEN1_P5 was generated from canonical FW2213TK_kopia.bin. The complete local artifact is available in the current conversation at /mnt/data/RAW_PACKET8_OPEN1_P5.txt. Source SHA-256: 1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071. This GitHub record is the project-tracking copy; canonical evidence remains the BIN.
