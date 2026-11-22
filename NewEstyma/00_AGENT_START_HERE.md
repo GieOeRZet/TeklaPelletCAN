@@ -34,7 +34,7 @@ RAW BIN is the source of truth.
 - provider: 0x20008D64
 - publication sink: 0x20008D60
 - manager vtable: 0x080A44F0
-- provider vtable: 0x080A31F0
+- provider vtable address: 0x080A31F0 (slot contents OPEN; runtime materialization required)
 - manager callback: FUN_08010FCE
 - runtime parameter stride: 0x2C
 - runtime scan bound: 660
@@ -46,7 +46,7 @@ RAW BIN is the source of truth.
 startup -> 0x0800DDC0(0x20008D84,0x20008D64,0x20008D60) -> 0x08014824 -> scheduler registration -> 0x080147C8 -> vtable slot 0 -> FUN_08010FCE
 
 ## Next targets
-1. Map provider vtable 0x080A31F0, especially GET/SET slots.
+1. Recover runtime materialization/indirect calls for provider vtable 0x080A31F0; GET/SET slots remain OPEN.
 2. Independently validate scheduler expiry -> FUN_08010FCE at runtime.
 3. Build the complete 260-row cross-layer matrix.
 4. Close sidecar class 1/2/3 semantics.
