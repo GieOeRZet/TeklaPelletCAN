@@ -185,3 +185,32 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-25-MENU-ACCESS-ROW-PID117-CLOSURE-20
 - exact mapping of 21 runtime rows to root MenuTree selectors;
 - runtime-class 0..20 -> page/widget graph;
 - remaining arithmetic/alias writers of the two SRAM tables.
+
+
+## AUTONOMOUS PASS 26 — PID 0x0117 RESOLVER NEGATIVE CLOSURE — 2026-11-22
+
+Report:
+analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-26-PID0117-RESOLVER-NEGATIVE-CLOSURE-2026-11-22.md
+
+### NEW-HARD
+
+- 0x08037212 receives logical key 0x0117 from the 0x0E Menu access path.
+- The first 0x31-entry resolver table contains no key 0x0117.
+- The second 0x174-entry resolver table contains no key 0x0117.
+- Therefore this canonical static path does not call 0x08011812 for key 0x0117.
+- The second table does contain key 0x2123 -> value 0x0117 at RAW 0x3797A.
+
+### CORRECTION
+
+PASS 25 wording that the 0x0E path reaches the parameter manager is superseded.
+
+Correct chain:
+0x0E -> row[i]+0x124 -> state gate -> 0x0803C270 -> key 0x0117 -> 0x08037212 -> no static resolver match -> no 0x08011812.
+
+### OPEN
+
+- semantic identity of 0x0117;
+- runtime producer of row[i]+0x124;
+- relation key 0x2123 -> value 0x0117 to the 260-slot catalog;
+- runtime class -> page/widget graph;
+- remaining SRAM-table writers/aliases.
