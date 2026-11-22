@@ -511,3 +511,23 @@ OPEN:
 - field-by-field semantics of all 16-byte resource descriptors;
 - exact helper internals and complete resource->widget->Bitmap/TypedText/callback mapping;
 - full screen parent/child/navigation graph.
+
+
+## PARAMETER ↔ CAN GRAPH ATTACK 01 — 2026-11-22
+
+Nowy pass: `analiza/FW2213TK-2026-11-22/PARAMETER-CAN-GRAPH-ATTACK-01-2026-11-22.md`.
+
+CLOSED:
+- parameter engine anchors: `0x08010FC2`, `0x08014700/08/10/18/20`, `0x08014734`, `0x080115F6`, `0x08011812`, `0x08062B22`;
+- 260-slot catalog uniqueness;
+- CAN READ request construction: `0x080629FC -> 0x08062AE4 -> 0x0604/0x40 -> indirect dispatch -> TX queue`;
+- CAN RX parameter WRITE: `0x0584 -> 0x08062B22 -> 0x08011812`;
+- UI local WRITE: `0x08037212 -> 0x08011812`.
+
+OPEN:
+- full 260-row parameter->CAN matrix;
+- local-write->CAN-TX bridge;
+- exact descriptor/record ownership and multi-instance mapping;
+- complete response/publication graph.
+
+Nie utożsamiać automatycznie katalogu 260 slotów z katalogiem CAN ID.
