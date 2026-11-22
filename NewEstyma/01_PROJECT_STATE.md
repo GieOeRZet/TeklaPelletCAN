@@ -21,7 +21,7 @@ Full universal reconstruction of Estyma firmware behavior, eventually targeting 
 - Scheduler registration leading to FUN_08010FCE.
 
 ## Main OPENs
-- Complete provider vtable 0x080A31F0 interface.
+- Complete provider vtable 0x080A31F0 interface; slot targets currently OPEN.
 - Full 260-row cross-layer matrix.
 - Descriptor/record ownership and multi-instance mapping.
 - Local parameter write -> outbound CAN publication bridge.
