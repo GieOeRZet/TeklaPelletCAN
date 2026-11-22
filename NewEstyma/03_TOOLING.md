@@ -52,3 +52,9 @@ catalog -> PID -> runtime record -> storage -> type -> min/max/default -> provid
 ## PASS 19 address-base correction
 
 The firmware image has a runtime/repacked base of 0x08010000 while static PROJECT addresses use 0x08000000 + RAW. Vtable analysis must inspect RAW at RUNTIME - 0x08010000. Provider vtable 0x080A31F0 therefore lives at RAW 0x931F0, not RAW 0xA31F0.
+
+
+## PASS 21 additions
+
+- `tools/menu_matrix_scan.py` — deterministic extraction of the canonical 21×6 B MenuTree table plus whole-BIN literal-anchor audit for the runtime class table, access/update table, row constructor and row-selection resolvers.
+- `tools/test_menu_matrix_scan.py` — regression test against the canonical BIN SHA-256 and known anchor offsets.
