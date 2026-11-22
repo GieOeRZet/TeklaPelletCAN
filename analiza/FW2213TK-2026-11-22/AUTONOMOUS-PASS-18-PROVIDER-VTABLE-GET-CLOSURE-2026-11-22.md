@@ -1,32 +1,28 @@
-# AUTONOMOUS PASS 18 — provider vtable / GET interface closure — 2026-11-22
+# PASS 18 CORRECTION — provider vtable evidence retraction — 2026-11-22
 
-## NEW-HARD — provider constructor
-RAW 0x0800DB08:
-- r0 = this
-- stores vptr 0x080A31F0
-- therefore 0x20008D64 -> vtable 0x080A31F0 is independently confirmed.
+This correction supersedes the earlier PASS 18 claim about provider vtable slots.
 
-## NEW-HARD — vtable slot 0 = provider GET
-RAW vtable:
-- 0x080A31F0 + 0x00 -> 0x0801DB31
+## HARD that remains valid
+- 0x20008D64 is the concrete provider object.
+- Constructor 0x0800DB08 assigns vptr 0x080A31F0.
+- FUN_0801143C performs the indirect provider call through the vptr stored at manager+0x7178.
 
-FUN_0801143C loads [manager+0x7178], loads provider vptr and calls slot 0 with (provider, PID, &value_descriptor).
+## RETRACTED
+The earlier claims that vtable[0] = 0x0801DB31 and vtable[1] = 0x0801DB79, and that these are proven GET/SET implementations, are NOT proven.
 
-FUN_0801DB31 receives this and PID, resolves the parameter entry and returns the provider value/status. This closes:
-manager+0x7178 -> 0x20008D64 -> vtable 0x080A31F0 -> slot0 0x0801DB31.
+Canonical RAW verification under PROJECT = 0x08000000 + RAW shows:
+- PROJECT 0x080A31F0 -> RAW 0x0A31F0, whose bytes are 0xFF in the canonical BIN.
+- PROJECT 0x0801DB31 -> RAW 0x01DB31, not an executable function entry.
+- PROJECT 0x0801DB79 -> RAW 0x01DB79, also not a valid function entry.
 
-## STRONG — provider slot 1
-Vtable:
-- 0x080A31F0 + 0x04 -> 0x0801DB79
+Those targets may be runtime-materialized/decompressed, but that requires runtime write/materialization or actual indirect-call evidence.
 
-FUN_0801DB79 is a type-dispatching value update/packing routine for types 1..5, consistent with provider SET. Exact independent caller/runtime binding remains OPEN.
+## Tooling correction
+The provider scanner remains a candidate scanner only. It must not promote a slot from a Thumb-looking pointer alone. Runtime materialization and/or an actual indirect-call observation is required.
 
-## Important correction
-0x080A31F0 is not a long uniformly populated table. RAW inspection shows a mixed interface/data region. Only entries backed by code-pointer plus constructor/call evidence should be promoted.
+## Current status
+Provider object/vptr: HARD.
+Provider interface slots: OPEN.
+Provider GET/SET concrete implementations: OPEN.
 
-## Net result
-Concrete provider object and GET endpoint are HARD.
-Provider SET implementation is STRONG.
-Next: independent SET binding, provider fan-out, then automatic PID cross-layer matrix.
-
-Canonical BIN SHA-256: 1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071
+This is an evidence downgrade of the slot claims, not a loss of the provider object closure.
