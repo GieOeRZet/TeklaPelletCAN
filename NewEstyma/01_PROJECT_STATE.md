@@ -462,3 +462,10 @@ RX 0x0584/cmd 0x42/sub 1: wartość zapisywana z walidacją min/max rekordu (tak
 STRONG: struktura zgodna z CANopen SDO expedited (0x600+4/0x580+4, 0x40/0x42/0x20/0x60/0x80).
 KOREKTA: "Data[3]=0x40, Data[4..5]=indeks, Data[6]=1" w starszych dokumentach to offsety struktury kompaktowej, nie numeracja bajtów na szynie.
 OPEN: okres pollera i producent +0x08/+0x10; timeout/+0x0C; pełna zgodność z CiA 301.
+
+
+## AUTONOMOUS PASS 38 — PUBLIKACJA LOKALNEJ ZMIANY PARAMETRU — 2026-11-22
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-38-LOCAL-CHANGE-PUBLICATION-2026-11-22.md ; narzędzie: tools/publish_probe.py
+HARD (wykonane w firmware): lokalna zmiana storage Language 0->7 + callback managera 0x08010FCE => dokładnie jedna ramka 0x584, DLC 8, Data 42 03 00 01 07 xx xx xx; brak powtórzeń bez zmiany (on-change).
+Nieużywane bajty wartości ponad szerokość typu nie są zerowane (śmieci) — moduł ESP32 ma wysyłać zera, odbiorca maskować.
+OPEN: klasa 2 i klasa 0 lokalnie zmieniona; okno przetwarzania i okres callbacku; kierunki/role urządzeń na żywym CAN.
