@@ -127,3 +127,13 @@ The scanner:
 - records direct selector-byte stores where statically recognizable.
 
 Regression coverage includes all 21 class entries, classes 1..4 shared handler parameters, class 12 special path, class 14 return, class 15 direct 0x42318 path, and classes 16..20.
+
+
+## PASS 30 analysis note
+
+The UI graph now treats vtable-backed callback objects as explicit graph nodes:
+constructor -> vtable -> object fields -> indirect dispatch -> callback.
+
+Future UI tracing must follow both:
+- static callback/config pointers;
+- vtable calls through object+0x110.
