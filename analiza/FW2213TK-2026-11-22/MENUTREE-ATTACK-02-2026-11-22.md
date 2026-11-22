@@ -228,6 +228,74 @@ Poprawny model:
       -> +0x12B/+0x12C
       -> descriptor install
 
+## 9A. NOWE HARD — odzyskany konstruktor klasy row
+
+Pełny decompiled.c zawiera:
+
+FUN_0804BB42(param_1)
+
+i jest to kluczowy konstruktor klasy używanej przez FUN_0804BC6C.
+
+Twarde cechy:
+- ustawia vptr przez DAT_0804BC60;
+- inicjalizuje child row+0x60 przez FUN_0802DF08;
+- inicjalizuje child row+0x8C przez FUN_0802FC10;
+- inicjalizuje child row+0xC4 przez FUN_0802FC10;
+- inicjalizuje child row+0xF8 przez FUN_08032D7C;
+- tworzy dodatkowy child row+0x2C przez FUN_08031BD4;
+- ma pola/stan aż do offsetu +0x11D;
+- funkcja leży bezpośrednio przed FUN_0804BC6C, które operuje dokładnie na tych samych child offsets.
+
+To daje twardą klasę row:
+
+    RowObject
+      vptr = DAT_0804BC60
+      +0x60 = Bitmap/resource child (FUN_0802DF08)
+      +0x8C = resource/text-like child (FUN_0802FC10)
+      +0xC4 = drugi resource/text-like child (FUN_0802FC10)
+      +0xF8 = state/indicator child (FUN_08032D7C)
+      +0x2C = dodatkowy child (FUN_08031BD4)
+
+Status: FACT / CLOSED dla klasy i layoutu.
+
+### Konsekwencja dla FUN_08032F08
+
+FUN_08032D7C ma bezpośrednio następujące metody:
+- FUN_08032E80 — zapisuje stan do child+0x2C i skaluje wartość;
+- FUN_08032EB8 — aktualizuje stan child+0x2C na podstawie czasu/warunku i wywołuje callback;
+- FUN_08032F08 — odczytuje child+0x2C.
+
+Zatem FUN_08032F08 jest metodą klasy childa utworzonego przez FUN_08032D7C.
+
+To jest ważniejsza informacja niż samo C body.
+
+Nie nazywamy więc już FUN_08032F08 "getterem row+0x2C". Poprawny model:
+
+    FUN_08032F08(state_child)
+        -> return state_child + 0x2C
+
+W MenuRow state_child najpewniej znajduje się pod row+0xF8.
+
+Argument dokładnie używany w RAW 0x422C8 trzeba jeszcze potwierdzić bajtowym trace; wcześniejsze opisy skracające go do "row" nie są wystarczające.
+
+Status:
+- metoda klasy childa: FACT;
+- row+0xF8 jako jej konkretny argument w 0x422C8: STRONG / wymaga RAW proof.
+
+### Konsekwencja dla MenuTree
+
+Mamy teraz prawdziwy mechanizm state overlay:
+
+    row
+      +0xF8
+        -> state/indicator child
+        -> +0x2C state byte
+        -> FUN_08032E80 / FUN_08032EB8 / FUN_08032F08
+
+To jest kandydat na warstwę state/selection/access marker, a nie selector ID.
+
+Nie wolno utożsamiać +0x2C z selector.
+
 ## 10. Co nadal blokuje pełne MenuTree
 
 ### P0
