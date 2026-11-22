@@ -652,3 +652,22 @@ Nowy pass: `analiza/FW2213TK-2026-11-22/RECORD-ENGINE-CROSS-LAYER-CLOSURE-02-202
 
 ### P0 update
 Pełna geometria rekordu jest zamknięta; PID/storage/type są zamknięte, +0x24 ma zamkniętą rolę użycia inicjalizacyjnego/resetowego, ale pełna struktura deskryptorów +0x14/+0x1C/+0x24 oraz semantyka pozostałych bajtów nadal pozostają OPEN.
+
+
+## RECORD/DESCRIPTOR HARD CLOSURE 03 — 2026-11-22
+
+New direct closure from the complete decompilation blob (`9620d0c85259d34bb6a20d3b03b038945dfe4c1a`):
+- `+0x14`, `+0x1C`, `+0x24` are exact 5-byte typed descriptors: u32 value + u8 type.
+- `0x08014728` is the 5-byte copy primitive; `0x08014734` decodes descriptor values by type.
+- `0x080115F6` = current value/type getter from `+0x0C/+0x10`.
+- `0x0801167A` = getter for descriptor `+0x14`.
+- `0x080116E6` = getter for descriptor `+0x1C`.
+- `0x0801155A` = getter for descriptor `+0x24`.
+- `0x080117B4` = writer/replacer for descriptor `+0x24`.
+- `0x08011812` uses `+0x14/+0x1C` directly for range validation and writes current value through `+0x0C` according to `+0x10`.
+- `0x0801113A` uses `+0x24` during range-repair/reset flow.
+
+### Important correction
+`+0x2C/+0x30` remain outside the 0x2C body geometrically, but they are deliberately written by `0x0801143C` and `0x08011812` reads `R+0x2C` as a state/access gate when `param_5 != 0`. Therefore the correct model is an adjacent-slot/prefix sidecar relationship, NOT a 0x30-byte record and NOT an unused offset.
+
+New report: `analiza/FW2213TK-2026-11-22/RECORD-DESCRIPTOR-HARD-CLOSURE-03-2026-11-22.md`.
