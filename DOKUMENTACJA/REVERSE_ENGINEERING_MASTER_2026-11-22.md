@@ -700,3 +700,11 @@ Next macro target: full 260-parameter registration tuple extraction and PID -> s
 - FUN_0801100C + FUN_0801113A form a separate type-aware validation/default-repair path for sidecar 2/3.
 - Three statically visible FUN_0801143C registrations (0x3500/0x3502/0x350B) all use sidecar class 3; this does not exclude dynamic class-2 registration.
 - Remaining target: recover EstymaTask/indirect route to FUN_08010FCE and concrete implementations behind +0x7178/+0x7180.
+
+
+## 100% closure — parameter response final dispatch
+- `0x0800FF50` final response dispatch is closed at machine level.
+- Response is constructed as `object+0x08+0x580`, command `0x80`, then `0x080100C6 BLX` executes vtable slot +0x00 of the object stored at `[0x200114C0+0]`.
+- Whole-BIN literal scan found exactly one reference to `0x200114C0`: `0x08063D04`, loaded before the call to `0x0800FF50`.
+- Exact initializer/constructor of `[0x200114C0+0]` remains OPEN; protocol semantic label (e.g. SDO) remains OPEN.
+- Closure artifact: `analiza/FW2213TK-2026-11-22/PARAMETER-RESPONSE-DISPATCH-100-CLOSURE-2026-11-22.md`.
