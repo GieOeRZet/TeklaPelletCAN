@@ -299,8 +299,8 @@ Nowy pass: analiza/FW2213TK-2026-11-22/MENUTREE-ATTACK-02-2026-11-22.md
 Zamknięte nowe fakty:
 - FUN_08032F08 jest metodą klasy childa utworzonego przez FUN_08032D7C; czyta child+0x2C. W MenuRow ten child jest twardo inicjalizowany pod +0xF8 przez FUN_0804BB42.
 - 0x0803C270 nie jest osobnym entry-pointem Ghidra; leży wewnątrz FUN_0803C064 (+0x20C), więc nie nazywamy go niezależną funkcją bez RAW proof.
-- FUN_0804BB42 jest odzyskanym konstruktorem RowObject z vptr DAT_0804BC60.
-- RowObject ma twarde dzieci: +0x60 (FUN_0802DF08), +0x8C (FUN_0802FC10), +0xC4 (FUN_0802FC10), +0xF8 (FUN_08032D7C), dodatkowy +0x2C (FUN_08031BD4).
+- FUN_0804BB42 jest odzyskanym konstruktorem klasy z layoutem zgodnym z row-builderem i vptr DAT_0804BC60; utożsamienie go z konkretnym MenuRow jest nadal STRONG, ale wymaga bezpośredniego RAW XREF.
+- Odzyskany class layout ma twarde dzieci: +0x60 (FUN_0802DF08), +0x8C (FUN_0802FC10), +0xC4 (FUN_0802FC10), +0xF8 (FUN_08032D7C), dodatkowy +0x2C (FUN_08031BD4).
 - FUN_0804BC6C operuje na tych samych child offsets i dołącza je przez vtable +0x64.
 - capability resolver FUN_0803C178 jest osobną warstwą eligibility/visibility, nie nawigacją.
 
