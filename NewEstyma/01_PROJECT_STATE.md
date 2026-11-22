@@ -370,3 +370,21 @@ OPEN:
 - caller-level meaning of the returned 0..7 state;
 - whether the intermediate write is externally observable;
 - full class-12 UI/resource linkage.
+
+
+## AUTONOMOUS PASS 33 — RUNTIME KEY 3 PROVENANCE — 2026-11-22
+
+HARD:
+- 0x080115F6 is a runtime-record lookup over the 660-position table, stride 0x2C; it is not itself the 260-catalog PID resolver.
+- Runtime key 3 is concretely initialized by 0x0801143C with manager 0x20008D84, storage 0x20021FAA and type code 1.
+- 0x0801143C populates the runtime record with key/storage/type metadata.
+- Class 12 therefore operates on a real runtime parameter record keyed by 3.
+
+CORRECTION:
+- Do not call key 3 a catalog PID without direct proof. Preferred term: runtime parameter lookup key 3.
+
+OPEN:
+- key3 -> catalog PID mapping;
+- semantic identity of storage 0x20021FAA;
+- reason class12 writes type 5 after startup type 1;
+- UI meaning of the 0..7 result.
