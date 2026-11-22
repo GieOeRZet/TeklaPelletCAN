@@ -949,3 +949,16 @@ Therefore provider GET/SET are HARD. The earlier PASS 18 claim that the slots we
 - remaining slots: OPEN
 - persistence semantics: OPEN
 - full PID/catalog mapping: OPEN
+
+
+## AUTONOMOUS PASS 20 — LOCAL WRITE -> PUBLICATION -> CAN TX BRIDGE — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-20-LOCAL-WRITE-PUBLICATION-CAN-BRIDGE-2026-11-22.md`.
+
+### NEW-HARD
+`FUN_08011812` writes validated values into runtime record local storage. `FUN_0801117C` scans records, detects local/shadow differences, constructs StdId 0x0584 / DLC 8 / command 0x42 publication frames, and calls `[this+0x7180]` through vtable slot 0. The sink is 0x20008D60, vtable runtime 0x080A4544 / PROJECT 0x08094544, slot0 -> runtime 0x0807E59D / PROJECT FUN_0806E59C. FUN_0806E59C queues the frame through 0x200244EC -> 0x08057224 -> CanTxTask -> CAN2.
+
+Machine-level bridge CLOSED:
+`local write -> record storage -> change detection -> 0x0584/0x42 publication -> 0x20008D60 -> FUN_0806E59C -> TX queue -> CAN2`.
+
+Remaining OPEN is semantic/timing detail: exact invocation cadence of FUN_0801117C, shadow table semantics, and full PID/catalog/CAN matrix.
