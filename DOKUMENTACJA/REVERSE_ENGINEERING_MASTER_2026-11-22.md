@@ -574,7 +574,7 @@ The MenuTree root table is 21×6 bytes and its exact selectors/text/bitmap IDs a
 Important boundary:
 the first-byte menu selector and runtime class byte at `0x20005EF0` are distinct layers. The implementation must preserve that separation; do not substitute one for the other.
 
-The six additional records use selectors 90/97/100/98/95 and text IDs 14/18/16/19/20; these selectors are not fed directly to C064.
+The six additional records use selectors 0/90/97/100/98/95 and text IDs 12/14/18/16/19/20. The firmware resource/string correlation in the current MenuTree closure identifies this second-stage/access-dependent group as: selector 0 = Modulacja, 90 = Podtrzymanie, 97 = Praca, 100 = Alarm, 98 = Przepłukiwanie, 95 = Zamarzanie. These selectors are not fed directly to C064; runtime class dispatch remains a separate layer. Treat the labels as firmware resource/string correlation, not as a replacement for the runtime class table.
 
 MenuTree status: CLOSED at the control-flow/mechanism level. No guessed semantic mapping for +0x12A/+0x12B/+0x12C was introduced.
 
