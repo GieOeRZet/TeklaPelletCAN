@@ -112,3 +112,18 @@ For UI graph work, preserve the distinction:
 - runtime class byte;
 - handler-internal selector bytes at object+0x12B/object+0x12C;
 - widget/page constructor inputs.
+
+
+## PASS 29 tooling
+
+Added `tools/ui_dispatch_scan.py` and `tools/test_ui_dispatch_scan.py`.
+
+The scanner:
+- reads the exact 21-byte TBB table at RAW 0x3C076;
+- resolves 16-bit and 32-bit trampoline branches;
+- follows only bounded local trampolines;
+- stops at an unconditional branch leaving the local case, preserving inline/special cases;
+- records resolved PROJECT handler addresses;
+- records direct selector-byte stores where statically recognizable.
+
+Regression coverage includes all 21 class entries, classes 1..4 shared handler parameters, class 12 special path, class 14 return, class 15 direct 0x42318 path, and classes 16..20.
