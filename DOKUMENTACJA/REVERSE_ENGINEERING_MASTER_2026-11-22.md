@@ -1162,3 +1162,26 @@ No 0x08011812 call is proven on this path.
 - runtime-class/page/widget graph;
 - remaining SRAM-table writers.
 
+
+
+## AUTONOMOUS PASS 28 — RUNTIME CLASS 0..20 FIRST-LEVEL UI DISPATCH — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-28-RUNTIME-CLASS-FIRST-LEVEL-UI-DISPATCH-2026-11-22.md`
+
+### NEW-HARD
+
+- The 21 runtime classes 0..20 from 0x20005EF0 have a complete TBB first-level dispatch at RAW 0x3C076.
+- Classes 1..4 share 0x08038130 and write object+0x12B/object+0x12C.
+- Classes 5..13 mostly use distinct first-level handlers.
+- Class 14 returns immediately.
+- Classes 12,15,19,20 are structurally distinct paths.
+- Runtime class and internal selector state are separate layers.
+
+### OPEN
+
+- 0x08037F88 common UI construction tail;
+- concrete page/widget constructors;
+- special class paths;
+- resource/text/bitmap/PID/CAN links;
+- SRAM-table writers/aliases.
+
