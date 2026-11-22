@@ -64,3 +64,12 @@ The firmware image has a runtime/repacked base of 0x08010000 while static PROJEC
 
 - `tools/iar_data_extract.py` — deterministic reproduction of the IAR LZ77 `.data` decoder and extraction of the two 21-byte MenuTree runtime tables.
 - `tools/test_iar_data_extract.py` — regression test for decompressed size, exact table bytes and equality with root selectors.
+
+
+## PASS 24 additions
+
+- `tools/pointer_flow_scan.py` was upgraded to be Thumb-2 instruction-width aware. The previous scanner could interpret the second halfword of a 32-bit instruction as a false Thumb-1 memory operation.
+- The scanner now recognizes common Thumb-2 immediate load/store forms, MOVW/MOVT candidates, and Thumb-2 PUSH.W function starts.
+- SRAM targets are kept in SRAM address space; PROJECT/RUNTIME translation is applied only to firmware code addresses.
+- `tools/test_pointer_flow_scan.py` now contains a regression proving that RAW 0x3C1FE is not a STRB and that the 0x080422C8 function start is recovered through PUSH.W.
+- Canonical BIN regression passed.
