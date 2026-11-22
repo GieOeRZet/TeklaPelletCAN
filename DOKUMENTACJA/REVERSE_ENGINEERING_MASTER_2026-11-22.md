@@ -842,3 +842,9 @@ This upgrade is based on the supplied emulator result document. Independent repr
 - FUN_0801113A is the default-repair loop: offending PID -> FUN_0801155A default (+0x24) -> FUN_08011812 commit.
 - No direct caller of FUN_0801113A exists in the recovered C export; trigger remains indirect/runtime OPEN.
 - Sidecar 2/3 are hard-confirmed in provider synchronization and range validation; sidecar 1 is excluded from both loops.
+## AUTONOMOUS PASS 13 — startup registration chain
+
+- HARD chain: FUN_08062D82 -> FUN_08000E34 -> FUN_08001AE4 -> FUN_0801143C x3.
+- FUN_08062D82 invokes FUN_08000E34 before creating GUITask, EstymaTask, CanRxTask and CanTxTask.
+- Therefore the three visible static parameter registrations are established during startup, before task execution.
+- The missing runtime bridge remains the parameter-manager object/framework behind +0x7178/+0x7180; no direct C edge from EstymaTask to FUN_08010FCE was found.
