@@ -20,7 +20,10 @@ Mapowanie:
 
 ```
 PROJECT = 0x08000000 + RAW
-RE_PACK = PROJECT + 0x10000
+RUNTIME/RE_PACK = PROJECT + 0x10000
+RAW = RUNTIME - 0x08010000
+
+Important: vtable/function-pointer values stored by the running firmware are runtime addresses. They must be translated by -0x10000 before indexing RAW.
 ```
 
 Surowy BIN jest źródłem prawdy. Komentarze ze starych deasemblacji nie są dowodem.
@@ -892,7 +895,7 @@ Architectural route:
 ### Correction of stale OPEN statements
 
 Earlier PASS 10/13 text saying the concrete `+0x7178/+0x7180` objects and scheduler route were fully unresolved is superseded by PASS 17.
-The remaining work is now implementation-level provider slots, independent runtime tick trace, and the 260-slot cross-layer matrix.
+The remaining work is now remaining provider slots/persistence semantics, independent runtime tick trace, and the 260-slot cross-layer matrix.
 
 
 
@@ -916,10 +919,33 @@ Canonical BIN integrity remains SHA-256 `1d679d6810cfb44a4c1d862d67552b7220f3ede
 
 
 
-## PASS 18 CORRECTION — provider vtable evidence — 2026-11-22
+## PASS 18 CORRECTION — superseded by PASS 19
 
-The earlier PASS 18 slot-level claims are retracted. Canonical RAW verification shows PROJECT 0x080A31F0 -> RAW 0x0A31F0, currently bytes 0xFF, and PROJECT 0x0801DB31 / 0x0801DB79 map to RAW locations that are not executable function entries. Provider vtable slot targets therefore remain OPEN until runtime materialization and/or an actual indirect-call observation proves them.
+The PASS 18 address-base correction is superseded. The observation that RAW 0xA31F0 is erased is correct, but 0x080A31F0 is a RUNTIME pointer, not a PROJECT address.
 
-Still HARD: concrete provider object 0x20008D64, vptr 0x080A31F0, and the indirect provider-call mechanism from FUN_0801143C through [manager+0x7178].
+Correct translation:
+- provider vtable runtime 0x080A31F0
+- provider vtable PROJECT 0x080931F0
+- provider vtable RAW 0x931F0
 
 Report: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-18-PROVIDER-VTABLE-GET-CLOSURE-2026-11-22.md
+
+
+## AUTONOMOUS PASS 19 — PROVIDER GET/SET + ADDRESS-BASE CLOSURE — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-19-PROVIDER-GET-SET-ADDRESS-BASE-CLOSURE-2026-11-22.md`.
+
+### NEW-HARD
+The runtime address base is 0x08010000. Provider vptr 0x080A31F0 therefore maps to PROJECT 0x080931F0 / RAW 0x931F0. The canonical BIN at RAW 0x931F0 contains real provider interface pointers.
+
+Provider slot 0 = runtime 0x0801DB31 / PROJECT 0x0800DB31: GET path. FUN_0801143C calls it with PID and output context.
+
+Provider slot 1 = runtime 0x0801DB79 / PROJECT 0x0800DB79: SET path. FUN_08011368 calls it with PID and current value when provider/local values differ.
+
+Therefore provider GET/SET are HARD. The earlier PASS 18 claim that the slots were absent from the BIN was caused by applying the runtime address as a raw offset and is REJECTED.
+
+### Current provider boundary
+- slots 0/1: HARD
+- remaining slots: OPEN
+- persistence semantics: OPEN
+- full PID/catalog mapping: OPEN
