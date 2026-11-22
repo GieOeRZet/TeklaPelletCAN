@@ -17,7 +17,11 @@ def ldr_literal(hw,off):
     if (hw&0xF800)!=0x4800:return None
     return (hw>>8)&7, ((raw_to_true(off+4))&~3)+((hw&0xff)*4)
 def mem16(hw):
-    op=(hw>>9)&7; rn=(hw>>3)&7; imm5=(hw>>6)&0x1f
+    if (hw & 0xF000) != 0x5000:
+        op=-1
+    else:
+        op=(hw>>9)&7
+    rn=(hw>>3)&7; imm5=(hw>>6)&0x1f
     reg={0:("STR",4,"store"),1:("STRH",2,"store"),2:("STRB",1,"store"),
          4:("LDR",4,"load"),5:("LDRH",2,"load"),6:("LDRB",1,"load")}
     if op in reg:
