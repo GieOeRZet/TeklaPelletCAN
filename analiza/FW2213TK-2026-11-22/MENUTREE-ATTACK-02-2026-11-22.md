@@ -296,6 +296,34 @@ To jest kandydat na warstwę state/selection/access marker. Nie jest to dowód, 
 
 Nie wolno utożsamiać +0x2C z selector.
 
+## 9B. NOWE HARD — row class ma dedykowany callback/action slot
+
+Po FUN_0804BC6C znajduje się FUN_0804BD7C w tym samym class-family.
+
+FUN_0804BD7C(param_1):
+- czyta pointer z param_1 + 0x26C;
+- pyta callback object o aktywność przez vtable +0x0C;
+- jeżeli aktywny, wywołuje callback vtable +0x08 przekazując param_1.
+
+Wniosek:
+
+    RowObject +0x26C
+        -> callback/action object
+        -> enabled/active test
+        -> callback invoke(row)
+
+To jest twardy punkt wejścia do warstwy action/event.
+
+Nie twierdzimy jeszcze, że +0x26C jest konkretnie touch callbackiem, ponieważ nie odzyskaliśmy producenta tego pola ani vtable entry, który wiąże zdarzenie dotyku z FUN_0804BD7C.
+
+Dodatkowo FUN_0804BB42 kończy konstrukcję z +0x270 = 0, więc +0x26C jest osobnym polem callback/action i mieści się tuż przed końcem klasy/stride 0x274.
+
+Status:
+- callback/action field +0x26C: FACT;
+- dispatch mechanism FUN_0804BD7C: FACT;
+- touch origin: OPEN;
+- selector/navigation target: OPEN.
+
 ## 10. Co nadal blokuje pełne MenuTree
 
 ### P0
