@@ -1274,3 +1274,14 @@ NEW HARD:
 - Combined: class12 -> GET key3 -> +1 SET -> caller +1 -> modulo8 SET -> return 0..7.
 
 Interpretation boundary: the 0..7 cyclic-selector interpretation remains STRONG until the key-3 UI/PID semantic is recovered.
+
+
+## AUTONOMOUS PASS 33 — RUNTIME KEY 3 PROVENANCE — 2026-11-22
+
+NEW HARD:
+- 0x080115F6 is a runtime-record lookup over the 660-position parameter table, not the catalog PID resolver.
+- Class-12 key 3 is a concrete runtime lookup key.
+- Startup code at RAW 0x1D62 initializes key 3 through 0x0801143C with storage 0x20021FAA and type code 1.
+- Therefore class 12 is operating on a real manager-owned runtime parameter record.
+
+Correction to terminology: "logical key 3" is now replaced by "runtime parameter lookup key 3" unless a direct PID mapping is proven.
