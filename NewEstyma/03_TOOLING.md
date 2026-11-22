@@ -160,3 +160,5 @@ Reguła odczytu tabel: rekordy 4-bajtowe są wyrównane do bazy tabeli; odczyt z
 Function-level harness: ustaw r0/r1, LR=SENT|1, SP w SRAM, hook UC_HOOK_CODE na SENT -> emu_stop; wywołuj funkcje firmware po boot() bez schedulera.
 
 - `tools/publish_probe.py` (PASS 38) — zmiana storage + callback managera 0x08020FCE w emulatorze; asercja ramki 0x584/0x42.
+
+- `tools/lang_cycle_probe.py` (PASS 39) — wykonanie sciezki class 12 (GET/SET key 3 + setLanguage) w emulatorze z asercjami.
