@@ -297,20 +297,22 @@ FACT: 6154 odblokowuje dodatkową warstwę UI.
 Nowy pass: analiza/FW2213TK-2026-11-22/MENUTREE-ATTACK-02-2026-11-22.md
 
 Zamknięte nowe fakty:
-- FUN_08032F08 = getter bajtu row/object +0x2C;
-- 0x0803C270 nie jest osobnym entry-pointem Ghidra; leży wewnątrz FUN_0803C064 (+0x20C), więc nie nazywamy go niezależną funkcją bez RAW proof;
-- FUN_0804BC6C ma twarde child offsets: +0x60, +0x8C, +0xF8; parent attachment przez vtable +0x64;
-- +0x60 przechodzi przez FUN_080307BC (resource/Bitmap setter);
-- +0x8C przechodzi przez FUN_080313A4 (resource setter);
+- FUN_08032F08 jest metodą klasy childa utworzonego przez FUN_08032D7C; czyta child+0x2C. W MenuRow ten child jest twardo inicjalizowany pod +0xF8 przez FUN_0804BB42.
+- 0x0803C270 nie jest osobnym entry-pointem Ghidra; leży wewnątrz FUN_0803C064 (+0x20C), więc nie nazywamy go niezależną funkcją bez RAW proof.
+- FUN_0804BB42 jest odzyskanym konstruktorem RowObject z vptr DAT_0804BC60.
+- RowObject ma twarde dzieci: +0x60 (FUN_0802DF08), +0x8C (FUN_0802FC10), +0xC4 (FUN_0802FC10), +0xF8 (FUN_08032D7C), dodatkowy +0x2C (FUN_08031BD4).
+- FUN_0804BC6C operuje na tych samych child offsets i dołącza je przez vtable +0x64.
 - capability resolver FUN_0803C178 jest osobną warstwą eligibility/visibility, nie nawigacją.
 
 Nadal OPEN:
-- row class/vtable;
+- dokładny RAW argument FUN_08032F08 w ścieżce 0x422C8;
+- row vtable literal / konkretne sloty callbacków;
 - touch/navigation;
 - producer/content 0x20005F08;
 - dokładna semantyka RAW sub-entry 0x0803C270;
 - screen destinations selectorów 0/90/97/100/98/95;
 - kompletne MenuTree.
+
 
 ## 15. Menu — WAŻNE: nadal NIE mamy pełnego drzewa
 
