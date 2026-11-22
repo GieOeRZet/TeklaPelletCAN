@@ -41,9 +41,13 @@ def resolve_trampoline(data,start,max_hops=3):
                 if d is not None:return d,movs
                 continue
             d=b16(h,p)
-            if d is not None and d>p and d<start+0x40:
-                cur=d
-                break
+            if d is not None:
+                if d>p and d<start+0x40:
+                    cur=d
+                    break
+                # An unconditional branch outside the local trampoline ends
+                # the inline path; do not scan into the next TBB case.
+                return None,movs
         else:
             break
     return None,movs
