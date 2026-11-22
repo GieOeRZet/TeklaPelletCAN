@@ -249,3 +249,28 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-27-ROW-F8-DESCRIPTOR-VALUE15-CLOSURE
 - 260-slot catalog correlation;
 - runtime-class/page/widget graph;
 - remaining SRAM-table writers.
+
+
+## AUTONOMOUS PASS 28 — RUNTIME CLASS 0..20 FIRST-LEVEL UI DISPATCH — 2026-11-22
+
+Report:
+analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-28-RUNTIME-CLASS-FIRST-LEVEL-UI-DISPATCH-2026-11-22.md
+
+### NEW-HARD
+
+- 0x20005EF0 values 0..20 feed a complete 21-entry TBB dispatch at RAW 0x3C076.
+- Class 1..4 share 0x08038130 with r1=1..4.
+- Classes 5..13 mostly enter distinct first-level UI handlers.
+- Class 14 is an immediate return.
+- Classes 12,15,19,20 use structurally distinct paths.
+- Classes 1..4 directly write object+0x12B and object+0x12C.
+- Classes 5..10 write selector-state bytes including object+0x12B.
+- Runtime class is therefore a behavior selector layer, distinct from root MenuTree selectors.
+
+### OPEN
+
+- common tail 0x08037F88;
+- concrete widget/page constructors for classes 0..20;
+- special class 12/15/19/20 graph;
+- resource/text/bitmap/PID/CAN links;
+- SRAM-table writers/aliases.
