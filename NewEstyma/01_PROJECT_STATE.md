@@ -96,3 +96,55 @@ OPEN:
 - later writes/mutations of 0x20005EF0 and 0x20005F08;
 - exact semantics/navigation for rows 15..20;
 - complete widget/resource/callback graph.
+
+
+## AUTONOMOUS PASS 24 — THUMB-2 BOUNDARY / POINTER-FLOW CORRECTION — 2026-11-22
+
+Report:
+analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-24-THUMB2-POINTER-FLOW-CORRECTION-2026-11-22.md
+
+### CRITICAL CORRECTION
+
+The PASS 23 alleged store at RAW 0x3C1FE into 0x20005EF0+6 is REJECTED.
+
+RAW 0x3C1FC..0x3C1FF is one Thumb-2 instruction:
+MOV.W r1,#0x122.
+0x3C1FE is its second halfword, not a STRB.
+
+Therefore:
+- no direct static write to 0x20005EF0+6 is currently proven;
+- the previous semantic OPEN derived from that alleged write is removed;
+- pointer-flow scanning must remain Thumb-2 width aware.
+
+### NEW-HARD
+
+- 0x20005EF0 has two direct literal materializations: RAW 0x3C068 -> r0 and RAW 0x3C17A -> r2.
+- Both consumers perform real byte reads: RAW 0x3C06A and 0x3C17C.
+- 0x20005F08 is materialized at RAW 0x422CE -> r5.
+- PROJECT 0x080422C8 scans all 21 bytes of 0x20005F08 sequentially.
+- The 0x20005F08 consumer advances its row/object base by 0x274 per entry.
+- access-table value 0x0E triggers a path through 0x08032F08 -> 0x0803C270 -> 0x08037212.
+- 0x08032F08 is a direct getter of object +0x2C.
+- 0x0803C270 gates on object +0x10 == 1 and forwards the returned value using parameter ID 0x0117.
+- Runtime-class table values 0..20 feed a TBB dispatch mechanism.
+
+### TOOLING
+
+pointer_flow_scan.py was upgraded to:
+- respect Thumb-2 32-bit instruction boundaries;
+- decode common Thumb-2 memory forms;
+- recognize MOVW/MOVT;
+- recognize Thumb-2 PUSH.W when finding function starts;
+- keep SRAM targets in SRAM address space;
+- preserve candidate/static evidence discipline.
+
+Regression test passed on the canonical BIN.
+
+### OPEN
+
+- arithmetic/alias/indirect writers of both SRAM tables;
+- r4/r8 object identity in PROJECT 0x080422C8;
+- mapping of 0x274-stride objects to the 21 MenuTree rows;
+- semantic meaning of access-table 0x0E and PID 0x0117;
+- complete runtime-class 0..20 handler -> page/widget/resource graph;
+- complete PID/UI/CAN matrix.
