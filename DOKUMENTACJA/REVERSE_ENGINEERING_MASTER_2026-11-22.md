@@ -749,3 +749,69 @@ Previous heuristic: ~55–60%. Current recommended heuristic: **~57–61%**, app
 - its vptr and slot0;
 - first write/source of 0x20008D60;
 - full UI local-write -> outbound CAN bridge.
+
+
+## AUTONOMOUS PASS 09 — 2026-11-22 — OPEN-1 RUNTIME CLOSURE
+
+New artifact:
+analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-09-OPEN1-RUNTIME-CLOSURE-2026-11-22.md
+
+A supplied emulator execution document now provides runtime write evidence that was unavailable during the earlier static-only passes.
+
+### NEW-HARD — D60 runtime materialization
+Runtime log:
+- PC 0x0807E6CC -> [0x20008D60] <- 0x44
+- bytes 44 45 0A 08 reconstruct little-endian as 0x080A4544
+
+Therefore:
+- [0x20008D60] = 0x080A4544
+- vtable PROJECT = 0x08094544
+- slot 0 = 0x0807E59D -> physical 0x0807E59C -> PROJECT FUN_0806E59C
+
+The earlier static result "zero direct LE32 occurrence" is not contradictory: the value is materialized by runtime decompression/object initialization.
+
+### NEW-HARD — concrete poller object linkage
+Runtime log:
+- [0x2002466C] = 0x080A4568
+- [0x2002466C+0x14] = 0x20008D60
+- [0x2002466C+0x18] = 0x20008D84
+
+Thus the previously OPEN object assignment is closed:
+poller -> +0x14 -> D60 object -> vtable 0x080A4544 -> slot0 FUN_0806E59C.
+
+### NEW-HARD — node 4 runtime object
+Runtime log:
+- [0x200114C0] = 0x20008D60
+- [0x200114C4] = 0x20008D84
+- [0x200114C8] = 4
+
+This independently confirms the earlier FUN_0800FF44 object layout.
+
+### CLOSED combined READ/TX path
+0x080629FC
+-> 0x08062AE4
+-> [poller+0x14] = 0x20008D60
+-> D60.vtable[0] = 0x0807E59D
+-> FUN_0806E59C
+-> TX queue 0x200244EC
+-> 0x08057224
+-> CanTxTask 0x080654A8
+-> 0x08061734
+-> CAN2 0x40006800
+
+### Remaining OPEN
+The main remaining CAN parameter boundary is:
+UI/local write
+-> FUN_08011812
+-> local-change/publication mechanism
+-> +0x7180 sink
+-> StdId 0x0584 / command 0x42
+
+Still unresolved:
+- concrete +0x7180 target,
+- EstymaTask -> FUN_08010FCE route,
+- complete 260-slot parameter/CAN matrix,
+- remaining UI/CAN object graphs.
+
+### Evidence discipline
+This upgrade is based on the supplied emulator result document. Independent reproduction still requires executing the canonical BIN in the emulator; the source document itself records the run and its expected/observed write log.
