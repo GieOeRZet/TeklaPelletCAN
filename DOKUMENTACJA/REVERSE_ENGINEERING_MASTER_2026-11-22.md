@@ -894,3 +894,21 @@ Architectural route:
 Earlier PASS 10/13 text saying the concrete `+0x7178/+0x7180` objects and scheduler route were fully unresolved is superseded by PASS 17.
 The remaining work is now implementation-level provider slots, independent runtime tick trace, and the 260-slot cross-layer matrix.
 
+
+
+## NEWESTYMA SELF-CONTAINED HANDOFF — 2026-11-22
+
+A dedicated continuation package now exists at `NewEstyma/`.
+
+**First file for every new agent:** `NewEstyma/00_AGENT_START_HERE.md`
+
+Then read:
+- `NewEstyma/01_PROJECT_STATE.md`
+- `NewEstyma/02_WORKFLOW.md`
+- `NewEstyma/03_TOOLING.md`
+- `NewEstyma/04_FIRMWARE_MANIFEST.md`
+- latest pass reports
+
+The package intentionally does not duplicate every historical report: `analiza/` remains the evidence archive and this master remains the canonical consolidated state. NewEstyma is the navigation/handoff layer.
+
+Canonical BIN integrity remains SHA-256 `1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071`, size `0x1F0000`.
