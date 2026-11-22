@@ -78,7 +78,10 @@ def mem32(h1,h2):
 
 def find_start(data,off,limit=0x100):
     for p in range(off&~1,max(-1,off-limit),-2):
-        if (struct.unpack_from("<H",data,p)[0]&0xFE00)==0xB400:
+        h=struct.unpack_from("<H",data,p)[0]
+        if (h&0xFE00)==0xB400:  # Thumb-1 PUSH
+            return p
+        if h==0xE92D:            # Thumb-2 PUSH.W
             return p
     return max(0,off-limit)
 
@@ -139,7 +142,7 @@ def scan(path,targets,window=0x180):
             p+=2
         out.append({
             "target_true":value,
-            "target_project":project(value),
+            "target_address_space":"SRAM",
             "pool_raw":pool_raw,
             "pool_true":pool_true,
             "literal_load_raw":off,
@@ -163,7 +166,7 @@ def render(r):
     for x in r["targets"]:
         s += [
             f"## Target 0x{x['target_true']:08X}",
-            f"- PROJECT: 0x{x['target_project']:08X}",
+            f"- address space: {x['target_address_space']}",
             f"- literal pool RAW: 0x{x['pool_raw']:X}",
             f"- LDR literal RAW: 0x{x['literal_load_raw']:X} -> {x['loaded_register']}",
             f"- function candidate PROJECT: 0x{x['function_start_project']:08X}",""
