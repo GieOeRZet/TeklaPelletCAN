@@ -454,3 +454,19 @@ Rozgryźć `0x218B <-> 0x218C <-> 0x2198...`, bo 0x218C ma potwierdzony default 
 > Mamy twardo potwierdzony CAN2 runtime, node 4, RX/TX, podstawowy protokół, resolver/parameter engine, pełną tabelę 260 slotów, dużą część UI/resources i access-level gating. Nie mamy jeszcze kompletnego modelu 0x2C/descriptorów ani pełnego drzewa menu z warunkami widoczności. To są obecnie najważniejsze cele. Pass 18 jest aktualnym punktem odniesienia.
 
 **Firmware SHA-256:** `1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071`.
+
+
+## MENU TREE ATTACK 03 — 2026-11-22 — class-family / C064 boundary correction
+
+Nowy pass: `analiza/FW2213TK-2026-11-22/MENUTREE-ATTACK-03-2026-11-22.md`.
+
+Najważniejsze korekty:
+- `FUN_0804BC6C` jest metodą/helperem class-family; pełny decompiled.c pokazuje również call z `FUN_0804E4F8`, więc nie traktujemy go jako unikalnego konstruktora Main Menu Row. Utożsamienie row class pozostaje STRONG do czasu bezpośredniego RAW XREF.
+- `FUN_08032D7C` tworzy stanowy child; w layoutcie odzyskanym przez `FUN_0804BB42` znajduje się pod row+0xF8. Jego +0x2C jest stanem, +0x150 jest callback/action pointer. `FUN_08032EB8` może wywołać ten callback po zmianie stanu.
+- `FUN_0804BD7C` jest osobnym dispatcherem callback/action przez row+0x26C.
+- `functions.txt` zawiera formalnie tylko `FUN_0803C064` (558 B). Adresy `0x0803C178` i `0x0803C270` są wewnętrznymi adresami/sub-entry/tailami w obrębie C064, odpowiednio +0x114 i +0x20C. Nie nazywamy ich osobnymi funkcjami bez RAW proof.
+- C064 pozostaje class/type dispatcherem przez `DAT_0803C218[param_2]`; nie utożsamiamy go z nawigacją MenuTree.
+
+Aktualny status MenuTree po Attack 03:
+CLOSED = state child, row callback dispatcher, child offsets/attachment, formal C064 boundary.
+OPEN = bezpośredni RAW constructor/XREF MenuRow, producenci callbacków, touch/navigation, runtime 0x20005F08, sześć second-stage destinations, kompletne MenuTree.
