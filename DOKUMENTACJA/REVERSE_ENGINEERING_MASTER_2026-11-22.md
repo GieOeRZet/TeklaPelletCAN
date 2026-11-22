@@ -614,3 +614,19 @@ Dla `record = 0x20008D84 + index*0x2C` twardo potwierdzone są:
 2. Pełny model 0x20008D84 — **częściowo CLOSED**: runtime extent 660 + kluczowe pola CLOSED; pełna semantyka OPEN.
 3. Resolver -> descriptor -> getter/setter — nadal OPEN.
 4. Pełne MENU/UI — nadal OPEN semantycznie; control-flow mechanism CLOSED.
+
+
+## PARAMETER ENGINE CROSS-LAYER CLOSURE 01 — 2026-11-22
+
+Nowy dokument: `analiza/FW2213TK-2026-11-22/PARAMETER-ENGINE-CROSS-LAYER-CLOSURE-01-2026-11-22.md`.
+
+Makro-korekta modelu:
+- 260 = osobny catalog/index layer,
+- mapper = 49 rodzin × 4 + 372 singletony = 568 pozycji logicznej przestrzeni UI/model,
+- runtime engine = baza `0x20008D84`, stride `0x2C`, scan bound `660` pozycji.
+
+**Ważne:** 660 jest potwierdzonym limitem przestrzeni skanowania runtime, NIE potwierdzoną liczbą wypełnionych rekordów.
+
+**Korekta wcześniejszej notacji:** `record +0x2C` nie może być polem tego samego rekordu, ponieważ `0x2C` jest jego krokiem. Analogicznie `+0x30` leży 4 bajty wewnątrz następnego rekordu. Stare przypisania `+0x2C=access/flag` i `+0x30=metadata` należy traktować jako REJECTED. Pozostałe wcześniej potwierdzone pola `+0x08/+0x0C/+0x10/+0x14/+0x1C/+0x24` pozostają w mocy.
+
+To rozdzielenie jest obecnie kluczowe dla docelowego modelu ESP: `catalog -> mapper -> external PID -> runtime record -> typed storage -> UI/CAN/persistence`.
