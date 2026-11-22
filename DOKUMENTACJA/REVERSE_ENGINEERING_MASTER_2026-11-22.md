@@ -815,3 +815,13 @@ Still unresolved:
 
 ### Evidence discipline
 This upgrade is based on the supplied emulator result document. Independent reproduction still requires executing the canonical BIN in the emulator; the source document itself records the run and its expected/observed write log.
+
+
+## AUTONOMOUS PASS 10 — EstymaTask / scheduler boundary (2026-11-22)
+
+- EstymaTask entry is now HARD: `DAT_08062EB0 -> 0x08062C95` (Thumb), physical entry `0x08062C94`.
+- `FUN_08062D82` creates EstymaTask through `FUN_08057630` with task name `EstymaTask` and priority 3.
+- Recovered EstymaTask direct-call set does **not** include `0x080629FC`, `0x0806E59C`, or `0x08010FCE`.
+- Therefore the remaining route to `FUN_08010FCE` is indirect/timer/framework based; no target is guessed.
+- `0x08062920` region is rejected as the missing parameter-TX builder.
+- Detailed evidence: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-10-ESTYMA-TASK-SPINE-2026-11-22.md`.
