@@ -13,7 +13,7 @@ def scan(path,targets):
     from capstone import Cs,CS_ARCH_ARM,CS_MODE_THUMB,CS_MODE_MCLASS
     data=Path(path).read_bytes()
     md=Cs(CS_ARCH_ARM,CS_MODE_THUMB|CS_MODE_MCLASS); md.detail=True
-    calls=[]; indirect=[]; literals=[]; memrefs=[]
+    calls=[]; indirect=[]; literals=[]; memrefs=[]; object_ops=[]
     for ins in md.disasm(data,BASE):
         m=ins.mnemonic.lower(); op=ins.op_str; raw=ins.address-BASE
         if m in ("bl","blx","b","b.w","bl.w"):
@@ -21,7 +21,7 @@ def scan(path,targets):
             if t is not None: calls.append({"kind":"DIRECT_CALL" if m.startswith("bl") else "BRANCH","at_raw":raw,"at_true":ins.address,"target_true":t,"target_project":true_to_project(t),"text":ins.mnemonic+" "+op})
         if m in ("blx","bx") and not op.startswith("#"): indirect.append({"at_raw":raw,"at_true":ins.address,"text":ins.mnemonic+" "+op,"target_expr":op})
         if m.startswith("ldr") and "pc" in op.lower(): literals.append({"kind":"LITERAL_LOAD","at_raw":raw,"at_true":ins.address,"text":ins.mnemonic+" "+op})
-        if "[" in op and "]" in op: memrefs.append({"at_raw":raw,"at_true":ins.address,"text":ins.mnemonic+" "+op})
+        if "[" in op and "]" in op:\n            rec={"at_raw":raw,"at_true":ins.address,"text":ins.mnemonic+" "+op}\n            memrefs.append(rec)\n            # Keep register-relative object accesses separately for object-flow analysis.\n            mref=re.search(r"\\[([a-z0-9]+)(?:,\\s*#(0x[0-9a-f]+|[0-9]+))?\\]",op,re.I)\n            if mref:\n                object_ops.append({**rec,"base_reg":mref.group(1),"offset":int(mref.group(2),0) if mref.group(2) else 0})
         if m in ("movw","movt"):
             v=parse_imm(op)
             if v is not None: literals.append({"kind":m.upper(),"at_raw":raw,"at_true":ins.address,"immediate":v,"text":ins.mnemonic+" "+op})
@@ -34,7 +34,7 @@ def scan(path,targets):
     by=defaultdict(list)
     for c in calls:
         if c["target_true"] in targets: by[c["target_true"]].append(c)
-    return {"input":str(path),"size":len(data),"base_true":BASE,"calls":calls,"indirect_calls":indirect,"literal_candidates":literals,"memory_refs":memrefs,"target_summary":[{"target_true":t,"target_project":true_to_project(t),"direct_call_count":len(by.get(t,[])),"literal_count":sum(1 for x in literals if x.get("target")==t)} for t in targets]}
+    return {"input":str(path),"size":len(data),"base_true":BASE,"calls":calls,"indirect_calls":indirect,"literal_candidates":literals,"memory_refs":memrefs,"object_ops":object_ops,"target_summary":[{"target_true":t,"target_project":true_to_project(t),"direct_call_count":len(by.get(t,[])),"literal_count":sum(1 for x in literals if x.get("target")==t)} for t in targets]}
 def md(r):
     z=["# Static RE Scan","","- input: "+r["input"],"- size: "+str(r["size"])+" B","","## Target summary","","| TRUE | PROJECT | Direct BL/BLX | LE32 literals |","|---:|---:|---:|---:|"]
     for x in r["target_summary"]: z.append("| 0x%08X | 0x%08X | %d | %d |"%(x["target_true"],x["target_project"],x["direct_call_count"],x["literal_count"]))
