@@ -24,7 +24,7 @@ Full universal reconstruction of Estyma firmware behavior, eventually targeting 
 - Provider vtable 0x080A31F0: slots 0/1 HARD (GET/SET); remaining interface OPEN.
 - Full 260-row cross-layer matrix.
 - Descriptor/record ownership and multi-instance mapping.
-- Local parameter write -> outbound CAN publication bridge.
+- Local parameter write -> outbound CAN publication bridge (machine-level HARD; timing/shadow semantics OPEN).
 - Complete UI semantic graph and visibility mapping.
 - Sidecar class 1/2/3 exact semantics.
 - Complete response/publication graph.
@@ -57,3 +57,8 @@ Do not confuse:
 - manager/provider/sink objects
 - MenuTree selector with runtime class byte
 - mechanism closure with semantic closure
+
+
+## PASS 20 closure
+
+`FUN_08011812` writes the validated local value into record storage; `FUN_0801117C` detects local/shadow changes and builds StdId 0x0584 command 0x42; +0x7180 resolves to 0x20008D60; sink slot0 resolves to FUN_0806E59C; TX queue/CAN2 path is already HARD. The machine-level local-write -> outbound publication bridge is CLOSED.
