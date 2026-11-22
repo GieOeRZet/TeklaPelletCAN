@@ -9,7 +9,7 @@ Ustalone z dezasemblacji rezolwera (RUNTIME 0x08046FF2; PROJECT 0x08036FF2):
            Klucz 0xA8 jest traktowany wprost jako rekord 0.
  TABELA 2: RAW 0x37578, rekordy 4 B (s16 klucz, u16 PID), 0x174 = 372 rekordy; wynik = PID wprost (bez instancji).
 Po rezolucji: lookup w tabeli runtime (0x080215F6 runtime / 0x080115F6 PROJECT) po PID.
-UWAGA (PASS 34): rekordy sa wyrownane do 4 B od bazy; odczyt przesuniety o 2 B daje falszywe pary (blad PASS 26).
+UWAGA (PASS 35): rekordy sa wyrownane do 4 B od bazy; odczyt przesuniety o 2 B daje falszywe pary (blad PASS 26).
 """
 import csv, struct, sys
 raw = open(sys.argv[1], "rb").read()

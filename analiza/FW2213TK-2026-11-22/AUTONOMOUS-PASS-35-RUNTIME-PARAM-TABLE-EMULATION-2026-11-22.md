@@ -1,4 +1,4 @@
-# AUTONOMOUS PASS 34 — RUNTIME PARAMETER TABLE (655 REKORDÓW) Z EMULACJI STARTUPU — 2026-11-22
+# AUTONOMOUS PASS 35 — RUNTIME PARAMETER TABLE (655 REKORDÓW) Z EMULACJI STARTUPU — 2026-11-22
 
 Firmware: FW2213TK_kopia.bin, SHA-256 `1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071` (zweryfikowany przez narzędzie).
 Adresy: RAW → PROJECT `+0x08000000` → RUNTIME `+0x10000`. Poniżej podaję PROJECT, a w nawiasie RUNTIME tam, gdzie to istotne dla emulatora.
@@ -103,3 +103,6 @@ Czy wartość 0/1 oznacza wentylator/podajnik — nadal wniosek z kontekstu (hyb
 ## 10. Następny atak
 (a) rozszerzyć emulator o kolejne zadania FreeRTOS (PendSV/kolejki), żeby zobaczyć zawartość storage po pełnej inicjalizacji i przepływ CAN; (b) wykorzystać tabelę 655 do automatycznego
 zbudowania macierzy `PID → storage → CAN` oraz weryfikacji `0x08011812`; (c) sprawdzić wszystkie wcześniejsze odczyty tabel rezolwera (korekta §6).
+
+## 11. Uzgodnienie z równoległym PASS 34 (KEY3 STORAGE/TYPE)
+PASS 34 zakazuje „key 3 = PID 3” bez mostu; most = wskaźnik nazwy w rekordzie (§2) + 448/448 zgodnych nazw. Typ (bajt, STRB) z PASS 34 zgadza się z `u8` w rekordzie.

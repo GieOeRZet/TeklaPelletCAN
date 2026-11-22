@@ -3,7 +3,7 @@
 
 python3 -I tools/runtime_param_table.py FW2213TK_kopia.bin [out.csv]
 
-Rekord (stride 0x2C, baza = manager+0x08; wszystkie pola u32 LE) — ZWERYFIKOWANE na danych (PASS 34):
+Rekord (stride 0x2C, baza = manager+0x08; wszystkie pola u32 LE) — ZWERYFIKOWANE na danych (PASS 35):
  +0x00 key            klucz wyszukiwania (0x080115F6)   +0x04 storage ptr (SRAM)
  +0x08 type           kod typu 1/2/3/4/5               +0x0C min
  +0x10 type(min)      +0x14 max      +0x18 type(max)   +0x1C default   +0x20 type(def)

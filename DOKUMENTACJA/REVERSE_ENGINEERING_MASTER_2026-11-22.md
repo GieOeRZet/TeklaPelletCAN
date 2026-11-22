@@ -1287,9 +1287,33 @@ NEW HARD:
 Correction to terminology: "logical key 3" is now replaced by "runtime parameter lookup key 3" unless a direct PID mapping is proven.
 
 
-## PASS 34 — RUNTIME PARAMETER TABLE Z EMULACJI STARTUPU (2026-11-22)
+## AUTONOMOUS PASS 34 — RUNTIME KEY 3 STORAGE / TYPE CLOSURE — 2026-11-22
 
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-34-RUNTIME-PARAM-TABLE-EMULATION-2026-11-22.md`; dane: `analiza/FW2213TK-2026-11-22/data/`.
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-34-RUNTIME-KEY3-STORAGE-TYPE-CLOSURE-2026-11-22.md`.
+
+### NEW-HARD
+- Runtime key 3 is initialized at RAW `0x1D62` with manager `0x20008D84`, storage `0x20021FAA = 0x200208EC+0x16BE`, and runtime type 1.
+- `FUN_08011812` ultimately stores according to the runtime record type; type 1 uses byte storage (`STRB`).
+- Therefore key 3 is physically byte-backed.
+- Class 12's type-5 temporary/input is normalized by the runtime setter to the record's type; there is no type contradiction.
+- Key 4 uses `0x20021FBA = 0x200208EC+0x16CE`, type 2. Nearby runtime keys share the same configuration/storage region.
+
+### NEGATIVE / BOUNDARY
+- No direct LE32 literal for `0x20021FAA) exists in the canonical BIN; startup forms it arithmetically.
+- No direct semantic consumer of `+0x16BE` beyond the startup registration was found.
+
+### OPEN
+- exact semantic name of key 3 storage;
+- key3 -> catalog PID bridge;
+- other UI/resource consumers;
+- runtime-key startup matrix;
+- provider/persistence/CAN semantics for key 3.
+
+Terminology remains: **runtime parameter lookup key 3**, not catalog PID 3.
+
+## PASS 35 — RUNTIME PARAMETER TABLE Z EMULACJI STARTUPU (2026-11-22)
+
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-35-RUNTIME-PARAM-TABLE-EMULATION-2026-11-22.md`; dane: `analiza/FW2213TK-2026-11-22/data/`.
 
 HARD:
 - 655 rekordów tabeli runtime (manager 0x20008D84, stride 0x2C) odczytane z RAM po emulacji startupu; układ rekordu i dekodowanie pól wartości wg własnego kodu typu — patrz raport §1.

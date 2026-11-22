@@ -85,3 +85,6 @@ If a repeated manual operation appears, automate it.
 
 Important: 260 catalog != 660 runtime table. Mechanism closure != semantic closure. HARD != 100%.
 
+
+## PASS 35 — emulator startupu
+Do odczytu stanu RAM po inicjalizacji użyj `tools/emu_startup.py` / `boot()` (patrz 03_TOOLING.md). Tabela runtime 655 rekordów jest w `analiza/FW2213TK-2026-11-22/data/`. Klucz runtime = PID (z nazwą ASCII w rekordzie).

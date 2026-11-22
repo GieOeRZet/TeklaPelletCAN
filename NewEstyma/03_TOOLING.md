@@ -139,7 +139,7 @@ Future UI tracing must follow both:
 - vtable calls through object+0x110.
 
 
-## PASS 34 additions — EMULACJA STARTUPU (nowa klasa dowodu: stan RAM po inicjalizacji)
+## PASS 35 additions — EMULACJA STARTUPU (nowa klasa dowodu: stan RAM po inicjalizacji)
 
 - `tools/emu_startup.py` — emulacja startupu FW2213TK w Unicornie (Cortex-M4). Obraz pod RUNTIME 0x08010000. Opcje: `--max`, `--ram`, `--watch LO:HI`, `--trace-calls ADDR`, `--stub ADDR=VAL`, `--first-task`, `--patch-nop`.
   API: `boot(bin)` zwraca `(mu, raw)` po startupie + pierwsze zadanie FreeRTOS. Pomijane: pętle RCC (3 NOP-y tylko w kopii w pamięci), `RCC_GetFlagStatus` 0x08028AE4 -> 1, svc #0 odtwarzane ręcznie.
