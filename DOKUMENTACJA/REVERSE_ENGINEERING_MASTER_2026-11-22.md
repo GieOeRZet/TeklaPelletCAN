@@ -1263,3 +1263,14 @@ Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-31-VTABLE-SLOT2-CALLBACK-BR
 - table writers;
 - UI/PID/CAN matrix.
 
+
+
+## AUTONOMOUS PASS 32 — CLASS 12 PARAMETER-3 CYCLIC OPERATION — 2026-11-22
+
+NEW HARD:
+- Runtime class 12 at RAW 0x3C12A is a concrete parameter action, not an unresolved UI-only branch.
+- 0x080373BA uses concrete manager 0x20008D84 and logical key 3, reads a type-5 value, increments it and commits it through 0x08011812.
+- The class-12 caller increments the returned value and 0x080373E6 commits logical key 3, type 5, modulo 8, returning the final value.
+- Combined: class12 -> GET key3 -> +1 SET -> caller +1 -> modulo8 SET -> return 0..7.
+
+Interpretation boundary: the 0..7 cyclic-selector interpretation remains STRONG until the key-3 UI/PID semantic is recovered.
