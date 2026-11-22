@@ -30,7 +30,7 @@ Uwaga: starsza lista kolejności „ES, EST, EN, LT, PL, RO, SK, CZ” z handoff
 ## STRONG — który wiersz menu uruchamia class 12
 Tablica klas `0x20005EF0` po starcie: `00 0a 01 02 03 04 05 06 07 08 09 0b 0d 11 0f 0c 0e 12 10 13 14` (niezmieniona względem danych IAR). **Wiersz 15 ma klasę 12** (rekord `00 00 | 0c 00 | 49 00`), a wiersze 15..20 są budowane tylko przy `access != 0` (PASS 21/22).
 Zatem akcja zmiany języka jest dostępna po wprowadzeniu PIN-u (poziom ≠ 0); wiązanie „wiersz 15 → klasa 12” opiera się na indeksowaniu tablicy klas numerem wiersza (PASS 28/29), bez wykonania dotyku → OPEN do potwierdzenia na ścieżce UI.
-Korekta wcześniejszych notatek: klasy wierszy 15..20 (12,14,18,16,19,20) pochodzą z pola `+2` rekordu (nie z selektora w polu `+0`, który ma wartości 0,90,97,100,98,95); dla wierszy 0..14 klasa = selektor.
+Obserwacja: klasy wierszy 15..20 (12,14,18,16,19,20) są **równe** polu `+2` rekordu, a nie selektorowi z pola `+0` (0,90,97,100,98,95); dla wierszy 0..14 klasa = selektor. Że klasa jest *wyprowadzana* z pola `+2`, nie wykazano (tablica klas jest z danych IAR) — OPEN.
 
 ## OPEN
 1. Znaczenie pola `+2` rekordu menu dla wierszy 0..14 (odczyt jako ID tekstu daje nazwy stanów kotła, a dla 15..20 wartości będące klasami) — nie traktować jako etykiety menu.
