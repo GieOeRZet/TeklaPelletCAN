@@ -198,7 +198,7 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-26-PID0117-RESOLVER-NEGATIVE-CLOSURE
 - The first 0x31-entry resolver table contains no key 0x0117.
 - The second 0x174-entry resolver table contains no key 0x0117.
 - Therefore this canonical static path does not call 0x08011812 for key 0x0117.
-- The second table does contain key 0x2123 -> value 0x0117 at RAW 0x3797A.
+- The second table does contain key 0x2123 -> value 0x0117 at RAW 0x3797A. [SUPERSEDED/REJECTED przez PASS 35 §6: odczyt przesunięty o 2 B; poprawny rekord (0x0117 -> 0x3506) @RAW 0x3797C]
 
 ### CORRECTION
 

@@ -1,3 +1,5 @@
+> **[REJECTED przez PASS 35 §6]** Wniosek tego raportu jest błędny: rekord `(0x0117 -> 0x3506 Sound alarm activation)` istnieje @RAW 0x3797C; tabela została odczytana z przesunięciem o 2 B.
+
 # AUTONOMOUS PASS 26 — PID 0x0117 RESOLVER NEGATIVE CLOSURE — 2026-11-22
 
 ## Objective

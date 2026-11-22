@@ -25,6 +25,7 @@ The mapping is in the resolver's second table at raw 0x37794:
 0x99 -> 0x3713
 0x9A -> 0x3714
 
+[ERRATA PASS 35: baza tabeli 1 to RAW 0x37B48 (49 rekordów, PID = baza + instancja - 1); 0x37B36 było błędne]
 The first resolver table at raw 0x37B36 is a separate mapping table and must not be confused with this second table.
 
 ## Parameter meaning

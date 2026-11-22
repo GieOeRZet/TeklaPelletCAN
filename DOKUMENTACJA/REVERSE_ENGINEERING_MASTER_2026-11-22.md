@@ -1117,7 +1117,7 @@ Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-26-PID0117-RESOLVER-NEGATIV
 - 0x08037212 receives key 0x0117 from the 0x0E access-table path.
 - Neither of its static resolver tables contains key 0x0117.
 - Therefore the canonical static path does not call 0x08011812 for this input.
-- The second resolver table contains key 0x2123 -> value 0x0117 at RAW 0x3797A.
+- The second resolver table contains key 0x2123 -> value 0x0117 at RAW 0x3797A. [SUPERSEDED/REJECTED przez PASS 35 §6: poprawny rekord (0x0117 -> 0x3506) @RAW 0x3797C]
 
 ### CORRECTION OF PASS 25
 
