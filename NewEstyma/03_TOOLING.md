@@ -162,3 +162,5 @@ Function-level harness: ustaw r0/r1, LR=SENT|1, SP w SRAM, hook UC_HOOK_CODE na 
 - `tools/publish_probe.py` (PASS 38) — zmiana storage + callback managera 0x08020FCE w emulatorze; asercja ramki 0x584/0x42.
 
 - `tools/lang_cycle_probe.py` (PASS 39) — wykonanie sciezki class 12 (GET/SET key 3 + setLanguage) w emulatorze z asercjami.
+
+- `tools/menu_rows_probe.py` (PASS 40) — budowa ekranu menu (RUNTIME 0x0804BF7C + 0x08052160) i odczyt argumentow row-buildera dla access 0/3; asercje 15/21 wierszy.

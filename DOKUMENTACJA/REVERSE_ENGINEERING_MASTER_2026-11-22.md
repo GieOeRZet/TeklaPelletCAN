@@ -1363,3 +1363,11 @@ HARD (wykonane w firmware): class 12: GET key 3 -> +1 -> zapis key 3 (mod 8, typ
 HARD: tablica języków SRAM 0x20011844 ma 8 wpisów: 0 PL, 1 EN, 2 LT, 3 SK, 4 CZ, 5 ES, 6 RO, 7 EST (identyfikacja z treści tabel TypedText).
 STRONG: wiersz menu 15 (klasa 12, budowany przy access != 0) uruchamia zmianę języka. UWAGA: klasy wierszy 15..20 są równe polu +2 rekordu menu (nie selektorowi z pola +0); wyprowadzenie nie wykazane.
 OPEN: 3 pozostałe wywołania setLanguage i przywracanie języka przy starcie; znaczenie pola +2 rekordu dla wierszy 0..14; dotyk -> class 12.
+
+
+## AUTONOMOUS PASS 40 — WIERSZE MENU ZBUDOWANE W FIRMWARE — 2026-11-22
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-40-MENU-ROWS-BUILT-IN-FIRMWARE-2026-11-22.md ; dane: data/menu_rows_21.csv ; narzędzie: tools/menu_rows_probe.py
+HARD (wykonane w firmware): access 0 -> row-builder dla wierszy 0..14, access 3 -> 0..20; vptr ekranu 0x0808F66C, wiersze +0xF8=0x0807C540 (zgodnie z PASS 27). Pełny konstruktor ekranu RUNTIME 0x0804BF7C (z konstruktorem bazowym).
+KOREKTA: argumenty FUN_0804BC6C(row,A,B) to ID BITMAP (A: 60..81, B: 82..101,159), nie ID tekstów; wcześniejszy odczyt "Sterownik/Palnik/..." z pola +2 był błędny.
+STRONG: wiersze 15..20 czytają (A,B)=(u16@+4,u16@+6) i klasę u16@+2; "selektory" 90/97/100/98/95 to pola sąsiednich rekordów = bitmapy B, więc teza "selector 90 -> Language" z MENUTREE jest niepewna.
+OPEN: źródło etykiet i ekranów docelowych; pętla drugiego etapu 15..20 z kodu; emulacja kończy się wywołaniem przez NULL po zbudowaniu wierszy.
