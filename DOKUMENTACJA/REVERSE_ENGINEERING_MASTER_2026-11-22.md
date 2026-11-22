@@ -1134,3 +1134,31 @@ Correct:
 - runtime class -> page/widget graph;
 - remaining SRAM table writers/aliases.
 
+
+
+## AUTONOMOUS PASS 27 — ROW +0xF8 DESCRIPTOR / VALUE 0x15 CLOSURE — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-27-ROW-F8-DESCRIPTOR-VALUE15-CLOSURE-2026-11-22.md`
+
+### NEW-HARD
+
+- Row constructors at PROJECT 0x08089570 and 0x08089594 store 0x0807C540 at row+0xF8.
+- PROJECT 0x08032F08 reads byte +0x2C from that pointer.
+- Canonical static value at 0x0807C540+0x2C is 0x15.
+- Therefore constructor-established 0x08032F08 result is 0x15.
+
+### REVISED 0x0E PATH
+
+`0x20005F08[i]==0x0E -> row[i]+0xF8 -> 0x0807C540 -> +0x2C = 0x15 -> 0x0803C270 -> key 0x0117 -> 0x08037212 -> no static resolver match`.
+
+No 0x08011812 call is proven on this path.
+
+### OPEN
+
+- mutation of row+0xF8;
+- identity/role of 0x0807C540;
+- reason for key 0x0117;
+- catalog correlation;
+- runtime-class/page/widget graph;
+- remaining SRAM-table writers.
+
