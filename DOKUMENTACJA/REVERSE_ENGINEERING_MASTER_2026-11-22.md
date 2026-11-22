@@ -553,3 +553,24 @@ OPEN:
 - touch/navigation;
 - runtime `0x20005F08` producer/content;
 - complete 21-selector capability matrix.
+
+
+## MENU TREE FULL CLOSURE — 2026-11-22
+
+MenuTree control-flow is now closed as a mechanism.
+
+Closed RAW chain:
+`0x08042348 -> 21 row objects @ object+0x42C/0x274 -> access/capability -> selected row -> 0x0807EB00 -> row index -> 0x0803C064 -> [0x20005EF0+index] -> class 0..20 destination family`.
+
+Direct RAW row-array constructor proof:
+`0x0803BF80 -> array constructor 0x0805BB43 -> FUN_0804BB42`.
+
+The MenuTree root table is 21×6 bytes and its exact selectors/text/bitmap IDs are documented in:
+`analiza/FW2213TK-2026-11-22/MENUTREE-FULL-CLOSURE-2026-11-22.md`.
+
+Important boundary:
+the first-byte menu selector and runtime class byte at `0x20005EF0` are distinct layers. The implementation must preserve that separation; do not substitute one for the other.
+
+The six additional records use selectors 90/97/100/98/95 and text IDs 14/18/16/19/20; these selectors are not fed directly to C064.
+
+MenuTree status: CLOSED at the control-flow/mechanism level. No guessed semantic mapping for +0x12A/+0x12B/+0x12C was introduced.
