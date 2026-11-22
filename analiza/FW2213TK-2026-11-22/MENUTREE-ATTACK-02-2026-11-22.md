@@ -228,13 +228,13 @@ Poprawny model:
       -> +0x12B/+0x12C
       -> descriptor install
 
-## 9A. NOWE HARD — odzyskany konstruktor klasy row
+## 9A. NOWE STRONG/HARD — odzyskany konstruktor klasy zgodnej z layoutem row
 
 Pełny decompiled.c zawiera:
 
 FUN_0804BB42(param_1)
 
-i jest to kluczowy konstruktor klasy używanej przez FUN_0804BC6C.
+i jest to konstruktor klasy z dokładnie tym samym layoutem childów, na których operuje FUN_0804BC6C. Bez bezpośredniego XREF z raw MenuTree nie nazywamy go jeszcze definitywnie konstruktorem MenuRow.
 
 Twarde cechy:
 - ustawia vptr przez DAT_0804BC60;
@@ -246,7 +246,7 @@ Twarde cechy:
 - ma pola/stan aż do offsetu +0x11D;
 - funkcja leży bezpośrednio przed FUN_0804BC6C, które operuje dokładnie na tych samych child offsets.
 
-To daje twardą klasę row:
+Daje to twardą klasę/layout zgodny z row-builderem:
 
     RowObject
       vptr = DAT_0804BC60
@@ -256,7 +256,7 @@ To daje twardą klasę row:
       +0xF8 = state/indicator child (FUN_08032D7C)
       +0x2C = dodatkowy child (FUN_08031BD4)
 
-Status: FACT / CLOSED dla klasy i layoutu.
+Status: FACT dla konstruktora i layoutu; STRONG dla utożsamienia z konkretnym MenuRow.
 
 ### Konsekwencja dla FUN_08032F08
 
@@ -292,7 +292,7 @@ Mamy teraz prawdziwy mechanizm state overlay:
         -> +0x2C state byte
         -> FUN_08032E80 / FUN_08032EB8 / FUN_08032F08
 
-To jest kandydat na warstwę state/selection/access marker, a nie selector ID.
+To jest kandydat na warstwę state/selection/access marker. Nie jest to dowód, że +0x2C jest selector ID.
 
 Nie wolno utożsamiać +0x2C z selector.
 
