@@ -32,8 +32,10 @@ catalog -> PID -> runtime record -> storage -> type -> min/max/default -> provid
 
 ## Tool rules
 - deterministic output
-- RAW and PROJECT addresses together
+- RAW, PROJECT and RUNTIME addresses together
+- runtime base is 0x08010000; PROJECT base is 0x08000000
 - never silently apply address offsets
+- vtable/function-pointer values are runtime addresses and must be translated before RAW indexing
 - candidate/proven status explicit
 - JSON output where useful
 - tests for new parsers/decoders
@@ -45,3 +47,8 @@ catalog -> PID -> runtime record -> storage -> type -> min/max/default -> provid
 - `tools/provider_interface_scan.py` — evidence-first inspection of a known provider/interface address; deliberately does not assume a contiguous vtable.
 - `tools/test_provider_interface_scan.py` — scanner self-tests.
 - Provider interface workflow now distinguishes code-pointer entries from mixed data in interface-adjacent regions.
+
+
+## PASS 19 address-base correction
+
+The firmware image has a runtime/repacked base of 0x08010000 while static PROJECT addresses use 0x08000000 + RAW. Vtable analysis must inspect RAW at RUNTIME - 0x08010000. Provider vtable 0x080A31F0 therefore lives at RAW 0x931F0, not RAW 0xA31F0.
