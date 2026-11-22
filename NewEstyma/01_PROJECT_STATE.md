@@ -388,3 +388,26 @@ OPEN:
 - semantic identity of storage 0x20021FAA;
 - reason class12 writes type 5 after startup type 1;
 - UI meaning of the 0..7 result.
+
+
+## AUTONOMOUS PASS 34 — RUNTIME KEY 3 STORAGE / TYPE CLOSURE — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-34-RUNTIME-KEY3-STORAGE-TYPE-CLOSURE-2026-11-22.md`
+
+### NEW-HARD
+- Runtime key 3 startup storage is `0x20021FAA = 0x200208EC + 0x16BE`.
+- Startup runtime record type for key 3 is 1.
+- `FUN_08011812` stores type-1 records with byte-width `STRB`; key 3 is therefore physically byte-backed.
+- Class 12's type-5 temporary does not imply type-5 storage; final width is controlled by the located runtime record.
+- Key 4 similarly uses `0x20021FBA = 0x200208EC + 0x16CE`, type 2.
+- Nearby startup keys `0x3500/0x3502/0x350B` and `0x3721...` share the same broader configuration base.
+
+### OPEN
+- semantic identity of `0x20021FAA`;
+- direct key3 -> catalog PID bridge;
+- other UI/resource consumers;
+- full runtime-key startup matrix;
+- provider/persistence/CAN behavior for key 3.
+
+### CORRECTION
+Do not infer catalog PID identity from runtime lookup key 3. Key 3 is a runtime-manager key backed by a byte field.
