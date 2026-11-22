@@ -1185,3 +1185,34 @@ Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-28-RUNTIME-CLASS-FIRST-LEVE
 - resource/text/bitmap/PID/CAN links;
 - SRAM-table writers/aliases.
 
+
+
+## AUTONOMOUS PASS 29 — RUNTIME CLASS → CALLBACK/DESCRIPTOR LAYER — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-29-RUNTIME-CLASS-CALLBACK-DESCRIPTOR-LAYER-2026-11-22.md`
+
+### NEW-HARD
+
+- Complete 21-entry runtime-class TBB graph at RAW 0x3C076.
+- Generic runtime classes converge on PROJECT 0x08037F88.
+- 0x08037F88 constructs/copies the object at parent+0x110.
+- Temporary object vtable = 0x0809F848.
+- Callback/config pointer pool = RAW 0x386A8..0x387D8.
+- Classes 1..4 share 0x08038130 with r1=1..4.
+- Class 14 returns immediately.
+- Class 12 is an inline special parameter-manager path.
+- Class 15 bypasses generic construction via 0x08042318 -> 0x0802EADE.
+- Classes 16/17 share 0x08038488 after selector writes 0x10/0x11.
+- Class 18 has a distinct +0x110 builder.
+- Callback 0x08048037 directly writes object+0x12A=1.
+
+### OPEN
+
+- vtable 0x0809F848 semantics;
+- callback -> widget/resource/text/PID graph;
+- class 12 key-3 operation;
+- class 15 navigation/object graph;
+- remaining runtime-table writers/aliases;
+- complete UI/PID/CAN graph;
+- provider/persistence/260-row matrix.
+
