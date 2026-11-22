@@ -825,3 +825,12 @@ This upgrade is based on the supplied emulator result document. Independent repr
 - Therefore the remaining route to `FUN_08010FCE` is indirect/timer/framework based; no target is guessed.
 - `0x08062920` region is rejected as the missing parameter-TX builder.
 - Detailed evidence: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-10-ESTYMA-TASK-SPINE-2026-11-22.md`.
+
+## AUTONOMOUS PASS 11 — parameter manager caller closure
+
+- Whole decompilation blob contains one recovered direct caller of FUN_0801143C: FUN_08001AE4.
+- FUN_08001AE4 statically registers 0x3500, 0x3502 and 0x350B, all with sidecar/class 3.
+- This does not exclude dynamic/indirect registration; it proves only the complete direct-call set in the recovered export.
+- +0x7178 provider GET is exercised at registration and periodic synchronization; SET is used on provider/local mismatch.
+- Added static RE scanner: tools/re_scan.py, with self-test tools/test_re_scan.py.
+- Detailed pass: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-11-PARAMETER-MANAGER-CLOSURE-2026-11-22.md
