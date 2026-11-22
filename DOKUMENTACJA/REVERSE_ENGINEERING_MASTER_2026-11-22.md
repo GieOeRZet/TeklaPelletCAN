@@ -303,6 +303,7 @@ Zamknięte nowe fakty:
 - Odzyskany class layout ma twarde dzieci: +0x60 (FUN_0802DF08), +0x8C (FUN_0802FC10), +0xC4 (FUN_0802FC10), +0xF8 (FUN_08032D7C), dodatkowy +0x2C (FUN_08031BD4).
 - FUN_0804BC6C operuje na tych samych child offsets i dołącza je przez vtable +0x64.
 - capability resolver FUN_0803C178 jest osobną warstwą eligibility/visibility, nie nawigacją.
+- Row class-family ma callback/action pointer przy +0x26C; FUN_0804BD7C sprawdza callback vtable +0x0C i wywołuje vtable +0x08 z row. Touch origin i selector/navigation target pozostają OPEN.
 
 Nadal OPEN:
 - dokładny RAW argument FUN_08032F08 w ścieżce 0x422C8;
