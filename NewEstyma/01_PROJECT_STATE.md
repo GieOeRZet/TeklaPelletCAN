@@ -274,3 +274,34 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-28-RUNTIME-CLASS-FIRST-LEVEL-UI-DISP
 - special class 12/15/19/20 graph;
 - resource/text/bitmap/PID/CAN links;
 - SRAM-table writers/aliases.
+
+
+## AUTONOMOUS PASS 29 — RUNTIME CLASS → CALLBACK/DESCRIPTOR LAYER — 2026-11-22
+
+Report:
+analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-29-RUNTIME-CLASS-CALLBACK-DESCRIPTOR-LAYER-2026-11-22.md
+
+### NEW-HARD
+
+- Complete 21-byte runtime-class TBB table at RAW 0x3C076 is resolved.
+- Generic classes converge into PROJECT 0x08037F88.
+- 0x08037F88 constructs/copies the object at parent+0x110.
+- Temporary object vtable is 0x0809F848.
+- Static callback/config pointer pool is around RAW 0x386A8..0x387D8.
+- Classes 1..4 share 0x08038130 and explicitly pass r1=1..4.
+- Class 14 is immediate return.
+- Class 12 is an inline parameter-manager path, structurally distinct.
+- Class 15 bypasses the generic constructor through 0x08042318 -> 0x0802EADE.
+- Classes 16/17 share 0x08038488 after setting 0x10/0x11 at object+0x12B.
+- Class 18 uses a separate +0x110 descriptor builder.
+- At least callback 0x08048037 directly writes object+0x12A=1.
+
+### OPEN
+
+- vtable 0x0809F848 slot semantics;
+- callback -> widget/resource/text/PID graph;
+- class 12 key-3 parameter operation;
+- class 15 object/navigation path;
+- remaining runtime-table writers/aliases;
+- complete UI/PID/CAN graph;
+- provider/persistence/260-row matrix.
