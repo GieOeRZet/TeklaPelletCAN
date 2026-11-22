@@ -148,3 +148,40 @@ Regression test passed on the canonical BIN.
 - semantic meaning of access-table 0x0E and PID 0x0117;
 - complete runtime-class 0..20 handler -> page/widget/resource graph;
 - complete PID/UI/CAN matrix.
+
+
+## AUTONOMOUS PASS 25 — MENU ACCESS TABLE → ROW OBJECT → PID 0x0117 — 2026-11-22
+
+Report:
+analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-25-MENU-ACCESS-ROW-PID117-CLOSURE-2026-11-22.md
+
+### NEW-HARD
+
+- PROJECT 0x080422C8 is vtable slot 4 implementation for runtime vtable 0x0808F66C.
+- Constructor PROJECT 0x08074508 installs that vptr.
+- The constructor initializes a 21-element repeated region at object +0x42C, stride 0x274, count 0x15.
+- 0x080422C8 uses r8=object+0x524 and increments by 0x274, so each iteration addresses row[i]+0xF8.
+- If 0x20005F08[i] == 0x0E, the path reads row[i]+0x124 through 0x08032F08.
+- The returned value reaches 0x0803C270.
+- 0x0803C270 gates on a state object's +0x10 == 1 and forwards the value with logical key 0x0117 to 0x08037212.
+- 0x08037212 uses manager 0x20008D84 and resolves the logical key before calling 0x08011812.
+
+### NEW STRUCTURAL MODEL
+
+0x20005F08[i]
+-> row[i] (+0x42C + i*0x274)
+-> row[i]+0x124
+-> state gate
+-> logical key 0x0117
+-> 0x08037212 resolver
+-> parameter manager
+-> 0x08011812
+
+### OPEN
+
+- final PID/value/type resolved from logical key 0x0117;
+- identity of object+0x3C and its +0x10 gate;
+- producer/initializer of row[i]+0x124;
+- exact mapping of 21 runtime rows to root MenuTree selectors;
+- runtime-class 0..20 -> page/widget graph;
+- remaining arithmetic/alias writers of the two SRAM tables.
