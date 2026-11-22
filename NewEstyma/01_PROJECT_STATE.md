@@ -485,3 +485,10 @@ HARD (wykonane w firmware): access 0 -> row-builder dla wierszy 0..14, access 3 
 KOREKTA: argumenty FUN_0804BC6C(row,A,B) to ID BITMAP (A: 60..81, B: 82..101,159), nie ID tekstów; wcześniejszy odczyt "Sterownik/Palnik/..." z pola +2 był błędny.
 STRONG: wiersze 15..20 czytają (A,B)=(u16@+4,u16@+6) i klasę u16@+2; "selektory" 90/97/100/98/95 to pola sąsiednich rekordów = bitmapy B, więc teza "selector 90 -> Language" z MENUTREE jest niepewna.
 OPEN: źródło etykiet i ekranów docelowych; pętla drugiego etapu 15..20 z kodu; emulacja kończy się wywołaniem przez NULL po zbudowaniu wierszy.
+
+
+## AUTONOMOUS PASS 41 — NAWIGACJA MENU: DOTYK WIERSZA -> KLASA -> EFEKT — 2026-11-22
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-41-MENU-CLICK-DISPATCH-EXECUTED-2026-11-22.md ; dane: data/menu_click_effects_21.csv ; narzędzie: tools/menu_click_probe.py
+HARD (kod): handler przycisku FUN_0807EB00(this, sender): sender == this[+0x3B4] + i*0x274 -> FUN_0803C064(this[+0x3C], i) -> klasa 0x20005EF0[i]. Wiersz nie ma własnego callbacka (+0x26C = 0).
+HARD (wykonanie): wiersz 15 (klasa 12) = zmiana języka (key3 i currentLanguage 0->1); wiersze 2..5 (klasy 1..4) ustawiają +0x12B i +0x12C = 1..4 (wybór CO1..CO4) — producent instancji [ctx+0x12C] dla rodziny CH to menu główne.
+OPEN: klasy 11/13/14/15/18/19; samo przełączenie ekranu po +0x12A/+0x12B; drugi handler FUN_0807EB36 -> 0804EC18; etykiety i ekrany docelowe.

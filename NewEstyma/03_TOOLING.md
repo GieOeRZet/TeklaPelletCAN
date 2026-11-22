@@ -164,3 +164,5 @@ Function-level harness: ustaw r0/r1, LR=SENT|1, SP w SRAM, hook UC_HOOK_CODE na 
 - `tools/lang_cycle_probe.py` (PASS 39) — wykonanie sciezki class 12 (GET/SET key 3 + setLanguage) w emulatorze z asercjami.
 
 - `tools/menu_rows_probe.py` (PASS 40) — budowa ekranu menu (RUNTIME 0x0804BF7C + 0x08052160) i odczyt argumentow row-buildera dla access 0/3; asercje 15/21 wierszy.
+
+- `tools/menu_click_probe.py` (PASS 41) — wywolanie handlera przycisku wiersza 0x0808EB00 dla wierszy 0..20; efekty na key3/currentLanguage i ctx +0x12A/B/C; asercje.
