@@ -1007,3 +1007,28 @@ OPEN:
 - later writes/mutations to both runtime tables;
 - exact navigation semantics for rows 15..20;
 - complete widget/resource/callback graph.
+
+
+## AUTONOMOUS PASS 23 — POINTER FLOW / MENU RUNTIME TABLE MUTATION AUDIT — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-23-POINTER-FLOW-MENU-RUNTIME-MUTATION-AUDIT-2026-11-22.md`
+
+Added:
+- `tools/pointer_flow_scan.py`
+- `tools/test_pointer_flow_scan.py`
+
+NEW-HARD:
+- SRAM table `0x20005EF0` is materialized twice from literal pool RAW `0x3C218`: LDR literals at RAW `0x3C068` -> r0 and `0x3C17A` -> r2.
+- Function candidate PROJECT `0x0803C064` performs an indexed byte read through `0x20005EF0`.
+- Function candidate PROJECT `0x0803C178` performs an indexed byte read and a concrete byte store at `0x20005EF0 + 6`.
+- SRAM table `0x20005F08` is materialized by LDR literal RAW `0x422CE` -> r5; function candidate PROJECT `0x080522C8` performs a byte read at RAW `0x422DE`.
+
+The scanner uses two-stage pointer provenance:
+`LDR literal -> literal-pool word -> SRAM address -> same-function memory access`.
+This closes a layer that direct LE32/XREF scanning could not expose.
+
+Still OPEN:
+- semantic meaning of the +6 write;
+- complete mutation graph for all 21 entries of both tables;
+- MOVW/MOVT/address-arithmetic aliases;
+- full runtime-class/access-table -> page/widget/PID/CAN mapping.
