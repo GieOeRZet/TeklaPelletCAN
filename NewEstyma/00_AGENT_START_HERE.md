@@ -12,7 +12,10 @@ SHA-256: 1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071
 
 Mapping:
 PROJECT = 0x08000000 + RAW
-RE_PACK = PROJECT + 0x10000
+RUNTIME/RE_PACK = PROJECT + 0x10000
+RAW = RUNTIME - 0x08010000
+
+Important: vtable/function pointers stored in the running image are runtime addresses; translate them to PROJECT before indexing the raw BIN.
 
 RAW BIN is the source of truth.
 
@@ -34,7 +37,11 @@ RAW BIN is the source of truth.
 - provider: 0x20008D64
 - publication sink: 0x20008D60
 - manager vtable: 0x080A44F0
-- provider vtable address: 0x080A31F0 (slot contents OPEN; runtime materialization required)
+- provider vtable runtime address: 0x080A31F0
+- provider vtable PROJECT address: 0x080931F0
+- provider vtable RAW offset: 0x931F0
+- provider slot0 GET: runtime 0x0801DB31 / PROJECT 0x0800DB31
+- provider slot1 SET: runtime 0x0801DB79 / PROJECT 0x0800DB79
 - manager callback: FUN_08010FCE
 - runtime parameter stride: 0x2C
 - runtime scan bound: 660
@@ -45,8 +52,11 @@ RAW BIN is the source of truth.
 ## Latest scheduler closure
 startup -> 0x0800DDC0(0x20008D84,0x20008D64,0x20008D60) -> 0x08014824 -> scheduler registration -> 0x080147C8 -> vtable slot 0 -> FUN_08010FCE
 
+## Latest provider closure
+Provider vtable slots 0/1 are now HARD. Slot 0 is GET(PID, output) and slot 1 is SET(PID, value/type). This closure also corrected the runtime-vs-PROJECT address-base interpretation.
+
 ## Next targets
-1. Recover runtime materialization/indirect calls for provider vtable 0x080A31F0; GET/SET slots remain OPEN.
+1. Recover remaining provider interface slots and persistence semantics.
 2. Independently validate scheduler expiry -> FUN_08010FCE at runtime.
 3. Build the complete 260-row cross-layer matrix.
 4. Close sidecar class 1/2/3 semantics.
