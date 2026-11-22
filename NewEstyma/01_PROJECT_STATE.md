@@ -388,3 +388,32 @@ OPEN:
 - semantic identity of storage 0x20021FAA;
 - reason class12 writes type 5 after startup type 1;
 - UI meaning of the 0..7 result.
+
+
+## AUTONOMOUS PASS 34 — RUNTIME PARAMETER TABLE Z EMULACJI STARTUPU — 2026-11-22
+
+Report: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-34-RUNTIME-PARAM-TABLE-EMULATION-2026-11-22.md
+Data: analiza/FW2213TK-2026-11-22/data/ (runtime_param_table_655.csv, resolver_t1.csv, resolver_t2.csv)
+
+### NEW-HARD
+- Startup firmware uruchomiony w emulatorze (tools/emu_startup.py); 655 wywołań 0x0801143C wypełnia 655 unikalnych rekordów tabeli manager'a 0x20008D84.
+- Układ rekordu (stride 0x2C): +0 key, +4 storage, +8 typ, +0xC min, +0x10 typ min, +0x14 max, +0x18 typ max, +0x1C default, +0x20 typ default, +0x24 klasa sidecar, +0x28 wskaźnik nazwy ASCII.
+  Pola wartości znaczą tylko tyle bajtów, ile mówi ich własny kod typu (reszta = śmieci ze stosu). Default 5678 = brak.
+- Klucz runtime = PID. Wszystkie 448 PID katalogu panelu w tabeli, nazwy 448/448 identyczne.
+- KEY 3 = PID 0x0003 "Language" (u8, 0..30, storage 0x20021FAA = 0x200208EC+0x16BE; nazwa z BIN). Key 4 = "Parameters set Number".
+- 0x200208EC to blok ustawień: 603/655 storage'ów leży w +0x08..+0x3DD9; +0x16C3..+0x16C6 = 0x2105..0x2108 (konfiguracje sterujące widocznością menu).
+- 15 statystyk (0x3608..0x3619, 0x3628, 0x362A, 0x362C) w BKPSRAM 0x40024000.
+- Rezolwer FUN_08036FF2: tabela 1 @RAW 0x37B48 (49 rekordów CH, PID = baza + instancja - 1, instancja = [ctx+0x12C]); tabela 2 @RAW 0x37578 (372 rekordy, PID wprost).
+  196/196 instancji CH1..CH4 obecnych w runtime.
+
+### STRONG
+- Class 12 = przełączanie języka (key 3 Language, modulo 8 = 8 tabel TypedText). Brak dowodu widgetu wywołującego.
+
+### CORRECTIONS
+- PASS 26 REJECTED: rekord (0x0117 -> 0x3506 "Sound alarm activation") istnieje @RAW 0x3797C; PASS 26 odczytał tabelę z przesunięciem o 2 B.
+  Ścieżka 0x0E -> klucz 0x0117 dochodzi więc do PID 0x3506 i dalej do 0x08011812.
+- "logical key 3" -> PID 0x0003 Language.
+
+### OPEN
+- producent instancji [ctx+0x12C]; 21 rozbieżnych par min/max i dynamiczne zakresy; 10 kluczy tabeli 2 poza runtime po starcie;
+  20 rekordów bez nazwy; semantyka klasy sidecar +0x24; model kolejnych zadań FreeRTOS w emulatorze.

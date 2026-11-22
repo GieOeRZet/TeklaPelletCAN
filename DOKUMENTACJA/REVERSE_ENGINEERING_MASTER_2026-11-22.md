@@ -1285,3 +1285,23 @@ NEW HARD:
 - Therefore class 12 is operating on a real manager-owned runtime parameter record.
 
 Correction to terminology: "logical key 3" is now replaced by "runtime parameter lookup key 3" unless a direct PID mapping is proven.
+
+
+## PASS 34 — RUNTIME PARAMETER TABLE Z EMULACJI STARTUPU (2026-11-22)
+
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-34-RUNTIME-PARAM-TABLE-EMULATION-2026-11-22.md`; dane: `analiza/FW2213TK-2026-11-22/data/`.
+
+HARD:
+- 655 rekordów tabeli runtime (manager 0x20008D84, stride 0x2C) odczytane z RAM po emulacji startupu; układ rekordu i dekodowanie pól wartości wg własnego kodu typu — patrz raport §1.
+- Klucz runtime = PID; 448/448 PID katalogu panelu w tabeli, nazwy zgodne. Key 3 = PID 0x0003 "Language" (u8 0..30, storage 0x20021FAA = 0x200208EC+0x16BE).
+- 0x200208EC = blok ustawień (603 storage'ów); +0x16C3..+0x16C6 = 0x2105..0x2108; 15 statystyk w BKPSRAM 0x40024000.
+- Rezolwer 0x08036FF2: tabela 1 (RAW 0x37B48, 49 rekordów CH, PID = baza + instancja - 1) i tabela 2 (RAW 0x37578, 372 rekordy, PID wprost).
+- (0x0117 -> 0x3506 "Sound alarm activation") @RAW 0x3797C.
+
+STRONG: class 12 = przełączanie języka (8 języków, modulo 8).
+
+KOREKTA: PASS 26 (negative closure klucza 0x0117) jest ODRZUCONY (przesunięty odczyt tabeli o 2 B). Sekcja 15A MenuTree o ścieżce 0x0E pozostaje, ale rezolucja dochodzi do PID 0x3506.
+REJECTED także: "logical key 3" jako nieznany klucz — to PID 0x0003.
+
+OPEN: producent [ctx+0x12C]; dynamiczne zakresy (21 par min/max); 10 kluczy tabeli 2 poza runtime; semantyka klasy sidecar +0x24; model kolejnych zadań FreeRTOS w emulatorze.
+Narzędzia: tools/emu_startup.py, runtime_param_table.py, resolver_tables.py, bl_xref.py, disasm_thumb.py (+ testy).

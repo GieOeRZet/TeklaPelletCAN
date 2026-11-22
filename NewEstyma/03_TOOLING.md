@@ -137,3 +137,18 @@ constructor -> vtable -> object fields -> indirect dispatch -> callback.
 Future UI tracing must follow both:
 - static callback/config pointers;
 - vtable calls through object+0x110.
+
+
+## PASS 34 additions — EMULACJA STARTUPU (nowa klasa dowodu: stan RAM po inicjalizacji)
+
+- `tools/emu_startup.py` — emulacja startupu FW2213TK w Unicornie (Cortex-M4). Obraz pod RUNTIME 0x08010000. Opcje: `--max`, `--ram`, `--watch LO:HI`, `--trace-calls ADDR`, `--stub ADDR=VAL`, `--first-task`, `--patch-nop`.
+  API: `boot(bin)` zwraca `(mu, raw)` po startupie + pierwsze zadanie FreeRTOS. Pomijane: pętle RCC (3 NOP-y tylko w kopii w pamięci), `RCC_GetFlagStatus` 0x08028AE4 -> 1, svc #0 odtwarzane ręcznie.
+  NIE modeluje przerwań, PendSV/kolejnych zadań ani peryferiów. Nie dodawaj hooków UC_HOOK_BLOCK ani zapisu pamięci w hookach odczytu (zakłóca emulację).
+  Hook na każdą instrukcję jest ~100x wolniejszy; używaj hooków jednoadresowych.
+- `tools/runtime_param_table.py` — tabela runtime 655 rekordów (CSV).  `tools/test_runtime_param_table.py` — regresja.
+- `tools/resolver_tables.py` — tabele rezolwera 08036FF2 (49 + 372 rekordy).  `tools/test_resolver_tables.py` — regresja.
+- `tools/bl_xref.py` — wszystkie BL/B.W do adresów (UWAGA: adresy RUNTIME = PROJECT + 0x10000).
+- `tools/disasm_thumb.py` — dezasemblacja Thumb-2 z adresu RUNTIME (`--project` dla PROJECT).
+
+Reguła adresowa (częsty błąd): argumenty narzędzi to adresy RUNTIME; adresy w raportach to PROJECT. 0x0801143C (PROJECT) = 0x0802143C (RUNTIME).
+Reguła odczytu tabel: rekordy 4-bajtowe są wyrównane do bazy tabeli; odczyt z przesunięciem 2 B daje fałszywe pary (błąd PASS 26).
