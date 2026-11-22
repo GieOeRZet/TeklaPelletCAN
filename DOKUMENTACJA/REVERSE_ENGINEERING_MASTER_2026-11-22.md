@@ -292,6 +292,26 @@ Level stored przy +0x158.
 
 FACT: 6154 odblokowuje dodatkową warstwę UI.
 
+## 15A. MenuTree — aktualizacja 2026-11-22
+
+Nowy pass: analiza/FW2213TK-2026-11-22/MENUTREE-ATTACK-02-2026-11-22.md
+
+Zamknięte nowe fakty:
+- FUN_08032F08 = getter bajtu row/object +0x2C;
+- 0x0803C270 nie jest osobnym entry-pointem Ghidra; leży wewnątrz FUN_0803C064 (+0x20C), więc nie nazywamy go niezależną funkcją bez RAW proof;
+- FUN_0804BC6C ma twarde child offsets: +0x60, +0x8C, +0xF8; parent attachment przez vtable +0x64;
+- +0x60 przechodzi przez FUN_080307BC (resource/Bitmap setter);
+- +0x8C przechodzi przez FUN_080313A4 (resource setter);
+- capability resolver FUN_0803C178 jest osobną warstwą eligibility/visibility, nie nawigacją.
+
+Nadal OPEN:
+- row class/vtable;
+- touch/navigation;
+- producer/content 0x20005F08;
+- dokładna semantyka RAW sub-entry 0x0803C270;
+- screen destinations selectorów 0/90/97/100/98/95;
+- kompletne MenuTree.
+
 ## 15. Menu — WAŻNE: nadal NIE mamy pełnego drzewa
 
 Nie mamy jeszcze kompletnego, dowiedzionego:
