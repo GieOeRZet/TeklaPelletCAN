@@ -52,7 +52,7 @@ def scan(path,targets,window=0x180):
             hw=struct.unpack_from("<H",data,p)[0]; m=mem16(hw)
             if m and m["base_reg"]==rt:
                 accesses.append({"at_raw":p,"at_true":raw_to_true(p),**m})
-            if hw in (0x4770,0xBD00): break
+            if hw == 0x4770 or (hw & 0xFF00) == 0xBD00 or hw == 0xE8BD: break
         out.append({"target_true":value,"target_project":project(value),"pool_raw":pool_raw,
                     "pool_true":pool_true,"literal_load_raw":off,"literal_load_true":raw_to_true(off),
                     "loaded_register":f"r{rt}","function_start_raw":fstart,
