@@ -21,7 +21,7 @@ Full universal reconstruction of Estyma firmware behavior, eventually targeting 
 - Scheduler registration leading to FUN_08010FCE.
 
 ## Main OPENs
-- Complete provider vtable 0x080A31F0 interface; slot targets currently OPEN.
+- Provider vtable 0x080A31F0: slots 0/1 HARD (GET/SET); remaining interface OPEN.
 - Full 260-row cross-layer matrix.
 - Descriptor/record ownership and multi-instance mapping.
 - Local parameter write -> outbound CAN publication bridge.
@@ -36,11 +36,20 @@ provider = 0x20008D64
 sink = 0x20008D60
 manager vtable = 0x080A44F0
 manager vtable slot 0 = FUN_08010FCE
-provider vtable = 0x080A31F0
+provider vtable runtime = 0x080A31F0
+provider vtable PROJECT = 0x080931F0
+provider vtable RAW = 0x931F0
+provider slot0 GET = runtime 0x0801DB31 / PROJECT 0x0800DB31
+provider slot1 SET = runtime 0x0801DB79 / PROJECT 0x0800DB79
 
 ## Protocol anchors
 READ: StdId 0x0604, command 0x40
 Publication: StdId 0x0584, command 0x42
+
+Address rule:
+- runtime pointer = PROJECT + 0x10000
+- PROJECT = RAW + 0x08000000
+- never index RAW using a runtime pointer directly.
 
 Do not confuse:
 - catalog 260 with runtime 660
