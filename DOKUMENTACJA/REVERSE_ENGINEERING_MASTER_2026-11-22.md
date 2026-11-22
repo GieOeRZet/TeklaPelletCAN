@@ -1069,3 +1069,40 @@ RAW 0x3C1FC..0x3C1FF is one Thumb-2 `MOV.W r1,#0x122`; RAW 0x3C1FE is the second
 - complete runtime-class handler -> page/widget/resource graph;
 - complete PID/UI/CAN matrix.
 
+
+
+## AUTONOMOUS PASS 25 — MENU ACCESS TABLE → ROW OBJECT → PID 0x0117 CLOSURE — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-25-MENU-ACCESS-ROW-PID117-CLOSURE-2026-11-22.md`
+
+### NEW-HARD
+
+- PROJECT 0x080422C8 is vtable slot 4 of runtime vtable 0x0808F66C.
+- Constructor PROJECT 0x08074508 installs vptr 0x0808F66C.
+- The same constructor initializes 21 repeated objects at object+0x42C, stride 0x274, count 0x15.
+- 0x080422C8 uses object+0x524+i*0x274 = row[i]+0xF8.
+- access-table byte 0x0E triggers a read of row[i]+0x124.
+- row[i]+0x124 reaches 0x0803C270.
+- 0x0803C270 requires state-object +0x10 == 1 and forwards the value with logical key 0x0117.
+- 0x08037212 uses manager 0x20008D84 and resolves that logical key before calling 0x08011812.
+
+### CLOSED STRUCTURAL CHAIN
+
+`0x20005F08[i]`
+-> `row[i] (+0x42C + i*0x274)`
+-> `row[i]+0x124`
+-> state gate
+-> logical key `0x0117`
+-> `0x08037212`
+-> parameter manager `0x20008D84`
+-> `0x08011812`
+
+### OPEN
+
+- final PID/value/type for logical key 0x0117;
+- identity of object+0x3C and +0x10 state gate;
+- producer/initializer of row[i]+0x124;
+- exact 21-row MenuTree selector mapping;
+- runtime class 0..20 -> page/widget graph;
+- remaining arithmetic/alias writers of the two SRAM tables.
+
