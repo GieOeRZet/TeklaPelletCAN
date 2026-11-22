@@ -708,3 +708,23 @@ Next macro target: full 260-parameter registration tuple extraction and PID -> s
 - Whole-BIN literal scan found exactly one reference to `0x200114C0`: `0x08063D04`, loaded before the call to `0x0800FF50`.
 - Exact initializer/constructor of `[0x200114C0+0]` remains OPEN; protocol semantic label (e.g. SDO) remains OPEN.
 - Closure artifact: `analiza/FW2213TK-2026-11-22/PARAMETER-RESPONSE-DISPATCH-100-CLOSURE-2026-11-22.md`.
+
+
+## AUTONOMOUS PASS 07 — 2026-11-22
+
+New artifact: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-07-MENU-D60-RECONCILIATION-2026-11-22.md`.
+
+### NEW-HARD — Menu selector 8/9 capability gates
+- selector 8 -> internal index 0x11C -> CAN 0x350C -> visible iff nonzero.
+- selector 9 -> internal index 0x122 -> CAN 0x3525 -> visible iff nonzero.
+These are capability/visibility gates, not navigation targets.
+
+### IMPORTANT SOURCE RECONCILIATION — D60
+A current summary statement previously said startup/decompression confirms `[0x20008D60]=0x080A4544`. Canonical-BIN-derived OPEN1 evidence contradicts that as a direct proof: whole-BIN direct LE32 occurrence counts are 0 for both `0x20008D60` and `0x080A4544`, and startup path `0x08094644 -> 0x0808F74C -> 0x08062D82` is not a conventional .data/.bss copy into D60.
+
+Therefore:
+- candidate D60 vptr `0x080A4544`: OPEN;
+- D60 slot 0 -> `FUN_0806E59C`: OPEN;
+- do not promote this edge to HARD until the actual runtime write/object-construction proof is recovered.
+
+RAW BIN remains the source of truth.
