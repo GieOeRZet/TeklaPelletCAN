@@ -1216,3 +1216,28 @@ Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-29-RUNTIME-CLASS-CALLBACK-D
 - complete UI/PID/CAN graph;
 - provider/persistence/260-row matrix.
 
+
+
+## AUTONOMOUS PASS 30 — UI CALLBACK OBJECT VTABLE 0x0809F848 — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-30-UI-CALLBACK-OBJECT-VTABLE-2026-11-22.md`
+
+### NEW-HARD
+
+- 0x08039494 installs vtable 0x0809F848 at the object created/copied into parent+0x110.
+- Vtable RAW = 0x8F848; non-zero slots are 2,3,8,9,14,15.
+- Object layout is +0x00 vptr, +0x04 context, +0x08 callback/table pointer, +0x0C signed/index field.
+- Slots 2/8 implement indirect callback dispatch.
+- Slots 3/9 implement the corresponding boolean/state-check family.
+- The +0x110 object is therefore an executable polymorphic runtime object.
+
+### OPEN
+
+- vtable slot semantics;
+- callback -> widget/resource/text/PID graph;
+- slots 14/15;
+- constructor 0x08039394 static pair;
+- class 12/15 paths;
+- runtime-table writers;
+- complete UI/PID/CAN matrix.
+
