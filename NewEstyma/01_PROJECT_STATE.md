@@ -355,3 +355,18 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-31-VTABLE-SLOT2-CALLBACK-BRIDGE-2026
 - class 12/15;
 - runtime table writers;
 - full UI/PID/CAN graph.
+
+
+## AUTONOMOUS PASS 32 — CLASS 12 PARAMETER-3 CYCLIC OPERATION — 2026-11-22
+
+HARD:
+- Runtime class 12 is a special action path at RAW 0x3C12A.
+- 0x080373BA reads logical key 3 through concrete parameter manager 0x20008D84, increments it, and commits the increment with type 5 via 0x08011812.
+- The class-12 caller increments the returned value again and 0x080373E6 writes the result modulo 8, again using logical key 3, manager 0x20008D84 and type 5.
+- Therefore the class-12 branch performs two real parameter writes and returns the final 0..7 modulo result.
+
+OPEN:
+- semantic identity/PID of logical key 3;
+- caller-level meaning of the returned 0..7 state;
+- whether the intermediate write is externally observable;
+- full class-12 UI/resource linkage.
