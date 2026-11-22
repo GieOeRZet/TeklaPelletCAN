@@ -214,3 +214,38 @@ Correct chain:
 - relation key 0x2123 -> value 0x0117 to the 260-slot catalog;
 - runtime class -> page/widget graph;
 - remaining SRAM-table writers/aliases.
+
+
+## AUTONOMOUS PASS 27 — ROW +0xF8 DESCRIPTOR / VALUE 0x15 — 2026-11-22
+
+Report:
+analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-27-ROW-F8-DESCRIPTOR-VALUE15-CLOSURE-2026-11-22.md
+
+### NEW-HARD
+
+- Row constructor PROJECT 0x08089570 stores 0x0807C540 at row+0xF8.
+- A second row constructor at PROJECT 0x08089594 stores the same 0x0807C540 at +0xF8.
+- PROJECT 0x08032F08 reads byte +0x2C from that pointer.
+- Canonical static byte at 0x0807C540+0x2C is 0x15.
+- Therefore constructor-established 0x08032F08 result is 0x15.
+
+### REVISED 0x0E PATH
+
+0x20005F08[i]==0x0E
+-> row[i]+0xF8
+-> 0x0807C540
+-> byte +0x2C = 0x15
+-> 0x0803C270
+-> logical key 0x0117
+-> 0x08037212
+-> no static resolver-key match
+-> no 0x08011812.
+
+### OPEN
+
+- mutation of row+0xF8 after construction;
+- identity/role of 0x0807C540;
+- reason for logical key 0x0117 on this path;
+- 260-slot catalog correlation;
+- runtime-class/page/widget graph;
+- remaining SRAM-table writers.
