@@ -987,3 +987,23 @@ OPEN:
 - complete screen/widget/visibility/access/PID/CAN matrix.
 
 PASS 21 does not invalidate the existing 21-slot / 15+6 access-dependent construction closure; it provides direct physical-BIN anchor verification for that model.
+
+
+## AUTONOMOUS PASS 22 — IAR .DATA / MENU RUNTIME TABLE CLOSURE — 2026-11-22
+
+Added deterministic `tools/iar_data_extract.py` and regression test. Physical canonical BIN was decompressed using the already proven IAR LZ77 algorithm.
+
+HARD:
+- `.data` source RAW 0x96114..0x9694D, decompressed size 0x118B3 to SRAM 0x20000000.
+- `0x20005EF0[0..20] = 00 0A 01 02 03 04 05 06 07 08 09 0B 0D 11 0F 0C 0E 12 10 13 14`.
+- `0x20005F08[0..20]` is byte-identical.
+- Both tables initially equal the first-byte selectors of the 21-entry root MenuTree table at RAW 0x42348.
+- Configuration-driven visibility mapping is consistent with the recovered C064/C178 logic: 1..4 -> 0x10E/0x2105; 5 -> 0x10F/0x2106; 6 -> 0x110/0x2108; 7 -> 0x111/0x2107; 8 -> 0x11C; 9 -> 0x122.
+
+MODEL CORRECTION:
+The selector and runtime class are separate physical layers, but their initial values are identical. Do not claim their values are inherently different. Do not collapse the layers either, because the firmware reads them through different addresses/paths.
+
+OPEN:
+- later writes/mutations to both runtime tables;
+- exact navigation semantics for rows 15..20;
+- complete widget/resource/callback graph.
