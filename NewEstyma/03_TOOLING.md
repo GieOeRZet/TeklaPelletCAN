@@ -100,3 +100,15 @@ Pointer-flow correlation was extended from a row-relative field to its construct
 - the memory read performed through that pointer.
 
 This distinction is now required for UI/object graph work.
+
+
+## PASS 28 analysis note
+
+The runtime-class TBB table is now treated as a first-class graph node:
+runtime class -> handler -> common/special tail -> UI construction state.
+
+For UI graph work, preserve the distinction:
+- root MenuTree selector;
+- runtime class byte;
+- handler-internal selector bytes at object+0x12B/object+0x12C;
+- widget/page constructor inputs.
