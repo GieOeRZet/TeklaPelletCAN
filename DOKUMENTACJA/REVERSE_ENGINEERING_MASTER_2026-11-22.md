@@ -728,3 +728,24 @@ Therefore:
 - do not promote this edge to HARD until the actual runtime write/object-construction proof is recovered.
 
 RAW BIN remains the source of truth.
+
+
+## AUTONOMOUS 10-PASS 08 — CAN OBJECT GRAPH — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-10-PASS-08-CAN-OBJECT-GRAPH-2026-11-22.md`.
+
+### Net closure
+- 0x2002466C is HARD-confirmed as the poller object with vptr 0x080A4568 -> slot0 0x080629FC.
+- 0x08062AE4 is HARD-confirmed as a separate READ-frame producer: StdId 0x0604, command 0x40, then BLX through [poller+0x14].
+- Physical table 0x08094508 is HARD-confirmed: slot5 -> 0x0806E59C, slot8 -> 0x080629FC; constructor 0x080157A0 installs it.
+- 0x0806E59C -> 0x200244EC -> 0x08057224 is HARD transport path.
+- No direct 0x08062AE4 -> 0x0806E59C BL was found; object/vtable boundary is therefore real and must remain modeled.
+
+### Progress estimate
+Previous heuristic: ~55–60%. Current recommended heuristic: **~57–61%**, approximately **+1 to +2 percentage points**. This is a functional-coverage estimate, not a formal metric.
+
+### Main OPEN
+- concrete object stored at [poller+0x14];
+- its vptr and slot0;
+- first write/source of 0x20008D60;
+- full UI local-write -> outbound CAN bridge.
