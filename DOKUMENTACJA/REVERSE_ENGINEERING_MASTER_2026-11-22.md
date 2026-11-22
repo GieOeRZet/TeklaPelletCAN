@@ -848,3 +848,49 @@ This upgrade is based on the supplied emulator result document. Independent repr
 - FUN_08062D82 invokes FUN_08000E34 before creating GUITask, EstymaTask, CanRxTask and CanTxTask.
 - Therefore the three visible static parameter registrations are established during startup, before task execution.
 - The missing runtime bridge remains the parameter-manager object/framework behind +0x7178/+0x7180; no direct C edge from EstymaTask to FUN_08010FCE was found.
+
+## AUTONOMOUS PASS 17 — parameter-manager object / scheduler closure — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-17-PARAMETER-MANAGER-SCHEDULER-CLOSURE-2026-11-22.md`.
+
+### NEW-HARD — concrete parameter-manager ownership
+
+RAW constructor `PROJECT 0x0800DDC0` receives:
+- r0 = this,
+- r1 = provider,
+- r2 = publication sink,
+
+calls scheduler base constructor `0x08014824`, installs vtable `0x080A44F0), then stores:
+- `[this+0x7178] = r1`
+- `[this+0x7180] = r2`.
+
+Startup call at `0x0800024A` supplies:
+- `this = 0x20008D84`
+- provider = `0x20008D64`
+- publication sink = `0x20008D60`.
+
+Therefore:
+- parameter manager = `0x20008D84`
+- `+0x7178` concrete provider = `0x20008D64`
+- `+0x7180` concrete publication sink = `0x20008D60`
+- manager vtable = `0x080A44F0`.
+
+### NEW-HARD — provider concrete object
+
+`0x20008D64` is constructed by `0x0800DB08` and receives vptr `0x080A31F0`.
+Its complete slot mapping remains a separate target; no unverified slot is promoted.
+
+### NEW-HARD — scheduler route
+
+Because `0x0800DDC0` invokes scheduler base constructor `0x08014824` for `this=0x20008D84`, the parameter manager is registered through `0x0801478C` into scheduler manager `0x200246E8`.
+Scheduler loop `0x080147C8` invokes registered objects through virtual slot 0.
+Vtable `0x080A44F0` slot 0 is `FUN_08010FCE`.
+
+Architectural route:
+`0x080001AC -> 0x0800DDC0(0x20008D84,0x20008D64,0x20008D60) -> 0x08014824 -> 0x0801478C -> 0x080147C8 -> vtable[0] -> FUN_08010FCE`.
+
+### Correction of stale OPEN statements
+
+Earlier PASS 10/13 text saying the concrete `+0x7178/+0x7180` objects and scheduler route were fully unresolved is superseded by PASS 17.
+The remaining work is now implementation-level provider slots, independent runtime tick trace, and the 260-slot cross-layer matrix.
+
