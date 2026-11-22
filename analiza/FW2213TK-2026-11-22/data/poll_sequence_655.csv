@@ -1,0 +1,656 @@
+order,pid,name,can_id,dlc,data_hex
+0,0x3500,Main module type,0x604,8,40 00 35 01 00 00 00 00
+1,0x3502,CH expansion module type,0x604,8,40 02 35 01 00 00 00 00
+2,0x350B,Profile number,0x604,8,40 0b 35 01 00 00 00 00
+3,0x0003,Language,0x604,8,40 03 00 01 00 00 00 00
+4,0x0004,Parameters set Number,0x604,8,40 04 00 01 00 00 00 00
+5,0x215F,Outside temperature,0x604,8,40 5f 21 01 00 00 00 00
+6,0x3721,Outside temperature averaged,0x604,8,40 21 37 01 00 00 00 00
+7,0x3747,Outside calibration [dC],0x604,8,40 47 37 01 00 00 00 00
+8,0x4006,Power regulator [%],0x604,8,40 06 40 01 00 00 00 00
+9,0x3724,Out temp. radio sensor batt. volt [mV],0x604,8,40 24 37 01 00 00 00 00
+10,0x3725,Out temp. radio sensor signal [%],0x604,8,40 25 37 01 00 00 00 00
+11,0x3726,Out temp. radio sensor time since lasr rec.,0x604,8,40 26 37 01 00 00 00 00
+12,0x372B,Out temp. radio sensor sw. ver. before dot,0x604,8,40 2b 37 01 00 00 00 00
+13,0x372C,Out temp. radio sensor sw. ver. after dot,0x604,8,40 2c 37 01 00 00 00 00
+14,0x3729,Is summer time,0x604,8,40 29 37 01 00 00 00 00
+15,0x372A,Summer time threshold temp. [C],0x604,8,40 2a 37 01 00 00 00 00
+16,0x2161,Weather forecast 0,0x604,8,40 61 21 01 00 00 00 00
+17,0x2162,Weather forecast 1,0x604,8,40 62 21 01 00 00 00 00
+18,0x2163,Weather forecast 2,0x604,8,40 63 21 01 00 00 00 00
+19,0x2164,Weather validity left time [min],0x604,8,40 64 21 01 00 00 00 00
+20,0x2207,Boiler minimal pump temperature,0x604,8,40 07 22 01 00 00 00 00
+21,0x2208,Boiler on histeresis,0x604,8,40 08 22 01 00 00 00 00
+22,0x2291,Boiler off histeresis,0x604,8,40 91 22 01 00 00 00 00
+23,0x3333,Boiler pressure[mbar],0x604,8,40 33 33 01 00 00 00 00
+24,0x2001,Boiler temp[dC],0x604,8,40 01 20 01 00 00 00 00
+25,0x200A,Remote boiler 1 temp[dC],0x604,8,40 0a 20 01 00 00 00 00
+26,0x200B,Remote boiler 2 temp[dC],0x604,8,40 0b 20 01 00 00 00 00
+27,0x200C,Remote boiler 3 temp[dC],0x604,8,40 0c 20 01 00 00 00 00
+28,0x200D,Remote boiler 1 requested temp[C],0x604,8,40 0d 20 01 00 00 00 00
+29,0x200E,Remote boiler 2 requested temp[C],0x604,8,40 0e 20 01 00 00 00 00
+30,0x200F,Remote boiler 3 requested temp[C],0x604,8,40 0f 20 01 00 00 00 00
+31,0x2004,Boiler set result temp[C],0x604,8,40 04 20 01 00 00 00 00
+32,0x2003,Boiler set manual temp[C],0x604,8,40 03 20 01 00 00 00 00
+33,0x2002,Boiler program,0x604,8,40 02 20 01 00 00 00 00
+34,0x2005,Boiler on/off,0x604,8,40 05 20 01 00 00 00 00
+35,0x2286,Boiler pump test,0x604,8,40 86 22 01 00 00 00 00
+36,0x2209,Boiler schedule monday,0x604,8,40 09 22 01 00 00 00 00
+37,0x220A,Boiler schedule tuesday,0x604,8,40 0a 22 01 00 00 00 00
+38,0x220B,Boiler schedule wednesday,0x604,8,40 0b 22 01 00 00 00 00
+39,0x220C,Boiler schedule thursday,0x604,8,40 0c 22 01 00 00 00 00
+40,0x220D,Boiler schedule friday,0x604,8,40 0d 22 01 00 00 00 00
+41,0x220E,Boiler schedule saturday,0x604,8,40 0e 22 01 00 00 00 00
+42,0x220F,Boiler schedule sunday,0x604,8,40 0f 22 01 00 00 00 00
+43,0x2277,Boiler pump state,0x604,8,40 77 22 01 00 00 00 00
+44,0x2285,Exchanger cleaner test,0x604,8,40 85 22 01 00 00 00 00
+45,0x2293,Exhaust fan test,0x604,8,40 93 22 01 00 00 00 00
+46,0x2298,Exhaust fan test power,0x604,8,40 98 22 01 00 00 00 00
+47,0x228C,Exhaust fan power,0x604,8,40 8c 22 01 00 00 00 00
+48,0x216A,Exchanger cleaning request,0x604,8,40 6a 21 01 00 00 00 00
+49,0x216B,Exchanger silence mode,0x604,8,40 6b 21 01 00 00 00 00
+50,0x216C,Boiler minimal return temperature,0x604,8,40 6c 21 01 00 00 00 00
+51,0x216D,Boiler return mixer test,0x604,8,40 6d 21 01 00 00 00 00
+52,0x216E,Boiler mixer opening time [s],0x604,8,40 6e 21 01 00 00 00 00
+53,0x216F,CH mixer state,0x604,8,40 6f 21 01 00 00 00 00
+54,0x4000,Boiler return temp [dC],0x604,8,40 00 40 01 00 00 00 00
+55,0x2006,Burner external permission,0x604,8,40 06 20 01 00 00 00 00
+56,0x3121,Exchanger cleaning duration [s],0x604,8,40 21 31 01 00 00 00 00
+57,0x3122,Exchanger cleaning interval [min],0x604,8,40 22 31 01 00 00 00 00
+58,0x3124,,0x604,8,40 24 31 01 00 00 00 00
+59,0x3123,,0x604,8,40 23 31 01 00 00 00 00
+60,0x3127,Clean burner monit period [kg],0x604,8,40 27 31 01 00 00 00 00
+61,0x3128,Clean exchanger monit period [kg],0x604,8,40 28 31 01 00 00 00 00
+62,0x3125,,0x604,8,40 25 31 01 00 00 00 00
+63,0x3126,,0x604,8,40 26 31 01 00 00 00 00
+64,0x2119,Exhaust gas temperature (2) [C],0x604,8,40 19 21 01 00 00 00 00
+65,0x4009,Exhaust gas temperature (2) [C],0x604,8,40 09 40 01 00 00 00 00
+66,0x3129,Boiler min hydraulic pressure [0.1bar],0x604,8,40 29 31 01 00 00 00 00
+67,0x312A,Boiler max hydraulic pressure [0.1bar],0x604,8,40 2a 31 01 00 00 00 00
+68,0x3701,Min EGT required [C],0x604,8,40 01 37 01 00 00 00 00
+69,0x299E,Boiler pump work mode,0x604,8,40 9e 29 01 00 00 00 00
+70,0x3708,Boiler pump overrun [min],0x604,8,40 08 37 01 00 00 00 00
+71,0x371C,Boiler efficiency [d%],0x604,8,40 1c 37 01 00 00 00 00
+72,0x3750,Sweep mode,0x604,8,40 50 37 01 00 00 00 00
+73,0x2007,Burner state,0x604,8,40 07 20 01 00 00 00 00
+74,0x2251,Burner storage feeder,0x604,8,40 51 22 01 00 00 00 00
+75,0x2252,Burner burner feeder,0x604,8,40 52 22 01 00 00 00 00
+76,0x2253,Burner igniter,0x604,8,40 53 22 01 00 00 00 00
+77,0x2254,Burner blower,0x604,8,40 54 22 01 00 00 00 00
+78,0x226D,Burner storage feeding time [dS],0x604,8,40 6d 22 01 00 00 00 00
+79,0x4007,Blower power [%],0x604,8,40 07 40 01 00 00 00 00
+80,0x4005,Burner power [%],0x604,8,40 05 40 01 00 00 00 00
+81,0x2273,Burner blower corretion,0x604,8,40 73 22 01 00 00 00 00
+82,0x2256,Pellet predose [s],0x604,8,40 56 22 01 00 00 00 00
+83,0x370E,Pellet predose [g],0x604,8,40 0e 37 01 00 00 00 00
+84,0x2257,Max Feeding [s],0x604,8,40 57 22 01 00 00 00 00
+85,0x3710,Fuel consumption [Dkg/h],0x604,8,40 10 37 01 00 00 00 00
+86,0x3711,Time to grate cleaning [min],0x604,8,40 11 37 01 00 00 00 00
+87,0x228B,Grate full move time [s],0x604,8,40 8b 22 01 00 00 00 00
+88,0x218A,Is grate cleaning on,0x604,8,40 8a 21 01 00 00 00 00
+89,0x360A,State on closing actuator out in stop,0x604,8,40 0a 36 01 00 00 00 00
+90,0x3709,Nominal power [kW],0x604,8,40 09 37 01 00 00 00 00
+91,0x2276,Grate move indicator,0x604,8,40 76 22 01 00 00 00 00
+92,0x2258,Grate cleaning number,0x604,8,40 58 22 01 00 00 00 00
+93,0x3700,Storage feeder period [s],0x604,8,40 00 37 01 00 00 00 00
+94,0x2272,Feeder rate [dkg/h],0x604,8,40 72 22 01 00 00 00 00
+95,0x2259,Burner storage feeder test,0x604,8,40 59 22 01 00 00 00 00
+96,0x2279,Burner grate test,0x604,8,40 79 22 01 00 00 00 00
+97,0x3712,Blower type,0x604,8,40 12 37 01 00 00 00 00
+98,0x2284,Igniter test,0x604,8,40 84 22 01 00 00 00 00
+99,0x2295,Burner feeder test,0x604,8,40 95 22 01 00 00 00 00
+100,0x2283,Blower test,0x604,8,40 83 22 01 00 00 00 00
+101,0x2288,Blower test power,0x604,8,40 88 22 01 00 00 00 00
+102,0x2266,Refueling need request,0x604,8,40 66 22 01 00 00 00 00
+103,0x2260,Burner storage feeder work time during refuling [s],0x604,8,40 60 22 01 00 00 00 00
+104,0x2267,Burner storage feeder left time during refuling [s],0x604,8,40 67 22 01 00 00 00 00
+105,0x2261,blower char. 1,0x604,8,40 61 22 01 00 00 00 00
+106,0x2262,blower char. 2,0x604,8,40 62 22 01 00 00 00 00
+107,0x2263,blower char. 3,0x604,8,40 63 22 01 00 00 00 00
+108,0x2264,blower char. 4,0x604,8,40 64 22 01 00 00 00 00
+109,0x2265,blower char. 5,0x604,8,40 65 22 01 00 00 00 00
+110,0x2268,exh. fan char. 1,0x604,8,40 68 22 01 00 00 00 00
+111,0x226E,exh. fan char. 2,0x604,8,40 6e 22 01 00 00 00 00
+112,0x226F,exh. fan char. 3,0x604,8,40 6f 22 01 00 00 00 00
+113,0x2275,exh. fan char. 4,0x604,8,40 75 22 01 00 00 00 00
+114,0x227A,exh. fan char. 5,0x604,8,40 7a 22 01 00 00 00 00
+115,0x2289,Blower power during fire up,0x604,8,40 89 22 01 00 00 00 00
+116,0x2290,Incandescing time [min],0x604,8,40 90 22 01 00 00 00 00
+117,0x2292,Fuel calorific [kWh/kg],0x604,8,40 92 22 01 00 00 00 00
+118,0x3605,Lambda oxygen control,0x604,8,40 05 36 01 00 00 00 00
+119,0x214E,Oxygen for 30% of power [%],0x604,8,40 4e 21 01 00 00 00 00
+120,0x2152,Oxygen for 100% of power [%],0x604,8,40 52 21 01 00 00 00 00
+121,0x215A,Airflow speed for 30% of power [m/s],0x604,8,40 5a 21 01 00 00 00 00
+122,0x215B,Airflow speed for 100% of power [m/s],0x604,8,40 5b 21 01 00 00 00 00
+123,0x2153,Burner inertia [min],0x604,8,40 53 21 01 00 00 00 00
+124,0x2151,Grate silence mode,0x604,8,40 51 21 01 00 00 00 00
+125,0x3702,Nominal exhaust gas temp. [C],0x604,8,40 02 37 01 00 00 00 00
+126,0x3703,Max exhaust gas temp. [C],0x604,8,40 03 37 01 00 00 00 00
+127,0x299D,HALL Activated,0x604,8,40 9d 29 01 00 00 00 00
+128,0x300E,Burner blower minimal RPM [*100],0x604,8,40 0e 30 01 00 00 00 00
+129,0x3013,Burner blower max RPM,0x604,8,40 13 30 01 00 00 00 00
+130,0x3713,,0x604,8,40 13 37 01 00 00 00 00
+131,0x3714,,0x604,8,40 14 37 01 00 00 00 00
+132,0x226A,Brightness threshold,0x604,8,40 6a 22 01 00 00 00 00
+133,0x2250,Burner brightness,0x604,8,40 50 22 01 00 00 00 00
+134,0x226B,Burning off time [min],0x604,8,40 6b 22 01 00 00 00 00
+135,0x226C,Burner feeder temperature [dC],0x604,8,40 6c 22 01 00 00 00 00
+136,0x299C,Burner blower RPM,0x604,8,40 9c 29 01 00 00 00 00
+137,0x2999,Burner max continuous work time [h],0x604,8,40 99 29 01 00 00 00 00
+138,0x299A,Incandenscing fuel [%],0x604,8,40 9a 29 01 00 00 00 00
+139,0x299F,Burning type,0x604,8,40 9f 29 01 00 00 00 00
+140,0x4008,Burning type active,0x604,8,40 08 40 01 00 00 00 00
+141,0x3704,Blower power in incandescing [%],0x604,8,40 04 37 01 00 00 00 00
+142,0x3001,Start burning wood,0x604,8,40 01 30 01 00 00 00 00
+143,0x300B,Stop burning wood,0x604,8,40 0b 30 01 00 00 00 00
+144,0x3705,Blower power in hold/pause [%],0x604,8,40 05 37 01 00 00 00 00
+145,0x3003,Grate move in modulation [0.1s],0x604,8,40 03 30 01 00 00 00 00
+146,0x3010,Grate move interval in modulation [kg],0x604,8,40 10 30 01 00 00 00 00
+147,0x3012,Grate move interval in modulation [min],0x604,8,40 12 30 01 00 00 00 00
+148,0x3706,Current burner power [dkW],0x604,8,40 06 37 01 00 00 00 00
+149,0x371D,Oxygen target [0.1%],0x604,8,40 1d 37 01 00 00 00 00
+150,0x371F,Lambda oxygen averaged [%],0x604,8,40 1f 37 01 00 00 00 00
+151,0x372E,[m%],0x604,8,40 2e 37 01 00 00 00 00
+152,0x370B,Burner feeder % of stor. feeder,0x604,8,40 0b 37 01 00 00 00 00
+153,0x3727,Burner feeder absolut work time [s],0x604,8,40 27 37 01 00 00 00 00
+154,0x3748,Storage feeder pause in predose[s],0x604,8,40 48 37 01 00 00 00 00
+155,0x3000,Modulation blower power on wood [%],0x604,8,40 00 30 01 00 00 00 00
+156,0x3005,Fireup blower power on wood [%],0x604,8,40 05 30 01 00 00 00 00
+157,0x3006,Incandescing blower power on wood [%],0x604,8,40 06 30 01 00 00 00 00
+158,0x3007,Pause blower power on wood [%],0x604,8,40 07 30 01 00 00 00 00
+159,0x300C,Blower power in burning off [%],0x604,8,40 0c 30 01 00 00 00 00
+160,0x3008,Sec. air modulation MIN [%],0x604,8,40 08 30 01 00 00 00 00
+161,0x3009,Sec. air modulation MAX [%],0x604,8,40 09 30 01 00 00 00 00
+162,0x300A,Sec. air mixer position [%],0x604,8,40 0a 30 01 00 00 00 00
+163,0x2120,Lambda oxygen [%],0x604,8,40 20 21 01 00 00 00 00
+164,0x2270,Min power,0x604,8,40 70 22 01 00 00 00 00
+165,0x2271,Max power,0x604,8,40 71 22 01 00 00 00 00
+166,0x227B,Pwr reg. Kp,0x604,8,40 7b 22 01 00 00 00 00
+167,0x227C,Pwr reg. Ki,0x604,8,40 7c 22 01 00 00 00 00
+168,0x227D,Pwr reg. Kd,0x604,8,40 7d 22 01 00 00 00 00
+169,0x228A,Pwr reg. Kp 2,0x604,8,40 8a 22 01 00 00 00 00
+170,0x227E,Pwr reg. Ki 2,0x604,8,40 7e 22 01 00 00 00 00
+171,0x227F,Pwr reg. Kd 2,0x604,8,40 7f 22 01 00 00 00 00
+172,0x225A,Pwr reg. speed,0x604,8,40 5a 22 01 00 00 00 00
+173,0x370C,Min fire up time [min],0x604,8,40 0c 37 01 00 00 00 00
+174,0x370D,Igniter preheat time [s],0x604,8,40 0d 37 01 00 00 00 00
+175,0x370F,Burning off burner feeder work time [s],0x604,8,40 0f 37 01 00 00 00 00
+176,0x3715,Burner pause time [min],0x604,8,40 15 37 01 00 00 00 00
+177,0x3716,Burner pause power [%],0x604,8,40 16 37 01 00 00 00 00
+178,0x3717,Burner pause blower power [%],0x604,8,40 17 37 01 00 00 00 00
+179,0x372D,,0x604,8,40 2d 37 01 00 00 00 00
+180,0x371B,Min airflow (blower 100%) [dm/s],0x604,8,40 1b 37 01 00 00 00 00
+181,0x374D,Burner plug disc. possible,0x604,8,40 4d 37 01 00 00 00 00
+182,0x371A,Airflowmeter 1 flow,0x604,8,40 1a 37 01 00 00 00 00
+183,0x371E,Airflowmeter 2 flow,0x604,8,40 1e 37 01 00 00 00 00
+184,0x2110,Hot water 1 measured temperature,0x604,8,40 10 21 01 00 00 00 00
+185,0x2010,Hot water 1 comfort temperature,0x604,8,40 10 20 01 00 00 00 00
+186,0x2012,Hot water 1 economical temperature,0x604,8,40 12 20 01 00 00 00 00
+187,0x201A,Hot water 1 result temperature,0x604,8,40 1a 20 01 00 00 00 00
+188,0x2014,Hot water 1 program,0x604,8,40 14 20 01 00 00 00 00
+189,0x201C,Hot water 1 temperature max,0x604,8,40 1c 20 01 00 00 00 00
+190,0x2210,Hot water 1 heat now,0x604,8,40 10 22 01 00 00 00 00
+191,0x2212,Hot water 1 histeresis,0x604,8,40 12 22 01 00 00 00 00
+192,0x2214,Hot water 1 source,0x604,8,40 14 22 01 00 00 00 00
+193,0x2216,Hot water 1 delta source,0x604,8,40 16 22 01 00 00 00 00
+194,0x2218,Hot water 1 delta min temperature,0x604,8,40 18 22 01 00 00 00 00
+195,0x2278,Hot water pump state,0x604,8,40 78 22 01 00 00 00 00
+196,0x2296,HW1 pump test,0x604,8,40 96 22 01 00 00 00 00
+197,0x3749,Hot water circular pump state,0x604,8,40 49 37 01 00 00 00 00
+198,0x374A,HW1 circular pump test,0x604,8,40 4a 37 01 00 00 00 00
+199,0x2297,HW1 anti legionella,0x604,8,40 97 22 01 00 00 00 00
+200,0x374B,Hot water 1 circular pump fork time,0x604,8,40 4b 37 01 00 00 00 00
+201,0x374C,Hot water 1 circular pump pause time,0x604,8,40 4c 37 01 00 00 00 00
+202,0x2111,Hot water 1 needed temp. [C],0x604,8,40 11 21 01 00 00 00 00
+203,0x300D,Hot water priority,0x604,8,40 0d 30 01 00 00 00 00
+204,0x2154,Hot water 1 schedule monday,0x604,8,40 54 21 01 00 00 00 00
+205,0x2155,Hot water 1 schedule tuesday,0x604,8,40 55 21 01 00 00 00 00
+206,0x2156,Hot water 1 schedule wednesday,0x604,8,40 56 21 01 00 00 00 00
+207,0x2157,Hot water 1 schedule thursday,0x604,8,40 57 21 01 00 00 00 00
+208,0x2158,Hot water 1 schedule friday,0x604,8,40 58 21 01 00 00 00 00
+209,0x2159,Hot water 1 schedule saturday,0x604,8,40 59 21 01 00 00 00 00
+210,0x2160,Hot water 1 schedule sunday,0x604,8,40 60 21 01 00 00 00 00
+211,0x400A,Virt. energy consumer set temp [C],0x604,8,40 0a 40 01 00 00 00 00
+212,0x3004,Virt. energy consumer requested temp [C],0x604,8,40 04 30 01 00 00 00 00
+213,0x300F,Virt. consumer maximal power,0x604,8,40 0f 30 01 00 00 00 00
+214,0x351E,External fuel storage motor 1 test,0x604,8,40 1e 35 01 00 00 00 00
+215,0x351F,External fuel storage motor 2 test,0x604,8,40 1f 35 01 00 00 00 00
+216,0x3522,External fuel storage motor 1 state,0x604,8,40 22 35 01 00 00 00 00
+217,0x3523,External fuel storage motor 2 state,0x604,8,40 23 35 01 00 00 00 00
+218,0x3524,External fuel storage level sens. state,0x604,8,40 24 35 01 00 00 00 00
+219,0x3520,Ext. fuel storage motor 1 transport. time [s],0x604,8,40 20 35 01 00 00 00 00
+220,0x3526,Ext. fuel storage motor 1 overrun time [s],0x604,8,40 26 35 01 00 00 00 00
+221,0x3521,Ext. fuel storage time [s] to empty transport. hose,0x604,8,40 21 35 01 00 00 00 00
+222,0x3527,Ext. fuel storage feeder work time [s],0x604,8,40 27 35 01 00 00 00 00
+223,0x3528,Ext. fuel storage feeder pause time [s],0x604,8,40 28 35 01 00 00 00 00
+224,0x3529,Ext. fuel storage reserve sensor,0x604,8,40 29 35 01 00 00 00 00
+225,0x352A,Ext. fuel stor. reserve sens. state,0x604,8,40 2a 35 01 00 00 00 00
+226,0x352B,Ext. fuel storage max cycles no.,0x604,8,40 2b 35 01 00 00 00 00
+227,0x3511,Cascade master power level,0x604,8,40 11 35 01 00 00 00 00
+228,0x3512,Cascade slave 1 power level,0x604,8,40 12 35 01 00 00 00 00
+229,0x3513,Cascade slave 2 power level,0x604,8,40 13 35 01 00 00 00 00
+230,0x3514,Cascade slave 3 power level,0x604,8,40 14 35 01 00 00 00 00
+231,0x3515,Cascade minimal energy [%],0x604,8,40 15 35 01 00 00 00 00
+232,0x3516,Cascade maximal energy [%],0x604,8,40 16 35 01 00 00 00 00
+233,0x3517,Cascade time to inc power lvel [min],0x604,8,40 17 35 01 00 00 00 00
+234,0x3518,Cascade time to dec power lvel [min],0x604,8,40 18 35 01 00 00 00 00
+235,0x351B,Cascade timer to inc power lvel [s],0x604,8,40 1b 35 01 00 00 00 00
+236,0x351C,Cascade timer to dec power lvel [s],0x604,8,40 1c 35 01 00 00 00 00
+237,0x3519,Cascade current power lvel,0x604,8,40 19 35 01 00 00 00 00
+238,0x351A,Cascade slaves number,0x604,8,40 1a 35 01 00 00 00 00
+239,0x2032,CH comf temp set [dC],0x604,8,40 32 20 01 00 00 00 00
+240,0x2048,CH eco temp set [dC],0x604,8,40 48 20 01 00 00 00 00
+241,0x2166,CH res [dC],0x604,8,40 66 21 01 00 00 00 00
+242,0x2064,CH program,0x604,8,40 64 20 01 00 00 00 00
+243,0x2016,Room measured temp,0x604,8,40 16 20 01 00 00 00 00
+244,0x2299,CH pump state,0x604,8,40 99 22 01 00 00 00 00
+245,0x229D,CH pump test,0x604,8,40 9d 22 01 00 00 00 00
+246,0x22A1,Room temp sensor type,0x604,8,40 a1 22 01 00 00 00 00
+247,0x22A5,CH sensor use,0x604,8,40 a5 22 01 00 00 00 00
+248,0x4001,CH temp measured,0x604,8,40 01 40 01 00 00 00 00
+249,0x22AD,CH temp calc,0x604,8,40 ad 22 01 00 00 00 00
+250,0x22B1,CH delta source [C],0x604,8,40 b1 22 01 00 00 00 00
+251,0x2126,CH schedule monday,0x604,8,40 26 21 01 00 00 00 00
+252,0x212A,CH schedule tuesday,0x604,8,40 2a 21 01 00 00 00 00
+253,0x212E,CH schedule wednesday,0x604,8,40 2e 21 01 00 00 00 00
+254,0x2132,CH schedule thursday,0x604,8,40 32 21 01 00 00 00 00
+255,0x2136,CH schedule friday,0x604,8,40 36 21 01 00 00 00 00
+256,0x213A,CH schedule saturday,0x604,8,40 3a 21 01 00 00 00 00
+257,0x213E,CH schedule sunday,0x604,8,40 3e 21 01 00 00 00 00
+258,0x2142,CH mode,0x604,8,40 42 21 01 00 00 00 00
+259,0x2146,Tch set manual [C],0x604,8,40 46 21 01 00 00 00 00
+260,0x214A,CH mixer test,0x604,8,40 4a 21 01 00 00 00 00
+261,0x22B5,CH mixer opening time [s],0x604,8,40 b5 22 01 00 00 00 00
+262,0x22B9,CH mixer state,0x604,8,40 b9 22 01 00 00 00 00
+263,0x22BD,Room temp hysteresis [C],0x604,8,40 bd 22 01 00 00 00 00
+264,0x22C1,Room sensor cal [C],0x604,8,40 c1 22 01 00 00 00 00
+265,0x22C5,CH temp for -20C [C],0x604,8,40 c5 22 01 00 00 00 00
+266,0x400C,CH temp for -10C [C],0x604,8,40 0c 40 01 00 00 00 00
+267,0x22C9,CH temp for 0C [C],0x604,8,40 c9 22 01 00 00 00 00
+268,0x22CD,CH temp for -20C [C],0x604,8,40 cd 22 01 00 00 00 00
+269,0x22D1,CH source,0x604,8,40 d1 22 01 00 00 00 00
+270,0x22D5,CH max temp [C],0x604,8,40 d5 22 01 00 00 00 00
+271,0x22D9,CH correction factor [C],0x604,8,40 d9 22 01 00 00 00 00
+272,0x22E5,CH temp lowering [C],0x604,8,40 e5 22 01 00 00 00 00
+273,0x22E9,Min CH temp for pump [C],0x604,8,40 e9 22 01 00 00 00 00
+274,0x22F1,Permament pump,0x604,8,40 f1 22 01 00 00 00 00
+275,0x22F5,CH needed temp. [C],0x604,8,40 f5 22 01 00 00 00 00
+276,0x22F9,Tch lowering for energ. consumption reduction,0x604,8,40 f9 22 01 00 00 00 00
+277,0x22FD,CH status,0x604,8,40 fd 22 01 00 00 00 00
+278,0x2301,CH thermostat state,0x604,8,40 01 23 01 00 00 00 00
+279,0x2305,CH room set temp. adjustment [dC],0x604,8,40 05 23 01 00 00 00 00
+280,0x2309,Room temp. radio sensor batt. volt [mV],0x604,8,40 09 23 01 00 00 00 00
+281,0x230D,Room temp. radio sensor signal [%],0x604,8,40 0d 23 01 00 00 00 00
+282,0x2311,Room temp. radio sensor time since lasr rec.,0x604,8,40 11 23 01 00 00 00 00
+283,0x2319,Room temp. radio sensor soft. ver. before dot,0x604,8,40 19 23 01 00 00 00 00
+284,0x231D,Room temp. radio sensor soft. ver. after dot,0x604,8,40 1d 23 01 00 00 00 00
+285,0x2315,Automatic summer recognition,0x604,8,40 15 23 01 00 00 00 00
+286,0x2321,CH circuit name part1,0x604,8,40 21 23 01 00 00 00 00
+287,0x2325,CH circuit name part2,0x604,8,40 25 23 01 00 00 00 00
+288,0x2329,CH circuit name part3,0x604,8,40 29 23 01 00 00 00 00
+289,0x2033,CH comf temp set [dC],0x604,8,40 33 20 01 00 00 00 00
+290,0x2049,CH eco temp set [dC],0x604,8,40 49 20 01 00 00 00 00
+291,0x2167,CH res [dC],0x604,8,40 67 21 01 00 00 00 00
+292,0x2065,CH program,0x604,8,40 65 20 01 00 00 00 00
+293,0x2017,Room measured temp,0x604,8,40 17 20 01 00 00 00 00
+294,0x229A,CH pump state,0x604,8,40 9a 22 01 00 00 00 00
+295,0x229E,CH pump test,0x604,8,40 9e 22 01 00 00 00 00
+296,0x22A2,Room temp sensor type,0x604,8,40 a2 22 01 00 00 00 00
+297,0x22A6,CH sensor use,0x604,8,40 a6 22 01 00 00 00 00
+298,0x4002,CH temp measured,0x604,8,40 02 40 01 00 00 00 00
+299,0x22AE,CH temp calc,0x604,8,40 ae 22 01 00 00 00 00
+300,0x22B2,CH delta source [C],0x604,8,40 b2 22 01 00 00 00 00
+301,0x2127,CH schedule monday,0x604,8,40 27 21 01 00 00 00 00
+302,0x212B,CH schedule tuesday,0x604,8,40 2b 21 01 00 00 00 00
+303,0x212F,CH schedule wednesday,0x604,8,40 2f 21 01 00 00 00 00
+304,0x2133,CH schedule thursday,0x604,8,40 33 21 01 00 00 00 00
+305,0x2137,CH schedule friday,0x604,8,40 37 21 01 00 00 00 00
+306,0x213B,CH schedule saturday,0x604,8,40 3b 21 01 00 00 00 00
+307,0x213F,CH schedule sunday,0x604,8,40 3f 21 01 00 00 00 00
+308,0x2143,CH mode,0x604,8,40 43 21 01 00 00 00 00
+309,0x2147,Tch set manual [C],0x604,8,40 47 21 01 00 00 00 00
+310,0x214B,CH mixer test,0x604,8,40 4b 21 01 00 00 00 00
+311,0x22B6,CH mixer opening time [s],0x604,8,40 b6 22 01 00 00 00 00
+312,0x22BA,CH mixer state,0x604,8,40 ba 22 01 00 00 00 00
+313,0x22BE,Room temp hysteresis [C],0x604,8,40 be 22 01 00 00 00 00
+314,0x22C2,Room sensor cal [C],0x604,8,40 c2 22 01 00 00 00 00
+315,0x22C6,CH temp for -20C [C],0x604,8,40 c6 22 01 00 00 00 00
+316,0x400D,CH temp for -10C [C],0x604,8,40 0d 40 01 00 00 00 00
+317,0x22CA,CH temp for 0C [C],0x604,8,40 ca 22 01 00 00 00 00
+318,0x22CE,CH temp for -20C [C],0x604,8,40 ce 22 01 00 00 00 00
+319,0x22D2,CH source,0x604,8,40 d2 22 01 00 00 00 00
+320,0x22D6,CH max temp [C],0x604,8,40 d6 22 01 00 00 00 00
+321,0x22DA,CH correction factor [C],0x604,8,40 da 22 01 00 00 00 00
+322,0x22E6,CH temp lowering [C],0x604,8,40 e6 22 01 00 00 00 00
+323,0x22EA,Min CH temp for pump [C],0x604,8,40 ea 22 01 00 00 00 00
+324,0x22F2,Permament pump,0x604,8,40 f2 22 01 00 00 00 00
+325,0x22F6,CH needed temp. [C],0x604,8,40 f6 22 01 00 00 00 00
+326,0x22FA,Tch lowering for energ. consumption reduction,0x604,8,40 fa 22 01 00 00 00 00
+327,0x22FE,CH status,0x604,8,40 fe 22 01 00 00 00 00
+328,0x2302,CH thermostat state,0x604,8,40 02 23 01 00 00 00 00
+329,0x2306,CH room set temp. adjustment [dC],0x604,8,40 06 23 01 00 00 00 00
+330,0x230A,Room temp. radio sensor batt. volt [mV],0x604,8,40 0a 23 01 00 00 00 00
+331,0x230E,Room temp. radio sensor signal [%],0x604,8,40 0e 23 01 00 00 00 00
+332,0x2312,Room temp. radio sensor time since lasr rec.,0x604,8,40 12 23 01 00 00 00 00
+333,0x231A,Room temp. radio sensor soft. ver. before dot,0x604,8,40 1a 23 01 00 00 00 00
+334,0x231E,Room temp. radio sensor soft. ver. after dot,0x604,8,40 1e 23 01 00 00 00 00
+335,0x2316,Automatic summer recognition,0x604,8,40 16 23 01 00 00 00 00
+336,0x2322,CH circuit name part1,0x604,8,40 22 23 01 00 00 00 00
+337,0x2326,CH circuit name part2,0x604,8,40 26 23 01 00 00 00 00
+338,0x232A,CH circuit name part3,0x604,8,40 2a 23 01 00 00 00 00
+339,0x2034,CH comf temp set [dC],0x604,8,40 34 20 01 00 00 00 00
+340,0x204A,CH eco temp set [dC],0x604,8,40 4a 20 01 00 00 00 00
+341,0x2168,CH res [dC],0x604,8,40 68 21 01 00 00 00 00
+342,0x2066,CH program,0x604,8,40 66 20 01 00 00 00 00
+343,0x2018,Room measured temp,0x604,8,40 18 20 01 00 00 00 00
+344,0x229B,CH pump state,0x604,8,40 9b 22 01 00 00 00 00
+345,0x229F,CH pump test,0x604,8,40 9f 22 01 00 00 00 00
+346,0x22A3,Room temp sensor type,0x604,8,40 a3 22 01 00 00 00 00
+347,0x22A7,CH sensor use,0x604,8,40 a7 22 01 00 00 00 00
+348,0x4003,CH temp measured,0x604,8,40 03 40 01 00 00 00 00
+349,0x22AF,CH temp calc,0x604,8,40 af 22 01 00 00 00 00
+350,0x22B3,CH delta source [C],0x604,8,40 b3 22 01 00 00 00 00
+351,0x2128,CH schedule monday,0x604,8,40 28 21 01 00 00 00 00
+352,0x212C,CH schedule tuesday,0x604,8,40 2c 21 01 00 00 00 00
+353,0x2130,CH schedule wednesday,0x604,8,40 30 21 01 00 00 00 00
+354,0x2134,CH schedule thursday,0x604,8,40 34 21 01 00 00 00 00
+355,0x2138,CH schedule friday,0x604,8,40 38 21 01 00 00 00 00
+356,0x213C,CH schedule saturday,0x604,8,40 3c 21 01 00 00 00 00
+357,0x2140,CH schedule sunday,0x604,8,40 40 21 01 00 00 00 00
+358,0x2144,CH mode,0x604,8,40 44 21 01 00 00 00 00
+359,0x2148,Tch set manual [C],0x604,8,40 48 21 01 00 00 00 00
+360,0x214C,CH mixer test,0x604,8,40 4c 21 01 00 00 00 00
+361,0x22B7,CH mixer opening time [s],0x604,8,40 b7 22 01 00 00 00 00
+362,0x22BB,CH mixer state,0x604,8,40 bb 22 01 00 00 00 00
+363,0x22BF,Room temp hysteresis [C],0x604,8,40 bf 22 01 00 00 00 00
+364,0x22C3,Room sensor cal [C],0x604,8,40 c3 22 01 00 00 00 00
+365,0x22C7,CH temp for -20C [C],0x604,8,40 c7 22 01 00 00 00 00
+366,0x400E,CH temp for -10C [C],0x604,8,40 0e 40 01 00 00 00 00
+367,0x22CB,CH temp for 0C [C],0x604,8,40 cb 22 01 00 00 00 00
+368,0x22CF,CH temp for -20C [C],0x604,8,40 cf 22 01 00 00 00 00
+369,0x22D3,CH source,0x604,8,40 d3 22 01 00 00 00 00
+370,0x22D7,CH max temp [C],0x604,8,40 d7 22 01 00 00 00 00
+371,0x22DB,CH correction factor [C],0x604,8,40 db 22 01 00 00 00 00
+372,0x22E7,CH temp lowering [C],0x604,8,40 e7 22 01 00 00 00 00
+373,0x22EB,Min CH temp for pump [C],0x604,8,40 eb 22 01 00 00 00 00
+374,0x22F3,Permament pump,0x604,8,40 f3 22 01 00 00 00 00
+375,0x22F7,CH needed temp. [C],0x604,8,40 f7 22 01 00 00 00 00
+376,0x22FB,Tch lowering for energ. consumption reduction,0x604,8,40 fb 22 01 00 00 00 00
+377,0x22FF,CH status,0x604,8,40 ff 22 01 00 00 00 00
+378,0x2303,CH thermostat state,0x604,8,40 03 23 01 00 00 00 00
+379,0x2307,CH room set temp. adjustment [dC],0x604,8,40 07 23 01 00 00 00 00
+380,0x230B,Room temp. radio sensor batt. volt [mV],0x604,8,40 0b 23 01 00 00 00 00
+381,0x230F,Room temp. radio sensor signal [%],0x604,8,40 0f 23 01 00 00 00 00
+382,0x2313,Room temp. radio sensor time since lasr rec.,0x604,8,40 13 23 01 00 00 00 00
+383,0x231B,Room temp. radio sensor soft. ver. before dot,0x604,8,40 1b 23 01 00 00 00 00
+384,0x231F,Room temp. radio sensor soft. ver. after dot,0x604,8,40 1f 23 01 00 00 00 00
+385,0x2317,Automatic summer recognition,0x604,8,40 17 23 01 00 00 00 00
+386,0x2323,CH circuit name part1,0x604,8,40 23 23 01 00 00 00 00
+387,0x2327,CH circuit name part2,0x604,8,40 27 23 01 00 00 00 00
+388,0x232B,CH circuit name part3,0x604,8,40 2b 23 01 00 00 00 00
+389,0x2035,CH comf temp set [dC],0x604,8,40 35 20 01 00 00 00 00
+390,0x204B,CH eco temp set [dC],0x604,8,40 4b 20 01 00 00 00 00
+391,0x2169,CH res [dC],0x604,8,40 69 21 01 00 00 00 00
+392,0x2067,CH program,0x604,8,40 67 20 01 00 00 00 00
+393,0x2019,Room measured temp,0x604,8,40 19 20 01 00 00 00 00
+394,0x229C,CH pump state,0x604,8,40 9c 22 01 00 00 00 00
+395,0x22A0,CH pump test,0x604,8,40 a0 22 01 00 00 00 00
+396,0x22A4,Room temp sensor type,0x604,8,40 a4 22 01 00 00 00 00
+397,0x22A8,CH sensor use,0x604,8,40 a8 22 01 00 00 00 00
+398,0x4004,CH temp measured,0x604,8,40 04 40 01 00 00 00 00
+399,0x22B0,CH temp calc,0x604,8,40 b0 22 01 00 00 00 00
+400,0x22B4,CH delta source [C],0x604,8,40 b4 22 01 00 00 00 00
+401,0x2129,CH schedule monday,0x604,8,40 29 21 01 00 00 00 00
+402,0x212D,CH schedule tuesday,0x604,8,40 2d 21 01 00 00 00 00
+403,0x2131,CH schedule wednesday,0x604,8,40 31 21 01 00 00 00 00
+404,0x2135,CH schedule thursday,0x604,8,40 35 21 01 00 00 00 00
+405,0x2139,CH schedule friday,0x604,8,40 39 21 01 00 00 00 00
+406,0x213D,CH schedule saturday,0x604,8,40 3d 21 01 00 00 00 00
+407,0x2141,CH schedule sunday,0x604,8,40 41 21 01 00 00 00 00
+408,0x2145,CH mode,0x604,8,40 45 21 01 00 00 00 00
+409,0x2149,Tch set manual [C],0x604,8,40 49 21 01 00 00 00 00
+410,0x214D,CH mixer test,0x604,8,40 4d 21 01 00 00 00 00
+411,0x22B8,CH mixer opening time [s],0x604,8,40 b8 22 01 00 00 00 00
+412,0x22BC,CH mixer state,0x604,8,40 bc 22 01 00 00 00 00
+413,0x22C0,Room temp hysteresis [C],0x604,8,40 c0 22 01 00 00 00 00
+414,0x22C4,Room sensor cal [C],0x604,8,40 c4 22 01 00 00 00 00
+415,0x22C8,CH temp for -20C [C],0x604,8,40 c8 22 01 00 00 00 00
+416,0x400F,CH temp for -10C [C],0x604,8,40 0f 40 01 00 00 00 00
+417,0x22CC,CH temp for 0C [C],0x604,8,40 cc 22 01 00 00 00 00
+418,0x22D0,CH temp for -20C [C],0x604,8,40 d0 22 01 00 00 00 00
+419,0x22D4,CH source,0x604,8,40 d4 22 01 00 00 00 00
+420,0x22D8,CH max temp [C],0x604,8,40 d8 22 01 00 00 00 00
+421,0x22DC,CH correction factor [C],0x604,8,40 dc 22 01 00 00 00 00
+422,0x22E8,CH temp lowering [C],0x604,8,40 e8 22 01 00 00 00 00
+423,0x22EC,Min CH temp for pump [C],0x604,8,40 ec 22 01 00 00 00 00
+424,0x22F4,Permament pump,0x604,8,40 f4 22 01 00 00 00 00
+425,0x22F8,CH needed temp. [C],0x604,8,40 f8 22 01 00 00 00 00
+426,0x22FC,Tch lowering for energ. consumption reduction,0x604,8,40 fc 22 01 00 00 00 00
+427,0x2300,CH status,0x604,8,40 00 23 01 00 00 00 00
+428,0x2304,CH thermostat state,0x604,8,40 04 23 01 00 00 00 00
+429,0x2308,CH room set temp. adjustment [dC],0x604,8,40 08 23 01 00 00 00 00
+430,0x230C,Room temp. radio sensor batt. volt [mV],0x604,8,40 0c 23 01 00 00 00 00
+431,0x2310,Room temp. radio sensor signal [%],0x604,8,40 10 23 01 00 00 00 00
+432,0x2314,Room temp. radio sensor time since lasr rec.,0x604,8,40 14 23 01 00 00 00 00
+433,0x231C,Room temp. radio sensor soft. ver. before dot,0x604,8,40 1c 23 01 00 00 00 00
+434,0x2320,Room temp. radio sensor soft. ver. after dot,0x604,8,40 20 23 01 00 00 00 00
+435,0x2318,Automatic summer recognition,0x604,8,40 18 23 01 00 00 00 00
+436,0x2324,CH circuit name part1,0x604,8,40 24 23 01 00 00 00 00
+437,0x2328,CH circuit name part2,0x604,8,40 28 23 01 00 00 00 00
+438,0x232C,CH circuit name part3,0x604,8,40 2c 23 01 00 00 00 00
+439,0x3011,Burner pwr. depend of buf. energy level,0x604,8,40 11 30 01 00 00 00 00
+440,0x2112,Buffer top measured temperature,0x604,8,40 12 21 01 00 00 00 00
+441,0x2113,Buffer bottom measured temperature,0x604,8,40 13 21 01 00 00 00 00
+442,0x2114,Buffer top set temperature,0x604,8,40 14 21 01 00 00 00 00
+443,0x2115,Buffer bottom set temperature,0x604,8,40 15 21 01 00 00 00 00
+444,0x2280,Buffer top set temperature,0x604,8,40 80 22 01 00 00 00 00
+445,0x2281,Buffer minimal pump temperature,0x604,8,40 81 22 01 00 00 00 00
+446,0x2282,Buffer is automatic top temperature,0x604,8,40 82 22 01 00 00 00 00
+447,0x2211,,0x604,8,40 11 22 01 00 00 00 00
+448,0x299B,,0x604,8,40 9b 29 01 00 00 00 00
+449,0x3170,Buffer pump delta min temperature,0x604,8,40 70 31 01 00 00 00 00
+450,0x3171,Buffer T1 measured temperature,0x604,8,40 71 31 01 00 00 00 00
+451,0x3172,Buffer T2 measured temperature,0x604,8,40 72 31 01 00 00 00 00
+452,0x3173,Buffer T3 measured temperature,0x604,8,40 73 31 01 00 00 00 00
+453,0x3174,Buffer internal energy [%],0x604,8,40 74 31 01 00 00 00 00
+454,0x2109,Solar temperature 1 [C],0x604,8,40 09 21 01 00 00 00 00
+455,0x2102,Solar temperature 2 [C],0x604,8,40 02 21 01 00 00 00 00
+456,0x2103,Solar temperature 3 [C],0x604,8,40 03 21 01 00 00 00 00
+457,0x2104,Solar temperature 4 [C],0x604,8,40 04 21 01 00 00 00 00
+458,0x2101,Solar power [W],0x604,8,40 01 21 01 00 00 00 00
+459,0x2116,Solar flow [l/min],0x604,8,40 16 21 01 00 00 00 00
+460,0x3116,Solar delta on [C],0x604,8,40 16 31 01 00 00 00 00
+461,0x3117,Solar delta off [C],0x604,8,40 17 31 01 00 00 00 00
+462,0x3118,Solar liquid specific heat [kJ/(kg * C)],0x604,8,40 18 31 01 00 00 00 00
+463,0x3119,Solar temperature water max [C],0x604,8,40 19 31 01 00 00 00 00
+464,0x311A,Solar temperature alarm max[C],0x604,8,40 1a 31 01 00 00 00 00
+465,0x311B,Solar temperature alarm min[C],0x604,8,40 1b 31 01 00 00 00 00
+466,0x311C,Solar pump state,0x604,8,40 1c 31 01 00 00 00 00
+467,0x311F,Solar pump test,0x604,8,40 1f 31 01 00 00 00 00
+468,0x3120,Solar status,0x604,8,40 20 31 01 00 00 00 00
+469,0x3501,Autoconfig activation,0x604,8,40 01 35 01 00 00 00 00
+470,0x3505,Outside temperature sensor configuration,0x604,8,40 05 35 01 00 00 00 00
+471,0x2105,Heating configuration,0x604,8,40 05 21 01 00 00 00 00
+472,0x2106,Hot water configuration,0x604,8,40 06 21 01 00 00 00 00
+473,0x2107,Buffer configuration,0x604,8,40 07 21 01 00 00 00 00
+474,0x2108,Solar configuration,0x604,8,40 08 21 01 00 00 00 00
+475,0x2123,Lambda module presence,0x604,8,40 23 21 01 00 00 00 00
+476,0x3506,Sound alarm activation,0x604,8,40 06 35 01 00 00 00 00
+477,0x350A,Return to boiler temperature sensor,0x604,8,40 0a 35 01 00 00 00 00
+478,0x3508,Silence hours from,0x604,8,40 08 35 01 00 00 00 00
+479,0x3509,Silence hours to,0x604,8,40 09 35 01 00 00 00 00
+480,0x350C,Is this device cascade master,0x604,8,40 0c 35 01 00 00 00 00
+481,0x350D,Pressure sensor,0x604,8,40 0d 35 01 00 00 00 00
+482,0x3525,Additional fuel storage,0x604,8,40 25 35 01 00 00 00 00
+483,0x3707,EGT sensor type,0x604,8,40 07 37 01 00 00 00 00
+484,0x3629,Energy meter type,0x604,8,40 29 36 01 00 00 00 00
+485,0x362B,Airflow meter,0x604,8,40 2b 36 01 00 00 00 00
+486,0x370A,Boiler image selector,0x604,8,40 0a 37 01 00 00 00 00
+487,0x3718,Next service date timestamp,0x604,8,40 18 37 01 00 00 00 00
+488,0x3719,Confirm. service date timestamp,0x604,8,40 19 37 01 00 00 00 00
+489,0x3720,Outside temp. averaging period [h],0x604,8,40 20 37 01 00 00 00 00
+490,0x372F,Is automatic time synchronization,0x604,8,40 2f 37 01 00 00 00 00
+491,0x3722,Start settings recovery,0x604,8,40 22 37 01 00 00 00 00
+492,0x3723,Settings recovered count,0x604,8,40 23 37 01 00 00 00 00
+493,0x3730,SSID part 1,0x604,8,40 30 37 01 00 00 00 00
+494,0x3731,SSID part 2,0x604,8,40 31 37 01 00 00 00 00
+495,0x3732,SSID part 3,0x604,8,40 32 37 01 00 00 00 00
+496,0x3733,SSID part 4,0x604,8,40 33 37 01 00 00 00 00
+497,0x3734,SSID part 5,0x604,8,40 34 37 01 00 00 00 00
+498,0x3735,SSID part 6,0x604,8,40 35 37 01 00 00 00 00
+499,0x3736,KEY part 1,0x604,8,40 36 37 01 00 00 00 00
+500,0x3737,KEY part 2,0x604,8,40 37 37 01 00 00 00 00
+501,0x3738,KEY part 3,0x604,8,40 38 37 01 00 00 00 00
+502,0x3739,KEY part 4,0x604,8,40 39 37 01 00 00 00 00
+503,0x373A,KEY part 5,0x604,8,40 3a 37 01 00 00 00 00
+504,0x373B,KEY part 6,0x604,8,40 3b 37 01 00 00 00 00
+505,0x2125,Device type,0x604,8,40 25 21 01 00 00 00 00
+506,0x2170,VideRoom PIN,0x604,8,40 70 21 01 00 00 00 00
+507,0x3600,Tank capacity [kg],0x604,8,40 00 36 01 00 00 00 00
+508,0x3601,How much fuel left in tank [kg],0x604,8,40 01 36 01 00 00 00 00
+509,0x3603,Fuel reserve [kg],0x604,8,40 03 36 01 00 00 00 00
+510,0x3602,Is fuel reserve,0x604,8,40 02 36 01 00 00 00 00
+511,0x3604,Fuel reserve [kg],0x604,8,40 04 36 01 00 00 00 00
+512,0x3606,Input IN17 config,0x604,8,40 06 36 01 00 00 00 00
+513,0x3607,Reserve sensor state,0x604,8,40 07 36 01 00 00 00 00
+514,0x3507,Total fuel counter[kg],0x604,8,40 07 35 01 00 00 00 00
+515,0x2124,Total fuel counter[hg],0x604,8,40 24 21 01 00 00 00 00
+516,0x2294,User fuel counter[kg],0x604,8,40 94 22 01 00 00 00 00
+517,0x2122,Compatibility igneo solar pump state,0x604,8,40 22 21 01 00 00 00 00
+518,0x2165,Compatibility timestamp,0x604,8,40 65 21 01 00 00 00 00
+519,0x3608,Statistics - Ignition cnt,0x604,8,40 08 36 01 00 00 00 00
+520,0x3609,Statistics - Avg ignition time [s],0x604,8,40 09 36 01 00 00 00 00
+521,0x3610,Statistics - Avg burner power [%],0x604,8,40 10 36 01 00 00 00 00
+522,0x3611,Feeder 1 total work time [h],0x604,8,40 11 36 01 00 00 00 00
+523,0x3612,Feeder 2 total work time [h],0x604,8,40 12 36 01 00 00 00 00
+524,0x3613,Average oxygen for 30% pwr [%],0x604,8,40 13 36 01 00 00 00 00
+525,0x3614,Average oxygen for 50% pwr [%],0x604,8,40 14 36 01 00 00 00 00
+526,0x3615,Average oxygen for 70% pwr [%],0x604,8,40 15 36 01 00 00 00 00
+527,0x3616,Average oxygen for 90% pwr [%],0x604,8,40 16 36 01 00 00 00 00
+528,0x3617,Statistics - Grate cleaning count,0x604,8,40 17 36 01 00 00 00 00
+529,0x3618,Statistics - Exchanger cleaning count,0x604,8,40 18 36 01 00 00 00 00
+530,0x3619,Statistics - Boiler overheat count,0x604,8,40 19 36 01 00 00 00 00
+531,0x3628,Statistics - total energy produced [kWh],0x604,8,40 28 36 01 00 00 00 00
+532,0x362A,Statistics - reset count,0x604,8,40 2a 36 01 00 00 00 00
+533,0x362C,Total grate unblock try count,0x604,8,40 2c 36 01 00 00 00 00
+534,0x3627,Inside temp [C] CAN IO 0,0x604,8,40 27 36 01 00 00 00 00
+535,0x3626,Inside temp [C] CAN IO 1,0x604,8,40 26 36 01 00 00 00 00
+536,0x3625,Inside temp [C] CAN IO 2,0x604,8,40 25 36 01 00 00 00 00
+537,0x3624,Inside temp [C] CAN IO 3,0x604,8,40 24 36 01 00 00 00 00
+538,0x3623,Inside temp [C] CAN IO 4,0x604,8,40 23 36 01 00 00 00 00
+539,0x3620,Inside temp [C] CAN IO 5,0x604,8,40 20 36 01 00 00 00 00
+540,0x3621,Inside temp [C] CAN IO 6,0x604,8,40 21 36 01 00 00 00 00
+541,0x3622,Inside temp [C] CAN IO 7,0x604,8,40 22 36 01 00 00 00 00
+542,0x3630,CAN IO 0 sw. ver. before dot,0x604,8,40 30 36 01 00 00 00 00
+543,0x3631,CAN IO 1 sw. ver. before dot,0x604,8,40 31 36 01 00 00 00 00
+544,0x3632,CAN IO 2 sw. ver. before dot,0x604,8,40 32 36 01 00 00 00 00
+545,0x3633,CAN IO 3 sw. ver. before dot,0x604,8,40 33 36 01 00 00 00 00
+546,0x3634,CAN IO 4 sw. ver. before dot,0x604,8,40 34 36 01 00 00 00 00
+547,0x3635,CAN IO 5 sw. ver. before dot,0x604,8,40 35 36 01 00 00 00 00
+548,0x3636,CAN IO 6 sw. ver. before dot,0x604,8,40 36 36 01 00 00 00 00
+549,0x3637,CAN IO 7 sw. ver. before dot,0x604,8,40 37 36 01 00 00 00 00
+550,0x3638,CAN IO 0 sw. ver. after dot,0x604,8,40 38 36 01 00 00 00 00
+551,0x3639,CAN IO 1 sw. ver. after dot,0x604,8,40 39 36 01 00 00 00 00
+552,0x363A,CAN IO 2 sw. ver. after dot,0x604,8,40 3a 36 01 00 00 00 00
+553,0x363B,CAN IO 3 sw. ver. after dot,0x604,8,40 3b 36 01 00 00 00 00
+554,0x363C,CAN IO 4 sw. ver. after dot,0x604,8,40 3c 36 01 00 00 00 00
+555,0x363D,CAN IO 5 sw. ver. after dot,0x604,8,40 3d 36 01 00 00 00 00
+556,0x363E,CAN IO 6 sw. ver. after dot,0x604,8,40 3e 36 01 00 00 00 00
+557,0x363F,CAN IO 7 sw. ver. after dot,0x604,8,40 3f 36 01 00 00 00 00
+558,0x3640,Inside temp [C] CAN IO Mini 0,0x604,8,40 40 36 01 00 00 00 00
+559,0x3648,CAN IO Mini 0 sw. ver. before dot,0x604,8,40 48 36 01 00 00 00 00
+560,0x3650,CAN IO Mini 0 sw. ver. after dot,0x604,8,40 50 36 01 00 00 00 00
+561,0x3658,CAN IO Big sw. ver. before dot,0x604,8,40 58 36 01 00 00 00 00
+562,0x3659,CAN IO Big sw. ver. after dot,0x604,8,40 59 36 01 00 00 00 00
+563,0x365A,Lambda module sw. ver. before dot,0x604,8,40 5a 36 01 00 00 00 00
+564,0x365B,Lambda module sw. ver. after dot,0x604,8,40 5b 36 01 00 00 00 00
+565,0x366A,RadioGateway sw. ver. before dot,0x604,8,40 6a 36 01 00 00 00 00
+566,0x366B,RadioGateway sw. ver. after dot,0x604,8,40 6b 36 01 00 00 00 00
+567,0x3666,Airflowmeter 1 sw. ver. before dot,0x604,8,40 66 36 01 00 00 00 00
+568,0x3667,Airflowmeter 1 sw. ver. after dot,0x604,8,40 67 36 01 00 00 00 00
+569,0x373C,,0x604,8,40 3c 37 01 00 00 00 00
+570,0x373D,,0x604,8,40 3d 37 01 00 00 00 00
+571,0x3746,,0x604,8,40 46 37 01 00 00 00 00
+572,0x3744,,0x604,8,40 44 37 01 00 00 00 00
+573,0x3745,,0x604,8,40 45 37 01 00 00 00 00
+574,0x373F,,0x604,8,40 3f 37 01 00 00 00 00
+575,0x3740,,0x604,8,40 40 37 01 00 00 00 00
+576,0x3741,,0x604,8,40 41 37 01 00 00 00 00
+577,0x373E,,0x604,8,40 3e 37 01 00 00 00 00
+578,0x3742,,0x604,8,40 42 37 01 00 00 00 00
+579,0x3743,,0x604,8,40 43 37 01 00 00 00 00
+580,0x365C,Vide room 1 sw. ver. before dot,0x604,8,40 5c 36 01 00 00 00 00
+581,0x365D,Vide room 2 sw. ver. before dot,0x604,8,40 5d 36 01 00 00 00 00
+582,0x365E,Vide room 3 sw. ver. before dot,0x604,8,40 5e 36 01 00 00 00 00
+583,0x365F,Vide room 4 sw. ver. before dot,0x604,8,40 5f 36 01 00 00 00 00
+584,0x3660,Vide room 1 sw. ver. after dot,0x604,8,40 60 36 01 00 00 00 00
+585,0x3661,Vide room 2 sw. ver. after dot,0x604,8,40 61 36 01 00 00 00 00
+586,0x3662,Vide room 3 sw. ver. after dot,0x604,8,40 62 36 01 00 00 00 00
+587,0x3663,Vide room 4 sw. ver. after dot,0x604,8,40 63 36 01 00 00 00 00
+588,0x3664,soft. version,0x604,8,40 64 36 01 00 00 00 00
+589,0x3665,igneTouch boiler short name,0x604,8,40 65 36 01 00 00 00 00
+590,0x4010,Alarm register,0x604,8,40 10 40 01 00 00 00 00
+591,0x4024,Alarm date timestamp,0x604,8,40 24 40 01 00 00 00 00
+592,0x4038,Alarm confirm timestamp,0x604,8,40 38 40 01 00 00 00 00
+593,0x4011,Alarm register,0x604,8,40 11 40 01 00 00 00 00
+594,0x4025,Alarm date timestamp,0x604,8,40 25 40 01 00 00 00 00
+595,0x4039,Alarm confirm timestamp,0x604,8,40 39 40 01 00 00 00 00
+596,0x4012,Alarm register,0x604,8,40 12 40 01 00 00 00 00
+597,0x4026,Alarm date timestamp,0x604,8,40 26 40 01 00 00 00 00
+598,0x403A,Alarm confirm timestamp,0x604,8,40 3a 40 01 00 00 00 00
+599,0x4013,Alarm register,0x604,8,40 13 40 01 00 00 00 00
+600,0x4027,Alarm date timestamp,0x604,8,40 27 40 01 00 00 00 00
+601,0x403B,Alarm confirm timestamp,0x604,8,40 3b 40 01 00 00 00 00
+602,0x4014,Alarm register,0x604,8,40 14 40 01 00 00 00 00
+603,0x4028,Alarm date timestamp,0x604,8,40 28 40 01 00 00 00 00
+604,0x403C,Alarm confirm timestamp,0x604,8,40 3c 40 01 00 00 00 00
+605,0x4015,Alarm register,0x604,8,40 15 40 01 00 00 00 00
+606,0x4029,Alarm date timestamp,0x604,8,40 29 40 01 00 00 00 00
+607,0x403D,Alarm confirm timestamp,0x604,8,40 3d 40 01 00 00 00 00
+608,0x4016,Alarm register,0x604,8,40 16 40 01 00 00 00 00
+609,0x402A,Alarm date timestamp,0x604,8,40 2a 40 01 00 00 00 00
+610,0x403E,Alarm confirm timestamp,0x604,8,40 3e 40 01 00 00 00 00
+611,0x4017,Alarm register,0x604,8,40 17 40 01 00 00 00 00
+612,0x402B,Alarm date timestamp,0x604,8,40 2b 40 01 00 00 00 00
+613,0x403F,Alarm confirm timestamp,0x604,8,40 3f 40 01 00 00 00 00
+614,0x4018,Alarm register,0x604,8,40 18 40 01 00 00 00 00
+615,0x402C,Alarm date timestamp,0x604,8,40 2c 40 01 00 00 00 00
+616,0x4040,Alarm confirm timestamp,0x604,8,40 40 40 01 00 00 00 00
+617,0x4019,Alarm register,0x604,8,40 19 40 01 00 00 00 00
+618,0x402D,Alarm date timestamp,0x604,8,40 2d 40 01 00 00 00 00
+619,0x4041,Alarm confirm timestamp,0x604,8,40 41 40 01 00 00 00 00
+620,0x401A,Alarm register,0x604,8,40 1a 40 01 00 00 00 00
+621,0x402E,Alarm date timestamp,0x604,8,40 2e 40 01 00 00 00 00
+622,0x4042,Alarm confirm timestamp,0x604,8,40 42 40 01 00 00 00 00
+623,0x401B,Alarm register,0x604,8,40 1b 40 01 00 00 00 00
+624,0x402F,Alarm date timestamp,0x604,8,40 2f 40 01 00 00 00 00
+625,0x4043,Alarm confirm timestamp,0x604,8,40 43 40 01 00 00 00 00
+626,0x401C,Alarm register,0x604,8,40 1c 40 01 00 00 00 00
+627,0x4030,Alarm date timestamp,0x604,8,40 30 40 01 00 00 00 00
+628,0x4044,Alarm confirm timestamp,0x604,8,40 44 40 01 00 00 00 00
+629,0x401D,Alarm register,0x604,8,40 1d 40 01 00 00 00 00
+630,0x4031,Alarm date timestamp,0x604,8,40 31 40 01 00 00 00 00
+631,0x4045,Alarm confirm timestamp,0x604,8,40 45 40 01 00 00 00 00
+632,0x401E,Alarm register,0x604,8,40 1e 40 01 00 00 00 00
+633,0x4032,Alarm date timestamp,0x604,8,40 32 40 01 00 00 00 00
+634,0x4046,Alarm confirm timestamp,0x604,8,40 46 40 01 00 00 00 00
+635,0x401F,Alarm register,0x604,8,40 1f 40 01 00 00 00 00
+636,0x4033,Alarm date timestamp,0x604,8,40 33 40 01 00 00 00 00
+637,0x4047,Alarm confirm timestamp,0x604,8,40 47 40 01 00 00 00 00
+638,0x4020,Alarm register,0x604,8,40 20 40 01 00 00 00 00
+639,0x4034,Alarm date timestamp,0x604,8,40 34 40 01 00 00 00 00
+640,0x4048,Alarm confirm timestamp,0x604,8,40 48 40 01 00 00 00 00
+641,0x4021,Alarm register,0x604,8,40 21 40 01 00 00 00 00
+642,0x4035,Alarm date timestamp,0x604,8,40 35 40 01 00 00 00 00
+643,0x4049,Alarm confirm timestamp,0x604,8,40 49 40 01 00 00 00 00
+644,0x4022,Alarm register,0x604,8,40 22 40 01 00 00 00 00
+645,0x4036,Alarm date timestamp,0x604,8,40 36 40 01 00 00 00 00
+646,0x404A,Alarm confirm timestamp,0x604,8,40 4a 40 01 00 00 00 00
+647,0x4023,Alarm register,0x604,8,40 23 40 01 00 00 00 00
+648,0x4037,Alarm date timestamp,0x604,8,40 37 40 01 00 00 00 00
+649,0x404B,Alarm confirm timestamp,0x604,8,40 4b 40 01 00 00 00 00
+650,0x404C,Alarm next index,0x604,8,40 4c 40 01 00 00 00 00
+651,0x404D,Number of alarms,0x604,8,40 4d 40 01 00 00 00 00
+652,0x404E,Request reset alarm memory,0x604,8,40 4e 40 01 00 00 00 00
+653,0x3728,Is reset required,0x604,8,40 28 37 01 00 00 00 00
+654,0x0005,Default settings request,0x604,8,40 05 00 01 00 00 00 00
