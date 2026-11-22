@@ -38,3 +38,10 @@ catalog -> PID -> runtime record -> storage -> type -> min/max/default -> provid
 - JSON output where useful
 - tests for new parsers/decoders
 - preserve failed/rejected matches
+
+
+## PASS 18 additions
+
+- `tools/provider_interface_scan.py` — evidence-first inspection of a known provider/interface address; deliberately does not assume a contiguous vtable.
+- `tools/test_provider_interface_scan.py` — scanner self-tests.
+- Provider interface workflow now distinguishes code-pointer entries from mixed data in interface-adjacent regions.
