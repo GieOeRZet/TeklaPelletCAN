@@ -166,3 +166,10 @@ Function-level harness: ustaw r0/r1, LR=SENT|1, SP w SRAM, hook UC_HOOK_CODE na 
 - `tools/menu_rows_probe.py` (PASS 40) — budowa ekranu menu (RUNTIME 0x0804BF7C + 0x08052160) i odczyt argumentow row-buildera dla access 0/3; asercje 15/21 wierszy.
 
 - `tools/menu_click_probe.py` (PASS 41) — wywolanie handlera przycisku wiersza 0x0808EB00 dla wierszy 0..20; efekty na key3/currentLanguage i ctx +0x12A/B/C; asercje.
+
+## PASS 42 — EMULATOR SYSTEMOWY (preferowany od emu_startup.py dla UI/zadan)
+- `tools/cortexm_rtos.py` — klasa `Board`: pelny model wyjatkow Cortex-M (SVC/SysTick/PendSV/IRQ, STKALIGN), scheduler FreeRTOS firmware, `raise_irq(n)`, `task_name()`, `switches`, `diag()` po awarii, `enable_dma2d()`. Uzycie: `b=Board(bin,tick=100000); b.run(slices=3000, hook=fn)`.
+- `tools/stm32_dma2d.py` — model DMA2D (M2M/PFC/blend/R2M); loguje `unsupported`.
+- `tools/render_screen.py` / `test_render_screen.py` — render ekranu do PNG z bufora LTDC (adres/format z rejestrow), test z asercjami.
+Zasady: tick ~100000 instrukcji (nie 2000); SysTick dopiero po `svc`; PendSV zatrzymuj PO instrukcji zapisu ICSR; ramka wyjatku wyrownana do 8 B z bitem 9 xPSR; SDRAM 0xC0000000 (16 MB) zmapowana z gory.
+Czas: ~9 s na 3000 tikow. Debug: `Board.diag()` (zadanie, rejestry, slad wywolan ze stosu); GUITask blokuje sie na semaforze bufora [0x20005F20] dopoki DMA2D nie zgłosi TCIF.

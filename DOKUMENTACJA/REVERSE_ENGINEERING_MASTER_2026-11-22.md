@@ -1378,3 +1378,11 @@ Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-41-MENU-CLICK-DISPATCH-EXECU
 HARD (kod): handler przycisku FUN_0807EB00(this, sender): sender == this[+0x3B4] + i*0x274 -> FUN_0803C064(this[+0x3C], i) -> klasa 0x20005EF0[i]. Wiersz nie ma własnego callbacka (+0x26C = 0).
 HARD (wykonanie): wiersz 15 (klasa 12) = zmiana języka (key3 i currentLanguage 0->1); wiersze 2..5 (klasy 1..4) ustawiają +0x12B i +0x12C = 1..4 (wybór CO1..CO4) — producent instancji [ctx+0x12C] dla rodziny CH to menu główne.
 OPEN: klasy 11/13/14/15/18/19; samo przełączenie ekranu po +0x12A/+0x12B; drugi handler FUN_0807EB36 -> 0804EC18; etykiety i ekrany docelowe.
+
+
+## AUTONOMOUS PASS 42 — EMULACJA SYSTEMOWA (FreeRTOS + LTDC + DMA2D) I RENDER EKRANU GŁÓWNEGO — 2026-11-22
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-42-FULL-SYSTEM-EMULATION-HOME-SCREEN-RENDER-2026-11-22.md ; obraz: data/screen_home_emulated.png ; narzędzia: tools/cortexm_rtos.py, stm32_dma2d.py, render_screen.py (+ test_render_screen.py)
+HARD: zadania firmware EstymaTask, GUITask, CanRxTask, CanTxTask, IDLE uruchomione; LTDC IRQ 88 (vsync -> signalVSync), DMA2D IRQ 90 (semafor bufora ramki); LTDC: RGB565 480x272, bufor 0xC0000000/0xC003FC00 (podwojne buforowanie).
+HARD (wynik): ekran glowny wyrenderowany przez firmware (1352 operacje DMA2D) — godzina, dzien, "0.0", "Wylaczony", obraz kotla, 7 kafelkow; stan domyslny (brak CAN/RTC/dotyku).
+Poprawki modelu wyjatkow: SysTick po svc; PendSV po instrukcji zapisu ICSR; STKALIGN (bit 9 xPSR); tick ~100k instrukcji; FPU lazy stacking niemodelowany.
+OPEN: wstrzykniecie CAN (IRQ64) i dotyku; eksport wszystkich ekranow; ekran -> widzet -> zasob -> PID jako obrazy.
