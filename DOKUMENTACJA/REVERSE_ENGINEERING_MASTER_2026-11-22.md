@@ -671,3 +671,19 @@ New direct closure from the complete decompilation blob (`9620d0c85259d34bb6a20d
 `+0x2C/+0x30` remain outside the 0x2C body geometrically, but they are deliberately written by `0x0801143C` and `0x08011812` reads `R+0x2C` as a state/access gate when `param_5 != 0`. Therefore the correct model is an adjacent-slot/prefix sidecar relationship, NOT a 0x30-byte record and NOT an unused offset.
 
 New report: `analiza/FW2213TK-2026-11-22/RECORD-DESCRIPTOR-HARD-CLOSURE-03-2026-11-22.md`.
+
+
+## RECORD SEMANTIC CLOSURE 04 — 2026-11-22
+
+Generic parameter definition is now closed at the record-engine level:
+- `+0x14` = minimum/lower bound descriptor.
+- `+0x1C` = maximum/upper bound descriptor.
+- `+0x24` = default/reset descriptor.
+- descriptor type 1 = u8, 2 = u16, 3 = u32, 4 = signed i16, 5 = signed i32.
+- `FUN_0801143C` therefore registers PID + storage + type + min + max + default.
+- `FUN_08011812(param_6=1)` directly enforces max then min, returning status 6/7.
+- `FUN_0801113A` uses +0x24 for out-of-range repair/reset.
+
+New report: `analiza/FW2213TK-2026-11-22/RECORD-SEMANTIC-CLOSURE-04-2026-11-22.md`.
+
+Next macro target: full 260-parameter registration tuple extraction and PID -> storage/type/min/max/default -> mapper/CAN/UI cross-link.
