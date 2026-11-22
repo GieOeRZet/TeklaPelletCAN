@@ -962,3 +962,28 @@ Machine-level bridge CLOSED:
 `local write -> record storage -> change detection -> 0x0584/0x42 publication -> 0x20008D60 -> FUN_0806E59C -> TX queue -> CAN2`.
 
 Remaining OPEN is semantic/timing detail: exact invocation cadence of FUN_0801117C, shadow table semantics, and full PID/catalog/CAN matrix.
+
+
+## AUTONOMOUS PASS 21 — MENU RAW MATRIX / RUNTIME ANCHOR AUDIT — 2026-11-22
+
+Canonical BIN was re-read directly and a deterministic scanner was added:
+- `tools/menu_matrix_scan.py`
+- `tools/test_menu_matrix_scan.py`
+- report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-21-MENU-RAW-MATRIX-RUNTIME-ANCHOR-AUDIT-2026-11-22.md`
+
+HARD:
+- MenuTree table = RAW 0x42348 / PROJECT 0x08042348, 21 records × 6 B.
+- Runtime class table address 0x20005EF0 has exactly one direct LE32 literal occurrence: RAW 0x3C218.
+- Access/update table address 0x20005F08 has exactly one direct LE32 literal occurrence: RAW 0x42314.
+- Row constructor Thumb pointer 0x0805BB43 occurs once: RAW 0x3C030.
+- Main row-selection resolver Thumb pointer 0x0808EB01 occurs once: RAW 0x63AB8.
+- Sibling resolver Thumb pointer 0x0808EB37 occurs once: RAW 0x63AC0.
+- The root-table selector and runtime class byte remain distinct layers; navigation cannot be implemented as selector->page.
+
+OPEN:
+- runtime producers/contents of 0x20005EF0 and 0x20005F08;
+- exact runtime class -> screen/page family mapping;
+- exact row vtable/touch callback producers;
+- complete screen/widget/visibility/access/PID/CAN matrix.
+
+PASS 21 does not invalidate the existing 21-slot / 15+6 access-dependent construction closure; it provides direct physical-BIN anchor verification for that model.
