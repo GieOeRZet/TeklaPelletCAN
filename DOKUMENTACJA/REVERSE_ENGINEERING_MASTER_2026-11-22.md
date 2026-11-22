@@ -914,12 +914,12 @@ The package intentionally does not duplicate every historical report: `analiza/`
 Canonical BIN integrity remains SHA-256 `1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071`, size `0x1F0000`.
 
 
-## AUTONOMOUS PASS 18 — provider vtable / GET interface closure — 2026-11-22
 
-- `0x20008D64` is HARD-confirmed as the provider object constructed by `0x0800DB08`.
-- Its vptr is HARD-confirmed as `0x080A31F0`.
-- vtable slot 0 points to `0x0801DB31` and is HARD-confirmed as the provider GET endpoint used by `FUN_0801143C`.
-- vtable slot 1 points to `0x0801DB79`; its type-dispatching value-update behavior is STRONG evidence for provider SET, but independent indirect-call/runtime binding remains OPEN.
-- Added `tools/provider_interface_scan.py` and test `tools/test_provider_interface_scan.py`.
-- Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-18-PROVIDER-VTABLE-GET-CLOSURE-2026-11-22.md`.
-- Next: independent SET binding, provider fan-out, automatic PID cross-layer matrix.
+
+## PASS 18 CORRECTION — provider vtable evidence — 2026-11-22
+
+The earlier PASS 18 slot-level claims are retracted. Canonical RAW verification shows PROJECT 0x080A31F0 -> RAW 0x0A31F0, currently bytes 0xFF, and PROJECT 0x0801DB31 / 0x0801DB79 map to RAW locations that are not executable function entries. Provider vtable slot targets therefore remain OPEN until runtime materialization and/or an actual indirect-call observation proves them.
+
+Still HARD: concrete provider object 0x20008D64, vptr 0x080A31F0, and the indirect provider-call mechanism from FUN_0801143C through [manager+0x7178].
+
+Report: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-18-PROVIDER-VTABLE-GET-CLOSURE-2026-11-22.md
