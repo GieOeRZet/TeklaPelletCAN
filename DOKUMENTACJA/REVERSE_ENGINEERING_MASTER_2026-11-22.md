@@ -630,3 +630,25 @@ Makro-korekta modelu:
 **Korekta wcześniejszej notacji:** `record +0x2C` nie może być polem tego samego rekordu, ponieważ `0x2C` jest jego krokiem. Analogicznie `+0x30` leży 4 bajty wewnątrz następnego rekordu. Stare przypisania `+0x2C=access/flag` i `+0x30=metadata` należy traktować jako REJECTED. Pozostałe wcześniej potwierdzone pola `+0x08/+0x0C/+0x10/+0x14/+0x1C/+0x24` pozostają w mocy.
 
 To rozdzielenie jest obecnie kluczowe dla docelowego modelu ESP: `catalog -> mapper -> external PID -> runtime record -> typed storage -> UI/CAN/persistence`.
+
+
+## RECORD ENGINE CROSS-LAYER CLOSURE 02 — 2026-11-22
+
+Nowy pass: `analiza/FW2213TK-2026-11-22/RECORD-ENGINE-CROSS-LAYER-CLOSURE-02-2026-11-22.md`.
+
+### NEW-HARD / STRONG
+- `FUN_0801143C` tworzy jeden rekord na wywołanie; nie klonuje automatycznie 4 instancji.
+- `+0x08` = PID/index, `+0x0C` = pointer do local working storage, `+0x10` = type.
+- `+0x14/+0x1C/+0x24` są 5-bajtowymi strukturami/deskryptorami obsługiwanymi przez `0x08014728`/getter path.
+- `0x080115BC` przechodzi przez `0x294` rekordów i używa `+0x24` jako źródła wartości inicjalizacyjnej/resetowej przez `0x0801155A` -> `0x08011812`.
+- Dla pokazanych rodzin CO1..CO4 osobne PID-y instancji wskazują ten sam local working storage przez `+0x0C`.
+- Istnieją również wywołania `0x0801167A` z bazą tablicy przekazaną przez obiekt; dlatego `0x20008D84` jest główną potwierdzoną bazą, ale nie jedyną możliwą bazą lookup.
+
+### REJECTED
+- `record+0x2C` i `record+0x30` jako pola tego samego rekordu.
+- Założenie, że 660 oznacza 660 aktywnych rekordów.
+- Założenie, że każdy PID instancji ma osobny lokalny storage.
+- Założenie, że wszystkie lookup-y `0x0801167A` muszą używać bezpośrednio `0x20008D84`.
+
+### P0 update
+Pełna geometria rekordu jest zamknięta; PID/storage/type są zamknięte, +0x24 ma zamkniętą rolę użycia inicjalizacyjnego/resetowego, ale pełna struktura deskryptorów +0x14/+0x1C/+0x24 oraz semantyka pozostałych bajtów nadal pozostają OPEN.
