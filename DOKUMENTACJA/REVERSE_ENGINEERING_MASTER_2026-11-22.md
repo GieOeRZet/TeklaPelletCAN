@@ -834,3 +834,11 @@ This upgrade is based on the supplied emulator result document. Independent repr
 - +0x7178 provider GET is exercised at registration and periodic synchronization; SET is used on provider/local mismatch.
 - Added static RE scanner: tools/re_scan.py, with self-test tools/test_re_scan.py.
 - Detailed pass: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-11-PARAMETER-MANAGER-CLOSURE-2026-11-22.md
+## AUTONOMOUS PASS 12 — range/default engine
+
+- FUN_0801100C is CLOSED as a local MIN/MAX validator, not a hidden provider/cache comparison.
+- Upper bound = record +0x1C; lower bound = record +0x14; current value comes from the local record.
+- On violation FUN_0801100C returns the offending PID; otherwise it returns 0xFFFFFFFF.
+- FUN_0801113A is the default-repair loop: offending PID -> FUN_0801155A default (+0x24) -> FUN_08011812 commit.
+- No direct caller of FUN_0801113A exists in the recovered C export; trigger remains indirect/runtime OPEN.
+- Sidecar 2/3 are hard-confirmed in provider synchronization and range validation; sidecar 1 is excluded from both loops.
