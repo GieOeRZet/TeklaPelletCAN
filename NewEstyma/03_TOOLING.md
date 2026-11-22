@@ -58,3 +58,9 @@ The firmware image has a runtime/repacked base of 0x08010000 while static PROJEC
 
 - `tools/menu_matrix_scan.py` — deterministic extraction of the canonical 21×6 B MenuTree table plus whole-BIN literal-anchor audit for the runtime class table, access/update table, row constructor and row-selection resolvers.
 - `tools/test_menu_matrix_scan.py` — regression test against the canonical BIN SHA-256 and known anchor offsets.
+
+
+## PASS 22 additions
+
+- `tools/iar_data_extract.py` — deterministic reproduction of the IAR LZ77 `.data` decoder and extraction of the two 21-byte MenuTree runtime tables.
+- `tools/test_iar_data_extract.py` — regression test for decompressed size, exact table bytes and equality with root selectors.
