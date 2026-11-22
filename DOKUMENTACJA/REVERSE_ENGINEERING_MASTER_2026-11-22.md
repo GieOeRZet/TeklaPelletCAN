@@ -687,3 +687,16 @@ Generic parameter definition is now closed at the record-engine level:
 New report: `analiza/FW2213TK-2026-11-22/RECORD-SEMANTIC-CLOSURE-04-2026-11-22.md`.
 
 Next macro target: full 260-parameter registration tuple extraction and PID -> storage/type/min/max/default -> mapper/CAN/UI cross-link.
+
+
+## 2026-11-22 — 10-pass parameter sync/publication closure
+- 10-pass report: `analiza/FW2213TK-2026-11-22/10-PASS-PARAMETER-SYNC-PUBLICATION-2026-11-22.md`.
+- +0x7178 remains an unresolved concrete provider interface, but its contract is hard: slot 0 GET(PID, 5-byte descriptor) -> status; slot +4 SET(PID, value, type).
+- GET/SET are used at registration and periodic sync for sidecar classes 2/3.
+- +0x7180 is a shared outbound publication sink used by local-change publication and periodic round-robin publication.
+- Publication wire contract is hard: StdId 0x0584, DLC 8, command 0x42, PID/value type-aware encoding.
+- FUN_08010fce contains the sync/publication scheduler body: provider sync -> tracked local publication -> delayed round-robin publication. Warm-up byte +0x717D, then one record per periodic step through 0..0x293.
+- FUN_08011368 processes at most 11 records per invocation and only sidecar 2/3.
+- FUN_0801100C + FUN_0801113A form a separate type-aware validation/default-repair path for sidecar 2/3.
+- Three statically visible FUN_0801143C registrations (0x3500/0x3502/0x350B) all use sidecar class 3; this does not exclude dynamic class-2 registration.
+- Remaining target: recover EstymaTask/indirect route to FUN_08010FCE and concrete implementations behind +0x7178/+0x7180.
