@@ -82,3 +82,11 @@ No new scanner was required. The Thumb-2-safe pointer-flow output was combined w
 Reusable rule:
 - when a recovered consumer is a vtable method, resolve the runtime function pointer in the vtable before assigning ownership;
 - when a loop uses a fixed stride/count, derive the object-relative field mathematically and carry the relation into the next call boundary.
+
+
+## PASS 26 analysis note
+
+Negative-result workflow was extended:
+- when a resolver table is reached, enumerate its complete static key domain before promoting a call edge;
+- distinguish resolver input keys from resolved output/PID values;
+- preserve "no static match -> no downstream call" as a first-class closure.
