@@ -1032,3 +1032,40 @@ Still OPEN:
 - complete mutation graph for all 21 entries of both tables;
 - MOVW/MOVT/address-arithmetic aliases;
 - full runtime-class/access-table -> page/widget/PID/CAN mapping.
+
+
+## AUTONOMOUS PASS 24 — THUMB-2 BOUNDARY / POINTER-FLOW CORRECTION — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-24-THUMB2-POINTER-FLOW-CORRECTION-2026-11-22.md`
+
+### CRITICAL CORRECTION
+
+PASS 23's alleged STRB at RAW 0x3C1FE into `0x20005EF0+6` is REJECTED.
+
+RAW 0x3C1FC..0x3C1FF is one Thumb-2 `MOV.W r1,#0x122`; RAW 0x3C1FE is the second halfword. No direct static write to `0x20005EF0+6` is currently proven.
+
+### NEW-HARD
+
+- `0x20005EF0`: two direct literal materializations at RAW 0x3C068 -> r0 and RAW 0x3C17A -> r2.
+- Consumers are real indexed byte reads at RAW 0x3C06A and 0x3C17C.
+- `0x20005F08`: direct literal materialization RAW 0x422CE -> r5.
+- PROJECT `0x080422C8` sequentially reads all 21 bytes of `0x20005F08`.
+- The 21-entry loop advances its row/object base by `0x274` per entry.
+- access-table value `0x0E` triggers `0x08032F08 -> 0x0803C270 -> 0x08037212`.
+- `0x08032F08) reads object +0x2C.
+- `0x0803C270) requires object +0x10 == 1 and forwards the value with PID `0x0117).
+- Runtime-class values 0..20 feed a TBB dispatch mechanism.
+
+### TOOLING CORRECTION
+
+`tools/pointer_flow_scan.py` is now Thumb-2 width aware and no longer decodes second halfwords as independent Thumb-1 instructions. It also recognizes common Thumb-2 memory forms, MOVW/MOVT candidates, and PUSH.W function starts.
+
+### OPEN
+
+- arithmetic/alias/indirect writers of both runtime tables;
+- identity of r4/r8 in PROJECT 0x080422C8;
+- 0x274-stride object -> 21-row MenuTree mapping;
+- semantics of access-table 0x0E and PID 0x0117;
+- complete runtime-class handler -> page/widget/resource graph;
+- complete PID/UI/CAN matrix.
+
