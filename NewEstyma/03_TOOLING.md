@@ -90,3 +90,13 @@ Negative-result workflow was extended:
 - when a resolver table is reached, enumerate its complete static key domain before promoting a call edge;
 - distinguish resolver input keys from resolved output/PID values;
 - preserve "no static match -> no downstream call" as a first-class closure.
+
+
+## PASS 27 analysis note
+
+Pointer-flow correlation was extended from a row-relative field to its constructor-established pointer target. This preserves the distinction between:
+- row[i]+offset as a field;
+- the pointer stored in that field;
+- the memory read performed through that pointer.
+
+This distinction is now required for UI/object graph work.
