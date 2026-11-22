@@ -492,3 +492,22 @@ Nowy pass: `analiza/FW2213TK-2026-11-22/CAN-WRITE-ATTACK-01-2026-11-22.md`.
 - pełny UI WRITE -> CAN bridge.
 
 Nie wolno traktować `0x08011812` jako dirty-bit/TX settera bez nowego RAW proof.
+
+
+## PAGE/WIDGET FACTORY + 188 RESOURCE REGISTRY — CLOSURE 01 — 2026-11-22
+
+Nowy pass: `analiza/FW2213TK-2026-11-22/PAGE-WIDGET-FACTORY-RESOURCE-REGISTRY-CLOSURE-01-2026-11-22.md`.
+
+CLOSED/HARD:
+- `DAT_0804866C` = 188-resource registry, 16 B/record.
+- type counts: 0=139, 1=31, 2=3, 3=12, 4=1, 5=2.
+- TypedText base = `0x5BE64`.
+- `FUN_080480C0` = central resource/presenter dispatcher; type routes 1->`0804E598`, 2/5->`0804E740`, 3->`0804E75A`, general path ->`0804E5BC`.
+- `FUN_0803E714 -> FUN_08036FF2 -> FUN_0804842C -> FUN_0804E5BC -> FUN_08032316` is the proven parameter-list -> widget-value -> refresh path.
+- widget records use `+0x42C + index*0x338`.
+- CO1..CO4 are implemented through common instance-aware machinery; +0x12C is an active-instance selector in traced paths, +0x12B is a separate variant/context selector.
+
+OPEN:
+- field-by-field semantics of all 16-byte resource descriptors;
+- exact helper internals and complete resource->widget->Bitmap/TypedText/callback mapping;
+- full screen parent/child/navigation graph.
