@@ -81,3 +81,18 @@ OPEN:
 - producers and runtime contents of 0x20005EF0 and 0x20005F08;
 - exact runtime class -> screen/widget mapping;
 - complete widget tree, visibility/access matrix and PID/CAN cross-link.
+
+
+## PASS 22 — IAR data / Menu runtime tables
+
+HARD:
+- IAR `.data` reconstruction: RAW 0x96114..0x9694D -> SRAM 0x20000000, size 0x118B3.
+- 0x20005EF0[0..20] exact initial bytes recovered.
+- 0x20005F08[0..20] exact initial bytes recovered; identical to 0x20005EF0.
+- Both 21-byte runtime tables initially equal the 21 root-table selectors at RAW 0x42348.
+- Configuration-driven MenuTree eligibility remains HARD: classes 1..4 use 0x10E/0x2105; 5 uses 0x10F/0x2106; 6 uses 0x110/0x2108; 7 uses 0x111/0x2107; 8 uses 0x11C; 9 uses 0x122.
+
+OPEN:
+- later writes/mutations of 0x20005EF0 and 0x20005F08;
+- exact semantics/navigation for rows 15..20;
+- complete widget/resource/callback graph.
