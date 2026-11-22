@@ -470,3 +470,25 @@ Najważniejsze korekty:
 Aktualny status MenuTree po Attack 03:
 CLOSED = state child, row callback dispatcher, child offsets/attachment, formal C064 boundary.
 OPEN = bezpośredni RAW constructor/XREF MenuRow, producenci callbacków, touch/navigation, runtime 0x20005F08, sześć second-stage destinations, kompletne MenuTree.
+
+
+## CAN WRITE / TX ATTACK 01 — 2026-11-22
+
+Nowy pass: `analiza/FW2213TK-2026-11-22/CAN-WRITE-ATTACK-01-2026-11-22.md`.
+
+### Zamknięte
+- `0x08057224` = FreeRTOS queue-send primitive.
+- `0x200244EC` = `CanMessagesToTransmit`.
+- CAN TX consumer: `CanTxTask @ 0x080654A8 -> 0x08061734 -> CAN2`.
+- `0x0806E59C` = wyspecjalizowany TX adapter dla `StdId 0x0604`; buduje lokalny rekord i wysyła go do kolejki.
+- dispatch table `0x08094508`: slot 5 -> `0x0806E59C`, slot 8 -> `0x080629FC`.
+- `0x080629FC -> 0x08062AE4` tworzy request `0x0604/0x40`; dalszy BLX idzie przez `[obj+0x14]`.
+- RX parameter WRITE: `CAN2 -> 0x080617DC -> ReceivedCanMessages -> 0x08063B80 -> 0x08062A90 -> 0x08062B22 -> 0x08011812`.
+- UI local WRITE: `UI -> 0x08037212 -> 0x08011812 -> parameter RAM`.
+
+### Nadal OPEN
+- dokładne przypisanie instancji `[obj+0x14]` do vtable `0x08094508`;
+- consumer lokalnego zapisu parametru, który prowadzi do CAN TX;
+- pełny UI WRITE -> CAN bridge.
+
+Nie wolno traktować `0x08011812` jako dirty-bit/TX settera bez nowego RAW proof.
