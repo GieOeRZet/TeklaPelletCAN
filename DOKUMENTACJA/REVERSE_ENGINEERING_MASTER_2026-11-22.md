@@ -1329,3 +1329,12 @@ REJECTED także: "logical key 3" jako nieznany klucz — to PID 0x0003.
 
 OPEN: producent [ctx+0x12C]; dynamiczne zakresy (21 par min/max); 10 kluczy tabeli 2 poza runtime; semantyka klasy sidecar +0x24; model kolejnych zadań FreeRTOS w emulatorze.
 Narzędzia: tools/emu_startup.py, runtime_param_table.py, resolver_tables.py, bl_xref.py, disasm_thumb.py (+ testy).
+
+
+## AUTONOMOUS PASS 36 — MACIERZ PID I KLASA DOSTĘPU — 2026-11-22
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-36-PID-MATRIX-ACCESS-CLASS-2026-11-22.md ; dane: data/pid_matrix_655.csv ; narzędzie: tools/pid_matrix.py
+
+HARD: klasa sidecar (rekord +0x24) = tryb dostępu: 0 live (208), 1 komenda (49), 2 lustro z centrali (44), 3 nastawa (354); zgodna 448/448 z `access` katalogu panelu;
+bramki kodu: 0x08011812 z kontrolą przyjmuje 1,3; sync 0x08011368 obejmuje 2,3. 557/655 PID ma klucz UI (T1 z instancjami + T2). Key 3 Language nie ma klucza UI (dostęp bezpośredni z class 12).
+STRONG/INFERENCE: 0x300B "Stop burning wood" jest klasy 1 (komenda), więc etykieta Podajnik/Wentylator zależy od stanu komendy w czasie pracy, nie od konfiguracji sprzętu (koryguje wcześniejsze przypuszczenie).
+OPEN: wartość 0x300B w runtime; semantyka klasy 2 (INFERENCE: stan tylko z centrali); 98 PID bez klucza UI; weryfikacja PID == indeks CAN na żywym busie.

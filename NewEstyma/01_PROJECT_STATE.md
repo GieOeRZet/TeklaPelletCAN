@@ -443,3 +443,12 @@ Data: analiza/FW2213TK-2026-11-22/data/ (runtime_param_table_655.csv, resolver_t
 ### RECONCILIATION z PASS 34 (równoległy raport „KEY3 STORAGE/TYPE CLOSURE”)
 PASS 34 zabrania utożsamiania key 3 z PID 3 „bez bezpośredniego mostu”. Most istnieje i jest HARD: rekord key 3 niesie wskaźnik na nazwę ASCII `"Language"` (BIN `0x08034C00`),
 a dla wszystkich 448 PID katalogu panelu nazwa z rekordu = nazwa z katalogu (448/448). Zakaz z PASS 34 jest tym samym uchylony; jego ustalenia o typie (key 3 bajtowy, STRB) pozostają w mocy i są zgodne z typem u8 w rekordzie.
+
+
+## AUTONOMOUS PASS 36 — MACIERZ PID I KLASA DOSTĘPU — 2026-11-22
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-36-PID-MATRIX-ACCESS-CLASS-2026-11-22.md ; dane: data/pid_matrix_655.csv ; narzędzie: tools/pid_matrix.py
+
+HARD: klasa sidecar (rekord +0x24) = tryb dostępu: 0 live (208), 1 komenda (49), 2 lustro z centrali (44), 3 nastawa (354); zgodna 448/448 z `access` katalogu panelu;
+bramki kodu: 0x08011812 z kontrolą przyjmuje 1,3; sync 0x08011368 obejmuje 2,3. 557/655 PID ma klucz UI (T1 z instancjami + T2). Key 3 Language nie ma klucza UI (dostęp bezpośredni z class 12).
+STRONG/INFERENCE: 0x300B "Stop burning wood" jest klasy 1 (komenda), więc etykieta Podajnik/Wentylator zależy od stanu komendy w czasie pracy, nie od konfiguracji sprzętu (koryguje wcześniejsze przypuszczenie).
+OPEN: wartość 0x300B w runtime; semantyka klasy 2 (INFERENCE: stan tylko z centrali); 98 PID bez klucza UI; weryfikacja PID == indeks CAN na żywym busie.

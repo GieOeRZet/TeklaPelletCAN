@@ -152,3 +152,5 @@ Future UI tracing must follow both:
 
 Reguła adresowa (częsty błąd): argumenty narzędzi to adresy RUNTIME; adresy w raportach to PROJECT. 0x0801143C (PROJECT) = 0x0802143C (RUNTIME).
 Reguła odczytu tabel: rekordy 4-bajtowe są wyrównane do bazy tabeli; odczyt z przesunięciem 2 B daje fałszywe pary (błąd PASS 26).
+
+- `tools/pid_matrix.py` (PASS 36) — macierz PID: storage/typ/zakres/tryb dostępu/sync/klucze UI z danych PASS 35 -> data/pid_matrix_655.csv.
