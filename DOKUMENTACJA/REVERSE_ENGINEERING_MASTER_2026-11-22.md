@@ -531,3 +531,25 @@ OPEN:
 - complete response/publication graph.
 
 Nie utożsamiać automatycznie katalogu 260 slotów z katalogiem CAN ID.
+
+
+## INSTANCE/CAPABILITY GRAPH ATTACK 01 — 2026-11-22
+
+Nowy pass: `analiza/FW2213TK-2026-11-22/INSTANCE-CAPABILITY-GRAPH-ATTACK-01-2026-11-22.md`.
+
+CLOSED/HARD:
+- `FUN_0803C178` = row eligibility/visibility resolver; direct caller `0x0804227A` iterates 21 slots.
+- selectors 1..4 are gated from internal `0x10E` / CAN `0x2105` with thresholds >=1..>=4.
+- selectors 5/6/7 use separate configuration indices `0x10F/0x110/0x111`; 8/9 also have distinct configuration indices.
+- access/PIN layer is separate from configuration capability.
+- common page/widget path is instance-aware.
+
+BOUNDARY:
+- `+0x12A/+0x12B/+0x12C` are page/context/instance-related fields, but universal semantic labels are NOT CLOSED. Nie należy wpisywać ich jako sztywne parent/CO/menu-index bez RAW producer proof.
+
+OPEN:
+- producers of context fields;
+- exact object-instantiation bridge;
+- touch/navigation;
+- runtime `0x20005F08` producer/content;
+- complete 21-selector capability matrix.
