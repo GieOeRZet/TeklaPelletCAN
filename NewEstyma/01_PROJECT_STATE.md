@@ -305,3 +305,29 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-29-RUNTIME-CLASS-CALLBACK-DESCRIPTOR
 - remaining runtime-table writers/aliases;
 - complete UI/PID/CAN graph;
 - provider/persistence/260-row matrix.
+
+
+## AUTONOMOUS PASS 30 — UI CALLBACK OBJECT VTABLE 0x0809F848 — 2026-11-22
+
+Report:
+analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-30-UI-CALLBACK-OBJECT-VTABLE-2026-11-22.md
+
+### NEW-HARD
+
+- 0x08039494 installs vtable 0x0809F848.
+- Vtable RAW = 0x8F848.
+- Non-zero slots: 2,3,8,9,14,15.
+- The object at parent+0x110 has fields +0x00 vptr, +0x04 context, +0x08 callback/table pointer, +0x0C signed/index field.
+- Slots 2 and 8 implement an indirect callback dispatch algorithm.
+- Slots 3 and 9 implement the corresponding boolean/state-check family.
+- Therefore parent+0x110 is an executable polymorphic runtime object, not passive metadata.
+
+### OPEN
+
+- exact vtable slot semantics;
+- callback pointer -> widget/resource/text/PID graph;
+- slots 14/15;
+- constructor 0x08039394 static pair;
+- class 12/15 special paths;
+- remaining runtime-table writers;
+- full UI/PID/CAN matrix.
