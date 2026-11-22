@@ -331,3 +331,27 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-30-UI-CALLBACK-OBJECT-VTABLE-2026-11
 - class 12/15 special paths;
 - remaining runtime-table writers;
 - full UI/PID/CAN matrix.
+
+
+## AUTONOMOUS PASS 31 — VTABLE SLOT 2 → STATIC CALLBACK BRIDGE — 2026-11-22
+
+Report:
+analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-31-VTABLE-SLOT2-CALLBACK-BRIDGE-2026-11-22.md
+
+### NEW-HARD
+
+- Generic 0x08037F88 descriptors have second word 0, so generic object+0x110 gets +0x0C=0.
+- Generic object+0x110 +0x08 is the selected callback pointer.
+- Vtable slot 2 then directly invokes [object+0x08] with [object+0x04] as argument.
+- Class 0 selects callback 0x08048037.
+- 0x08048037 writes object+0x12A = 1.
+- Vtable contains three repeated method pairs: 2/3, 8/9, 14/15.
+
+### OPEN
+
+- vtable slot-2 call sites;
+- all callback -> object/resource/PID effects;
+- slot pair semantics;
+- class 12/15;
+- runtime table writers;
+- full UI/PID/CAN graph.
