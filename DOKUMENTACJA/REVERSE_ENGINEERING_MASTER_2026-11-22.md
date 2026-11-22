@@ -1241,3 +1241,25 @@ Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-30-UI-CALLBACK-OBJECT-VTABL
 - runtime-table writers;
 - complete UI/PID/CAN matrix.
 
+
+
+## AUTONOMOUS PASS 31 — VTABLE SLOT 2 → STATIC CALLBACK BRIDGE — 2026-11-22
+
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-31-VTABLE-SLOT2-CALLBACK-BRIDGE-2026-11-22.md`
+
+### NEW-HARD
+
+- Generic descriptor records have second word 0, so generic object+0x110 +0x0C = 0.
+- Vtable slot 2 therefore directly invokes the selected callback at object+0x110+0x08 with object+0x110+0x04 as argument.
+- Class 0 selects callback 0x08048037, which writes parent-object +0x12A = 1.
+- Vtable 0x0809F848 has three repeated method pairs: slots 2/3, 8/9, 14/15.
+
+### OPEN
+
+- slot-2 call sites;
+- callback effects;
+- full slot semantics;
+- class 12/15;
+- table writers;
+- UI/PID/CAN matrix.
+
