@@ -73,3 +73,12 @@ The firmware image has a runtime/repacked base of 0x08010000 while static PROJEC
 - SRAM targets are kept in SRAM address space; PROJECT/RUNTIME translation is applied only to firmware code addresses.
 - `tools/test_pointer_flow_scan.py` now contains a regression proving that RAW 0x3C1FE is not a STRB and that the 0x080422C8 function start is recovered through PUSH.W.
 - Canonical BIN regression passed.
+
+
+## PASS 25 analysis note
+
+No new scanner was required. The Thumb-2-safe pointer-flow output was combined with whole-BIN runtime-pointer/vtable searches and direct Thumb disassembly to close the ownership of PROJECT 0x080422C8 and the 21-row object geometry around constructor PROJECT 0x08074508.
+
+Reusable rule:
+- when a recovered consumer is a vtable method, resolve the runtime function pointer in the vtable before assigning ownership;
+- when a loop uses a fixed stride/count, derive the object-relative field mathematically and carry the relation into the next call boundary.
