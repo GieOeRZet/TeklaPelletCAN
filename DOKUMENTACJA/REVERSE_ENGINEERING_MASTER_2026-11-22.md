@@ -574,3 +574,43 @@ the first-byte menu selector and runtime class byte at `0x20005EF0` are distinct
 The six additional records use selectors 90/97/100/98/95 and text IDs 14/18/16/19/20; these selectors are not fed directly to C064.
 
 MenuTree status: CLOSED at the control-flow/mechanism level. No guessed semantic mapping for +0x12A/+0x12B/+0x12C was introduced.
+
+
+## PARAMETER 0x2C RUNTIME TABLE CLOSURE 01 — 2026-11-22
+
+Nowy pass: `analiza/FW2213TK-2026-11-22/PARAMETER-2C-RUNTIME-TABLE-CLOSURE-01-2026-11-22.md`.
+
+### NEW-HARD
+Bezpośredni disassembly `FUN_080115F6` dowodzi, że runtime tabela parametrów pod `0x20008D84` jest skanowana rekordami o stałym kroku `0x2C` i limicie `0x294 = 660` rekordów.
+
+Dla `record = 0x20008D84 + index*0x2C` twardo potwierdzone są:
+- +0x08 = 16-bit PID używany w porównaniu,
+- +0x0C = pointer do storage wartości; dereferencja daje bieżącą wartość,
+- +0x10 = 8-bit type tag,
+- +0x2C = następny rekord,
+- +0x58 = rekord +2*0x2C,
+- +0xB0 = rekord +4*0x2C.
+
+### WAŻNA KOREKTA MODELU
+260-slot catalog NIE jest kompletną runtime tabelą rekordów parametrów.
+
+```
+260-slot catalog
+        !=
+660-record runtime parameter table @ 0x20008D84
+```
+
+260 pozostaje osobnym katalogiem/index layer. 660 jest twardo potwierdzonym maksimum skanowania runtime engine.
+
+### Nadal OPEN
+- pełne pola +0x00..+0x2B,
+- dokładny status/commit przy +0x2C używany przez `0x08011368`,
+- które z 660 rekordów są aktywne/populowane,
+- mapowanie 660 rekordów ↔ 260 catalog ↔ CAN IDs,
+- pełna własność descriptor/value storage i instance mapping.
+
+### Aktualizacja P0
+1. Pełny layout 0x2C — **częściowo CLOSED**: geometria + PID/value-pointer/type CLOSED; reszta OPEN.
+2. Pełny model 0x20008D84 — **częściowo CLOSED**: runtime extent 660 + kluczowe pola CLOSED; pełna semantyka OPEN.
+3. Resolver -> descriptor -> getter/setter — nadal OPEN.
+4. Pełne MENU/UI — nadal OPEN semantycznie; control-flow mechanism CLOSED.
