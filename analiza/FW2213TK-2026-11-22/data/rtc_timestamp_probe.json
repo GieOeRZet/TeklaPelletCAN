@@ -1,0 +1,35 @@
+[
+ {
+  "autosync": 0,
+  "ts": 1795437296,
+  "storage_0x2165": 1795437296,
+  "rtc_before": "2000-11-30T00:00:00.600000",
+  "rtc_after": "2000-11-30T00:00:02.340000",
+  "rtc_written": false,
+  "rtc_set_to": null,
+  "obj_10": 975542402,
+  "obj_0c": 975542402
+ },
+ {
+  "autosync": 1,
+  "ts": 1795437296,
+  "storage_0x2165": 1795437296,
+  "rtc_before": "2000-11-30T00:00:00.600000",
+  "rtc_after": "2026-11-23T12:34:57.340000",
+  "rtc_written": true,
+  "rtc_set_to": "2026-11-23T12:34:56.130000",
+  "obj_10": 1795437297,
+  "obj_0c": 1795437297
+ },
+ {
+  "autosync": 1,
+  "ts": null,
+  "storage_0x2165": null,
+  "rtc_before": "2000-11-30T00:00:00.600000",
+  "rtc_after": "2000-11-30T00:00:02.100000",
+  "rtc_written": false,
+  "rtc_set_to": null,
+  "obj_10": 975542401,
+  "obj_0c": 975542401
+ }
+]

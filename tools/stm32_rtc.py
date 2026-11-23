@@ -26,7 +26,7 @@ class Rtc:
         off = addr - self.base
         if off == ISR:
             init = bool(val & 0x80); self.b.wr(self.base + ISR, (val & ~0x40 & 0xFFFFFFFF) | (0x40 if init else 0) | 0x30)
-        elif off in (TR, DR) and self.b.rd(self.base + ISR) & 0x80:
+        elif off in (TR, DR) and self.b.rd(self.base + ISR) & 0xC0:     # INIT lub INITF (PASS 62: hak MEM_WRITE dziala PRZED zapisem, wiec ISR bywa juz z INIT=0 i INITF=1)
             n = self.now()
             if off == TR: h, m, s = unbcd(val >> 16 & 0x3F), unbcd(val >> 8 & 0x7F), unbcd(val & 0x7F); n = n.replace(hour=h % 24, minute=m % 60, second=s % 60)
             else:
