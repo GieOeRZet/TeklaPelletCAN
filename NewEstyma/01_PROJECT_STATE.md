@@ -541,3 +541,11 @@ HARD: tablica deskryptorow RAW 0x54450, 188 x 0x14 B {data_ptr, extra_ptr(A8), w
 To zamyka luke z handoffu 20.11 ("komplet PNG 000..187 nie jest potwierdzony jako trwaly zestaw w GitHub").
 HARD (tools/access_gates_scan.py): 52 odczyty [model+0x158] w 42 funkcjach: 17x "cmp #3 ; blt" (>=3), 13x "!=0", 2x "cmp #2" (>=2), 18 konstruktorow stron przekazuje poziom do pomocnikow; brak porownan "==": poziomy KUMULATYWNE.
 HARD (sledzenie zasobow po rozruchu): UiSession.enable_trace — otwarcie MENU czyta 33 bitmapy i 21 tekstow PL; przy rozruchu czytane sa wszystkie (test integralnosci), wiec sledzenie wlaczac PO rozruchu.
+
+
+## PASS 47 — BRAMKI POZIOMU DOSTEPU (SKAN), EKSPORT BITMAP, SLEDZENIE ZASOBOW/PID — 2026-11-23
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-47-GATES-BITMAPS-TRACING-2026-11-23.md
+HARD: 52 odczyty [model+0x158] w 42 funkcjach: 17x ">=3", 13x "!=0", 2x ">=2", brak "=="; poziomy kumulatywne. Eksport 188 bitmap (PNG+manifest SHA-256, RGB565+A8 w oryginale). Sledzenie zasobow i PID-ow czytanych przez GUITask.
+KOREKTA: porownanie poziomow 1/2/3 "identyczne" bylo bledem narzedzia (ucinane strony); naprawa: stitch_body + settings_tall (w toku).
+DECYZJE: ESP32 i Home Assistant odlozone do domkniecia 1:1; skalowanie grafik odlozone.
+Procenty: CAN ~90, parametry ~92, PID->CAN ~75, menu ~88, poziomy dostepu ~80, USTAWIENIA ~60, ekran glowny ~65, zasoby graficzne ~95, wykresy ~50, calosc 1:1 ~70.

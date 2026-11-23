@@ -104,6 +104,7 @@ Szybki start (kilka sekund): `python3 -I tools/render_screen.py FW2213TK_kopia.b
 | 40 | wiersze menu zbudowane w firmware; argumenty row-buildera = ID bitmap | AUTONOMOUS-PASS-40 |
 | 41 | dotyk wiersza -> handler 0x0807EB00 -> klasa -> efekt (wiersz 15 = język, wiersze 2..5 = CO1..CO4) | AUTONOMOUS-PASS-41 |
 | 42 | **emulacja systemowa; firmware sam rysuje ekran główny** (`data/screen_home_emulated.png`) | AUTONOMOUS-PASS-42 |
+| 47 | bramki poziomu dostepu (skan calego firmware: 17x >=3, kumulatywne), eksport 188 bitmap, sledzenie zasobow i PID | AUTONOMOUS-PASS-47 |
 | 46 | **poziomy dostepu: listy parametrow ekranow USTAWIEN wg poziomu (FUN_0803E714 wykonana), Konfiguracja od poziomu 1 edytuje 0x2105..0x2108** | AUTONOMOUS-PASS-46 |
 | 45 | menu z pelna konfiguracja (CO1..4, CWU, Solary, Bufor), dialog PIN, ekran Konfiguracja -> PID (0x3720, 0x372A, 0x3747, 0x3603, 0x372F) | AUTONOMOUS-PASS-45 |
 | 44 | **dotyk FT5x06 + atlas ekranow** (MENU, Kociol, Palnik, Ogrzewanie 1, alarmy, dialogi); przeliczenie wspolrzednych 0.375/0.354 | AUTONOMOUS-PASS-44 |
@@ -113,3 +114,10 @@ Szybki start (kilka sekund): `python3 -I tools/render_screen.py FW2213TK_kopia.b
 (3) ustalić, które klasy menu ustawiają bramkę pollera `0x2002466C+0x10/+8`; (4) semantyka ramek PDO-podobnych `0x2xx..0x5xx`; (5) czy skan tożsamości `0x1018:02` jest wywoływany i jakie ID uznaje za centralę.
 **Zasady, które kosztowały błędy:** adresy narzędzi = RUNTIME (PROJECT+0x10000); tick ~100000 instrukcji; PendSV po instrukcji zapisu ICSR; wyrównanie ramki wyjątku (STKALIGN); rekordy tabel są wyrównane do bazy (odczyt z przesunięciem 2 B dawał fałszywe pary); pola wartości w rekordzie parametru znaczą tylko szerokość własnego typu.
 Pomyłki poprzednich passów są oznaczone `REJECTED/SUPERSEDED` w raportach (m.in. PASS 26, odczyt „tekstów” wierszy menu).
+
+
+## DECYZJE WLASCICIELA I PROCENTY (2026-11-23)
+- **ESP32-C6 i Home Assistant odlozone** do czasu domkniecia reszty rewersu 1:1. Skalowanie grafik na wieksze panele odlozone.
+- Szacunek (nie metryka): CAN ~90% · parametry ~92% · PID->CAN ~75% · menu ~88% · poziomy dostepu ~80% · USTAWIENIA/dialogi ~60% · ekran glowny ~65% · grafiki ~95% · wykresy ~50% · narzedzia ~92% · **calosc ~70%**.
+- Kolejnosc prac: (1) porownanie pelnych list ustawien 0..3 (`tools/settings_tall.py`); (2) dane na ekranie glownym przez PID-y z trace (`UiSession.enable_trace`); (3) pokrycie zasobow (`tools/resource_coverage.py`); (4) Kaskada/Dod. magazyn, edycja wartosci, wykresy; (5) bramka pollera.
+- Uwaga praktyczna: przeciagniecia w dol sa zawodne -> uzywaj punktow kontrolnych (`UiSession.checkpoint/from_checkpoint`) i ruchow w gore; stuknieciom daj hold >= 130 ticków; trace wlaczaj po rozruchu.

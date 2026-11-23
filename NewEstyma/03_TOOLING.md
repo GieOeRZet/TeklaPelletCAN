@@ -189,3 +189,5 @@ Czas: ~9 s na 3000 tikow. Debug: `Board.diag()` (zadanie, rejestry, slad wywolan
 - `tools/ui_explore.py` v3 — `--prepare`, `--row IDX`, `--all`; tylko przewijanie w gore; rownolegle.
 
 - `tools/export_bitmaps.py` (PASS 47) — eksport 188 bitmap do PNG + manifest SHA-256 + plansze + ZIP. `tools/access_gates_scan.py` — skan wszystkich odczytow poziomu dostepu. `tools/compare_levels.py` — porownanie zrzutow poziomow. `tools/resource_coverage.py` + `UiSession.enable_trace/dump_trace` — pokrycie zasobow przez obejrzane ekrany.
+
+- `ui_session.stitch_body`, `tools/settings_tall.py` (PASS 47) — pelne listy ustawien zszyte w jeden obraz (zamiast ucinanych stron). `UiSession.enable_trace` zapisuje tez PID-y czytane przez GUITask (`pids` w trace_*.json).
