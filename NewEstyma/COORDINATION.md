@@ -203,3 +203,16 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-112-UI-MODEL-HOME-BINDING-2
 
 ### Następny autonomiczny target ChatGPT
 S1: CFG-aware closure widget/view_off -> presenter setter -> UI key/PID dla ekranów Home/Kocioł/Bufor, z osobnym audytem A69/A95 i pola 7°C.
+
+### Nowe ustalenia ChatGPT — PASS 113 (2026-11-23)
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-113-A69-A95-7C-BINDING-2026-11-23.md
+
+- Z widgets_invm2_L2_partial.json zamknięto konkretny widget etykiety „Ochrona kotła”: screen OGRZEWANIE 1, this=0x200177ec, view_off=6068, text_id=30, widoczny.
+- Bezpośrednio obok znajduje się obraz this=0x20017820, view_off=6120, bitmapa 130, widoczny.
+- To jest twarde zamknięcie lokalizacji/zasobów UI, ale nie dowód, czy A69 czy A95 jest źródłem widoczności tego konkretnego labela.
+- Resolver T2 potwierdza: 0xF3 -> 0x2114, 0xF4 -> 0x2115, 0xF5 -> 0x2280; 0x2114/0x2115 mają min=7, a 0x2280 min=25.
+- W presenter_map.csv nie ma obecnie wpisu dla UI key 0xF3 -> 0x2114; istnieje HARD wpis 0xF4 -> 0x2115 przez setter 0x08056040 oraz 0xF5 -> 0x2280 przez setter 0x08056028.
+- Nie wolno twierdzić, że widget 7°C jest już przypisany do 0x2114. Jego dokładny setter/widget binding pozostaje OPEN.
+
+### Następny target
+S1.1: CFG/XREF 0x08054848 -> zapis A69/A95 -> obiekt/widget view_off 6068/6120; równolegle domknąć brakujący presenter setter dla UI key 0xF3/PID 0x2114 i jego widget offsets.
