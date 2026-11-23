@@ -28,6 +28,6 @@ for k, p, x, y in trans:
     except Exception as e: print("blad", k, e); continue
     for w in ws:
         if w["text_id"] is not None: w["text_pl"] = pl(w["text_id"] + 57); w["font"], w["align"] = DB[w["text_id"]] if w["text_id"] < len(DB) else (None, None)
-    title = next((w["wildcard"] or w["text_pl"] for w in sorted(ws, key=lambda w: w["y"]) if w["role"] == "text" and 0 <= w["y"] < 46 and 150 < w["x"] + w["w"] // 2 < 330 and (w["wildcard"] or w.get("text_pl"))), "")
+    title = next((w["wildcard"] or w["text_pl"] for w in sorted(ws, key=lambda w: w["ay"]) if w["role"] == "text" and 0 <= w["ay"] < 46 and w["w"] >= 300 and (w["wildcard"] or w.get("text_pl"))), "")
     res.append(dict(node=k, parent=p, tap=[x, y], title=title, widgets=ws, ctor_events=len(t.log))); print(k, repr(title), len(ws), flush=True)
     json.dump(res, open(out, "w"), ensure_ascii=False)

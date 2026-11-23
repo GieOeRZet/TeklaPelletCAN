@@ -1,27 +1,33 @@
 #!/usr/bin/env python3
-"""PASS 55: z widgets_*.json (widget_inventory) generuje katalog 'ekran -> widgety' (markdown): tytul (TextArea y<46 wysrodkowany), liczba widgetow,
-bitmapy (id, rozmiar), teksty PL, kontrolki dotykowe (pozycje), typy po vptr. Dedupe po tytule i zestawie bitmap/tekstow.
+"""PASS 57: katalog 'ekran -> widgety' z inv_*.json (tools/screen_inventory.py): tytul, dla kazdego widgetu: rola, pozycja bezwzgledna (ax,ay), rozmiar, bitmapa (id/rozmiar), tekst PL (id wzgledny+57), czcionka/wyrownanie, wildcard (zawartosc bufora), dotykowosc.
 python3 -I tools/widget_catalog.py OUT.md IN.json [...]"""
-import collections, json, sys
+import collections, csv, json, os, sys
 out = sys.argv[1]; screens = []
 for f in sys.argv[2:]: screens += json.load(open(f))
-def title(ws):
-    c = [w for w in ws if w["type"] == "TextArea" and w["y"] < 46 and 190 < w["x"] + w["w"] // 2 < 290 and w.get("text_pl")]
-    return c[0]["text_pl"].strip() if c else ""
+man = {}
+mp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data", "bitmaps", "manifest.csv")
+if os.path.exists(mp): man = {int(r["id"]): "%sx%s" % (r["width"], r["height"]) for r in csv.DictReader(open(mp))}
+FN = {0: "12px", 1: "20px", 2: "26px", 3: "36px", 4: "64px", 5: "92px"}; AL = {0: "L", 1: "C", 2: "R"}
 groups = collections.OrderedDict()
 for s in screens:
-    t = title(s["widgets"]) or "(bez tytulu/ekran glowny lub okno)"; sig = (tuple(sorted(w.get("bitmap", 0) for w in s["widgets"] if w["type"] == "Image")), tuple(sorted(w.get("text_pl", "") for w in s["widgets"] if w["type"] == "TextArea")))
-    groups.setdefault(t, {})
-    groups[t].setdefault(sig, s)
-md = ["# KATALOG WIDGETOW wg ekranow (emulacja, widgety aktywnego widoku TouchGFX)\n", "Typ: Image = bitmapa (id wg `data/bitmaps/manifest.csv`), TextArea = tekst (TypedText), inne = vptr klasy (kontenery/przyciski/pola). x,y = wspolrzedne ekranowe, t = dotykowy.\n"]
+    t = s["title"] or "(bez tytulu: ekran glowny / okno)"
+    vis = [w for w in s["widgets"] if w["vis"] and (w["role"] != "other" or w["touch"])]
+    sig = (tuple(sorted(w["bitmap_id"] for w in vis if w["role"] == "image" and w["bitmap_id"] is not None)), tuple(sorted((w.get("text_id") or 0) for w in vis if w["role"] == "text")))
+    groups.setdefault(t, {}).setdefault(sig, s)
+md = ["# KATALOG WIDGETOW wg ekranow (z sledzenia konstrukcji TouchGFX w emulatorze)\n",
+      "Wspolrzedne (ax,ay) bezwzgledne na ekranie 480x272. Tekst = TypedText (id wzgledny, tekst PL = pl(id+57)); wildcard = zawartosc bufora tekstu dynamicznego w chwili zrzutu. Widgety `other` dotykowe = przyciski/kontrolki.\n"]
 for t, vs in groups.items():
     md.append("\n## %s  (%d wariantow)\n" % (t, len(vs)))
     for k, (sig, s) in enumerate(vs.items()):
-        if k >= 3: md.append("_... kolejne warianty pominiete (%d)_\n" % (len(vs) - 3)); break
-        ws = s["widgets"]; md.append("**Wariant %d** (`%s`, %d widgetow)\n" % (k + 1, s["state"], len(ws)))
-        imgs = [w for w in ws if w["type"] == "Image"]; txt = [w for w in ws if w["type"] == "TextArea"]; btn = [w for w in ws if w["touch"] and w["type"] not in ("Image", "TextArea")]
-        if imgs: md.append("- bitmapy: " + ", ".join("%d(%s)@%d,%d" % (w["bitmap"], w["bmp_size"], w["x"], w["y"]) for w in imgs if "bitmap" in w))
-        if txt: md.append("- teksty: " + "; ".join("%r@%d,%d" % (w["text_pl"], w["x"], w["y"]) for w in txt))
-        if btn: md.append("- kontrolki dotykowe: " + ", ".join("%d,%d %dx%d" % (w["x"], w["y"], w["w"], w["h"]) for w in btn))
+        if k >= 2: md.append("_... kolejne warianty (%d) pominiete_\n" % (len(vs) - 2)); break
+        ws = [w for w in s["widgets"] if w["vis"]]; md.append("**Wariant %d** (wezel %s, tap %s, %d widgetow)\n" % (k + 1, s["node"], s["tap"], len(ws)))
+        md.append("| rola | ax,ay | w×h | zasob | szczegoly |\n|---|---|---|---|---|")
+        for w in sorted(ws, key=lambda w: (w["ay"], w["ax"])):
+            if w["role"] == "other" and not w["touch"]: continue
+            if w["ax"] + w["w"] <= 0 or w["ay"] + w["h"] <= 0 or w["ax"] >= 480 or w["ay"] >= 272: continue
+            if w["role"] == "image": res = "bitmapa %s (%s)" % (w["bitmap_id"], man.get(w["bitmap_id"], "?")); det = ""
+            elif w["role"] == "text": res = "tekst %s" % w.get("text_id"); det = "%r font %s %s%s" % (w.get("text_pl", ""), FN.get(w.get("font"), "?"), AL.get(w.get("align"), "?"), (" wildcard=%r" % w["wildcard"]) if w.get("wildcard") else "")
+            else: res = ""; det = "kontrolka dotykowa"
+            md.append("| %s | %d,%d | %d×%d | %s | %s |" % (w["role"], w["ax"], w["ay"], w["w"], w["h"], res, det.replace("|", "/")))
         md.append("")
-open(out, "w", encoding="utf-8").write("\n".join(md)); print("ekranow-tytulow:", len(groups))
+open(out, "w", encoding="utf-8").write("\n".join(md)); print("ekrany (tytuly):", len(groups))

@@ -32,6 +32,14 @@ def widget_table(s, tracer):
         elif r["op"] in ("pos", "f272c"): seen.add(r["this"])
         elif r["op"] == "add": seen.add(r["this"]); seen.add(r["child"])
     out = []; rd = s.b.rd
+    def rect_of(a):
+        return tuple(int.from_bytes(bytes([rd(a + 4 + 2 * i, 1), rd(a + 5 + 2 * i, 1)]), "little", signed=True) for i in range(4))
+    def abs_xy(a):
+        x = y = 0
+        for _ in range(12):
+            if not (0x20000000 <= a < 0x20030000): break
+            rx, ry, _w, _h = rect_of(a); x += rx; y += ry; a = rd(a + 0x14, 4)
+        return x, y
     for a in sorted(seen):
         if not (0x20000000 <= a < 0x20030000): continue
         try:
@@ -46,6 +54,7 @@ def widget_table(s, tracer):
                         if c == 0: break
                         chars.append(chr(c))
                     wc = "".join(chars)
-            out.append(dict(this=hex(a), wildcard=wc, role="text" if a in ids_t else "image" if a in ids_b else "other", x=x, y=y, w=w, h=h, parent=hex(rd(a + 0x14, 4)), vis=rd(a + 0x25, 1), touch=rd(a + 0x24, 1), text_id=ids_t.get(a), bitmap_id=ids_b.get(a)))
+            ax, ay = abs_xy(a)
+            out.append(dict(this=hex(a), ax=ax, ay=ay, wildcard=wc, role="text" if a in ids_t else "image" if a in ids_b else "other", x=x, y=y, w=w, h=h, parent=hex(rd(a + 0x14, 4)), vis=rd(a + 0x25, 1), touch=rd(a + 0x24, 1), text_id=ids_t.get(a), bitmap_id=ids_b.get(a)))
         except Exception: pass
     return out
