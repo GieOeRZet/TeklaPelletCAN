@@ -37,7 +37,7 @@ NOTA (Roman, 2026-11-23): integracja HA/ESP powstała ze skanowania rejestrów C
 
 ## A. ZADANIA ROMANA (żeby nie umknęły)
 - A1. Powiedz ChatGPT: czytać `-pin` (ten plik + COORDINATION) i **wykonywać wyłącznie sekcję C po kolei**. Wklej mu prompt z końca tego pliku.
-- A2. Potwierdź, czy ChatGPT **faktycznie uruchamia emulator** (raport środowiska w COORDINATION, wpis „RAPORT SRODOWISKA”). Jeśli tak → przejmuje pomiar T1 (sekcja C-E); jeśli nie → T1 robi Claude.
+- A2. (ZAŁATWIONE 2026-11-23: ChatGPT NIE uruchamia emulatora — brak sieci do PyPI; pomiary T1 robi Claude, ChatGPT tylko statyka C1–C10; listingi na zamówienie przez COORDINATION.) Pierwotnie: potwierdź, czy ChatGPT **faktycznie uruchamia emulator** (raport środowiska w COORDINATION, wpis „RAPORT SRODOWISKA”). Jeśli tak → przejmuje pomiar T1 (sekcja C-E); jeśli nie → T1 robi Claude.
 - A3. **Nagrania z prawdziwego panelu/kotła (najcenniejsze, jeśli możesz):** (a) log CAN z magistrali przy pracującym panelu (candump/ESP/analizator) ≥ 2 min — ramki PDO modułów (0x1xx/0x2xx/0x3xx/0x4xx), 0x584, 0x604 — przyspieszy to źródło LIVE i weryfikację; (b) zrzuty/zdjęcia prawdziwych ekranów z żywymi wartościami (Kocioł, Palnik, CO1, CWU, ekran główny) i nagranie wideo przejść między ekranami.
 - A4. Decyzje zakresu: czy odtwarzamy poziom 3 (PIN 6154) i Kaskadę/Magazyn paliwa w pierwszej wersji; czy wykresy/statystyki są w zakresie 1:1; które języki (8 wszystkie?).
 - A5. Scalanie gałęzi (`ccr-be8a1bcb-5t76j0`, `-pin`, `-chatgpt`) — tylko Ty.
