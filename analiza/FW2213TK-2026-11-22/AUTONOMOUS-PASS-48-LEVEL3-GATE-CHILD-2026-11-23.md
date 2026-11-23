@@ -20,3 +20,6 @@
 ## Pokrycie 17 wrapperow
 Trafione na L3: 11 z 17 (tabela: `data/level3_gate_wrappers_17.csv`). Nietrafione: 0x0805A9EC, 0x0805B1D4, 0x0805F400, 0x0805FE9C, 0x0806125C, 0x08061518 — ekrany nieosiagniete w eksploracji (Kaskada, Dod. magazyn, inne konteksty). Te same bramki, ten sam efekt (kopie tego samego kodu naglowka) — nie sprawdzone dynamicznie.
 Narzedzia: `tools/gate_trace.py` (trafienia wrapperow), `tools/header_cpu_probe.py` (skan instancji + sledzenie zapisu bufora i snprintf).
+
+## Uzupelnienie (PASS 52)
+Trafione na L3 (dodatkowo): **Kaskada** -> wrapper 0x08061518 (12B=8), **Magazyn paliwa** -> 0x0806125C (12B=9). Lacznie 13 z 17. Nietrafione: 0x0805A9EC (12A=2), 0x0805B1D4 (12A=4), 0x0805F400 (12A=5), 0x0805FE9C — ekrany o kontekscie 12A=4/5 nieosiagniete (do zbadania). Efekt bramki identyczny (kopie kodu naglowka).

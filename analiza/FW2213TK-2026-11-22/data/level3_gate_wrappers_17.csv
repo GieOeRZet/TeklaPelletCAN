@@ -13,6 +13,6 @@ wrapper_runtime,hit_in_L3_exploration,screens,ctx12A,ctx12B,child_0x23C,typedtex
 0x8060a28,yes,internet,2,19,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
 0x8060ce4,yes,bufor(ust),2,7,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
 0x8060fa0,yes,solar(ust),2,6,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
-0x806125c,no,,,,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
-0x8061518,no,,,,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x806125c,yes,"magazyn_paliwa (ctx12A=2,12B=9)",,,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x8061518,yes,"kaskada (ctx12A=2,12B=8)",,,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
 0x806fab4,yes,info(ust),2,0,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
