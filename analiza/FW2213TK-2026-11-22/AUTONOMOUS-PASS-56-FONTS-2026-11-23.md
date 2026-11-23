@@ -9,3 +9,6 @@
 `data/fonts/font{0..5}_h{12,20,26,36,64,92}/{atlas.png,glyphs.csv,glyph_data_4bpp.bin}`, `data/fonts/fonts_meta.json`, `data/fonts_glyph_pngs.zip` (PNG kazdego glifu), `data/typedtext_database.csv`. Narzedzia: `tools/export_fonts.py`, `tools/render_text.py`.
 ## Otwarte
 Kerning (pole +12 wezla / tablica `[sp+0x14]`), czcionki innych skryptow (tylko lacinica), pixBelowBase/baseline dla wszystkich rozmiarow potwierdzic na wiecej tekstow.
+
+## SPROSTOWANIE (PASS 57)
+Id TypedText przekazywane do setterow widgetow sa **WZGLEDNE**: tekst = `pl(id + 57)` (tabela wskaznikow od 0x0806BD80 + 4*(id+57)); tablica `0x08071958` jest indeksowana id WZGLEDNYM (np. wzgledne 454 = wskaznik CPU: czcionka 0 (12 px), wyrownanie w prawo; wzgledne 436 = '<' (cofnij) czcionka 1). `data/typedtext_database.csv` przepisany (kolumny: id wzgledne, indeks bezwzgledny, czcionka, wyrownanie, tekst PL).

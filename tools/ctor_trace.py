@@ -36,6 +36,16 @@ def widget_table(s, tracer):
         if not (0x20000000 <= a < 0x20030000): continue
         try:
             x, y, w, h = (int.from_bytes(bytes([rd(a + 4 + 2 * i, 1), rd(a + 5 + 2 * i, 1)]), "little", signed=True) for i in range(4))
-            out.append(dict(this=hex(a), role="text" if a in ids_t else "image" if a in ids_b else "other", x=x, y=y, w=w, h=h, parent=hex(rd(a + 0x14, 4)), vis=rd(a + 0x25, 1), touch=rd(a + 0x24, 1), text_id=ids_t.get(a), bitmap_id=ids_b.get(a)))
+            wc = ""
+            if a in ids_t:
+                bp = rd(a + 0x34, 4)
+                if 0x20000000 <= bp < 0x2002FFC0:
+                    chars = []
+                    for i in range(48):
+                        c = int.from_bytes(bytes([rd(bp + 2 * i, 1), rd(bp + 2 * i + 1, 1)]), "little")
+                        if c == 0: break
+                        chars.append(chr(c))
+                    wc = "".join(chars)
+            out.append(dict(this=hex(a), wildcard=wc, role="text" if a in ids_t else "image" if a in ids_b else "other", x=x, y=y, w=w, h=h, parent=hex(rd(a + 0x14, 4)), vis=rd(a + 0x25, 1), touch=rd(a + 0x24, 1), text_id=ids_t.get(a), bitmap_id=ids_b.get(a)))
         except Exception: pass
     return out

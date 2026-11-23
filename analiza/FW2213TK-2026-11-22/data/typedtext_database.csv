@@ -1,497 +1,497 @@
-typedtext_id,font_index,flags,pl_text
-0,1,0x00,ABC
-1,1,0x00,abc
-2,1,0x00,123.0
-3,1,0x00,?!&
-4,1,0x00,s
-5,1,0x00,
-6,3,0x01,
-7,3,0x01,s
-8,3,0x01,
-9,3,0x01,
-10,3,0x01,
-11,3,0x01,
-12,3,0x01,kg
-13,3,0x01,°C
-14,3,0x01,%
-15,3,0x01,kg
-16,3,0x01,%
-17,3,0x01,mV
-18,3,0x01,s
-19,3,0x01,
-20,3,0x01,
-21,3,0x01,
-22,3,0x01,
-23,3,0x01,
-24,3,0x01,
-25,3,0x01,P=W
-26,2,0x00,°C
-27,2,0x00,
-28,2,0x00,
-29,2,0x00,mA
-30,2,0x00,
-31,2,0x00,OFF
-32,2,0x00,
-33,2,0x00,
-34,2,0x00,
-35,2,0x00,
-36,2,0x01,
-37,2,0x00,
-38,1,0x00, = 
-39,1,0x00,E
-40,1,0x00,BIG
-41,1,0x00,MINI
-42,1,0x00,STD
-43,1,0x00,$
-44,1,0x00,$
-45,1,0x00,$
-46,1,0x00,$
-47,1,0x00,$
-48,1,0x00,$
-49,1,0x00,$
-50,1,0x00,$
-51,1,0x00,$
-52,1,0x00,$
-53,1,0x00,$
-54,1,0x00,
-55,1,0x00,
-56,1,0x00,
-57,1,0x00,Ogrzewanie 1
-58,1,0x00,Ogrzewanie 2
-59,1,0x00,Woda użytkowa
-60,2,0x00,Sterownik
-61,2,0x00,Palnik
-62,2,0x00,Kocioł
-63,2,0x00,Wyłączony
-64,2,0x00,Czyszczenie
-65,2,0x00,Rozpalanie
-66,2,0x00,Rozżarzanie
-67,2,0x00,Moc 1
-68,2,0x00,Moc 2
-69,2,0x00,Modulacja
-70,2,0x00,Wygaszanie
-71,2,0x00,Podtrzymanie
-72,2,0x00,Postój
-73,2,0x00,Alarm
-74,2,0x00,Stop
-75,2,0x00,Praca
-76,2,0x00,Przepłukiwanie
-77,2,0x00,Zamarzanie
-78,2,0x00,Przegrzanie
-79,2,0x00,Woda max
-80,2,0x00,Wyłączone
-81,2,0x00,Chłodzenie
-82,1,0x00,Test
-83,2,0x00, 
-84,1,0x00,Grzanie
-85,2,0x00,Wybieg
-86,2,0x00,Oczekiwanie
-87,2,0x00,Ochrona kotła
-88,2,0x00,Alarm
-89,2,0x00,Stop
-90,2,0x00,Lato
-91,2,0x00,Źródło blokuje
-92,2,0x00,Temperatura zadana  [°C]
-93,2,0x00,W tym trybie temperatura\nzadawana jest automatycznie.
-94,2,0x00,Paliwo
-95,2,0x00,EKRAN GŁ.
-96,2,0x00,MENU
-97,2,0x00,KOCIOŁ
-98,2,0x00,PALNIK
-99,2,0x00,OGRZEWANIE 1
-100,2,0x00,OGRZEWANIE 2
-101,2,0x00,OGRZEWANIE 3
-102,2,0x00,OGRZEWANIE 4
-103,2,0x00,WODA
-104,2,0x00,BUFOR
-105,2,0x00,MAGAZYN PALIWA
-106,2,0x02,SOLARY
-107,2,0x00,NASTAWY
-108,2,0x00,HISTORIA ALARMÓW
-109,2,0x00,INFO
-110,2,0x00,KONFIGURACJA
-111,2,0x00,TEST WYJŚĆ
-112,2,0x00,STATYSTYKI
-113,2,0x00,PROGRAM
-114,2,0x00,SIEĆ
-115,2,0x00,KASKADA
-116,2,0x00,INTERNET
-117,2,0x00,Kocioł
-118,2,0x00,Palnik
-119,2,0x00,Ogrzewanie obwód 1
-120,2,0x00,Ogrzewanie obwód 2
-121,2,0x00,Ogrzewanie obwód 3
-122,2,0x00,Ogrzewanie obwód 4
-123,2,0x00,Ciepła woda użytkowa
-124,2,0x00,Bufor
-125,2,0x00,Pomiar energii
-126,2,0x00,Dodatkowy magazyn paliwa
-127,2,0x00,Kaskada
-128,2,0x00,Solary
-129,2,0x00,Historia alarmów
-130,2,0x00,Język (Language)                             PL
-131,2,0x00,Informacje o programie
-132,2,0x00,Alarm dźwiękowy
-133,2,0x00,Poziom menu (PIN)
-134,2,0x00,Konfiguracja
-135,2,0x00,Test wyjść
-136,2,0x00,Statystyki
-137,2,0x00,Sieć
-138,2,0x00,Internet
-139,2,0x00,igneoTouch v
-140,2,0x00,Controller by Estyma (www.estyma.pl)
-141,2,0x00,Następny serwis 
-142,2,0x00,Podaj paliwo
-143,2,0x00,Typ paliwa
-144,2,0x00,Powietrze MIN (moc 20%)
-145,2,0x00,Powietrze MIN (moc 100%)
-146,2,0x00,Próg foto
-147,2,0x00,Czas wygaszania [min]
-148,2,0x00,pellets
-149,2,0x00,drewno
-150,2,0x00,Temperatura komfortowa [°C]  
-151,2,0x00,Temperatura ekonomiczna [°C] 
-152,2,0x00,Program
-153,2,0x00,Zagrzej teraz
-154,2,0x00,Histereza [°C]
-155,2,0x00,Histereza załączenia [°C]
-156,2,0x00,Histereza wyłączenia [°C]
-157,2,0x00,Źródło
-158,2,0x00,Zwiększenie temperatury źródła [°C]
-159,2,0x00,Temp. maksymalna [°C]
-160,2,0x00,Delta załączenia pompy [°C]
-161,2,0x00,Test pompy      
-162,2,0x00,Antylegionella
-163,2,0x00,
-164,2,0x00,Tryb pracy  
-165,2,0x00,Czujnik pokojowy
-166,2,0x00,Kalibracja czujnika pok. [°C]
-167,2,0x00,Czujnik CO
-168,2,0x00,Temperatura CO dla -20°C [°C]
-169,2,0x00,Temperatura CO dla -10°C [°C]
-170,2,0x00,Temperatura CO dla  0°C [°C]
-171,2,0x00,Temperatura CO dla 10°C [°C]
-172,2,0x00,Wsp. korekcji t. CO [°C/°C]
-173,2,0x00,MIN temperatura CO pomp [°C]
-174,2,0x00,Czas mieszacza [s]
-175,2,0x00,Temperatura CO zadana ręcznie [°C]
-176,2,0x00,Priorytet CWU   
-177,2,0x00,Test pompy      
-178,2,0x00,Test mieszacza  
-179,2,0x00,Stała pompa
-180,2,0x00,Magazyn paliwa transport(1)
-181,2,0x00,Magazyn paliwa podajnik(2)
-182,2,0x00,Podajnik palnika
-183,2,0x00,Wentylator wspomagający [%]
-184,2,0x00,Konfiguracja IN17
-185,2,0x00,Odstęp czyszczenia [h]
-186,2,0x00,Rozżarzanie paliwo [%]
-187,2,0x00,Stopniowa redukcja mocy
-188,2,0x00,Czujnik rezerwy paliwa
-189,2,0x00,Maksymalna liczba cykli
-190,2,0x00,Aktywuj alarm wyczyść wymiennik
-191,2,0x00,Aktywuj alarm wyczyść palnik
-192,2,0x00,Wyczyść alarmy
-193,2,0x00,Czas czyszczenia wymiennika [s]
-194,2,0x00,Podajnik palnika w wygaszaniu [s]
-195,2,0x00,Temp. minimalna (góra) [°C]
-196,2,0x00,Temp. maksymalna (dół) [°C]  
-197,2,0x00,Minimalna temp. pomp [°C]
-198,2,0x00,Automatyczna temp. góra [°C]
-199,2,0x00,Moc dmuchawy modulacja [%]
-200,2,0x00,Korekta powietrza [%]
-201,2,0x00,Podawanie max [s]
-202,2,0x00,Wstępna dawka paliwa [s]
-203,2,0x00,Wstępna dawka paliwa [g]
-204,2,0x00,Moc min [%]
-205,2,0x00,Moc max [%]
-206,2,0x00,Ilość paliwa test [kg/h]
-207,2,0x00,Wartość opałowa [kWh/kg]
-208,2,0x00,Sterowanie Lambda
-209,2,0x00,Tlen dla mocy 30%
-210,2,0x00,Tlen dla mocy 100%
-211,2,0x00,Liczba czyszczeń rusztu
-212,2,0x00,Moc dmuchawy rozpalanie [%]
-213,1,0x01,Czas rozżarzania [min]
-214,1,0x01,Bezwładność palnika [min]
-215,1,0x01,Tryb cichy rusztu
-216,1,0x01,Tryb cichy wymiennika
-217,1,0x01,Minimalna temp. spalin [°C]
-218,1,0x01,Maksymalna temp. spalin [°C]
-219,1,0x01,Nominalna temp. spalin [°C]
-220,1,0x00,Minimalna temp. powrotu [°C]
-221,1,0x00,Czujnik powrotu do kotła
-222,1,0x00,Numer profilu
-223,1,0x00,Typ czujnika spalin
-224,1,0x00,Okres podajnika zasobnika [s]
-225,1,0x00,Minimalny czas rozpalania [min]
-226,1,0x00,Obniżenie temperatury CO [°C]
-227,1,0x00,Czujnik temperatury zewnętrznej
-228,1,0x00,Ilość obwodów grzewczych
-229,2,0x00,ręczny
-230,2,0x00,pogodowy
-231,2,0x00,Tryb kominiarz
-232,2,0x00,brak
-233,2,0x00,CTP1
-234,2,0x00,CTP2
-235,2,0x00,CTZ1
-236,2,0x00,videROOM
-237,2,0x00,termostat
-238,2,0x00,CAN
-239,2,0x00,KTY84-130
-240,2,0x00,PT1000
-241,2,0x00,ciepłomierz
-242,2,0x00,przepływomierz
-243,2,0x00,Praca silnika transportującego (1) [s]
-244,2,0x00,Pauza silnika transportującego (1) [s]
-245,2,0x00,Praca silnika podajnika (2) [s]
-246,2,0x00,Pauza silnika podajnika (2) [s]
-247,2,0x00,Przepływ [l/min]
-248,2,0x00,Delta załączenia [°C]
-249,2,0x00,Delta wyłączenia  [°C]
-250,2,0x00,Ciepło właściwe [kJ/(kg*K)]
-251,2,0x00,Temperatura maksymalna wody  [°C]
-252,2,0x00,Max temp kolektora (alarmowa) [°C]
-253,2,0x00,Min temp kolektora (alarmowa)  [°C]
-254,2,0x00,Pojemność zbiornika paliwa [kg]
-255,2,0x00,Rezerwa zbiornika paliwa [kg]
-256,2,0x00,Rezerwa paliwa stop [kg]
-257,2,0x00,Moduł Lambda
-258,2,0x00,Cisza nocna od
-259,2,0x00,Cisza nocna do
-260,2,0x00,Obniżenie Tco dla ochrony powrotu
-261,2,0x00,Napięcie gdy ruszt schowany [V]
-262,2,0x00,Napięcie gdy ruszt wysunięty [V]
-263,1,0x00,Pozycja rusztu (moc minimalna) [%]
-264,1,0x00,Praca rusztu
-265,1,0x00,Zmiana kotła
-266,1,0x00,Wpisz PIN
-267,1,0x01,F(30%) [m/s]
-268,1,0x01,F(100%) [m/s]
-269,1,0x01,Główny moduł IO
-270,1,0x00,Poniedziałek
-271,1,0x00,Wtorek
-272,1,0x00,Środa
-273,1,0x00,Czwartek
-274,1,0x00,Piątek
-275,1,0x00,Sobota
-276,1,0x00,Niedziela
-277,1,0x00,Pn
-278,1,0x00,Wt
-279,1,0x00,Śr
-280,1,0x00,Cz
-281,1,0x00,Pt
-282,1,0x00,Sb
-283,1,0x00,Nd
-284,1,0x00,Kopiuj na inne dni
-285,1,0x00,Kopiuj
-286,1,0x00,Autokonfiguracja
-287,1,0x00,Podajnik
-288,1,0x00,Pompa kotłowa
-289,1,0x00,Ruszt
-290,1,0x00,Wymiennik
-291,1,0x00,Zapalarka
-292,1,0x00,Dm.
-293,1,0x00,Pompa solarna
-294,1,0x00,WentWyc
-295,1,0x00,Pompa CWU
-296,1,0x00,Pompa cyrkulacyjna CWU
-297,1,0x00,Cyrkulacja praca [min]
-298,1,0x00,Cyrkulacja pauza [min]
-299,1,0x00,Pompa CO
-300,1,0x00,Mieszacz CO
-301,1,0x00,Mieszacz powrotu
-302,1,0x00,Powietrze wtórne
-303,1,0x00,Wtórne modulacja MIN [%]
-304,1,0x00,Wtórne modulacja MAX [%]
-305,1,0x00,Licznik rozpaleń
-306,1,0x00,Średni czas rozpalania [s]
-307,1,0x00,Średnia moc palnika z 50 godzin [%]
-308,1,0x00,Czas pracy podajnika 1 [h]
-309,1,0x00,Średni tlen dla mocy 30% [%]
-310,1,0x00,Średni tlen dla mocy 50% [%]
-311,1,0x00,Średni tlen dla mocy 70% [%]
-312,1,0x00,Średni tlen dla mocy 90% [%]
-313,1,0x00,Liczba czyszczeń wymiennika
-314,1,0x00,Liczba przegrzań kotła
-315,1,0x00,Liczba zaników zasilania
-316,1,0x00,Liczba prób odblokowania rusztu
-317,1,0x00,Czas pracy podajnika 2 [h]
-318,1,0x00,Całkowite zużycie paliwa [kg]
-319,1,0x00,Nazwa
-320,1,0x00,NR: 
-321,1,0x00,KOD: 
-322,1,0x00,Powstanie:
-323,1,0x00,Potwierdz.:
-324,1,0x00,AKTYWNY
-325,1,0x00,NIEAKTYWNY
-326,1,0x00,POTWIERDŹ
-327,1,0x00,Brak opisu
-328,1,0x00,Przegrzanie procesora
-329,1,0x00,Brak ognia/opału
-330,1,0x00,Nieudane rozpalanie
-331,1,0x00,Przegrzanie palnika
-332,1,0x00,Uszkodzenie czujnika kotla
-333,1,0x01,Przegrzanie kotła
-334,1,0x01,Reset procesora
-335,1,0x00,STB
-336,1,0x01,Komunikacja z modułem 0
-337,1,0x01,Komunikacja z modułem 1
-338,1,0x01,Komunikacja z modułem 2
-339,1,0x01,Komunikacja z modułem 3
-340,1,0x00,Komunikacja z modułem 4
-341,1,0x01,Komunikacja z modułem 5
-342,1,0x01,Komunikacja z modułem 6
-343,1,0x01,Komunikacja z modułem 7
-344,1,0x01,Zwarcie czujnika CWU
-345,1,0x01,Przerwa czujnika CWU
-346,1,0x00,Zwarcie czujnika pokojowego
-347,1,0x00,Przerwa czujnika pokojowego
-348,1,0x01,Błąd wygaszania
-349,0,0x01,Komunikacja z modułem Lambda
-350,0,0x01,Przegrzanie solarów
-351,1,0x00,Zamarzanie solarów
-352,1,0x00,Błąd czyszczenia rusztu
-353,1,0x00,Błąd czyszczenia
-354,1,0x00,Otwarte drzwi kotła
-355,1,0x00,Komunikacja z modułem BIG
-356,1,0x00,Uszkodzenie czujnika pokojowego 1
-357,1,0x00,Uszkodzenie czujnika pokojowego 2
-358,1,0x00,Uszkodzenie czujnika pokojowego 3
-359,1,0x00,Uszkodzenie czujnika pokojowego 4
-360,1,0x00,Uszkodzenie czujnika temperatury CO1
-361,1,0x00,Uszkodzenie czujnika temperatury CO2
-362,1,0x00,Uszkodzenie czujnika temperatury CO3
-363,1,0x00,Uszkodzenie czujnika temperatury CO4
-364,2,0x00,Przekroczenie temp. maksymalnej CO1
-365,2,0x00,Przekroczenie temp. maksymalnej CO2
-366,2,0x00,Przekroczenie temp. maksymalnej CO3
-367,2,0x00,Przekroczenie temp. maksymalnej CO4
-368,2,0x00,Uszkodzenie czujnika palnika/podajnika
-369,2,0x00,Przegrzanie palnika/podajnika
-370,2,0x00,Komunikacja z modułem Lambda
-371,2,0x00,Magazyn paliwa brak paliwa/czujnik max
-372,2,0x00,Komunikacja z modułem Mini 7
-373,2,0x00,Komunikacja z modułem Mini 4
-374,1,0x01,Komunikacja z modułem Mini 3
-375,2,0x00,Komunikacja z modułem Mini 2
-376,2,0x00,Komunikacja z modułem Mini 0
-377,2,0x00,Wyczyść wymiennik
-378,1,0x00,Wyczyść palnik
-379,1,0x00,Zalecany coroczny przegląd kotła
-380,2,0x00,Przepływ powietrza za niski
-381,2,0x00,Przepływomierz powietrza 1 nieskalibrowany
-382,2,0x00,Komunikacja z przepływomierzem 1
-383,2,0x00,Przepływomierz powietrza uszkodzony
-384,2,0x00,Słaba bateria w czujniku pokojowym 1
-385,2,0x00,Słaba bateria w czujniku pokojowym 2
-386,2,0x00,Słaba bateria w czujniku pokojowym 3
-387,2,0x00,Słaba bateria w czujniku pokojowym 4
-388,2,0x00,Słaba bateria w czujniku zewnętrznym
-389,2,0x00,Ciśnienie kotła
-390,2,0x00,Ustaw czas
-391,2,0x00,Ustaw datę
-392,2,0x00,Styczeń\n\nLuty\n\nMarzec\n\nKwiecień\n\nMaj\n\nCzerwiec\n\nLipiec\n\nSierpień\n\nWrzesień\n\nPaździernik\n\nListopad\n\nGrudzień
-393,2,0x00,jasność=
-394,2,0x00,obroty=
-395,2,0x00,T. palnika=
-396,2,0x00,Ciśnienie=
-397,2,0x00,Energia łącznie [kWh]=
-398,2,0x00,T. powrotu=
-399,2,0x00,tlen[%]=
-400,2,0x00,moc[kW]=
-401,2,0x00,moc[%]=
-402,1,0x00,spalanie[kg/h]=
-403,2,0x00,AIR[m/s]=
-404,2,0x00,ETA[%]=
-405,2,0x00,Stopień mocy 
-406,2,0x00,CLOSE
-407,2,0x00,OPEN
-408,2,0x00,Uszkodzenie czujnika ciepłej wody
-409,2,0x00,Uszkodzenie czujnika buffora góra
-410,2,0x00,Uszkodzenie czujnika buffora dół
-411,2,0x00,Uszkodzenie czujnika kolektora solarnego
-412,2,0x00,Uszkodzenie czujnika zbiornika solarnego
-413,2,0x00,Uszkodzenie czujnika powrotu solarów
-414,2,0x00,Uszkodzenie czujnika solar T4
-415,2,0x00,Rezerwa paliwa
-416,2,0x00,Brak paliwa
-417,2,0x00,STB
-418,1,0x00,Przerwanie obwodu bezpieczeństwa palnika
-419,2,0x00,Uszkodzenie czujnika powrotu do kotla
-420,2,0x00,Poziom tlenu bardzo niski
-421,2,0x00,ładująca
-422,2,0x00,ochrony powrotu
-423,2,0x00,buforowa
-424,2,0x00,pellet
-425,1,0x00,drewno
-426,0,0x01,drewno->pellet
-427,0,0x01,Moc dmuchawy rozżarzanie [%]
-428,0,0x01,Moc dmuchawy podtrzymanie [%]
-429,1,0x00,Pompa kotłowa
-430,1,0x00,Dmuchawa z HALL
-431,1,0x00,spaliny[°C]=
-432,1,0x00,Czas ruchu rusztu [s]
-433,1,0x01,Ruch rusztu [kg]
-434,1,0x01,Czas rozgrzewania zapalarki [s]
-435,1,0x00,Uszkodzenie dmuchawy palnika
-436,1,0x00,Uszkodzenie czujnika temp. zewnętrznej
-437,2,0x00,Kaskada master
-438,1,0x01,Czujnik ciśnienia
-439,1,0x01,Wybieg pompy [min]
-440,1,0x01,Moc nominalna [kW]
-441,1,0x01,Pod. palnika [% pod. zasobnika]
-442,1,0x01,Rozpalanie dmuchawa (drewno)
-443,1,0x01,Rozżarzanie dmuchawa (drewno)
-444,1,0x02,Modulacja dmuchawa (drewno)
-445,2,0x02,Podtrzymanie dmuchawa (drewno)
-446,4,0x01,Moc dmuchawy wygaszanie [%]
-447,3,0x01,Minimalne obroty dmuchawy [*100]
-448,2,0x01,Interwał czyszcz. wymiennika [min]
-449,2,0x01,Master stopień mocy
-450,2,0x01,Slave 1 stopień mocy
-451,2,0x02,Slave 2 stopień mocy
-452,2,0x02,Slave 3 stopień mocy
-453,0,0x01,Próg zwiększania stopnia mocy [%]
-454,0,0x02,Próg zmniejszania stopnia mocy [%]
-455,0,0x02,Opóźn. zwiększ. stopnia mocy [min]
-456,0,0x02,Opóźn. zmniejsz. stopnia mocy [min]
-457,0,0x02,Interwał przedmuchu modulacja [min]
-458,1,0x00,Czas przedmuchu modulacja [min]
-459,5,0x01,Uszkodzenie czujnika temperatury spalin
-460,1,0x01,Liczba kotłów slave
-461,3,0x02,Czas pauzy [min]
-462,4,0x00,Moc w pauzie [%]
-463,3,0x00,Dmuchawa w pauzie [%]
-464,3,0x00,Uśrednianie temp. zewnętrznej [h]
-465,4,0x02,Wybieg silnika transportującego (1) [s]
-466,1,0x01,Kopiuj nastawy z innego sterownika
-467,2,0x00,Praca podajnika palnika [s]
-468,1,0x01,Ruch rusztu interwał [min]
-469,3,0x00,Temperatura przełączenia na lato [C]
-470,1,0x02,Automatyczny tryb lato
-471,1,0x00,Przepływomierz powietrza
-472,1,0x00,Ciśnienie min. [bar]
-473,1,0x00,Ciśnienie max. [bar]
-474,1,0x00,Auto synchronizacja zegara
-475,1,0x00,Zmiany zdalne
-476,1,0x00,PP - dawka wstępna [s]
-477,1,0x00,Kalibracja czujnika zew. [°C]
-478,2,0x00,Szybkość modulacji mocy
-479,2,0x00,Moduł rozrzerzający obwody CO
-480,2,0x00,czujnik rezerwy paliwa
-481,0,0x02,czujnik temp. spalin
-482,2,0x02,WiFi
-483,1,0x02,A
-484,3,0x02,OFF
-485,4,0x02,ON
-486,5,0x02,
-487,1,0x02,1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\n17\n\n18\n\n19\n\n20\n\n21\n\n22\n\n23\n\n24\n\n25\n\n26\n\n27\n\n28
-488,1,0x02,\n29
-489,1,0x02,\n30
-490,0,0x02,
-491,0,0x02,
-492,1,0x02,\n31
-493,0,0x01,<
-494,1,0x01,>
-495,0,0x00,ABC
+typedtext_id_relative,absolute_index,font_index,"align(0=left,1=center,2=right)",pl_text
+0,57,1,0,Ogrzewanie 1
+1,58,1,0,Ogrzewanie 2
+2,59,1,0,Woda użytkowa
+3,60,1,0,Sterownik
+4,61,1,0,Palnik
+5,62,1,0,Kocioł
+6,63,3,1,Wyłączony
+7,64,3,1,Czyszczenie
+8,65,3,1,Rozpalanie
+9,66,3,1,Rozżarzanie
+10,67,3,1,Moc 1
+11,68,3,1,Moc 2
+12,69,3,1,Modulacja
+13,70,3,1,Wygaszanie
+14,71,3,1,Podtrzymanie
+15,72,3,1,Postój
+16,73,3,1,Alarm
+17,74,3,1,Stop
+18,75,3,1,Praca
+19,76,3,1,Przepłukiwanie
+20,77,3,1,Zamarzanie
+21,78,3,1,Przegrzanie
+22,79,3,1,Woda max
+23,80,3,1,Wyłączone
+24,81,3,1,Chłodzenie
+25,82,3,1,Test
+26,83,2,0, 
+27,84,2,0,Grzanie
+28,85,2,0,Wybieg
+29,86,2,0,Oczekiwanie
+30,87,2,0,Ochrona kotła
+31,88,2,0,Alarm
+32,89,2,0,Stop
+33,90,2,0,Lato
+34,91,2,0,Źródło blokuje
+35,92,2,0,Temperatura zadana  [°C]
+36,93,2,1,W tym trybie temperatura\nzadawana jest automatycznie.
+37,94,2,0,Paliwo
+38,95,1,0,EKRAN GŁ.
+39,96,1,0,MENU
+40,97,1,0,KOCIOŁ
+41,98,1,0,PALNIK
+42,99,1,0,OGRZEWANIE 1
+43,100,1,0,OGRZEWANIE 2
+44,101,1,0,OGRZEWANIE 3
+45,102,1,0,OGRZEWANIE 4
+46,103,1,0,WODA
+47,104,1,0,BUFOR
+48,105,1,0,MAGAZYN PALIWA
+49,106,1,0,SOLARY
+50,107,1,0,NASTAWY
+51,108,1,0,HISTORIA ALARMÓW
+52,109,1,0,INFO
+53,110,1,0,KONFIGURACJA
+54,111,1,0,TEST WYJŚĆ
+55,112,1,0,STATYSTYKI
+56,113,1,0,PROGRAM
+57,114,1,0,SIEĆ
+58,115,1,0,KASKADA
+59,116,1,0,INTERNET
+60,117,2,0,Kocioł
+61,118,2,0,Palnik
+62,119,2,0,Ogrzewanie obwód 1
+63,120,2,0,Ogrzewanie obwód 2
+64,121,2,0,Ogrzewanie obwód 3
+65,122,2,0,Ogrzewanie obwód 4
+66,123,2,0,Ciepła woda użytkowa
+67,124,2,0,Bufor
+68,125,2,0,Pomiar energii
+69,126,2,0,Dodatkowy magazyn paliwa
+70,127,2,0,Kaskada
+71,128,2,0,Solary
+72,129,2,0,Historia alarmów
+73,130,2,0,Język (Language)                             PL
+74,131,2,0,Informacje o programie
+75,132,2,0,Alarm dźwiękowy
+76,133,2,0,Poziom menu (PIN)
+77,134,2,0,Konfiguracja
+78,135,2,0,Test wyjść
+79,136,2,0,Statystyki
+80,137,2,0,Sieć
+81,138,2,0,Internet
+82,139,1,0,igneoTouch v
+83,140,2,0,Controller by Estyma (www.estyma.pl)
+84,141,1,0,Następny serwis 
+85,142,2,0,Podaj paliwo
+86,143,2,0,Typ paliwa
+87,144,2,0,Powietrze MIN (moc 20%)
+88,145,2,0,Powietrze MIN (moc 100%)
+89,146,2,0,Próg foto
+90,147,2,0,Czas wygaszania [min]
+91,148,2,0,pellets
+92,149,2,0,drewno
+93,150,2,0,Temperatura komfortowa [°C]  
+94,151,2,0,Temperatura ekonomiczna [°C] 
+95,152,2,0,Program
+96,153,2,0,Zagrzej teraz
+97,154,2,0,Histereza [°C]
+98,155,2,0,Histereza załączenia [°C]
+99,156,2,0,Histereza wyłączenia [°C]
+100,157,2,0,Źródło
+101,158,2,0,Zwiększenie temperatury źródła [°C]
+102,159,2,0,Temp. maksymalna [°C]
+103,160,2,0,Delta załączenia pompy [°C]
+104,161,2,0,Test pompy      
+105,162,2,0,Antylegionella
+106,163,2,2,
+107,164,2,0,Tryb pracy  
+108,165,2,0,Czujnik pokojowy
+109,166,2,0,Kalibracja czujnika pok. [°C]
+110,167,2,0,Czujnik CO
+111,168,2,0,Temperatura CO dla -20°C [°C]
+112,169,2,0,Temperatura CO dla -10°C [°C]
+113,170,2,0,Temperatura CO dla  0°C [°C]
+114,171,2,0,Temperatura CO dla 10°C [°C]
+115,172,2,0,Wsp. korekcji t. CO [°C/°C]
+116,173,2,0,MIN temperatura CO pomp [°C]
+117,174,2,0,Czas mieszacza [s]
+118,175,2,0,Temperatura CO zadana ręcznie [°C]
+119,176,2,0,Priorytet CWU   
+120,177,2,0,Test pompy      
+121,178,2,0,Test mieszacza  
+122,179,2,0,Stała pompa
+123,180,2,0,Magazyn paliwa transport(1)
+124,181,2,0,Magazyn paliwa podajnik(2)
+125,182,2,0,Podajnik palnika
+126,183,2,0,Wentylator wspomagający [%]
+127,184,2,0,Konfiguracja IN17
+128,185,2,0,Odstęp czyszczenia [h]
+129,186,2,0,Rozżarzanie paliwo [%]
+130,187,2,0,Stopniowa redukcja mocy
+131,188,2,0,Czujnik rezerwy paliwa
+132,189,2,0,Maksymalna liczba cykli
+133,190,2,0,Aktywuj alarm wyczyść wymiennik
+134,191,2,0,Aktywuj alarm wyczyść palnik
+135,192,2,0,Wyczyść alarmy
+136,193,2,0,Czas czyszczenia wymiennika [s]
+137,194,2,0,Podajnik palnika w wygaszaniu [s]
+138,195,2,0,Temp. minimalna (góra) [°C]
+139,196,2,0,Temp. maksymalna (dół) [°C]  
+140,197,2,0,Minimalna temp. pomp [°C]
+141,198,2,0,Automatyczna temp. góra [°C]
+142,199,2,0,Moc dmuchawy modulacja [%]
+143,200,2,0,Korekta powietrza [%]
+144,201,2,0,Podawanie max [s]
+145,202,2,0,Wstępna dawka paliwa [s]
+146,203,2,0,Wstępna dawka paliwa [g]
+147,204,2,0,Moc min [%]
+148,205,2,0,Moc max [%]
+149,206,2,0,Ilość paliwa test [kg/h]
+150,207,2,0,Wartość opałowa [kWh/kg]
+151,208,2,0,Sterowanie Lambda
+152,209,2,0,Tlen dla mocy 30%
+153,210,2,0,Tlen dla mocy 100%
+154,211,2,0,Liczba czyszczeń rusztu
+155,212,2,0,Moc dmuchawy rozpalanie [%]
+156,213,2,0,Czas rozżarzania [min]
+157,214,2,0,Bezwładność palnika [min]
+158,215,2,0,Tryb cichy rusztu
+159,216,2,0,Tryb cichy wymiennika
+160,217,2,0,Minimalna temp. spalin [°C]
+161,218,2,0,Maksymalna temp. spalin [°C]
+162,219,2,0,Nominalna temp. spalin [°C]
+163,220,2,0,Minimalna temp. powrotu [°C]
+164,221,2,0,Czujnik powrotu do kotła
+165,222,2,0,Numer profilu
+166,223,2,0,Typ czujnika spalin
+167,224,2,0,Okres podajnika zasobnika [s]
+168,225,2,0,Minimalny czas rozpalania [min]
+169,226,2,0,Obniżenie temperatury CO [°C]
+170,227,2,0,Czujnik temperatury zewnętrznej
+171,228,2,0,Ilość obwodów grzewczych
+172,229,2,0,ręczny
+173,230,2,0,pogodowy
+174,231,2,0,Tryb kominiarz
+175,232,2,0,brak
+176,233,2,0,CTP1
+177,234,2,0,CTP2
+178,235,2,0,CTZ1
+179,236,2,0,videROOM
+180,237,2,0,termostat
+181,238,2,0,CAN
+182,239,2,0,KTY84-130
+183,240,2,0,PT1000
+184,241,2,0,ciepłomierz
+185,242,2,0,przepływomierz
+186,243,2,0,Praca silnika transportującego (1) [s]
+187,244,2,0,Pauza silnika transportującego (1) [s]
+188,245,2,0,Praca silnika podajnika (2) [s]
+189,246,2,0,Pauza silnika podajnika (2) [s]
+190,247,2,0,Przepływ [l/min]
+191,248,2,0,Delta załączenia [°C]
+192,249,2,0,Delta wyłączenia  [°C]
+193,250,2,0,Ciepło właściwe [kJ/(kg*K)]
+194,251,2,0,Temperatura maksymalna wody  [°C]
+195,252,2,0,Max temp kolektora (alarmowa) [°C]
+196,253,2,0,Min temp kolektora (alarmowa)  [°C]
+197,254,2,0,Pojemność zbiornika paliwa [kg]
+198,255,2,0,Rezerwa zbiornika paliwa [kg]
+199,256,2,0,Rezerwa paliwa stop [kg]
+200,257,2,0,Moduł Lambda
+201,258,2,0,Cisza nocna od
+202,259,2,0,Cisza nocna do
+203,260,2,0,Obniżenie Tco dla ochrony powrotu
+204,261,2,0,Napięcie gdy ruszt schowany [V]
+205,262,2,0,Napięcie gdy ruszt wysunięty [V]
+206,263,2,0,Pozycja rusztu (moc minimalna) [%]
+207,264,2,0,Praca rusztu
+208,265,2,0,Zmiana kotła
+209,266,2,0,Wpisz PIN
+210,267,2,0,F(30%) [m/s]
+211,268,2,0,F(100%) [m/s]
+212,269,2,0,Główny moduł IO
+213,270,1,1,Poniedziałek
+214,271,1,1,Wtorek
+215,272,1,1,Środa
+216,273,1,1,Czwartek
+217,274,1,1,Piątek
+218,275,1,1,Sobota
+219,276,1,1,Niedziela
+220,277,1,0,Pn
+221,278,1,0,Wt
+222,279,1,0,Śr
+223,280,1,0,Cz
+224,281,1,0,Pt
+225,282,1,0,Sb
+226,283,1,0,Nd
+227,284,1,0,Kopiuj na inne dni
+228,285,1,0,Kopiuj
+229,286,2,0,Autokonfiguracja
+230,287,2,0,Podajnik
+231,288,2,0,Pompa kotłowa
+232,289,2,0,Ruszt
+233,290,2,0,Wymiennik
+234,291,2,0,Zapalarka
+235,292,2,0,Dm.
+236,293,2,0,Pompa solarna
+237,294,2,0,WentWyc
+238,295,2,0,Pompa CWU
+239,296,2,0,Pompa cyrkulacyjna CWU
+240,297,2,0,Cyrkulacja praca [min]
+241,298,2,0,Cyrkulacja pauza [min]
+242,299,2,0,Pompa CO
+243,300,2,0,Mieszacz CO
+244,301,2,0,Mieszacz powrotu
+245,302,2,0,Powietrze wtórne
+246,303,2,0,Wtórne modulacja MIN [%]
+247,304,2,0,Wtórne modulacja MAX [%]
+248,305,2,0,Licznik rozpaleń
+249,306,2,0,Średni czas rozpalania [s]
+250,307,2,0,Średnia moc palnika z 50 godzin [%]
+251,308,2,0,Czas pracy podajnika 1 [h]
+252,309,2,0,Średni tlen dla mocy 30% [%]
+253,310,2,0,Średni tlen dla mocy 50% [%]
+254,311,2,0,Średni tlen dla mocy 70% [%]
+255,312,2,0,Średni tlen dla mocy 90% [%]
+256,313,2,0,Liczba czyszczeń wymiennika
+257,314,2,0,Liczba przegrzań kotła
+258,315,2,0,Liczba zaników zasilania
+259,316,2,0,Liczba prób odblokowania rusztu
+260,317,2,0,Czas pracy podajnika 2 [h]
+261,318,2,0,Całkowite zużycie paliwa [kg]
+262,319,2,0,Nazwa
+263,320,1,0,NR: 
+264,321,1,0,KOD: 
+265,322,1,0,Powstanie:
+266,323,1,0,Potwierdz.:
+267,324,1,1,AKTYWNY
+268,325,1,1,NIEAKTYWNY
+269,326,1,1,POTWIERDŹ
+270,327,1,0,Brak opisu
+271,328,1,0,Przegrzanie procesora
+272,329,1,0,Brak ognia/opału
+273,330,1,0,Nieudane rozpalanie
+274,331,1,0,Przegrzanie palnika
+275,332,1,0,Uszkodzenie czujnika kotla
+276,333,1,0,Przegrzanie kotła
+277,334,1,0,Reset procesora
+278,335,1,0,STB
+279,336,1,0,Komunikacja z modułem 0
+280,337,1,0,Komunikacja z modułem 1
+281,338,1,0,Komunikacja z modułem 2
+282,339,1,0,Komunikacja z modułem 3
+283,340,1,0,Komunikacja z modułem 4
+284,341,1,0,Komunikacja z modułem 5
+285,342,1,0,Komunikacja z modułem 6
+286,343,1,0,Komunikacja z modułem 7
+287,344,1,0,Zwarcie czujnika CWU
+288,345,1,0,Przerwa czujnika CWU
+289,346,1,0,Zwarcie czujnika pokojowego
+290,347,1,0,Przerwa czujnika pokojowego
+291,348,1,0,Błąd wygaszania
+292,349,1,0,Komunikacja z modułem Lambda
+293,350,1,0,Przegrzanie solarów
+294,351,1,0,Zamarzanie solarów
+295,352,1,0,Błąd czyszczenia rusztu
+296,353,1,0,Błąd czyszczenia
+297,354,1,0,Otwarte drzwi kotła
+298,355,1,0,Komunikacja z modułem BIG
+299,356,1,0,Uszkodzenie czujnika pokojowego 1
+300,357,1,0,Uszkodzenie czujnika pokojowego 2
+301,358,1,0,Uszkodzenie czujnika pokojowego 3
+302,359,1,0,Uszkodzenie czujnika pokojowego 4
+303,360,1,0,Uszkodzenie czujnika temperatury CO1
+304,361,1,0,Uszkodzenie czujnika temperatury CO2
+305,362,1,0,Uszkodzenie czujnika temperatury CO3
+306,363,1,0,Uszkodzenie czujnika temperatury CO4
+307,364,1,0,Przekroczenie temp. maksymalnej CO1
+308,365,1,0,Przekroczenie temp. maksymalnej CO2
+309,366,1,0,Przekroczenie temp. maksymalnej CO3
+310,367,1,0,Przekroczenie temp. maksymalnej CO4
+311,368,1,0,Uszkodzenie czujnika palnika/podajnika
+312,369,1,0,Przegrzanie palnika/podajnika
+313,370,1,0,Komunikacja z modułem Lambda
+314,371,1,0,Magazyn paliwa brak paliwa/czujnik max
+315,372,1,0,Komunikacja z modułem Mini 7
+316,373,1,0,Komunikacja z modułem Mini 4
+317,374,1,0,Komunikacja z modułem Mini 3
+318,375,1,0,Komunikacja z modułem Mini 2
+319,376,1,0,Komunikacja z modułem Mini 0
+320,377,1,0,Wyczyść wymiennik
+321,378,1,0,Wyczyść palnik
+322,379,1,0,Zalecany coroczny przegląd kotła
+323,380,1,0,Przepływ powietrza za niski
+324,381,1,0,Przepływomierz powietrza 1 nieskalibrowany
+325,382,1,0,Komunikacja z przepływomierzem 1
+326,383,1,0,Przepływomierz powietrza uszkodzony
+327,384,1,0,Słaba bateria w czujniku pokojowym 1
+328,385,1,0,Słaba bateria w czujniku pokojowym 2
+329,386,1,0,Słaba bateria w czujniku pokojowym 3
+330,387,1,0,Słaba bateria w czujniku pokojowym 4
+331,388,1,0,Słaba bateria w czujniku zewnętrznym
+332,389,1,0,Ciśnienie kotła
+333,390,1,1,Ustaw czas
+334,391,1,1,Ustaw datę
+335,392,1,0,Styczeń\n\nLuty\n\nMarzec\n\nKwiecień\n\nMaj\n\nCzerwiec\n\nLipiec\n\nSierpień\n\nWrzesień\n\nPaździernik\n\nListopad\n\nGrudzień
+336,393,1,1,jasność=
+337,394,1,1,obroty=
+338,395,1,1,T. palnika=
+339,396,1,1,Ciśnienie=
+340,397,1,0,Energia łącznie [kWh]=
+341,398,1,1,T. powrotu=
+342,399,1,1,tlen[%]=
+343,400,1,1,moc[kW]=
+344,401,1,1,moc[%]=
+345,402,1,1,spalanie[kg/h]=
+346,403,1,0,AIR[m/s]=
+347,404,1,0,ETA[%]=
+348,405,1,1,Stopień mocy 
+349,406,0,1,CLOSE
+350,407,0,1,OPEN
+351,408,1,0,Uszkodzenie czujnika ciepłej wody
+352,409,1,0,Uszkodzenie czujnika buffora góra
+353,410,1,0,Uszkodzenie czujnika buffora dół
+354,411,1,0,Uszkodzenie czujnika kolektora solarnego
+355,412,1,0,Uszkodzenie czujnika zbiornika solarnego
+356,413,1,0,Uszkodzenie czujnika powrotu solarów
+357,414,1,0,Uszkodzenie czujnika solar T4
+358,415,1,0,Rezerwa paliwa
+359,416,1,0,Brak paliwa
+360,417,1,0,STB
+361,418,1,0,Przerwanie obwodu bezpieczeństwa palnika
+362,419,1,0,Uszkodzenie czujnika powrotu do kotla
+363,420,1,0,Poziom tlenu bardzo niski
+364,421,2,0,ładująca
+365,422,2,0,ochrony powrotu
+366,423,2,0,buforowa
+367,424,2,0,pellet
+368,425,2,0,drewno
+369,426,2,0,drewno->pellet
+370,427,2,0,Moc dmuchawy rozżarzanie [%]
+371,428,2,0,Moc dmuchawy podtrzymanie [%]
+372,429,2,0,Pompa kotłowa
+373,430,2,0,Dmuchawa z HALL
+374,431,1,1,spaliny[°C]=
+375,432,2,0,Czas ruchu rusztu [s]
+376,433,2,0,Ruch rusztu [kg]
+377,434,2,0,Czas rozgrzewania zapalarki [s]
+378,435,1,0,Uszkodzenie dmuchawy palnika
+379,436,1,0,Uszkodzenie czujnika temp. zewnętrznej
+380,437,2,0,Kaskada master
+381,438,2,0,Czujnik ciśnienia
+382,439,2,0,Wybieg pompy [min]
+383,440,2,0,Moc nominalna [kW]
+384,441,2,0,Pod. palnika [% pod. zasobnika]
+385,442,2,0,Rozpalanie dmuchawa (drewno)
+386,443,2,0,Rozżarzanie dmuchawa (drewno)
+387,444,2,0,Modulacja dmuchawa (drewno)
+388,445,2,0,Podtrzymanie dmuchawa (drewno)
+389,446,2,0,Moc dmuchawy wygaszanie [%]
+390,447,2,0,Minimalne obroty dmuchawy [*100]
+391,448,2,0,Interwał czyszcz. wymiennika [min]
+392,449,2,0,Master stopień mocy
+393,450,2,0,Slave 1 stopień mocy
+394,451,2,0,Slave 2 stopień mocy
+395,452,2,0,Slave 3 stopień mocy
+396,453,2,0,Próg zwiększania stopnia mocy [%]
+397,454,2,0,Próg zmniejszania stopnia mocy [%]
+398,455,2,0,Opóźn. zwiększ. stopnia mocy [min]
+399,456,2,0,Opóźn. zmniejsz. stopnia mocy [min]
+400,457,2,0,Interwał przedmuchu modulacja [min]
+401,458,2,0,Czas przedmuchu modulacja [min]
+402,459,1,0,Uszkodzenie czujnika temperatury spalin
+403,460,2,0,Liczba kotłów slave
+404,461,2,0,Czas pauzy [min]
+405,462,2,0,Moc w pauzie [%]
+406,463,2,0,Dmuchawa w pauzie [%]
+407,464,2,0,Uśrednianie temp. zewnętrznej [h]
+408,465,2,0,Wybieg silnika transportującego (1) [s]
+409,466,2,0,Kopiuj nastawy z innego sterownika
+410,467,2,0,Praca podajnika palnika [s]
+411,468,2,0,Ruch rusztu interwał [min]
+412,469,2,0,Temperatura przełączenia na lato [C]
+413,470,2,0,Automatyczny tryb lato
+414,471,2,0,Przepływomierz powietrza
+415,472,2,0,Ciśnienie min. [bar]
+416,473,2,0,Ciśnienie max. [bar]
+417,474,2,0,Auto synchronizacja zegara
+418,475,1,0,Zmiany zdalne
+419,476,2,0,PP - dawka wstępna [s]
+420,477,2,0,Kalibracja czujnika zew. [°C]
+421,478,2,0,Szybkość modulacji mocy
+422,479,2,0,Moduł rozrzerzający obwody CO
+423,480,2,0,czujnik rezerwy paliwa
+424,481,2,0,czujnik temp. spalin
+425,482,1,0,WiFi
+426,483,0,1,A
+427,484,0,1,OFF
+428,485,0,1,ON
+429,486,1,0,
+430,487,1,0,1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\n17\n\n18\n\n19\n\n20\n\n21\n\n22\n\n23\n\n24\n\n25\n\n26\n\n27\n\n28
+431,488,1,0,\n29
+432,489,1,0,\n30
+433,490,1,1,
+434,491,1,1,
+435,492,1,0,\n31
+436,493,1,0,<
+437,494,2,0,>
+438,495,1,1,ABC
+439,496,1,1,abc
+440,497,1,1,123.0
+441,498,1,1,?!&
+442,499,1,1,s
+443,500,1,1,
+444,501,1,2,
+445,502,2,2,s
+446,503,4,1,
+447,504,3,1,
+448,505,2,1,
+449,506,2,1,
+450,507,2,1,kg
+451,508,2,2,°C
+452,509,2,2,%
+453,510,0,1,kg
+454,511,0,2,%
+455,512,0,2,mV
+456,513,0,2,s
+457,514,0,2,
+458,515,1,0,
+459,516,5,1,
+460,517,1,1,
+461,518,3,2,
+462,519,4,0,
+463,520,3,0,P=W
+464,521,3,0,°C
+465,522,4,2,
+466,523,1,1,
+467,524,2,0,mA
+468,525,1,1,
+469,526,3,0,OFF
+470,527,1,2,
+471,528,1,0,
+472,529,1,0,
+473,530,1,0,
+474,531,1,0,
+475,532,1,0,
+476,533,1,0, = 
+477,534,1,0,E
+478,535,2,0,BIG
+479,536,2,0,MINI
+480,537,2,0,STD
+481,538,0,2,"1234567890:.,/ -+"
+482,539,2,2,"1234567890:.,/ -+"
+483,540,1,2,"1234567890:.,/ -+"
+484,541,3,2,"1234567890:.,/ -+"
+485,542,4,2,"1234567890:.,/ -+"
+486,543,5,2,"1234567890:.,/ -+"
+487,544,1,2,abcdefghijklmnoprstuwxyz= 
+488,545,1,2,ABCDEFGHIJKLMNOPRSTUWXYZV
+489,546,1,2," ;?@)(*'&#""!\]^_`{|}~"
+490,547,0,2,abcdefghijklmnopqrstuwxyzv= °
+491,548,0,2,ABCDEFGHIJKLMNOPRSTUWXYZV
+492,549,1,2,
+493,550,0,1,
+494,551,1,1,
+495,552,0,0,Încălzire 1
