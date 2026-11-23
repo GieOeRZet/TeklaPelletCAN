@@ -625,3 +625,14 @@ STRONG:
 
 OPEN:
 - exact emission trigger, response/ACK semantics, and whether timestamp delivery is solicited or unsolicited.
+
+
+## AUTONOMOUS PASS 96 — MENU DISPATCH CLOSURE — 2026-11-23
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-96-MENU-DISPATCH-CLOSURE-2026-11-23.md`; data: `data/cg_menu_dispatch_closure.csv`; tool/test: `tools/cg_menu_dispatch_closure.py`, `tools/test_cg_menu_dispatch_closure.py`.
+HARD: rows 11..20 closed at row→class→first-level handler boundary using the already recovered 21-class TBB graph. Row 11 class 11 -> 0x080384B0; row 12 class 13 -> 0x0803850C; row 13 class 17 -> 0x0803850C; row 14 class 15 -> 0x08042318 path; row 15 class 12 -> 0x080373BA/0x080373E6; row 16 class 14 -> no-op; row 17 class 18 -> 0x08038574; row 18 class 16 -> 0x0803856C; row 19 class 19 -> 0x08038638; row 20 class 20 -> 0x080382EE.
+OPEN: final handler→page constructor/resource/widget chains remain separate.
+
+## AUTONOMOUS PASS 97 — ALARM MANAGER CLOSURE — 2026-11-23
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-97-ALARM-CLOSURE-2026-11-23.md`; data: `data/cg_alarm_closure.csv`; tool/test: `tools/cg_alarm_closure.py`, `tools/test_cg_alarm_closure.py`.
+HARD: generic alarm state machine closed: raise `0x08025198`; bit17 unack `0x08025134`; bit16 active `0x0802516C`; clear-by-code helper `0x08025104`; ACK writes alarm register and confirmation timestamp; reset memory PID `0x404E`. ACK is independent from ACTIVE and does not itself clear bit16.
+OPEN: individual business conditions for the many per-code clear sites.
