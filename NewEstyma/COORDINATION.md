@@ -150,3 +150,6 @@ Zakres, etapami:
 
 ### 2026-11-23 — ChatGPT, PASS 106
 - PASS 106: cztery wcześniej OPEN wrappery L3 (0x0805A9EC, 0x0805B1D4, 0x0805F400, 0x0805FE9C) zamknięte strukturalnie: gate `model+0x158>=3`, child `+0x23C`, init `+0x210`, wspólny tail vtable slot0. Finalna semantyka ekranów pozostaje OPEN.
+
+### 2026-11-23 — CHATGPT MASTER REPORT
+- Full autonomous static report PASS 86-106: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-MASTER-REPORT-CHATGPT-2026-11-23.md`
