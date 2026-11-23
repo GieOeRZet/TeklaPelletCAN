@@ -176,3 +176,8 @@ Czas: ~9 s na 3000 tikow. Debug: `Board.diag()` (zadanie, rejestry, slad wywolan
 
 - `tools/stm32_can.py` (PASS 43) — model CAN2: TME w TSR, przechwyt TX (TIxR.TXRQ), `inject(id,data)` do FIFO0 + IRQ 64; `Board.enable_can2()`.
 - `tools/can_boot_trace.py` (+ `test_can_boot_trace.py`) — ruch CAN po starcie; `--inject 701:05@3500`. Pierwsze ramki dopiero ok. ticku 3300 (scheduler okresowy), wiec symuluj >= 4000 tikow.
+
+## PASS 44 (w toku) — DOTYK
+- `tools/stm32_i2c.py` — model I2C (flagi START/ADDR/TXE/BTF/RXNE, log transakcji) + slave `FT5x06` (adres 0x38; rejestry 0x02..0x06; `touch(x,y)`, `release()` niesie ostatnia pozycje). `Board.enable_i2c(slaves={0x38: ft})`.
+- `tools/touch_screen.py` — sesja z dotykiem: `--tap X,Y@TICK`, zrzuty PNG; pierwsze odpytanie kontrolera ok. ticku 141, potem co ~40 tikow.
+- Ustalone: firmware odpytuje FT5x06 sekwencja START, 0x70, 0x03, START, 0x71, odczyt 1 B, STOP (potem blok 0x03..0x07 po wykryciu dotyku). Dotkniecie zegara (30,40) otwiera dialog "Ustaw czas"; mapowanie wspolrzednych wymaga kalibracji (siatka w toku, patrz kolejny raport).

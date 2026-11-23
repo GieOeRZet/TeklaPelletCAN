@@ -113,6 +113,9 @@ class Board:
 
     def raise_irq(self, irqn): self.pend.add(16 + irqn)
 
+    def enable_i2c(self, base=0x40005400, slaves=None):
+        import stm32_i2c; i = stm32_i2c.I2C(self, base, slaves); self.i2c = getattr(self, 'i2c', {}); self.i2c[base] = i; return i
+
     def enable_can2(self):
         import stm32_can; self.can2 = stm32_can.Can2(self); return self.can2
 
