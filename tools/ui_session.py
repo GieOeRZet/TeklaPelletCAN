@@ -84,6 +84,12 @@ class UiSession:
             if h == last: break
             imgs.append(im); last = h; self.drag_until_change(x, ytop, x, ytop - dy, attempts=3)
         return imgs
+    def checkpoint(self, path):
+        """zapisuje stan emulatora i licznik tikow sesji (patrz Board.save_state)"""
+        self.b.save_state(path, extra=dict(n=self.n))
+    @classmethod
+    def from_checkpoint(cls, binpath, path, outdir=None):
+        s = cls(binpath, outdir); ex = s.b.load_state(path); s.n = ex["n"]; return s
     def state(self): return dict(self.b.counters, tick=self.n, task=self.b.task_name())
 
 

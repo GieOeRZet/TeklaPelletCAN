@@ -113,6 +113,48 @@ class Board:
 
     def raise_irq(self, irqn): self.pend.add(16 + irqn)
 
+
+    # ---- punkty kontrolne (checkpoint/restore) ----
+    _REGS = ("R0","R1","R2","R3","R4","R5","R6","R7","R8","R9","R10","R11","R12","SP","LR","XPSR","MSP","PSP","BASEPRI","PRIMASK","FAULTMASK","CONTROL","FPSCR","FPEXC")
+    def save_state(self, path, extra=None):
+        """zapis pelnego stanu: rejestry, wszystkie zmapowane regiony poza flashem (SRAM, SDRAM, peryferia, CCM...), stan schedulera i modeli.
+        extra: dowolny obiekt do zapisania (np. stan sesji UI). Plik jest skompresowany (zlib)."""
+        import pickle, zlib
+        from unicorn import arm_const as A
+        regs = {n: self.mu.reg_read(getattr(A, "UC_ARM_REG_" + n)) for n in self._REGS if hasattr(A, "UC_ARM_REG_" + n)}
+        mem = []
+        for lo, hi, perm in self.mu.mem_regions():
+            if 0x08000000 <= lo < 0x08300000 or lo < 0x1000 or lo >= 0xE0000000: continue          # flash i tablica wektorow nie sa zapisywane
+            mem.append((lo, bytes(self.mu.mem_read(lo, hi - lo + 1))))
+        models = {}
+        if hasattr(self, "i2c"):
+            models["i2c"] = {base: {k: v for k, v in i.__dict__.items() if k in ("log", "state", "addr", "rw", "rd_buf")} for base, i in self.i2c.items()}
+            models["i2c_slaves"] = {base: {a: sl.__dict__.copy() for a, sl in i.slaves.items()} for base, i in self.i2c.items()}
+        if hasattr(self, "can2"): models["can2"] = dict(tx=list(self.can2.tx), rx_log=list(self.can2.rx_log))
+        if hasattr(self, "dma2d"): models["dma2d"] = dict(log=len(self.dma2d.log))
+        st = dict(regs=regs, mem=mem, pc=self.pc, pend=set(self.pend), stack=list(self.stack), counters=dict(self.counters), switches=list(self.switches), models=models, extra=extra)
+        with open(path, "wb") as f: f.write(zlib.compress(pickle.dumps(st), 3))
+    def load_state(self, path):
+        """wczytanie stanu zapisanego save_state; wymaga Board z tymi samymi wlaczonymi modelami (enable_*). Zwraca 'extra'."""
+        import pickle, zlib
+        from unicorn import arm_const as A
+        st = pickle.loads(zlib.decompress(open(path, "rb").read()))
+        have = [(lo, hi) for lo, hi, _ in self.mu.mem_regions()]
+        for lo, data in st["mem"]:
+            if not any(l <= lo and lo + len(data) - 1 <= h for l, h in have):
+                try: self.mu.mem_map(lo & ~0xFFF, ((len(data) + (lo & 0xFFF) + 0xFFF) & ~0xFFF))
+                except Exception: pass
+            self.mu.mem_write(lo, data)
+        for n, v in st["regs"].items(): self.mu.reg_write(getattr(A, "UC_ARM_REG_" + n), v)
+        self.pc, self.pend, self.stack = st["pc"], set(st["pend"]), list(st["stack"]); self.counters.update(st["counters"]); self.switches = list(st["switches"])
+        m = st["models"]
+        if "i2c" in m and hasattr(self, "i2c"):
+            for base, d in m["i2c"].items(): self.i2c[base].__dict__.update(d)
+            for base, sl in m.get("i2c_slaves", {}).items():
+                for a, d in sl.items(): self.i2c[base].slaves[a].__dict__.update(d)
+        if "can2" in m and hasattr(self, "can2"): self.can2.tx[:] = m["can2"]["tx"]; self.can2.rx_log[:] = m["can2"]["rx_log"]
+        return st["extra"]
+
     def enable_i2c(self, base=0x40005400, slaves=None):
         import stm32_i2c; i = stm32_i2c.I2C(self, base, slaves); self.i2c = getattr(self, 'i2c', {}); self.i2c[base] = i; return i
 
