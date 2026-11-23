@@ -656,3 +656,6 @@ CORRECTED HARD: 0x370A→0x20016894 (bitmap 11/12/13), 0x350D→0x20016A94 (Ciś
 - PASS 107: pełny source-grounded resolver T1 — 49 rekordów, `PID=value+inst-1`; eksport + test.
 - PASS 108: drugi callback `FUN_0807EB36` zamknięty ze źródłowego raw snippet: ten sam rejestr `this+0x3B4+i*0x274`, count `+0x3B8`, dispatch `FUN_0803EC18`. Nie nadano nieudowodnionej semantyki końcowego ekranu.
 - PASS 109: T1/T2 reconciliation — T1=49, T2=372, **0 wspólnych ui_key**; T1 rule `PID=value+inst-1`, T2 rule `PID=value`.
+
+## AUTONOMOUS PASS 110 — 2026-11-23
+- Audyt katalogu alarmów wykazał kody clear-only (7,43,53,115,250) i raise-only (131,139,140,150,160,161). Nie traktować asymetrii jako dowodu brakującego wywołania; wymagany jest trace caller/context.
