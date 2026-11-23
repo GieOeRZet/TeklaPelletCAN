@@ -1,3 +1,7 @@
+> **AKTUALNY ETAP (2026-11-23): rewers 1:1 panelu Estyma igneoTouch (firmware FW2213TK).** Zacznij od `NewEstyma/00_AGENT_START_HERE.md`, potem `NewEstyma/05_PLAN_1TO1.md`.
+> Na tym etapie wlasciciel zlecil: dzialanie autonomiczne (tworzenie i ulepszanie narzedzi w `tools/`), **commit i push po kazdym etapie** na biezaca galaz (to nadpisuje zakaz pushowania z sekcji 8; PR-ow nie tworzyc), dokumentacja w `NewEstyma/` i `analiza/FW2213TK-2026-11-22/`.
+> ESP32, Home Assistant, Android i skalowanie grafik sa ODLOZONE do domkniecia rewersu 1:1 (patrz TODO w `00_AGENT_START_HERE.md`). Reszta zasad ponizej (minimalne zmiany, weryfikacja, raportowanie) obowiazuje nadal.
+
 # ZASADY PRACY NAD PROJEKTEM
 
 ## 1. Twoja rola
