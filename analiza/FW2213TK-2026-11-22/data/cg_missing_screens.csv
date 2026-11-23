@@ -1,0 +1,4 @@
+screen,class_or_vtable,constructor,setup_or_entry,opened_from,confidence
+PROGRAM,?, ?,?,Ogrzewanie/CWU -> PROGRAM,STRONG
+TIME_DIALOG,?, ?,?,Home clock -> Ustaw czas,STRONG
+STATISTICS,0x11,?,FUN_0803E714 list builder,Menu L1+,FACT
