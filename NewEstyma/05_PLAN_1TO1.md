@@ -33,4 +33,4 @@ E1. Prawdziwe pokrycie funkcji (po odsianiu danych udajacych kod: `tools/coverag
 E2. Wyjasnic: kloda znika po ~3400 tikach; zrodlo 7°C i 0%; warunek "Ochrona kotla"; slider/tekstury (jest).
 
 ## Kolejnosc (proponowana)
-1) A1 czcionki -> 2) A2 poprawiony inwentarz + A4 jezyki -> 3) A6 brakujace ekrany -> 4) B1/B2 formatowanie danych -> 5) C1/C2/C3 zachowanie -> 6) D harness -> 7) E zamkniecie.
+1) UI-MODEL: view_off -> presenter/PID (narzedzie PASS 59 gotowe; pozostaje pelny przebieg na wszystkich stanach) -> 2) graf akcji widgetow -> 3) warunki widocznosci i dialogi jako dane -> 4) A6 brakujace ekrany -> 5) B1/B2 formatowanie danych -> 6) C1/C2/C3 zachowanie -> 7) D harness -> 8) E zamkniecie.
