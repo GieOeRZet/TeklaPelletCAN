@@ -77,7 +77,10 @@ def load_widgets(path):
             out.append(dict(item))
     return out
 
-def bind(widgets, presenters):
+def bind(widgets, presenters, active=None):
+    """active (PASS 61, presenter_trace.py): {node: {sites: {site: [keys]}, setters: {setter: ["view"|r0]}}}.
+    Gdy podane, kandydat jest AKTYWNY tylko jesli jego setter zostal wykonany na tym wezle z r0 == aktywny widok
+    (dowod, ze setter nalezy do klasy widoku tego ekranu). Wiazanie statyczne zostaje w binding_static."""
     by_off = defaultdict(list)
     for pidx, p in enumerate(presenters):
         for off in set(p["widget_offsets_i"]):
@@ -103,10 +106,28 @@ def bind(widgets, presenters):
             })
         d = dict(w)
         d["view_off_i"] = vo
-        d["presenter_candidates"] = candidates
         d["binding"] = "EXACT_VIEW_OFF" if len(candidates) == 1 else (
             "AMBIGUOUS_VIEW_OFF" if len(candidates) > 1 else "UNRESOLVED_VIEW_OFF"
         )
+        if active is not None:
+            act = active.get(str(w.get("node")))
+            d["binding_static"] = d["binding"]
+            if act is None:
+                d["binding"] = "NO_ACTIVE_TRACE"
+            else:
+                on_view = {hx(k) for k, v in act.get("setters", {}).items() if "view" in v}
+                sites = {hx(k) for k in act.get("sites", {})}
+                for c in candidates:
+                    c["setter_on_view"] = hx(c["setter"]) in on_view
+                    c["site_executed"] = hx(c["site"]) in sites
+                    if c["setter_on_view"]:
+                        c["evidence"] = "EXACT_ACTIVE_VIEW_OFF"
+                live = [c for c in candidates if c["setter_on_view"]]
+                if candidates:
+                    candidates = live
+                d["binding"] = ("EXACT_ACTIVE_VIEW_OFF" if len(live) == 1 else "AMBIGUOUS_ACTIVE_VIEW_OFF" if len(live) > 1
+                                else "INACTIVE_VIEW_OFF" if d["binding_static"] != "UNRESOLVED_VIEW_OFF" else "UNRESOLVED_VIEW_OFF")
+        d["presenter_candidates"] = candidates
         out.append(d)
     return out
 
@@ -155,6 +176,7 @@ def write_csv(path, rows):
 
 def report(model, presenters, outpath, csv_path=None):
     cnt = Counter(w["binding"] for w in model)
+    extra = [f"- {k}: **{v}**" for k, v in sorted(cnt.items()) if k not in ("EXACT_VIEW_OFF", "AMBIGUOUS_VIEW_OFF", "UNRESOLVED_VIEW_OFF")]
     exact = cnt["EXACT_VIEW_OFF"]
     amb = cnt["AMBIGUOUS_VIEW_OFF"]
     unresolved = cnt["UNRESOLVED_VIEW_OFF"]
@@ -175,6 +197,7 @@ def report(model, presenters, outpath, csv_path=None):
         f"- AMBIGUOUS_VIEW_OFF (>1 kandydat): **{amb}**",
         f"- UNRESOLVED_VIEW_OFF (brak): **{unresolved}**",
         f"- uzyte wiersze mapy prezenterow: **{unique_presenters}/{len(presenters)}**",
+    ] + extra + [
         "",
         "## Status dowodu",
         "- EXACT_VIEW_OFF = silne powiazanie obiektu widgetu z lokalnym slotem prezentera.",
@@ -197,10 +220,12 @@ def main():
     ap.add_argument("out_json")
     ap.add_argument("--csv", dest="csv_out")
     ap.add_argument("--report")
+    ap.add_argument("--active", help="presenter_trace.py JSON: zaweza kandydatow do setterow wykonanych na widoku wezla")
     args = ap.parse_args()
     p = load_presenters(args.presenter_csv)
     w = load_widgets(args.widget_json)
-    model = bind(w, p)
+    active = json.load(open(args.active, encoding="utf-8")) if args.active else None
+    model = bind(w, p, active)
     with open(args.out_json, "w", encoding="utf-8") as f:
         json.dump({
             "schema": "NewEstyma.UIModel/1",
@@ -222,6 +247,7 @@ def main():
         "exact": sum(x["binding"] == "EXACT_VIEW_OFF" for x in model),
         "ambiguous": sum(x["binding"] == "AMBIGUOUS_VIEW_OFF" for x in model),
         "unresolved": sum(x["binding"] == "UNRESOLVED_VIEW_OFF" for x in model),
+        "all": dict(Counter(x["binding"] for x in model)),
     }))
 
 if __name__ == "__main__":

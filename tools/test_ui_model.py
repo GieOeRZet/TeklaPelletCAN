@@ -21,7 +21,15 @@ def main():
         assert m[1]["binding"]=="UNRESOLVED_VIEW_OFF"
         assert m[2]["binding"]=="AMBIGUOUS_VIEW_OFF" and len(m[2]["presenter_candidates"])==2
         assert len(flat_rows(m))==4
-    print("PASS: ui_model synthetic exact/ambiguous/unresolved cases")
+        # PASS 61: aktywny trace wezla rozstrzyga wieloznacznosc (setter 0x301 wykonany na widoku), 0x300 nie
+        for x in w: x["node"]="n"
+        act={"n":{"sites":{"0x201":[0x11]},"setters":{"0x301":["view"],"0x300":["0x20009999"]}}}
+        m2=bind(w,p,act)
+        assert m2[2]["binding"]=="EXACT_ACTIVE_VIEW_OFF" and m2[2]["presenter_candidates"][0]["pid"]=="0x2005"
+        assert m2[0]["binding"]=="INACTIVE_VIEW_OFF" and m2[0]["binding_static"]=="EXACT_VIEW_OFF"
+        assert m2[1]["binding"]=="UNRESOLVED_VIEW_OFF"
+        assert bind(w,p,{})[0]["binding"]=="NO_ACTIVE_TRACE"
+    print("PASS: ui_model synthetic exact/ambiguous/unresolved + active-trace cases")
 
 if __name__=="__main__":
     main()
