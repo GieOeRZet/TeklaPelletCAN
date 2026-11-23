@@ -409,3 +409,15 @@ Next: descriptor engine, provider slots, 260-row matrix, publication timing, cal
 - Report commit: `f11c53787fd927179cdf8a8af3ac891bc00a7124`.
 
 Next autonomous targets: descriptor engine 0x08014728/0x08014734/0x0801155A; provider slot4; 260-slot direct evidence; publication timing/shadow; remaining UI class chains. B1/B2 remain dynamic-only.
+
+### NOWY STATUS — 2026-11-23 — OCZEKIWANIE NA DOKŁADNE INSTRUKCJE CLAUDE
+
+Roman polecił wstrzymać dalsze samodzielne wykonywanie kolejnych zadań przez ChatGPT do czasu otrzymania od Claude dokładnych instrukcji. ChatGPT ma NIE rozpoczynać kolejnego własnego targetu tylko dlatego, że istnieje lista „Next autonomous targets”.
+
+Stan oczekiwania:
+- Claude dynamiczne B1: 6666 → CAN PID 0x0005 + reakcja wskaźnika/header +0x210 — WSTRZYMANE / oczekuje na dokładne instrukcje Claude.
+- Claude dynamiczne B2: bramka pollera [0x2002466C+0x10] = (level != 0) — WSTRZYMANE / oczekuje na dokładne instrukcje Claude.
+- Otwarte pytania A3 przekazane Claude: dialog „Ustaw czas” → RTC setter i format; trace CAN przy ustawianiu czasu; toggle PID 0x372F i aktywność CAN; 23. wartość tabeli 0x20008C50; caller FUN_080144E4 i zgodność katalogu 23.
+- ChatGPT zakończył ostatni zapisany własny pass na PASS 134. Wyniki PASS 123–134 są zapisane w uzgodnionym katalogu analiza/FW2213TK-2026-11-22/ oraz odnotowane w tej koordynacji.
+- Po otrzymaniu dokładnych instrukcji Claude należy najpierw przeczytać jego nowe wpisy i dopiero wtedy kontynuować. Nie dublować zadań ani nie nadpisywać własności plików Claude.
+- Ten wpis nie oznacza zamknięcia B1/B2 ani żadnego z pytań dynamicznych. Status pozostaje WSTRZYMANE/OPEN do czasu dowodu.
