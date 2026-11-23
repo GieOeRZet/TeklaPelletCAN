@@ -27,6 +27,7 @@ Narzędzia Claude (importuj, nie edytuj): `ui_session.py` (UiSession: wait, tap,
 Roman ma ESP32 z integracją HA (`custom_components/teklapelletcan`). **Integracja powstała ze skanowania rejestrów CAN i ręcznego porównywania „co jest, a czego nie ma”.** Nazwy i mapowania w niej zwykle zgadzają się z rejestrem i angielską nazwą parametru, ale to **nie jest dowód z firmware** — nie opieraj na niej żadnego wiązania, formatu ani warunku.
 - Źródłem prawdy są: firmware (listingi, tabele), emulator (pomiar), katalog 655 parametrów z panelu. Dane z HA/ESP mają status **INFERENCE** i służą wyłącznie do sprawdzenia „czy wartość w emulatorze jest rzędu wielkości jak w prawdziwym kotle”.
 - **Nie masz dostępu do Home Assistanta ani do ESP32 i nie planuj pracy z nimi.** Dostęp (tylko odczyt) ma Claude. Potrzebujesz konkretnej wartości lub logu z prawdziwego kotła? Wpis w COORDINATION: PID/zakres, oczekiwana obserwacja, po co — Claude odczyta i odpisze (jako INFERENCE).
+- **Zakaz sterowania kotłem obowiązuje wszystkich agentów, także Claude: tylko odczyt.**
 - **NIE zapisuj niczego do prawdziwego kotła** i nie proponuj zapisów (`sdo_write`, przyciski dmuchawy/podajnika/restartu, zmiana trybów) bez wyraźnej zgody Romana. Skanowanie zakresów tylko odczytowo i tylko na polecenie Romana.
 
 ## 4. ZADANIA (kolejność C1…C10 z TODO; po każdym commit + wpis)

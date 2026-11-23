@@ -31,6 +31,8 @@ Test akceptacyjny 1:1: renderer z `ui_model/` + wartości PID daje zrzut zgodny 
 - PASS 95 (S9: węzły 5/6/7 jako źródło live kotła) — **błędne**: to SLAVE 1..3 kaskady (korekta w PASS 64).
 - ChatGPT zgłosił brak surowych listingów (PASS 120/122): **Claude dodał** `data/raw_listings/` (0x08048468, 0x0804858A, 0x08054848, 0x08056028, 0x08056040, 0x08056A1C/44, 0x08054AB8) + `tools/dump_listing.py` (na gałęzi `ccr-be8a1bcb-5t76j0`). Dowolny adres: `python3 -I tools/dump_listing.py FW2213TK_kopia.bin OUTDIR 0xADRES:0xDLUGOSC`.
 
+ZASADA BEZWZGLĘDNA (Roman, 2026-11-23): **zakaz sterowania prawdziwym kotłem dla WSZYSTKICH agentów (Claude i ChatGPT) — tylko odczyt** (stany encji, historia, logi). Bez wywoływania usług, przycisków (dmuchawa, podajnik, restart, potwierdzenie alarmu, Snap), `sdo_write`, `sdo_scan`, zmiany trybów czy ustawień.
+
 NOTA (Roman, 2026-11-23): integracja HA/ESP powstała ze skanowania rejestrów CAN i ręcznego dopasowania; nazwy zwykle zgadzają się z rejestrem, ale to NIE jest źródło prawdy — dane z HA mają status INFERENCE (tylko kontrola rzędu wielkości). Prawda = firmware + emulator + katalog 655 parametrów.
 
 ## A. ZADANIA ROMANA (żeby nie umknęły)
