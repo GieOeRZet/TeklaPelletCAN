@@ -5,8 +5,8 @@ Adresy: PROJECT (RUNTIME = +0x10000). Wymaga emulatora systemowego z PASS 42/43.
 
 ## HARD — kontroler dotyku i protokół
 - Kontroler dotyku to **FocalTech FT5x06 na I2C1, adres 7-bit `0x38`** (bajty adresu `0x70`/`0x71`). Odpytywanie co ~40 tików (25 Hz) przez GUITask: `START, 0x70, 0x03, START, 0x71, odczyt 1 B, STOP`; po wykryciu zdarzenia blok `0x03..0x07` (P1_XH/XL/YH/YL).
-  Ślad wywołań w momencie odczytu: `taskEntry 0x080661F3 → 0x080662AB (HAL tick) → 0x080759E7 (sampleTouch) → 0x08072251 (odczyt I2C)`.
-- **Przeliczanie współrzędnych** (`FUN` PROJECT `0x080759DC` = `sampleTouch(&x,&y)`, RUNTIME `0x080759DC`/`0x08065…` wg tabeli): `x_ekran = (x_raw·3750 + 5000)/10000 ≈ 0,375·x_raw`, `y_ekran = (y_raw·354 + 500)/1000 ≈ 0,354·y_raw`.
+  Ślad wywołań w momencie odczytu: adresy RUNTIME: `taskEntry 0x080661F3 → 0x080662AB (HAL tick) → 0x080759E7 (sampleTouch) → 0x08072251 (odczyt I2C)`.
+- **Przeliczanie współrzędnych** (`sampleTouch(&x,&y)`: RUNTIME `0x080759DC` = PROJECT `0x080659DC`): `x_ekran = (x_raw·3750 + 5000)/10000 ≈ 0,375·x_raw`, `y_ekran = (y_raw·354 + 500)/1000 ≈ 0,354·y_raw`.
   Czyli panel raportuje ok. **1280×768**, a ekran ma 480×272; współrzędne ekranowe trzeba przeliczyć na surowe (`x/0,375`, `y/0,354`). Pierwsza próba bez przeliczania lądowała w lewym górnym rogu.
 - Zwolnienie palca w FT5x06 niesie **ostatnią pozycję** (nie 0,0); inaczej TouchGFX uznaje puszczenie poza przyciskiem i nie wykonuje akcji.
 
