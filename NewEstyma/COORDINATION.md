@@ -105,3 +105,15 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-74-RTC-VTABLE-DISPATCH-2026
 ## 5. Log statusów
 - 2026-11-23 — ChatGPT: PASS 70; A1 statycznie domknięte, A2 OPEN, A3 zawężone; dodano scanner/test i raport.
 - 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANE.
+
+
+### Nowe ustalenia ChatGPT — PASS 78 (2026-11-23)
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-78-CAN-TIMESTAMP-FRAME-2026-11-23.md
+Narzędzia: tools/cg_can_timestamp_frame_scan.py, tools/test_cg_can_timestamp_frame_scan.py
+
+- Domknięto transportowy tor zapisu PID 0x2165: caller FUN_08062A90/FUN_08062AB2 sprawdza StdId 0x584, a następnie wywołuje FUN_08062B22.
+- FUN_08062B22 pobiera PID z frame+4/+5 jako LE u16; frame+6 musi być 1, aby wejść w zapis parametru.
+- Dla wire type 5 wartość u32 jest składana z frame+7..frame+10 jako LE i przez FUN_08014720 normalizowana do type=3.
+- data/pid_matrix_655.csv potwierdza: PID 0x2165 = Compatibility timestamp, u32, storage 0x20008D28, class/sidecar command.
+- Statycznie zamknięty jest więc logiczny format zapisu timestampu: StdId 0x584, PID 0x2165, opcode 1, u32 LE.
+- Nadal OPEN: konkretny producent timestampu, ACK oraz czy panel sam wysyła ten parametr.
