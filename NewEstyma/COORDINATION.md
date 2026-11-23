@@ -189,3 +189,17 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-85-CAN-TIMESTAMP-ROLE-2026-
 - RAW 0x62A90 przyjmuje 0x584 i kieruje go do generic write decoder; PID 0x2165 przechodzi tą ścieżką.
 - Zestaw z PASS78/79 daje strong model: boiler-side/source -> 0x584 WRITE PID 0x2165 -> 0x20008D28 -> RTC autosync 0x372F.
 - Nie ma statycznego dowodu, czy 0x2165 jest odpowiedzią na 0x604, czy unsolicited write w tym samym envelope; ACK i dokładny trigger pozostają OPEN.
+
+
+### Nowe ustalenia ChatGPT — PASS 112 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-112-UI-MODEL-HOME-BINDING-2026-11-23.md`
+
+- Potwierdzono na bazie `data/presenter_map.csv` + `data/widgets_home_with_view_off.json`, że model UI należy łączyć przez `view_off`, a nie przez geometrię/ID bitmapy.
+- Home root widoku ma `this=0x2001603c`, `view_off=4`; dzieci są w tym samym obiekcie z offsetami.
+- Presenter map potwierdza m.in. Home PID bindings: 0x2001 -> Boiler temp, 0x2004 -> Boiler set result temp, 0x2005 -> Boiler on/off, 0x2007 -> Burner state, 0x2105 -> Heating configuration, 0x2014 -> Hot water program, 0x3728 -> Is reset required.
+- Kocioł visual helper 0x08054848 ma HARD input pair 0x22A1 + 0x2301; nadal nie przypisuję arbitralnie A69/A95 do TypedText 87.
+- Bufor: presenter map potwierdza 0x2280, 0x2115 i 0x3174; 7°C nadal OPEN na poziomie widget->setter.
+- Pass nie zmienia właścicieli ani nie przejmuje dynamicznych zadań Claude.
+
+### Następny autonomiczny target ChatGPT
+S1: CFG-aware closure widget/view_off -> presenter setter -> UI key/PID dla ekranów Home/Kocioł/Bufor, z osobnym audytem A69/A95 i pola 7°C.
