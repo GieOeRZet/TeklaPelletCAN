@@ -15,3 +15,6 @@ Kontekst: PASS 63 wykazał, że PID-y live (0x2001, 0x2277, 0x3333, 0x4000, 0x36
 
 ## Wniosek dla UI-MODEL
 Wiązania live da się mierzyć PO dostarczeniu ramek PDO modułów (symulator modułu = wysyłanie 0x180/0x280/0x380/0x480+node w pętli co <300 cykli). Nie przez 0x584.
+
+## ERRATA (PASS 67, 2026-11-23)
+Punkt 5 („tylko node 0x45 kanal 8/9 -> 0x2104/0x3173; pozostale kanaly nie zmieniaja zadnego PID”) jest BLEDNY: ramki PDO byly wstrzykiwane po kilka naraz, a odbiornik CAN przyjmuje jedna ramke naraz (gubil wszystkie poza ostatnia). Poprawna, pelna mapa kanal->PID, krzywa NTC i symulator: `AUTONOMOUS-PASS-67-LIVE-SOURCES-CAN-IO-SIMULATOR-2026-11-23.md`, `data/ui_model/live_sources.json`. Dane `data/pass64_live/modmap_default_config.json` sa NIEAKTUALNE (zastapione). Reszta (RX handler 0x0801E2D2, watchdog 300 cykli, uklad ramek PDO) pozostaje poprawna.

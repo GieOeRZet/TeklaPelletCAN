@@ -47,3 +47,6 @@ Wyniki: `data/pass63_pilot_kociol/BINDINGS_L0_test5.md/.csv`, `pid_diff_{7,8,3}_
 
 ## Dodatek 3 (PASS 65): poziomy 0/1/2/3 — inwentarz widgetow i delty
 Dane: `data/widgets_inv_pass65_L1.json`, `_L3.json`, `data/ui_model/levels_widget_deltas.csv`. FACT: ekrany wierszy menu (Kociol, Palnik, Ogrzewanie, CWU, Solary, Bufor, Info, Test wyjsc, Siec, Internet) maja IDENTYCZNY zbior widgetow na poziomach 0..3 (roznica = 1 widget: pole „NN%” w naglowku, PASS 48). Zmienia sie tylko zawartosc list NASTAWY/Konfiguracja (liczba pozycji wg poziomu, patrz panel_lists_by_level.csv); Konfiguracja: 506 / 603 / 615 / 615 widgetow dla L0/L1/L2/L3. Poziom 3 = poziom 2 wizualnie poza wskaznikiem CPU.
+
+## ERRATA (PASS 67, 2026-11-23)
+Wniosek z punktu „PID-y live nie wstrzykiwalne przez 0x584 / wymagaja symulacji ramek modulow” jest SPROSTOWANY: PID-y live z modulow CAN IO (0x2001, 0x215F, 0x2110, bufor, solary) wchodza przez ramki PDO `0x280/0x380/0x480+node` (patrz PASS 67) i sa wstrzykiwalne symulatorem `tools/live_sim.py`; `tools/pid_diff.py` obsluguje je automatycznie. Pozostaje prawda, ze 0x584 nie dziala dla tych PID-ow (EstymaTask czysci wartosc ze zrodla modulowego). Bledne zalozenie „ikona pompy zalezy od 0x2277” — patrz PASS 66 (bitmapa 138 = 0x22A1; widget (9,239) to animacja pompy).

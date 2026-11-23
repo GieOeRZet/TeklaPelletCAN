@@ -14,7 +14,7 @@ Uzycie: python3 -I tools/pid_diff.py FW.bin DIR INV.json NODE OUT_PREFIX [--phas
 """
 import argparse, csv, json, os, sys, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import ui_session as U, action_probe as AP
+import ui_session as U, action_probe as AP, live_sim as L
 import pickle
 
 DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data")
@@ -63,6 +63,11 @@ def sample_values(meta):
     return vals[:5] if len(vals) > 5 else vals
 
 
+def sample_live(meta):
+    """wartosci dC dla PID-ow temperaturowych z modulow (typowe zakresy; surowy odczyt NTC ma ograniczony zakres)"""
+    return [100, 400, 650, 900]
+
+
 def good_widgets(inv_node):
     """odrzuca wpisy-smieci inwentarza (rect poza ekranem: pola nie-Drawable)"""
     out = []
@@ -90,9 +95,9 @@ def main():
         if a.phase == "cands": return
         s = U.UiSession.from_checkpoint(a.bin, os.path.join(a.dir, "menu.state"), None)   # swiat bez haka dla pomiarow
     if a.phase == "cands": return
-    cands = json.load(open(cands_path))
-    if a.pids: cands = [int(p, 16) for p in a.pids]
+    cands = [int(p, 16) for p in a.pids] if a.pids else json.load(open(cands_path))
     ws = good_widgets(inv)
+    sim = L.LiveSim(s); base_t = {p_: 40.0 for p_ in sim.where}
     res_path = a.out + ".json"
     res = json.load(open(res_path)) if os.path.exists(res_path) else dict(node=a.node, widgets=ws, control=None, pids={})
     if res["control"] is None:
@@ -106,9 +111,15 @@ def main():
         m = meta.get(pid)
         if not m: res["pids"][key] = dict(skipped="brak w pid_matrix"); continue
         runs = []
-        for v in sample_values(m):
+        live = pid in sim.where                                  # PID z modulu CAN IO: wartosc wchodzi przez ramki PDO (PASS 67), nie przez 0x584
+        for v in (sample_live(m) if live else sample_values(m)):
             s.b.load_state(st_path)
-            try: got = s.inject_param(pid, v)
+            try:
+                if live:
+                    sim.raw = {n: [1000] * 12 for n in sim.raw}
+                    for p_, t_ in base_t.items(): sim.set(p_, t_)
+                    sim.set(pid, v / 10.0); sim.run(700); got = s.b.rd(s._record(pid)[0], 2)
+                else: got = s.inject_param(pid, v)
             except Exception as e: got = "ERR %s" % e
             s.wait(a.settle); im = s.shot()
             shot = None

@@ -7,7 +7,7 @@ Firmware zostaje u Ciebie (nie jest czescia repo). Logi: sesja_*.jsonl + zrzuty 
 import argparse, io, json, os, struct, sys, threading, time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import ui_session as U, ctor_trace as C, action_probe as AP
+import ui_session as U, ctor_trace as C, action_probe as AP, live_sim as L
 
 VIEW_NAMES = {"0x808f708": "HOME", "0x808f66c": "MENU", "0x808f910": "PROGRAM", "0x808f944": "LISTA", "0x808ed7c": "KOCIOL", "0x808ede4": "PALNIK", "0x808f5d0": "OGRZEWANIE", "0x808f604": "CWU",
               "0x808f978": "SOLARY", "0x808edb0": "BUFOR", "0x808ec10": "ALARMY", "0x808f638": "INFO", "0x808f80c": "TEST_WYJSC", "0x808f770": "SIEC", "0x808f9ac": "INTERNET", "0x808ee18": "KASKADA", "0x808eb74": "MAGAZYN"}
@@ -36,10 +36,15 @@ class Rec:
         self.s.set_access(level); self.s.wait(400); self.table = C.widget_table(self.s, self.t); self.recs = AP.pid_records(self.s)
         self.s.wait(3000); self.s.can2.tx.clear(); pa = AP.pid_snap(self.s, self.recs); self.s.wait(1500); pb = AP.pid_snap(self.s, self.recs)
         self.bg = {(f["id"], bytes(f["data"]).hex()) for f in self.s.can2.tx}; self.bgpid = {k for k in pa if pa[k] != pb[k]}      # tlo: ramki CAN (heartbeat, poller) i liczniki PID zmieniajace sie same
+        self.sim = L.LiveSim(self.s); self.live = True
+        for p_, t_ in {0x2001: 55.0, 0x215F: 5.0, 0x2110: 48.0, 0x2112: 50.0, 0x2113: 35.0, 0x3171: 50.0, 0x3172: 42.0, 0x3173: 35.0, 0x2109: 45.0, 0x2102: 40.0, 0x2103: 30.0, 0x2104: 25.0}.items(): self.sim.set(p_, t_)
+        self.sim.run(700)                                       # moduly CAN IO online + typowe temperatury (PASS 67)
         self.frame = self.s.shot(); threading.Thread(target=self.tick, daemon=True).start()
     def tick(self):
         while self.running:
-            with self.lock: self.s.wait(20)
+            with self.lock:
+                self.s.wait(20); self.cnt = getattr(self, "cnt", 0) + 1
+                if self.live and self.cnt % 6 == 0: self.sim.round_()          # co ~120 tikow runda ramek PDO (watchdog modulu 300 cykli)
             time.sleep(0.01)
     def pl(self, i):
         try:

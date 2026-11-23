@@ -19,5 +19,5 @@ Emulator (Python + unicorn) nie działa natywnie jako aplikacja Androida. Najpro
 
 ## Ograniczenia
 - Emulator działa wolniej niż prawdziwy panel (ok. 1/3 czasu rzeczywistego) — po kliknięciu poczekaj ok. 1 s.
-- Brak modułów CAN: wartości live (temperatura kotła, pompa) są zerami; nastawy i konfiguracja działają.
+- Wartości live (temperatury kotła, CWU, bufora, solarów) są SYMULOWANE (moduły CAN IO 0x56 i 0x45 karmione typowymi temperaturami); pozostałe wartości live (ciśnienie, temp. powrotu, lambda, kaskada) są zerami.
 - Zapis do prawdziwego kotła: **brak** (emulator nie jest podłączony do magistrali).
