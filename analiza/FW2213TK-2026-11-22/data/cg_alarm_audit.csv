@@ -1,0 +1,31 @@
+alarm_code,text_pl,raise_sites,clear_sites,ui,confidence
+1,Uszkodzenie czujnika kotla,0x806902C,0x8069010,Alarmy/ikona nagłówka,FACT
+2,Przegrzanie kotła,0x8068E58,0x8068E6A,Alarmy/ikona nagłówka,FACT
+3,Uszkodzenie czujnika powrotu do kotla,0x8069064,0x8069048|0x806906E,Alarmy/ikona nagłówka,FACT
+4,Uszkodzenie czujnika palnika/podajnika,0x8062EBE,0x8062EA6|0x8062F0C,Alarmy/ikona nagłówka,FACT
+5,STB,0x806909C,0x80690A4,Alarmy/ikona nagłówka,FACT
+6,Przegrzanie palnika/podajnika,0x8062EDC,0x8062F04,Alarmy/ikona nagłówka,FACT
+30,Uszkodzenie czujnika ciepłej wody,0x8071E1C,0x8071DFC|0x8071E28,Alarmy/ikona nagłówka,FACT
+31,Uszkodzenie czujnika buffora góra,0x802677E,0x8026760|0x80267B4,Alarmy/ikona nagłówka,FACT
+32,Uszkodzenie czujnika buffora dół,0x80267AC,0x802678A|0x80267C0,Alarmy/ikona nagłówka,FACT
+36,Uszkodzenie czujnika temp. zewnętrznej,0x8028714|0x8028734,0x80286D2,Alarmy/ikona nagłówka,FACT
+40,Uszkodzenie czujnika kolektora solarnego,0x8073912,0x80738F6|0x8073974,Alarmy/ikona nagłówka,FACT
+41,Uszkodzenie czujnika zbiornika solarnego,0x8073938,0x807391C|0x807397C,Alarmy/ikona nagłówka,FACT
+42,Uszkodzenie czujnika powrotu solarów,0x807396C,0x8073946|0x8073984,Alarmy/ikona nagłówka,FACT
+50,Rezerwa paliwa,0x8064186,0x806418E,Alarmy/ikona nagłówka,FACT
+51,Brak paliwa,0x806419E,0x80641A8,Alarmy/ikona nagłówka,FACT
+52,Zalecany coroczny przegląd kotła,0x80287B6,0x80287C0,Alarmy/ikona nagłówka,FACT
+53,Ciśnienie kotła,,0x8068ECE|0x8068ED8,Alarmy/ikona nagłówka,STRONG
+110,Komunikacja z modułem BIG,0x801E9D0,0x801EA42,Alarmy/ikona nagłówka,FACT
+115,Komunikacja z modułem Lambda,,0x8073D4E|0x8073D70,Alarmy/ikona nagłówka,FACT
+123,Komunikacja z modułem Mini 7,0x801DEF4,0x801DF5E,Alarmy/ikona nagłówka,FACT
+131,Błąd wygaszania,0x80637FC,,Alarmy/ikona nagłówka,FACT
+139,Nieudane rozpalanie,0x80632E4,,Alarmy/ikona nagłówka,FACT
+140,Brak ognia/opału,0x801F77E|0x80630C8|0x8063ACE,,Alarmy/ikona nagłówka,FACT
+150,Magazyn paliwa brak paliwa/czujnik max,0x80742CE,,Alarmy/ikona nagłówka,FACT
+151,Rezerwa paliwa,0x8074344,0x807434C|0x807436C,Alarmy/ikona nagłówka,FACT
+160,Wyczyść wymiennik,0x8068B66,,Alarmy/ikona nagłówka,FACT
+161,Wyczyść palnik,0x8068B38,,Alarmy/ikona nagłówka,FACT
+201,Uszkodzenie dmuchawy palnika,0x8062B56,0x8062B5E,Alarmy/ikona nagłówka,FACT
+203,Poziom tlenu bardzo niski,0x8062E1E,0x8062E2C,Alarmy/ikona nagłówka,FACT
+250,Słaba bateria w czujniku zewnętrznym,,0x8028742,Alarmy/ikona nagłówka,FACT
