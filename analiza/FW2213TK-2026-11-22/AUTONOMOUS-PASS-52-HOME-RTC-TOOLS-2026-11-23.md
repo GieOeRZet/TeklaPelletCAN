@@ -30,3 +30,8 @@ Klasa 1..4 (Ogrzewanie obwod 1..4): widoczna gdy Heating configuration (0x2105) 
 Klasa 7 (Bufor): Buffer configuration (0x2107) != 0. **Klasa 8 (Kaskada): Is this device cascade master (0x350C) != 0.** **Klasa 9 (Dodatkowy magazyn paliwa): Additional fuel storage (0x3525) != 0.** Pozostale klasy: zawsze widoczne.
 Tabela klasa<->wiersz: `data/menu_click_effects_21.csv` (wiersze 9 i 10 w kolejnosci konstruktora = Kaskada i Dod. magazyn; w eksploracjach L0..L3 byly ukryte konfiguracja domyslna).
 Prezenter ekranu Kaskada: `0x0804E45C` (klucze 0x11C, 0x157, 0x153..0x156, 0x158, 0x0C, 0x31..0x37...).
+
+## Ekrany Kaskada i Magazyn paliwa — wyrenderowane (HARD, `screens/pass52_kaskada_magazyn_paliwa.png`)
+Wlaczone przez `set_local`: Is this device cascade master (0x350C)=1, Additional fuel storage (0x3525)=1, Cascade slaves number (0x351A)=2 (poziom 2).
+- **KASKADA**: trzy "kotly" (MASTER, SLAVE 1, SLAVE 2; slave z "---" czerwonym = brak danych), temperatura, "Stopien mocy N"; kafel NASTAWY: Liczba kotlow slave, Master/Slave 1..3 stopien mocy (+ progi) — lista klasa 8 (`panel_lists_by_level.md`).
+- **MAGAZYN PALIWA**: schemat zasobnika z dwoma silnikami (1 transport, 2 podajnik); NASTAWY: Praca/Pauza silnika transportujacego (1) [s], Praca/Pauza silnika podajnika (2) [s] (klasa 9).
