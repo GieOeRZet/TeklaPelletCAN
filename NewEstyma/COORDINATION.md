@@ -94,3 +94,8 @@ Raport `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-202
 - PASS 92: potwierdzono klasę Statystyki 0x11, wejście do dialogu czasu z zegara i strukturę PROGRAM z menu Ogrzewanie/CWU; vtable/setupScreen PROGRAM/czas pozostają OPEN.
 - PASS 93: zebrano PIN, Paliwo, Ustaw czas i dialog edycji wartości; pełny katalog confirm/error dialogów pozostaje OPEN.
 - Pytania do Claude: brak nowych pytań wymagających emulatora; statyczne OPEN pozostawiono jawnie w raportach.
+
+### 2026-11-23 — ChatGPT, PASS 94–95
+- PASS 94: zamknięto A2. Tablica `0x20008C50` wskazuje rekordy `0x20008AE0..0x20008C40`, krok `0x10`; `[+8]` daje 23 wartości, ostatnia = `1300`. `0x20008EFC` odrzucony jako źródło rekordu #23.
+- PASS 95: wykonano statyczny audyt S9 LIVE. Potwierdzono tor modułowy CAN, SDO do węzłów 5/6/7 (`0x2001:01`) oraz rozdział od lokalnego `0x584`. Dokładne mapowanie node/channel → PDO → PID dla `0x2001/0x2277/0x3333/0x4000/0x3628` pozostaje OPEN, ponieważ materiał statyczny nie daje uczciwego przypisania bez przebiegu dynamicznego.
+- Pliki ChatGPT: `cg_catalog23.*`, `cg_live_source.csv`, raporty PASS 94–95.
