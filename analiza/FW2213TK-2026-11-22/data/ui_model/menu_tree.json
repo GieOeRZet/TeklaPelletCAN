@@ -180,12 +180,30 @@
   },
   {
    "id": "DLG_PIN",
-   "title_pl": "Dialog PIN (4 cyfry, +/-, OK)",
+   "title_pl": "Dialog PIN (4 cyfry, + nad i - pod kazda, OK; kody 0000/0900/0999/7153; 6666 i 1992 specjalne)",
    "vtable": null,
    "kind": "dialog",
    "level_min": 0,
-   "evidence": "DOC PASS 93/105",
+   "evidence": "MEASURED (PASS 66; dialogs_edit_pin.json)",
    "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+  },
+  {
+   "id": "DLG_ENUM",
+   "title_pl": "Dialog wyboru (pola radio + OK)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "MEASURED (PASS 66)",
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+  },
+  {
+   "id": "DLG_TEKST",
+   "title_pl": "Dialog edycji tekstu (edytor znakow)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "MEASURED (zrzut; zapis OPEN)",
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
   },
   {
    "id": "DLG_PROGRAM_DZIEN",
@@ -234,11 +252,11 @@
   },
   {
    "id": "DLG_EDYCJA",
-   "title_pl": "Dialog edycji wartosci (suwak min-max, -/+, OK; zapis CAN 0x584)",
+   "title_pl": "Dialog edycji liczby (tytul z jednostka, wartosc, min/max, suwak, -/+, OK; OK zapisuje PID ramka 0x584)",
    "vtable": null,
    "kind": "dialog",
    "level_min": 0,
-   "evidence": "DOC PASS 93/105",
+   "evidence": "MEASURED (PASS 66; dialogs_edit_pin.json)",
    "note": "OPEN: vtable, widgety, wiazania, ramka TX"
   },
   {
@@ -2696,10 +2714,28 @@
    "from": "MENU",
    "to": "DLG_PIN",
    "tap": null,
-   "label": "wiersz Poziom menu",
+   "label": "wiersz Poziom menu (PIN)",
    "level_min": 0,
    "effect": "dialog",
-   "evidence": "STRONG (wiersz 14, klasa 15)"
+   "evidence": "MEASURED (PASS 66)"
+  },
+  {
+   "from": "LISTA",
+   "to": "DLG_ENUM",
+   "tap": null,
+   "label": "wiersz wyliczenia",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "MEASURED (PASS 66)"
+  },
+  {
+   "from": "LISTA",
+   "to": "DLG_TEKST",
+   "tap": null,
+   "label": "wiersz Nazwa",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "MEASURED (PASS 66)"
   },
   {
    "from": "MENU",

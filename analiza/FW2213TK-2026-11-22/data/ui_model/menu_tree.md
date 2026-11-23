@@ -124,6 +124,9 @@ Legenda dowodow: MEASURED / STRONG / DOC / OPEN. Pelne dane: `menu_tree.json`.
 | HOME | None | DLG_AUTO | kafel AUTO (415,76) |
 | HOME | None | DLG_CZAS | zegar (42,19) |
 | HOME | None | DLG_DATA | data (240,19) |
+| MENU | None | DLG_PIN | wiersz Poziom menu (PIN) |
+| LISTA | None | DLG_ENUM | wiersz wyliczenia |
+| LISTA | None | DLG_TEKST | wiersz Nazwa |
 | MENU | None | KOCIOL | wiersz 0: Kociol |
 | MENU | None | PALNIK | wiersz 1: Palnik |
 | MENU | None | OGRZEWANIE | wiersz 2: Ogrzewanie 1 |

@@ -1,0 +1,120 @@
+{
+ "evidence": "MEASURED (PASS 66, emulator: wpisywanie kodow przez przyciski + OK, odczyt poziomu dostepu model+0x158, PID-ow i ramek 0x584)",
+ "pin_dialog": {
+  "how_to_open": "MENU: wiersz 'Poziom menu (PIN)' (poziom 0: wiersz 12; poziomy >0: wiersz 14 w liscie), stuknij wiersz (240,60 po przewinieciu)",
+  "title": "Wpisz PIN",
+  "controls": {
+   "digits": 4,
+   "plus_buttons_y": 99,
+   "plus_buttons_x": [
+    90,
+    171,
+    250,
+    329
+   ],
+   "minus_buttons_y": 228,
+   "ok_button": [
+    414,
+    228
+   ],
+   "digit_wrap": "0..9"
+  },
+  "codes": {
+   "0000": {
+    "effect": "poziom 0"
+   },
+   "0900": {
+    "effect": "poziom 1"
+   },
+   "0999": {
+    "effect": "poziom 2"
+   },
+   "7153": {
+    "effect": "poziom 3 (=900+99+6154; FUN_08037E74 odejmuje kolejno 900, 99, 6154)"
+   },
+   "6666": {
+    "effect": "zapis PID 0x0005 Default settings request 0->1",
+    "can": "0x584: 42 05 00 01 01 00 00 00"
+   },
+   "1992": {
+    "effect": "zapis PID 0x3718 Next service date timestamp (czas + 1 rok wg ChatGPT PASS 70)",
+    "can": "0x584: 42 18 37 01 00 cc 06 3c (przy zegarze panelu 0)"
+   }
+  },
+  "rejected": [
+   "6154 jako kod poziomu 3 (zmierzone: bez zmiany poziomu; poprawny = 7153)"
+  ],
+  "open": [
+   "czy 6666 resetuje ustawienia (efekt poza zapisem PID 0x0005)",
+   "semantyka 1992 (data przegladu)"
+  ]
+ },
+ "number_dialog": {
+  "trigger": "stuknij wiersz liczbowy listy NASTAWY",
+  "layout": "tytul (etykieta z jednostka), duza wartosc, min i max, suwak, przyciski - i +, OK",
+  "controls": {
+   "minus": [
+    140,
+    202
+   ],
+   "plus": [
+    295,
+    202
+   ],
+   "ok": [
+    415,
+    228
+   ]
+  },
+  "behaviour": [
+   "+ i - zmieniaja o 1 jednostke wyswietlana (zmierzone 65->66->67->66)",
+   "OK zapisuje PID i zamyka dialog; wczesniej brak ramki CAN"
+  ],
+  "write_example": {
+   "pid": "0x2003 Boiler set manual temp",
+   "old": 65,
+   "new": 66,
+   "can": "0x584: 42 03 20 01 42 00 00 00"
+  },
+  "open": [
+   "krok i skala dla wierszy z wartoscia dziesietna (0.1)",
+   "przeciaganie suwaka"
+  ]
+ },
+ "enum_dialog": {
+  "trigger": "stuknij wiersz wyliczenia (np. Tryb pracy)",
+  "layout": "tytul + pola radio + OK",
+  "controls": {
+   "options_x": 120,
+   "option_y": [
+    87,
+    125
+   ],
+   "ok": [
+    415,
+    228
+   ]
+  },
+  "write_example": {
+   "pid": "0x2142 CH mode",
+   "old": 0,
+   "new": 1,
+   "can": "0x584: 42 42 21 01 01 00 00 00"
+  },
+  "behaviour": [
+   "wybor opcji + OK zapisuje PID (wartosc = indeks opcji)"
+  ]
+ },
+ "text_dialog": {
+  "trigger": "stuknij wiersz 'Nazwa'",
+  "layout": "edytor znakow: biezacy znak, strzalki gora/dol, OK/<, tryby ABC/abc/123.0/?!&, OK",
+  "evidence": "MEASURED (zrzut edit_enum_text)",
+  "open": [
+   "zapis (PID CH circuit name part1..)"
+  ]
+ },
+ "switch_row": {
+  "layout": "suwak on/off po prawej",
+  "open": "stukniecia (423/430/455,187) nie zmienily PID w tescie - wymaga dalszego badania"
+ }
+}
