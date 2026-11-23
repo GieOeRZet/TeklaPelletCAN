@@ -42,3 +42,7 @@ Kociol / NASTAWY, wiersz "Temperatura zadana [°C]" (PID 0x2003, 60..80, 65): do
 
 ## Tekstury sliderow (uwaga wlasciciela potwierdzona, HARD)
 Dialog numeryczny NASTAWY (np. "Temperatura zadana"): tlo bitmapa 163, wypelnienie **165** (jednolity niebieski). Okno power (tryb Ogrzewanie/Woda): tlo 186, wypelnienie **187** (gradient niebieski->zolty->czerwony). Gradient "zimno->cieplo" jest wiec w oryginale przypisany sliderowi trybu, a nie temperatury — tekstury najpewniej zamienione miejscami. Poprawka tylko w nowym UI (wpis w TODO `NewEstyma/00_AGENT_START_HERE.md`).
+
+
+### Sprostowanie tekstur sliderow
+Do 163/165/186/187 dochodzi **167** (301x16, wypelnienie gradient): suwaki temperatur komfort/eco (okno Ogrzewanie/Woda) uzywaja 163+167 (gradient), dialog numeryczny 163+165 (niebieski), tryb w oknie power 186+187 (gradient 181x11). Szczegoly: `NewEstyma/00_AGENT_START_HERE.md`.

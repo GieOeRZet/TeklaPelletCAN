@@ -151,3 +151,7 @@ Do zbadania: (a) czy sterownik/BIG ma polecenie CAN rownowazne wejsciu (np. prze
 ## TODO (wlasciciel, 2026-11-23) — synchronizacja czasu w NASZYM module (etap ESP32/HA/Android)
 Zalozenie: nasz modul (ESP32/sterownik) pobiera godzine po polaczeniu z HA / aplikacja Android / przegladarka (prawdziwy czas z sieci); gdy tego nie ma — synchronizuje sie z kotla. Gdy ma prawdziwa godzine, WYPYCHA ja na kociol (korekta dryfu zegara kotla — wlasciciel zauwazyl niewielkie opoznienie rzedu miesiaca, wina sprzetu RTC).
 Do ustalenia w RE (przed wdrozeniem): jak godzina jest ustawiana/odczytywana po CAN (dialog "Ustaw czas" na panelu zapisuje RTC panelu: HAL RTC `0x08028F78`/`0x08028FF8`; panel -> sterownik: czy jest ramka/PID czasu; alarmy uzywaja czasu panelu jako unix UTC `0x08049370`). Zrodlo prawdy zegara = RTC panelu.
+
+### Sprostowanie (tekstury sliderow, po eksploracji UI)
+Bitmapy 301x16: tlo 163, wypelnienie niebieskie 165, wypelnienie GRADIENT 167. Bitmapy 181x11: tlo 186, wypelnienie gradient 187 (brak niebieskiego wariantu 181).
+Uzycie w oryginale: dialog numeryczny NASTAWY (np. "Temperatura zadana") = 163+165 (niebieski); okno temperatur komfort/eco (Ogrzewanie, Woda) = suwaki z gradientem (163+167); okno power (tryb off/eco/harmonogram/komfort) = 186+187 (gradient). Zyczenie wlasciciela: gradient na KAZDYM sliderze temperatury (takze w dialogu numerycznym dla parametrow temperaturowych), niebieski na sliderze trybu/ustawien (w nowym UI przeskalowac 165 do 181 px).
