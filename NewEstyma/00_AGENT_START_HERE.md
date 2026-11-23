@@ -88,3 +88,25 @@ Important: 260 catalog != 660 runtime table. Mechanism closure != semantic closu
 
 ## PASS 35 — emulator startupu
 Do odczytu stanu RAM po inicjalizacji użyj `tools/emu_startup.py` / `boot()` (patrz 03_TOOLING.md). Tabela runtime 655 rekordów jest w `analiza/FW2213TK-2026-11-22/data/`. Klucz runtime = PID (z nazwą ASCII w rekordzie).
+
+
+## STAN NA 2026-11-23 (PASS 35..43) — CZYTAJ TO PIERWSZE
+**Metoda pracy zmieniła się:** zamiast tylko czytać kod, wykonujemy firmware. Preferowany emulator: `tools/cortexm_rtos.py` (`Board`, pełny FreeRTOS + LTDC + DMA2D + CAN2), patrz `03_TOOLING.md` sekcje PASS 35/42/43. Firmware: `FW2213TK_kopia.bin` (SHA w tym pliku wyżej; nie ma go w repo — wymagany lokalnie).
+Szybki start (kilka sekund): `python3 -I tools/render_screen.py FW2213TK_kopia.bin ekran.png` oraz `python3 -I tools/test_can_boot_trace.py FW2213TK_kopia.bin`.
+
+| PASS | wynik (HARD = wykonane/udowodnione) | raport |
+|---|---|---|
+| 35 | tabela runtime 655 parametrów (klucz=PID, nazwa z BIN), key 3 = Language, rezolwer UI (2 tabele), PASS 26 ODRZUCONY | AUTONOMOUS-PASS-35 |
+| 36 | klasa sidecar = tryb dostępu (0 live, 1 komenda, 2 lustro, 3 nastawa), macierz PID `data/pid_matrix_655.csv` | AUTONOMOUS-PASS-36 |
+| 37 | ramka odczytu na szynie `0x604: 40 idx 01`, poller 655 żądań, walidacja min/max na RX `0x584/0x42` | AUTONOMOUS-PASS-37 |
+| 38 | lokalna zmiana parametru -> jedna ramka `0x584/0x42` (on-change) | AUTONOMOUS-PASS-38 |
+| 39 | class 12 = przełączanie języka (setLanguage), kolejność PL EN LT SK CZ ES RO EST | AUTONOMOUS-PASS-39 |
+| 40 | wiersze menu zbudowane w firmware; argumenty row-buildera = ID bitmap | AUTONOMOUS-PASS-40 |
+| 41 | dotyk wiersza -> handler 0x0807EB00 -> klasa -> efekt (wiersz 15 = język, wiersze 2..5 = CO1..CO4) | AUTONOMOUS-PASS-41 |
+| 42 | **emulacja systemowa; firmware sam rysuje ekran główny** (`data/screen_home_emulated.png`) | AUTONOMOUS-PASS-42 |
+| 43 | ruch CAN panelu po starcie przy pustej magistrali (heartbeat 0x704, SDO do węzłów 5..7, rodziny PDO-podobne), skan 0x1018, poller włączany z menu | AUTONOMOUS-PASS-43 |
+
+**Najważniejsze otwarte (kolejność):** (1) wstrzyknąć dotyk i wyrenderować wszystkie ekrany menu jako obrazy (ekran -> widżet -> zasób -> PID); (2) wstrzyknąć odpowiedzi CAN (`0x584`, węzły 5..7 `0x585..0x587`) i obserwować zmianę ekranu;
+(3) ustalić, które klasy menu ustawiają bramkę pollera `0x2002466C+0x10/+8`; (4) semantyka ramek PDO-podobnych `0x2xx..0x5xx`; (5) czy skan tożsamości `0x1018:02` jest wywoływany i jakie ID uznaje za centralę.
+**Zasady, które kosztowały błędy:** adresy narzędzi = RUNTIME (PROJECT+0x10000); tick ~100000 instrukcji; PendSV po instrukcji zapisu ICSR; wyrównanie ramki wyjątku (STKALIGN); rekordy tabel są wyrównane do bazy (odczyt z przesunięciem 2 B dawał fałszywe pary); pola wartości w rekordzie parametru znaczą tylko szerokość własnego typu.
+Pomyłki poprzednich passów są oznaczone `REJECTED/SUPERSEDED` w raportach (m.in. PASS 26, odczyt „tekstów” wierszy menu).
