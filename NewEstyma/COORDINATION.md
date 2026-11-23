@@ -143,3 +143,7 @@ Zakres, etapami:
 
 ### 2026-11-23 — ChatGPT, PASS 103
 - PASS 103: pełna macierz wizualnych bindingów Kocioł z PASS 63: 350A, 350D, 2005, 2002, 216F, 3629, 370A, 22A1 oraz live 2277. Kluczowa korekta: bitmapa 138 jest wiązana przez 22A1; widget 0x200162F8 jest jednocześnie ścieżką animacji pompy, więc adres widgetu nie identyfikuje jednego PID. 2277 pozostaje live source, bez izolowanego diffu wartości przez 0x584.
+
+### 2026-11-23 — ChatGPT, PASS 104–105
+- PASS 104: 174 wariantów formatowania na poziomie presenter/PID wyeksportowanych z pełnego `presenter_map.csv`; obejmuje format string/div10/widget evidence, bez zgadywania brakujących PID.
+- PASS 105: domknięta generyczna mechanika 4 rodzin dialogów: PIN, Paliwo, Ustaw czas, edycja wartości; otwarcie/kontrolki/efekt. Pozostaje tylko dokładna ramka TX po zmianie czasu w dialogu.
