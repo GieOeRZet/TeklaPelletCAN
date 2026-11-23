@@ -134,3 +134,6 @@ Zakres, etapami:
 
 ### 2026-11-23 — ChatGPT, PASS 101
 - PASS 101: pełny eksport T2 internal UI-key→PID z `resolver_t2.csv`: 372 poprawnych rekordów. Zamknięto wcześniejsze ręczne mapowania jako część kompletnej tabeli T2. T1/base+instance pozostaje osobną warstwą.
+
+### 2026-11-23 — ChatGPT, PASS 102
+- PASS 102: pełny indeks 137 unikalnych setterów z istniejącego `presenter_map.csv`, z agregacją wszystkich już zweryfikowanych `widget_offsets`. To domyka pełny inwentarz źródłowy S1; nie jest udawanym dowodem CFG dla liniowo nieprzypisanych instrukcji.
