@@ -37,14 +37,21 @@ Scanner tools/cg_rtc_autosync_scan.py potwierdza te sygnatury oraz obecność ru
 
 ## 3. Znaczenie pól obiektu
 
+### Ważna korekta nazewnictwa
+W assemblerze `r5 = r4 + 0x08`, dlatego odwołanie `[r5+0x04]` odpowiada oryginalnemu `[object+0x0C]`, a `[r5+0x08]` odpowiada `[object+0x10]`. To właśnie te dwa pola są porównywane.
+
 | Pole | Rola |
 |---|---|
-| param+0x0C | timestamp do zastosowania / nowy czas synchronizacji |
-| param+0x10 | poprzednio zastosowany timestamp / znacznik ostatniej synchronizacji |
-| param+0x08 | stan/licznik związany z generowaniem czasu; używany w ścieżce normalnego odczytu |
-| param+0x16..0x1E | rozłożone pola czasu/datym używane przez obiekt |
+| object+0x0C | timestamp do zastosowania / nowy czas synchronizacji |
+| object+0x10 | poprzednio zapamiętany/porównywany timestamp |
+| object+0x08 | ostatnia wartość/czas przechowywany przed aktualizacją |
+| object+0x16..0x1E | rozłożone pola czasu/daty używane przez obiekt |
 
-Mechanizm jest więc: zewnętrzny timestamp → konwersja → RTC hardware.
+Na wejściu funkcja wykonuje licznik w `object+0x14`: inkrementuje bajt, a pełną ścieżkę wykonuje co 10 wywołań. Następnie porównuje `object+0x10` z `object+0x0C`. Jeżeli są równe, nie ma potrzeby synchronizacji. Jeżeli różne, PID 0x372F decyduje, czy timestamp ma zostać zastosowany do RTC.
+
+Po wspólnej ścieżce `FUN_08062920` normalizuje bieżący czas i wynik zapisuje do `object+0x0C`, a następnie `object+0x10 = object+0x0C`. To oznacza, że zewnętrzny producer musi zmienić `object+0x0C` pomiędzy cyklami, aby ponownie wywołać synchronizację.
+
+Mechanizm jest więc: zewnętrzny producer → object+0x0C → compare z object+0x10 → 0x372F gate → opcjonalny RTC write → normalizacja → object+0x10.
 
 ## 4. Status A3
 
@@ -69,7 +76,7 @@ Nie wolno zapisywać w dokumentacji: 0x372F → CAN time.
 
 Dowód mówi: 0x372F → enable gate; param+0x0C → timestamp source; FUN_08039370 → date/time decomposition; FUN_08018E94 → RTC hardware.
 
-Najważniejszym brakującym ogniwem są wszystkie zapisy do pola +0x0C obiektu używanego przez FUN_08062638.
+Najważniejszym brakującym ogniwem są wszystkie zapisy do pola object+0x0C obiektu używanego przez FUN_08062638. Wiemy już, że zapis ten musi zachodzić poza samą FUN_08062638, ponieważ funkcja w końcowej fazie sama aktualizuje object+0x0C z wyniku FUN_08062920.
 
 ## 6. FUN_08062920
 
