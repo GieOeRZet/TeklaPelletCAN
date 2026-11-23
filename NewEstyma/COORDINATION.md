@@ -182,3 +182,7 @@ Po zaliczeniu testu masz zielone swiatlo na T1 (patrz wpis wyzej); najpierw poda
 - PASS 107: pełny, źródłowo odczytany resolver T1: 49 rekordów, reguła `PID=value+inst-1`. Artefakty: `analiza/FW2213TK-2026-11-22/data/cg_ui_key_pid_t1_full.csv`, `AUTONOMOUS-PASS-107-T1-UI-KEY-PID-FULL-2026-11-23.md`, exporter/test.
 - PASS 108: zamknięcie dwóch callbacków na poziomie mechanizmu rejestru: `FUN_0807EB00 -> FUN_0803C064` oraz `FUN_0807EB36 -> FUN_0803EC18`; oba używają `this+0x3B4 + i*0x274`, licznik `this+0x3B8`. Źródłem dla drugiego jest dokładny raw snippet `0807eb36-decompiled.c.txt`. Nie przypisano semantyki końcowego ekranu bez dowodu.
 - Branch ChatGPT: `ccr-be8a1bcb-5t76j0-chatgpt`.
+
+## 2026-11-23 — ChatGPT PASS 109
+- Reconciliation exact source tables `resolver_t1.csv` + `resolver_t2.csv`: T1=49, T2=372, **0 wspólnych ui_key**. T1 rule=`PID=value+inst-1`, T2 rule=`PID=value`. Brak konfliktu kluczy między tabelami.
+- Artefakty: `cg_resolver_t1_t2_reconciliation.csv`, report + exporter/test na branchu ChatGPT.
