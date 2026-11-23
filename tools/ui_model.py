@@ -127,6 +127,22 @@ def bind(widgets, presenters, active=None):
                     candidates = live
                 d["binding"] = ("EXACT_ACTIVE_VIEW_OFF" if len(live) == 1 else "AMBIGUOUS_ACTIVE_VIEW_OFF" if len(live) > 1
                                 else "INACTIVE_VIEW_OFF" if d["binding_static"] != "UNRESOLVED_VIEW_OFF" else "UNRESOLVED_VIEW_OFF")
+        if active is not None and act is not None and act.get("writes") is not None:
+            # PASS 61 v2: zaobserwowane zapisy settera w obiekt widgetu (presenter_trace.py --inv) maja pierwszenstwo
+            dyn = []
+            for wr in act["writes"]:
+                if str(wr.get("widget")).lower() != str(w.get("this")).lower(): continue
+                prow = [(pi, p) for pi, p in enumerate(presenters) if p["site_i"] == hx(wr.get("site"))]
+                pi, p = prow[0] if prow else (None, {})
+                c = {"presenter_row": pi, "presenter_cluster": p.get("presenter_cluster"), "cluster_start": p.get("cluster_start"),
+                     "site": wr.get("site"), "ui_key": "0x%04X" % wr["key"] if wr.get("key") is not None else p.get("ui_key"),
+                     "pid": p.get("pid"), "name": p.get("name"), "setter": wr.get("setter"), "formats": p.get("formats"),
+                     "div10": int(p.get("div10") or 0), "fields": wr.get("field_offs"), "evidence": "DYNAMIC_WRITE"}
+                if c not in dyn: dyn.append(c)
+            if dyn:
+                candidates = dyn
+                keys = {(c["site"], c["ui_key"]) for c in dyn}
+                d["binding"] = "DYNAMIC_WRITE" if len(keys) == 1 else "DYNAMIC_WRITE_MULTI"
         d["presenter_candidates"] = candidates
         out.append(d)
     return out

@@ -29,6 +29,11 @@ def main():
         assert m2[0]["binding"]=="INACTIVE_VIEW_OFF" and m2[0]["binding_static"]=="EXACT_VIEW_OFF"
         assert m2[1]["binding"]=="UNRESOLVED_VIEW_OFF"
         assert bind(w,p,{})[0]["binding"]=="NO_ACTIVE_TRACE"
+        # PASS 61 v2: zaobserwowany zapis settera w widget ma pierwszenstwo przed view_off
+        act["n"]["writes"]=[{"setter":"0x300","site":"0x101","key":0x10,"widget":"0x20001040","field_offs":["buf"]}]
+        m3=bind(w,p,act)
+        assert m3[1]["binding"]=="DYNAMIC_WRITE" and m3[1]["presenter_candidates"][0]["pid"]=="0x2001"
+        assert m3[2]["binding"]=="EXACT_ACTIVE_VIEW_OFF"
     print("PASS: ui_model synthetic exact/ambiguous/unresolved + active-trace cases")
 
 if __name__=="__main__":
