@@ -13,3 +13,7 @@ docs/install/teklapelletcan-factory.bin
 .gradle/
 android/local.properties
 *.apk
+
+# Local reverse-engineering firmware (never commit)
+FW2213TK_kopia.bin
+FW2213TK (1).bin
