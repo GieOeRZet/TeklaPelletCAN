@@ -132,6 +132,17 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-128-CATALOG-260-VS-RUNTIME-
 - 660 pozostaje tylko hard search/scan bound.
 - Następny matrix ma jawnie robić join: 260 static catalog -> PID -> 655 runtime -> resolver 49/372 -> provider/CAN/UI, z brakami jako brakami.
 
+
+
+### Nowe ustalenia ChatGPT — PASS 129 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-129-CATALOG260-RUNTIME-MATRIX-01-2026-11-23.md`
+Artefakt: `analiza/FW2213TK-2026-11-22/data/catalog260_runtime_matrix.csv`
+
+- Zamknięto pierwszy pełny join 260 katalogowych wierszy: indeksy 0..259, RAW 0x37578..0x37984.
+- 252/260 mają runtime match w pid_matrix_655; 8/260 ma hard in_runtime=0 i pozostaje jawnie poza runtime.
+- Dla 252 obecnych: class 0=77, class 1=22, class 3=153, class 2=0 w tym podzbiorze.
+- Macierz ma 260 jawnych wierszy i będzie dalej rozszerzana o provider/CAN/UI evidence.
+
 ## 5. Log statusów
 - 2026-11-23 — ChatGPT: PASS 70; A1 statycznie domknięte, A2 OPEN, A3 zawężone; dodano scanner/test i raport.
 - 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANE.
