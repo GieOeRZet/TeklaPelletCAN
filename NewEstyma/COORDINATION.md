@@ -104,3 +104,6 @@ Raport `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-202
 - PASS 96: domknięto pierwszy poziom dispatchu menu dla wierszy 11–20: row→runtime class→first-level handler. Dane `cg_menu_dispatch_closure.csv`, narzędzie `tools/cg_menu_dispatch_closure.py`, test i raport PASS 96. Nie utożsamiano handlera pierwszego poziomu z finalnym konstruktorem ekranu.
 - PASS 97: domknięto generyczny automat alarmowy: raise (`0x08025198`), bit16 ACTIVE (`0x0802516C`), bit17 UNACK (`0x08025134`), clear helper (`0x08025104`), ACK przez zapis rejestru `0x4010+i` i timestamp `0x4038+i`, oraz lokalny reset pamięci `0x404E`. Potwierdzono, że ACK nie kasuje stanu ACTIVE. Dane `cg_alarm_closure.csv`, narzędzie/test i raport PASS 97.
 - Nadal OPEN tylko per-alarm warunki biznesowe dla poszczególnych clear-sites oraz finalny handler→konstruktor/widget chain dla części ekranów.
+
+### 2026-11-23 — ChatGPT, PASS 98
+- PASS 98: reconciled Kocioł PID-diff with static presenter evidence. HARD closures: 0x370A→widget 0x20016894 (bmp 11/12/13), 0x350D→0x20016A94 (Ciśnienie= visibility), 0x350A→0x20016A24 (T. powrotu= visibility), 0x2005→0x20016918 (on/off bmp 120/122). 0x2277 pump state→bitmap 138 confirmed, but exact widget address remains OPEN rather than guessed.
