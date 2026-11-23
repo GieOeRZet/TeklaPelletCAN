@@ -203,3 +203,9 @@ Czas: ~9 s na 3000 tikow. Debug: `Board.diag()` (zadanie, rejestry, slad wywolan
 - Uzycie:
   `python3 -I tools/ui_model.py presenter_map.csv inventory.json ui_model.json --csv ui_model.csv --report ui_model_report.md`
 - Uwaga: pliki stanow/scratchpad z `ui_explore.py` nie sa w repo; pelny model wymaga lokalnego uruchomienia inventory na firmware. Repozytorium przechowuje narzedzie i model wynikowy, nie wymyslone dane.
+
+## PASS 60 — UI ACTION GRAPH
+
+- `tools/action_graph.py` — laczy UI-MODEL z logiem akcji: widget/this albo node+tap -> handler -> efekty.
+- `tools/test_action_graph.py` — test exact widget, exact node+tap i unresolved target.
+- Narzedzie nie zgaduje efektu PID/CAN; efekty musza pochodzić z trace/harnessu firmware.
