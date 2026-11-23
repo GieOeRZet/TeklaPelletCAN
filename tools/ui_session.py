@@ -95,7 +95,15 @@ class UiSession:
     def enable_trace(self):
         """sledzi, ktore bitmapy i teksty (ID) firmware CZYTA przy rysowaniu: odczyty deskryptorow bitmap i wskaznikow TypedText (flash). Wynik: self.trace = {'bitmaps': set, 'text': set((jezyk, id))}"""
         from unicorn import UC_HOOK_MEM_READ
-        self.trace = {"bitmaps": set(), "text": set()}; base, n, stride = self.BITMAP_TABLE
+        self.trace = {"bitmaps": set(), "text": set(), "pids": set()}; base, n, stride = self.BITMAP_TABLE
+        # PID-y odczytywane przez GUITask: wejscie w wyszukiwanie rekordu runtime (RUNTIME 0x080215F6; r2 = klucz). Tylko gdy biezace zadanie = GUITask (TCB 0x20001198)
+        from unicorn import UC_HOOK_CODE
+        from unicorn.arm_const import UC_ARM_REG_R2
+        def look(uc, a, sz, ud):
+            try:
+                if self.b.rd(self.b.tcb_ptr) == 0x20001198: self.trace["pids"].add(uc.reg_read(UC_ARM_REG_R2) & 0xFFFF)
+            except Exception: pass
+        self.b.mu.hook_add(UC_HOOK_CODE, look, begin=0x080215F6, end=0x080215F6)
         def rb(uc, a, ad, sz, v, ud): self.trace["bitmaps"].add((ad - base) // stride)
         self.b.mu.hook_add(UC_HOOK_MEM_READ, rb, begin=base, end=base + n * stride - 1)
         for li, ptr in enumerate(self.TEXT_LANG_PTRS):
@@ -104,7 +112,7 @@ class UiSession:
             self.b.mu.hook_add(UC_HOOK_MEM_READ, rt, begin=tb, end=tb + 495 * 4 - 1)
     def dump_trace(self, path):
         import json
-        json.dump(dict(bitmaps=sorted(self.trace["bitmaps"]), text=sorted(self.trace["text"])), open(path, "w"))
+        json.dump(dict(bitmaps=sorted(self.trace["bitmaps"]), text=sorted(self.trace["text"]), pids=sorted(self.trace["pids"])), open(path, "w"))
     def state(self): return dict(self.b.counters, tick=self.n, task=self.b.task_name())
 
 
