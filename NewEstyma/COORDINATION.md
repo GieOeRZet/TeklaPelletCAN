@@ -99,3 +99,8 @@ Raport `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-202
 - PASS 94: zamknięto A2. Tablica `0x20008C50` wskazuje rekordy `0x20008AE0..0x20008C40`, krok `0x10`; `[+8]` daje 23 wartości, ostatnia = `1300`. `0x20008EFC` odrzucony jako źródło rekordu #23.
 - PASS 95: wykonano statyczny audyt S9 LIVE. Potwierdzono tor modułowy CAN, SDO do węzłów 5/6/7 (`0x2001:01`) oraz rozdział od lokalnego `0x584`. Dokładne mapowanie node/channel → PDO → PID dla `0x2001/0x2277/0x3333/0x4000/0x3628` pozostaje OPEN, ponieważ materiał statyczny nie daje uczciwego przypisania bez przebiegu dynamicznego.
 - Pliki ChatGPT: `cg_catalog23.*`, `cg_live_source.csv`, raporty PASS 94–95.
+
+### 2026-11-23 — ChatGPT, PASS 96–97
+- PASS 96: domknięto pierwszy poziom dispatchu menu dla wierszy 11–20: row→runtime class→first-level handler. Dane `cg_menu_dispatch_closure.csv`, narzędzie `tools/cg_menu_dispatch_closure.py`, test i raport PASS 96. Nie utożsamiano handlera pierwszego poziomu z finalnym konstruktorem ekranu.
+- PASS 97: domknięto generyczny automat alarmowy: raise (`0x08025198`), bit16 ACTIVE (`0x0802516C`), bit17 UNACK (`0x08025134`), clear helper (`0x08025104`), ACK przez zapis rejestru `0x4010+i` i timestamp `0x4038+i`, oraz lokalny reset pamięci `0x404E`. Potwierdzono, że ACK nie kasuje stanu ACTIVE. Dane `cg_alarm_closure.csv`, narzędzie/test i raport PASS 97.
+- Nadal OPEN tylko per-alarm warunki biznesowe dla poszczególnych clear-sites oraz finalny handler→konstruktor/widget chain dla części ekranów.
