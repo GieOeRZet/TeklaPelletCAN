@@ -26,10 +26,11 @@ class UiSession:
     def boot(self, ticks=700): self.wait(ticks)
     def tap(self, x, y, hold=150, settle=0):
         self.ft.touch(*screen_to_raw(x, y)); self.wait(hold); self.ft.release(); self.wait(max(60, settle))
-    def swipe(self, x0, y0, x1, y1, ticks=240, steps=12):
+    def swipe(self, x0, y0, x1, y1, ticks=240, steps=12, pause_end=0):
         self.ft.touch(*screen_to_raw(x0, y0)); self.wait(60)
         for i in range(1, steps + 1):
             x, y = x0 + (x1 - x0) * i / steps, y0 + (y1 - y0) * i / steps; self.ft._set(2, *screen_to_raw(x, y), 1); self.ft.last = screen_to_raw(x, y); self.wait(ticks // steps)
+        if pause_end: self.wait(pause_end)          # zatrzymanie palca przed puszczeniem: brak predkosci => brak bezwladnosci (flick)
         self.ft.release(); self.wait(80)
     def shot(self, name=None):
         w, h, pf, addr = R.framebuffer(self.b); img = R.to_image(self.b, w, h, pf, addr)
@@ -52,4 +53,86 @@ class UiSession:
         r = self._record(pid)
         if r is None: raise KeyError("brak rekordu dla PID 0x%X" % pid)
         st, ty = r; n = {1: 1, 2: 2, 3: 4, 4: 2, 5: 4}[ty]; self.b.wr(st, value & ((1 << 8 * n) - 1), n); return st
+    MODEL = 0x20020784   # singleton modelu (FUN 0x080414BA); poziom dostepu = bajt MODEL+0x158 (FUN_08037E74: PIN 900->1, 999->2, 6154->3)
+    def set_access(self, level): self.b.wr(self.MODEL + 0x158, level, 1)
+    def access(self): return self.b.rd(self.MODEL + 0x158, 1)
+    @staticmethod
+    def body_hash(im, y0=46):
+        """skrot obrazu BEZ naglowka (y<y0): w naglowku zmienia sie licznik procentowy"""
+        import hashlib
+        return hashlib.md5(im.crop((0, y0, im.width, im.height)).tobytes()).hexdigest()
+    def go_top(self, tries=8):
+        last = None
+        for _ in range(tries):
+            self.swipe(240, 70, 240, 240, ticks=240, pause_end=160); self.wait(200)
+            h = self.body_hash(self.shot()); 
+            if h == last: return True
+            last = h
+        return False
+    def scroll_capture(self, name, maxpages=8, dy=150, x=240, ytop=230):
+        """robi zrzut, przewija w gore o dy i powtarza, az obraz przestanie sie zmieniac; zwraca liste obrazow"""
+        import hashlib
+        imgs, last = [], None
+        for i in range(maxpages):
+            im = self.shot("%s_%d" % (name, i)); h = self.body_hash(im)
+            if h == last: break
+            imgs.append(im); last = h; self.swipe(x, ytop, x, ytop - dy, ticks=240, pause_end=160); self.wait(250)
+        return imgs
     def state(self): return dict(self.b.counters, tick=self.n, task=self.b.task_name())
+
+
+class ListNav:
+    """Nawigator przewijanej listy (np. glowne MENU): skleja cala liste w jeden obraz (przesuniecie miedzy zrzutami wykrywane korelacja),
+    potem dla dowolnego wiersza przewija tak, by byl widoczny, i zwraca wspolrzedna ekranowa do stuniecia. Wiersze maja stale rozstaw ~50 px.
+    Uzycie: nav = ListNav(session); nav.build(); nav.rows (lista dict: idx, chevron); nav.tap_row(idx)."""
+    BODY0 = 46      # poczatek obszaru listy (pod naglowkiem)
+    PITCH = 50
+    def __init__(self, s): self.s = s; self.tall = None; self.rows = []
+    @staticmethod
+    def _shift(a, b):
+        """o ile pikseli lista przesunela sie miedzy a i b (b jest przewiniete w gore): minimalny blad dopasowania"""
+        import numpy as np
+        A = np.asarray(a.convert("L"), dtype=int)[ListNav.BODY0:, :460]; B = np.asarray(b.convert("L"), dtype=int)[ListNav.BODY0:, :460]
+        best = None
+        for d in range(0, A.shape[0] - 30):
+            e = np.abs(A[d:] - B[:A.shape[0] - d]).mean()
+            if best is None or e < best[0]: best = (e, d)
+        return best
+    def build(self, drag=60, maxsteps=30):
+        from PIL import Image
+        s = self.s; assert s.go_top(); frames = [s.shot()]; offs = [0]
+        for _ in range(maxsteps):
+            prev = frames[-1]; s.swipe(240, 235, 240, 235 - drag, ticks=240, pause_end=160); s.wait(250); cur = s.shot()
+            if s.body_hash(cur) == s.body_hash(prev): break
+            err, d = self._shift(prev, cur)
+            if d == 0 or err > 3: break
+            frames.append(cur); offs.append(offs[-1] + d)
+        h = offs[-1] + frames[-1].height - self.BODY0
+        tall = Image.new("RGB", (480, h)); 
+        for f, o in zip(frames, offs): tall.paste(f.crop((0, self.BODY0, 480, f.height)), (0, o))
+        self.tall = tall; self.offs = offs; n = max(1, round((h - 4) / self.PITCH)); self.rows = []
+        for i in range(n):
+            cy = 29 + self.PITCH * i; self.rows.append(dict(idx=i, cy=cy, chevron=self._chevron(tall, cy)))
+        return self.rows
+    @staticmethod
+    def _chevron(img, cy):
+        px = img.convert("L").load(); h = img.height
+        c = sum(1 for yy in range(max(0, cy - 9), min(h, cy + 9)) for xx in range(432, 452) if px[xx, yy] > 150)
+        return c > 6
+    def offset(self, img):
+        """aktualny offset przewiniecia ekranu wzgledem sklejonej listy"""
+        import numpy as np
+        T = np.asarray(self.tall.convert("L"), dtype=int); B = np.asarray(img.convert("L"), dtype=int)[self.BODY0:, :460]
+        best = None
+        for o in range(0, T.shape[0] - B.shape[0] + 1):
+            e = np.abs(T[o:o + B.shape[0], :460] - B).mean()
+            if best is None or e < best[0]: best = (e, o)
+        return best
+    def tap_row(self, idx, settle=800):
+        s = self.s; cy = self.rows[idx]["cy"]
+        for _ in range(6):
+            err, o = self.offset(s.shot())
+            y = self.BODY0 + cy - o
+            if 56 <= y <= 262: s.tap(240, y, settle=settle); return True
+            s.swipe(240, 235 if y > 262 else 80, 240, 235 - 100 if y > 262 else 80 + 100, ticks=240, pause_end=160); s.wait(250)
+        return False
