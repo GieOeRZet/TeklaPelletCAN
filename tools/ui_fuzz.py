@@ -10,7 +10,7 @@ from unicorn import UC_HOOK_BLOCK
 ap = argparse.ArgumentParser(); ap.add_argument("fw"); ap.add_argument("out"); ap.add_argument("tag"); ap.add_argument("seconds", type=int)
 ap.add_argument("--state"); ap.add_argument("--access", type=int, default=3); ap.add_argument("--cfg", default="4,1,1,1"); ap.add_argument("--depth", type=int, default=3)
 a = ap.parse_args(); os.makedirs(a.out, exist_ok=True)
-GRID = [(x, y) for y in (70, 120, 170, 225) for x in (60, 150, 240, 330, 420)] + [(40, 22), (400, 245), (445, 118), (445, 187), (232, 187), (448, 240), (34, 235), (100, 240), (380, 75), (240, 250), (415, 230), (295, 205), (125, 205)]
+GRID = [(x, y) for y in (60, 95, 130, 165, 200, 235) for x in (40, 110, 180, 250, 320, 390, 450)] + [(40, 22), (400, 245), (445, 118), (445, 187), (232, 187), (448, 240), (34, 235), (100, 240), (380, 75), (240, 250), (415, 230), (295, 205), (125, 205)]
 def sig(im):
     im = im.copy(); im.paste((0, 0, 0), (400, 0, 480, 46)); return hashlib.md5(im.tobytes()).hexdigest()
 if a.state: s = U.UiSession.from_checkpoint(a.fw, a.state, a.out)
