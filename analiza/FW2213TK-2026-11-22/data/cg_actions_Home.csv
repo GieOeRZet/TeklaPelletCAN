@@ -1,0 +1,1 @@
+# C1 action inventory — Home\n# Generated 2026-11-23. Static evidence only; unresolved widget-level handlers remain OPEN.\nclass_vtable,class_name,widget_offset,handler,effect,confidence,source\nHOME,Home,menu-row widgets,home presenter/menu dispatch,screen navigation,OPEN,static source does not expose one-to-one widget handler for every Home touch target\n
