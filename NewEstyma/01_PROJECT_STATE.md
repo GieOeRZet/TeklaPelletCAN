@@ -572,3 +572,10 @@ HARD (narzedzie): po UI-MODEL mozna laczyc zdarzenie dotyku z widgetem po this/a
 HARD (zasada): handler i efekt PID/CAN nie sa zgadywane. Efekt musi byc dostarczony przez trace/harness firmware. Brak targetu = UNRESOLVED_ACTION_TARGET.
 
 Nastepny krok: wykonac rzeczywisty przebieg tapow na stanach ekranow i zasilić graf akcjami oraz efektami.
+
+
+## PASS 79 — timestamp TX exclusion boundary (2026-11-23)
+- Standard parameter publisher `0x0802117C` excludes PID `0x2165` before constructing `0x0584/0x42`.
+- Special publisher `0x080212A6` independently excludes PID `0x2165`.
+- Therefore `0x2165` is not a normal panel publication parameter. Combined with PASS 78 RX proof, the strongest static model is external CAN producer -> `0x584` write -> storage `0x20008D28` -> RTC auto-sync.
+- Concrete external node / ACK / any alternate time TX remains dynamic OPEN.
