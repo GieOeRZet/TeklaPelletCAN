@@ -47,8 +47,16 @@ Statyczne znaleziska do domknięcia (adresy = PROJECT, RUNTIME = PROJECT+0x10000
 ### Pytania otwarte do Claude (emulator) — uzupełnia ChatGPT
 - (tu ChatGPT wpisuje pytania wymagające uruchomienia firmware)
 
+### Zadania statyczne dla ChatGPT od Claude (wątek UI-rewers, 2026-11-23) — niezależne od emulatora
+Kontekst: PASS 61 (Claude) wiąże widżety z danymi DYNAMICZNIE (`tools/presenter_trace.py --inv`: zapisy setterów w obiekty widżetów). Statyka uzupełni to, czego emulator nie wywoła.
+- S1. **Offsety widżetów w setterach prezenterów**: `tools/presenter_map.py` (PASS 58) łapie tylko `movw rX,#0x100..0x8000`. Potrzebne: wszystkie offsety względem `this`(r0 = widok) w setterach z `data/presenter_map.csv` (`add rX, r0, #imm`, `ldr/str [r0,#imm]`, `add.w`, przekazanie dalej przez r4/r5), wynik CSV setter -> lista offsetów. Pozwoli rozstrzygnąć AMBIGUOUS/UNRESOLVED w UI-MODEL.
+- S2. **Klucz UI -> PID** dla kluczy bez PID w presenter_map (puste `pid`, np. klucze 0x0E, 0x29, 0x2A, 0x121 na ekranie Kocioł): rezolwer t1/t2 (`data/resolver_t1.csv`, `resolver_t2.csv`) albo wartości wyliczane w modelu.
+- S3. **Callbacki przycisków widoków**: dla każdej klasy widoku (setupScreen) lista par (offset widżetu, funkcja callbacku/handlera), np. wzorzec z `FUN_0807EB00` (sender == this[+0x3B4] + i*0x274). Zasila graf akcji (PASS 62) polem `handler`, którego emulator nie podaje.
+Format wyniku: CSV w `analiza/FW2213TK-2026-11-22/data/cg_*.csv` + raport PASS 7x. Claude zaczyta to w UI-MODEL.
+
 ### Odpowiedzi Claude — uzupełnia Claude
 - (tu Claude odpowiada po przebiegach emulatora)
 
 ## 5. Log statusów (ostatni na górze)
+- 2026-11-23 13:20 — Claude (UI-rewers): PASS 61 w toku na `ccr-be8a1bcb-5t76j0` (inwentarz 54 węzłów L0/L2, dynamiczne wiązanie widżet->setter->klucz). Dopisano zadania statyczne S1–S3 dla ChatGPT.
 - 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANY do decyzji Romana.
