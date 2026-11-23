@@ -324,3 +324,18 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-122-RAW-ARTIFACT-COMPLETENE
 - Report commit: `247a2b50b1c22090c9a6f2602c4a6ed033820dd7`.
 
 Next: descriptor engine, provider slots, 260-row matrix, publication timing, callback CFG. B1/B2 remain dynamic-only.
+
+### PASS 124 — provider/publication consistency audit — 2026-11-23
+- Reconciled historical vs current provider evidence: slot0 GET and slot+0x04 SET are HARD; provider slot4 remains state/init OPEN by semantic name.
+- Reconfirmed sink 0x20008D60 / vptr 0x080A4544 / slot0 FUN_0806E59C and the closed machine-level publication bridge.
+- Reasserted descriptor boundary from PASS 123 and separation of 260/568/660 namespaces.
+- Report: `AUTONOMOUS-PASS-124-CURRENT-STATE-CONSISTENCY-PROVIDER-PUBLICATION-2026-11-23.md`.
+- Report commit: `b3c9379a7e0c752902ccb5b7b31a6d3be22f68ba`.
+
+### PASS 125 — extra TX callers negative closure — 2026-11-23
+- 0x08056A1C and 0x08056A44 are confirmed direct transfers to queue function 0x08057224, but no current committed body/context proves they are parameter-publication producers.
+- They remain separate OPEN transport producers; no PID/StdId/command semantics were assigned.
+- Report: `AUTONOMOUS-PASS-125-EXTRA-TX-CALLERS-NEGATIVE-CLOSURE-2026-11-23.md`.
+- Report commit: `f11c53787fd927179cdf8a8af3ac891bc00a7124`.
+
+Next autonomous targets: descriptor engine 0x08014728/0x08014734/0x0801155A; provider slot4; 260-slot direct evidence; publication timing/shadow; remaining UI class chains. B1/B2 remain dynamic-only.
