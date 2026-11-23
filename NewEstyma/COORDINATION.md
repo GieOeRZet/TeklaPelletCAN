@@ -286,3 +286,17 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-120-CALLBACK-CFG-S12-AUDIT-
 
 ### Następny autonomiczny target ChatGPT
 Jeżeli pojawi się/da się odzyskać raw instruction listing: natychmiast CFG entry `0x08048493` i `0x080485A1`, następnie outgoing calls. Równolegle szukać callsite/XREF artefaktów S1.2; nie promować 7°C ani A69/A95 bez exact binding proof.
+### Nowe ustalenia ChatGPT — PASS 121 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-121-CLAUDE-TODO-STATIC-CLOSURE-2026-11-23.md`
+
+- A1 hidden PIN: statycznie CLOSED — 900/999/6154 są jedynymi proven access-level PINs; 1992/6666/0 są specjalnymi stałymi w handlerze; nie ma podstaw do dopisywania kolejnych PIN-ów.
+- A2 tabela 23: mechanizm/rola CLOSED jako katalog Parameters set Number; exact entry #23 nadal OPEN.
+- B3: Heating 7°C CLOSED jako UI key 0xCB -> PID 0x22F5 (CH needed temp), więc nie jest to 0x2114. Buffer 0% i Buffer 7°C nadal OPEN.
+- B4: gate 0x08054AB8 CLOSED jako level!=0 w kontekście CWU; L>=3 wrapper family CLOSED mechanicznie, indywidualne konteksty pozostają OPEN.
+- B1/B2 pozostają WSTRZYMANE, bo wymagają wykonania firmware/emulatora i obserwacji dynamicznej.
+
+### Aktualny stan właścicieli po PASS 121
+- ChatGPT: statyczny rewers + narzędzia + dokumentacja.
+- Claude: dynamic/emulator B1/B2; bez nowych wyników nie oznaczać jako CLOSED.
+- S1.3: callback entries 0x08048493/0x080485A1 nadal OPEN do raw CFG.
+- S1.2: helper/setters nadal wymagają exact caller/widget proof.
