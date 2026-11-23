@@ -140,3 +140,6 @@ Zakres, etapami:
 
 ### 2026-11-23 — PASS 98 CORRECTION
 - Critical correction: wcześniejsze przypisanie bitmapy 138 do PID 0x2277 było błędne. PASS 63 rzeczywiście pokazuje `0x200162F8` jako animację pompy (klatki 138→142), ale jawne wiązanie bitmapy 138 pochodzi od PID `0x22A1` (Room temp sensor type): 5→hidden, 0/1/2→visible. PID 0x2277 pozostaje live pump state, lecz jego izolowane wiązanie widgetowe nie jest dowiedzione przez pilot 0x584. PASS 98 CSV/raport/test zostały poprawione; stara interpretacja jest REJECTED.
+
+### 2026-11-23 — ChatGPT, PASS 103
+- PASS 103: pełna macierz wizualnych bindingów Kocioł z PASS 63: 350A, 350D, 2005, 2002, 216F, 3629, 370A, 22A1 oraz live 2277. Kluczowa korekta: bitmapa 138 jest wiązana przez 22A1; widget 0x200162F8 jest jednocześnie ścieżką animacji pompy, więc adres widgetu nie identyfikuje jednego PID. 2277 pozostaje live source, bez izolowanego diffu wartości przez 0x584.
