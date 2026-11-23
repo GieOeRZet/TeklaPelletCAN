@@ -1,0 +1,10 @@
+alarm_action,evidence,exact_path_or_register,confidence
+raise,manager raises code with active+unack bits,0x08025198 -> ring 0x20021E90 + index +0xFC,HARD
+is_unacknowledged,bit17 test,0x08025134,HARD
+is_active,bit16 test,0x0802516C,HARD
+clear,clear-by-code helper,0x08025104,HARD
+acknowledge,CAN write clears bit17 and writes confirmation timestamp,0x4010+i register bit17 + 0x4038+i timestamp,HARD
+acknowledge_CAN_frame,observed panel publication,StdId 0x584: 42 12 40 01 69 00 01 00,HARD
+ack_timestamp,CAN write observed for slot 2,PID 0x403A = 0x3A259880,HARD
+reset_memory,local command register,PID 0x404E / storage 0x20021F94,STRONG
+active_status,bit16 remains active after ACK,0x4010+i bit16,HARD
