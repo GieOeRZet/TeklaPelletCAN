@@ -90,6 +90,21 @@ class UiSession:
     @classmethod
     def from_checkpoint(cls, binpath, path, outdir=None):
         s = cls(binpath, outdir); ex = s.b.load_state(path); s.n = ex["n"]; return s
+    BITMAP_TABLE = (0x08064450, 188, 0x14)          # RUNTIME: tablica deskryptorow bitmap (RAW 0x54450, 188 wpisow po 0x14 B)
+    TEXT_LANG_PTRS = (0x0806BE64, 0x0806AEEC, 0x0806B6A8, 0x0806CDDC, 0x080697B8, 0x08069F74, 0x0806C620, 0x0806A730)   # wskazniki tabel TypedText (PL EN LT SK CZ ES RO EST) = adres wpisu ID 57
+    def enable_trace(self):
+        """sledzi, ktore bitmapy i teksty (ID) firmware CZYTA przy rysowaniu: odczyty deskryptorow bitmap i wskaznikow TypedText (flash). Wynik: self.trace = {'bitmaps': set, 'text': set((jezyk, id))}"""
+        from unicorn import UC_HOOK_MEM_READ
+        self.trace = {"bitmaps": set(), "text": set()}; base, n, stride = self.BITMAP_TABLE
+        def rb(uc, a, ad, sz, v, ud): self.trace["bitmaps"].add((ad - base) // stride)
+        self.b.mu.hook_add(UC_HOOK_MEM_READ, rb, begin=base, end=base + n * stride - 1)
+        for li, ptr in enumerate(self.TEXT_LANG_PTRS):
+            tb = ptr - 57 * 4
+            def rt(uc, a, ad, sz, v, ud, li=li, tb=tb): self.trace["text"].add((li, (ad - tb) // 4))
+            self.b.mu.hook_add(UC_HOOK_MEM_READ, rt, begin=tb, end=tb + 495 * 4 - 1)
+    def dump_trace(self, path):
+        import json
+        json.dump(dict(bitmaps=sorted(self.trace["bitmaps"]), text=sorted(self.trace["text"])), open(path, "w"))
     def state(self): return dict(self.b.counters, tick=self.n, task=self.b.task_name())
 
 
