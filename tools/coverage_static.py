@@ -12,7 +12,7 @@ def main(fw, out, srcs):
     for s in srcs:
         for f in (glob.glob(os.path.join(s, "cov_*.json")) if os.path.isdir(s) else [s]): seen.update(a & ~1 for a in json.load(open(f)))
     roots = {}                       # addr -> zrodlo
-    for a in seen: roots[a] = "exec"
+    reach_only = set(seen)            # wykonane bloki: tylko do odkrywania celow BL w kodzie osiagalnym, NIE liczone jako funkcje
     # wektory
     for i in range(0, 0x200, 4):
         v = struct.unpack_from("<I", raw, i)[0]
@@ -26,12 +26,12 @@ def main(fw, out, srcs):
             if len(run) >= 3:
                 for _, a in run: roots.setdefault(a, "vtable")
             run = []
-    visited = {}; funcs = {}         # funcs: entry -> (n_instr, has_ret)
-    work = sorted(roots)
+    called = set(); visited = {}; funcs = {}         # funcs: entry -> (n_instr, has_ret)
+    work = sorted(set(roots) | reach_only)
     def cov_ok(a): return B <= a < B + N and a % 2 == 0
     while work:
         e = work.pop()
-        if e in funcs or not cov_ok(e): continue
+        if e in funcs or -e in funcs or not cov_ok(e): continue
         stack = [e]; n = 0; ret = False; local = set(); bad = False
         while stack:
             a = stack.pop()
@@ -44,14 +44,15 @@ def main(fw, out, srcs):
                     if i.operands and i.operands[0].type == CS_OP_IMM:
                         t = i.operands[0].imm & ~1
                         if CS_GRP_CALL in i.groups or i.mnemonic in ("b.w", "b") and not i.cc:
-                            if CS_GRP_CALL in i.groups: work.append(t)
+                            if CS_GRP_CALL in i.groups: work.append(t); called.add(t)
                             else: stack.append(t)
                         else: stack.append(t)                      # warunkowy skok: obie galezie
                     if i.mnemonic in ("b", "b.w") and CS_GRP_CALL not in i.groups and i.cc in (0, 15): ret = True; break      # bezwarunkowy skok konczy sciezke
                     if i.mnemonic in ("cbz", "cbnz"): pass
                 a += i.size
-        if n >= 3 and not bad: funcs[e] = (n, ret)
-    rows = [(a, n, ret, a in seen) for a, (n, ret) in sorted(funcs.items())]
+        if n >= 3 and not bad and (e not in reach_only or e in roots or e in called): funcs[e] = (n, ret)
+        elif e in reach_only: funcs.setdefault(-e, (n, ret))   # zapamietaj (ujemny klucz) zeby nie przetwarzac ponownie
+    rows = [(a, n, ret, a in seen) for a, (n, ret) in sorted(funcs.items()) if a > 0]
     with open(out, "w") as f:
         f.write("func,instr,has_ret,executed,source\n")
         for a, n, ret, ex in rows: f.write("0x%08X,%d,%d,%d,%s\n" % (a, n, ret, ex, roots.get(a, "bl")))
