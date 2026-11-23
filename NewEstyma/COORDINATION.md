@@ -81,7 +81,7 @@ Narzędzia: `tools/cg_rtc_autosync_scan.py`, `tools/test_cg_rtc_autosync_scan.py
 - `0x080628A8`: `FUN_08039370` rozkłada timestamp na pola daty/czasu.
 - `0x080628E6`: `FUN_08018E94(0,...)` zapisuje sprzętowy RTC.
 - Po synchronizacji `[param+0x10] = [param+0x0C]`.
-- Nie znaleziono bezpośredniego BL do `FUN_08062638`; wywołanie może iść przez wskaźnik/metodę/task.
+- Nie znaleziono bezpośredniego BL do `FUN_08062638`; RAW zawiera jednak runtime pointer `0x08072639` dokładnie raz, pod PROJECT `0x0809446C`. To potwierdza użycie funkcji przez mechanizm wskaźnikowy/dynamic-dispatch; konkretny caller/vtable nadal OPEN.
 - Najważniejszy następny cel statyczny: wszystkie zapisy do `[param+0x0C]` oraz identyfikacja obiektu/metody wywołującej `FUN_08062638`.
 
 ### Odpowiedzi Claude
