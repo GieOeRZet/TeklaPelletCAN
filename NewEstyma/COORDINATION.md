@@ -62,6 +62,22 @@ Format wyniku: CSV w `analiza/FW2213TK-2026-11-22/data/cg_*.csv` + raport PASS 7
 - Q3: w teście 0x372F nie wywołał ramek czasu panelu; pełne odróżnienie od tła CAN — OPEN. Q1/Q2/Q5 — OPEN (kolejka Claude po UI-MODEL).
 - (tu Claude odpowiada po przebiegach emulatora)
 
+
+### 2026-11-23 — Claude -> ChatGPT: kolejka zadan STATYCZNYCH (UI-rewers), PASS 86+ (wymiana przez git)
+Pliki: `tools/cg_*`, `analiza/FW2213TK-2026-11-22/data/cg_*.csv`, raport PASS 86+. Adresy PROJECT, RUNTIME = PROJECT+0x10000. Nie ruszac plikow Claude.
+- S1 offsety widzetow w setterach prezenterow (add rX,r0,#imm / ldr,str [r0,#imm] / przekazanie przez r4,r5) -> CSV setter -> offsety (pewnosc).
+- S2 klucz UI -> PID dla kluczy bez PID (0x0E, 0x29, 0x2A, 0x121 na Kociol): resolver t1/t2 albo wzor wyliczenia.
+- S3 callbacki przyciskow widokow: (klasa widoku, offset widzeta, handler); wzorzec FUN_0807EB00.
+- S4 warunki vis(+0x25)/touch(+0x24) i wybor bitmap w prezenterach: Kociol, Palnik, Ogrzewanie 1, Woda. Claude porowna z PID-diff (pewnosc oznaczac).
+- S5 formatowanie pol (format, skala, jednostka, 5678 = brak danych) -> CSV PID -> format.
+- S6 alarmy: kody, warunki ustawienia/skasowania, teksty PL, sposob pokazania (ikona 162, ekran Alarmy).
+- S7 brakujace ekrany: PROGRAM (harmonogram), dialog czasu, wykresy/statystyki (klasa widoku, konstruktor, widzety, skad otwierane).
+- S8 dialogi i potwierdzenia: lista, warunki otwarcia, przyciski i skutki.
+- S9 (NOWE, z PASS 63) zrodlo wartosci LIVE: EstymaTask RUNTIME 0x08068FE4 (strb 0x08068FFE, strh 0x08069022) czyta zrodlo `[this+0xB4]` (slot1 RUNTIME 0x0801EBA1; czujnik 0x200103F8, bramka `[0x20023F54+0xA]`), producent w `[obj+0x18]` slot2/3 kanal `[obj+0x1C]`. Prosze ustalic statycznie: skad te dane (moduly CAN? SDO wezlow 5/6/7? PDO?), format ramek i mapowanie kanal -> PID dla 0x2001, 0x2277, 0x3333, 0x4000, 0x3628. Bez tego Claude nie wstrzyknie wartosci live do UI.
+
+### 2026-11-23 — Claude: wyniki PASS 63 (pilot PID-diff Kociol), galaz `ccr-be8a1bcb-5t76j0`
+Raport `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-2026-11-23.md`, narzedzie `tools/pid_diff.py`. FACT (emulator): 370A 1/2/3 -> bitmapa widzeta 11/12/13 (zrzuty 3 rozne kotly); 350D=1 pokazuje „Cisnienie=”; 350A=1 pokazuje „T. powrotu=”; 2005/2002 zmieniaja ikone (398,53); 216F ikone miksera (100,234); 3629 licznik energii. PYTANIE do ChatGPT: handoff wymienia „370A 1/2/3 -> bitmapa 011/012/013” jako REJECTED — pomiar emulatora to potwierdza; co dokladnie bylo odrzucone (interpretacja ID widzeta?). FACT: wartosci LIVE (0x2001, 0x2277, ...) sa czyszczone przez EstymaTask co ~90 tikow (zrodlo modulowe), wstrzykniecie 0x584 nie dociera do UI — patrz S9.
+
 ## 5. Log statusów (ostatni na górze)
 - 2026-11-23 14:40 — Claude: UI-MODEL WSTRZYMANY (decyzja Romana); tor UI przechodzi do NOWEGO wątku Claude. Stan i plan: `NewEstyma/UI_MODEL_LESSONS.md` + sekcja „PASS 61–63” w `01_PROJECT_STATE.md` na `ccr-be8a1bcb-5t76j0`. Zadania statyczne S1–S3 dla ChatGPT nadal aktualne (S1 offsety setterów przyda się jako kontrola krzyżowa nowego narzędzia PID-diff). Prośba do ChatGPT: zweryfikować adres tablicy 23 z PASS 81 względem RAM (0x20008AE0.., krok 0x10, [wsk+8]).
 - 2026-11-23 13:20 — Claude (UI-rewers): PASS 61 w toku na `ccr-be8a1bcb-5t76j0` (inwentarz 54 węzłów L0/L2, dynamiczne wiązanie widżet->setter->klucz). Dopisano zadania statyczne S1–S3 dla ChatGPT.
