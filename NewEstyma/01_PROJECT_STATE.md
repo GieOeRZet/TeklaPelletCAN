@@ -21,13 +21,23 @@ Full universal reconstruction of Estyma firmware behavior, eventually targeting 
 - Scheduler registration leading to FUN_08010FCE.
 
 ## Main OPENs
-- Provider vtable 0x080A31F0: slot0/slot1 HARD as nonvolatile flash GET/SET backend; slot4 is a state/init transition, exact semantic name OPEN.
+- Provider vtable 0x080A31F0: slot0/slot1 HARD as GET/SET backend; slot4 +0x10 HARD resolves to runtime 0x080617FE (Thumb pointer 0x080617FF), a 38-byte initialization/reset-like routine; exact object/business semantics OPEN.
 - Full 260-row cross-layer matrix.
 - Descriptor/record ownership and multi-instance mapping.
 - Local parameter write -> outbound CAN publication bridge (machine-level HARD; timing/shadow semantics OPEN).
 - Complete UI semantic graph and visibility mapping.
-- Sidecar class 1/2/3 exact semantics.
+- Sidecar class 1/2/3 machine behavior CLOSED: class1 guarded-write only, class2 sync-only, class3 guarded-write+sync; exact business semantics/dynamic registration coverage OPEN.
 - Complete response/publication graph.
+
+
+
+## AUTONOMOUS PASS 129–134 — 2026-11-23
+
+- 260 catalog -> runtime matrix v1 created: `data/catalog260_runtime_matrix.csv` and cross-layer v1 `data/catalog260_crosslayer_matrix_v1.csv`.
+- 252/260 catalog rows have runtime records; 8/260 have hard `in_runtime=0`.
+- Provider slot +0x10 corrected by direct BIN inspection: Thumb pointer `0x080617FF` normalizes to function start `0x080617FE`, size 38 B. It is not an interior entry of `FUN_080617DC`.
+- Slot4 body calls `FUN_08061E78` on object+0x24; `0x08062674` is an interior +0x3C sub-entry of `FUN_08062638` and begins with `BX LR`.
+- Sidecar class machine matrix is closed for guarded write/provider sync; business semantics remain open.
 
 ## Current parameter-manager architecture
 Constructor: 0x0800DDC0
