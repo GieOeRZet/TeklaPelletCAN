@@ -40,6 +40,13 @@ class UiSession:
     def can(self, can_id, data): self.can2.inject(can_id, data)
     def set_param(self, pid, value, size=4):
         self.can2.inject(0x584, bytes([0x42, pid & 255, pid >> 8, 1]) + (value & 0xFFFFFFFF).to_bytes(4, "little"))
+    POLLER = 0x2002466C   # obiekt pollera: +0x0C okno odpowiedzi, +0x10 bramka (handler RX 0x08072A90 przyjmuje 0x584 tylko gdy oba != 0)
+    def inject_param(self, pid, value, repeats=3, ticks=80):
+        """realistyczne wstrzykniecie wartosci jak odpowiedz sterownika (CAN 0x584/0x42) przez prawdziwy RX handler: zwalnia okno odpowiedzi i bramke pollera
+        i powtarza ramke (jedna ramka bywa gubiona, gdy GUI jest zajete). Zwraca wartosc odczytana ze storage."""
+        for _ in range(repeats):
+            self.b.wr(self.POLLER + 0xC, 1, 1); self.b.wr(self.POLLER + 0x10, 1, 1); self.set_param(pid, value); self.wait(ticks)
+        r = self._record(pid); n = {1: 1, 2: 2, 3: 4, 4: 2, 5: 4}[r[1]]; return self.b.rd(r[0], n)
     def _record(self, pid):
         """rekord tabeli runtime managera 0x20008D84 (stride 0x2C, baza +8): (storage, typ) albo None"""
         base = 0x20008D84 + 8
