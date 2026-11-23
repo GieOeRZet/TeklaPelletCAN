@@ -33,4 +33,5 @@ E1. Prawdziwe pokrycie funkcji (po odsianiu danych udajacych kod: `tools/coverag
 E2. Wyjasnic: kloda znika po ~3400 tikach; zrodlo 7°C i 0%; warunek "Ochrona kotla"; slider/tekstury (jest).
 
 ## Kolejnosc (proponowana)
-1) UI-MODEL: view_off -> presenter/PID (narzedzie PASS 59 gotowe; pozostaje pelny przebieg na wszystkich stanach) -> 2) graf akcji widgetow -> 3) warunki widocznosci i dialogi jako dane -> 4) A6 brakujace ekrany -> 5) B1/B2 formatowanie danych -> 6) C1/C2/C3 zachowanie -> 7) D harness -> 8) E zamkniecie.
+**AKTUALIZACJA 2026-11-23 14:40:** UI-MODEL przez view_off/tracer setterow (PASS 59/61) okazal sie zawodny i zostal WSTRZYMANY. Nowe podejscie: narzedzie PID-diff z pilotem na ekranie Kociol — `NewEstyma/UI_MODEL_LESSONS.md` §4. Graf akcji: model stukniec `tools/action_probe.py` dziala (dane czesciowe `data/actions_pass61_L0_partial.json`). C6 (czas): tor CAN 0x2165 + 0x372F -> RTC DOMKNIETY (PASS 62 + ChatGPT 73-79).
+1) UI-MODEL: pilot PID-diff na Kociol (kryteria K1-K5), potem skala -> 2) graf akcji widgetow -> 3) warunki widocznosci i dialogi jako dane -> 4) A6 brakujace ekrany -> 5) B1/B2 formatowanie danych -> 6) C1/C2/C3 zachowanie -> 7) D harness -> 8) E zamkniecie.

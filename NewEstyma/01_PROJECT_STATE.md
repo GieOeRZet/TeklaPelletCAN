@@ -572,3 +572,19 @@ HARD (narzedzie): po UI-MODEL mozna laczyc zdarzenie dotyku z widgetem po this/a
 HARD (zasada): handler i efekt PID/CAN nie sa zgadywane. Efekt musi byc dostarczony przez trace/harness firmware. Brak targetu = UNRESOLVED_ACTION_TARGET.
 
 Nastepny krok: wykonac rzeczywisty przebieg tapow na stanach ekranow i zasilić graf akcjami oraz efektami.
+
+
+## PASS 61–63 (Claude, 2026-11-23) — UI-MODEL dynamiczny, graf akcji, zegar z CAN; UI-MODEL WSTRZYMANY
+Szczegóły i ocena narzędzi: `NewEstyma/UI_MODEL_LESSONS.md`.
+- **PASS 62 HARD (emulator):** ramka `0x584 42 65 21 01 <u32 LE unix>` zapisuje PID 0x2165 (storage 0x20008D28); przy 0x372F=1 funkcja 0x08072638 (PROJECT 0x08062638) zapisuje RTC panelu (TR/DR), ekran pokazuje nową godzinę; przy 0x372F=0 RTC bez zmian. **Bez strefy czasowej** (RTC = godzina UTC z timestampu). Pełny cykl co 10. wywołanie schedulera. Raport `AUTONOMOUS-PASS-62-RTC-SYNC-FROM-CAN-EXECUTED-2026-11-23.md`, narzędzie `tools/rtc_timestamp_probe.py`, poprawka modelu `tools/stm32_rtc.py`.
+- **Tabela 23 (0x20008C50), RAM po rozruchu:** wskaźniki na rekordy 0x20008AE0..0x20008C40 (krok 0x10), wartość [wsk+8]: 10,18,120,180,230,12,15,25,35,50,75,2000,2500,3000,16,30,150,220,300,500,1550,1220,1300 (brakująca = **16**).
+- **PASS 61 (częściowo):** inwentarz 54 węzłów (L0: 24, L2: 30) w `data/widgets_inv_pass61_L0.json`/`_L2.json`; graf akcji 232 stuknięcia (L0 węzły 0..5) w `data/actions_pass61_L0_partial.json`. Tożsamość ekranu = vtable widoku `[[0x20024818]]`.
+- **WADLIWE:** wiązanie widżet->PID przez `presenter_trace.py` (zapisy przypisywane cudzym widżetom przy setterach z tail call; FAULT na Konfiguracji przy dodawaniu haków w trakcie emulacji; ~3 min/węzeł). Statyczne view_off (PASS 59) = głównie przypadkowe zgodności. Wyniki tych narzędzi NIE są w repo jako fakty.
+- Plan: nowe narzędzie „PID-diff” (wstrzyknięcie wartości PID i różnica stanu widżetów), pilot na ekranie Kocioł z kryteriami K1–K5 (UI_MODEL_LESSONS.md §4).
+
+## Wnioski ChatGPT PASS 70–81 (gałąź `ccr-be8a1bcb-5t76j0-chatgpt`, skrót)
+- FACT: tabela 23 = katalog „Parameters set Number” (PID 0x0004); jej wartości działają w polu PIN przez współdzielenie katalogu (PASS 71). Kody poziomu wyłącznie {0,900,999,6154}.
+- FACT: 0x372F = tylko bramka auto-sync; źródło czasu = PID 0x2165 (Compatibility timestamp) z CAN 0x584 (PASS 73–78; potwierdzone dynamicznie w PASS 62).
+- FACT: 0x2165, 0x3726, 0x2311..0x2314 wyłączone z publikacji panelu (PASS 79) — panel nie nadaje czasu.
+- FACT: bramka 0x08054AB8 = dodatkowy element ekranu CWU od poziomu 1 (view_off 0x1498, PID 0x201A) (PASS 80); 4 wrappery L>=3 = rodzina „CPU load” w nagłówku (PASS 81).
+- SPÓR (do wyjaśnienia przez ChatGPT): PASS 81 szuka 23. wartości pod 0x20008EFC (rekordy 0x14 B); RAM tego nie potwierdza (patrz wyżej).
