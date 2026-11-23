@@ -15,6 +15,7 @@ from pathlib import Path
 import sys
 
 BASE = 0x08000000
+RUNTIME_BASE = 0x08010000
 FUNC_AUTOSYNC = 0x08062638
 FUNC_RTC_SET = 0x08018E94
 FUNC_RTC_GET = 0x08018F18
@@ -26,6 +27,7 @@ SIG_PID = bytes.fromhex("43 f2 2f 72")
 SIG_BL_RTC_SET = bytes.fromhex("b6 f7 d5 fa")
 SIG_BL_RTC_GET = bytes.fromhex("b6 f7 99 fb")
 SIG_BL_RTC_BCD = bytes.fromhex("b6 f7 f6 fb")
+RUNTIME_PTR_AUTOSYNC = (FUNC_AUTOSYNC + 0x10000 + 1).to_bytes(4, "little")
 
 
 def project_to_file(addr: int) -> int:
@@ -54,6 +56,9 @@ def scan(path: Path) -> dict:
     blob = path.read_bytes()
     # FUN_08062638 is 718 bytes per the recovered Ghidra function table.
     auto = read_region(blob, FUNC_AUTOSYNC, 718)
+    runtime_ptr_hits = [
+        hex(BASE + x) for x in find_all(blob, RUNTIME_PTR_AUTOSYNC)
+    ]
     return {
         "file": str(path),
         "size": len(blob),
@@ -64,11 +69,14 @@ def scan(path: Path) -> dict:
         "rtc_set_signature": [hex(FUNC_AUTOSYNC + x) for x in find_all(auto, SIG_BL_RTC_SET)],
         "rtc_get_signature": [hex(FUNC_AUTOSYNC + x) for x in find_all(auto, SIG_BL_RTC_GET)],
         "rtc_bcd_signature": [hex(FUNC_AUTOSYNC + x) for x in find_all(auto, SIG_BL_RTC_BCD)],
+        "runtime_ptr_autosync": hex(FUNC_AUTOSYNC + 0x10000 + 1),
+        "runtime_ptr_hits_project": runtime_ptr_hits,
         "known_targets": {
             "rtc_set": hex(FUNC_RTC_SET),
             "rtc_get": hex(FUNC_RTC_GET),
             "rtc_bcd": hex(FUNC_RTC_BCD),
             "pid": hex(PID_AUTOSYNC),
+            "runtime_base": hex(RUNTIME_BASE),
         },
     }
 
