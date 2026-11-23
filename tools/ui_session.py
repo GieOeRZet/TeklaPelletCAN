@@ -61,13 +61,19 @@ class UiSession:
         """skrot obrazu BEZ naglowka (y<y0): w naglowku zmienia sie licznik procentowy"""
         import hashlib
         return hashlib.md5(im.crop((0, y0, im.width, im.height)).tobytes()).hexdigest()
+    def drag_until_change(self, x0, y0, x1, y1, attempts=5, ticks=240, steps=12, pause_end=160):
+        """przeciagniecie powtarzane z przesunieciem fazy wzgledem odpytywania kontrolera (~40 tikow), az obraz (bez naglowka) sie zmieni.
+        Pojedyncze przeciagniecia (zwlaszcza w dol od dolu listy) bywaja gubione zaleznie od fazy; zwraca True, gdy sie zmienilo."""
+        for k in range(attempts):
+            h0 = self.body_hash(self.shot()); self.swipe(x0, y0, x1, y1, ticks=ticks, steps=steps, pause_end=pause_end); self.wait(250)
+            if self.body_hash(self.shot()) != h0: return True
+            self.wait(7 + 9 * k)
+        return False
     def go_top(self, tries=8):
         last = None
         for _ in range(tries):
-            self.swipe(240, 70, 240, 240, ticks=240, pause_end=160); self.wait(200)
-            h = self.body_hash(self.shot()); 
-            if h == last: return True
-            last = h
+            moved = self.drag_until_change(240, 70, 240, 240)
+            if not moved: return True          # nie przewija sie juz => gora
         return False
     def scroll_capture(self, name, maxpages=8, dy=150, x=240, ytop=230):
         """robi zrzut, przewija w gore o dy i powtarza, az obraz przestanie sie zmieniac; zwraca liste obrazow"""
@@ -76,7 +82,7 @@ class UiSession:
         for i in range(maxpages):
             im = self.shot("%s_%d" % (name, i)); h = self.body_hash(im)
             if h == last: break
-            imgs.append(im); last = h; self.swipe(x, ytop, x, ytop - dy, ticks=240, pause_end=160); self.wait(250)
+            imgs.append(im); last = h; self.drag_until_change(x, ytop, x, ytop - dy, attempts=3)
         return imgs
     def state(self): return dict(self.b.counters, tick=self.n, task=self.b.task_name())
 
@@ -102,7 +108,7 @@ class ListNav:
         from PIL import Image
         s = self.s; assert s.go_top(); frames = [s.shot()]; offs = [0]
         for _ in range(maxsteps):
-            prev = frames[-1]; s.swipe(240, 235, 240, 235 - drag, ticks=240, pause_end=160); s.wait(250); cur = s.shot()
+            prev = frames[-1]; s.drag_until_change(240, 235, 240, 235 - drag, attempts=3); cur = s.shot()
             if s.body_hash(cur) == s.body_hash(prev): break
             err, d = self._shift(prev, cur)
             if d == 0 or err > 3: break
@@ -134,5 +140,6 @@ class ListNav:
             err, o = self.offset(s.shot())
             y = self.BODY0 + cy - o
             if 56 <= y <= 262: s.tap(240, y, settle=settle); return True
-            s.swipe(240, 235 if y > 262 else 80, 240, 235 - 100 if y > 262 else 80 + 100, ticks=240, pause_end=160); s.wait(250)
+            if y > 262: s.drag_until_change(240, 235, 240, 135)
+            else: s.drag_until_change(240, 80, 240, 180)
         return False
