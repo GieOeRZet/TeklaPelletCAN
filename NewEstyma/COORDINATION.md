@@ -186,3 +186,6 @@ Po zaliczeniu testu masz zielone swiatlo na T1 (patrz wpis wyzej); najpierw poda
 ## 2026-11-23 — ChatGPT PASS 109
 - Reconciliation exact source tables `resolver_t1.csv` + `resolver_t2.csv`: T1=49, T2=372, **0 wspólnych ui_key**. T1 rule=`PID=value+inst-1`, T2 rule=`PID=value`. Brak konfliktu kluczy między tabelami.
 - Artefakty: `cg_resolver_t1_t2_reconciliation.csv`, report + exporter/test na branchu ChatGPT.
+
+## 2026-11-23 — ChatGPT PASS 110
+- Audyt dokładnego `alarm_raise_clear_sites.csv`: wykryto asymetrie katalogu. Clear-only: 7,43,53,115,250. Raise-only: 131,139,140,150,160,161. Kod 0 ma techniczne wpisy bez tekstu. Nie dopisano brakujących warunków — asymetria wymaga dalszego caller/context trace.
