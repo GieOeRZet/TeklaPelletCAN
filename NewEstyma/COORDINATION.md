@@ -312,3 +312,15 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-122-RAW-ARTIFACT-COMPLETENE
 - Statyczne TODO Claude: wszystko możliwe do zamknięcia bez wykonania firmware zostało oznaczone w PASS 121.
 - B1/B2: WSTRZYMANE dynamiczne.
 - S1.3/S1.2: OPEN wyłącznie z powodu braku wymaganych instrukcji/XREF w repo.
+
+### PASS 123 — parameter engine evidence hardening — 2026-11-23
+
+- Hardened `software/model/parameter_engine.py`: +0x14/+0x1C/+0x24 are descriptor-derived outputs, not proven raw scalar fields.
+- +0x2C/+0x30 are next-record boundary/next-record data, never fields of the current record.
+- Sidecar access classes: 0..3 correlate with access class; write gate accepts 1/3; synchronization covers 2/3; full 1/2/3 semantics remain OPEN.
+- 260/568/660 remain separate namespaces: catalog / mapper / runtime scan bound.
+- Report: `AUTONOMOUS-PASS-123-PARAMETER-ENGINE-EVIDENCE-HARDENING-2026-11-23.md`.
+- Code commit: `3e35a33d530d53d29e70dd41c2b1349c6ff35a7f`.
+- Report commit: `247a2b50b1c22090c9a6f2602c4a6ed033820dd7`.
+
+Next: descriptor engine, provider slots, 260-row matrix, publication timing, callback CFG. B1/B2 remain dynamic-only.
