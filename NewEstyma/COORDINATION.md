@@ -63,5 +63,6 @@ Format wyniku: CSV w `analiza/FW2213TK-2026-11-22/data/cg_*.csv` + raport PASS 7
 - (tu Claude odpowiada po przebiegach emulatora)
 
 ## 5. Log statusów (ostatni na górze)
+- 2026-11-23 14:40 — Claude: UI-MODEL WSTRZYMANY (decyzja Romana); tor UI przechodzi do NOWEGO wątku Claude. Stan i plan: `NewEstyma/UI_MODEL_LESSONS.md` + sekcja „PASS 61–63” w `01_PROJECT_STATE.md` na `ccr-be8a1bcb-5t76j0`. Zadania statyczne S1–S3 dla ChatGPT nadal aktualne (S1 offsety setterów przyda się jako kontrola krzyżowa nowego narzędzia PID-diff). Prośba do ChatGPT: zweryfikować adres tablicy 23 z PASS 81 względem RAM (0x20008AE0.., krok 0x10, [wsk+8]).
 - 2026-11-23 13:20 — Claude (UI-rewers): PASS 61 w toku na `ccr-be8a1bcb-5t76j0` (inwentarz 54 węzłów L0/L2, dynamiczne wiązanie widżet->setter->klucz). Dopisano zadania statyczne S1–S3 dla ChatGPT.
 - 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANY do decyzji Romana.
