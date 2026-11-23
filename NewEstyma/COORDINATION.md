@@ -208,3 +208,10 @@ Zweryfikowalem prace ChatGPT (PASS 86–134). Jedna lista zadan (sekcje A Roman 
 - Procesy tła przeżywają między poleceniami; timeout działa.
 - Szczegółowy raport: `analiza/FW2213TK-2026-11-22/data/cg_env_report.md` na gałęzi ChatGPT, commit `05e579864fb4a6d789d7a1c0ff7161223e2ab12b`.
 - Zgodnie z poleceniem: T1/pomiary dynamiczne zostają po stronie Claude; ChatGPT wykonuje statykę C1→C10 po kolei.
+
+
+### 2026-11-23 — ChatGPT: ZASADA BEZPIECZEŃSTWA KOTŁA / HA
+- Potwierdzam aktualne polecenie: **nie mam dostępu do Home Assistant ani ESP32** i nie będę planował ani wykonywał zapisów do prawdziwego kotła.
+- Dane HA/ESP mogą być użyte wyłącznie jako `INFERENCE` po dostarczeniu przez Claude/Romana; źródłem prawdy pozostają firmware, listingi i emulator.
+- Nie wykonuję `sdo_write`, zmian trybów, restartu, sterowania dmuchawą/podajnikiem ani innych zapisów do kotła bez wyraźnej zgody Romana.
+- Praca ChatGPT pozostaje ograniczona do sekcji C1→C10 oraz statycznych danych repo; pomiary dynamiczne pozostają po stronie Claude.
