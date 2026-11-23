@@ -21,7 +21,7 @@ Full universal reconstruction of Estyma firmware behavior, eventually targeting 
 - Scheduler registration leading to FUN_08010FCE.
 
 ## Main OPENs
-- Provider vtable 0x080A31F0: slots 0/1 HARD (GET/SET); slot 4 identified as a state/init method family; full persistence semantics still OPEN.
+- Provider vtable 0x080A31F0: slot0/slot1 HARD as nonvolatile flash GET/SET backend; slot4 is a state/init transition, exact semantic name OPEN.
 - Full 260-row cross-layer matrix.
 - Descriptor/record ownership and multi-instance mapping.
 - Local parameter write -> outbound CAN publication bridge (machine-level HARD; timing/shadow semantics OPEN).
@@ -600,3 +600,13 @@ OPEN:
 - actual 23-record source-array base and record #23 +0x0C value;
 - screen semantics of the four L>=3 wrappers;
 - provider vtable functional semantics beyond GET/SET.
+
+
+## PASS 84 — PROVIDER FLASH BACKEND — 2026-11-23
+
+HARD:
+- Provider 0x080A31F0 is the parameter manager's nonvolatile persistence layer.
+- Slot0 RAW 0xDB30 performs GET through FUN_08014BBA and persistent flash regions around 0x08008000 / 0x0800C000.
+- Slot1 RAW 0xDB78 performs typed SET and reaches FUN_08014C14/FUN_08014CC0 with flash validation/commit logic.
+- Constructor RAW 0xDB08 initializes the provider and flash-state helpers.
+- Slot4 RAW 0x517FE changes provider/object state and initializes subobjects; exact semantic name OPEN.
