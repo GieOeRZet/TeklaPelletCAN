@@ -117,3 +117,15 @@ Narzędzia: tools/cg_can_timestamp_frame_scan.py, tools/test_cg_can_timestamp_fr
 - data/pid_matrix_655.csv potwierdza: PID 0x2165 = Compatibility timestamp, u32, storage 0x20008D28, class/sidecar command.
 - Statycznie zamknięty jest więc logiczny format zapisu timestampu: StdId 0x584, PID 0x2165, opcode 1, u32 LE.
 - Nadal OPEN: konkretny producent timestampu, ACK oraz czy panel sam wysyła ten parametr.
+
+
+### Nowe ustalenia ChatGPT — PASS 79 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-79-CAN-TIMESTAMP-TX-EXCLUSION-2026-11-23.md`
+Narzędzia: `tools/cg_timestamp_tx_exclusion_scan.py`, `tools/test_cg_timestamp_tx_exclusion_scan.py`
+
+- Publisher PROJECT `0x0802117C` jawnie wyklucza PID `0x2165` przed zbudowaniem standardowej publikacji `0x0584/0x42`.
+- Specjalna ścieżka publishera PROJECT `0x080212A6` również jawnie wyklucza PID `0x2165`.
+- Ten sam wyjątek obejmuje PID-y `0x3726` i `0x2311..0x2314`.
+- Wniosek STRONG: panel nie publikuje Compatibility timestamp przez standardowy mechanizm parametrów `0x584/0x42`; statycznie nie znaleziono panelowego TX producer dla PID `0x2165`.
+- Najbardziej spójny model: zewnętrzny producent -> `0x584/WRITE PID 0x2165` -> parameter manager -> `0x20008D28` -> RTC auto-sync przez gate `0x372F`.
+- OPEN pozostaje tylko dynamiczne ustalenie konkretnego nadawcy, ACK i ewentualnego niestandardowego toru czasu.
