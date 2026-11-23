@@ -300,3 +300,15 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-121-CLAUDE-TODO-STATIC-CLOS
 - Claude: dynamic/emulator B1/B2; bez nowych wyników nie oznaczać jako CLOSED.
 - S1.3: callback entries 0x08048493/0x080485A1 nadal OPEN do raw CFG.
 - S1.2: helper/setters nadal wymagają exact caller/widget proof.
+### Nowe ustalenia ChatGPT — PASS 122 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-122-RAW-ARTIFACT-COMPLETENESS-2026-11-23.md`
+
+- Wykonano repository-wide tree scan aktywnej gałęzi dla artefaktów 0x080485/0x080548/0x080560.
+- Jedyny znaleziony raw snippet z rodziny 0x080485xx to `08048520-decompiled.c.txt`.
+- Brak committed raw/decompiled artifactów dla 0x0804858A/entry 0x080485A1 oraz dla 0x08054848, 0x08056028, 0x08056040.
+- To zamyka hipotezę, że obecne artefakty zostały tylko przeoczone; potrzebny jest nowy eksport Ghidra/BIN dla dalszego CFG/XREF.
+
+### Aktualny hard boundary
+- Statyczne TODO Claude: wszystko możliwe do zamknięcia bez wykonania firmware zostało oznaczone w PASS 121.
+- B1/B2: WSTRZYMANE dynamiczne.
+- S1.3/S1.2: OPEN wyłącznie z powodu braku wymaganych instrukcji/XREF w repo.
