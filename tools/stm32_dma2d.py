@@ -35,6 +35,13 @@ class Dma2D:
         self.b, self.irq = board, irq
         self.log, self.unsupported = [], []
         board.mu.hook_add(__import__("unicorn").UC_HOOK_MEM_WRITE, self._w, begin=DMA2D + CR, end=DMA2D + CR + 3)
+        # PASS 66: reset peryferium przez RCC_AHB1RSTR (0x40023810) bit 23 zeruje rejestry DMA2D. Firmware (SPL DMA2D_DeInit) robi to przed kazdym DMA2D_Init,
+        # a DMA2D_Init sklada OCOLR przez "|=" - bez resetu bity koloru kumuluja sie (0x2945|0xF800=0xF945) i wypelnienia tla robia sie czerwone.
+        board.mu.hook_add(__import__("unicorn").UC_HOOK_MEM_WRITE, self._rcc_reset, begin=0x40023810, end=0x40023813)
+
+    def _rcc_reset(self, uc, access, addr, size, val, ud):
+        if val & (1 << 23):
+            for off in range(0, 0x50, 4): self.b.wr(DMA2D + off, 0, 4)
 
     def _w(self, uc, access, addr, size, val, ud):
         if val & 1:                                         # START
