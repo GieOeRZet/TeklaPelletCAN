@@ -21,7 +21,7 @@ Full universal reconstruction of Estyma firmware behavior, eventually targeting 
 - Scheduler registration leading to FUN_08010FCE.
 
 ## Main OPENs
-- Provider vtable 0x080A31F0: slots 0/1 HARD (GET/SET); remaining interface OPEN.
+- Provider vtable 0x080A31F0: slots 0/1 HARD (GET/SET); slot 4 identified as a state/init method family; full persistence semantics still OPEN.
 - Full 260-row cross-layer matrix.
 - Descriptor/record ownership and multi-instance mapping.
 - Local parameter write -> outbound CAN publication bridge (machine-level HARD; timing/shadow semantics OPEN).
@@ -579,3 +579,24 @@ Nastepny krok: wykonac rzeczywisty przebieg tapow na stanach ekranow i zasilić 
 - Special publisher `0x080212A6` independently excludes PID `0x2165`.
 - Therefore `0x2165` is not a normal panel publication parameter. Combined with PASS 78 RX proof, the strongest static model is external CAN producer -> `0x584` write -> storage `0x20008D28` -> RTC auto-sync.
 - Concrete external node / ACK / any alternate time TX remains dynamic OPEN.
+
+
+## PASS 83 — B3 OCHRONA KOTŁA / BUFFER CORRECTION — 2026-11-23
+
+HARD:
+- Ogrzewanie helper PROJECT 0x08054848 / RAW 0x44848 receives PID 0x22A1 (Room temp sensor type) and PID 0x2301 (CH thermostat state).
+- If 0x22A1 != 4: view flags +0xA69=0, +0xA95=1.
+- If 0x22A1 == 4: +0xA95=0 and +0xA69=1 only when 0x2301==1.
+- Therefore the previous direct-CH-status hypothesis using 0x22FD is rejected for this path.
+- Buffer L1 visibility is hard-gated by model+0x158 != 0; 0% is PID 0x3174 via UI key 0xFB.
+- Buffer UI key 0xF5 resolves to PID 0x2280, a distinct live/read-only parameter; do not alias it to setting PID 0x2114 merely by name.
+
+CORRECTION:
+- PASS 81's claim that 0x20008D84 is the 23-record source array is rejected. 0x20008D84 is the parameter manager. FUN_080143DE/416/43E receive the actual 20-byte-record base as an argument. The 23-entry catalog at 0x20008C50 contains pointers to those record arrays.
+
+OPEN:
+- exact widget association of +0xA69/+0xA95 with TypedText 87;
+- exact widget/PID for the Buffer 7°C field;
+- actual 23-record source-array base and record #23 +0x0C value;
+- screen semantics of the four L>=3 wrappers;
+- provider vtable functional semantics beyond GET/SET.
