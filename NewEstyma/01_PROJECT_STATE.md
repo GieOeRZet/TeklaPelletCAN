@@ -562,3 +562,13 @@ HARD (zasada dowodu): dopasowanie po view_off jest oznaczane EXACT_VIEW_OFF tylk
 OPEN: pelne statystyki dopasowan wymagaja lokalnego przebiegu inventory na firmware, poniewaz stany ui_explore/scratchpad nie sa przechowywane w repo.
 
 Nastepny krok: graf akcji dotykalnych widgetow — widget -> handler -> ekran/dialog/PID -> CAN/efekt.
+
+## AUTONOMOUS PASS 60 — UI ACTION GRAPH — 2026-11-23
+
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-60-UI-ACTION-GRAPH-2026-11-23.md ; narzedzia: tools/action_graph.py, tools/test_action_graph.py
+
+HARD (narzedzie): po UI-MODEL mozna laczyc zdarzenie dotyku z widgetem po this/addr albo node+tap i propagowac jego znanych presenter candidates do grafu akcji.
+
+HARD (zasada): handler i efekt PID/CAN nie sa zgadywane. Efekt musi byc dostarczony przez trace/harness firmware. Brak targetu = UNRESOLVED_ACTION_TARGET.
+
+Nastepny krok: wykonac rzeczywisty przebieg tapow na stanach ekranow i zasilić graf akcjami oraz efektami.
