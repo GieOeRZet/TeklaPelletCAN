@@ -1,0 +1,1393 @@
+{
+ "meta": {
+  "title": "Drzewo menu igneoTouch FW2213TK (szkielet)",
+  "generated_by": "tools/menu_tree_build.py (PASS 65)",
+  "firmware_sha256": "1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071",
+  "evidence_legend": "MEASURED=zmierzone w emulatorze; STRONG=spojne z wielu zrodel; DOC=z raportow, nie zmierzone tu; OPEN=brak dowodu",
+  "levels": "0..3 (PIN 900->1, 999->2, 6154->3)"
+ },
+ "nodes": [
+  {
+   "id": "HOME",
+   "title_pl": "Ekran glowny",
+   "vtable": "0x808f708",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "STRONG (vtable po ikonie domu + tytul dnia tygodnia na ekranie)",
+   "note": "kafelki: MENU, Paliwo, plomien (klodka 0x2006), Ogrzewanie 1/2, Woda, zasilanie, AUTO; wiazania widgetow NIE zmierzone (OPEN)"
+  },
+  {
+   "id": "MENU",
+   "title_pl": "MENU",
+   "vtable": "0x808f66c",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (PASS 40 vptr + krawedz '<')",
+   "note": ""
+  },
+  {
+   "id": "KOCIOL",
+   "title_pl": "Kociol",
+   "vtable": "0x808ed7c",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": ""
+  },
+  {
+   "id": "PALNIK",
+   "title_pl": "Palnik",
+   "vtable": "0x808ede4",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": ""
+  },
+  {
+   "id": "OGRZEWANIE",
+   "title_pl": "Ogrzewanie obwod 1..4 (jedna klasa, instancje)",
+   "vtable": "0x808f5d0",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": "PID = baza + instancja - 1 (zmierzone CO1 vs CO2)"
+  },
+  {
+   "id": "CWU",
+   "title_pl": "Ciepla woda uzytkowa",
+   "vtable": "0x808f604",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": ""
+  },
+  {
+   "id": "SOLARY",
+   "title_pl": "Solary",
+   "vtable": "0x808f978",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": ""
+  },
+  {
+   "id": "BUFOR",
+   "title_pl": "Bufor",
+   "vtable": "0x808edb0",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": ""
+  },
+  {
+   "id": "ALARMY",
+   "title_pl": "Historia alarmow",
+   "vtable": "0x808ec10",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": "dane z rejestrow alarmow, nie z PID-ow GUI (PID-diff nie dotyczy)"
+  },
+  {
+   "id": "INFO",
+   "title_pl": "Informacje o programie",
+   "vtable": "0x808f638",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": "teksty statyczne"
+  },
+  {
+   "id": "TEST_WYJSC",
+   "title_pl": "Test wyjsc",
+   "vtable": "0x808f80c",
+   "kind": "screen",
+   "level_min": 1,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": ""
+  },
+  {
+   "id": "SIEC",
+   "title_pl": "Siec",
+   "vtable": "0x808f770",
+   "kind": "screen",
+   "level_min": 1,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": ""
+  },
+  {
+   "id": "INTERNET",
+   "title_pl": "Internet",
+   "vtable": "0x808f9ac",
+   "kind": "screen",
+   "level_min": 1,
+   "evidence": "MEASURED (vtable w pass63_view_classes.json)",
+   "note": ""
+  },
+  {
+   "id": "PROGRAM",
+   "title_pl": "PROGRAM (harmonogram tygodniowy)",
+   "vtable": "0x808f910",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (pasek programu na Kociol/Ogrzewanie)",
+   "note": "widgety/wiazania PROGRAM NIE zmierzone (OPEN)"
+  },
+  {
+   "id": "LISTA",
+   "title_pl": "Lista parametrow (NASTAWY / Konfiguracja / Statystyki)",
+   "vtable": "0x808f944",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (zebatka; wszystkie NASTAWY + Konfiguracja + Statystyki)",
+   "note": "jedna klasa; tresc = klasa runtime x poziom -> panel_lists_by_level.csv"
+  },
+  {
+   "id": "KASKADA",
+   "title_pl": "Kaskada",
+   "vtable": null,
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "DOC (PASS 46: klasa runtime 8, warunek 0x350C != 0); nie wyrenderowana",
+   "note": "OPEN: vtable, widgety, wiazania"
+  },
+  {
+   "id": "MAGAZYN",
+   "title_pl": "Dodatkowy magazyn paliwa",
+   "vtable": null,
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "DOC (PASS 46: klasa runtime 9, warunek 0x3525 != 0); nie wyrenderowany",
+   "note": "OPEN: vtable, widgety, wiazania"
+  },
+  {
+   "id": "KONFIGURACJA",
+   "title_pl": "Konfiguracja (lista klasy 0x10)",
+   "vtable": "0x808f944",
+   "kind": "screen",
+   "level_min": 0,
+   "evidence": "MEASURED (LISTA z ctx 0x10)",
+   "note": "zmienia widocznosc menu 0x2105..0x2108 od poziomu 1"
+  },
+  {
+   "id": "STATYSTYKI",
+   "title_pl": "Statystyki (lista klasy 0x11)",
+   "vtable": "0x808f944",
+   "kind": "screen",
+   "level_min": 1,
+   "evidence": "STRONG (PASS 46: klasa 0x11, 13 pozycji; ctx 0x11)",
+   "note": ""
+  },
+  {
+   "id": "DLG_PIN",
+   "title_pl": "Dialog PIN (4 cyfry, +/-, OK)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "DOC PASS 93/105",
+   "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+  },
+  {
+   "id": "DLG_PALIWO",
+   "title_pl": "Dialog Paliwo (+/-, kg, czas, OK)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "DOC PASS 93/105",
+   "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+  },
+  {
+   "id": "DLG_CZAS",
+   "title_pl": "Dialog Ustaw czas (z zegara na ekranie glownym)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "DOC PASS 92/105",
+   "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+  },
+  {
+   "id": "DLG_EDYCJA",
+   "title_pl": "Dialog edycji wartosci (suwak min-max, -/+, OK; zapis CAN 0x584)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "DOC PASS 93/105",
+   "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+  },
+  {
+   "id": "DLG_ZASILANIE",
+   "title_pl": "Okno trybow zasilania (z kafla zasilania)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "DOC PASS 50",
+   "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+  },
+  {
+   "id": "DLG_AUTO",
+   "title_pl": "Okno AUTO (temperatury komfort/eco, suwaki)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "DOC MENU-TREE",
+   "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+  }
+ ],
+ "menu_rows": [
+  {
+   "row": 0,
+   "title_pl": "Kociol",
+   "target": "KOCIOL",
+   "runtime_class": 0,
+   "icon_bitmaps": [
+    60,
+    83
+   ],
+   "level_min": 0,
+   "config_cond": [],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 1,
+   "title_pl": "Palnik",
+   "target": "PALNIK",
+   "runtime_class": 10,
+   "icon_bitmaps": [
+    61,
+    85
+   ],
+   "level_min": 0,
+   "config_cond": [],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 2,
+   "title_pl": "Ogrzewanie 1",
+   "target": "OGRZEWANIE",
+   "runtime_class": 1,
+   "icon_bitmaps": [
+    62,
+    86
+   ],
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2105",
+     "op": ">=",
+     "val": 1
+    }
+   ],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "row": 3,
+   "title_pl": "Ogrzewanie 2",
+   "target": "OGRZEWANIE",
+   "runtime_class": 2,
+   "icon_bitmaps": [
+    63,
+    86
+   ],
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2105",
+     "op": ">=",
+     "val": 2
+    }
+   ],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "row": 4,
+   "title_pl": "Ogrzewanie 3",
+   "target": "OGRZEWANIE",
+   "runtime_class": 3,
+   "icon_bitmaps": [
+    64,
+    86
+   ],
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2105",
+     "op": ">=",
+     "val": 3
+    }
+   ],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "row": 5,
+   "title_pl": "Ogrzewanie 4",
+   "target": "OGRZEWANIE",
+   "runtime_class": 4,
+   "icon_bitmaps": [
+    65,
+    86
+   ],
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2105",
+     "op": ">=",
+     "val": 4
+    }
+   ],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "row": 6,
+   "title_pl": "Ciepla woda",
+   "target": "CWU",
+   "runtime_class": 5,
+   "icon_bitmaps": [
+    66,
+    88
+   ],
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2106",
+     "op": "!=",
+     "val": 0
+    }
+   ],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "row": 7,
+   "title_pl": "Solary",
+   "target": "SOLARY",
+   "runtime_class": 6,
+   "icon_bitmaps": [
+    71,
+    87
+   ],
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2108",
+     "op": "!=",
+     "val": 0
+    }
+   ],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "row": 8,
+   "title_pl": "Bufor",
+   "target": "BUFOR",
+   "runtime_class": 7,
+   "icon_bitmaps": [
+    67,
+    84
+   ],
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2107",
+     "op": "!=",
+     "val": 0
+    }
+   ],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "row": 9,
+   "title_pl": "Kaskada",
+   "target": "KASKADA",
+   "runtime_class": 8,
+   "icon_bitmaps": [
+    70,
+    82
+   ],
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x350C",
+     "op": "!=",
+     "val": 0
+    }
+   ],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "row": 10,
+   "title_pl": "Dodatkowy magazyn paliwa",
+   "target": "MAGAZYN",
+   "runtime_class": 9,
+   "icon_bitmaps": [
+    69,
+    99
+   ],
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x3525",
+     "op": "!=",
+     "val": 0
+    }
+   ],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "row": 11,
+   "title_pl": "Historia alarmow",
+   "target": "ALARMY",
+   "runtime_class": 11,
+   "icon_bitmaps": [
+    72,
+    78
+   ],
+   "level_min": 0,
+   "config_cond": [],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 12,
+   "title_pl": "Informacje o programie",
+   "target": "INFO",
+   "runtime_class": 13,
+   "icon_bitmaps": [
+    74,
+    89
+   ],
+   "level_min": 0,
+   "config_cond": [],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 13,
+   "title_pl": "Konfiguracja",
+   "target": "KONFIGURACJA",
+   "runtime_class": 17,
+   "icon_bitmaps": [
+    77,
+    159
+   ],
+   "level_min": 0,
+   "config_cond": [],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 14,
+   "title_pl": "Poziom menu (PIN)",
+   "target": "DLG_PIN",
+   "runtime_class": 15,
+   "icon_bitmaps": [
+    76,
+    96
+   ],
+   "level_min": 0,
+   "config_cond": [],
+   "embedded_control": "PIN dialog",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 15,
+   "title_pl": "Jezyk (Language)",
+   "target": null,
+   "runtime_class": 12,
+   "icon_bitmaps": [
+    73,
+    90
+   ],
+   "level_min": 1,
+   "config_cond": [],
+   "embedded_control": "language_cycle (PID 0x0003, 8 jezykow)",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 16,
+   "title_pl": "Alarm dzwiekowy (przelacznik)",
+   "target": null,
+   "runtime_class": 14,
+   "icon_bitmaps": [
+    75,
+    97
+   ],
+   "level_min": 1,
+   "config_cond": [],
+   "embedded_control": "switch PID 0x3506",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 17,
+   "title_pl": "Test wyjsc",
+   "target": "TEST_WYJSC",
+   "runtime_class": 18,
+   "icon_bitmaps": [
+    78,
+    100
+   ],
+   "level_min": 1,
+   "config_cond": [],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 18,
+   "title_pl": "Statystyki",
+   "target": "STATYSTYKI",
+   "runtime_class": 16,
+   "icon_bitmaps": [
+    79,
+    98
+   ],
+   "level_min": 1,
+   "config_cond": [],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 19,
+   "title_pl": "Siec",
+   "target": "SIEC",
+   "runtime_class": 19,
+   "icon_bitmaps": [
+    80,
+    95
+   ],
+   "level_min": 1,
+   "config_cond": [],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "row": 20,
+   "title_pl": "Internet",
+   "target": "INTERNET",
+   "runtime_class": 20,
+   "icon_bitmaps": [
+    81,
+    101
+   ],
+   "level_min": 1,
+   "config_cond": [],
+   "embedded_control": null,
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  }
+ ],
+ "edges": [
+  {
+   "from": "KOCIOL",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "KOCIOL",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "KOCIOL",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "KOCIOL",
+   "to": "PROGRAM",
+   "tap": [
+    414,
+    130
+   ],
+   "widget_size": [
+    134,
+    37
+   ],
+   "label": "pasek programu (PROGRAM)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "KOCIOL",
+   "to": "LISTA",
+   "tap": [
+    359,
+    249
+   ],
+   "widget_size": [
+    241,
+    49
+   ],
+   "label": "kafel zebatki (NASTAWY)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "LISTA",
+   "to": "ORIGIN",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "LISTA",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "LISTA",
+   "to": "ORIGIN",
+   "tap": [
+    41,
+    26
+   ],
+   "widget_size": [
+    62,
+    33
+   ],
+   "label": "dotyk widgetu (niezidentyfikowany)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "LISTA",
+   "to": "ORIGIN",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "LISTA",
+   "to": "ORIGIN",
+   "tap": [
+    26,
+    43
+   ],
+   "widget_size": [
+    52,
+    36
+   ],
+   "label": "dotyk widgetu (niezidentyfikowany)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "LISTA",
+   "to": "ORIGIN",
+   "tap": [
+    77,
+    43
+   ],
+   "widget_size": [
+    52,
+    36
+   ],
+   "label": "dotyk widgetu (niezidentyfikowany)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "LISTA",
+   "to": "ORIGIN",
+   "tap": [
+    128,
+    43
+   ],
+   "widget_size": [
+    52,
+    36
+   ],
+   "label": "dotyk widgetu (niezidentyfikowany)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "PALNIK",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "PALNIK",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "PALNIK",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "PALNIK",
+   "to": "LISTA",
+   "tap": [
+    359,
+    249
+   ],
+   "widget_size": [
+    241,
+    49
+   ],
+   "label": "kafel zebatki (NASTAWY)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "OGRZEWANIE",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "OGRZEWANIE",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "OGRZEWANIE",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "OGRZEWANIE",
+   "to": "PROGRAM",
+   "tap": [
+    414,
+    130
+   ],
+   "widget_size": [
+    134,
+    37
+   ],
+   "label": "pasek programu (PROGRAM)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "OGRZEWANIE",
+   "to": "LISTA",
+   "tap": [
+    359,
+    249
+   ],
+   "widget_size": [
+    241,
+    49
+   ],
+   "label": "kafel zebatki (NASTAWY)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+  },
+  {
+   "from": "HOME",
+   "to": "MENU",
+   "tap": null,
+   "label": "kafel MENU (34,235)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (ui_explore: tap 34,235)"
+  },
+  {
+   "from": "HOME",
+   "to": "DLG_PALIWO",
+   "tap": null,
+   "label": "kafel Paliwo",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "DOC PASS 42/50"
+  },
+  {
+   "from": "HOME",
+   "to": "OGRZEWANIE",
+   "tap": null,
+   "label": "kafel Ogrzewanie 1/2",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "DOC"
+  },
+  {
+   "from": "HOME",
+   "to": "CWU",
+   "tap": null,
+   "label": "kafel Woda",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "DOC"
+  },
+  {
+   "from": "HOME",
+   "to": "DLG_ZASILANIE",
+   "tap": null,
+   "label": "kafel zasilania",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "DOC PASS 50"
+  },
+  {
+   "from": "HOME",
+   "to": "DLG_AUTO",
+   "tap": null,
+   "label": "kafel AUTO",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "DOC"
+  },
+  {
+   "from": "HOME",
+   "to": "DLG_CZAS",
+   "tap": null,
+   "label": "zegar",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "DOC PASS 92"
+  },
+  {
+   "from": "LISTA",
+   "to": "DLG_EDYCJA",
+   "tap": null,
+   "label": "wiersz liczbowy",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "DOC PASS 93/105"
+  },
+  {
+   "from": "MENU",
+   "to": "DLG_PIN",
+   "tap": null,
+   "label": "wiersz Poziom menu",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "STRONG (wiersz 14, klasa 15)"
+  },
+  {
+   "from": "MENU",
+   "to": "KOCIOL",
+   "tap": null,
+   "label": "wiersz 0: Kociol",
+   "level_min": 0,
+   "config_cond": [],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "from": "MENU",
+   "to": "PALNIK",
+   "tap": null,
+   "label": "wiersz 1: Palnik",
+   "level_min": 0,
+   "config_cond": [],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "from": "MENU",
+   "to": "OGRZEWANIE",
+   "tap": null,
+   "label": "wiersz 2: Ogrzewanie 1",
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2105",
+     "op": ">=",
+     "val": 1
+    }
+   ],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "from": "MENU",
+   "to": "OGRZEWANIE",
+   "tap": null,
+   "label": "wiersz 3: Ogrzewanie 2",
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2105",
+     "op": ">=",
+     "val": 2
+    }
+   ],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "from": "MENU",
+   "to": "OGRZEWANIE",
+   "tap": null,
+   "label": "wiersz 4: Ogrzewanie 3",
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2105",
+     "op": ">=",
+     "val": 3
+    }
+   ],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "from": "MENU",
+   "to": "OGRZEWANIE",
+   "tap": null,
+   "label": "wiersz 5: Ogrzewanie 4",
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2105",
+     "op": ">=",
+     "val": 4
+    }
+   ],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "from": "MENU",
+   "to": "CWU",
+   "tap": null,
+   "label": "wiersz 6: Ciepla woda",
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2106",
+     "op": "!=",
+     "val": 0
+    }
+   ],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "from": "MENU",
+   "to": "SOLARY",
+   "tap": null,
+   "label": "wiersz 7: Solary",
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2108",
+     "op": "!=",
+     "val": 0
+    }
+   ],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "from": "MENU",
+   "to": "BUFOR",
+   "tap": null,
+   "label": "wiersz 8: Bufor",
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x2107",
+     "op": "!=",
+     "val": 0
+    }
+   ],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "from": "MENU",
+   "to": "KASKADA",
+   "tap": null,
+   "label": "wiersz 9: Kaskada",
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x350C",
+     "op": "!=",
+     "val": 0
+    }
+   ],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "from": "MENU",
+   "to": "MAGAZYN",
+   "tap": null,
+   "label": "wiersz 10: Dodatkowy magazyn paliwa",
+   "level_min": 0,
+   "config_cond": [
+    {
+     "pid": "0x3525",
+     "op": "!=",
+     "val": 0
+    }
+   ],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)"
+  },
+  {
+   "from": "MENU",
+   "to": "ALARMY",
+   "tap": null,
+   "label": "wiersz 11: Historia alarmow",
+   "level_min": 0,
+   "config_cond": [],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "from": "MENU",
+   "to": "INFO",
+   "tap": null,
+   "label": "wiersz 12: Informacje o programie",
+   "level_min": 0,
+   "config_cond": [],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "from": "MENU",
+   "to": "KONFIGURACJA",
+   "tap": null,
+   "label": "wiersz 13: Konfiguracja",
+   "level_min": 0,
+   "config_cond": [],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "from": "MENU",
+   "to": "DLG_PIN",
+   "tap": null,
+   "label": "wiersz 14: Poziom menu (PIN)",
+   "level_min": 0,
+   "config_cond": [],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "from": "MENU",
+   "to": "TEST_WYJSC",
+   "tap": null,
+   "label": "wiersz 17: Test wyjsc",
+   "level_min": 1,
+   "config_cond": [],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "from": "MENU",
+   "to": "STATYSTYKI",
+   "tap": null,
+   "label": "wiersz 18: Statystyki",
+   "level_min": 1,
+   "config_cond": [],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "from": "MENU",
+   "to": "SIEC",
+   "tap": null,
+   "label": "wiersz 19: Siec",
+   "level_min": 1,
+   "config_cond": [],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  },
+  {
+   "from": "MENU",
+   "to": "INTERNET",
+   "tap": null,
+   "label": "wiersz 20: Internet",
+   "level_min": 1,
+   "config_cond": [],
+   "effect": "nav",
+   "evidence": "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"
+  }
+ ],
+ "lists_by_level": {
+  "0x00": {
+   "counts_by_level": {
+    "0": 3,
+    "1": 13,
+    "2": 13,
+    "3": 13
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x01": {
+   "counts_by_level": {
+    "0": 12,
+    "1": 23,
+    "2": 23,
+    "3": 23
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x02": {
+   "counts_by_level": {
+    "0": 12,
+    "1": 23,
+    "2": 23,
+    "3": 23
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x03": {
+   "counts_by_level": {
+    "0": 12,
+    "1": 23,
+    "2": 23,
+    "3": 23
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x04": {
+   "counts_by_level": {
+    "0": 12,
+    "1": 23,
+    "2": 23,
+    "3": 23
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x05": {
+   "counts_by_level": {
+    "0": 8,
+    "1": 12,
+    "2": 12,
+    "3": 12
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x06": {
+   "counts_by_level": {
+    "0": 3,
+    "1": 7,
+    "2": 7,
+    "3": 7
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x07": {
+   "counts_by_level": {
+    "0": 2,
+    "1": 7,
+    "2": 7,
+    "3": 7
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x08": {
+   "counts_by_level": {
+    "0": 9,
+    "1": 9,
+    "2": 9,
+    "3": 9
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x09": {
+   "counts_by_level": {
+    "0": 4,
+    "1": 7,
+    "2": 7,
+    "3": 7
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x0A": {
+   "counts_by_level": {
+    "0": 5,
+    "1": 24,
+    "2": 28,
+    "3": 28
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x10": {
+   "counts_by_level": {
+    "0": 5,
+    "1": 24,
+    "2": 26,
+    "3": 26
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  },
+  "0x11": {
+   "counts_by_level": {
+    "0": 13,
+    "1": 13,
+    "2": 13,
+    "3": 13
+   },
+   "source": "panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)",
+   "evidence": "MEASURED"
+  }
+ },
+ "open": [
+  "HOME: wiazania widgetow, okna (Paliwo, zasilanie, AUTO) - vtable/widgety nie zmierzone",
+  "PROGRAM: widgety i wiazania (harmonogram 7 dni x 24 h)",
+  "Kaskada, Dodatkowy magazyn paliwa: odslonic konfiguracja 0x350C/0x3525, zmierzyc",
+  "Warunki wierszy menu wg konfiguracji (0x2105..0x2108, 0x350C, 0x3525): zmierzyc przegladem wartosci",
+  "Poziomy 1 i 3: inwentarz widgetow (mamy L0 i L2); poziom 3 = tylko CPU% w naglowku + 6 wrapperow",
+  "Graf akcji: tylko 6 z 24 wezlow L0 (232 stukniecia); brak pozostalych klas i klas poza menu",
+  "Dialogi: vtable, widgety, wiazania, ramki TX (PIN, Paliwo, czas, edycja, zasilanie, AUTO, potwierdzenia, bledy)",
+  "Wiersze 15/16 (Jezyk, Alarm dzwiekowy): kontrolki wbudowane w wiersz (nie ekran)",
+  "Alarmy: warunki per alarm, prezentacja, ACK",
+  "Wykresy/Statystyki: widoki i dane"
+ ]
+}
