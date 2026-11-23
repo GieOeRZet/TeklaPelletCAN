@@ -108,6 +108,23 @@ class UiSession:
     def state(self): return dict(self.b.counters, tick=self.n, task=self.b.task_name())
 
 
+def stitch_body(s, drag=60, maxsteps=60, maxerr=3):
+    """sklada CALE przewijalne cialo ekranu (pod naglowkiem, y>=46) w jeden wysoki obraz: przeciagniecia w gore + dopasowanie przesuniecia; zwraca PIL.Image"""
+    from PIL import Image
+    B0 = ListNav.BODY0; frames = [s.shot()]; offs = [0]
+    for _ in range(maxsteps):
+        prev = frames[-1]
+        if not s.drag_until_change(240, 235, 240, 235 - drag, attempts=4): break
+        cur = s.shot()
+        if s.body_hash(cur) == s.body_hash(prev): break
+        err, d = ListNav._shift(prev, cur)
+        if d == 0 or err > maxerr: break
+        frames.append(cur); offs.append(offs[-1] + d)
+    h = offs[-1] + frames[-1].height - B0; tall = Image.new("RGB", (480, h))
+    for f, o in zip(frames, offs): tall.paste(f.crop((0, B0, 480, f.height)), (0, o))
+    return tall
+
+
 class ListNav:
     """Nawigator przewijanej listy (np. glowne MENU): skleja cala liste w jeden obraz (przesuniecie miedzy zrzutami wykrywane korelacja),
     potem dla dowolnego wiersza przewija tak, by byl widoczny, i zwraca wspolrzedna ekranowa do stuniecia. Wiersze maja stale rozstaw ~50 px.
