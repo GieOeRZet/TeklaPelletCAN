@@ -2,7 +2,7 @@
 
 ## Domknięte statycznie
 - Panel ma osobny tor danych LIVE. `EstymaTask` odświeża obiekt czujnika z producenta źródłowego, więc zwykły zapis PID przez `0x584` nie jest trwałym źródłem wartości LIVE.
-- Węzły 5, 6 i 7 są cyklicznie odpyt ywane przez panel przez CANopen SDO: `0x605..0x607`, odczyt `0x2001:01`; odpowiedzi mają standardowy zakres `0x585..0x587`.
+- Węzły 5, 6 i 7 są cyklicznie odpytywane przez panel przez CANopen SDO: `0x605..0x607`, odczyt `0x2001:01`; odpowiedzi mają standardowy zakres `0x585..0x587`.
 - Panel posiada równoległe rodziny ramek PDO-podobnych `0x2xx/0x3xx/0x4xx/0x5xx`, których zawartość zasila modułowy tor LIVE. Statycznie można potwierdzić ich istnienie i rytm, ale nie można uczciwie przypisać konkretnego PID `0x2001/0x2277/0x3333/0x4000/0x3628` do konkretnego ID/slotu PDO bez obserwacji odpowiedzi modułu.
 
 ## PID-e
