@@ -129,3 +129,15 @@ Narzędzia: `tools/cg_timestamp_tx_exclusion_scan.py`, `tools/test_cg_timestamp_
 - Wniosek STRONG: panel nie publikuje Compatibility timestamp przez standardowy mechanizm parametrów `0x584/0x42`; statycznie nie znaleziono panelowego TX producer dla PID `0x2165`.
 - Najbardziej spójny model: zewnętrzny producent -> `0x584/WRITE PID 0x2165` -> parameter manager -> `0x20008D28` -> RTC auto-sync przez gate `0x372F`.
 - OPEN pozostaje tylko dynamiczne ustalenie konkretnego nadawcy, ACK i ewentualnego niestandardowego toru czasu.
+
+
+### Nowe ustalenia ChatGPT — PASS 80 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-80-GATE-054AB8-CWU-CONTEXT-2026-11-23.md`
+Narzędzia: `tools/cg_gate_054ab8_scan.py`, `tools/test_cg_gate_054ab8_scan.py`
+
+- B4 gate artifact `0x08054AB8` został prawidłowo znormalizowany do RAW `0x44AB8`; caller artifact `0x08054CA6` -> RAW `0x44CA6` (korekta runtime-vs-project).
+- RAW `0x44CA6` ma bramkę `ldrb [model,#0x158]; cbz`, czyli level != 0.
+- W gated path występuje presenter/view offset `0x1498`.
+- `presenter_map.csv` jednoznacznie mapuje `0x1498` -> PID `0x201A` = Hot water 1 result temperature / wynikowa temperatura CWU.
+- B4 kontekst jest więc HARD: **CWU**, nie Kaskada ani Magazyn paliwa.
+- OPEN: dokładna bitmapa/tekst gated elementu i dynamiczna wartość.
