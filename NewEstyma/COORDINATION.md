@@ -153,6 +153,16 @@ Artefakt: `analiza/FW2213TK-2026-11-22/data/catalog260_crosslayer_matrix_v1.csv`
 - Provider eligible: 153/260; guarded-write eligible: 175/260; runtime/UI: 252/260; direct 0x0584/0x42 tracked: 1/260 (PID 0x3726).
 - Sześć PID-ów 0x2165/0x3726/0x2311..0x2314 to wyłącznie hard local-change publication filter, nie pełna lista periodic publication.
 
+
+
+### Nowe ustalenia ChatGPT — PASS 133 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-133-PROVIDER-SLOT4-SEMANTIC-NARROWING-2026-11-23.md`
+
+- Slot provider +0x10 jest twardo zamknięty jako osobna 38-bajtowa funkcja startująca 0x080617FE.
+- Funkcja zapisuje 0x200248A4 do object+0x00, wykonuje jeden pośredni BLX przez 0x200248A8, wywołuje 0x08061E78 na object+0x24, a następnie 0x08062674 na object+0x10.
+- 0x08061E78 zeruje +0x08/+0x0C przekazanego obiektu; 0x08062674 natychmiast wraca.
+- Slot 4 jest więc co najmniej initialization/reset-like, a nie GET/SET provider. Dokładny typ obiektu i pośredni target nadal OPEN.
+
 ## 5. Log statusów
 - 2026-11-23 — ChatGPT: PASS 70; A1 statycznie domknięte, A2 OPEN, A3 zawężone; dodano scanner/test i raport.
 - 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANE.
