@@ -650,3 +650,9 @@ CORRECTED HARD: 0x370A→0x20016894 (bitmap 11/12/13), 0x350D→0x20016A94 (Ciś
 - PASS 102: 137 unique presenter setters fully indexed from existing presenter_map widget-offset evidence.
 - PASS 103: Kocioł visual binding matrix closed from PASS63 pilot evidence.
 - **CORRECTION:** prior PASS98 attribution `0x2277→bitmap138` is REJECTED. Bitmap138 is explicitly tied to `0x22A1` in pilot data; `0x200162F8` is also the live pump-animation widget (frames 138→142), while `0x2277` remains a live pump-state source whose 0x584 value injection is blocked by the sensor refresh path.
+
+
+## AUTONOMOUS PASS 107–109 — 2026-11-23
+- PASS 107: pełny source-grounded resolver T1 — 49 rekordów, `PID=value+inst-1`; eksport + test.
+- PASS 108: drugi callback `FUN_0807EB36` zamknięty ze źródłowego raw snippet: ten sam rejestr `this+0x3B4+i*0x274`, count `+0x3B8`, dispatch `FUN_0803EC18`. Nie nadano nieudowodnionej semantyki końcowego ekranu.
+- PASS 109: T1/T2 reconciliation — T1=49, T2=372, **0 wspólnych ui_key**; T1 rule `PID=value+inst-1`, T2 rule `PID=value`.
