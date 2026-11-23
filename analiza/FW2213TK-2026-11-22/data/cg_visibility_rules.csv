@@ -1,0 +1,7 @@
+screen,widget_or_effect,pid,condition,effect,confidence
+Kociol,etykieta Cisnienie,0x350D,Pressure sensor != 0,visibility path,STRONG
+Kociol,etykieta T. powrotu,0x350A,Return to boiler temperature sensor != 0,visibility path,STRONG
+Kociol,ikona pompy,0x2277,state != 0,bitmapa 138,STRONG
+Kociol,obraz kotla,0x370A,selector 1..3,wybor obrazu kotla,STRONG
+Ogrzewanie,widget A69,0x22A1+0x2301,sensor type==4 && thermostat state==1,A69=1,FACT
+Ogrzewanie,widget A95,0x22A1,sensor type!=4,A95=1,FACT
