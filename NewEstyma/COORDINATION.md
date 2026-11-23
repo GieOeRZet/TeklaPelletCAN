@@ -87,7 +87,8 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-74-RTC-VTABLE-DISPATCH-2026
 - PASS 75: obiekt auto-sync ma adres SRAM `0x20008D1C` (startup anchor `0x20008CD0` + `0x4C`), vptr `0x080A446C`, slot 0 → `FUN_08062638`.
 - PASS 76: domknięto scheduler execution chain. `FUN_08014824` (base constructor) → `FUN_0801478C` rejestruje obiekt w scheduler list; `FUN_080147C8` iteruje listę i wywołuje slot 0 vtable przez `blx`. Dla obiektu `0x20008D1C` slot 0 = `FUN_08062638`.
 - Scheduler state: `0x200246E8`; list fields +0x04/+0x08/+0x0C.
-- Najważniejszy następny cel: wszystkie write-sites `0x20008D28` (`object+0x0C`) oraz ich producer.
+- PASS 77: `0x20008D28` jest twardo zidentyfikowane jako storage PID `0x2165` = `Compatibility timestamp` (u32). Istnieje zamknięty statyczny tor CAN RX → `FUN_08062B22` → `FUN_080115F6` → `FUN_08011812` → record+0x0C → `0x20008D28`. To dowodzi, że CAN może dostarczać timestamp do auto-sync. Dokładny CAN command/źródłowy node i ewentualni inni producenci pozostają OPEN.
+- Narzędzia: `tools/cg_timestamp_producer_scan.py`, `tools/test_cg_timestamp_producer_scan.py`.
 
 - `FUN_08062638` jest bezpośrednią ścieżką auto-synchronizacji RTC.
 - `0x080627AE`: `movw r2,#0x372F`; PID 0x372F jest tylko bramką enable/disable.
