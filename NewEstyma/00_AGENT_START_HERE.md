@@ -124,6 +124,15 @@ Pomyłki poprzednich passów są oznaczone `REJECTED/SUPERSEDED` w raportach (m.
 
 
 ## TODO (zlecone przez wlasciciela 2026-11-23) — na SAM KONIEC rewersu, ale PRZED ESP32
+### A. PIN i funkcje zalezne od poziomu (domknac PRZED punktem B; wlasciciel nie ma dostepu do kotla — weryfikacja wylacznie emulatorem)
+- "Ochrona kotla" (TypedText 87) na ekranach Ogrzewanie L>=1: ustalic warunek wyswietlenia (hipoteza: CH status 0x22FD).
+- Bufor L>=1 (klasa 0x08055A8C): "0%" (po lewej zbiornika) i "7°C" (prawy dol) — zrodlo danych/klucze UI/PID.
+- Czwarta bramka "poziom!=0" `0x08054AB8` (nie osiagnieta; moze Kaskada/Dod. magazyn) oraz 6 wrapperow bramki >=3 nietrafionych (0x805A9EC, 0x805B1D4, 0x805F400, 0x805FE9C, 0x806125C, 0x8061518).
+- Wskaznik `+0x210` w naglowku zalezny od flagi `0x20021FA7` (PID 0x0005): wyglad/znaczenie.
+- Bramka pollera `[0x2002466C+0x10]=(poziom!=0)`: weryfikacja skutku.
+- Menu glowne `0x0803C294` na poziomie != 0: co dodaje. Naprawa narzedzia: `set_local` nie odswieza cache modelu.
+- Tabela 23 liczb `0x20008C50` (flaga jak 6666) — znaczenie; szukanie innych "ukrytych" kodow w polu PIN.
+### B. Kod 6666 (reset fabryczny)
 - **Kod 6666 = reset ustawien fabrycznych (potwierdzone przez wlasciciela).** W firmwarze: `0x08028634` (wywolywana z handlera PIN `0x0804C21C` PRZED ustawieniem poziomu `0x08047E74`) porownuje wpisana liczbe z 6666 (`movw #0x1a0a` @0x08028668) i ustawia `0x20021FA7` (= storage PID 0x0005 "Default settings request", u8 0..1) na 1; flaga wygasa po 61 tikach (licznik obj+0xE6 @0x08028684). Ten sam obiekt `0x20021FA0`; tabela 23 liczb w RAM `0x20008C50` (10,12,15,18,25,30,35,50,75,120,150,180,220,230,300,500,1220,1300,1550,2000,2500,3000) tez ustawia flage (znaczenie: do zbadania).
   DO ZROBIENIA: (a) w emulatorze wpisac 6666 w ekran PIN i sprawdzic ramke CAN dla PID 0x0005 + reakcje wskaznika naglowka `+0x210`; (b) zaimplementowac w kliencie/ESP32 (NIE testowac na zywym kotle bez weryfikacji — skasuje konfiguracje); (c) szukac innych "ukrytych" kodow wpisywanych w polu PIN (poza 0900/0999/6154/6666).
 - Bramka pollera: `0x0804C234..0x0804C24E` zapisuje `[0x2002466C+0x10] = (poziom != 0)` po wpisaniu PINu — zweryfikowac, czy to warunek dzialania pollera.
