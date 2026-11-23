@@ -1,0 +1,3 @@
+table,rows,ui_key_min,ui_key_max,rule,namespace_overlap
+T1,49,0x00A8,0x0146,PID=value+inst-1,0
+T2,372,0x0000,0x01A8,PID=value,0
