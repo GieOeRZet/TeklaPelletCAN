@@ -37,3 +37,10 @@ K1, K2, K4, K5 spełnione; K3 spełnione dla PID-ów typu nastawa/konfiguracja (
 
 ## Dodatek: test na 4 ekranach (Kociol, Palnik, Ogrzewanie 1, Woda), poziom 0
 Tabela wiazan: `data/pass63_pilot_kociol/BINDINGS_L0_pilot.md` / `.csv` (45 wiazan widget -> PID -> regula; generator `tools/pid_diff_report.py`). Czas: Kociol 60 s, Palnik 156 s, CO1 125 s, CWU 50 s. Korekta: nie wszystkie PID-y live sa blokowane - tekst „jasnosc=”, „spalanie=”, „moc=”, temperatura CWU 0x201A, temp. CO 0x4001 reaguja na wstrzykniecie; blokowane sa te zasilane ze zrodel czujnikowych (0x2001, 0x2277, 0x3333, 0x2007 ...). Wartosci spoza realnego zakresu daja smieciowy tekst (np. 6553., 'ÿÿÿ') - to artefakt probkowania min/max.
+
+## Dodatek 2: test 5 ekranow (Solary, Bufor, Alarmy, Info, CO2), poziom 0
+Wyniki: `data/pass63_pilot_kociol/BINDINGS_L0_test5.md/.csv`, `pid_diff_{7,8,3}_screen.json`. Czasy: Solary 22 s, Bufor 45 s, CO2 113 s, Alarmy 2 s, Info 2 s; 3 procesy rownolegle, ok. 3 min lacznie; bez bledow.
+- FACT CO2 (3_screen) = ta sama klasa i te same adresy widgetow co CO1; PID-y = baza + instancja - 1 (0x2064->0x2065, 0x2126->0x2127, 0x22A1->0x22A2, 0x22A5->0x22A6, 0x22B9->0x22BA); reguly identyczne (np. typ czujnika 4 -> bmp 177 widoczna). Potwierdza T1 `PID=value+inst-1`.
+- FACT Bufor: 0x2115 (Buffer bottom set temp) -> tekst (320,143) „#°C” i tekst „%” (75,118); 0x2280 (Buffer top set temp) -> tekst (320,58). Pozostale PID-y Bufora (0x2112, 0x2113, 0x3174 ...) live, bez zmiany widgetow w tescie.
+- OPEN Solary: 6 PID-ow, wszystkie live/bez zmiany widgetow (0 wiazan) — wymaga zrodla live (PASS 64) albo konfiguracji wejsc solara.
+- OPEN Alarmy i Info: 0 PID-ow czytanych przez GUITask (hak na 0x080215F6), wiec PID-diff nie ma zastosowania; Alarmy ida przez rejestry alarmow (0x4010+i, 0x4038+i wg ChatGPT PASS 97), Info to teksty statyczne. Wymagaja innej metody (wstrzykniecie alarmu / odczyt tekstow).
