@@ -6,6 +6,6 @@
 - **TypedText -> czcionka/wyrownanie**: tablica `0x08071958` (496 wpisow x 2 B: font_index, wyrownanie 0=lewo 1=srodek 2=prawo) -> `data/typedtext_database.csv` (id, font, flagi, tekst PL). Uzycie: font 2 (26 px) 265 tekstow, font 1 (20 px) 184, font 3 (36 px) 26, font 0 (12 px) 15, font 4 (64 px) 4, font 5 (92 px) 2.
 - **Weryfikacja renderera**: `tools/render_text.py` (uklad advance/left/top, baseline = wysokosc − pixBelowBase, bez kerningu) dla "Ochrona kotla" (font 2) vs zrzut z emulatora: **korelacja 0.982**.
 ## Pliki
-`data/fonts/font{0..5}_h{12,20,26,36,64,92}/{atlas.png,glyphs.csv,glyph_data_4bpp.bin}`, `data/fonts/fonts.json`, `data/fonts_glyph_pngs.zip` (PNG kazdego glifu), `data/typedtext_database.csv`. Narzedzia: `tools/export_fonts.py`, `tools/render_text.py`.
+`data/fonts/font{0..5}_h{12,20,26,36,64,92}/{atlas.png,glyphs.csv,glyph_data_4bpp.bin}`, `data/fonts/fonts_meta.json`, `data/fonts_glyph_pngs.zip` (PNG kazdego glifu), `data/typedtext_database.csv`. Narzedzia: `tools/export_fonts.py`, `tools/render_text.py`.
 ## Otwarte
 Kerning (pole +12 wezla / tablica `[sp+0x14]`), czcionki innych skryptow (tylko lacinica), pixBelowBase/baseline dla wszystkich rozmiarow potwierdzic na wiecej tekstow.
