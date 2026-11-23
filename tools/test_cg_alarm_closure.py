@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+assert '0x08025198' in open('analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-97-ALARM-CLOSURE-2026-11-23.md').read()
+assert '0x08025134' in open('analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-97-ALARM-CLOSURE-2026-11-23.md').read()
+assert '0x0802516C' in open('analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-97-ALARM-CLOSURE-2026-11-23.md').read()
+assert '0x08025104' in open('analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-97-ALARM-CLOSURE-2026-11-23.md').read()
+assert '0x404E' in open('analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-97-ALARM-CLOSURE-2026-11-23.md').read()
+print('PASS 97 test: OK')
