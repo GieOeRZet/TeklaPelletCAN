@@ -12,7 +12,6 @@ Firmware load address for this canonical image: 0x08000000.
 from __future__ import annotations
 
 from pathlib import Path
-import struct
 import sys
 
 BASE = 0x08000000
@@ -23,10 +22,10 @@ FUNC_RTC_BCD = 0x08018FF8
 PID_AUTOSYNC = 0x372F
 
 # Thumb-2 bytes as they occur in the canonical binary.
-SIG_PID = bytes.fromhex("f243 722f")
-SIG_BL_RTC_SET = bytes.fromhex("f7b6 fad5")
-SIG_BL_RTC_GET = bytes.fromhex("f7b6 fb99")
-SIG_BL_RTC_BCD = bytes.fromhex("f7b6 fbf6")
+SIG_PID = bytes.fromhex("43 f2 2f 72")
+SIG_BL_RTC_SET = bytes.fromhex("b6 f7 d5 fa")
+SIG_BL_RTC_GET = bytes.fromhex("b6 f7 99 fb")
+SIG_BL_RTC_BCD = bytes.fromhex("b6 f7 f6 fb")
 
 
 def project_to_file(addr: int) -> int:
