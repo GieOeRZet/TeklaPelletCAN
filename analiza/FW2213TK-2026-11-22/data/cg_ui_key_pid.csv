@@ -1,0 +1,5 @@
+ui_key,pid,rule,name,evidence
+0x000E,0x2004,PID=value,Boiler set result temp[C],resolver_t2.csv:0x37584
+0x0029,0x216F,PID=value,CH mixer state,resolver_t2.csv:0x375E8
+0x002A,0x4000,PID=value,Boiler return temp [dC],resolver_t2.csv:0x375EC
+0x0121,0x370A,PID=value,Boiler image selector,resolver_t2.csv:0x37984
