@@ -1,0 +1,56 @@
+[
+ {
+  "font": 0,
+  "height": 12,
+  "glyphs": 76,
+  "pixBelowBase": 3,
+  "list": "0x0806F030",
+  "data": "0x0806D598",
+  "bpp": 4
+ },
+ {
+  "font": 1,
+  "height": 20,
+  "glyphs": 152,
+  "pixBelowBase": 5,
+  "list": "0x08068218",
+  "data": "0x08037978",
+  "bpp": 4
+ },
+ {
+  "font": 2,
+  "height": 26,
+  "glyphs": 127,
+  "pixBelowBase": 6,
+  "list": "0x0806DCD0",
+  "data": "0x080319B4",
+  "bpp": 4
+ },
+ {
+  "font": 3,
+  "height": 36,
+  "glyphs": 95,
+  "pixBelowBase": 8,
+  "list": "0x0806EAFC",
+  "data": "0x08029490",
+  "bpp": 4
+ },
+ {
+  "font": 4,
+  "height": 64,
+  "glyphs": 19,
+  "pixBelowBase": 9,
+  "list": "0x08074730",
+  "data": "0x08039E20",
+  "bpp": 4
+ },
+ {
+  "font": 5,
+  "height": 92,
+  "glyphs": 19,
+  "pixBelowBase": 12,
+  "list": "0x0807483C",
+  "data": "0x0802D90C",
+  "bpp": 4
+ }
+]
