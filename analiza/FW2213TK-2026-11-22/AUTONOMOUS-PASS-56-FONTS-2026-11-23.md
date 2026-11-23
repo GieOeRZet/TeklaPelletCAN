@@ -12,3 +12,6 @@ Kerning (pole +12 wezla / tablica `[sp+0x14]`), czcionki innych skryptow (tylko 
 
 ## SPROSTOWANIE (PASS 57)
 Id TypedText przekazywane do setterow widgetow sa **WZGLEDNE**: tekst = `pl(id + 57)` (tabela wskaznikow od 0x0806BD80 + 4*(id+57)); tablica `0x08071958` jest indeksowana id WZGLEDNYM (np. wzgledne 454 = wskaznik CPU: czcionka 0 (12 px), wyrownanie w prawo; wzgledne 436 = '<' (cofnij) czcionka 1). `data/typedtext_database.csv` przepisany (kolumny: id wzgledne, indeks bezwzgledny, czcionka, wyrownanie, tekst PL).
+
+## A4 — teksty we wszystkich 8 jezykach (PASS 58)
+`data/texts_all_languages.csv`: 495 tekstow x (PL EN LT SK CZ ES RO EST), kolumny: id wzgledny (używany w widgetach), indeks bezwzgledny (= wzgledny + 57), teksty UTF-16 z firmware; `<W>` = znacznik wildcardu (0x02), `\n` = nowa linia. Tablice wskaznikow jezykow: `0x0806BE64 PL, 0x0806AEEC EN, 0x0806B6A8 LT, 0x0806CDDC SK, 0x080697B8 CZ, 0x08069F74 ES, 0x0806C620 RO, 0x0806A730 EST` (adres wpisu id=57). Wszystkie jezyki uzywaja tych samych 6 czcionek (lacinica rozszerzona).

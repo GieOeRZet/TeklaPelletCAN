@@ -1,0 +1,496 @@
+id_relative,index_absolute,PL,EN,LT,SK,CZ,ES,RO,EST
+0,57,Ogrzewanie 1,Heating 1,Šildymas 1,Ústredné kúren. 1 ,Topný okruh 1 ,Calefacción 1,Încălzire 1,Küte 1
+1,58,Ogrzewanie 2,Heating 2,Šildymas 2,Ústredné kúren. 2,Topný okruh 2,Calefacción 2,Încălzire 2,Küte 2
+2,59,Woda użytkowa,Hot water,Karštas vanduo,TÚV,TÚV,Agua caliente,Apă caldă menajeră,Tarbevesi
+3,60,Sterownik,Controller,Valdiklis,Regulácia,Regulace ,Controlador,Controler,Kontroller
+4,61,Palnik,Burner,Degiklis,Horák ,Hořák,Quemador,Arzător,Põleti
+5,62,Kocioł,Boiler,Katilas,Kotol ,Kotel,Caldera,Centrală,Katel
+6,63,Wyłączony,Turned off,Išjungtas,Vypnuty ,Vypnuto,Apagado,Oprit,Välja lülitatud
+7,64,Czyszczenie,Cleaning,Valymas,Čistenie ,Čištění ,Limpieza,Curățare,Puhastus
+8,65,Rozpalanie,Firing up,Uždegimas,Rozhorenie ,Zapálení,Encendiendo,Aprindere,Süütamine
+9,66,Rozżarzanie,Incandescing,Pakaitinimas,Žhavenie,Rozhořívání,Incandescente,Incandescență,Stabiliseerimine
+10,67,Moc 1,Power 1,Galia 1,Výkon 1,Výkon 1,Potencia 1,Putere 1,Võimsus 1
+11,68,Moc 2,Power 2,Galia 2,Výkon 2,Výkon 2,Potencia 2,Putere 2,Võimsus 2
+12,69,Modulacja,Modulation,Moduliacija,Modulácia ,Modulace ,Modulación,Modulație,Moduleerimine
+13,70,Wygaszanie,Burning off,Užgesinimas,Vyhasínanie ,Vyhasínání,Apagando,Oprire ardere,Tühjaks põlenud
+14,71,Podtrzymanie,Holding,Palaikymas,Udržiavanie,Udržování,Manteniendo,Menținere,Ootel
+15,72,Postój,Standby,Būdėjimo režimas,Pauza ,Čekání,Standby,Standby,Pausil
+16,73,Alarm,Alarm,Aliarmas,Alarm ,Alarm ,Alarma,Alarmă,Häire
+17,74,Stop,Stop,Stop,Stop,Stop ,Parar,Stop,Stop
+18,75,Praca,Work,Darbas,Práca,Práce ,En Trabajo,Funcționare,Töötab
+19,76,Przepłukiwanie,Rinsing,Skalavimas,Preplach,Proplach ,Elevando,Clătire,Puhastus
+20,77,Zamarzanie,Freezing,Užšalimas,Mrazová poistka,Mrazová pojistka,Enfriando,Îngheț,Külmub
+21,78,Przegrzanie,Overheat,Perkaitymas,Prehriatie ,Přehřátí,Sobrecalentamiento,Supraîncălzit,Ülekuumenemine
+22,79,Woda max,Max water,Vanduo max,Maximalna teplota TÚV,Maximální teplota TÚV,Máx. T. agua,Apă max.,Tarbevesi Vesi MAX
+23,80,Wyłączone,Switched off,Išjungtas,Vypnutie,Vypnutí ,Apagado,Oprit,Välja lülitatud
+24,81,Chłodzenie,Cooling,Šaldymas,Chladenie,Chlazení ,Enfriando,Răcire,Jahutus
+25,82,Test,Test,Testas,Test,Test,Prueba,Test,Test
+26,83, , , , , , , , 
+27,84,Grzanie,Heating,Šildymas,Heating,Topení,Heating,Încălzire,Kütmine
+28,85,Wybieg,Overrun,Inercija,Overrun,Dohřev,Overrun,Depășire,Ületamine
+29,86,Oczekiwanie,Waiting,Laukimas,Waiting,Čekám,Waiting,Așteptare,Ootab
+30,87,Ochrona kotła,Boiler protection,Šaltinio apsauga,Ochrana kotela,Ochrana kotela,Boiler protection,Protecție sursă,Allika kaitse
+31,88,Alarm,Alarm,Aliarmas,Alarm,Alarm,Alarm,Alarmă,Häire
+32,89,Stop,Stop,Stop,Stop,Stop,Stop,Stop,Stop
+33,90,Lato,Summer,Summer,Summer,Summer,Summer,Vară,Summer
+34,91,Źródło blokuje,Source is blocking,Source is blocking,Source is blocking,Source is blocking,Source is blocking,Sursa e blocată,Source is blocking
+35,92,Temperatura zadana  [°C],Set temperature [°C],Nustatyta temperatūra,Teplota zadaná ,Teplota zadaná ,Ajustar temperatura [°C],Temperatură setată [°C],Set. temperatuur [°C]
+36,93,W tym trybie temperatura\nzadawana jest automatycznie.,The temperature is set\nautomatically in this mode.,Šiame režime temperatūra yra nustatoma automatiškai.,Teplota zadaná automaticky,Teplota zadána automaticky ,La temperatura se ajusta\nAutomáticamente en este modo.,Temperatura este setată automat\nîn acest mod,Temp on seatud automaatselt selles režiimis
+37,94,Paliwo,Fuel,Kuras,Palivo ,Palivo ,Combustible,Combustibil,Kütus
+38,95,EKRAN GŁ.,MAIN,Pagrindinis langas,Hlavná,Hlavní,PRINCIPAL,PRINCIPAL,ESILEHT
+39,96,MENU,MENU,Meniu,Ponuka,Nabídka ,MENÚ,MENIU,MENÜÜ
+40,97,KOCIOŁ,BOILER,Katilas,Kotol,Kotel ,CALDERA,CENTRALĂ,KATEL
+41,98,PALNIK,BURNER,Degiklis,Horák,Hořák ,QUEMADOR,ARZĂTOR,PÕLETI
+42,99,OGRZEWANIE 1,HEATING 1,Šildymas 1,Obvod 1,Okruh 1 ,CALEFACCIÓN 1,ÎNCĂLZIRE 1,KÜTTESÕLM 1
+43,100,OGRZEWANIE 2,HEATING 2,Šildymas 2,Obvod 2,Okruh 2,CALEFACCIÓN 2,ÎNCĂLZIRE 2,KÜTTESÕLM 2
+44,101,OGRZEWANIE 3,HEATING 3,Šildymas 3,Obvod 3,Okruh 3,CALEFACCIÓN 3,ÎNCĂLZIRE 3,KÜTTESÕLM 3
+45,102,OGRZEWANIE 4,HEATING 4,Šildymas 4,Obvod 4,Okruh 4,CALEFACCIÓN 4,ÎNCĂLZIRE 4,KÜTTESÕLM 4
+46,103,WODA,WATER,Vanduo,TÚV,TÚV,AGUA,APĂ,TARBEVESI
+47,104,BUFOR,BUFFER,Akumuliacinė talpa,Akumulačná nádrž,Akumulační nádrž,DEPOSITO INERCIA,PUFFER,AKUPAAK
+48,105,MAGAZYN PALIWA,FUEL STORAGE,FUEL STORAGE,FUEL STORAGE,Sklad paliva,FUEL STORAGE,FUEL STORAGE,KÜTUSE MAHUTI
+49,106,SOLARY,SOLAR HEATING,Saulės kolektoriai,Solár ,Solar,CALEF. SOLAR,SOLAR,PÄIKESEKÜTE
+50,107,NASTAWY,SETTINGS,Nustatymai,Nastavenie ,Nastavení,AJUSTES,SETĂRI,SEADED
+51,108,HISTORIA ALARMÓW,ALARM HISTORY,Aliarmų istorija,História alarmov ,Historie alarmů,HISTORIAL DE ALARMAS,ISTORIC ALARME,HÄIRETE AJALUGU
+52,109,INFO,INFO,INFO,Info,Info ,INFORMACIÓN,INFO,INFO
+53,110,KONFIGURACJA,CONFIGURATION,Konfiguracija,Konfigurácia,Konfigurace ,CONFIGURACIÓN,CONFIGURARE,KONFIGURATSIOON
+54,111,TEST WYJŚĆ,OUT TEST,Išėjimų testas,Test,Test výstupů,PRUEBA DE SALIDA,TEST IEȘIRI,TESTIST VÄLJA
+55,112,STATYSTYKI,STATISTICS,Statistika,Štatistiky,Statistika ,ESTADÍSTICA,STATISTICI,STATISTIKA
+56,113,PROGRAM,SCHEDULE,Programa,Program,Program ,PROGRAMAR,PROGRAM,AJAKAVA
+57,114,SIEĆ,NETWORK,NETWORK,NETWORK,Network,NETWORK,REȚEA,INTERNET
+58,115,KASKADA,CASCADE,CASCADE,CASCADE,Kaskáda,CASCADE,CASCADĂ,KASKAAD JUHTIMINE
+59,116,INTERNET,INTERNET,INTERNET,INTERNET,INTERNET,INTERNET,INTERNET,INTERNET
+60,117,Kocioł,Boiler,Katilas,Kotol ,Kotel ,Caldera,Centrală,Katel
+61,118,Palnik,Burner,Degiklis,Horák,Hořák,Quemador,Arzător,Põleti
+62,119,Ogrzewanie obwód 1,Heating 1,Šildymo kontūras 1,Obvod 1,Okruh 1,Calefacción 1,Încălzire 1,Küttesõlm 1
+63,120,Ogrzewanie obwód 2,Heating 2,Šildymo kontūras 2,Obvod 2,Okruh 2,Calefacción 2,Încălzire 2,Küttesõlm 2
+64,121,Ogrzewanie obwód 3,Heating 3,Šildymo kontūras 3,Obvod 3,Okruh 3,Calefacción 3,Încălzire 3,Küttesõlm 3
+65,122,Ogrzewanie obwód 4,Heating 4,Šildymo kontūras 4,Obvod 4,Okruh 4,Calefacción 4,Încălzire 4,Küttesõlm 4
+66,123,Ciepła woda użytkowa,Hot water,Karštas buitinis vanduo,TÚV,TÚV,Agua caliente,Apă caldă menajeră,Tarbevesi
+67,124,Bufor,Buffer,Akumuliacinė talpa,Akumulačná nádrž ,Akumulační nádrž,Deposito inercia,Puffer,Akupaak
+68,125,Pomiar energii,Energy measure,Energy measure,Energy measure,Měření energie,Energy measure,Măsurare energie,Energia mõõtja
+69,126,Dodatkowy magazyn paliwa,Additional fuel storage,Additional fuel storage,Additional fuel storage,Sklad paliva,Additional fuel storage,Rezervor combustibil suplimentar,Lisa kütuse mahuti
+70,127,Kaskada,Cascade,Cascade,Cascade,Kaskáda,Cascade,Cascadă,Kaskaad juhtimine
+71,128,Solary,Solar heating,Saulės kolektoriai,Solár ,Solary ,Calefacción solar,Solar,Päikseküte
+72,129,Historia alarmów,Alarm history,Aliarmų istorija,História alarmov ,Historie alarmů,Historial alarmas,Istoric alarme,Häire ajalugu
+73,130,Język (Language)                             PL,Language                                          EN,Kalba (Language)                              LT,Jazyk (Language)                             SK,Jazyk (Language)                             CZ,Idioma (Language)                            ES,Limbă (Language)                            RO,Keel (Language)                              EST
+74,131,Informacje o programie,Software info,Informacija apie programą,Informácie o programe ,Informace o programu ,Información software,Info program,Tarkvara info
+75,132,Alarm dźwiękowy,Sound alarm,Garsinis signalas,Zvukový alarm,Zvukový alarm ,Sonido alarma,Alarmă acustică,Heli alarm
+76,133,Poziom menu (PIN),Menu level (PIN),Meniu lygis (PIN),Heslo (PIN),Heslo (PIN),Menú tecnico (PIN),Nivel meniu (PIN),Menüü tasand (PIN)
+77,134,Konfiguracja,Configuration,Konfiguracija,Konfigurácia ,Konfigurace ,Configuración,Configurare,Konfiguratsioon
+78,135,Test wyjść,Out test,Išėjimų testas,Test,Test výstupů,Prueba de salidas,Test ieșiri,Testist välja
+79,136,Statystyki,Statistics,Statistika,Štatistiky ,Statistiky,Estadística,Statistici,Statistika
+80,137,Sieć,Network,Network,Network,Network,Network,Rețea,Internet
+81,138,Internet,Internet,Internet,Internet,Internet,Internet,Internet,Internet
+82,139,igneoTouch v<W>,igneoTouch v<W>,igneoTouch v<W>,igneoTouch v<W>,igneoTouch v<W>,IgneoTouch v<W>,igneoTouch v<W>,igneoTouch v<W>
+83,140,Controller by Estyma (www.estyma.pl),Controller by Estyma (www.estyma.pl),Controller by Estyma (www.estyma.pl),Regulácia Estyma (www.estyma.pl),Regulace Estyma (www.estyma.pl),Controlador de Estyma (www.estyma.pl),Controller by Estyma (www.estyma.pl),Controller by Estyma (www.estyma.pl)
+84,141,Następny serwis <W>,Next service at <W>,Next service at <W>,Next service at <W>,Next service at <W>,Next service at <W>,Service următor <W>,Next service at <W>
+85,142,Podaj paliwo,Give fuel,Paduoti kurą,Vlož palivo,Dodej palivo ,Meter combustible,Alimentare combustibil,Käivita tigu käsitsi
+86,143,Typ paliwa,Fuel type,Kuro tipas,Typ paliva ,Typ paliva ,Tipo de combustible,Tip combustibil,Kütuse tüüp
+87,144,Powietrze MIN (moc 20%),Air min (power 20%),Oras min (galia 20%),Vzduch min,Vzduch min,Aire min (potencia 20%),Aer min (putere 20%),Õhk min (power 20%)
+88,145,Powietrze MIN (moc 100%),Air max (power 100%),Oras max (galia 100%),Vzduch max,Vzduch max,Air max (potencia 100%),Aer max (putere 100%),Õhk max (power 100%)
+89,146,Próg foto,Brightness threshold,Foto riba,Foto čidlo ,Optický senzor [jas],Umbral de luminosidad,Prag fotocelulă,Leegi heleduse alumine piir
+90,147,Czas wygaszania [min],Burning off time [min],Užgesinimo laikas [min],Čas vyhasínania [min],Čas vyhasínání [min],Tiempo apagado llama [min],Timp de stingere [min],Tühjakspõlemise aeg [min]
+91,148,pellets,pellets,granulės,Pelety ,Pelety ,Pellet,peleți,Pelletid
+92,149,drewno,wood,malkos,Drevo,Dřevo,Madera,lemne,Halupuu
+93,150,Temperatura komfortowa [°C]  ,Comfort temperature [°C],Komfortinė temperatūra,Teplota komfortná [°C],Teplota komfortní [°C],Temperatura de confort [°C],Temperatură de confort [°C],Mugavus temperatuur [°C]
+94,151,Temperatura ekonomiczna [°C] ,Economical temperature [°C],Ekonominė temperatūra,Teplota ekonomická [°C],Teplota ekonomická [°C],Temperatura económica [°C],Temperatură economică [°C],Ökonoomne temperatuur [°C]
+95,152,Program,Program,Programa,Program ,Program,Programa,Program,Programm
+96,153,Zagrzej teraz,Heat now,Šildyti dabar,Zohrej teraz,Ruční dohřev,Calentar ahora,Încălzire acum,Küta kohe
+97,154,Histereza [°C],Histeresis [°C],Diapazonas,Hysterézia [°C],Hystereze [°C],Histéresis [°C],Histereză [°C],Hüsterees [°C]
+98,155,Histereza załączenia [°C],Histeresis on [°C],Įjungimo diapazonas,Hysterézia zapnutia [°C],Hystereze zapnutí [°C],Histéresis encendido [°C],Histereză pornire [°C],Hüsterees sees [°C]
+99,156,Histereza wyłączenia [°C],Histeresis off [°C],Išjungimo diapazonas,Hysterézia vypnutia [°C],Hystereze vypnutí [°C],Histéresis apagado [°C],Histereză oprire [°C],Hüsterees väljas [°C]
+100,157,Źródło,Source,Šaltinis,Zdroj ,Zdroj ,Fuente,Sursă,Kütteallikad
+101,158,Zwiększenie temperatury źródła [°C],Increase source temperature [°C] ,Šaltinio temperatūros pakelimas,Zvýšenie teploty zdroja [°C],Zvýšení teploty zdroje [°C],Aumentar la temp. de la fuente [°C],Creștere temperatură la sursă [°C],Tõsta kütteallika temperatuuri
+102,159,Temp. maksymalna [°C],Max temp. [°C] ,Max temperatūra,Teplota maximálna [°C] ,Teplota maximální [°C],Temp. Máx. [°C] ,Temp. maximă [°C],Max temp. [°C] 
+103,160,Delta załączenia pompy [°C],Delta temperature pump on [°C] ,Siurblio įsijungimo delta,Delta spustenia čerpadla [°C],Delta T spuštění čerpadla [°C],Delta temp. Encendido bomba [°C],Delta temperatură pornire pompă [°C],Delta temp pump sees [°C] 
+104,161,Test pompy      ,Pump test,Siurblio testas,Test čerpadla,Test čerpadla,Prueba de bomba,Test pompă,Pumba test
+105,162,Antylegionella,Antilegionella,Antilegionella,Antilegionella,Antilegionella,Antilegionella,Antilegionella,Antilegionella
+106,163,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+107,164,Tryb pracy  ,Work mode,Darbo režimas,Režim práce kotla ,Režim práce kotle,Modo de trabajo,Mod funcționare,Töö režiim
+108,165,Czujnik pokojowy,Room sensor,Kambario daviklis,Izbový termostat,Pokojový termostat ,Sensor habitación,Senzor cameră,Ruumi temp andur
+109,166,Kalibracja czujnika pok. [°C],Room sensor calib.  [°C],Kambario dav. Kalibracija,Kalibrácia izbového termostatu [°C],Kalibrace pokojového termostatu [°C],Sensor Habitación calib. [°C],Calibrare senzor cameră  [°C],Ruumi temp anduri calib. [°C]
+110,167,Czujnik CO,HC sensor,Kontūro daviklis,Čidlo ÚK,Čidlo ÚT,Sonda Cir. Calefacción ,Senzor IC,K. Sõlme andur
+111,168,Temperatura CO dla -20°C [°C],Temp. HC for -20°C [°C],Paduodama temperatūra prie -20,Teplota ÚK pri -20°C [°C],Teplota ÚT při -20 °C [°C],Temp. Circ. Calef. para -20°C [°C],Temp. IC pentru -20°C [°C],Temp K.Sõlm -20°C [°C]
+112,169,Temperatura CO dla -10°C [°C],Temp. HC for -10°C [°C],Paduodama temperatūra prie -10,Teplota ÚK pri -10°C [°C],Teplota ÚT při -10 °C [°C],Temp. Circ. Calef. para -10°C [°C],Temp. IC pentru -10°C [°C],Temp K.Sõlm -10°C [°C]
+113,170,Temperatura CO dla  0°C [°C],Temp. HC for 0°C [°C],Paduodama temperatūra prie 0,Teplota ÚK pri  0°C [°C],Teplota ÚT při 0 °C [°C],Temp. Circ. Calef. para 0°C [°C],Temp. IC pentru 0°C [°C],Temp K.Sõlm -0°C [°C]
+114,171,Temperatura CO dla 10°C [°C],Temp. HC for 10°C [°C],Paduodama temperatūra prie 10,Teplota ÚK pri 10°C [°C],Teplota ÚT při  10 °C [°C],Temp. Circ. Calefc. durante 10°C [°C],Temp. IC pentru 10°C [°C],Temp K.Sõlm -10°C [°C]
+115,172,Wsp. korekcji t. CO [°C/°C],Temp HC corr. factor [°C/°C],Korekcijos faktorius,Zníženie teploty ÚK [°C/°C],Faktor snížení teploty okruhu [°C/°C],Factor corr. Temp Cir. Calef. [°C/°C],Factor corecție temp. IC [°C/°C],Temp K.Sõlm korrekts. Factor [°C/°C]
+116,173,MIN temperatura CO pomp [°C],Min HC temp. pump [°C],min kontūro temp. siurbliui,Minimálna teplota čerpadla ÚK [°C],Min. tep. zapnutí čerpadla ÚT [°C],Min. temp. bomba  circ. calefa.[°C],Temp. MIN pompă IC [°C],Min Temp K.Sõlm pump [°C]
+117,174,Czas mieszacza [s],Mixing valve time [s],Pavaros greitis [s],Čas servopohonu [s],Čas servopohonu [s],Tiempo válvula mezcladora [s],Timp vană amestec [s],3-tee ajami aeg [s]
+118,175,Temperatura CO zadana ręcznie [°C],HC temp. set manually [°C],Kontūro temp. užduota rankiniu būdu,Teplota ÚK zadaná ručne ,Teplota ÚT zadaná ručne ,Ajuste manual temp. Circ. Calefac [°C],Setare manuală temp. IC [°C],K. Sõlme temp käsitsi [°C]
+119,176,Priorytet CWU   ,Hot water priority,Karšto buitinio vandens prioritetas,Priorita TÚV,Priorita TÚV,Prioridad de agua caliente,Prioritate ACM,S. tarbevee eelistus
+120,177,Test pompy      ,Pump test,Siurblio testas,Test čerpadla,Test čerpadla ,Prueba bomba,Test pompă,Pumba test
+121,178,Test mieszacza  ,Mixing valve test,Pavaros testas,Test servopohonu ,Test servopohonu ,Prueba válvula mezcladora,Test vană amestec,3-tee test
+122,179,Stała pompa,Pump constant,Pastovus siurblys,Stale čerpadlo,Čerpadlo stálý běh ,Bomba continua,Pompă permanentă,Pump konstant.
+123,180,Magazyn paliwa transport(1),Fuel storage transporter(1),Fuel storage transporter(1),Fuel storage transporter(1),Dopravník skladu paliva(1),Fuel storage transporter(1),Alimentator combustibil(1),Kütuse mahuti transportöör(1)
+124,181,Magazyn paliwa podajnik(2),Fuel storage feeder(2),Fuel storage feeder(2),Fuel storage feeder(2),Podavač zásobníku(2),Fuel storage feeder(2),Alimentator combustibil(2),Kütuse mahuti tigu(2)
+125,182,Podajnik palnika,Burner feeder,Degiklio padavimo mechanizmas,Podavač horáku,Podavač hořáku ,Alimentador quemador,Snec arzător,Põleti söötja
+126,183,Wentylator wspomagający [%],Extra exhaust fan [%],Ištraukimo ventiliatorius [%],ventilátor odťahový  [%],Výkon odtahového ventilátoru [%],Función extra extractor humos [%],Ventilator exhaustare extra [%],Suitsugaasi ventilaator [%]
+127,184,Konfiguracja IN17,IN17 configuration,IN17 configuration,IN17 configuration,IN17 configuration,IN17 configuration,Configurație IN17,IN17 configuration
+128,185,Odstęp czyszczenia [h],Cleaning interval [h],Valymo intervalas [h],Interval čistenia [h],Interval čištění hořáku [h],Intervalo de limpieza [h],Interval curățare [h],Puhastuse sagedus [h]
+129,186,Rozżarzanie paliwo [%],Incandenscing fuel [%],Kuro dozė pakaitinimui [%],Korekcia štartovacej dávky paliva [%],Korekce rozhořívací dávky paliva [%],Encendido combustible [%],Combustibil incandescență [%],Leegi stabiliseerim. kütuse kogus [%]
+130,187,Stopniowa redukcja mocy,Stepped power reduction,Stepped power reduction,Stepped power reduction,Postupné snížení výkonu,Stepped power reduction,Reducerea treptată a puterii,Astmeline võimsuse vähendamine
+131,188,Czujnik rezerwy paliwa,Fuel reserve sensor,Fuel reserve sensor,Fuel reserve sensor,Senzor rezervy paliva ,Fuel reserve sensor,Senzor rezervă combustibil,Lisa kütuse mahuti andur
+132,189,Maksymalna liczba cykli,Max cycles number,Max cycles number,Max cycles number,Max. počet cyklů,Max cycles number,Număr maxim cicluri,Max tsüklite arv
+133,190,Aktywuj alarm wyczyść wymiennik,Activate clean exchanger alarm,Activate clean exchanger alarm,Activate clean exchanger alarm,Zapnout alarm čištění výměníku,Activate clean exchanger alarm,Activează alarmă curățare schimbător,Aktiveeri katla puhastuse alarm
+134,191,Aktywuj alarm wyczyść palnik,Activate clean burner alarm,Activate clean burner alarm,Activate clean burner alarm,Zapnout alarm čištění hořáku,Activate clean burner alarm,Activează alarmă curățare arzător,Aktiveeri põleti puhastuse alarm
+135,192,Wyczyść alarmy,Clear all alarms,Clear all alarms,Clear all alarms,Clear all alarms,Clear all alarms,Șterge alarmele,Clear all alarms
+136,193,Czas czyszczenia wymiennika [s],Exchanger cleaning time [s],Šilumokaičio valymo laikas [s],Čas čistenia výmenníka [s],Čas čistení výměnníku [s],Tiempo de limpieza intercambi. [s],Timp curățare schimbător [s],Katla puhastuse aeg [s]
+137,194,Podajnik palnika w wygaszaniu [s],Burning off burner feeder work [s],Burning off burner feeder work [s],Burning off burner feeder work [s],Běh šneku hořáku při vyhasínání [s],Burning off burner feeder work [s],Funcționare șnec la stingere [s],Tühjaks põlemise aeg [s]
+138,195,Temp. minimalna (góra) [°C],Min. temp. (top) [°C] ,Min temp. (viršutinė),Teplota minimálna (horná) [°C],Teplota minimální (horní) [°C],Min. temperatura (Arriba) [°C],Temp. min. (sus) [°C],Min.temp (ülemine) [°C]
+139,196,Temp. maksymalna (dół) [°C]  ,Max. temp. (bottom) [°C] ,Max temp. (apatinė),Teplota maximálna (dolná) [°C],Teplota maximální (dolní) [°C],Max. temperatura (Abajo) [°C],Temp. max (jos) [°C],Max-temp (alumine) [°C]
+140,197,Minimalna temp. pomp [°C],Min pump temperature [°C] ,Min siurblių temp.,Minimálna teplota čerpadla [°C],Min. tep. zapnutí čerpadla [°C],Temperatura mínima bomba [°C],Temperatură minimă pompă [°C],Min pumba temp [°C]
+141,198,Automatyczna temp. góra [°C],Automatic temp. top [°C],Automatinė viršutinė temp.,Automatická teplota horná [°C],Automatická teplota horní [°C],Temp. Arriba modo automático [°C],Temp. superioară automată [°C],Automaatne temp (ülemine) [°C]
+142,199,Moc dmuchawy modulacja [%],Blower power modulation [%],Vantiliatoriaus galia,Výkon ventilátora [%],Výkon ventilátoru [%],Potencia del soplador [%],Modulare putere ventilator [%],Vent.võimsus modulatsioon [%]
+143,200,Korekta powietrza [%],Air correction [%],Oro korekcija,Korekcia vzduchu [%],Korekce vzduchu [%],Corrección del aire [%],Corecție aer [%],Õhu korrektsioon [%]
+144,201,Podawanie max [s],Feeding max [s],Max padavimas,Podávanie max. [s],Podávání max. [s],Alimentación max [s],Alimentare max [s],Söötmise aeg max [s]
+145,202,Wstępna dawka paliwa [s],Fuel predose [s],Pirminė kuro dozė [s],Štartovacia dávka paliva [s],Startovací dávka paliva [s],Predosis combustible [s],Prealimentare combustibil [s],Kütuse eelkogus [s]
+146,203,Wstępna dawka paliwa [g],Fuel predose [g],Pirminė kuro dozė [g],Štartovacia dávka paliva [g],Startovací dávka paliva [g],Predosis combustible [g],Prealimentare combustibil [g],Kütuse eelkogus [g]
+147,204,Moc min [%],Min power [%],Min galia,Výkon min [s],Výkon min [%],Potencia mínima [%],Putere minimă [%],Min võimsus [%]
+148,205,Moc max [%],Max power [%],Max galia,Výkon max [s],Výkon max [%],Potencia máxima [%],Putere maximă [%],Max võimsus [%]
+149,206,Ilość paliwa test [kg/h],Test fuel mass [kg/h],Kuro kiekio testas,Množstvo paliva test [kg/h],Vydatnost podavače [kg/h],Prueba masa de combustible [kg /h],Test masă combustibil [kg/h],Test kütuse kaal [kg/h]
+150,207,Wartość opałowa [kWh/kg],Fuel calorific value [kWh/kg],Kaloringumas,Výhrevnosť paliva [kWh/kg],Výhřevnost paliva [kW/kg],Valor calorífico del combust.[kWh/kg],Putere calorică combustibil [kWh/kg],Kütuse energia väärtus [kWh/kg]
+151,208,Sterowanie Lambda,Lambda control,Lambda valdymas,Regulácia Lambda,Regulace Lambda,Control lambda,Control Lambda,Lambda kontroll
+152,209,Tlen dla mocy 30%,Oxygen power 30%,Deguonis prie 30%,Kyslík pre výkon 30%,Kyslík pro výkon 30%,Potencia de oxígeno 30%,Oxigen pentru putere 30%,O2 võimsusel 30%
+153,210,Tlen dla mocy 100%,Oxygen power 100%,Deguonis prie 100%,Kyslík pre výkon 100%,Kyslík pro výkon 100%,Potencia de oxígeno 100%,Oxigen pentru putere 100%,O2 võimsusel 100%
+154,211,Liczba czyszczeń rusztu,Grate cleaning number,Lėkštelės valymo skaičius,Počet prečistení horáku,Počet čištění hořáku,Número limpieza de parrilla,Număr curățări grătar,Resti puhastus nr
+155,212,Moc dmuchawy rozpalanie [%],Blower firing up power [%],Vent.  galia uždegimo metu,Výkon ventilátora rozhorenie [%],Výkon ventilátoru zapálení [%],Potencia soplado encendido [%],Putere ventilator la aprindere [%],Vent võimsus süütamisel [%]
+156,213,Czas rozżarzania [min],Incandescing time [min],Pakaitinimo laikas,Čas rozhorenia [min],Čas rozhoření [min],Tiempo de encendido [min],Timp incandescență [min],Leegi stabiliseerimise aeg [min]
+157,214,Bezwładność palnika [min],Burner inertia [min],Degiklio intertiškumas,Útlm horáku ,Útlum hořáku,Inercia del quemador [min],Inerție arzător [min],Põleti inerts [min]
+158,215,Tryb cichy rusztu,Grate silence mode,Degiklio tylusis režimas,Tichá práca roštu ,Tichá práce čištění roštu,Parrilla modo silencio,Mod silențios grătar,Resti puhastus vaikne
+159,216,Tryb cichy wymiennika,Exchanger silence mode,Šilumokaičio tylusis režimas,Tichá práca výmenníku,Tichá práce čištění výmněníku,Modo silencio del intercambiador,Mod silențios schimbător,Katla puhastus vaikne
+160,217,Minimalna temp. spalin [°C],Min exhaust gas temperature [°C],Min išmetamųjų dūmų temp.,Min exhaust gas temperature [°C],Min. teplota spalin [°C],Temp. mínima gases de escape [°C],Temp. min. gaze evacuare [°C],Min suitsugaasi temp [°C]
+161,218,Maksymalna temp. spalin [°C],Max exhaust gas temperature [°C],Max išmetamųjų dūmų temp.,Max exhaust gas temperature [°C],Max. teplota spalin [°C],Temp. máxima gases de escape [°C],Temp. max. gaze evacuare [°C],Max suitsugaasi temp [°C]
+162,219,Nominalna temp. spalin [°C],Nominal exhaust gas temperature [°C],Nominali išmet. dūmų temp.,Nominal exhaust gas temperature [°C],Optimální teplota spalin [°C],Temp. nominal gases de escape [°C],Temp. gaze evacuare la putere nominală [°C],Nominaalne suitsug. temp [°C]
+163,220,Minimalna temp. powrotu [°C],Min return temperature [°C],Min grįžtama temp.,Minimálna teplota spiatočky [°C],Minimální teplota zpátečky [°C],Temperatura mínima de retorno [°C],Temperatură minimă de retur [°C],Min tagasivoolu temp
+164,221,Czujnik powrotu do kotła,Return to boiler sensor,Grįžtamos temp. daviklis,Čidlo spiatočky ,Čidlo zpátečky,Sonda temp. Retorno caldera,Senzor retur la centrală,Tagasivoolu andur
+165,222,Numer profilu,Profile number,Profilio numeris,Číslo profilu ,Číslo profilu,Número de perfil,Număr profil,Profiili nr
+166,223,Typ czujnika spalin,EGT sensor type,Išmetamųjų dūmų daviklio tipas,EGT sensor type,Typ čidla spalin,Tipo sonda EGT,Tip senzor evacuare gaze,EGT anduri tüüp
+167,224,Okres podajnika zasobnika [s],Storage feeder period [s],Storage feeder period [s],Storage feeder period [s],Čas podávání šneku zásobníku [s] ,Storage feeder period [s],Perioada alimentator rezervor [s],Mahuti teo periood [s]
+168,225,Minimalny czas rozpalania [min],Minimal fire up time [min],Minimal fire up time [min],Minimal fire up time [min],Minimální čas zapálení [min],Minimal fire up time [min],Timp minim aprindere [min],Min süütamise aeg [min]
+169,226,Obniżenie temperatury CO [°C],CH temperature lowering [°C],Paduodamos temp. mažinimas,Zníženie teploty ÚK [°C],Snížení teploty ÚT [°C],Temp. baja Circ. Calef. [°C],Scădere temperatură IC [°C],K.Sõlme temp langetus [°C]
+170,227,Czujnik temperatury zewnętrznej,Outside temperature sensor,Lauko temp. daviklis,Čidlo vonkajšej teploty ,Čidlo venkovní teploty,Sensor temperatura exterior,Senzor temperatură exterioară,Välisõhu andur
+171,228,Ilość obwodów grzewczych,Heating curcuits number,Šildymo kontūrų kiekis,Počet okruhov ÚK,Počet okruhů ÚT,Número circuitos calefacción,Număr circuite de încălzire,Keskkütte Sõlme nr
+172,229,ręczny,manual,rankinis,Ručný ,Ruční,manual,manual,Käsitsi režiim
+173,230,pogodowy,weather,oru / nuo lauko temp.,Pohodový,Ekvitermní,modo clima,vreme,Automaatne režiim
+174,231,Tryb kominiarz,Sweep mode,Sweep mode,Sweep mode,Sweep mode,Sweep mode,Sweep mode,Sweep mode
+175,232,brak,none,nėra,Chýba ,Není,ninguna,lipsă,puudus
+176,233,CTP1,CTP1,CTP-01,CTP1,CPT1,CTP1,CTP1,CTP1
+177,234,CTP2,CTP2,CTP-02,CTP2 ,CPT2,CTP2,CTP2,CTP2
+178,235,CTZ1,CTZ1,CTZ1,CTZ1,CTZ1,CTZ1,CTZ1,CTZ1
+179,236,videROOM,videROOM,videROOM,videRoom,videRoom,videROOM,videROOM,videROOM
+180,237,termostat,thermostat,termostatas,Termostat,Univerzální,termostato,termostat,Termostaat
+181,238,CAN,CAN,CAN,CAN,CAN,CAN,CAN,CAN
+182,239,KTY84-130,KTY84-130,KTY84-130,KTY84-130,KTY84-130,KTY130,KTY84-130,KTY84-130
+183,240,PT1000,PT1000,PT1000,PT1000,PT1000,PT1000,PT1000,PT1000
+184,241,ciepłomierz,heat meter,heat meter,heat meter,heat meter,heat meter,contor căldură,heat meter
+185,242,przepływomierz,flow meter,flow meter,flow meter,flow meter,flow meter,debitmetru,flow meter
+186,243,Praca silnika transportującego (1) [s],Transporting motor (1) work time [s],Transporting motor (1) work time [s],Transporting motor (1) work time [s],Běh dopravníku (1) [s],Transporting motor (1) work time [s],Timp funcționare alimentator (1) [s],Transportööri mootori (1) tööaeg [s]
+187,244,Pauza silnika transportującego (1) [s],Transporting motor (1) pause time [s],Transporting motor (1) pause time [s],Transporting motor (1) pause time [s],Prostoj dopravníku (1) [s],Transporting motor (1) pause time [s],Pauză funcționare alimentator (1) [s],Transportööri mootori (1) pausiaeg [s]
+188,245,Praca silnika podajnika (2) [s],Feeder (2) work time [s],Feeder (2) work time [s],Feeder (2) work time [s],Čas podávání šneku zásobníku (2) [s] ,Feeder (2) work time [s],Timp funcționare alimentator (2) [s],Teo (2) tööaeg [s]
+189,246,Pauza silnika podajnika (2) [s],Feeder (2) pause time [s],Feeder (2) pause time [s],Feeder (2) pause time [s],Prostoj šneku zásobníku (2) [s],Feeder (2) pause time [s],Pauză funcționare alimentator (2) [s],Teo (2) pausiaeg [s]
+190,247,Przepływ [l/min],Flow [l/min],Srautas,Prietok [l/min],Průtok [l/min],Caudal [l/min],Flux [l/min],Läbivool [l/min]
+191,248,Delta załączenia [°C],Delta switch on  [°C],Įsijungimo delta,Delta zapnutia [°C],Delta zapnutí [°C],Interruptor Delta ON [°C],Delta pornire [°C],Delta T lülitus sisse [°C]
+192,249,Delta wyłączenia  [°C],Delta switch off  [°C],Išsijungimo delta,Delta vypnutia [°C],Delta vypnutí [°C],Interruptor Delta OFF [°C],Delta oprire [°C],Delta T lülitus välja [°C]
+193,250,Ciepło właściwe [kJ/(kg*K)],Liquid specific heat [kJ/(kg*K)],Savitoji šiluminė talpa,Výdatnosť tepla [kJ/(kg*K],Vydatnost tepla [kj/(kg*K],Calor específico líquido [kJ/(kg* K)],Căldura specifică a lichidului [kJ/(kg*K)],Vedeliku energia mahutuvus [kJ/(kg*K)]
+194,251,Temperatura maksymalna wody  [°C],Max water temp.  [°C],Max vandens temp.,Maximálna teplota  [°C],Maximální teplota [°C],Temp. del agua máx.[°C],Temp. max apă [°C],Max S.TV temp [°C]
+195,252,Max temp kolektora (alarmowa) [°C],Max solar temp. (alarm) [°C],Max kolektorių temp. (aliarmas),Max. teplota soláru (poruchová) [°C],Max. teplota soláru (poruchová) [°C],Temp. solar máxima (Alarma)[°C],Temp. max solar (alarmă) [°C],Max päiksekütte temp (häire) [°C]
+196,253,Min temp kolektora (alarmowa)  [°C],Min solar temp. (alarm)  [°C],Min kolektorių temp. (aliarmas),Min.teplota soláru (poruchová) [°C],Min. teplota soláru (poruchová) [°C],Temp. mínima solar (Alarma) [°C],Temp. min solar (alarmă) [°C],Min päiksekütte temp (häire) [°C]
+197,254,Pojemność zbiornika paliwa [kg],Fuel tank capacity [kg],Kuro talpykla [kg],Objem zásobníka [kg],Objem zásobníku [kg],Capaci. del depósito de combus.[kg],Capacitate rezervor combustibil [kg],Kütusemahuti maht [kg]
+198,255,Rezerwa zbiornika paliwa [kg],Fuel tank reserve [kg],Talpyklos rezervas [kg],Rezerva zásobníka [kg],Rezerva zásobníku [kg],Reserva del depósito de combus.[kg],Rezervă rezervor combustibil [kg],Kütusemahuti reserv [kg]
+199,256,Rezerwa paliwa stop [kg],Fuel reserve stop [kg],Talpyklos rezervas stop [kg],Rezerva zásobníka stop [kg],Rezerva zásobníku STOP [kg],Parada de reserva de combustib. [kg],Stop rezervă combustibil [kg],Kütuse reserv stop [kg]
+200,257,Moduł Lambda,Lambda module,Modulis Lambda,Modul Lambda sonda ,Modul Lambda sonda,Módulo Lambda,Modul Lambda,Lambda moodul
+201,258,Cisza nocna od,Silence hours from,Tylos režimas nuo,Nočný režim od,Noční režim od,Horas de silencio desde,Ore silențioase de la,Vaikne aeg alates
+202,259,Cisza nocna do,Silence hours to,Tylos režimas iki,Nočný režim do,Noční režim do,Horas de silencio a,Ore silențioase până la,Vaikne aeg kuni
+203,260,Obniżenie Tco dla ochrony powrotu,CH temp. lowering to protect return,Paduod. temp. mažin. apsa. nuo grįžta.,CH temp. lowering to protect return,Snížení teploty pro ochranu zpátečky,CH temp. lowering to protect return,Scădere temp. IC pentru protecție retur,K.Sõlme temp alandus katla kaitseks
+204,261,Napięcie gdy ruszt schowany [V],Voltage of retracted grate [V],Voltage of retracted grate [V],Voltage of retracted grate [V],Voltage of retracted grate [V],Voltage of retracted grate [V],Voltaj minim grătar [V],Voltage of retracted grate [V]
+205,262,Napięcie gdy ruszt wysunięty [V],Voltage of extended grate [V],Voltage of extended grate [V],Voltage of extended grate [V],Voltage of extended grate [V],Voltage of extended grate [V],Voltaj maxim grătar [V],Voltage of extended grate [V]
+206,263,Pozycja rusztu (moc minimalna) [%],Grate position (minimal power) [%],Grate position (minimal power) [%],Grate position (minimal power) [%],Grate position (minimal power) [%],Grate position (minimal power) [%],Poziție grătar (putere minimă) [%],Grate position (minimal power) [%]
+207,264,Praca rusztu,Grate work,Grate work,Grate work,Grate work,Grate work,Funcționare grătar,Grate work
+208,265,Zmiana kotła,Boiler change,Katilo keitimas,Boiler change,Změna kotle,Cambio Fuente,Schimbare centrală,Katla vahetus
+209,266,Wpisz PIN,Enter PIN,Įrašyk PIN,Zadaj PIN,Zadej PIN,Ingrese PIN,Tastați PIN,Sisesta PIN
+210,267,F(30%) [m/s],F(30%) [m/s],F(30%) [m/s],F(30%) [m/s],F(30%) [m/s],F(30%) [m/s],Flux aer (30%) [m/s],F(30%) [m/s]
+211,268,F(100%) [m/s],F(100%) [m/s],F(100%) [m/s],F(100%) [m/s],F(100%) [m/s],F(100%) [m/s],Flux aer (100%) [m/s],F(100%) [m/s]
+212,269,Główny moduł IO,Main module IO,Pagrindinis modulis,Hlavný modul IO,Hlavní modul IO,Módulo principal IO,Modul IO principal,Peamoodul IO
+213,270,Poniedziałek,Monday,Pirmadienis,Pondelok ,Pondělí,Lunes,Luni,Esmaspäev
+214,271,Wtorek,Tuesday,Antradienis,Utorok,Úterý,Martes,Marți,Teisipäev
+215,272,Środa,Wednesday,Trečiadienis,Streda,Středa,Miércoles,Miercuri,Kolmapäev
+216,273,Czwartek,Thursday,Ketvirtadienis,Štvrtok,Čtvrtek,Jueves,Joi,Neljapäev
+217,274,Piątek,Friday,Penktadienis,Piatok,Pátek,Viernes,Vineri,Reede
+218,275,Sobota,Saturday,Šeštadienis,Sobota,Sobota,Sábado,Sâmbătă,Laupäev
+219,276,Niedziela,Sunday,Sekmadienis,Nedeľa,Neděle,Domingo,Duminică,Pühapäev
+220,277,Pn,Mo,Pr,Po,Po,LU,Lu,Es
+221,278,Wt,Tu,A,Ut,Út,MA,Ma,Te
+222,279,Śr,We,T,St,St,MI,Mi,Ko
+223,280,Cz,Th,K,Št,Čt,JU,Jo,Ne
+224,281,Pt,Fr,Pn,Pi,Pá,VI,Vi,Re
+225,282,Sb,Sa,Š,So,So,SA,Sâ,La
+226,283,Nd,Su,S,Ne,Ne,DO,Du,Pü
+227,284,Kopiuj na inne dni,Copy on other days,Kopijuoti į kitas dienas,Kopírovanie na iné dni ,Kopírování na jiné dny,Copia en otros días,Copiează pe alte zile,Kopeeri teistele päevadele
+228,285,Kopiuj,COPY,Kopijuoti,Kopirovanie,Kopírování ,COPIAR,Copiază,KOPEERI
+229,286,Autokonfiguracja,Autoconfiguration,Autokonfiguracija,Automatické nastavenie,Automatické nastavení,Autoconfiguración,Autoconfigurare,Auto konfiguratsioon
+230,287,Podajnik,Feeder,Padavimo mechanizmas,Podávač,Podavač,Alimentador,Snec alimentare,Söötja (tigu)
+231,288,Pompa kotłowa,Boiler pump,Katilo siurblys,Čerpadlo kotlové,Čerpadlo kotlové,Bomba de caldera,Pompă centrală,Katla pump
+232,289,Ruszt,Grate,Ardėliai,Rošt,Rošt,Parrilla,Grătar,Rest
+233,290,Wymiennik,Exchanger cleaner,Šilumokaitis,Čistenie výmenníka,Čištění výmněníku,Limpiador del intercambiador,Sistem curățare schimbător,Katla puhastaja
+234,291,Zapalarka,Igniter,Uždegimo tenas,Špirála,Žhavič,Encendedor,Rezistență,Süütja
+235,292,Dm.,Blower,Vent.,Ventilátor,Ventilátor,Soplador,Ventilator,Ventilaator
+236,293,Pompa solarna,Solar pump,Saulės k. siurblys,Čerpadlo solár ,Čerpadlo solár,Bomba solar,Pompă solar,Päiksekütte pump
+237,294,WentWyc,ExhaustF,Ištraukimo vent.,Odtah.vent,Odtah. ventilátor,Test Escape Humos,Ventilator exhaustare,SuitVent
+238,295,Pompa CWU,Hot water pump,Karšto vandens siurblys,Čerpadlo TÚV,Čerpadlo TÚV,Bomba de agua caliente,Pompă ACM,S.Tarbevee pump
+239,296,Pompa cyrkulacyjna CWU,Hot water circulation pump,Circ. Karšto vandens siurblys,Circ. Čerpadlo TÚV,Circ. Čerpadlo TÚV,Circ. Bomba de agua caliente,Recirculare ACM,S. Circ. Tarbevee pump
+240,297,Cyrkulacja praca [min],Circulation [min],Circulation [min],Circulation [min],Circulation [min],Circulation [min],Timp recirculare [min],Circulation [min]
+241,298,Cyrkulacja pauza [min],Circulation pause [min],Circulation pause [min],Circulation pause [min],Circulation pause [min],Circulation pause [min],Pauză recirculare [min],Circulation pause [min]
+242,299,Pompa CO<W>,CH<W> pump,Kontūro siurblys <W>,Čerpadlo ÚK <W>,Čerpadlo ÚT <W>,Circ. Calef. <W> bomba,Pompă IC <W>,K.Sõlme pump <W>
+243,300,Mieszacz CO<W>,CH<W> mixing valve,Kontūro pavara <W>,Servopohon ÚK <W>,Servopohon ÚT <W>,Válvula de mezcla Circ. Calef. <W>,Vană amestec IC<W>,K.Sõlme 3-tee ventiil<W>
+244,301,Mieszacz powrotu,Boiler ret. mixing valve,Grįžtamo pavara,Servopohon spiatočky ,Servopohon zpátečky,Válvula mezcladora retorno caldera,Vană retur centrală,Katla rets. Seguventiil
+245,302,Powietrze wtórne,Air secondary,Air secondary,Sekundárny vzduch,Sekundární vzduch,Sekundární vzduch,Aer secundar,Sekundaar õhk
+246,303,Wtórne modulacja MIN [%],Secondary modulation MIN [%],Secondary modulation MIN [%],Sekundárna modulácia MIN [%],Sekundární modulace MIN [%],Sekundární modulace MIN [%],Modulație secundară MIN [%],Sekundaar õhk min [%]
+247,304,Wtórne modulacja MAX [%],Secondary modulation MAX [%],Secondary modulation MAX [%],Sekundárna modulácia MAX [%],Sekundární modulace MAX [%],Sekundární modulace MAX [%],Modulație secundară MAX [%],Sekundaar max min [%]
+248,305,Licznik rozpaleń,Fire up counter,Uždegimų skaitiklis,Počet zapálení,Počet zapálení,Contador de encendidos,Contor aprindere,Süütamiste loendaja
+249,306,Średni czas rozpalania [s],Average fire up time [s],Vidutinis uždegimo laikas,Priemerná doba zapálenia [s],Průměrná doba zapálení [s],Promedio de tiempo de encend. [s],Timp mediu de aprindere [s],Keskmine süütmaise aeg [s]
+250,307,Średnia moc palnika z 50 godzin [%],Average blower power 50 hours [%],Vidutinis degiklio galing. per 50 val.,Priem. výkon horáku za 50 hod. [%],Prům. výkon hořáku za 50 hod. [%],Potencia media del soplador 50h [%],Putere medie arzător în 50 ore [%],Keskmine vent võimsus 50 h [%]
+251,308,Czas pracy podajnika 1 [h],Feeder 1 work time [h],Padavimo mechanizmo 1 darbo laikas,Čas práce podávača 1 [h],Čas práce podavače 1 [h],Alimentador 1 tiempo de trabajo [h],Timp funcționare snec 1 [h],Söötja 1 tööaeg [h]
+252,309,Średni tlen dla mocy 30% [%],Average oxygen 30% power [%],Vid. deguonies kiekis prie 30%,Kyslík pri výkone 30% [%],Kyslík při výkonu 30% [%],Oxígeno promedio 30% de poten. [%],Oxigen mediu la putere 30% [%],Keskmine O2 30% võimsusel [%]
+253,310,Średni tlen dla mocy 50% [%],Average oxygen 50% power [%],Vid. deguonies kiekis prie 50%,Kyslík pri výkone 50% [%],Kyslík při výkonu 50% [%],Oxígeno promedio 50% de poten. [%],Oxigen mediu la putere 50% [%],Keskmine O2 50% võimsusel [%]
+254,311,Średni tlen dla mocy 70% [%],Average oxygen 70% power [%],Vid. deguonies kiekis prie 70%,Kyslík pri výkone 70% [%],Kyslík při výkonu 70% [%],Oxígeno promedio 70% de poten. [%],Oxigen mediu la putere 70% [%],Keskmine O2 70% võimsusel [%]
+255,312,Średni tlen dla mocy 90% [%],Average oxygen 90% power [%],Vid. deguonies kiekis prie 90%,Kyslík pri výkone 90% [%],Kyslík při výkonu 90% [%],Oxígeno promedio 90% de poten. [%],Oxigen mediu la putere 90% [%],Keskmine O2 90% võimsusel [%]
+256,313,Liczba czyszczeń wymiennika,Exchanger cleaning number,Šilumokaičio valymo skaitiklis,Počet čistení výmenníka,Počet čištění výmněníku,Número limpiezas del intercambiador,Număr curățare schimbător,Katla puhastuse loendaja
+257,314,Liczba przegrzań kotła,Boiler overheat number,Boiler overheat number,Počet prehriatí kotla,Počet prěhřátí kotle,Boiler overheat number,Număr supraîncălzire centrală,Katla Ülekuumenemise loendaja
+258,315,Liczba zaników zasilania,Power supply failure count,Power supply failure count,Power supply failure count,Power supply failure count,Power supply failure count,Număr scăderi de tensiune,Power supply failure count
+259,316,Liczba prób odblokowania rusztu,Grate unblock try count,Grate unblock try count,Grate unblock try count,Grate unblock try count,Grate unblock try count,Număr încercări deblocare grătar,Grate unblock try count
+260,317,Czas pracy podajnika 2 [h],Feeder 2 work time [h],Padavimo mechanizmo 2 darbo laikas,Čas práce podávača 2 [h],Čas práce podavače 2 [h],Alimentador 2 tiempo de trabajo [h],Timp funcționare snec 2 [h],Transportöör 2 tööaeg [h]
+261,318,Całkowite zużycie paliwa [kg],Total fuel consumption [kg],Bendras sunaudoto kuro kiekis,Celková spotreba paliva [kg],Celková spotřeba paliva [kg],Consumo total de combustible [kg],Consum total combustibil [kg],Kogu kütuse tarbimine [kg]
+262,319,Nazwa,Name,Name,Name,Name,Name,Nume,Name
+263,320,NR: <W>,NO: <W>,NR: <W>,Počet: <W>,Počet: <W>,NO: <W>,NR: <W>,NO: <W>
+264,321,KOD: <W>,CODE: <W>,KODAS: <W>,Kód: <W>,Kód: <W>,CÓDIGO: <W>,COD: <W>,Kood: <W>
+265,322,Powstanie:,Arise at:,Atsirado:,Začiatok:,Začátek:,Elevar a:,Apărut la:,Tekkis:
+266,323,Potwierdz.:,Confirm.:,Patvirtinta:,Potvrdenie:,Potvrzení:,Confirmar.:,Confirmat.:,Kinnitati:
+267,324,AKTYWNY,ACTIVE,AKTYVUS,Aktívny ,Aktivní,ACTIVO,ACTIV,AKTIIVNE
+268,325,NIEAKTYWNY,INACTIVE,NEAKTYVUS,Neaktívny ,Neaktivní,INACTIVO,INACTIV,MITTEAKTIIVNE
+269,326,POTWIERDŹ,CONFIRM,PATVIRTINTI,Potvrď,Potvrď,CONFIRMAR,CONFIRMĂ,KINNITA
+270,327,Brak opisu,No description,Nėra aprašymo,Žiadny popis ,Žádný popis,Sin descripción,Fără descriere,Kirjeldus puudub
+271,328,Przegrzanie procesora,CPU overheating,Procesoriaus perkaitimas,Prehriatie procesora ,Přehřátí procesoru,Sobrecalentamiento de la CPU,Procesor supraîncălzit,CPU ülekuumenemine
+272,329,Brak ognia/opału,No fire/fuel,Nėra kuro/ugnies,Chýba plamen,Chybí plamen / palivo,No hay fuego/combustible,Lipsă flacără / combustibil,Pole tuld/kütust
+273,330,Nieudane rozpalanie,Firing up failed,Nepavyko įsijungti,Nepodarilo sa spusti,Nepodařilo se vystřelit,No se pudo encender,Aprindere eșuată,Süttimine ebaõnnestus
+274,331,Przegrzanie palnika,Burner overheating,Degiklio perkaitimas,Prehriatie horáku ,Přehřátí hořáku,Sobrecalentamiento del quemador,Arzător supraîncălzit,Põleti ülekuumenemine
+275,332,Uszkodzenie czujnika kotla,Damage of the boiler sensor,Pažeistas katilo daviklis,Poškodenie kotlového čidla,Poškození kotlového čidla,Daño del sensor  caldera,Senzor centrală deteriorat,Katla anduri viga
+276,333,Przegrzanie kotła,Boiler overheating,Katilo perkaitimas,Prehriatie kotla ,Přehřátí kotle,Sobrecalentamiento de la caldera,Supraîncălzire centrală,Katel ülekuumenemine
+277,334,Reset procesora,CPU reset,Procesoriaus perkrovimas,Reset procesora ,Reset procesoru,Reinicio de la CPU,Resetare procesor,CPU reset
+278,335,STB,STB,STB,STB,STB,STB,STB,STB
+279,336,Komunikacja z modułem 0,Communication with the module 0,Komunikacija su moduliu 0,Komunikácia s modulom 0,Komunikace s modulem 0,Comunicación con el módulo 0,Comunicare cu modul 0,Kommunikatsioon mooduliga 0
+280,337,Komunikacja z modułem 1,Communication with the module 1,Komunikacija su moduliu 1,Komunikácia s modulom 1,Komunikace s modulem 1,Comunicación con el módulo 1,Comunicare cu modul 1,Kommunikatsioon mooduliga 1
+281,338,Komunikacja z modułem 2,Communication with the module 2,Komunikacija su moduliu 2,Komunikácia s modulom 2,Komunikace s modulem 2,Comunicación con el módulo 2,Comunicare cu modul 2,Kommunikatsioon mooduliga 2
+282,339,Komunikacja z modułem 3,Communication with the module 3,Komunikacija su moduliu 3,Komunikácia s modulom 3,Komunikace s modulem 3,Comunicación con el módulo 3,Comunicare cu modul 3,Kommunikatsioon mooduliga 3
+283,340,Komunikacja z modułem 4,Communication with the module 4,Komunikacija su moduliu 4,Komunikácia s modulom 4,Komunikace s modulem 4,Comunicación con el módulo 4,Comunicare cu modul 4,Kommunikatsioon mooduliga 4
+284,341,Komunikacja z modułem 5,Communication with the module 5,Komunikacija su moduliu 5,Komunikácia s modulom 5,Komunikace s modulem 5,Comunicación con el módulo 5,Comunicare cu modul 5,Kommunikatsioon mooduliga 5
+285,342,Komunikacja z modułem 6,Communication with the module 6,Komunikacija su moduliu 6,Komunikácia s modulom 6,Komunikace s modulem 6,Comunicación con el módulo 6,Comunicare cu modul 6,Kommunikatsioon mooduliga 6
+286,343,Komunikacja z modułem 7,Communication with the module 7,Komunikacija su moduliu 7,Komunikácia s modulom 7,Komunikace s modulem 7,Comunicación con el módulo 7,Comunicare cu modul 7,Kommunikatsioon mooduliga 7
+287,344,Zwarcie czujnika CWU,Short HW sensor,Boilerio daviklio trumas jungimas,Poškodenie čidla TÚV,Poškození čidla TÚV,Fallo Sensor  A.C.S.,Scurtcircuit senzor ACM,S.Tarbevee anduri lühis
+288,345,Przerwa czujnika CWU,HW Sensor break,Pažeistas boilerio daviklis,Rozpojenie čidla TÚV ,Rozpojení čidla TÚV,Sonda A.C.S. rota,Lipsă semnal senzor ACM,S.Tarbevee andur katki
+289,346,Zwarcie czujnika pokojowego,Short room sensor,Kambario daviklio trumpas jungimas,Poškodenie termostatu ,Poškození termostatu,Fallo Sensor Habitación,Scurtcircuit senzor cameră,Ruumi anduri lühis
+290,347,Przerwa czujnika pokojowego,Room sensor break,Pažeistas kambario daviklis,Rozpojenie termostatu ,Rozpojení termostatu,Sonda habitación rota,Lipsă semnal senzor cameră,Ruumi andur katki
+291,348,Błąd wygaszania,Burning off error,Užgesinimo klaida,Chyba vyhasínania ,Chyba vyhasínání,Error apagado llama,Eroare la stingere,Tühjakspõlemine
+292,349,Komunikacja z modułem Lambda,Communication with the Lambda module,Komunikacija su moduliu Lambda,Komunikácia s modulom Lambda ,Komunikace s modulem Lambda,Comunicación con el módulo Lambda,Comunicare cu modul Lambda,Kommunikatsioon Lambda mooduliga
+293,350,Przegrzanie solarów,Solar collectors overheating,Saulės kolektorių perkaitimas,Prehriatie solárov ,Přehřátí soláru,Sobrecalentamiento de colectores solares,Supraîncălzire panouri solare,Päikseküte ülekuumenemine
+294,351,Zamarzanie solarów,Solar collectors freezing,Saulės kolektorių užšalimas,Zamŕzanie solárov ,Zamrzaní soláru,Colectores solares congelados,Înghețare panouri solare,Päikseküte külmumine
+295,352,Błąd czyszczenia rusztu,Grate cleaning error,Lėkštelės išsivalymo klaida,Chyba čistenie horáku ,Chyba čištění hořáku,Error de limpieza de la rejilla,Eroare curățare grătar,Resti puhastuse viga
+296,353,Błąd czyszczenia,Cleaning error,Išsivalymo klaida,Chyba čistenia,Chyba čištění  ,Error de limpieza,Eroare la curățare,Puhastuse viga
+297,354,Otwarte drzwi kotła,Boiler door open,Boiler door open,Boiler door open,Otevřené dvířka kotle,Boiler door open,Ușă centrală deschisă,Katla uks lahti
+298,355,Komunikacja z modułem BIG,Communication with the module BIG,Komunikacija su moduliu BIG,Komunikácia s modulom BIG ,Komunikace s modulem BIG,Comunicación con el módulo BIG,Comunicare cu modul BIG,Kommunikatsioon mooduliga BIG
+299,356,Uszkodzenie czujnika pokojowego 1,Room sensor 1 damage,Pažeistas kambario daviklis 1,Poškodenie temostatu 1,Poškození termostatu 1,Daños sensor habitación 1,Senzor cameră 1 deteriorat,Ruumiandur 1 viga
+300,357,Uszkodzenie czujnika pokojowego 2,Room sensor 2 damage,Pažeistas kambario daviklis 2,Poškodenie temostatu 2,Poškození termostatu 2,Daños sensor habitación 2,Senzor cameră 2 deteriorat,Ruumiandur 2 viga
+301,358,Uszkodzenie czujnika pokojowego 3,Room sensor 3 damage,Pažeistas kambario daviklis 3,Poškodenie temostatu 3,Poškození termostatu 3,Daños sensor habitación 3,Senzor cameră 3 deteriorat,Ruumiandur 3 viga
+302,359,Uszkodzenie czujnika pokojowego 4,Room sensor 4 damage,Pažeistas kambario daviklis 4,Poškodenie temostatu 4,Poškození termostatu 4,Daños sensor habitación 4,Senzor cameră 4 deteriorat,Ruumiandur 4 viga
+303,360,Uszkodzenie czujnika temperatury CO1,CH1 temp. sensor damage,Pažeistas paduodamos temp. daviklis 1,Poškodenie čidla ÚK1,Poškození čidla ÚT1,Daños sensor Circ. Calef. 1,Senzor temperatură IC 1 deteriorat,K.Sõlme 1 anduri viga
+304,361,Uszkodzenie czujnika temperatury CO2,CH2 temp. sensor damage,Pažeistas paduodamos temp. daviklis 2,Poškodenie čidla ÚK2,Poškození čidla ÚT2,Daños sensor Circ. Calef. 2,Senzor temperatură IC 2 deteriorat,K.Sõlme 2 anduri viga
+305,362,Uszkodzenie czujnika temperatury CO3,CH3 temp. sensor damage,Pažeistas paduodamos temp. daviklis 3,Poškodenie čidla ÚK3,Poškození čidla ÚT3,Daños sensor Circ. Calef. 3,Senzor temperatură IC 3 deteriorat,K.Sõlme 3 anduri viga
+306,363,Uszkodzenie czujnika temperatury CO4,CH4 temp. sensor damage,Pažeistas paduodamos temp. daviklis 4,Poškodenie čidla ÚK4,Poškození čidla ÚT4,Daños sensor Circ. Calef. 4,Senzor temperatură IC 4 deteriorat,K.Sõlme 4 anduri viga
+307,364,Przekroczenie temp. maksymalnej CO1,CH1 max temp. exceeded,CH1 max temp. exceeded,CH1 max temp. exceeded,Poškození čidla ÚT1,CH1 max temp. exceeded,Depășire temperatură IC1,CH1 max temp. exceeded
+308,365,Przekroczenie temp. maksymalnej CO2,CH2 max temp. exceeded,CH2 max temp. exceeded,CH2 max temp. exceeded,CH2 max temp. exceeded,CH2 max temp. exceeded,CH2 max temp. exceeded,CH2 max temp. exceeded
+309,366,Przekroczenie temp. maksymalnej CO3,CH3 max temp. exceeded,CH3 max temp. exceeded,CH3 max temp. exceeded,CH3 max temp. exceeded,CH3 max temp. exceeded,CH3 max temp. exceeded,CH3 max temp. exceeded
+310,367,Przekroczenie temp. maksymalnej CO4,CH4 max temp. exceeded,CH4 max temp. exceeded,CH4 max temp. exceeded,CH4 max temp. exceeded,CH4 max temp. exceeded,CH4 max temp. exceeded,CH4 max temp. exceeded
+311,368,Uszkodzenie czujnika palnika/podajnika,Burner/feeder sensor damage,Pažeistas degiklio daviklis,Poškodenie čidla podávača horáku,Poškození čidla podavače hořáku,Daño del quemador/sensor del alimentador,Senzor arzător/snec deteriorat,Põleti/söötja anduri viga
+312,369,Przegrzanie palnika/podajnika,Burner/feeder overheated,Degiklio perkaitimas,Prehriatie  podávača horáku,Přehřátí podavače hořáku,Quemador/alimentador sobrecalentado,Arzător/snec supraîncălzit,Põleti/söötja ülekuumenenud
+313,370,Komunikacja z modułem Lambda,Communication with the module Lambda,Komunikacija su moduliu Lambda,Komunikace s modulem Lambda,Komunikace s modulem Lambda,Comunicación con el módulo Lambda,Comunicare cu modul Lambda,Kommunikatsioon Lambda mooduliga
+314,371,Magazyn paliwa brak paliwa/czujnik max,Fuel storage no fuel/sensor max,Fuel storage no fuel/sensor max,Fuel storage no fuel/sensor max,Sklad paliva prázdný / senzor max,Fuel storage no fuel/sensor max,Rezervor lipsă combustibil/senzor max,Kütuse mahuti MIN MAX viga
+315,372,Komunikacja z modułem Mini 7,Communication with the module Mini 7,Komunikacija su moduliu Mini 7,Komunikácia s modulom Mini 7,Komunikace s modulem Mini 7,Komunikace s modulem Mini 7,Comunicare cu modul Mini 7,Kommunikatsioon mooduliga Mini 7
+316,373,Komunikacja z modułem Mini 4,Communication with the module Mini 4,Komunikacija su moduliu Mini 4,Komunikácia s modulom Mini 4,Komunikace s modulem Mini 4,Komunikace s modulem Mini 4,Comunicare cu modul Mini 4,Kommunikatsioon mooduliga Mini 4
+317,374,Komunikacja z modułem Mini 3,Communication with the module Mini 3,Komunikacija su moduliu Mini 3,Komunikácia s modulom Mini 3,Komunikace s modulem Mini 3,Komunikace s modulem Mini 3,Comunicare cu modul Mini 3,Kommunikatsioon mooduliga Mini 3
+318,375,Komunikacja z modułem Mini 2,Communication with the module Mini 2,Komunikacija su moduliu Mini 2,Komunikácia s modulom Mini 2,Komunikace s modulem Mini 2,Komunikace s modulem Mini 2,Comunicare cu modul Mini 2,Kommunikatsioon mooduliga Mini 2
+319,376,Komunikacja z modułem Mini 0,Communication with the module Mini 0,Komunikacija su moduliu Mini 7,Komunikácia s modulom Mini 0,Komunikace s modulem Mini 0,Komunikace s modulem Mini 0,Comunicare cu modul Mini 0,Kommunikatsioon mooduliga Mini 0
+320,377,Wyczyść wymiennik,Clean exchanger,Clean exchanger,Clean exchanger,Vyčistit výměník,Clean exchanger,Curățați schimbătorul de căldură,Puhasta katel
+321,378,Wyczyść palnik,Burner need cleaning,Burner need cleaning,Burner need cleaning,Vyčistit hořák,Burner need cleaning,Curățați arzătorul,Puhasta põleti
+322,379,Zalecany coroczny przegląd kotła,Recommended annual boiler service,Recommended annual boiler service,Recommended annual boiler service,Recommended annual boiler service,Recommended annual boiler service,Service anual recomandat la centrală,Recommended annual boiler service
+323,380,Przepływ powietrza za niski,Airflow to low,Airflow to low,Airflow to low,Airflow to low,Airflow to low,Flux aer prea mic,Airflow to low
+324,381,Przepływomierz powietrza 1 nieskalibrowany,Airflow sensor 1 not calibrated,Airflow sensor 1 not calibrated,Airflow sensor 1 not calibrated,Airflow sensor 1 not calibrated,Airflow sensor 1 not calibrated,Debitmetrul aer 1 nu este calibrat,Airflow sensor 1 not calibrated
+325,382,Komunikacja z przepływomierzem 1,Communication with airflow meter 1,Komunikacija su airflow meter 1,Komunikácia s airflow meter 1,Komunikace s airflow meter 1,Komunikace s airflow meter 1,Comunicare cu debitmetru aer 1,Kommunikatsioon airflow meter 1
+326,383,Przepływomierz powietrza uszkodzony,Airflow sensor damage,Airflow sensor damage,Airflow sensor damage,Airflow sensor damage,Airflow sensor damage,Debitmetru aer deteriorat,Airflow sensor damage
+327,384,Słaba bateria w czujniku pokojowym 1,Battery low in room sensor 1,Battery low in room sensor 1,Battery low in room sensor 1,Battery low in room sensor 1,Battery low in room sensor 1,Baterie descărcată senzor cameră 1,Battery low in room sensor 1
+328,385,Słaba bateria w czujniku pokojowym 2,Battery low in room sensor 2,Battery low in room sensor 2,Battery low in room sensor 2,Battery low in room sensor 2,Battery low in room sensor 2,Baterie descărcată senzor cameră 2,Battery low in room sensor 2
+329,386,Słaba bateria w czujniku pokojowym 3,Battery low in room sensor 3,Battery low in room sensor 3,Battery low in room sensor 3,Battery low in room sensor 3,Battery low in room sensor 3,Baterie descărcată senzor cameră 3,Battery low in room sensor 3
+330,387,Słaba bateria w czujniku pokojowym 4,Battery low in room sensor 4,Battery low in room sensor 4,Battery low in room sensor 4,Battery low in room sensor 4,Battery low in room sensor 4,Baterie descărcată senzor cameră 4,Battery low in room sensor 4
+331,388,Słaba bateria w czujniku zewnętrznym,Battery low in outside sensor,Battery low in outside sensor,Battery low in outside sensor,Battery low in outside sensor,Battery low in outside sensor,Baterie descărcată senzor exterior,Battery low in outside sensor
+332,389,Ciśnienie kotła,Boiler pressure,Boiler pressure,Boiler pressure,Boiler pressure,Boiler pressure,Presiune centrală termică,Boiler pressure
+333,390,Ustaw czas,Set time,Nustatyti laiką,Nastavenie času ,Nastavení času,Poner en hora,Setare timp,Seadista aeg
+334,391,Ustaw datę,Set date,Nustatyti datą,Nastavenie dátumu ,Nastavení datumu,Establece la fecha,Setare dată,Seadista kuupäev
+335,392,Styczeń\n\nLuty\n\nMarzec\n\nKwiecień\n\nMaj\n\nCzerwiec\n\nLipiec\n\nSierpień\n\nWrzesień\n\nPaździernik\n\nListopad\n\nGrudzień,January\n\nFebruary\n\nMarch\n\nApril\n\nMay\n\nJune\n\nJuly\n\nAugust\n\nSeptember\n\nOctober\n\nNovember\n\nDecember,Sausis\n\nVasaris\n\nKovas\n\nBalandis\n\nGegužė\n\nBirželis\n\nLiepa\n\nRugpjūtis\n\nRugsėjis\n\nSpalis\n\nLapkritis\n\nGruodis,Január\n\nFebruár\n\nMarec\n\nApríl\n\nMáj\n\nJún\n\nJúl\n\nAugust\n\nSeptember\n\nOktóber\n\nNovember\n\nDecember,Leden\n\nÚnor\n\nBřezen\n\nDuben\n\nKvěten\n\nČerven\n\nČervenec\n\nSrpen\n\nZáří\n\nŘíjen\n\nListopad\n\nProsinec,Enero\n\nFebrero\n\nMarzo\n\nAbril\n\nMayo\n\nJunio\n\nJulio\n\nAgosto\n\nSeptiembre\n\nOctubre\n\nNoviembre\n\nDiciembre,Ianuarie\n\nFebruarie\n\nMartie\n\nAprilie\n\nMai\n\nIunie\n\nIulie\n\nAugust\n\nSeptembrie\n\nOctobrie\n\nNoiembrie\n\nDecembrie,Jaanuar\n\nVeebruar\n\nMärts\n\nAprill\n\nMai\n\nJuuni\n\nJuuli\n\nAugust\n\nSeptember\n\nOktoober\n\nNovember\n\nDetsember
+336,393,jasność=<W>,brightness=<W>,ryškumas=<W>,Jas=<W>,Jas=<W>,Brillo=<W>,luminozitate=<W>,Leegi heledus=<W>
+337,394,obroty=<W>,RPM=<W>,apsukos=<W>,Otáčky=<W>,Otáčky=<W>,RPM=<W>,RPM=<W>,Põleti vent RPM=<W>
+338,395,T. palnika=<W>,burner temperature=<W>,temperatūra=<W>,Teplota=<W>,Teplota=<W>,Temperature=<W>,temperatură=<W>,Põleti temp.=<W>
+339,396,Ciśnienie=<W>,Pressure=<W>,spaudimas=<W>,Pressure=<W>,Tlak=<W>,Presión=<W>,Presiune=<W>,Katla rõhk=<W>
+340,397,Energia łącznie [kWh]=<W>,Total energy [kWh]=<W>,Total energy [kWh]=<W>,Total energy [kWh]=<W>,Vyrobená energie [kWh]=<W>,Total energy [kWh]=<W>,Total energy [kWh]=<W>,Tood. enenergia [kWh]=<W>
+341,398,T. powrotu=<W>,T. return=<W>,grįžtama temp.=<W>,Teplota spiatočky=<W>,Teplota zpátečky=<W>,T. returno=<W>,T. retur=<W>,Katla temp.=<W>
+342,399,tlen[%]=<W>,oxygen=<W>,deguonis=<W>,Kyslík=<W>,Kyslík=<W>,Oxígeno=<W>,oxigen=<W>,O2=<W>
+343,400,moc[kW]=<W>,power[kW]=<W>,galia [kW]=<W>,Výkon [kW]=<W>,Příkon kotle [kW]=<W>,Potencia [kW]=<W>,putere[kW]=<W>,Võimsus [kW]=<W>
+344,401,moc[%]=<W>,power[%]=<W>,galia [%]=<W>,Výkon [%]=<W>,Příkon kotle [%]=<W>,Potencia [%]=<W>,putere[%]=<W>,Võimsus [%]=<W>
+345,402,spalanie[kg/h]=<W>,fuel[kg/h]=<W>,fuel[kg/h]=<W>,fuel[kg/h]=<W>,Spotřeba [kg/h]=<W>,fuel[kg/h]=<W>,fuel[kg/h]=<W>,Kütuse tarb.[kg/h]=<W>
+346,403,AIR[m/s]=<W>,AIR[m/s]=<W>,AIR[m/s]=<W>,AIR[m/s]=<W>,AIR[m/s]=<W>,AIR[m/s]=<W>,AIR[m/s]=<W>,AIR[m/s]=<W>
+347,404,ETA[%]=<W>,ETA[%]=<W>,ETA[%]=<W>,ETA[%]=<W>,ETA[%]=<W>,ETA[%]=<W>,ETA[%]=<W>,ETA[%]=<W>
+348,405,Stopień mocy <W>,Power level <W>,Power level <W>,Power level <W>,Výkonová hranice <W>,Power level <W>,Power level <W>,Võimsuse aste <W>
+349,406,CLOSE,CLOSE,UŽDARYTI,Zatvor,Zavři,CERRADO,ÎNCHIS,Kinni
+350,407,OPEN,OPEN,ATIDARYTI,Otvor,Otevři,ABIERTO,DESCHIS,Lahti
+351,408,Uszkodzenie czujnika ciepłej wody,Hot water sensor damage,Pažeistas karšto vandens šildytuvo daviklis,Poškodenie čidla TÚV,Poškození čidla TÚV,Sonda A.C.S. dañada,Senzor apă caldă menajeră deteriorat,S.Tarbevee anduri viga
+352,409,Uszkodzenie czujnika buffora góra,Buffer top sensor damage,Pažeistas akumuliacinės talpos virš. daviklis,Poškodenie horného čidla Akumulačnej nádrže ,Poškození horního čidla Aku nádrže,Sonda Sup. Inecia dañada,Senzor superior puffer deteriorat,Akupaagi ülemise anduri viga
+353,410,Uszkodzenie czujnika buffora dół,Buffer bottom sensor damage,Pažeistas akumuliacinės talpos apat. daviklis,Poškodenie dolného čidla Akumulačnej nádrže ,Poškození dolního čidla Aku nádrže,Sonda Inf. Inecia dañada,Senzor inferior puffer deteriorat,Akupaagi alumise anduri viga
+354,411,Uszkodzenie czujnika kolektora solarnego,Solar sensor damage,Pažeistas saulės kolektorių daviklis,Poškodenie čidla solárneho panelu,Poškození čidla solárního panelu,Sonda Solar dañada,Senzor solar deteriorat,Päiksekütte T1 anduri viga
+355,412,Uszkodzenie czujnika zbiornika solarnego,Solar tank sensor damage,Pažeistas saulės kolektorių talpos daviklis,Poškodenie čidla solárneho zásobníka,Poškození čidla solárního zásobníku ,Sonda Deposito Solar dañada,Senzor rezervor solar deteriorat,Päiksekütte T2 anduri viga
+356,413,Uszkodzenie czujnika powrotu solarów,Return to solar sensor damage,Pažeistas saulės kolektorių grįžtamas daviklis,Poškodenie čidla spiatočky solárov ,Poškození čidla zpátečky solarů,Sonda retorno Dep. Solar dañada,Senzor retur solar deteriorat,Päiksekütte T3 anduri viga
+357,414,Uszkodzenie czujnika solar T4,Solar T4 sensor damage,Pažeistas solar T4 daviklis,Poškodenie čidla soláru T4,Poškození čidla solaru T4,Sonda Solar  T4 dañada,Senzor solar T4 deteriorat,Päiksekütte T4 anduri viga
+358,415,Rezerwa paliwa,Fuel reserve,Kuro rezervas,Rezerva paliva ,Rezerva paliva ,Reserva de combustible,Rezervă combustibil,Kütuse reserv
+359,416,Brak paliwa,Fuel tank empty,Nėra kuro,Chýba palivo,Chybí palivo ,Depósito de combustible vacío,Rezervor gol,Kütusemahuti tühi
+360,417,STB,STB,STB,STB,STB,STB,STB,STB
+361,418,Przerwanie obwodu bezpieczeństwa palnika,Burner safety circuit open,Saugumo grandies nutrukimas,Otvorenie bezpečnostného okruhu horáka,Otevření bezpečnostního okruhu hořáku,Circuito seguridad del quemador abierto,Circuit de siguranță arzător deschis,Põleti turvalüliti häire
+362,419,Uszkodzenie czujnika powrotu do kotla,Return to boiler sensor damage,Pažeistas grįžtamos temp. daviklis,Poškodenie čidla spiatočky  ,Poškození čidla zpátečky ,Sonda circ. Retorno caldera dañada,Senzor retur centrală deteriorat,Tagasivoolu temp anduri häire
+363,420,Poziom tlenu bardzo niski,Oxygen level very low,Oxygen level very low,Oxygen level very low,Velmi nízký kyslík,Oxygen level very low,Nivel oxigen prea scăzut,O2 tase väga madal
+364,421,ładująca,loading pump,Pakrovimas,Obehová,Oběhové čerpadlo,Bomba de carga,pompă încărcare,Katla rets. Pump
+365,422,ochrony powrotu,return guard,Grįžtamo apsauga,Skratové čerpadlo ,Zkratové čerpadlo ,Guardia de regreso,protecție retur,Katla tagasivoolu t. järgi pump
+366,423,buforowa,buffer,buffer,buffer,buffer,buffer,puffer,buffer
+367,424,pellet,pellets,Granulės,Pelety ,Pelety ,Pellets,peleți,Pellet
+368,425,drewno,wood,Malkos,Drevo ,Dřevo ,Madera,lemne,Halupuu
+369,426,drewno->pellet,wood->pellets,Malkos -> granulės,Drevo->pelety ,Dřevo->pelety ,Madera-> pellets,lemne->peleți,Halupuu->Pellet
+370,427,Moc dmuchawy rozżarzanie [%],Blower in incandescing,Ventiliatoriaus galia pakaitinimo metu,Výkon ventilátora rozhorenie [%],Výkon ventilátoru rozhoření [%],Soplador en incandescencia,Ventilator la incandescență [%],Vent. stabiliseerimine
+371,428,Moc dmuchawy podtrzymanie [%],Blower in hold/pause,Ventiliatoriaus galia palaikymo metu,Výkon ventilátora útlm [%],Výkon ventilátoru útlum [%],Soplador en espera/pausa,Ventilator la stingere [%],Vent.  ootel/paus
+372,429,Pompa kotłowa,Boiler pump,Katilo siublys,Kotlové čerpadlo ,Kotlové čerpadlo,Bomba de caldera,Pompă centrală,Katla pump
+373,430,Dmuchawa z HALL,Blower with HALL,Ventiliatorius su HALL,Ventilátor s HALL,Hallova sonda ventilátoru,Soplador con HALL,Ventilator cu HALL,Vent RPM anduriga
+374,431,spaliny[°C]=<W>,EGT[°C]=<W>,išmetamųjų dūmų temp.=<W>,T. spalín=<W>,Teplota spalin [°C]=<W>,EGT=<W>,Evacuare[°C]=<W>,Põleti EGT [°C]=<W>
+375,432,Czas ruchu rusztu [s],Grate move in modulation [s],Lėkštelės žingsnis moduliacijos metu,Pohyb roštu v modulácii [s],Pohyb roštu v modulaci [s],Parrilla mover en la modulación [s],Mișcare grătar timp [s],Resti liikumine moduleerimisel [s]
+376,433,Ruch rusztu [kg],Grate interval in modulation [kg],Grate interval in modulation [kg],Grate interval in modulation [kg],Interval pohybu roštu [kg],Grate interval in modulation [kg],Mișcare grătar greutate [kg],Resti intervall moduleerimisel [kg]
+377,434,Czas rozgrzewania zapalarki [s],Igniter preheat time [s],Igniter preheat time [s],Igniter preheat time [s],Předehřev žhaviče [s],Igniter preheat time [s],Timp încălzire aprinzător [s],Süütaja eelkütte aeg [s]
+378,435,Uszkodzenie dmuchawy palnika,Burner blower damage,Pažeistas ventiliatorius,Poškodenie ventilátora horáka,Poškození ventilátoru hořáku,Daño soplador del encendido,Ventilator arzător deteriorat,Ventilaator vigane
+379,436,Uszkodzenie czujnika temp. zewnętrznej,Outside temp. sensor damage,Outside temp. sensor damage,Outside temp. sensor damage,Poškození venkovního čidla,Outside temp. sensor damage,Senzor temp. exterioară deteriorat,Outside temp. sensor damage
+380,437,Kaskada master,Cascade master,Kaskada - pagrindinias,Kaskáda master,Kaskáda master,Maestro en cascada,Cascadă master,Kaskaad master
+381,438,Czujnik ciśnienia,Pressure sensor,Spaudimo daviklis,Pressure sensor,Senzor tlaku,Sensor de presión,Senzor presiune,Rõhu andur
+382,439,Wybieg pompy [min],Pump overrun time [min],Siurblio inercija,Dobeh čerpadla [min],Doběh čerpadla kotle[min],Tiempo recirculación bomba [min],Timp depășire pompă [min],Pumpa ületöötamise aega [min]
+383,440,Moc nominalna [kW],Nominal power [kW],Nominali galia,Výkon nominálny [kw],Výkon hořáku [kW],Výkon nominálny [kw],Putere nominală [kW],Nominaal võimsus [kW]
+384,441,Pod. palnika [% pod. zasobnika],Burner feed. [% storage feed.],Degiklio pad.,Podávač horáka [% podávač zásobníka],Podavač hořáku [% pod.zásobníku],Podavač hořáku [% podavač zásobníku],Snec arzător. [% snec rezervor.],Söötja [% transportöörist]
+385,442,Rozpalanie dmuchawa (drewno),Fireup blower on wood,Vent. uždegimo metu (malkos),Ventilátor rozhorenie (drevo),Ventilátor zapálení (drěvo),Ventilátor rozhoření (drěvo),Ventilator la aprindere (lemne),Süütab halupuuga
+386,443,Rozżarzanie dmuchawa (drewno),Incandescing blower on wood,Vent. pakaitinimo metu (malkos),Korekcia ventiátora (drevo),Ventilátor rozhoření (drěvo),Korekce ventiátoru (drěvo),Ventilator la incandescență (lemne),Stabiliseerib halupuuga
+387,444,Modulacja dmuchawa (drewno),Blower on wood,Vent. moduliacijos metu (malkos),Modulácia ventilátora (drevo),Modulace ventilátoru (dřevo),Soplador sobre madera,Ventilator la modulație (lemne),Vent halupuuga
+388,445,Podtrzymanie dmuchawa (drewno),Blower in hold/pause,Vent. palaikymo metu (malkos),Útlm ventilátora (drevo),Útlum ventilátoru (drěvo),Útlum ventilátoru (drěvo),Ventilator la menținere (lemne),Vent.  ootel/paus
+389,446,Moc dmuchawy wygaszanie [%],Blower in burning off [%],Blower in burning off [%],Výkon ventilátora vyhasínanie [%],Výkon ventilátoru vyhasínaní [%],Výkon ventilátoru vyhasínaní [%],Ventilator la stingere [%],Tühjaks põlenud [%]
+390,447,Minimalne obroty dmuchawy [*100],Minimal blower RPM [*100],Minimal blower RPM [*100],Minimal blower RPM [*100],Min.otáčky ventilátoru RPM [*100],Minimal blower RPM [*100],Rotație min ventilator [*100],Min vent RPM [*100]
+391,448,Interwał czyszcz. wymiennika [min],Exchanger cleaning interval [min],Exchanger cleaning interval [min],Exchanger cleaning interval [min],Interval čištění výměníku [min],Exchanger cleaning interval [min],Interval curățare schimbător [min],Katla puhastuse intervall [min]
+392,449,Master stopień mocy,Master power level,Master power level,Master power level,Master úroveň výkonu,Master power level,Nivel putere master,Pea võimsus
+393,450,Slave 1 stopień mocy,Slave 1 power level,Slave 1 power level,Slave 1 power level,Slave 1 úroveň výkonu,Slave 1 power level,Nivel putere Slave 1,Lisa võimsus 1
+394,451,Slave 2 stopień mocy,Slave 2 power level,Slave 2 power level,Slave 2 power level,Slave 2 úroveň výkonu,Slave 2 power level,Nivel putere Slave 2,Lisa võimsus 2
+395,452,Slave 3 stopień mocy,Slave 3 power level,Slave 3 power level,Slave 3 power level,Slave 3 úroveň výkonu,Slave 3 power level,Nivel putere Slave 3,Lisa võimsus 3
+396,453,Próg zwiększania stopnia mocy [%],Threshold for power increase [%],Threshold for power increase [%],Threshold for power increase [%],Hranice pro zvýšení výkonu [%],Threshold for power increase [%],Prag creștere treaptă de putere [%],Min energia [%]
+397,454,Próg zmniejszania stopnia mocy [%],Threshold for power decrease [%],Threshold for power decrease [%],Threshold for power decrease [%],Hranice pro snížení výkonu [%],Threshold for power decrease [%],Prag scădere treaptă de putere [%],Max energia [%]
+398,455,Opóźn. zwiększ. stopnia mocy [min],Time to increase power level [min],Time to increase power level [min],Time to increase power level [min],Čas pro zvýšení výkonu [min],Time to increase power level [min],Întârziere creștere treaptă de putere  [min],Aeg võimsuse tõstmiseks [min]
+399,456,Opóźn. zmniejsz. stopnia mocy [min],Time to decrease power level [min],Time to decrease power level [min],Time to decrease power level [min],Čas pro snížení výkonu [min],Time to decrease power level [min],Întârziere scădere treaptă de putere  [min],Aeg võimsuse alandamiseks [min]
+400,457,Interwał przedmuchu modulacja [min],Interval cleaning modulation(blower) [min],Interval full blower modulation [min],Interval full blower modulation [min],Interval modulace čištění [min],Interval full blower modulation [min],Timp pauză insuflare în modulație [min],Vent puhastuse intervall moduleer.[min]
+401,458,Czas przedmuchu modulacja [min],Time cleaning modulation(blower) [min],Time full blower modulation [min],Time full blower modulation [min],Čas modulace čištění [min],Time full blower modulation [min],Timp insuflare în modulație [min],Vent puhastuse aeg moduleerimisel [min]
+402,459,Uszkodzenie czujnika temperatury spalin,EGT sensor damage,Pažeistas išmetamųjų dūmų temp. daviklis,Poškodenie čidla spalín ,Poškození čidla spalin ,Poškození čidla spalin ,Senzor gaze evacuare deteriorat,EGT anduri viga
+403,460,Liczba kotłów slave,Slave boilers number,Slave boilers number,Slave boilers number,Počet kotlů Slave,Slave boilers number,Număr centrale Slave,Slave boilers number
+404,461,Czas pauzy [min],Pause time [min],Pause time [min],Pause time [min],Čas udržování [min],Pause time [min],Timp pauză [min],Pause time [min]
+405,462,Moc w pauzie [%],Pause power [%],Pause power [%],Pause power [%],Výkon udržování [%],Pause power [%],Putere în pauză [%],Pause power [%]
+406,463,Dmuchawa w pauzie [%],Pause blower [%],Pause blower [%],Pause blower [%],Ventilátor v udržování [%],Pause blower [%],Ventilator în pauză [%],Pause blower [%]
+407,464,Uśrednianie temp. zewnętrznej [h],Outside temperature averaging [h],Outside temperature averaging [h],Outside temperature averaging [h],Průměr venkovní teploty [h],Outside temperature averaging [h],Temperatură exterioară medie [h],Outside temperature averaging [h]
+408,465,Wybieg silnika transportującego (1) [s],Transport. motor (1) overrun time [s],Transport. motor (1) overrun time [s],Transport. motor (1) overrun time [s],Transport. motor (1) overrun time [s],Transport. motor (1) overrun time [s],Timp depășire  alimentator (1)  [s],Transport. motor (1) overrun time [s]
+409,466,Kopiuj nastawy z innego sterownika,Copy settings from other controller,Copy settings from other controller,Copy settings from other controller,Copy settings from other controller,Copy settings from other controller,Copiați setările de pe alt controler,Copy settings from other controller
+410,467,Praca podajnika palnika [s],Burner feeder work time [s],Burner feeder work time [s],Burner feeder work time [s],Burner feeder work time [s],Burner feeder work time [s],Timp funcționare alimentator arzător [s],Burner feeder work time [s]
+411,468,Ruch rusztu interwał [min],Grate interval in modulation [min],Grate interval in modulation [min],Grate interval in modulation [min],Interval pohybu roštu [min],Grate interval in modulation [min],Interval grătar în modulație [min],Resti intervall moduleerimisel [min]
+412,469,Temperatura przełączenia na lato [C],Summer threshold temperature [C],Summer threshold temperature [C],Summer threshold temperature [C],Summer threshold temperature [C],Summer threshold temperature [C],Temperatură comutare pe vară [C],Summer threshold temperature [C]
+413,470,Automatyczny tryb lato,Automatic summer recognition,Automatic summer recognition,Automatic summer recognition,Automatic summer recognition,Automatic summer recognition,Trecere automată în mod vară,Automatic summer recognition
+414,471,Przepływomierz powietrza,Airflow meter,Airflow meter,Airflow meter,Airflow meter,Airflow meter,Debitmetru aer,Airflow meter
+415,472,Ciśnienie min. [bar],Minimal pressure [bar],Minimal pressure [bar],Minimal pressure [bar],Minimal pressure [bar],Minimal pressure [bar],Presiune minimă [bar],Minimal pressure [bar]
+416,473,Ciśnienie max. [bar],Maximal pressure [bar],Maximal pressure [bar],Maximal pressure [bar],Maximal pressure [bar],Maximal pressure [bar],Presiune maximă [bar],Maximal pressure [bar]
+417,474,Auto synchronizacja zegara,Auto clock synchronization,Auto clock synchronization,Auto clock synchronization,Auto clock synchronization,Auto clock synchronization,Sincronizare automată oră,Auto clock synchronization
+418,475,Zmiany zdalne,Remote changes,Remote changes,Remote changes,Remote changes,Remote changes,Modificări de la distanță,Remote changes
+419,476,PP - dawka wstępna [s],PP - fuel predose [s],PP - fuel predose [s],PP - fuel predose [s],PP - fuel predose [s],PP - fuel predose [s],Prealimentare combustibil din rezervor [s],PP - fuel predose [s]
+420,477,Kalibracja czujnika zew. [°C],Outside sensor calib. [°C],Outside sensor calib. [°C],Outside sensor calib. [°C],Outside sensor calib. [°C],Outside sensor calib. [°C],Calibrare senzor exterior [°C],Outside sensor calib. [°C]
+421,478,Szybkość modulacji mocy,Power modulation rate,Power modulation rate,Power modulation rate,Power modulation rate,Power modulation rate,Viteza de modulare a puterii,Power modulation rate
+422,479,Moduł rozrzerzający obwody CO,CH expansion module type,CH expansion module type,CH expansion module type,CH expansion module type,CH expansion module type,Modul extindere circuit IC,CH expansion module type
+423,480,czujnik rezerwy paliwa,fuel reserve sensor,kuro lygio minimumo daviklis,snímanie rezervy paliva ,senzor rezervy paliva ,sensor reserva de combustible,senzor rezervă combustibil,kütuse mahuti andur
+424,481,czujnik temp. spalin,exhaust gas temp. sensor,exhaust gas temp. sensor,exhaust gas temp. sensor,exhaust gas temp. sensor,exhaust gas temp. sensor,senzor gaze evacuare,exhaust gas temp. sensor
+425,482,WiFi,WiFi,WiFi,WiFi,WiFi,WiFi,WiFi,WiFi
+426,483,A,A,A,A,A,A,A,A
+427,484,OFF,OFF,OFF,OFF,OFF,OFF,OFF,OFF
+428,485,ON,ON,ON,ON,ON,ON,ON,ON
+429,486,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+430,487,1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\n17\n\n18\n\n19\n\n20\n\n21\n\n22\n\n23\n\n24\n\n25\n\n26\n\n27\n\n28,1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\n17\n\n18\n\n19\n\n20\n\n21\n\n22\n\n23\n\n24\n\n25\n\n26\n\n27\n\n28,1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\n17\n\n18\n\n19\n\n20\n\n21\n\n22\n\n23\n\n24\n\n25\n\n26\n\n27\n\n28,1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\n17\n\n18\n\n19\n\n20\n\n21\n\n22\n\n23\n\n24\n\n25\n\n26\n\n27\n\n28,1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\n17\n\n18\n\n19\n\n20\n\n21\n\n22\n\n23\n\n24\n\n25\n\n26\n\n27\n\n28,1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\n17\n\n18\n\n19\n\n20\n\n21\n\n22\n\n23\n\n24\n\n25\n\n26\n\n27\n\n28,1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\n17\n\n18\n\n19\n\n20\n\n21\n\n22\n\n23\n\n24\n\n25\n\n26\n\n27\n\n28,1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\n17\n\n18\n\n19\n\n20\n\n21\n\n22\n\n23\n\n24\n\n25\n\n26\n\n27\n\n28
+431,488,\n29,\n29,\n29,\n29,\n29,\n29,\n29,\n29
+432,489,\n30,\n30,\n30,\n30,\n30,\n30,\n30,\n30
+433,490,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+434,491,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+435,492,\n31,\n31,\n31,\n31,\n31,\n31,\n31,\n31
+436,493,<,<,<,<,<,<,<,<
+437,494,>,>,>,>,>,>,>,>
+438,495,ABC,ABC,ABC,ABC,ABC,ABC,ABC,ABC
+439,496,abc,abc,abc,abc,abc,abc,abc,abc
+440,497,123.0,123.0,123.0,123.0,123.0,123.0,123.0,123.0
+441,498,?!&,?!&,?!&,?!&,?!&,?!&,?!&,?!&
+442,499,<W>s,<W>s,<W>s,<W>s,<W>s,<W>s,<W>s,<W>s
+443,500,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+444,501,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+445,502,<W>s,<W>s,<W>s,<W>s,<W>s,<W>s,<W>s,<W>s
+446,503,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+447,504,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+448,505,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+449,506,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+450,507,<W>kg,<W>kg,<W>kg,<W>kg,<W>kg,<W>kg,<W>kg,<W>kg
+451,508,<W>°C,<W>°C,<W>°C,<W>°C,<W>°C,<W>°C,<W>°C,<W>°C
+452,509,<W>%,<W>%,<W>%,<W>%,<W>%,<W>%,<W>%,<W>%
+453,510,<W>kg,<W>kg,<W>kg,<W>kg,<W>kg,<W>kg,<W>kg,<W>kg
+454,511,<W>%,<W>%,<W>%,<W>%,<W>%,<W>%,<W>%,<W>%
+455,512,<W>mV,<W>mV,<W>mV,<W>mV,<W>mV,<W>mV,<W>mV,<W>mV
+456,513,<W>s,<W>s,<W>s,<W>s,<W>s,<W>s,<W>s,<W>s
+457,514,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+458,515,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+459,516,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+460,517,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+461,518,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+462,519,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+463,520,P=<W>W,P=<W>W,P=<W>W,P=<W>W,P=<W>W,P=<W>W,P=<W>W,P=<W>W
+464,521,<W>°C,<W>°C,<W>°C,<W>°C,<W>°C,<W>°C,<W>°C,<W>°C
+465,522,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+466,523,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+467,524,<W>mA,<W>mA,<W>mA,<W>mA,<W>mA,<W>mA,<W>mA,<W>mA
+468,525,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+469,526,OFF,OFF,OFF,OFF,OFF,OFF,OFF,OFF
+470,527,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+471,528,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+472,529,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+473,530,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+474,531,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+475,532,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+476,533,<W> = <W>,<W> = <W>,<W> = <W>,<W> = <W>,<W> = <W>,<W> = <W>,<W> = <W>,<W> = <W>
+477,534,E,E,E,E,E,E,E,E
+478,535,BIG,BIG,BIG,BIG,BIG,BIG,BIG,BIG
+479,536,MINI,MINI,MINI,MINI,MINI,MINI,MINI,MINI
+480,537,STD,STD,STD,STD,STD,STD,STD,STD
+481,538,"1234567890:.,/ -+",$,$,$,$,$,$,$
+482,539,"1234567890:.,/ -+",$,$,$,$,$,$,$
+483,540,"1234567890:.,/ -+",$,$,$,$,$,$,$
+484,541,"1234567890:.,/ -+",$,$,$,$,$,$,$
+485,542,"1234567890:.,/ -+",$,$,$,$,$,$,$
+486,543,"1234567890:.,/ -+",$,$,$,$,$,$,$
+487,544,abcdefghijklmnoprstuwxyz= ,$,$,$,$,$,$,$
+488,545,ABCDEFGHIJKLMNOPRSTUWXYZV,$,$,$,$,$,$,$
+489,546," ;?@)(*'&#""!\]^_`{|}~",$,$,$,$,$,$,$
+490,547,abcdefghijklmnopqrstuwxyzv= °,$,$,$,$,$,$,$
+491,548,ABCDEFGHIJKLMNOPRSTUWXYZV,$,$,$,$,$,$,$
+492,549,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+493,550,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
+494,551,<W>,<W>,<W>,<W>,<W>,<W>,<W>,<W>
