@@ -610,3 +610,18 @@ HARD:
 - Slot1 RAW 0xDB78 performs typed SET and reaches FUN_08014C14/FUN_08014CC0 with flash validation/commit logic.
 - Constructor RAW 0xDB08 initializes the provider and flash-state helpers.
 - Slot4 RAW 0x517FE changes provider/object state and initializes subobjects; exact semantic name OPEN.
+
+
+## PASS 85 — CAN TIMESTAMP ROLE — 2026-11-23
+
+HARD:
+- RAW 0x62AE4 constructs fixed remote request StdId 0x604, command 0x40, PID LE, subindex 1.
+- RAW 0x62A90 accepts StdId 0x584 and dispatches generic parameter writes.
+- PID 0x2165 uses this generic write path and storage 0x20008D28.
+- Standard panel publishers exclude 0x2165.
+
+STRONG:
+- timestamp source is boiler-side/remote traffic using the fixed 0x584 parameter envelope.
+
+OPEN:
+- exact emission trigger, response/ACK semantics, and whether timestamp delivery is solicited or unsolicited.
