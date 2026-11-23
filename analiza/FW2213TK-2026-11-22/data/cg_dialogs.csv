@@ -1,0 +1,5 @@
+dialog,open_condition,controls,effect,confidence,evidence
+PIN,Menu level/PIN,4 cyfry +/- + OK,ustawienie poziomu 0..3,FACT,PASS45/PASS49
+Fuel,Home fuel tile,+/- + OK,zmiana ilości paliwa,FACT,PASS44/PASS45
+Time,Home clock,hours/minutes + OK,zapis RTC panelu,FACT,PASS44/PASS62
+Value edit,Settings row,-/+ slider + OK,zapis parametru/CAN 0x584,STRONG,MENU-TREE/PASS46
