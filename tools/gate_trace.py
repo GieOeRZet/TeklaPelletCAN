@@ -9,6 +9,8 @@ from unicorn import UC_HOOK_CODE
 from unicorn.arm_const import UC_ARM_REG_R0, UC_ARM_REG_LR
 WRAPPERS = [0x0805A510,0x0805A9EC,0x0805B1D4,0x0805C104,0x0805E9DC,0x0805F400,0x0805F744,0x0805FE9C,0x0806019C,0x08060458,0x08060714,0x08060A28,0x08060CE4,0x08060FA0,0x0806125C,0x08061518,0x0806FAB4]
 CTXPTR = 0x20024814
+if os.environ.get("GT_ADDRS"): WRAPPERS = [int(x, 16) for x in os.environ["GT_ADDRS"].split(",")]    # nadpisanie listy sledzonych funkcji (np. bramki ==0)
+TAG = os.environ.get("GT_TAG", "gate")
 def install(s, hits):
     b = s.b
     def h(uc, a, sz, ud):
@@ -26,5 +28,5 @@ if __name__ == "__main__":
     if ok:
         s.scroll_capture("gt_" + nm, dy=120)
         if gear: s.tap(400, 245, settle=800); s.scroll_capture("gt_" + nm + "_ust", dy=120)
-    json.dump(dict(row=nm, entered=ok, level=level, hits=hits), open(os.path.join(out, "gate_%s%s.json" % (nm, "_ust" if gear else "")), "w"), indent=1)
+    json.dump(dict(row=nm, entered=ok, level=level, hits=hits), open(os.path.join(out, TAG + "_%s%s.json" % (nm, "_ust" if gear else "")), "w"), indent=1)
     print(nm, "gear" if gear else "", "entered" if ok else "FAIL", "hits", len(hits), flush=True)
