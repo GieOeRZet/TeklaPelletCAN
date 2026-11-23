@@ -244,3 +244,14 @@ Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-115-UI-CONTEXT-REGISTRY-2026
 
 ### Następny autonomiczny target
 S1.3: odzyskać source/runtime registry dla rekordów 16/17/18 i połączyć je z title/resource/PID/callback. Nie używać geometrii ani bitmap ID jako jedynego dowodu.
+
+### Nowe ustalenia ChatGPT — PASS 116 (2026-11-23)
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-116-REGISTRY-CLAUDE-TODO-AUDIT-2026-11-23.md
+
+- Potwierdzono łańcuch FUN_0807EB00 -> registry +0x3B4/stride 0x274 -> FUN_0803C064 -> tabela 0x20005EF0.
+- Selector 16 -> FUN_0803856C -> +0x12B=0x11; selector 17 -> FUN_08038568 -> +0x12B=0x10; selector 18 -> FUN_08038574.
+- Ostatnie zadania dynamiczne Claude (B1/B2: 6666/PID 0x0005/+0x210 oraz poller +0x10) nadal są WSTRZYMANE; brak podstaw do oznaczenia ich jako wykonane.
+- S1.3 pozostaje OPEN: title/PID/resource/callback rekordów 16/17/18 wymagają source/runtime initialization i descriptor binding.
+
+### Następny autonomiczny target ChatGPT
+S1.3 kontynuacja: XREF źródła registry 0x20005EF0 + inicjalizacja rekordów +0x3B4+i*0x274 oraz pola descriptorów. Równolegle S1.2: helper 0x08054848 i settery 0x08056028/0x08056040.
