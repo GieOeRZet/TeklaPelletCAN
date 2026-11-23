@@ -137,3 +137,6 @@ Zakres, etapami:
 
 ### 2026-11-23 — ChatGPT, PASS 102
 - PASS 102: pełny indeks 137 unikalnych setterów z istniejącego `presenter_map.csv`, z agregacją wszystkich już zweryfikowanych `widget_offsets`. To domyka pełny inwentarz źródłowy S1; nie jest udawanym dowodem CFG dla liniowo nieprzypisanych instrukcji.
+
+### 2026-11-23 — PASS 98 CORRECTION
+- Critical correction: wcześniejsze przypisanie bitmapy 138 do PID 0x2277 było błędne. PASS 63 rzeczywiście pokazuje `0x200162F8` jako animację pompy (klatki 138→142), ale jawne wiązanie bitmapy 138 pochodzi od PID `0x22A1` (Room temp sensor type): 5→hidden, 0/1/2→visible. PID 0x2277 pozostaje live pump state, lecz jego izolowane wiązanie widgetowe nie jest dowiedzione przez pilot 0x584. PASS 98 CSV/raport/test zostały poprawione; stara interpretacja jest REJECTED.
