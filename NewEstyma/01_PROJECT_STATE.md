@@ -549,3 +549,16 @@ HARD: 52 odczyty [model+0x158] w 42 funkcjach: 17x ">=3", 13x "!=0", 2x ">=2", b
 KOREKTA: porownanie poziomow 1/2/3 "identyczne" bylo bledem narzedzia (ucinane strony); naprawa: stitch_body + settings_tall (w toku).
 DECYZJE: ESP32 i Home Assistant odlozone do domkniecia 1:1; skalowanie grafik odlozone.
 Procenty: CAN ~90, parametry ~92, PID->CAN ~75, menu ~88, poziomy dostepu ~80, USTAWIENIA ~60, ekran glowny ~65, zasoby graficzne ~95, wykresy ~50, calosc 1:1 ~70.
+
+
+## AUTONOMOUS PASS 59 — UI-MODEL — 2026-11-23
+
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-59-UI-MODEL-2026-11-23.md ; narzedzia: tools/ui_model.py, tools/test_ui_model.py
+
+HARD (mechanizm): widget.view_off mozna laczyc bezposrednio z presenter_map.widget_offsets. Narzedzie buduje model widget -> presenter candidates -> PID/name/setter/format.
+
+HARD (zasada dowodu): dopasowanie po view_off jest oznaczane EXACT_VIEW_OFF tylko wtedy, gdy istnieje jeden kandydat. Wieloznaczne offsety pozostaja AMBIGUOUS_VIEW_OFF; brak offsetu pozostaje UNRESOLVED_VIEW_OFF. Nie ma arbitralnego wyboru PID.
+
+OPEN: pelne statystyki dopasowan wymagaja lokalnego przebiegu inventory na firmware, poniewaz stany ui_explore/scratchpad nie sa przechowywane w repo.
+
+Nastepny krok: graf akcji dotykalnych widgetow — widget -> handler -> ekran/dialog/PID -> CAN/efekt.
