@@ -110,3 +110,6 @@ Raport `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-202
 
 ### 2026-11-23 — ChatGPT, PASS 99
 - PASS 99: zamknięto drugi callback menu. `FUN_0807EB36` używa tego samego `this+0x3B4+i*0x274`, ale dispatchuje do `FUN_0803EC18`; `FUN_0807EB00` dispatchuje do `FUN_0803C064`. Dane `cg_dual_menu_callbacks.csv`, narzędzie/test/raport.
+
+### 2026-11-23 — ChatGPT, PASS 100
+- PASS 100: znormalizowany pełny katalog 31 nazwanych kodów alarmowych z `alarm_raise_clear_sites.csv`: polskie teksty, wszystkie znane miejsca raise/clear i jawne braki. Nie przypisano żadnych predykatów na podstawie samej nazwy; per-site warunki pozostają OPEN.
