@@ -147,3 +147,6 @@ Zakres, etapami:
 ### 2026-11-23 — ChatGPT, PASS 104–105
 - PASS 104: 174 wariantów formatowania na poziomie presenter/PID wyeksportowanych z pełnego `presenter_map.csv`; obejmuje format string/div10/widget evidence, bez zgadywania brakujących PID.
 - PASS 105: domknięta generyczna mechanika 4 rodzin dialogów: PIN, Paliwo, Ustaw czas, edycja wartości; otwarcie/kontrolki/efekt. Pozostaje tylko dokładna ramka TX po zmianie czasu w dialogu.
+
+### 2026-11-23 — ChatGPT, PASS 106
+- PASS 106: cztery wcześniej OPEN wrappery L3 (0x0805A9EC, 0x0805B1D4, 0x0805F400, 0x0805FE9C) zamknięte strukturalnie: gate `model+0x158>=3`, child `+0x23C`, init `+0x210`, wspólny tail vtable slot0. Finalna semantyka ekranów pozostaje OPEN.
