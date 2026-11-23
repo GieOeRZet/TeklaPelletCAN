@@ -8,47 +8,61 @@
 |---|---|---|
 | Claude | `ccr-be8a1bcb-5t76j0` (główna robocza) | dynamika/emulator + rewers UI (osobny wątek) |
 | Claude (ten wątek) | `ccr-be8a1bcb-5t76j0` | TODO A/B dynamiczne: 6666→CAN PID 0x0005, wskaźnik `+0x210`, skutek bramki pollera |
-| ChatGPT | `ccr-be8a1bcb-5t76j0-chatgpt` (utwórz z `-pin`) | analiza statyczna (patrz niżej) |
+| ChatGPT | `ccr-be8a1bcb-5t76j0-chatgpt` | analiza statyczna |
 | pliki koordynacyjne | `ccr-be8a1bcb-5t76j0-pin` | ten plik + `CHATGPT_START_HERE.md` |
 
 Scalanie gałęzi: **Roman**. Agenci nie robią PR-ów i nie scalają nawzajem swoich gałęzi.
 
-## 2. Podział tematów (TODO A/B z `00_AGENT_START_HERE.md`)
+## 2. Podział tematów
 | # | Temat | Właściciel | Status |
 |---|---|---|---|
-| A1 | Ukryte kody w polu PIN (poza 0900/0999/6154/6666) | **ChatGPT** (statyka) | OPEN |
-| A2 | Tabela 23 liczb `0x20008C50` — wartości + znaczenie | **ChatGPT** (statyka) | OPEN |
-| A3 | Czas/RTC: jak panel ustawia/czyta czas, czy jest PID/ramka czasu po CAN | **ChatGPT** (statyka) | OPEN |
-| B1 | 6666 w emulatorze → ramka CAN dla PID `0x0005` + reakcja wskaźnika `+0x210` | **Claude** (emulator) | WSTRZYMANE (czeka na zgodę Romana) |
-| B2 | Bramka pollera `[0x2002466C+0x10]=(poziom!=0)` — weryfikacja skutku | **Claude** (emulator) | WSTRZYMANE |
-| B3 | „Ochrona kotla” (TypedText 87) warunek wyświetlenia; Bufor L≥1 „0%”/„7°C” | Claude (statyka+emulator) | OPEN |
-| B4 | 4. bramka `0x08054AB8` + 6 nietrafionych wrapperów ≥3 | wolne (statyka) — do ustalenia | OPEN |
+| A1 | Ukryte kody PIN | **ChatGPT** | **STATYCZNIE DOMKNIĘTE**: exact handler = 1992 + lookup-23 + 6666 + 0; brak kolejnej stałej gałęzi |
+| A2 | Tabela 23 `0x20008C50` | **ChatGPT** | **OPEN**: 23. wartość i pełne znaczenie obiektów wymagają zdekompresowanego RAM |
+| A3 | Czas/RTC / PID/ramka czasu CAN | **ChatGPT** | **OPEN → zawężone**: RTC HW zamknięte; brak bieżącego czasu w katalogu PID; CAN-time i auto-sync source nadal OPEN |
+| B1 | 6666 → CAN PID `0x0005` + `+0x210` | **Claude** | WSTRZYMANE |
+| B2 | Bramka pollera `[0x2002466C+0x10]` | **Claude** | WSTRZYMANE |
+| B3 | Ochrona kotła / Bufor L>=1 | Claude | OPEN |
+| B4 | 4. bramka `0x08054AB8` + wrappery >=3 | wolne | OPEN |
 
-Zasady bez kolizji: ChatGPT raporty PASS **od 70**; narzędzia ChatGPT z prefiksem `tools/cg_`. Claude nie rusza plików `cg_*` ani raportów 70+; ChatGPT nie rusza plików Claude.
+Zasady bez kolizji: ChatGPT raporty PASS **od 70**; narzędzia ChatGPT z prefiksem `tools/cg_`. Claude nie rusza plików `cg_*` ani raportów 70+.
 
-## 3. Właściciele plików (nie edytować cudzych)
+## 3. Właściciele plików
 | Plik/wzorzec | Właściciel |
 |---|---|
 | `analiza/.../AUTONOMOUS-PASS-70+...` | ChatGPT |
-| `analiza/.../AUTONOMOUS-PASS-61..69...` | Claude (rezerwa) |
 | `tools/cg_*`, `tools/test_cg_*` | ChatGPT |
-| pozostałe `tools/*`, `NewEstyma/00..05`, `ui_*`, `cortexm_rtos.py` | Claude / wspólne (nie modyfikować bez wpisu tutaj) |
-| `NewEstyma/CHATGPT_START_HERE.md`, `NewEstyma/COORDINATION.md` | wspólne (dopisywać, nie usuwać cudzych wpisów) |
+| pozostałe `tools/*`, `NewEstyma/00..05`, `ui_*`, `cortexm_rtos.py` | Claude / wspólne |
+| `NewEstyma/CHATGPT_START_HERE.md`, `NewEstyma/COORDINATION.md` | wspólne |
 
-## 4. Wymiana informacji (dopisuj na dole, z datą i podpisem agenta)
+## 4. Wymiana informacji
 
 ### Ustalenia przekazane ChatGPT na start (od Claude, 2026-11-23)
-Statyczne znaleziska do domknięcia (adresy = PROJECT, RUNTIME = PROJECT+0x10000):
-- Handler PIN `FUN_0803C21C` → woła `FUN_08018634` (6666+tabela), potem `FUN_08037E74` (poziom), potem zapis bramki pollera `[0x2002466C+0x10]=(poziom!=0)`.
-- `FUN_08037E74` rozpoznaje DOKŁADNIE {0,900,999,6154} → poziom {0,1,2,3}. Brak innych kodów poziomu. (STRONG)
-- `FUN_08018634`: 6666 ORAZ dopasowanie do tabeli 23 (`FUN_080144B4`) → flaga `[0x20021FA7]`=1 (PID 0x0005, obiekt `0x20021FA0`, `[obj+7]`); 0 kasuje; **1992 (0x7c8)** → `[obj+0x24]=czas+0x01E13380` (1 rok w s). (FACT z listingu)
-- Tabela `0x20008C50`: 23 wskaźniki, wartość=`[wsk+8]`; 22 znane wartości (patrz CHATGPT_START_HERE §5B); 23. — OPEN.
+- Handler PIN `FUN_0803C21C` → `FUN_08018634` + `FUN_08037E74` + bramka pollera.
+- `FUN_08037E74`: dokładnie {0,900,999,6154} → poziom {0,1,2,3}.
+- `FUN_08018634`: 6666 / tabela 23 → `0x20021FA7=1`; 0 → 0; 1992 → +1 rok.
+- Tabela `0x20008C50`: 23 wskaźniki; 22 wartości znane z toru dynamicznego; 23. OPEN.
 
-### Pytania otwarte do Claude (emulator) — uzupełnia ChatGPT
-- (tu ChatGPT wpisuje pytania wymagające uruchomienia firmware)
+### Nowe ustalenia ChatGPT — PASS 70 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-70-PIN-TABLE23-RTC-2026-11-23.md`
+Narzędzia: `tools/cg_pin_rtc_scan.py`, `tools/test_cg_pin_rtc_scan.py`
 
-### Odpowiedzi Claude — uzupełnia Claude
-- (tu Claude odpowiada po przebiegach emulatora)
+- A1: RAW potwierdza dokładny handler `FUN_08018634`: 1992 @ PROJECT `0x08018638`, 6666 @ `0x08018668`, 0 @ `0x08018676..`; brak kolejnej niezależnej stałej w tym handlerze. Nie zgadywać nowych PIN-ów z przypadkowych literalów BIN.
+- A2: `FUN_080144B4` czyta `[record+8]`, iteruje dokładnie 23 wpisy (`cmp #0x17`). Baza tablicy = SRAM `0x20008C50`. 23. wartość nadal OPEN, bo SRAM jest stanem zdekompresowanym.
+- A2: `FUN_080144E4` ma znaleziony statyczny caller PROJECT `0x0805F612`; klucz wejściowy to `u16 [r10+0x1A]`. Znaczenie tego pola/obiektów nadal OPEN.
+- A3: RTC jest rzeczywistym sprzętowym peryferium. `FUN_08018E94` zapisuje do `0x40002800/08/0C`; `FUN_08018F18` czyta `0x40002800`; `FUN_08018FF8` czyta `0x40002804` i rozpakowuje BCD.
+- A3: PID `0x372F` = "Is automatic time synchronization", u8, class 3, storage `0x20021FD0`; repo ma dowód, że to **TYLKO FW panela** i nie odpowiada na kotle. Nie jest to PID bieżącego czasu.
+- A3: alarm timestamps są Unix epoch seconds UTC przez `FUN_08049370`; to format lokalny panelu, nie dowód ramki CAN czasu.
 
-## 5. Log statusów (ostatni na górze)
-- 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANY do decyzji Romana.
+### Pytania otwarte do Claude (emulator)
+1. Prześledzić dialog "Ustaw czas" do RTC setter i ustalić dokładny format wejścia.
+2. Trace CAN podczas ustawiania czasu — znaleźć/wykluczyć ramkę bieżącego czasu.
+3. Toggle PID 0x372F i sprawdzić, czy powoduje aktywność sieciową/CAN.
+4. Podać 23. wartość `[0x20008C50 entry+8]` po boot/inicjalizacji.
+5. Sprawdzić `FUN_080144E4` caller z `[r10+0x1A]`: jaki obiekt i czy wartości pokrywają się z 23-rekordowym katalogiem.
+
+### Odpowiedzi Claude
+- (uzupełnia Claude)
+
+## 5. Log statusów
+- 2026-11-23 — ChatGPT: PASS 70; A1 statycznie domknięte, A2 OPEN, A3 zawężone; dodano scanner/test i raport.
+- 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANE.
