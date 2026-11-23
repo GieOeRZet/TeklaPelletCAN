@@ -1,0 +1,82 @@
+kind,site_runtime,alarm_code,text_pl
+raise,0x806e8ee,0,
+clear,0x8069010,1,Uszkodzenie czujnika kotla
+raise,0x806902c,1,Uszkodzenie czujnika kotla
+clear,0x8068e6a,2,Przegrzanie kotła
+raise,0x8068e58,2,Przegrzanie kotła
+clear,0x8069048,3,Uszkodzenie czujnika powrotu do kotla
+clear,0x806906e,3,Uszkodzenie czujnika powrotu do kotla
+raise,0x8069064,3,Uszkodzenie czujnika powrotu do kotla
+clear,0x8062ea6,4,Uszkodzenie czujnika palnika/podajnika
+clear,0x8062f0c,4,Uszkodzenie czujnika palnika/podajnika
+raise,0x8062ebe,4,Uszkodzenie czujnika palnika/podajnika
+clear,0x80690a4,5,STB
+raise,0x806909c,5,STB
+clear,0x8062f04,6,Przegrzanie palnika/podajnika
+raise,0x8062edc,6,Przegrzanie palnika/podajnika
+clear,0x8062f18,7,Przerwanie obwodu bezpieczeństwa palnika
+clear,0x8071dfc,30,Uszkodzenie czujnika ciepłej wody
+clear,0x8071e28,30,Uszkodzenie czujnika ciepłej wody
+raise,0x8071e1c,30,Uszkodzenie czujnika ciepłej wody
+clear,0x8026760,31,Uszkodzenie czujnika buffora góra
+clear,0x80267b4,31,Uszkodzenie czujnika buffora góra
+raise,0x802677e,31,Uszkodzenie czujnika buffora góra
+clear,0x802678a,32,Uszkodzenie czujnika buffora dół
+clear,0x80267c0,32,Uszkodzenie czujnika buffora dół
+raise,0x80267ac,32,Uszkodzenie czujnika buffora dół
+clear,0x80286d2,36,Uszkodzenie czujnika temp. zewnętrznej
+raise,0x8028714,36,Uszkodzenie czujnika temp. zewnętrznej
+raise,0x8028734,36,Uszkodzenie czujnika temp. zewnętrznej
+clear,0x80738f6,40,Uszkodzenie czujnika kolektora solarnego
+clear,0x8073974,40,Uszkodzenie czujnika kolektora solarnego
+raise,0x8073912,40,Uszkodzenie czujnika kolektora solarnego
+clear,0x807391c,41,Uszkodzenie czujnika zbiornika solarnego
+clear,0x807397c,41,Uszkodzenie czujnika zbiornika solarnego
+raise,0x8073938,41,Uszkodzenie czujnika zbiornika solarnego
+clear,0x8073946,42,Uszkodzenie czujnika powrotu solarów
+clear,0x8073984,42,Uszkodzenie czujnika powrotu solarów
+raise,0x807396c,42,Uszkodzenie czujnika powrotu solarów
+clear,0x8073990,43,Uszkodzenie czujnika solar T4
+clear,0x806418e,50,Rezerwa paliwa
+raise,0x8064186,50,Rezerwa paliwa
+clear,0x80641a8,51,Brak paliwa
+raise,0x806419e,51,Brak paliwa
+clear,0x80287c0,52,Zalecany coroczny przegląd kotła
+raise,0x80287b6,52,Zalecany coroczny przegląd kotła
+clear,0x8068ece,53,Ciśnienie kotła
+clear,0x8068ed8,53,Ciśnienie kotła
+clear,0x801ea42,110,Komunikacja z modułem BIG
+raise,0x801e9d0,110,Komunikacja z modułem BIG
+clear,0x8073d4e,115,Komunikacja z modułem Lambda
+clear,0x8073d70,115,Komunikacja z modułem Lambda
+clear,0x801df5e,123,Komunikacja z modułem Mini 7
+raise,0x801def4,123,Komunikacja z modułem Mini 7
+raise,0x80637fc,131,Błąd wygaszania
+raise,0x80632e4,139,Nieudane rozpalanie
+raise,0x801f77e,140,Brak ognia/opału
+raise,0x80630c8,140,Brak ognia/opału
+raise,0x8063ace,140,Brak ognia/opału
+raise,0x80742ce,150,Magazyn paliwa brak paliwa/czujnik max
+clear,0x807434c,151,Rezerwa paliwa
+clear,0x807436c,151,Rezerwa paliwa
+raise,0x8074344,151,Rezerwa paliwa
+raise,0x8068b66,160,Wyczyść wymiennik
+raise,0x8068b38,161,Wyczyść palnik
+clear,0x8062b5e,201,Uszkodzenie dmuchawy palnika
+raise,0x8062b56,201,Uszkodzenie dmuchawy palnika
+clear,0x8062e2c,203,Poziom tlenu bardzo niski
+raise,0x8062e1e,203,Poziom tlenu bardzo niski
+clear,0x8028742,250,Słaba bateria w czujniku zewnętrznym
+clear,0x806e8ba,,
+clear,0x806e938,,
+clear,0x806e94a,,
+clear,0x806e958,,
+clear,0x806e966,,
+clear,0x806e9ba,,
+clear,0x806ea08,,
+clear,0x8074324,,
+raise,0x8068ea8,,
+raise,0x806e928,,
+raise,0x806e9a6,,
+raise,0x806e9f4,,
+raise,0x8073d68,,
