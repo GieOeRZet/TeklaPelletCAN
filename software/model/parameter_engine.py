@@ -24,17 +24,20 @@ class TypedValue:
 
 @dataclass
 class ParameterRecord:
-    # Canonical 0x2C-byte record:
-    # +08 PID, +0C storage binding, +10 type,
-    # +14 minimum, +1C maximum, +24 default/reset.
+    # Canonical 0x2C-byte record geometry is proven for +08/+0C/+10.
+    # +14/+1C/+24 are descriptor-derived values used by the recovered
+    # getter/validation/reset paths; they are NOT assumed to be scalar
+    # minimum/maximum/default fields in the raw record without further proof.
     pid: int
     value: int
     type: ValueType
     minimum: TypedValue
     maximum: TypedValue
     default: TypedValue
-    # R+0x2C/R+0x30 are physically the next slot; kept explicit as sidecar
-    # state only because registration code writes these adjacent addresses.
+    # R+0x2C is the next physical record. R+0x30 is +0x04 of that next
+    # record. Keep these optional fields only as explicit compatibility
+    # state for callers that model adjacent registration sidecar behavior;
+    # they must not be interpreted as fields of this record.
     sidecar_gate: Optional[int] = None
     sidecar_metadata: Optional[int] = None
 
