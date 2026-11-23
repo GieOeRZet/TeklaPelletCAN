@@ -21,8 +21,8 @@ Scalanie gałęzi: **Roman**. Agenci nie robią PR-ów i nie scalają nawzajem s
 | A3 | Czas/RTC / PID/ramka czasu CAN | **ChatGPT** | **MOCNO DOMKNIĘTE STATYCZNIE**: 0x372F jest gate auto-sync; FUN_08062638 pobiera timestamp z [param+0x0C] i wywołuje RTC setter FUN_08018E94; źródło zapisu +0x0C nadal OPEN |
 | B1 | 6666 → CAN PID `0x0005` + `+0x210` | **Claude** | WSTRZYMANE |
 | B2 | Bramka pollera `[0x2002466C+0x10]` | **Claude** | WSTRZYMANE |
-| B3 | Ochrona kotła / Bufor L>=1 | Claude | OPEN |
-| B4 | 4. bramka `0x08054AB8` + wrappery >=3 | wolne | OPEN |
+| B3 | Ochrona kotła / Bufor L>=1 | ChatGPT | CZĘŚCIOWO DOMKNIĘTE — L1/0% CLOSED; warunek Ochrony kotła CLOSED statycznie, mapowanie widgetu A69/A95 nadal OPEN |
+| B4 | 4. bramka `0x08054AB8` + wrappery >=3 | ChatGPT | CWU gate CLOSED; wrappery >=3 mechanizm CLOSED, konteksty ekranów OPEN |
 
 Zasady bez kolizji: ChatGPT raporty PASS **od 70**; narzędzia ChatGPT z prefiksem `tools/cg_`. Claude nie rusza plików `cg_*` ani raportów 70+.
 
@@ -164,3 +164,11 @@ Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-82-BUFFER-L1-PROTECTION-2026
 - 0% = PID 0x3174 Buffer internal energy [%] — źródło zamknięte.
 - 7°C nie przypisano arbitralnie: PID-y 0x2114/0x2115 mają min 7°C, ale sam prezenter nie daje jeszcze jednoznacznego widget->setter dowodu dla konkretnego pola.
 - Ochrona kotła: prezenter Ogrzewanie RAW 0x3D37C czyta m.in. klucze 0xA8/0xB0/0xC6; hipoteza bezpośredniego warunku na CH status 0x22FD nie jest jeszcze HARD.
+
+
+### Nowe ustalenia ChatGPT — PASS 83 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-83-B3-OCHRONA-BUFFER-CORRECTION-2026-11-23.md`
+
+- Ochrona kotła: helper PROJECT 0x08054848 / RAW 0x44848 dostaje UI keys 0xB0 i 0xCD = PID-y 0x22A1 Room temp sensor type oraz 0x2301 CH thermostat state. Dla sensor type !=4 ustawia +0xA69=0,+0xA95=1. Dla sensor type ==4 ustawia +0xA95=0 oraz +0xA69=(thermostat state==1). Hipoteza bezpośredniego sterowania przez CH status 0x22FD jest odrzucona.
+- Bufor: 0xF3=0x2114 i 0xF4=0x2115 to nastawy z min 7°C; 0xF5=0x2280 jest osobnym parametrem live/read-only. 0% = 0xFB -> PID 0x3174 Buffer internal energy [%].
+- KOREKTA PASS 81: 0x20008D84 jest parameter managerem, nie potwierdzoną bazą 23 rekordów po 0x14. Funkcje 0x143DE/0x14416/0x1443E przyjmują bazę przez argument; katalog 0x20008C50 przechowuje wskaźniki. A2 source-array address i rekord #23 value pozostają OPEN.
