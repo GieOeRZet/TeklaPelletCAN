@@ -111,6 +111,17 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-126-PROVIDER-SLOT4-EXACT-TA
 - `0x080617FF` jest interior entry `+0x23` funkcji `FUN_080617DC`, czyli CAN2 RX mailbox serializer; nie jest to potwierdzony "state/init" provider method.
 - Poprzednia etykieta slotu 4 jako state/init została superseded. Dokładny basic-block/CFG wejścia +0x23 pozostaje OPEN do czasu odzyskania raw bytes/CFG.
 
+
+
+### Nowe ustalenia ChatGPT — PASS 127 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-127-SIDECAR-CLASS-MATRIX-CLOSURE-2026-11-23.md`
+
+- R(i)+0x2C jest twardo zamknięte jako rejestracyjna/state class byte dla dwóch mechanizmów: guarded write i provider sync.
+- class 1: akceptowana przez guarded write, nie wybierana przez sync.
+- class 2: wybierana przez provider sync, odrzucana przez guarded write.
+- class 3: wybierana przez provider sync i akceptowana przez guarded write; wszystkie 3 bezpośrednie rejestracje FUN_0801143C mają class=3 (0x3500/0x3502/0x350B).
+- Dokładne biznesowe znaczenie klas oraz dynamiczne rejestracje pozostają OPEN.
+
 ## 5. Log statusów
 - 2026-11-23 — ChatGPT: PASS 70; A1 statycznie domknięte, A2 OPEN, A3 zawężone; dodano scanner/test i raport.
 - 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANE.
