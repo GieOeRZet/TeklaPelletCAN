@@ -9,7 +9,7 @@ act = json.load(open(os.path.join(D, "actions_pass61_L0_partial.json")))
 # --- wezly (klasy ekranow po vtable) ---
 V = {"0x808f708": "HOME", "0x808f66c": "MENU", "0x808f910": "PROGRAM", "0x808f944": "LISTA",
      "0x808ed7c": "KOCIOL", "0x808ede4": "PALNIK", "0x808f5d0": "OGRZEWANIE", "0x808f604": "CWU", "0x808f978": "SOLARY",
-     "0x808edb0": "BUFOR", "0x808ec10": "ALARMY", "0x808f638": "INFO", "0x808f80c": "TEST_WYJSC", "0x808f770": "SIEC", "0x808f9ac": "INTERNET"}
+     "0x808edb0": "BUFOR", "0x808ec10": "ALARMY", "0x808f638": "INFO", "0x808f80c": "TEST_WYJSC", "0x808f770": "SIEC", "0x808f9ac": "INTERNET", "0x808ee18": "KASKADA", "0x808eb74": "MAGAZYN"}
 EV = {"HOME": "MEASURED (ikona domu -> vtable)", "MENU": "MEASURED (PASS 40 vptr + krawedz '<')", "PROGRAM": "MEASURED (pasek programu na Kociol/Ogrzewanie)", "LISTA": "MEASURED (zebatka; wszystkie NASTAWY + Konfiguracja + Statystyki)"}
 nodes = {}
 def node(i, title, vptr=None, kind="screen", level_min=0, evidence="", note=""):
@@ -24,8 +24,8 @@ node("INFO", "Informacje o programie", "0x808f638", note="teksty statyczne")
 node("TEST_WYJSC", "Test wyjsc", "0x808f80c", level_min=1); node("SIEC", "Siec", "0x808f770", level_min=1); node("INTERNET", "Internet", "0x808f9ac", level_min=1)
 node("PROGRAM", "PROGRAM (harmonogram tygodniowy)", "0x808f910", note="widgety/wiazania PROGRAM NIE zmierzone (OPEN)")
 node("LISTA", "Lista parametrow (NASTAWY / Konfiguracja / Statystyki)", "0x808f944", note="jedna klasa; tresc = klasa runtime x poziom -> panel_lists_by_level.csv")
-node("KASKADA", "Kaskada", None, evidence="DOC (PASS 46: klasa runtime 8, warunek 0x350C != 0); nie wyrenderowana", note="OPEN: vtable, widgety, wiazania")
-node("MAGAZYN", "Dodatkowy magazyn paliwa", None, evidence="DOC (PASS 46: klasa runtime 9, warunek 0x3525 != 0); nie wyrenderowany", note="OPEN: vtable, widgety, wiazania")
+node("KASKADA", "Kaskada (MASTER, SLAVE 1..3, stopien mocy)", "0x808ee18", evidence="MEASURED (PASS 65: ekran odslonieto 0x350C=1; 72 widgety, 18 wiazan PID-diff)")
+node("MAGAZYN", "Dodatkowy magazyn paliwa", "0x808eb74", evidence="MEASURED (PASS 65: ekran odslonieto 0x3525=1; 47 widgetow, 1 wiazanie PID-diff, reszta live)")
 node("KONFIGURACJA", "Konfiguracja (lista klasy 0x10)", "0x808f944", evidence="MEASURED (LISTA z ctx 0x10)", note="zmienia widocznosc menu 0x2105..0x2108 od poziomu 1")
 node("STATYSTYKI", "Statystyki (lista klasy 0x11)", "0x808f944", level_min=1, evidence="STRONG (PASS 46: klasa 0x11, 13 pozycji; ctx 0x11)")
 for i, t, src in (("DLG_PIN", "Dialog PIN (4 cyfry, +/-, OK)", "DOC PASS 93/105"), ("DLG_PALIWO", "Dialog Paliwo (+/-, kg, czas, OK)", "DOC PASS 93/105"),

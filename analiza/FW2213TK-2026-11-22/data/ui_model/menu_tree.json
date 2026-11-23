@@ -144,21 +144,21 @@
   },
   {
    "id": "KASKADA",
-   "title_pl": "Kaskada",
-   "vtable": null,
+   "title_pl": "Kaskada (MASTER, SLAVE 1..3, stopien mocy)",
+   "vtable": "0x808ee18",
    "kind": "screen",
    "level_min": 0,
-   "evidence": "DOC (PASS 46: klasa runtime 8, warunek 0x350C != 0); nie wyrenderowana",
-   "note": "OPEN: vtable, widgety, wiazania"
+   "evidence": "MEASURED (PASS 65: ekran odslonieto 0x350C=1; 72 widgety, 18 wiazan PID-diff)",
+   "note": ""
   },
   {
    "id": "MAGAZYN",
    "title_pl": "Dodatkowy magazyn paliwa",
-   "vtable": null,
+   "vtable": "0x808eb74",
    "kind": "screen",
    "level_min": 0,
-   "evidence": "DOC (PASS 46: klasa runtime 9, warunek 0x3525 != 0); nie wyrenderowany",
-   "note": "OPEN: vtable, widgety, wiazania"
+   "evidence": "MEASURED (PASS 65: ekran odslonieto 0x3525=1; 47 widgetow, 1 wiazanie PID-diff, reszta live)",
+   "note": ""
   },
   {
    "id": "KONFIGURACJA",
