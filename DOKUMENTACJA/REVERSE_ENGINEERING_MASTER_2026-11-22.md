@@ -1411,3 +1411,11 @@ HARD (obraz): po ustawieniu 0x2105=4, 0x2106/0x2107/0x2108=1 menu ma: Kociol, Pa
 HARD: ekran Konfiguracja -> PID po nazwie i wartosci domyslnej: 12 h = 0x3720; lato 18 = 0x372A; kalibracja 0.0 = 0x3747; rezerwa paliwa 40 kg = 0x3603; auto synchronizacja zegara = 0x372F; dialog Paliwo 180 kg = 0x3601.
 HARD: dialog PIN (4 cyfry +/-, OK; stuknięcia hold>=130 ticków); po 6154 znika kłódka z kafelka palnika (poziom dostępu wpływa na UI).
 OPEN: lista menu nie wydłuża się po PIN — wiersze 15..20 (klasy 12,14,16,18,19,20, bitmapy 73..81) nie są dodatkowymi pozycjami listy; CAN 0x584 ignorowany przy zamkniętej bramce pollera (konfiguracja ustawiana set_local); znaczenie "!" i "7 AUTO".
+
+
+## AUTONOMOUS PASS 46 — POZIOMY DOSTEPU: LISTY PARAMETROW EKRANOW USTAWIEN — 2026-11-23
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-46-ACCESS-LEVELS-PANEL-LISTS-2026-11-23.md ; dane: data/panel_lists_by_level.csv/.md ; narzędzia: tools/panel_lists.py, ui_explore.py v3, Board.save_state/load_state
+HARD (wykonanie FUN_0803E714 dla klas 0..0x11 x poziomy 0..3): liczba parametrow: Kociol 3/13/13, CO 12/23/23, CWU 8/12/12, Solary 3/7/7, Bufor 2/7/7, Kaskada 9, Dod. magazyn 4/7/7, Palnik 5/24/28, Konfiguracja 5/24/26, Statystyki 13. Poziom 3 = 2 w tym konstruktorze.
+HARD: klucz grafu 0x48 (Wentylator wspomagajacy) pochodzi z klasy 0 Kociol od poziomu 1; 0x47 (Moc dmuchawy modulacja) z Palnika od poziomu 1. Konfiguracja (0x2105..0x2108, Main module type) edytowalna od poziomu 1; poziom 2 dodaje HALL Activated i Request reset alarm memory.
+HARD (obraz): poziom >=1 dodaje do menu: Jezyk, Alarm dzwiekowy, Test wyjsc, Statystyki, Siec, Internet; separatory z ikona klucza i cyfra w ekranach NASTAWY.
+OPEN: 17 bramek poziomu 3 -> ekrany; Kaskada i Dod. magazyn paliwa; edycja wartosci; porownanie zrzutow poziomow 0..2 (w toku).

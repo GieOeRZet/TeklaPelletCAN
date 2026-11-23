@@ -104,6 +104,7 @@ Szybki start (kilka sekund): `python3 -I tools/render_screen.py FW2213TK_kopia.b
 | 40 | wiersze menu zbudowane w firmware; argumenty row-buildera = ID bitmap | AUTONOMOUS-PASS-40 |
 | 41 | dotyk wiersza -> handler 0x0807EB00 -> klasa -> efekt (wiersz 15 = język, wiersze 2..5 = CO1..CO4) | AUTONOMOUS-PASS-41 |
 | 42 | **emulacja systemowa; firmware sam rysuje ekran główny** (`data/screen_home_emulated.png`) | AUTONOMOUS-PASS-42 |
+| 46 | **poziomy dostepu: listy parametrow ekranow USTAWIEN wg poziomu (FUN_0803E714 wykonana), Konfiguracja od poziomu 1 edytuje 0x2105..0x2108** | AUTONOMOUS-PASS-46 |
 | 45 | menu z pelna konfiguracja (CO1..4, CWU, Solary, Bufor), dialog PIN, ekran Konfiguracja -> PID (0x3720, 0x372A, 0x3747, 0x3603, 0x372F) | AUTONOMOUS-PASS-45 |
 | 44 | **dotyk FT5x06 + atlas ekranow** (MENU, Kociol, Palnik, Ogrzewanie 1, alarmy, dialogi); przeliczenie wspolrzednych 0.375/0.354 | AUTONOMOUS-PASS-44 |
 | 43 | ruch CAN panelu po starcie przy pustej magistrali (heartbeat 0x704, SDO do węzłów 5..7, rodziny PDO-podobne), skan 0x1018, poller włączany z menu | AUTONOMOUS-PASS-43 |

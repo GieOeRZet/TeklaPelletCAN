@@ -183,3 +183,7 @@ Czas: ~9 s na 3000 tikow. Debug: `Board.diag()` (zadanie, rejestry, slad wywolan
 - Ustalone: firmware odpytuje FT5x06 sekwencja START, 0x70, 0x03, START, 0x71, odczyt 1 B, STOP (potem blok 0x03..0x07 po wykryciu dotyku). Dotkniecie zegara (30,40) otwiera dialog "Ustaw czas"; mapowanie wspolrzednych wymaga kalibracji (siatka w toku, patrz kolejny raport).
 
 - `tools/ui_session.py` (PASS 44) — klasa `UiSession`: `boot()`, `wait()`, `tap(x,y)`, `swipe()`, `shot(name)`, `can()`, `set_param(pid,val)`; wspolrzedne ekranowe 480x272 (przeliczane na surowe FT5x06). Preferowane do eksploracji UI.
+
+- `tools/panel_lists.py` (PASS 46) — wykonuje FUN_0803E714 dla klas 0..0x11 i poziomow 0..3, zapisuje listy parametrow (CSV) i rozwiazuje klucze do PID/nazw.
+- `Board.save_state/load_state`, `UiSession.checkpoint/from_checkpoint` — punkty kontrolne (zapis 0.1 s, odczyt natychmiast, wynik identyczny z biegiem ciaglym).
+- `tools/ui_explore.py` v3 — `--prepare`, `--row IDX`, `--all`; tylko przewijanie w gore; rownolegle.
