@@ -1100,7 +1100,7 @@
    "label": "przycisk powrotu < (naglowek, widget 130x45)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "KOCIOL",
@@ -1116,7 +1116,7 @@
    "label": "ikona domu (prawy gorny rog)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "KOCIOL",
@@ -1132,7 +1132,7 @@
    "label": "napis < MENU (naglowek)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "KOCIOL",
@@ -1148,7 +1148,7 @@
    "label": "pasek programu (PROGRAM)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "KOCIOL",
@@ -1164,7 +1164,7 @@
    "label": "kafel zebatki (NASTAWY)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "LISTA",
@@ -1180,7 +1180,7 @@
    "label": "przycisk powrotu < (naglowek, widget 130x45)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "LISTA",
@@ -1196,7 +1196,7 @@
    "label": "ikona domu (prawy gorny rog)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "LISTA",
@@ -1212,7 +1212,7 @@
    "label": "dotyk widgetu (niezidentyfikowany)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "LISTA",
@@ -1228,7 +1228,7 @@
    "label": "napis < MENU (naglowek)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "LISTA",
@@ -1244,7 +1244,7 @@
    "label": "dotyk widgetu (niezidentyfikowany)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "LISTA",
@@ -1260,7 +1260,7 @@
    "label": "dotyk widgetu (niezidentyfikowany)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "LISTA",
@@ -1276,7 +1276,7 @@
    "label": "dotyk widgetu (niezidentyfikowany)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "PALNIK",
@@ -1292,7 +1292,7 @@
    "label": "przycisk powrotu < (naglowek, widget 130x45)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "PALNIK",
@@ -1308,7 +1308,7 @@
    "label": "ikona domu (prawy gorny rog)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "PALNIK",
@@ -1324,7 +1324,7 @@
    "label": "napis < MENU (naglowek)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "PALNIK",
@@ -1340,7 +1340,7 @@
    "label": "kafel zebatki (NASTAWY)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "OGRZEWANIE",
@@ -1356,7 +1356,7 @@
    "label": "przycisk powrotu < (naglowek, widget 130x45)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "OGRZEWANIE",
@@ -1372,7 +1372,7 @@
    "label": "ikona domu (prawy gorny rog)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "OGRZEWANIE",
@@ -1388,7 +1388,7 @@
    "label": "napis < MENU (naglowek)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "OGRZEWANIE",
@@ -1404,7 +1404,7 @@
    "label": "pasek programu (PROGRAM)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
    "from": "OGRZEWANIE",
@@ -1420,7 +1420,1032 @@
    "label": "kafel zebatki (NASTAWY)",
    "level_min": 0,
    "effect": "nav",
-   "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "CWU",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "CWU",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "CWU",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "CWU",
+   "to": "PROGRAM",
+   "tap": [
+    414,
+    130
+   ],
+   "widget_size": [
+    134,
+    37
+   ],
+   "label": "pasek programu (PROGRAM)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "CWU",
+   "to": "LISTA",
+   "tap": [
+    359,
+    249
+   ],
+   "widget_size": [
+    241,
+    49
+   ],
+   "label": "kafel zebatki (NASTAWY)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "SOLARY",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "SOLARY",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "SOLARY",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "SOLARY",
+   "to": "LISTA",
+   "tap": [
+    359,
+    249
+   ],
+   "widget_size": [
+    241,
+    49
+   ],
+   "label": "kafel zebatki (NASTAWY)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "BUFOR",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "BUFOR",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "BUFOR",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "BUFOR",
+   "to": "LISTA",
+   "tap": [
+    359,
+    249
+   ],
+   "widget_size": [
+    241,
+    49
+   ],
+   "label": "kafel zebatki (NASTAWY)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "INFO",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "INFO",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "INFO",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "SIEC",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "SIEC",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "SIEC",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "INTERNET",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "INTERNET",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "INTERNET",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "KASKADA",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "KASKADA",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "KASKADA",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "KASKADA",
+   "to": "LISTA",
+   "tap": [
+    359,
+    249
+   ],
+   "widget_size": [
+    241,
+    49
+   ],
+   "label": "kafel zebatki (NASTAWY)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "MAGAZYN",
+   "to": "MENU",
+   "tap": [
+    65,
+    22
+   ],
+   "widget_size": [
+    130,
+    45
+   ],
+   "label": "przycisk powrotu < (naglowek, widget 130x45)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "MAGAZYN",
+   "to": "HOME",
+   "tap": [
+    479,
+    25
+   ],
+   "widget_size": [
+    150,
+    50
+   ],
+   "label": "ikona domu (prawy gorny rog)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "MAGAZYN",
+   "to": "MENU",
+   "tap": [
+    91,
+    20
+   ],
+   "widget_size": [
+    130,
+    20
+   ],
+   "label": "napis < MENU (naglowek)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "MAGAZYN",
+   "to": "LISTA",
+   "tap": [
+    359,
+    249
+   ],
+   "widget_size": [
+    241,
+    49
+   ],
+   "label": "kafel zebatki (NASTAWY)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": null,
+   "tap": [
+    375,
+    82
+   ],
+   "widget_size": [
+    30,
+    31
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x2296",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "can_tx": [
+    "0x584 4296220101000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": null,
+   "tap": [
+    415,
+    82
+   ],
+   "widget_size": [
+    30,
+    31
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x2278",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "pid": "0x2296",
+     "old": 0,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 4296220102000000",
+    "0x256 320c2000",
+    "0x584 4278220101000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": null,
+   "tap": [
+    375,
+    132
+   ],
+   "widget_size": [
+    30,
+    31
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x374A",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "can_tx": [
+    "0x584 424a370101000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": null,
+   "tap": [
+    415,
+    132
+   ],
+   "widget_size": [
+    30,
+    31
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x3749",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "pid": "0x374A",
+     "old": 0,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 424a370102000000",
+    "0x27e 0400000000000000",
+    "0x584 4249370101000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": null,
+   "tap": [
+    375,
+    182
+   ],
+   "widget_size": [
+    30,
+    31
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x2286",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "pid": "0x2277",
+     "old": 1,
+     "new": 0
+    }
+   ],
+   "can_tx": [
+    "0x584 4286220101000000",
+    "0x256 020c2000",
+    "0x584 4277220100000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": null,
+   "tap": [
+    415,
+    182
+   ],
+   "widget_size": [
+    30,
+    31
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x2286",
+     "old": 0,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 4286220102000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": null,
+   "tap": [
+    375,
+    232
+   ],
+   "widget_size": [
+    30,
+    31
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x311F",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "can_tx": [
+    "0x584 421f310101000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": null,
+   "tap": [
+    415,
+    232
+   ],
+   "widget_size": [
+    30,
+    31
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x311C",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "pid": "0x311F",
+     "old": 0,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 421f310102000000",
+    "0x445 0000010000000100",
+    "0x584 421c310101000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": null,
+   "tap": [
+    375,
+    271
+   ],
+   "widget_size": [
+    30,
+    31
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x2259",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "can_tx": [
+    "0x584 4259220101000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "TEST_WYJSC",
+   "to": null,
+   "tap": [
+    415,
+    271
+   ],
+   "widget_size": [
+    30,
+    31
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x2259",
+     "old": 0,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 4259220102000000",
+    "0x456 0100000000000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "INTERNET",
+   "to": null,
+   "tap": [
+    186,
+    184
+   ],
+   "widget_size": [
+    62,
+    33
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x373E",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "can_tx": [
+    "0x584 423e370101000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "INTERNET",
+   "to": null,
+   "tap": [
+    186,
+    214
+   ],
+   "widget_size": [
+    62,
+    33
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x3741",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "can_tx": [
+    "0x584 4241370101000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "MENU",
+   "to": null,
+   "tap": [
+    86,
+    218
+   ],
+   "widget_size": [
+    52,
+    36
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x0003",
+     "old": 1,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 4203000102000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "MENU",
+   "to": null,
+   "tap": [
+    166,
+    218
+   ],
+   "widget_size": [
+    52,
+    36
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x0003",
+     "old": 1,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 4203000102000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "MENU",
+   "to": null,
+   "tap": [
+    246,
+    218
+   ],
+   "widget_size": [
+    52,
+    36
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x0003",
+     "old": 1,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 4203000102000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "MENU",
+   "to": null,
+   "tap": [
+    326,
+    218
+   ],
+   "widget_size": [
+    52,
+    36
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x0003",
+     "old": 1,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 4203000102000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "MENU",
+   "to": null,
+   "tap": [
+    240,
+    228
+   ],
+   "widget_size": [
+    440,
+    50
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x0003",
+     "old": 1,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 4203000102000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
+  },
+  {
+   "from": "MENU",
+   "to": null,
+   "tap": [
+    429,
+    229
+   ],
+   "widget_size": [
+    62,
+    33
+   ],
+   "label": "stukniecie zapisuje PID",
+   "level_min": 1,
+   "effect": "write_pid",
+   "pid_writes": [
+    {
+     "pid": "0x0003",
+     "old": 1,
+     "new": 2
+    }
+   ],
+   "can_tx": [
+    "0x584 4203000102000000"
+   ],
+   "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"
   },
   {
    "from": "HOME",
@@ -1885,7 +2910,7 @@
   "PROGRAM: widgety i wiazania (harmonogram 7 dni x 24 h)",
   "Kaskada, Dodatkowy magazyn paliwa: odslonic konfiguracja 0x350C/0x3525, zmierzyc",
   "Poziomy 1 i 3: inwentarz widgetow ekranow (mamy L0 i L2); menu: L1=L2=L3 (zmierzone); poziom 3 = CPU% w naglowku + 6 wrapperow",
-  "Graf akcji: tylko 6 z 24 wezlow L0 (232 stukniecia); brak pozostalych klas i klas poza menu",
+  "Graf akcji: 415 stukniec; brak: ekran glowny, PROGRAM, dialogi, wiersze list NASTAWY (otwieranie edycji)",
   "Dialogi: vtable, widgety, wiazania, ramki TX (PIN, Paliwo, czas, edycja, zasilanie, AUTO, potwierdzenia, bledy)",
   "Wiersze 15/16 (Jezyk, Alarm dzwiekowy): kontrolki wbudowane w wiersz (nie ekran)",
   "Alarmy: warunki per alarm, prezentacja, ACK",

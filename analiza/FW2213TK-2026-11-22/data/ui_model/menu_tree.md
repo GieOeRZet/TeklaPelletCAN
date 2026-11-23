@@ -56,6 +56,57 @@ Legenda dowodow: MEASURED / STRONG / DOC / OPEN. Pelne dane: `menu_tree.json`.
 | OGRZEWANIE | [91, 20] | MENU | napis < MENU (naglowek) |
 | OGRZEWANIE | [414, 130] | PROGRAM | pasek programu (PROGRAM) |
 | OGRZEWANIE | [359, 249] | LISTA | kafel zebatki (NASTAWY) |
+| CWU | [65, 22] | MENU | przycisk powrotu < (naglowek, widget 130x45) |
+| CWU | [479, 25] | HOME | ikona domu (prawy gorny rog) |
+| CWU | [91, 20] | MENU | napis < MENU (naglowek) |
+| CWU | [414, 130] | PROGRAM | pasek programu (PROGRAM) |
+| CWU | [359, 249] | LISTA | kafel zebatki (NASTAWY) |
+| SOLARY | [65, 22] | MENU | przycisk powrotu < (naglowek, widget 130x45) |
+| SOLARY | [479, 25] | HOME | ikona domu (prawy gorny rog) |
+| SOLARY | [91, 20] | MENU | napis < MENU (naglowek) |
+| SOLARY | [359, 249] | LISTA | kafel zebatki (NASTAWY) |
+| BUFOR | [65, 22] | MENU | przycisk powrotu < (naglowek, widget 130x45) |
+| BUFOR | [479, 25] | HOME | ikona domu (prawy gorny rog) |
+| BUFOR | [91, 20] | MENU | napis < MENU (naglowek) |
+| BUFOR | [359, 249] | LISTA | kafel zebatki (NASTAWY) |
+| INFO | [65, 22] | MENU | przycisk powrotu < (naglowek, widget 130x45) |
+| INFO | [479, 25] | HOME | ikona domu (prawy gorny rog) |
+| INFO | [91, 20] | MENU | napis < MENU (naglowek) |
+| TEST_WYJSC | [65, 22] | MENU | przycisk powrotu < (naglowek, widget 130x45) |
+| TEST_WYJSC | [479, 25] | HOME | ikona domu (prawy gorny rog) |
+| TEST_WYJSC | [91, 20] | MENU | napis < MENU (naglowek) |
+| SIEC | [65, 22] | MENU | przycisk powrotu < (naglowek, widget 130x45) |
+| SIEC | [479, 25] | HOME | ikona domu (prawy gorny rog) |
+| SIEC | [91, 20] | MENU | napis < MENU (naglowek) |
+| INTERNET | [65, 22] | MENU | przycisk powrotu < (naglowek, widget 130x45) |
+| INTERNET | [479, 25] | HOME | ikona domu (prawy gorny rog) |
+| INTERNET | [91, 20] | MENU | napis < MENU (naglowek) |
+| KASKADA | [65, 22] | MENU | przycisk powrotu < (naglowek, widget 130x45) |
+| KASKADA | [479, 25] | HOME | ikona domu (prawy gorny rog) |
+| KASKADA | [91, 20] | MENU | napis < MENU (naglowek) |
+| KASKADA | [359, 249] | LISTA | kafel zebatki (NASTAWY) |
+| MAGAZYN | [65, 22] | MENU | przycisk powrotu < (naglowek, widget 130x45) |
+| MAGAZYN | [479, 25] | HOME | ikona domu (prawy gorny rog) |
+| MAGAZYN | [91, 20] | MENU | napis < MENU (naglowek) |
+| MAGAZYN | [359, 249] | LISTA | kafel zebatki (NASTAWY) |
+| TEST_WYJSC | [375, 82] | None | stukniecie zapisuje PID |
+| TEST_WYJSC | [415, 82] | None | stukniecie zapisuje PID |
+| TEST_WYJSC | [375, 132] | None | stukniecie zapisuje PID |
+| TEST_WYJSC | [415, 132] | None | stukniecie zapisuje PID |
+| TEST_WYJSC | [375, 182] | None | stukniecie zapisuje PID |
+| TEST_WYJSC | [415, 182] | None | stukniecie zapisuje PID |
+| TEST_WYJSC | [375, 232] | None | stukniecie zapisuje PID |
+| TEST_WYJSC | [415, 232] | None | stukniecie zapisuje PID |
+| TEST_WYJSC | [375, 271] | None | stukniecie zapisuje PID |
+| TEST_WYJSC | [415, 271] | None | stukniecie zapisuje PID |
+| INTERNET | [186, 184] | None | stukniecie zapisuje PID |
+| INTERNET | [186, 214] | None | stukniecie zapisuje PID |
+| MENU | [86, 218] | None | stukniecie zapisuje PID |
+| MENU | [166, 218] | None | stukniecie zapisuje PID |
+| MENU | [246, 218] | None | stukniecie zapisuje PID |
+| MENU | [326, 218] | None | stukniecie zapisuje PID |
+| MENU | [240, 228] | None | stukniecie zapisuje PID |
+| MENU | [429, 229] | None | stukniecie zapisuje PID |
 | HOME | None | MENU | kafel MENU (34,235) |
 | MENU | None | KOCIOL | wiersz 0: Kociol |
 | MENU | None | PALNIK | wiersz 1: Palnik |
@@ -99,7 +150,7 @@ Legenda dowodow: MEASURED / STRONG / DOC / OPEN. Pelne dane: `menu_tree.json`.
 - PROGRAM: widgety i wiazania (harmonogram 7 dni x 24 h)
 - Kaskada, Dodatkowy magazyn paliwa: odslonic konfiguracja 0x350C/0x3525, zmierzyc
 - Poziomy 1 i 3: inwentarz widgetow ekranow (mamy L0 i L2); menu: L1=L2=L3 (zmierzone); poziom 3 = CPU% w naglowku + 6 wrapperow
-- Graf akcji: tylko 6 z 24 wezlow L0 (232 stukniecia); brak pozostalych klas i klas poza menu
+- Graf akcji: 415 stukniec; brak: ekran glowny, PROGRAM, dialogi, wiersze list NASTAWY (otwieranie edycji)
 - Dialogi: vtable, widgety, wiazania, ramki TX (PIN, Paliwo, czas, edycja, zasilanie, AUTO, potwierdzenia, bledy)
 - Wiersze 15/16 (Jezyk, Alarm dzwiekowy): kontrolki wbudowane w wiersz (nie ekran)
 - Alarmy: warunki per alarm, prezentacja, ACK

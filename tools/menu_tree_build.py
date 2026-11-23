@@ -5,7 +5,9 @@ import csv, json, os, collections
 D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data")
 OUT = os.path.join(D, "ui_model"); os.makedirs(OUT, exist_ok=True)
 vt = json.load(open(os.path.join(D, "pass63_view_classes.json")))
-act = json.load(open(os.path.join(D, "actions_pass61_L0_partial.json")))
+act = []
+for _f in ("actions_pass61_L0_partial.json", "actions_pass65_L0_nodes6-11.json", "actions_pass65_L1_nodes12-18.json", "actions_pass65_cfg_kaskada_magazyn.json"):
+    act += json.load(open(os.path.join(D, _f)))
 # --- wezly (klasy ekranow po vtable) ---
 V = {"0x808f708": "HOME", "0x808f66c": "MENU", "0x808f910": "PROGRAM", "0x808f944": "LISTA",
      "0x808ed7c": "KOCIOL", "0x808ede4": "PALNIK", "0x808f5d0": "OGRZEWANIE", "0x808f604": "CWU", "0x808f978": "SOLARY",
@@ -56,12 +58,23 @@ E = []; seen = set()
 for a in act:
     if a["effect"] != "SCREEN": continue
     f, t_ = a["effects"]["from_vptr"], a["effects"]["view_vptr"]; fn, tn = V.get(f, f), V.get(t_, t_)
+    if fn == "MENU": continue                                   # stukniecia w wiersze menu (12/13 poziomu 1) nie sa krawedziami ekranu
     if fn == "LISTA" and tn != "HOME": tn = "ORIGIN"            # z listy powrot prowadzi do ekranu, z ktorego ja otwarto (klasa tego samego wezla inwentarza)
     key = (fn, a["x"], a["y"], tn)
     if key in seen: continue
     seen.add(key)
     E.append({"from": fn, "to": tn, "tap": [a["x"], a["y"]], "widget_size": [a["w"], a["h"]], "label": KNOWN.get((a["x"], a["y"]), "dotyk widgetu (niezidentyfikowany)"), "level_min": 0, "effect": "nav",
-              "evidence": "MEASURED (action_probe PASS 61, poziom 0, wezly 0..5; klasa docelowa po vtable)"})
+              "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"})
+# --- stukniecia zapisujace PID (Test wyjsc A/OFF/ON, Internet, Jezyk): zmierzone, z ramkami CAN ---
+seenp = set()
+for a in act:
+    if a["effect"] != "PID": continue
+    f = V.get(a["effects"]["from_vptr"], a["effects"]["from_vptr"]); k = (f, a["x"], a["y"])
+    if k in seenp: continue
+    seenp.add(k)
+    E.append({"from": f, "to": None, "tap": [a["x"], a["y"]], "widget_size": [a["w"], a["h"]], "label": "stukniecie zapisuje PID", "level_min": 1 if f in ("TEST_WYJSC", "INTERNET", "MENU") else 0, "effect": "write_pid",
+              "pid_writes": [{"pid": q["pid"], "old": q["old"], "new": q["new"]} for q in a["effects"]["pid"] if q["pid"] != "0x2122"], "can_tx": [c["id"] + " " + c["data"] for c in a["effects"]["can"]],
+              "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"})
 for a, b, lab, ev in (("HOME", "MENU", "kafel MENU (34,235)", "MEASURED (ui_explore: tap 34,235)"), ("HOME", "DLG_PALIWO", "kafel Paliwo", "DOC PASS 42/50"), ("HOME", "OGRZEWANIE", "kafel Ogrzewanie 1/2", "DOC"), ("HOME", "CWU", "kafel Woda", "DOC"),
                       ("HOME", "DLG_ZASILANIE", "kafel zasilania", "DOC PASS 50"), ("HOME", "DLG_AUTO", "kafel AUTO", "DOC"), ("HOME", "DLG_CZAS", "zegar", "DOC PASS 92"), ("LISTA", "DLG_EDYCJA", "wiersz liczbowy", "DOC PASS 93/105"),
                       ("MENU", "DLG_PIN", "wiersz Poziom menu", "STRONG (wiersz 14, klasa 15)")):
@@ -74,7 +87,7 @@ for r in pl:
     if r["inst"] in ("1", "") : cnt.setdefault(r["cls"], {})[r["level"]] = int(r["list_len"] or 0)
 lists = {c: dict(counts_by_level=v, source="panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)", evidence="MEASURED") for c, v in cnt.items()}
 open_items = ["HOME: wiazania widgetow, okna (Paliwo, zasilanie, AUTO) - vtable/widgety nie zmierzone", "PROGRAM: widgety i wiazania (harmonogram 7 dni x 24 h)", "Kaskada, Dodatkowy magazyn paliwa: odslonic konfiguracja 0x350C/0x3525, zmierzyc",
-              "Poziomy 1 i 3: inwentarz widgetow ekranow (mamy L0 i L2); menu: L1=L2=L3 (zmierzone); poziom 3 = CPU% w naglowku + 6 wrapperow", "Graf akcji: tylko 6 z 24 wezlow L0 (232 stukniecia); brak pozostalych klas i klas poza menu",
+              "Poziomy 1 i 3: inwentarz widgetow ekranow (mamy L0 i L2); menu: L1=L2=L3 (zmierzone); poziom 3 = CPU% w naglowku + 6 wrapperow", "Graf akcji: 415 stukniec; brak: ekran glowny, PROGRAM, dialogi, wiersze list NASTAWY (otwieranie edycji)",
               "Dialogi: vtable, widgety, wiazania, ramki TX (PIN, Paliwo, czas, edycja, zasilanie, AUTO, potwierdzenia, bledy)", "Wiersze 15/16 (Jezyk, Alarm dzwiekowy): kontrolki wbudowane w wiersz (nie ekran)", "Alarmy: warunki per alarm, prezentacja, ACK", "Wykresy/Statystyki: widoki i dane"]
 tree = dict(meta=dict(title="Drzewo menu igneoTouch FW2213TK (szkielet)", generated_by="tools/menu_tree_build.py (PASS 65)", firmware_sha256="1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071",
                       evidence_legend="MEASURED=zmierzone w emulatorze; STRONG=spojne z wielu zrodel; DOC=z raportow, nie zmierzone tu; OPEN=brak dowodu", levels="0..3 (PIN 900->1, 999->2, 6154->3)"),
