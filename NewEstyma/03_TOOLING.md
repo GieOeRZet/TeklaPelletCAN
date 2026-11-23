@@ -191,3 +191,15 @@ Czas: ~9 s na 3000 tikow. Debug: `Board.diag()` (zadanie, rejestry, slad wywolan
 - `tools/export_bitmaps.py` (PASS 47) — eksport 188 bitmap do PNG + manifest SHA-256 + plansze + ZIP. `tools/access_gates_scan.py` — skan wszystkich odczytow poziomu dostepu. `tools/compare_levels.py` — porownanie zrzutow poziomow. `tools/resource_coverage.py` + `UiSession.enable_trace/dump_trace` — pokrycie zasobow przez obejrzane ekrany.
 
 - `ui_session.stitch_body`, `tools/settings_tall.py` (PASS 47) — pelne listy ustawien zszyte w jeden obraz (zamiast ucinanych stron). `UiSession.enable_trace` zapisuje tez PID-y czytane przez GUITask (`pids` w trace_*.json).
+
+
+## PASS 59 — UI-MODEL: widget.view_off -> presenter -> PID
+
+- `tools/ui_model.py` — laczy wynik `screen_inventory_menu.py` / `widget_inventory.py` z `data/presenter_map.csv` po `view_off` = this - aktywny widok.
+- Dopasowanie nie jest zgadywane po geometrii. Wynik ma trzy stany: EXACT_VIEW_OFF, AMBIGUOUS_VIEW_OFF, UNRESOLVED_VIEW_OFF.
+- Dla wieloznacznego offsetu wszystkie kandydatury prezentera sa zachowane; narzedzie nie wybiera arbitralnie PID.
+- Wyjscie: JSON z grafem widget -> presenter candidates oraz opcjonalnie CSV i raport Markdown.
+- `tools/test_ui_model.py` — test regresyjny przypadkow exact/ambiguous/unresolved.
+- Uzycie:
+  `python3 -I tools/ui_model.py presenter_map.csv inventory.json ui_model.json --csv ui_model.csv --report ui_model_report.md`
+- Uwaga: pliki stanow/scratchpad z `ui_explore.py` nie sa w repo; pelny model wymaga lokalnego uruchomienia inventory na firmware. Repozytorium przechowuje narzedzie i model wynikowy, nie wymyslone dane.
