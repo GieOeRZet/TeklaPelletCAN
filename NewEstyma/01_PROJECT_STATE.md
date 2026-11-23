@@ -640,7 +640,7 @@ OPEN: individual business conditions for the many per-code clear sites.
 
 ## AUTONOMOUS PASS 98 — KOCIOŁ BINDING RECONCILIATION — 2026-11-23
 Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-98-KOCIOL-BINDING-RECONCILIATION-2026-11-23.md`; data/tool/test: `cg_kociol_bindings_reconciled.*`.
-HARD: 0x370A→0x20016894 (bitmap 11/12/13), 0x350D→0x20016A94 (Ciśnienie= visibility), 0x350A→0x20016A24 (T. powrotu= visibility), 0x2005→0x20016918 (bmp120/122). 0x2277→pump bitmap138 confirmed but exact widget address remains OPEN.
+CORRECTED HARD: 0x370A→0x20016894 (bitmap 11/12/13), 0x350D→0x20016A94 (Ciśnienie= visibility), 0x350A→0x20016A24 (T. powrotu= visibility), 0x2005→0x20016918 (bmp120/122). REJECTED: 0x2277→bitmap138. PASS 63 shows 0x200162F8 as live pump animation (frames 138→142); explicit bitmap138 binding is PID 0x22A1, where value 5 hides the widget and 0/1/2 show it.
 
 
 ## AUTONOMOUS PASS 99–103 — 2026-11-23
