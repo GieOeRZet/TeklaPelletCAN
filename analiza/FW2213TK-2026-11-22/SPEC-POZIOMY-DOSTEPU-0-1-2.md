@@ -4,7 +4,7 @@ Zrodla: wykonanie firmware w emulatorze (zrzuty, budowniczy list `0x0804E714`, f
 ## 1. Wprowadzanie PIN
 - Wiersz menu "Poziom menu (PIN)" otwiera okno **"Wpisz PIN"**: 4 cyfry, nad kazda przycisk "+", pod kazda "-", przycisk OK. Pozycje przyciskow (ekran 480x272): "+" y=100, "-" y=230, kolumny x = 90 / 170 / 250 / 330; OK (415,230). Cyfra 0..9 (zawijanie nie sprawdzane).
 - Po OK (`0x08047E74`): **0900 -> poziom 1**, **0999 -> poziom 2**, kod 0000 -> poziom 0; **kazdy inny kod nie zmienia poziomu** (nie sprawdzano komunikatu o bledzie — brak w kodzie). Poziom zapisany w modelu `+0x158`. (Zweryfikowane w emulatorze: 0900 -> poziom 1, naglowek "klucz 1".)
-- Poziom nie jest zapamietywany w parametrach CAN; obowiazuje do zmiany.
+- Poziom jest polem modelu panelu (`+0x158`); NIEZWERYFIKOWANE: czy przetrwa restart/ponowne uruchomienie i czy jest po jakims czasie zerowany (nie znaleziono kodu zerujacego w analizie dotad).
 
 ## 2. Wspolne dla poziomow >= 1
 - **Naglowek kazdego ekranu**: poziom 0 = ikona czlowieka; poziom >= 1 = ikona klucza z cyfra poziomu (1 lub 2) obok ikony domu.
