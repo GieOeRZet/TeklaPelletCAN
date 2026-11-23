@@ -14,3 +14,7 @@ TR/DR w BCD, czas plynie z licznikiem systick (1 tik = 1 ms), zapis w trybie INI
 ## Narzedzia pokrycia
 `tools/gate_trace.py` (hook blokow -> `cov_*.json`), `tools/coverage_boot.py` (rozruch+ekran glowny+okna), `tools/coverage_report.py` (cele BL = funkcje; wykonane = poczatki blokow). Wynik: patrz kolejny raport po zakonczeniu przebiegow.
 `UiSession.inject_param(pid, val)`: realistyczne wstrzykniecie przez RX handler (wymaga otwarcia okna `poller+0xC` i bramki `poller+0x10`; ramke trzeba powtorzyc 2-3x).
+
+## Stany palnika (Burner state 0x2007) -> tekst na ekranie glownym (HARD: tabela `0x0803DBBC`, 11 par {stan, TypedText-57}, setter `0x0803D7A4`)
+0 Wylaczony | 1 Rozpalanie | 2 Rozzarzanie | 3 Moc 1 | 4 Moc 2 | 5 Modulacja (+wartosc, jednostka kg) | 6 Wygaszanie (°C) | 7 Czyszczenie (s) | 8 Podtrzymanie (%) | 9 Postoj (kg) | 10 Alarm (%). Stan >=11 ignorowany.
+Wartosci 9/10 daja wyjatki w logice kafla plomienia (`0x08041E28`: stan 0, 9 lub 10 -> wyzerowany znacznik). W emulatorze wstrzykniecie stanow >=5 nie utrwalilo sie w storage (do wyjasnienia: dodatkowa walidacja/nadpisanie lokalne).
