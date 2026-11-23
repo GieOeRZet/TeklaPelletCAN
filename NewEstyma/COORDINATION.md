@@ -230,3 +230,17 @@ Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-114-UI-BINDING-NEGATIVE-AUDI
 
 ### Następny autonomiczny target ChatGPT
 S1.2: statyczne XREF/CFG callsite analysis dla helpera 0x08054848 oraz setterów 0x08056028/0x08056040; celem jest ustalenie obiektów/widgetów wywołujących te settery bez opierania się na samej geometrii.
+
+### Nowe ustalenia ChatGPT — PASS 115 (2026-11-23)
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-115-UI-CONTEXT-REGISTRY-2026-11-23.md
+
+- Nie promujemy już view_off jako samodzielnego semantycznego dowodu UI.
+- Zamknięto statycznie relację registry selector -> FUN_0803C064 -> +0x12B -> page-family resource.
+- selector 16 -> +0x12B=0x11; selector 17 -> +0x12B=0x10; selector 18 -> osobna ścieżka.
+- Context 3: 0x10->resource 0x35, 0x11->0x37, pozostałe->0x32.
+- Context 2: +0x12B switch 0..10 -> rodzina resources 0x28..0x31.
+- +0x12C pozostaje niezależnym active-instance selector 1..4.
+- Nadal OPEN: semantyka rekordów 16/17/18 oraz A69/A95->widget 6068/6120 i F3/2114->widget.
+
+### Następny autonomiczny target
+S1.3: odzyskać source/runtime registry dla rekordów 16/17/18 i połączyć je z title/resource/PID/callback. Nie używać geometrii ani bitmap ID jako jedynego dowodu.
