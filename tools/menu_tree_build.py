@@ -24,13 +24,13 @@ node("CWU", "Ciepla woda uzytkowa", "0x808f604"); node("SOLARY", "Solary", "0x80
 node("ALARMY", "Historia alarmow", "0x808ec10", note="dane z rejestrow alarmow, nie z PID-ow GUI (PID-diff nie dotyczy)")
 node("INFO", "Informacje o programie", "0x808f638", note="teksty statyczne")
 node("TEST_WYJSC", "Test wyjsc", "0x808f80c", level_min=1); node("SIEC", "Siec", "0x808f770", level_min=1); node("INTERNET", "Internet", "0x808f9ac", level_min=1)
-node("PROGRAM", "PROGRAM (harmonogram tygodniowy)", "0x808f910", note="widgety/wiazania PROGRAM NIE zmierzone (OPEN)")
+node("PROGRAM", "PROGRAM (harmonogram tygodniowy)", "0x808f910", evidence="MEASURED (PASS 66; szczegoly: ui_model/program_screen.json)", note="7 dni x bitmaska 24 h (bit=1 komfort); dialog edycji dnia i dialog Kopiuj jako nakladki")
 node("LISTA", "Lista parametrow (NASTAWY / Konfiguracja / Statystyki)", "0x808f944", note="jedna klasa; tresc = klasa runtime x poziom -> panel_lists_by_level.csv")
 node("KASKADA", "Kaskada (MASTER, SLAVE 1..3, stopien mocy)", "0x808ee18", evidence="MEASURED (PASS 65: ekran odslonieto 0x350C=1; 72 widgety, 18 wiazan PID-diff)")
 node("MAGAZYN", "Dodatkowy magazyn paliwa", "0x808eb74", evidence="MEASURED (PASS 65: ekran odslonieto 0x3525=1; 47 widgetow, 1 wiazanie PID-diff, reszta live)")
 node("KONFIGURACJA", "Konfiguracja (lista klasy 0x10)", "0x808f944", evidence="MEASURED (LISTA z ctx 0x10)", note="zmienia widocznosc menu 0x2105..0x2108 od poziomu 1")
 node("STATYSTYKI", "Statystyki (lista klasy 0x11)", "0x808f944", level_min=1, evidence="STRONG (PASS 46: klasa 0x11, 13 pozycji; ctx 0x11)")
-for i, t, src in (("DLG_PIN", "Dialog PIN (4 cyfry, +/-, OK)", "DOC PASS 93/105"), ("DLG_PALIWO", "Dialog Paliwo (+/-, kg, czas, OK)", "MEASURED (zrzut dialog_shots/home_dlg_paliwo.png; nakladka na HOME, wyzwalacz kafel 103,234)"),
+for i, t, src in (("DLG_PIN", "Dialog PIN (4 cyfry, +/-, OK)", "DOC PASS 93/105"), ("DLG_PROGRAM_DZIEN", "Dialog edycji dnia PROGRAM (uchwyt 0-24 h, eco/komfort, Kopiuj, OK)", "MEASURED (PASS 66; program_screen.json)"), ("DLG_PROGRAM_KOPIUJ", "Dialog Kopiuj na inne dni (pola wyboru dni, OK)", "MEASURED (PASS 66; zrzut)"), ("DLG_PALIWO", "Dialog Paliwo (+/-, kg, czas, OK)", "MEASURED (zrzut dialog_shots/home_dlg_paliwo.png; nakladka na HOME, wyzwalacz kafel 103,234)"),
                   ("DLG_CZAS", "Dialog Ustaw czas (koła godzina/minuta, OK)", "MEASURED (zrzut home_dlg_czas.png; nakladka na HOME, wyzwalacz zegar 42,19)"), ("DLG_DATA", "Dialog Ustaw date (koła dzien/miesiac/rok, OK)", "MEASURED (zrzut home_dlg_data.png; nakladka na HOME, wyzwalacz 240,19)"), ("DLG_EDYCJA", "Dialog edycji wartosci (suwak min-max, -/+, OK; zapis CAN 0x584)", "DOC PASS 93/105"),
                   ("DLG_ZASILANIE", "Okno trybow zasilania (Kociol on/off, Ogrzewanie 1/2, Woda: tryb off/eco/AUTO-zegar/comfort + suwak)", "MEASURED (zrzut home_dlg_zasilanie.png; wyzwalacz kafel 448,234)"), ("DLG_AUTO", "Okno AUTO (komunikat + suwak komfort/eco, OK)", "MEASURED (zrzut home_dlg_auto.png; wyzwalacz kafel 415,76)")):
     node(i, t, None, kind="dialog", evidence=src, note="nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX" if i != "DLG_PIN" and i != "DLG_EDYCJA" else "OPEN: vtable, widgety, wiazania, ramka TX")
@@ -77,7 +77,8 @@ for a in act:
     E.append({"from": f, "to": None, "tap": [a["x"], a["y"]], "widget_size": [a["w"], a["h"]], "label": "stukniecie zapisuje PID", "level_min": 1 if f in ("TEST_WYJSC", "INTERNET", "MENU") else 0, "effect": "write_pid",
               "pid_writes": [{"pid": q["pid"], "old": q["old"], "new": q["new"]} for q in a["effects"]["pid"] if q["pid"] != "0x2122"], "can_tx": [c["id"] + " " + c["data"] for c in a["effects"]["can"]],
               "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"})
-for a, b, lab, ev in (("HOME", "MENU", "kafel MENU (34,235)", "MEASURED (ui_explore: tap 34,235)"), ("HOME", "DLG_PALIWO", "kafel Paliwo (103,234)", "MEASURED (zrzut + stukniecie)"),
+for a, b, lab, ev in (("HOME", "MENU", "kafel MENU (34,235)", "MEASURED (ui_explore: tap 34,235)"), ("PROGRAM", "DLG_PROGRAM_DZIEN", "wiersz dnia (370x71)", "MEASURED (PASS 66)"), ("DLG_PROGRAM_DZIEN", "DLG_PROGRAM_KOPIUJ", "przycisk Kopiuj (235,200)", "MEASURED (PASS 66)"), ("DLG_PROGRAM_DZIEN", "PROGRAM", "OK: zapis PID harmonogramu (0x584) gdy zmieniono", "MEASURED (PASS 66)"),
+                      ("HOME", "DLG_PALIWO", "kafel Paliwo (103,234)", "MEASURED (zrzut + stukniecie)"),
                       ("HOME", "DLG_ZASILANIE", "kafel zasilania (448,234)", "MEASURED (zrzut + stukniecie)"), ("HOME", "DLG_AUTO", "kafel AUTO (415,76)", "MEASURED (zrzut + stukniecie)"), ("HOME", "DLG_CZAS", "zegar (42,19)", "MEASURED (zrzut + stukniecie)"), ("HOME", "DLG_DATA", "data (240,19)", "MEASURED (zrzut + stukniecie)"), ("LISTA", "DLG_EDYCJA", "wiersz liczbowy", "DOC PASS 93/105"),
                       ("MENU", "DLG_PIN", "wiersz Poziom menu", "STRONG (wiersz 14, klasa 15)")):
     E.append(dict(**{"from": a, "to": b}, tap=None, label=lab, level_min=0, effect="dialog" if b.startswith("DLG") else "nav", evidence=ev))
@@ -88,8 +89,8 @@ pl = list(csv.DictReader(open(os.path.join(D, "panel_lists_by_level.csv")))); cn
 for r in pl:
     if r["inst"] in ("1", "") : cnt.setdefault(r["cls"], {})[r["level"]] = int(r["list_len"] or 0)
 lists = {c: dict(counts_by_level=v, source="panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)", evidence="MEASURED") for c, v in cnt.items()}
-open_items = ["HOME: wiazania widgetow, okna (Paliwo, zasilanie, AUTO) - vtable/widgety nie zmierzone", "PROGRAM: widgety i wiazania (harmonogram 7 dni x 24 h)", "Kaskada, Dodatkowy magazyn paliwa: odslonic konfiguracja 0x350C/0x3525, zmierzyc",
-              "Poziomy 1 i 3: inwentarz widgetow ekranow (mamy L0 i L2); menu: L1=L2=L3 (zmierzone); poziom 3 = CPU% w naglowku + 6 wrapperow", "Graf akcji: 415 stukniec; brak: ekran glowny, PROGRAM, dialogi, wiersze list NASTAWY (otwieranie edycji)",
+open_items = ["HOME: wiazania widgetow, okna (Paliwo, zasilanie, AUTO) - vtable/widgety nie zmierzone", "Kaskada, Dodatkowy magazyn paliwa: odslonic konfiguracja 0x350C/0x3525, zmierzyc",
+              "Poziomy 1 i 3: inwentarz widgetow ekranow (mamy L0 i L2); menu: L1=L2=L3 (zmierzone); poziom 3 = CPU% w naglowku + 6 wrapperow", "Graf akcji: 455 stukniec + sekwencja PROGRAM; brak: dialog PIN, dialog edycji wartosci z list NASTAWY, wnetrza dialogow ekranu glownego",
               "Dialogi: vtable, widgety, wiazania, ramki TX (PIN, Paliwo, czas, edycja, zasilanie, AUTO, potwierdzenia, bledy)", "Wiersze 15/16 (Jezyk, Alarm dzwiekowy): kontrolki wbudowane w wiersz (nie ekran)", "Alarmy: warunki per alarm, prezentacja, ACK", "Wykresy/Statystyki: widoki i dane"]
 tree = dict(meta=dict(title="Drzewo menu igneoTouch FW2213TK (szkielet)", generated_by="tools/menu_tree_build.py (PASS 65)", firmware_sha256="1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071",
                       evidence_legend="MEASURED=zmierzone w emulatorze; STRONG=spojne z wielu zrodel; DOC=z raportow, nie zmierzone tu; OPEN=brak dowodu", levels="0..3 (PIN 900->1, 999->2, 6154->3)"),

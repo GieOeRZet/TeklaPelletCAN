@@ -116,6 +116,9 @@ Legenda dowodow: MEASURED / STRONG / DOC / OPEN. Pelne dane: `menu_tree.json`.
 | MENU | [240, 228] | None | stukniecie zapisuje PID |
 | MENU | [429, 229] | None | stukniecie zapisuje PID |
 | HOME | None | MENU | kafel MENU (34,235) |
+| PROGRAM | None | DLG_PROGRAM_DZIEN | wiersz dnia (370x71) |
+| DLG_PROGRAM_DZIEN | None | DLG_PROGRAM_KOPIUJ | przycisk Kopiuj (235,200) |
+| DLG_PROGRAM_DZIEN | None | PROGRAM | OK: zapis PID harmonogramu (0x584) gdy zmieniono |
 | HOME | None | DLG_PALIWO | kafel Paliwo (103,234) |
 | HOME | None | DLG_ZASILANIE | kafel zasilania (448,234) |
 | HOME | None | DLG_AUTO | kafel AUTO (415,76) |
@@ -160,10 +163,9 @@ Legenda dowodow: MEASURED / STRONG / DOC / OPEN. Pelne dane: `menu_tree.json`.
 ## OPEN
 
 - HOME: wiazania widgetow, okna (Paliwo, zasilanie, AUTO) - vtable/widgety nie zmierzone
-- PROGRAM: widgety i wiazania (harmonogram 7 dni x 24 h)
 - Kaskada, Dodatkowy magazyn paliwa: odslonic konfiguracja 0x350C/0x3525, zmierzyc
 - Poziomy 1 i 3: inwentarz widgetow ekranow (mamy L0 i L2); menu: L1=L2=L3 (zmierzone); poziom 3 = CPU% w naglowku + 6 wrapperow
-- Graf akcji: 415 stukniec; brak: ekran glowny, PROGRAM, dialogi, wiersze list NASTAWY (otwieranie edycji)
+- Graf akcji: 455 stukniec + sekwencja PROGRAM; brak: dialog PIN, dialog edycji wartosci z list NASTAWY, wnetrza dialogow ekranu glownego
 - Dialogi: vtable, widgety, wiazania, ramki TX (PIN, Paliwo, czas, edycja, zasilanie, AUTO, potwierdzenia, bledy)
 - Wiersze 15/16 (Jezyk, Alarm dzwiekowy): kontrolki wbudowane w wiersz (nie ekran)
 - Alarmy: warunki per alarm, prezentacja, ACK

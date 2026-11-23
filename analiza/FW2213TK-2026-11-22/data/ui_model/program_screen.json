@@ -1,0 +1,208 @@
+{
+ "screen": "PROGRAM (harmonogram tygodniowy)",
+ "vtable": "0x808f910",
+ "evidence": "MEASURED (PASS 66: emulator, wstrzykiwanie PID, odczyt rect widzetow, zrzuty, sekwencja edycji, ramka CAN)",
+ "opens_from": [
+  {
+   "from_screen": "KOCIOL",
+   "tap": [
+    414,
+    130
+   ],
+   "widget_size": [
+    134,
+    37
+   ],
+   "label": "pasek programu"
+  },
+  {
+   "from_screen": "OGRZEWANIE",
+   "tap": [
+    414,
+    130
+   ],
+   "widget_size": [
+    134,
+    37
+   ],
+   "label": "pasek programu"
+  },
+  {
+   "from_screen": "CWU",
+   "tap": [
+    414,
+    130
+   ],
+   "widget_size": [
+    134,
+    37
+   ],
+   "label": "pasek programu"
+  }
+ ],
+ "back_edges": [
+  {
+   "tap": [
+    65,
+    22
+   ],
+   "to": "parent (Kociol/Ogrzewanie/Woda)"
+  },
+  {
+   "tap": [
+    479,
+    25
+   ],
+   "to": "HOME"
+  }
+ ],
+ "pids_read_on_open": {
+  "KOCIOL": {
+   "monday": "0x2209",
+   "tuesday": "0x220A",
+   "wednesday": "0x220B",
+   "thursday": "0x220C",
+   "friday": "0x220D",
+   "saturday": "0x220E",
+   "sunday": "0x220F"
+  },
+  "OGRZEWANIE_k": "PID(dzien i, obwod k) = 0x2126 + 4*i + (k-1), i=0..6 (Pn..Nd), k=1..4; np. CO1: 0x2126,0x212A,0x212E,0x2132,0x2136,0x213A,0x213E; CO2: +1",
+  "OGRZEWANIE_1": {
+   "monday": "0x2126",
+   "tuesday": "0x212A",
+   "wednesday": "0x212E",
+   "thursday": "0x2132",
+   "friday": "0x2136",
+   "saturday": "0x213A",
+   "sunday": "0x213E"
+  },
+  "CWU": {
+   "monday": "0x2154",
+   "tuesday": "0x2155",
+   "wednesday": "0x2156",
+   "thursday": "0x2157",
+   "friday": "0x2158",
+   "saturday": "0x2159",
+   "sunday": "0x2160"
+  },
+  "note_cwu": "niciagla numeracja: niedziela = 0x2160 (nie 0x215A)"
+ },
+ "encoding": {
+  "type": "u32, 24 uzyteczne bity (0..16777215)",
+  "bit_h": "godzina h (h:00-h+1:00); bit=1 -> KOMFORT (czerwony segment), bit=0 -> eco",
+  "segment_geometry": {
+   "x_px": "5 + 15*h",
+   "w_px_per_hour": 15,
+   "bar_total_px": 360,
+   "merge_rule": "kolejne bity 1 tworza jeden prostokat (np. wszystkie=1 -> x=5,w=360)"
+  },
+  "defaults": {
+   "kociol_pn_wt": "507967 (0x7C0BF)",
+   "kociol_sr_nd": "131071 (godziny 0-17)",
+   "co": "4194240 (godziny 6-21)",
+   "cwu": "4194240 (godziny 6-21)"
+  },
+  "evidence": "MEASURED (bit-po-bicie, widget 0x20016414 pasek Pn Kotla)"
+ },
+ "list_view": {
+  "days_order": [
+   "Pn",
+   "Wt",
+   "Sr",
+   "Cz",
+   "Pt",
+   "Sb",
+   "Nd"
+  ],
+  "visible_rows": 4,
+  "scroll": "przeciagniecie w gore pokazuje Cz,Pt,Sb,Nd",
+  "row_touch_rect": {
+   "w": 370,
+   "h": 71,
+   "row_centers_y": [
+    65,
+    120,
+    175,
+    230
+   ]
+  },
+  "axis": "0 6 12 18 24 (os godzin)",
+  "note": "widok PROGRAM czyta PID-y harmonogramu przy otwarciu; zmiana PID po otwarciu nie odswieza paska"
+ },
+ "day_dialog": {
+  "trigger": "stuknij wiersz dnia",
+  "title": "nazwa dnia (Poniedzialek ... Niedziela)",
+  "controls": {
+   "handle": "uchwyt/slider godziny 0..24, pokazuje numer godziny nad uchwytem (przeciaganie)",
+   "eco_button": {
+    "tap": [
+     195,
+     154
+    ],
+    "size": [
+     52,
+     36
+    ],
+    "icon": "ksiezyc eco"
+   },
+   "comfort_button": {
+    "tap": [
+     275,
+     154
+    ],
+    "size": [
+     52,
+     36
+    ],
+    "icon": "slonce comf"
+   },
+   "copy_button": {
+    "tap": [
+     235,
+     200
+    ],
+    "size": [
+     134,
+     37
+    ],
+    "label": "Kopiuj"
+   },
+   "ok_button": {
+    "tap": [
+     415,
+     228
+    ],
+    "approx": true
+   }
+  },
+  "behaviour": [
+   "komfort: ustawia bit godziny pod uchwytem na 1 i przesuwa uchwyt o +1 (zmierzone 6->7)",
+   "eco: ustawia bit na 0 i przesuwa uchwyt",
+   "OK: zatwierdza; zapis PID dopiero przy OK i tylko gdy wartosc sie zmienila",
+   "przyciski komfort/eco/uchwyt same nie wysylaja CAN"
+  ],
+  "write_on_ok": {
+   "example": "Kociol Pn: bit 6 ustawiony: 0x2209 507967 -> 508031",
+   "can_frame": "0x584 DLC8: 42 <pid_lo> <pid_hi> 01 <u32 LE>; np. 42 09 22 01 7f c0 07 00",
+   "evidence": "MEASURED"
+  }
+ },
+ "copy_dialog": {
+  "trigger": "przycisk Kopiuj w dialogu dnia",
+  "title": "Kopiuj na inne dni",
+  "controls": "pola wyboru Pn Wt Sr Cz Pt Sb Nd (biezacy dzien zaznaczony i zablokowany) + OK",
+  "evidence": "MEASURED (zrzut program_scroll_and_copy_sheet.png)",
+  "write": "OPEN: zapis PID-ow dni docelowych przy OK nie zmierzony"
+ },
+ "shots": [
+  "dialog_shots/program_list.png",
+  "dialog_shots/program_day_dialog.png",
+  "dialog_shots/program_edit_sequence_sheet.png",
+  "dialog_shots/program_scroll_and_copy_sheet.png"
+ ],
+ "open": [
+  "Kopiuj: zapis do dni docelowych, wybor dni (pozycje pol wyboru)",
+  "dokladna pozycja OK i zakres uchwytu (x=58..~420)",
+  "PROGRAM dla Wody ma tez harmonogram cyrkulacji? (nie zmierzone)"
+ ]
+}

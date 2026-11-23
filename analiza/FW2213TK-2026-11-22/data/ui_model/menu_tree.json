@@ -130,8 +130,8 @@
    "vtable": "0x808f910",
    "kind": "screen",
    "level_min": 0,
-   "evidence": "MEASURED (pasek programu na Kociol/Ogrzewanie)",
-   "note": "widgety/wiazania PROGRAM NIE zmierzone (OPEN)"
+   "evidence": "MEASURED (PASS 66; szczegoly: ui_model/program_screen.json)",
+   "note": "7 dni x bitmaska 24 h (bit=1 komfort); dialog edycji dnia i dialog Kopiuj jako nakladki"
   },
   {
    "id": "LISTA",
@@ -186,6 +186,24 @@
    "level_min": 0,
    "evidence": "DOC PASS 93/105",
    "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+  },
+  {
+   "id": "DLG_PROGRAM_DZIEN",
+   "title_pl": "Dialog edycji dnia PROGRAM (uchwyt 0-24 h, eco/komfort, Kopiuj, OK)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "MEASURED (PASS 66; program_screen.json)",
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+  },
+  {
+   "id": "DLG_PROGRAM_KOPIUJ",
+   "title_pl": "Dialog Kopiuj na inne dni (pola wyboru dni, OK)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "MEASURED (PASS 66; zrzut)",
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
   },
   {
    "id": "DLG_PALIWO",
@@ -2594,6 +2612,33 @@
    "evidence": "MEASURED (ui_explore: tap 34,235)"
   },
   {
+   "from": "PROGRAM",
+   "to": "DLG_PROGRAM_DZIEN",
+   "tap": null,
+   "label": "wiersz dnia (370x71)",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "MEASURED (PASS 66)"
+  },
+  {
+   "from": "DLG_PROGRAM_DZIEN",
+   "to": "DLG_PROGRAM_KOPIUJ",
+   "tap": null,
+   "label": "przycisk Kopiuj (235,200)",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "MEASURED (PASS 66)"
+  },
+  {
+   "from": "DLG_PROGRAM_DZIEN",
+   "to": "PROGRAM",
+   "tap": null,
+   "label": "OK: zapis PID harmonogramu (0x584) gdy zmieniono",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (PASS 66)"
+  },
+  {
    "from": "HOME",
    "to": "DLG_PALIWO",
    "tap": null,
@@ -3035,10 +3080,9 @@
  },
  "open": [
   "HOME: wiazania widgetow, okna (Paliwo, zasilanie, AUTO) - vtable/widgety nie zmierzone",
-  "PROGRAM: widgety i wiazania (harmonogram 7 dni x 24 h)",
   "Kaskada, Dodatkowy magazyn paliwa: odslonic konfiguracja 0x350C/0x3525, zmierzyc",
   "Poziomy 1 i 3: inwentarz widgetow ekranow (mamy L0 i L2); menu: L1=L2=L3 (zmierzone); poziom 3 = CPU% w naglowku + 6 wrapperow",
-  "Graf akcji: 415 stukniec; brak: ekran glowny, PROGRAM, dialogi, wiersze list NASTAWY (otwieranie edycji)",
+  "Graf akcji: 455 stukniec + sekwencja PROGRAM; brak: dialog PIN, dialog edycji wartosci z list NASTAWY, wnetrza dialogow ekranu glownego",
   "Dialogi: vtable, widgety, wiazania, ramki TX (PIN, Paliwo, czas, edycja, zasilanie, AUTO, potwierdzenia, bledy)",
   "Wiersze 15/16 (Jezyk, Alarm dzwiekowy): kontrolki wbudowane w wiersz (nie ekran)",
   "Alarmy: warunki per alarm, prezentacja, ACK",
