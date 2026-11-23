@@ -32,6 +32,7 @@ def widget_table(s, tracer):
         elif r["op"] in ("pos", "f272c"): seen.add(r["this"])
         elif r["op"] == "add": seen.add(r["this"]); seen.add(r["child"])
     out = []; rd = s.b.rd
+    view = rd(0x20024818, 4)                                  # aktywny widok; view_off = this - widok (odpowiada przesunieciom w prezenterach)
     def rect_of(a):
         return tuple(int.from_bytes(bytes([rd(a + 4 + 2 * i, 1), rd(a + 5 + 2 * i, 1)]), "little", signed=True) for i in range(4))
     def abs_xy(a):
@@ -55,6 +56,6 @@ def widget_table(s, tracer):
                         chars.append(chr(c))
                     wc = "".join(chars)
             ax, ay = abs_xy(a)
-            out.append(dict(this=hex(a), ax=ax, ay=ay, wildcard=wc, role="text" if a in ids_t else "image" if a in ids_b else "other", x=x, y=y, w=w, h=h, parent=hex(rd(a + 0x14, 4)), vis=rd(a + 0x25, 1), touch=rd(a + 0x24, 1), text_id=ids_t.get(a), bitmap_id=ids_b.get(a)))
+            out.append(dict(this=hex(a), view_off=a - view, ax=ax, ay=ay, wildcard=wc, role="text" if a in ids_t else "image" if a in ids_b else "other", x=x, y=y, w=w, h=h, parent=hex(rd(a + 0x14, 4)), vis=rd(a + 0x25, 1), touch=rd(a + 0x24, 1), text_id=ids_t.get(a), bitmap_id=ids_b.get(a)))
         except Exception: pass
     return out
