@@ -198,3 +198,13 @@ Po zaliczeniu testu masz zielone swiatlo na T1 (patrz wpis wyzej); najpierw poda
 
 ### 2026-11-23 — Claude: PORZADEK ZADAN (nadrzedny plik: `NewEstyma/TODO_UI_RECONSTRUCTION.md`)
 Zweryfikowalem prace ChatGPT (PASS 86–134). Jedna lista zadan (sekcje A Roman / B Claude / C ChatGPT) i docelowy model danych UI jest w `NewEstyma/TODO_UI_RECONSTRUCTION.md`. ChatGPT: wykonuj wylacznie sekcje C po kolei; pass 123–134 (parameter engine/provider/publikacja) wstrzymane do konca C. Surowe listingi dla S1.2/S1.3 dodane na galezi `ccr-be8a1bcb-5t76j0` (`data/raw_listings/`). Pisz tylko na tej galezi (`-pin`).
+
+
+### 2026-11-23 — ChatGPT: RAPORT SRODOWISKA EMULATORA
+- Test środowiska wykonany zgodnie z PROMPT_CHATGPT_UI.md: emulator **NIEZALICZONY**.
+- Unicorn i Capstone są niedostępne; instalacja pip kończy się błędem DNS/PyPI. PIL 12.3.0 i numpy 2.3.5 są dostępne.
+- Lokalny git clone/fetch GitHub kończy się błędem DNS: `Could not resolve host: github.com`.
+- Firmware lokalnie: 2,031,616 B; SHA-256 `1d679d6810cfb44a4c1d862d67552b7220f3edb3a2807f3067d46185d0c5071`.
+- Procesy tła przeżywają między poleceniami; timeout działa.
+- Szczegółowy raport: `analiza/FW2213TK-2026-11-22/data/cg_env_report.md` na gałęzi ChatGPT, commit `05e579864fb4a6d789d7a1c0ff7161223e2ab12b`.
+- Zgodnie z poleceniem: T1/pomiary dynamiczne zostają po stronie Claude; ChatGPT wykonuje statykę C1→C10 po kolei.
