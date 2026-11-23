@@ -427,3 +427,6 @@ Zapis wartosci: dialog numeryczny -> CAN 0x584 `42 pidL pidH 01 val32` (patrz PA
 **Poziom 1** (razem 13, nowe wzgledem poprzedniego: 0)
 
 **Poziom 2** (razem 13, nowe wzgledem poprzedniego: 0)
+
+## 5. Polskie etykiety wierszy NASTAWY (surowe, kolejnosc odczytu TypedText = kolejnosc wierszy; poziom 2)
+`data/settings_labels/L2_row{0,1,2,6}.json` (Kociol, Palnik, Ogrzewanie 1, Ciepla woda; narzedzie `tools/settings_labels.py`). W pliku sa tez teksty naglowka i statusow (np. "KOCIOL", "NASTAWY", "Energia lacznie [kWh]=", "Ochrona kotla") — etykiety wierszy to teksty z jednostka w [] / nazwy parametrow. Dopasowanie etykieta -> PID: kolejnosc listy `panel_lists_by_level.csv` (wiersze 0x47/0x48 = wykresy). Do zrobienia: Solary, Bufor, Konfiguracja, Kaskada, Magazyn, Statystyki.

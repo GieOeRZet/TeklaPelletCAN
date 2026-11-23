@@ -1,0 +1,251 @@
+{
+ "row": 1,
+ "level": 2,
+ "pages": [
+  [
+   [
+    96,
+    "MENU"
+   ],
+   [
+    494,
+    ">"
+   ],
+   [
+    118,
+    "Palnik"
+   ],
+   [
+    483,
+    "A"
+   ],
+   [
+    484,
+    "OFF"
+   ],
+   [
+    485,
+    "ON"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    95,
+    "EKRAN GŁ."
+   ],
+   [
+    63,
+    "Wyłączony"
+   ],
+   [
+    98,
+    "PALNIK"
+   ],
+   [
+    402,
+    "spalanie[kg/h]=\u0002"
+   ],
+   [
+    400,
+    "moc[kW]=\u0002"
+   ],
+   [
+    401,
+    "moc[%]=\u0002"
+   ],
+   [
+    393,
+    "jasność=\u0002"
+   ],
+   [
+    431,
+    "spaliny[°C]=\u0002"
+   ],
+   [
+    399,
+    "tlen[%]=\u0002"
+   ],
+   [
+    395,
+    "T. palnika=\u0002"
+   ],
+   [
+    394,
+    "obroty=\u0002"
+   ],
+   [
+    199,
+    "Moc dmuchawy modulacja [%]"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    200,
+    "Korekta powietrza [%]"
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    204,
+    "Moc min [%]"
+   ],
+   [
+    205,
+    "Moc max [%]"
+   ],
+   [
+    207,
+    "Wartość opałowa [kWh/kg]"
+   ],
+   [
+    206,
+    "Ilość paliwa test [kg/h]"
+   ],
+   [
+    201,
+    "Podawanie max [s]"
+   ],
+   [
+    202,
+    "Wstępna dawka paliwa [s]"
+   ],
+   [
+    146,
+    "Próg foto"
+   ],
+   [
+    212,
+    "Moc dmuchawy rozpalanie [%]"
+   ],
+   [
+    427,
+    "Moc dmuchawy rozżarzanie [%]"
+   ],
+   [
+    446,
+    "Moc dmuchawy wygaszanie [%]"
+   ],
+   [
+    213,
+    "Czas rozżarzania [min]"
+   ],
+   [
+    186,
+    "Rozżarzanie paliwo [%]"
+   ],
+   [
+    147,
+    "Czas wygaszania [min]"
+   ],
+   [
+    208,
+    "Sterowanie Lambda"
+   ],
+   [
+    209,
+    "Tlen dla mocy 30%"
+   ],
+   [
+    210,
+    "Tlen dla mocy 100%"
+   ],
+   [
+    211,
+    "Liczba czyszczeń rusztu"
+   ],
+   [
+    185,
+    "Odstęp czyszczenia [h]"
+   ],
+   [
+    461,
+    "Czas pauzy [min]"
+   ],
+   [
+    462,
+    "Moc w pauzie [%]"
+   ],
+   [
+    463,
+    "Dmuchawa w pauzie [%]"
+   ],
+   [
+    478,
+    "Szybkość modulacji mocy"
+   ],
+   [
+    214,
+    "Bezwładność palnika [min]"
+   ],
+   [
+    432,
+    "Czas ruchu rusztu [s]"
+   ],
+   [
+    441,
+    "Pod. palnika [% pod. zasobnika]"
+   ],
+   [
+    224,
+    "Okres podajnika zasobnika [s]"
+   ]
+  ],
+  [
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    204,
+    "Moc min [%]"
+   ],
+   [
+    205,
+    "Moc max [%]"
+   ],
+   [
+    207,
+    "Wartość opałowa [kWh/kg]"
+   ],
+   [
+    206,
+    "Ilość paliwa test [kg/h]"
+   ],
+   [
+    200,
+    "Korekta powietrza [%]"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    199,
+    "Moc dmuchawy modulacja [%]"
+   ],
+   [
+    201,
+    "Podawanie max [s]"
+   ],
+   [
+    202,
+    "Wstępna dawka paliwa [s]"
+   ],
+   [
+    146,
+    "Próg foto"
+   ]
+  ],
+  []
+ ]
+}

@@ -1,0 +1,555 @@
+{
+ "row": 2,
+ "level": 2,
+ "pages": [
+  [
+   [
+    96,
+    "MENU"
+   ],
+   [
+    494,
+    ">"
+   ],
+   [
+    119,
+    "Ogrzewanie obwód 1"
+   ],
+   [
+    93,
+    "W tym trybie temperatura\nzadawana jest automatycznie."
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    95,
+    "EKRAN GŁ."
+   ],
+   [
+    87,
+    "Ochrona kotła"
+   ],
+   [
+    99,
+    "OGRZEWANIE 1"
+   ],
+   [
+    199,
+    "Moc dmuchawy modulacja [%]"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    150,
+    "Temperatura komfortowa [°C]  "
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    151,
+    "Temperatura ekonomiczna [°C] "
+   ],
+   [
+    154,
+    "Histereza [°C]"
+   ],
+   [
+    166,
+    "Kalibracja czujnika pok. [°C]"
+   ],
+   [
+    164,
+    "Tryb pracy  "
+   ],
+   [
+    230,
+    "pogodowy"
+   ],
+   [
+    175,
+    "Temperatura CO zadana ręcznie [°C]"
+   ],
+   [
+    168,
+    "Temperatura CO dla -20°C [°C]"
+   ],
+   [
+    169,
+    "Temperatura CO dla -10°C [°C]"
+   ],
+   [
+    170,
+    "Temperatura CO dla  0°C [°C]"
+   ],
+   [
+    171,
+    "Temperatura CO dla 10°C [°C]"
+   ],
+   [
+    470,
+    "Automatyczny tryb lato"
+   ],
+   [
+    319,
+    "Nazwa"
+   ],
+   [
+    157,
+    "Źródło"
+   ],
+   [
+    124,
+    "Bufor"
+   ],
+   [
+    158,
+    "Zwiększenie temperatury źródła [°C]"
+   ],
+   [
+    165,
+    "Czujnik pokojowy"
+   ],
+   [
+    238,
+    "CAN"
+   ],
+   [
+    159,
+    "Temp. maksymalna [°C]"
+   ],
+   [
+    167,
+    "Czujnik CO"
+   ],
+   [
+    172,
+    "Wsp. korekcji t. CO [°C/°C]"
+   ],
+   [
+    226,
+    "Obniżenie temperatury CO [°C]"
+   ],
+   [
+    173,
+    "MIN temperatura CO pomp [°C]"
+   ],
+   [
+    174,
+    "Czas mieszacza [s]"
+   ],
+   [
+    179,
+    "Stała pompa"
+   ],
+   [
+    260,
+    "Obniżenie Tco dla ochrony powrotu"
+   ],
+   [
+    229,
+    "ręczny"
+   ],
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    232,
+    "brak"
+   ]
+  ],
+  [
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    151,
+    "Temperatura ekonomiczna [°C] "
+   ],
+   [
+    154,
+    "Histereza [°C]"
+   ],
+   [
+    166,
+    "Kalibracja czujnika pok. [°C]"
+   ],
+   [
+    164,
+    "Tryb pracy  "
+   ],
+   [
+    229,
+    "ręczny"
+   ],
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    232,
+    "brak"
+   ],
+   [
+    150,
+    "Temperatura komfortowa [°C]  "
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    175,
+    "Temperatura CO zadana ręcznie [°C]"
+   ],
+   [
+    168,
+    "Temperatura CO dla -20°C [°C]"
+   ],
+   [
+    169,
+    "Temperatura CO dla -10°C [°C]"
+   ],
+   [
+    170,
+    "Temperatura CO dla  0°C [°C]"
+   ],
+   [
+    171,
+    "Temperatura CO dla 10°C [°C]"
+   ]
+  ],
+  [
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    229,
+    "ręczny"
+   ],
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    232,
+    "brak"
+   ],
+   [
+    175,
+    "Temperatura CO zadana ręcznie [°C]"
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    168,
+    "Temperatura CO dla -20°C [°C]"
+   ],
+   [
+    169,
+    "Temperatura CO dla -10°C [°C]"
+   ],
+   [
+    170,
+    "Temperatura CO dla  0°C [°C]"
+   ],
+   [
+    171,
+    "Temperatura CO dla 10°C [°C]"
+   ],
+   [
+    470,
+    "Automatyczny tryb lato"
+   ]
+  ],
+  [
+   [
+    168,
+    "Temperatura CO dla -20°C [°C]"
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    169,
+    "Temperatura CO dla -10°C [°C]"
+   ],
+   [
+    170,
+    "Temperatura CO dla  0°C [°C]"
+   ],
+   [
+    171,
+    "Temperatura CO dla 10°C [°C]"
+   ],
+   [
+    470,
+    "Automatyczny tryb lato"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    229,
+    "ręczny"
+   ],
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    232,
+    "brak"
+   ],
+   [
+    319,
+    "Nazwa"
+   ]
+  ],
+  [
+   [
+    229,
+    "ręczny"
+   ],
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    232,
+    "brak"
+   ],
+   [
+    169,
+    "Temperatura CO dla -10°C [°C]"
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    170,
+    "Temperatura CO dla  0°C [°C]"
+   ],
+   [
+    171,
+    "Temperatura CO dla 10°C [°C]"
+   ],
+   [
+    470,
+    "Automatyczny tryb lato"
+   ],
+   [
+    319,
+    "Nazwa"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    157,
+    "Źródło"
+   ]
+  ],
+  [
+   [
+    229,
+    "ręczny"
+   ],
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    232,
+    "brak"
+   ],
+   [
+    171,
+    "Temperatura CO dla 10°C [°C]"
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    470,
+    "Automatyczny tryb lato"
+   ],
+   [
+    319,
+    "Nazwa"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    157,
+    "Źródło"
+   ],
+   [
+    158,
+    "Zwiększenie temperatury źródła [°C]"
+   ]
+  ],
+  [
+   [
+    229,
+    "ręczny"
+   ],
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    232,
+    "brak"
+   ],
+   [
+    470,
+    "Automatyczny tryb lato"
+   ],
+   [
+    319,
+    "Nazwa"
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    157,
+    "Źródło"
+   ],
+   [
+    158,
+    "Zwiększenie temperatury źródła [°C]"
+   ],
+   [
+    165,
+    "Czujnik pokojowy"
+   ],
+   [
+    159,
+    "Temp. maksymalna [°C]"
+   ],
+   [
+    167,
+    "Czujnik CO"
+   ],
+   [
+    172,
+    "Wsp. korekcji t. CO [°C/°C]"
+   ],
+   [
+    226,
+    "Obniżenie temperatury CO [°C]"
+   ]
+  ],
+  [
+   [
+    232,
+    "brak"
+   ],
+   [
+    159,
+    "Temp. maksymalna [°C]"
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    167,
+    "Czujnik CO"
+   ],
+   [
+    172,
+    "Wsp. korekcji t. CO [°C/°C]"
+   ],
+   [
+    226,
+    "Obniżenie temperatury CO [°C]"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    229,
+    "ręczny"
+   ],
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    165,
+    "Czujnik pokojowy"
+   ],
+   [
+    173,
+    "MIN temperatura CO pomp [°C]"
+   ],
+   [
+    174,
+    "Czas mieszacza [s]"
+   ],
+   [
+    179,
+    "Stała pompa"
+   ],
+   [
+    260,
+    "Obniżenie Tco dla ochrony powrotu"
+   ]
+  ],
+  []
+ ]
+}

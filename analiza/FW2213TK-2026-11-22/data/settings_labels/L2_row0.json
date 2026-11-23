@@ -1,0 +1,151 @@
+{
+ "row": 0,
+ "level": 2,
+ "pages": [
+  [
+   [
+    96,
+    "MENU"
+   ],
+   [
+    494,
+    ">"
+   ],
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    95,
+    "EKRAN GŁ."
+   ],
+   [
+    97,
+    "KOCIOŁ"
+   ],
+   [
+    397,
+    "Energia łącznie [kWh]=\u0002"
+   ],
+   [
+    398,
+    "T. powrotu=\u0002"
+   ],
+   [
+    396,
+    "Ciśnienie=\u0002"
+   ],
+   [
+    199,
+    "Moc dmuchawy modulacja [%]"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    92,
+    "Temperatura zadana  [°C]"
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    155,
+    "Histereza załączenia [°C]"
+   ],
+   [
+    156,
+    "Histereza wyłączenia [°C]"
+   ],
+   [
+    183,
+    "Wentylator wspomagający [%]"
+   ],
+   [
+    197,
+    "Minimalna temp. pomp [°C]"
+   ],
+   [
+    439,
+    "Wybieg pompy [min]"
+   ],
+   [
+    258,
+    "Cisza nocna od"
+   ],
+   [
+    259,
+    "Cisza nocna do"
+   ],
+   [
+    220,
+    "Minimalna temp. powrotu [°C]"
+   ],
+   [
+    174,
+    "Czas mieszacza [s]"
+   ],
+   [
+    256,
+    "Rezerwa paliwa stop [kg]"
+   ],
+   [
+    472,
+    "Ciśnienie min. [bar]"
+   ],
+   [
+    473,
+    "Ciśnienie max. [bar]"
+   ]
+  ],
+  [
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    155,
+    "Histereza załączenia [°C]"
+   ],
+   [
+    156,
+    "Histereza wyłączenia [°C]"
+   ],
+   [
+    183,
+    "Wentylator wspomagający [%]"
+   ],
+   [
+    92,
+    "Temperatura zadana  [°C]"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    197,
+    "Minimalna temp. pomp [°C]"
+   ],
+   [
+    439,
+    "Wybieg pompy [min]"
+   ],
+   [
+    258,
+    "Cisza nocna od"
+   ]
+  ],
+  []
+ ]
+}

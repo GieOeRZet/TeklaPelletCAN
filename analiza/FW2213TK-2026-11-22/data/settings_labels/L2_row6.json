@@ -1,0 +1,250 @@
+{
+ "row": 6,
+ "level": 2,
+ "pages": [
+  [
+   [
+    96,
+    "MENU"
+   ],
+   [
+    494,
+    ">"
+   ],
+   [
+    120,
+    "Ogrzewanie obwód 2"
+   ],
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    118,
+    "Palnik"
+   ],
+   [
+    119,
+    "Ogrzewanie obwód 1"
+   ],
+   [
+    121,
+    "Ogrzewanie obwód 3"
+   ],
+   [
+    122,
+    "Ogrzewanie obwód 4"
+   ],
+   [
+    123,
+    "Ciepła woda użytkowa"
+   ],
+   [
+    93,
+    "W tym trybie temperatura\nzadawana jest automatycznie."
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    95,
+    "EKRAN GŁ."
+   ],
+   [
+    103,
+    "WODA"
+   ],
+   [
+    199,
+    "Moc dmuchawy modulacja [%]"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    150,
+    "Temperatura komfortowa [°C]  "
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    151,
+    "Temperatura ekonomiczna [°C] "
+   ],
+   [
+    153,
+    "Zagrzej teraz"
+   ],
+   [
+    154,
+    "Histereza [°C]"
+   ],
+   [
+    162,
+    "Antylegionella"
+   ],
+   [
+    176,
+    "Priorytet CWU   "
+   ],
+   [
+    297,
+    "Cyrkulacja praca [min]"
+   ],
+   [
+    298,
+    "Cyrkulacja pauza [min]"
+   ],
+   [
+    157,
+    "Źródło"
+   ],
+   [
+    124,
+    "Bufor"
+   ],
+   [
+    158,
+    "Zwiększenie temperatury źródła [°C]"
+   ],
+   [
+    160,
+    "Delta załączenia pompy [°C]"
+   ],
+   [
+    159,
+    "Temp. maksymalna [°C]"
+   ]
+  ],
+  [
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    150,
+    "Temperatura komfortowa [°C]  "
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    151,
+    "Temperatura ekonomiczna [°C] "
+   ],
+   [
+    153,
+    "Zagrzej teraz"
+   ],
+   [
+    154,
+    "Histereza [°C]"
+   ],
+   [
+    162,
+    "Antylegionella"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    176,
+    "Priorytet CWU   "
+   ],
+   [
+    297,
+    "Cyrkulacja praca [min]"
+   ],
+   [
+    298,
+    "Cyrkulacja pauza [min]"
+   ],
+   [
+    157,
+    "Źródło"
+   ]
+  ],
+  [
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    176,
+    "Priorytet CWU   "
+   ],
+   [
+    297,
+    "Cyrkulacja praca [min]"
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    298,
+    "Cyrkulacja pauza [min]"
+   ],
+   [
+    157,
+    "Źródło"
+   ],
+   [
+    493,
+    "<"
+   ],
+   [
+    107,
+    "NASTAWY"
+   ],
+   [
+    158,
+    "Zwiększenie temperatury źródła [°C]"
+   ],
+   [
+    160,
+    "Delta załączenia pompy [°C]"
+   ],
+   [
+    159,
+    "Temp. maksymalna [°C]"
+   ]
+  ],
+  [
+   [
+    117,
+    "Kocioł"
+   ],
+   [
+    157,
+    "Źródło"
+   ],
+   [
+    158,
+    "Zwiększenie temperatury źródła [°C]"
+   ],
+   [
+    163,
+    "\u0002"
+   ],
+   [
+    160,
+    "Delta załączenia pompy [°C]"
+   ],
+   [
+    159,
+    "Temp. maksymalna [°C]"
+   ]
+  ]
+ ]
+}
