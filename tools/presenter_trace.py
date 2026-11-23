@@ -19,7 +19,7 @@ import ui_session as U
 from action_probe import enter_node
 import bisect
 from unicorn import UC_HOOK_CODE, UC_HOOK_MEM_WRITE
-from unicorn.arm_const import UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_LR, UC_ARM_REG_SP
+from unicorn.arm_const import UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_LR, UC_ARM_REG_SP, UC_ARM_REG_PC
 GET = 0x08046FF2; VIEW = 0x20024818; GUI_TCB = 0x20001198
 
 def main():
@@ -48,15 +48,17 @@ def main():
         if not cur["on"]: return
         r0 = uc.reg_read(UC_ARM_REG_R0); v = s.b.rd(VIEW)
         cur["setters"].setdefault(hex(addr), set()).add("view" if r0 == v else hex(r0))
+        cur.setdefault("lrs", set()).add(uc.reg_read(UC_ARM_REG_LR) & ~1)
         if r0 == v and cur["objs"]:
             lr = uc.reg_read(UC_ARM_REG_LR) & ~1
             cur["stack"].append((addr, cur["last"], lr, uc.reg_read(UC_ARM_REG_SP)))
-            if lr not in rets:                         # wywolanie przez b.w (tail call): powrot pod adres spoza listy BL
-                rets.add(lr); uc.hook_add(UC_HOOK_CODE, on_ret, begin=lr, end=lr)
     def on_wr(uc, acc, ad, sz, val, ud):
         if not cur["on"] or not cur["stack"]: return
         sp = uc.reg_read(UC_ARM_REG_SP); st = cur["stack"]
-        while st and sp > st[-1][3]: st.pop()          # setter zakonczony (np. wywolany przez b.w / tail call - brak haka powrotu)
+        # setter zakonczony bez haka powrotu (wywolany przez b.w / tail call): SP powyzej wejscia albo SP == wejscie i PC poza cialem
+        # settera (zapis wywolujacego). Dodawanie hakow w trakcie emulacji psuje Unicorn (FAULT na ekranie Konfiguracja).
+        pc = uc.reg_read(UC_ARM_REG_PC)
+        while st and (sp > st[-1][3] or (sp == st[-1][3] and not (st[-1][0] <= pc < st[-1][0] + 0x200))): st.pop()
         if not st: return
         try:
             if s.b.rd(s.b.tcb_ptr) != GUI_TCB: return  # zapisy innych zadan (przelaczenie kontekstu w trakcie settera)
@@ -100,6 +102,14 @@ def main():
                     bp = s.b.rd(b0 + 0x34)
                     if 0x20000000 <= bp < 0x2002FFC0 and bp != 0:
                         for j in range(0, 96, 2): bufs[bp + j] = w["this"]
+        if objs:
+            # przebieg wstepny (bez sledzenia zapisow): adresy powrotu setterow, takze po wywolaniu przez b.w; haki powrotu
+            # dodajemy MIEDZY przebiegami (dodawanie w trakcie emulacji psuje Unicorn)
+            cur.update(on=True, sites={}, setters={}, last=None, stack=[], writes={}, objs=[], starts=[], bufs={}, lrs=set())
+            s.wait(a.ticks); cur["on"] = False
+            for lr in cur["lrs"] - rets:
+                rets.add(lr); s.b.mu.hook_add(UC_HOOK_CODE, on_ret, begin=lr, end=lr)
+            s.b.load_state(st)
         if wh[0] is not None: s.b.mu.hook_del(wh[0]); wh[0] = None
         if objs:
             lo = min([o[0] for o in objs] + list(bufs)); hi = max([o[1] for o in objs] + [b + 2 for b in bufs])

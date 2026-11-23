@@ -5,7 +5,8 @@ Dla wezla inwentarza (screen_inventory_menu.py: node "IDX_screen" / "IDX_setting
 (ten sam deterministyczny przebieg => te same adresy widgetow), zapisuje punkt kontrolny ekranu i dla kazdego
 dotykalnego, widocznego widgetu (Drawable +0x24 touch, +0x25 vis) stuka w srodek prostokata. Kazde stukniecie
 startuje z tego samego punktu kontrolnego. Rejestrowane skutki (wylacznie zaobserwowane, nic nie jest zgadywane):
-  view      - zmiana aktywnego widoku 0x20024818 (nowy ekran)
+  view      - zmiana klasy aktywnego widoku: vptr obiektu [0x20024818] (TouchGFX trzyma wszystkie widoki w jednym
+              buforze, wiec sam wskaznik widoku sie nie zmienia - porownujemy jego vtable)
   body/head - zmiana obrazu ciala (y>=46) / naglowka (y<46) wzgledem przebiegu kontrolnego bez dotyku
   pid       - zmiany wartosci w storage'ach 655 parametrow (stara -> nowa)
   can       - ramki TX, ktorych NIE ma w przebiegu kontrolnym tej samej dlugosci (tlo: heartbeat, SDO, poller)
@@ -79,8 +80,8 @@ def main():
         if recs is None:
             s.b.load_state(st_path); recs = pid_records(s)
         # przebieg kontrolny: ta sama dlugosc bez dotyku
-        s.b.load_state(st_path); s.can2.tx.clear(); v0 = s.b.rd(VIEW); p0 = pid_snap(s, recs)
-        s.wait(150 + max(60, a.settle)); im0 = s.shot(); bg = {can_key(f) for f in s.can2.tx}
+        s.b.load_state(st_path); s.can2.tx.clear(); v0 = s.b.rd(s.b.rd(VIEW)); p0 = pid_snap(s, recs)
+        s.wait(150 + max(60, a.settle)); im0 = s.shot(); bg = {can_key(f) for f in s.can2.tx}; pc = pid_snap(s, recs)
         body0, head0 = hsh(im0, (0, 46, 480, 272)), hsh(im0, (0, 0, 480, 46))
         cands = [w for w in inv[node]["widgets"] if w.get("touch") and w.get("vis") and w["w"] > 0 and w["h"] > 0
                  and w["w"] * w["h"] < 480 * 272 * 0.6]
@@ -92,7 +93,7 @@ def main():
             if a.max and n >= a.max: break
             n += 1
             s.b.load_state(st_path); s.can2.tx.clear(); t.log.clear()
-            s.tap(cx, cy, hold=150, settle=a.settle); im = s.shot(); v1 = s.b.rd(VIEW); p1 = pid_snap(s, recs)
+            s.tap(cx, cy, hold=150, settle=a.settle); im = s.shot(); v1 = s.b.rd(s.b.rd(VIEW)); p1 = pid_snap(s, recs)
             if a.shots: im.save(os.path.join(a.shots, "%s_%s.png" % (node, w["this"])))
             texts = {}
             for r in t.log:
@@ -105,8 +106,8 @@ def main():
                     if x["role"] == "text" and 0 <= x["ay"] < 46 and x["w"] >= 300:
                         title = x["wildcard"] or (pl(x["text_id"] + 57) if x["text_id"] is not None and x["text_id"] < 496 else ""); break
             can = [dict(id=hex(f["id"]), data=bytes(f["data"]).hex()) for f in s.can2.tx if can_key(f) not in bg]
-            pid = [dict(pid="0x%04X" % k, old=p0[k], new=p1[k]) for k in p0 if p0[k] != p1.get(k)]
-            eff = dict(view_changed=v1 != v0, view=hex(v1), title=title,
+            pid = [dict(pid="0x%04X" % k, old=pc[k], new=p1[k]) for k in pc if pc[k] != p1.get(k)]   # wzgledem przebiegu kontrolnego (liczniki tla odpadaja)
+            eff = dict(view_changed=v1 != v0, from_vptr=hex(v0), view_vptr=hex(v1), title=title,
                        body_changed=hsh(im, (0, 46, 480, 272)) != body0, head_changed=hsh(im, (0, 0, 480, 46)) != head0,
                        pid=pid, can=can, texts=new_texts[:40])
             kindc = ("SCREEN" if v1 != v0 else "PID" if pid else "CAN" if can else "VISUAL" if eff["body_changed"] or eff["head_changed"] else "NONE")

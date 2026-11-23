@@ -54,6 +54,19 @@ def build(model, actions):
                 if p not in g["presenter_candidates"]:
                     g["presenter_candidates"].append(p)
         graph.append(g)
+    # PASS 61: nazwa ekranu docelowego po vtable widoku (action_probe.py: from_vptr wezla zrodlowego, view_vptr po stuknieciu)
+    titles = {}
+    for w in ws:
+        if w.get("node") is not None and w.get("title"): titles.setdefault(str(w["node"]), w["title"])
+    vmap = {}
+    for a in actions:
+        e = a.get("effects") or {}
+        if e.get("from_vptr") and a.get("node") is not None:
+            vmap.setdefault(e["from_vptr"], set()).add(titles.get(str(a["node"]), str(a["node"])))
+    for g in graph:
+        e = g["action"].get("effects") or {}
+        if e.get("view_changed"):
+            g["target_screen"] = sorted(vmap.get(e.get("view_vptr"), [])) or None
     return graph
 
 def main():
