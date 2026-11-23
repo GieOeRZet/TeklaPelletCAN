@@ -636,3 +636,8 @@ OPEN: final handler→page constructor/resource/widget chains remain separate.
 Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-97-ALARM-CLOSURE-2026-11-23.md`; data: `data/cg_alarm_closure.csv`; tool/test: `tools/cg_alarm_closure.py`, `tools/test_cg_alarm_closure.py`.
 HARD: generic alarm state machine closed: raise `0x08025198`; bit17 unack `0x08025134`; bit16 active `0x0802516C`; clear-by-code helper `0x08025104`; ACK writes alarm register and confirmation timestamp; reset memory PID `0x404E`. ACK is independent from ACTIVE and does not itself clear bit16.
 OPEN: individual business conditions for the many per-code clear sites.
+
+
+## AUTONOMOUS PASS 98 — KOCIOŁ BINDING RECONCILIATION — 2026-11-23
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-98-KOCIOL-BINDING-RECONCILIATION-2026-11-23.md`; data/tool/test: `cg_kociol_bindings_reconciled.*`.
+HARD: 0x370A→0x20016894 (bitmap 11/12/13), 0x350D→0x20016A94 (Ciśnienie= visibility), 0x350A→0x20016A24 (T. powrotu= visibility), 0x2005→0x20016918 (bmp120/122). 0x2277→pump bitmap138 confirmed but exact widget address remains OPEN.
