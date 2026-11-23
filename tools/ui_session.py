@@ -39,4 +39,17 @@ class UiSession:
     def can(self, can_id, data): self.can2.inject(can_id, data)
     def set_param(self, pid, value, size=4):
         self.can2.inject(0x584, bytes([0x42, pid & 255, pid >> 8, 1]) + (value & 0xFFFFFFFF).to_bytes(4, "little"))
+    def _record(self, pid):
+        """rekord tabeli runtime managera 0x20008D84 (stride 0x2C, baza +8): (storage, typ) albo None"""
+        base = 0x20008D84 + 8
+        for i in range(660):
+            a = base + i * 0x2C
+            if self.b.rd(a) == pid: return self.b.rd(a + 4), self.b.rd(a + 8)
+        return None
+    def set_local(self, pid, value):
+        """zapis wprost do storage'u parametru (jak ustawienie wczytane z pamieci nieulotnej); szerokosc wg typu rekordu (1=u8, 2=u16, 3/5=u32, 4=s16).
+        UWAGA: omija walidacje i publikacje; to stan poczatkowy, nie zapis uzytkownika."""
+        r = self._record(pid)
+        if r is None: raise KeyError("brak rekordu dla PID 0x%X" % pid)
+        st, ty = r; n = {1: 1, 2: 2, 3: 4, 4: 2, 5: 4}[ty]; self.b.wr(st, value & ((1 << 8 * n) - 1), n); return st
     def state(self): return dict(self.b.counters, tick=self.n, task=self.b.task_name())
