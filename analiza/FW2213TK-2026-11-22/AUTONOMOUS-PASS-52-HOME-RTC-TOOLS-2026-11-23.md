@@ -46,3 +46,6 @@ Dialog numeryczny NASTAWY (np. "Temperatura zadana"): tlo bitmapa 163, wypelnien
 
 ### Sprostowanie tekstur sliderow
 Do 163/165/186/187 dochodzi **167** (301x16, wypelnienie gradient): suwaki temperatur komfort/eco (okno Ogrzewanie/Woda) uzywaja 163+167 (gradient), dialog numeryczny 163+165 (niebieski), tryb w oknie power 186+187 (gradient 181x11). Szczegoly: `NewEstyma/00_AGENT_START_HERE.md`.
+
+## PASS 58 — statyczna mapa prezenterow (B1 planu 1:1)
+`data/presenter_map.csv` (narzedzie `tools/presenter_map.py`): 273 wywolania model_get w 9 klastrach-prezenterach: klucz UI -> PID/nazwa -> setter widoku -> formaty `%d`, `%d.%d`, `-%d.%d` (rozdzielczosc 0.1 gdy div10=1), przesuniecia widgetow w widoku. Powiazanie dynamiczne (wstrzykiwanie znacznikow, `tools/data_binding.py`) zadzialalo tylko czesciowo (ekran glowny odswieza wartosci po zdarzeniach modelu) — metoda statyczna jest bardziej wiarygodna.

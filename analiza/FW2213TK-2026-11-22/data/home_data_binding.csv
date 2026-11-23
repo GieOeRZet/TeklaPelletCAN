@@ -1,0 +1,5 @@
+pid,name,format,ax,ay,w,h
+0x3609,Statistics - Avg ignition time [s],%d,82,202,41,15
+0x362C,Total grate unblock try count,%d,82,202,41,15
+0x3664,soft. version,%d,82,202,41,15
+0x3706,Current burner power [dkW],%d,82,202,41,15
