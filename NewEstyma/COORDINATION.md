@@ -141,3 +141,15 @@ Narzędzia: `tools/cg_gate_054ab8_scan.py`, `tools/test_cg_gate_054ab8_scan.py`
 - `presenter_map.csv` jednoznacznie mapuje `0x1498` -> PID `0x201A` = Hot water 1 result temperature / wynikowa temperatura CWU.
 - B4 kontekst jest więc HARD: **CWU**, nie Kaskada ani Magazyn paliwa.
 - OPEN: dokładna bitmapa/tekst gated elementu i dynamiczna wartość.
+
+
+### Nowe ustalenia ChatGPT — PASS 81 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-81-L3-WRAPPERS-TABLE23-SOURCE-2026-11-23.md`
+Narzędzia: `tools/cg_l3_table23_scan.py`, `tools/test_cg_l3_table23_scan.py`
+
+- Cztery wrappery L>=3: artifact `0x0805A9EC/0x0805B1D4/0x0805F400/0x0805FE9C` -> RAW `0x4A9EC/0x4B1D4/0x4F400/0x4FE9C`.
+- Wszystkie mają ten sam szkielet: odczyt `[model+0x158]`, CMP #3, przy L>=3 dołożenie pola `+0x23C), następnie inicjalizacja `+0x210`. To jest wspólna rodzina bramek L>=3 / CPU-load-header.
+- Caller-y: `0x40DD2`, `0x41318`, `0x4B4CC`, `0x4BEAA`.
+- Dwa obiekty callerów mają potwierdzone vtable: runtime `0x0808F80C` (RAW `0x7F80C`) i runtime `0x0808F910` (RAW `0x7F910`). Konkretne ekrany nadal wymagają mapowania slot0/handler/resource.
+- A2: znaleziono rzeczywistą tablicę źródłową katalogu 23: SRAM `0x20008D84`, rekordy po `0x14` bajtów. Rekord #23 = `0x20008EFC`, zakres do `0x20008F0F`.
+- Nadal OPEN: wartość `record#23+0x0C`; nie należy jej zgadywać.
