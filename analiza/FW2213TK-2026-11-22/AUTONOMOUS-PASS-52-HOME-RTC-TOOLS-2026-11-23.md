@@ -39,3 +39,6 @@ Wlaczone przez `set_local`: Is this device cascade master (0x350C)=1, Additional
 ## Edycja wartosci (HARD, emulator): dialog numeryczny -> zapis -> CAN
 Kociol / NASTAWY, wiersz "Temperatura zadana [°C]" (PID 0x2003, 60..80, 65): dotkniecie wiersza otwiera dialog (tytul = nazwa, suwak z min/max z deskryptora, duza wartosc, przyciski "-" (125,205), "+" (295,205), "OK" (415,230)).
 3x "+" i OK -> storage 0x2003 = 68 i panel wysyla **CAN 0x584: `42 03 20 01 44 00 00 00`** (cmd 0x42, indeks PID LE `03 20`, subindeks 1, wartosc u32 LE = 68). Zapis uzytkownika = ta sama ramka co odpowiedz sterownika.
+
+## Tekstury sliderow (uwaga wlasciciela potwierdzona, HARD)
+Dialog numeryczny NASTAWY (np. "Temperatura zadana"): tlo bitmapa 163, wypelnienie **165** (jednolity niebieski). Okno power (tryb Ogrzewanie/Woda): tlo 186, wypelnienie **187** (gradient niebieski->zolty->czerwony). Gradient "zimno->cieplo" jest wiec w oryginale przypisany sliderowi trybu, a nie temperatury — tekstury najpewniej zamienione miejscami. Poprawka tylko w nowym UI (wpis w TODO `NewEstyma/00_AGENT_START_HERE.md`).
