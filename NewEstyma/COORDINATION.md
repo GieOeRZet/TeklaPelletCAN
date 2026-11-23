@@ -85,6 +85,8 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-74-RTC-VTABLE-DISPATCH-2026
 - Konstruktorowy zapis vptr `0x080A446C` znaleziono w kodzie pod PROJECT `0x0801044C`; wywołanie konstruktorowe z `r0=r8+0x4C` jest pod PROJECT `0x08000DC6`.
 - Dodano `tools/cg_rtc_vtable_scan.py` + test regresyjny.
 - PASS 75: obiekt auto-sync ma adres SRAM `0x20008D1C` (startup anchor `0x20008CD0` + `0x4C`), vptr `0x080A446C`, slot 0 → `FUN_08062638`.
+- PASS 76: domknięto scheduler execution chain. `FUN_08014824` (base constructor) → `FUN_0801478C` rejestruje obiekt w scheduler list; `FUN_080147C8` iteruje listę i wywołuje slot 0 vtable przez `blx`. Dla obiektu `0x20008D1C` slot 0 = `FUN_08062638`.
+- Scheduler state: `0x200246E8`; list fields +0x04/+0x08/+0x0C.
 - Najważniejszy następny cel: wszystkie write-sites `0x20008D28` (`object+0x0C`) oraz ich producer.
 
 - `FUN_08062638` jest bezpośrednią ścieżką auto-synchronizacji RTC.
