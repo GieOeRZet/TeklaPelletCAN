@@ -26,6 +26,7 @@ def main():
             if "runs" not in d: continue
             cls = meta[int(pid, 16)]["mode"]; dep = 0
             for t, w in W.items():
+                if (w["ax"], w["ay"]) == (9, 239) and w["role"] == "image": continue          # animacja pompy (klatki 138-142 zmieniaja sie same)
                 sts = [json.dumps(r["state"][t], sort_keys=True) for r in d["runs"]]
                 if len(set(sts)) < 2: continue
                 dep += 1

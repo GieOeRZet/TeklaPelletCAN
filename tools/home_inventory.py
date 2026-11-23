@@ -9,6 +9,6 @@ for a in sys.argv[4:]:
     k, v = a.split("="); cfg[int(k, 16)] = int(v)
 s = U.UiSession(fw, out); t = C.Tracer(s); s.boot(500)
 for p, v in cfg.items(): s.set_local(p, v)
-s.set_access(0); s.wait(400); ws = C.widget_table(s, t); s.shot("home")
+s.set_access(0); s.wait(4500); ws = C.widget_table(s, t); s.shot("home")
 s.checkpoint(os.path.join(out, "node_home.state"))
 json.dump([dict(node="home", widgets=ws)], open(invp, "w")); print(len(ws), "widgetow; vptr", hex(s.b.rd(s.b.rd(0x20024818))))
