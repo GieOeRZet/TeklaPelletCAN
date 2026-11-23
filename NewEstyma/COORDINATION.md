@@ -18,7 +18,7 @@ Scalanie gałęzi: **Roman**. Agenci nie robią PR-ów i nie scalają nawzajem s
 |---|---|---|---|
 | A1 | Ukryte kody PIN | **ChatGPT** | **STATYCZNIE DOMKNIĘTE**: exact handler = 1992 + lookup-23 + 6666 + 0; brak kolejnej stałej gałęzi |
 | A2 | Tabela 23 `0x20008C50` | **ChatGPT** | **ZNACZENIE DOMKNIĘTE**: katalog `Parameters set Number`; 23. wartość i pole +0x0C nadal OPEN |
-| A3 | Czas/RTC / PID/ramka czasu CAN | **ChatGPT** | **OPEN → zawężone**: RTC HW zamknięte; brak bieżącego czasu w katalogu PID; CAN-time i auto-sync source nadal OPEN |
+| A3 | Czas/RTC / PID/ramka czasu CAN | **ChatGPT** | **MOCNO DOMKNIĘTE STATYCZNIE**: 0x372F jest gate auto-sync; FUN_08062638 pobiera timestamp z [param+0x0C] i wywołuje RTC setter FUN_08018E94; źródło zapisu +0x0C nadal OPEN |
 | B1 | 6666 → CAN PID `0x0005` + `+0x210` | **Claude** | WSTRZYMANE |
 | B2 | Bramka pollera `[0x2002466C+0x10]` | **Claude** | WSTRZYMANE |
 | B3 | Ochrona kotła / Bufor L>=1 | Claude | OPEN |
@@ -70,6 +70,19 @@ Narzędzia: `tools/cg_gate_inventory.py`, `tools/test_cg_gate_inventory.py`
 - `0x08054AB8` jest mechanicznie potwierdzoną bramką `level != 0`; kontekst ekranu nadal OPEN. Nie przypisano go do CWU tylko dlatego, że `0x1498` występuje również przy presenterze CWU.
 - Wrappery `0x0805A9EC`, `0x0805B1D4`, `0x0805F400`, `0x0805FE9C` są rodziną bramek nagłówka L>=3 / CPU load; ich konkretne konteksty pozostają OPEN.
 - `0x0806125C` = Magazyn paliwa, `0x08061518` = Kaskada są już FACT z PASS 52.
+
+### Nowe ustalenia ChatGPT — PASS 73 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-73-RTC-AUTOSYNC-2026-11-23.md`
+Narzędzia: `tools/cg_rtc_autosync_scan.py`, `tools/test_cg_rtc_autosync_scan.py`
+
+- `FUN_08062638` jest bezpośrednią ścieżką auto-synchronizacji RTC.
+- `0x080627AE`: `movw r2,#0x372F`; PID 0x372F jest tylko bramką enable/disable.
+- Gdy `[param+0x10] != [param+0x0C]` i auto-sync jest włączony, źródłem czasu jest `[param+0x0C]`.
+- `0x080628A8`: `FUN_08039370` rozkłada timestamp na pola daty/czasu.
+- `0x080628E6`: `FUN_08018E94(0,...)` zapisuje sprzętowy RTC.
+- Po synchronizacji `[param+0x10] = [param+0x0C]`.
+- Nie znaleziono bezpośredniego BL do `FUN_08062638`; wywołanie może iść przez wskaźnik/metodę/task.
+- Najważniejszy następny cel statyczny: wszystkie zapisy do `[param+0x0C]` oraz identyfikacja obiektu/metody wywołującej `FUN_08062638`.
 
 ### Odpowiedzi Claude
 - (uzupełnia Claude)
