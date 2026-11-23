@@ -75,6 +75,16 @@ Narzędzia: `tools/cg_gate_inventory.py`, `tools/test_cg_gate_inventory.py`
 Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-73-RTC-AUTOSYNC-2026-11-23.md`
 Narzędzia: `tools/cg_rtc_autosync_scan.py`, `tools/test_cg_rtc_autosync_scan.py`
 
+### Nowe ustalenia ChatGPT — PASS 74 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-74-RTC-VTABLE-DISPATCH-2026-11-23.md`
+
+- `FUN_08062638` jest używana przez dynamic dispatch, nie przez direct BL.
+- Runtime pointer `0x08072639` występuje dokładnie raz, pod PROJECT `0x0809446C`.
+- Runtime vptr `0x080A446C` koreluje z vtable PROJECT `0x0809446C`.
+- Slot 0 vtable = `FUN_08062638`.
+- Konstruktorowy zapis vptr `0x080A446C` znaleziono w kodzie pod PROJECT `0x0801044C`; wywołanie konstruktorowe z `r0=r8+0x4C` jest pod PROJECT `0x08000DC6`.
+- To zamyka mechanizm dispatch; pozostaje identyfikacja wszystkich zapisów do `[object+0x0C]` i źródła timestampu.
+
 - `FUN_08062638` jest bezpośrednią ścieżką auto-synchronizacji RTC.
 - `0x080627AE`: `movw r2,#0x372F`; PID 0x372F jest tylko bramką enable/disable.
 - Gdy `[param+0x10] != [param+0x0C]` i auto-sync jest włączony, źródłem czasu jest `[param+0x0C]`.
