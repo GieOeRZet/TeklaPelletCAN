@@ -84,15 +84,23 @@ class Rec:
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--fw", required=True); ap.add_argument("--port", type=int, default=8765); ap.add_argument("--level", type=int, default=0)
     ap.add_argument("--config", nargs="*", default=[]); ap.add_argument("--out", default=time.strftime("sesja_%Y%m%d_%H%M%S")); a = ap.parse_args()
+    if not os.path.exists(a.fw): print("BLAD: nie znaleziono pliku firmware: %s (polozyz go w katalogu, z ktorego uruchamiasz, lub podaj pelna sciezke)" % a.fw); sys.exit(1)
     cfg = {int(k, 16): int(v) for k, v in (c.split("=") for c in a.config)}
-    R = Rec(a.fw, a.level, cfg, a.out); print("gotowe: http://localhost:%d  log: %s.jsonl" % (a.port, a.out), flush=True)
+    state = dict(R=None, err=None)
+    LOADING = b"<!doctype html><meta charset=utf-8><meta http-equiv=refresh content=3><body style='font:16px sans-serif;background:#222;color:#eee'><h3>Ladowanie emulatora...</h3>Rozruch trwa zwykle 20-90 s. Strona odswiezy sie sama. Postep: okno terminala."
     class H(BaseHTTPRequestHandler):
         def log_message(self, *x): pass
-        def _j(self, o, code=200): b = json.dumps(o, ensure_ascii=False).encode(); self.send_response(code); self.send_header("Content-Type", "application/json"); self.send_header("Content-Length", str(len(b))); self.end_headers(); self.wfile.write(b)
+        def _b(self, b, ct, code=200): self.send_response(code); self.send_header("Content-Type", ct); self.send_header("Content-Length", str(len(b))); self.end_headers(); self.wfile.write(b)
+        def _j(self, o, code=200): self._b(json.dumps(o, ensure_ascii=False).encode(), "application/json", code)
         def do_GET(self):
-            if self.path.startswith("/frame.png"): b = R.png(); self.send_response(200); self.send_header("Content-Type", "image/png"); self.send_header("Content-Length", str(len(b))); self.end_headers(); self.wfile.write(b)
-            else: b = PAGE.encode(); self.send_response(200); self.send_header("Content-Type", "text/html; charset=utf-8"); self.send_header("Content-Length", str(len(b))); self.end_headers(); self.wfile.write(b)
+            R = state["R"]
+            if state["err"]: return self._b(("BLAD rozruchu: %s" % state["err"]).encode("utf-8"), "text/plain; charset=utf-8", 500)
+            if R is None: return self._b(LOADING, "text/html; charset=utf-8")
+            if self.path.startswith("/frame.png"): self._b(R.png(), "image/png")
+            else: self._b(PAGE.encode(), "text/html; charset=utf-8")
         def do_POST(self):
+            R = state["R"]
+            if R is None: return self._j({"err": "ladowanie"}, 503)
             d = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
             if self.path == "/tap": self._j(R.tap(int(d["x"]), int(d["y"])))
             elif self.path == "/note":
@@ -106,5 +114,12 @@ def main():
                     R.log.write(json.dumps(dict(t=time.time(), config=d), ensure_ascii=False) + "\n"); R.log.flush()
                 self._j({"ok": 1})
             else: self._j({"err": "?"}, 404)
-    ThreadingHTTPServer(("0.0.0.0", a.port), H).serve_forever()
+    srv = ThreadingHTTPServer(("0.0.0.0", a.port), H)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    print("serwer dziala: http://localhost:%d  (emulator sie laduje, strona odswiezy sie sama)" % a.port, flush=True)
+    try: state["R"] = Rec(a.fw, a.level, cfg, a.out)
+    except Exception as e:
+        import traceback; traceback.print_exc(); state["err"] = repr(e); print("BLAD rozruchu - patrz wyzej"); 
+    else: print("GOTOWE: http://localhost:%d  log: %s.jsonl" % (a.port, a.out), flush=True)
+    while True: time.sleep(3600)
 if __name__ == "__main__": main()
