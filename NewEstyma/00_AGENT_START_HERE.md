@@ -143,3 +143,7 @@ Zyczenie: gradient (zimno->cieplo) na sliderze temperatury, jednolity niebieski 
 
 ## TODO (pytanie wlasciciela 2026-11-23) — emulacja "zakazu rozpalenia" w NASZYM projekcie (nie w replice 1:1)
 Klodka na kafelku palnika = PID 0x2006 "Burner external permission" == 0 (PASS 53). Emulacja: wysylac ramke 0x584 `42 06 20 01 <0|1> 00 00 00` jako wezel sterownika. Uwaga: to zmienia tylko UI panelu; blokada rozpalania jest po stronie sterownika/modulu BIG.
+
+## TODO (wlasciciel, 2026-11-23) — "programowy zakaz rozpalania" w HA/integracji (etap ESP32/HA)
+Cel: kociol zachowuje sie jak przy zakazie rozpalania (nie rozpali, reszta dziala normalnie) BEZ fizycznego rozwarcia wejscia na module CAN BIG. Ustalone: wejscie zezwolenia na BIG (domyslnie zwarte = zgoda; otwarty obwod = zakaz) jest odczytywane przez sterownik, panel tylko wyswietla klodke (PID 0x2006). Sama ramka 0x2006 do panelu NIE blokuje kotla (sterownik czyta wejscie sprzetowe).
+Do zbadania: (a) czy sterownik/BIG ma polecenie CAN rownowazne wejsciu (np. przez parametr komendy / inna klasa PID, "Stop burning wood" 0x300B?, "Boiler on/off" 0x2005 + program); (b) rozwiazanie sprzetowe: przekaznik/optoizolator sterowany z ESP32 wpiety w obwod zezwolenia BIG (najpewniejsze); (c) emulacja stanu 0x2006 tylko dla UI. Decyzja po analizie sterownika (poza zakresem panelu).
