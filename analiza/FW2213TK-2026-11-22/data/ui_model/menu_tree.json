@@ -193,17 +193,26 @@
    "vtable": null,
    "kind": "dialog",
    "level_min": 0,
-   "evidence": "DOC PASS 93/105",
-   "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+   "evidence": "MEASURED (zrzut dialog_shots/home_dlg_paliwo.png; nakladka na HOME, wyzwalacz kafel 103,234)",
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
   },
   {
    "id": "DLG_CZAS",
-   "title_pl": "Dialog Ustaw czas (z zegara na ekranie glownym)",
+   "title_pl": "Dialog Ustaw czas (koła godzina/minuta, OK)",
    "vtable": null,
    "kind": "dialog",
    "level_min": 0,
-   "evidence": "DOC PASS 92/105",
-   "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+   "evidence": "MEASURED (zrzut home_dlg_czas.png; nakladka na HOME, wyzwalacz zegar 42,19)",
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+  },
+  {
+   "id": "DLG_DATA",
+   "title_pl": "Dialog Ustaw date (koła dzien/miesiac/rok, OK)",
+   "vtable": null,
+   "kind": "dialog",
+   "level_min": 0,
+   "evidence": "MEASURED (zrzut home_dlg_data.png; nakladka na HOME, wyzwalacz 240,19)",
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
   },
   {
    "id": "DLG_EDYCJA",
@@ -216,21 +225,21 @@
   },
   {
    "id": "DLG_ZASILANIE",
-   "title_pl": "Okno trybow zasilania (z kafla zasilania)",
+   "title_pl": "Okno trybow zasilania (Kociol on/off, Ogrzewanie 1/2, Woda: tryb off/eco/AUTO-zegar/comfort + suwak)",
    "vtable": null,
    "kind": "dialog",
    "level_min": 0,
-   "evidence": "DOC PASS 50",
-   "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+   "evidence": "MEASURED (zrzut home_dlg_zasilanie.png; wyzwalacz kafel 448,234)",
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
   },
   {
    "id": "DLG_AUTO",
-   "title_pl": "Okno AUTO (temperatury komfort/eco, suwaki)",
+   "title_pl": "Okno AUTO (komunikat + suwak komfort/eco, OK)",
    "vtable": null,
    "kind": "dialog",
    "level_min": 0,
-   "evidence": "DOC MENU-TREE",
-   "note": "OPEN: vtable, widgety, wiazania, ramka TX"
+   "evidence": "MEASURED (zrzut home_dlg_auto.png; wyzwalacz kafel 415,76)",
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
   }
  ],
  "menu_rows": [
@@ -1951,6 +1960,134 @@
    "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
   },
   {
+   "from": "HOME",
+   "to": "MENU",
+   "tap": [
+    34,
+    234
+   ],
+   "widget_size": [
+    68,
+    75
+   ],
+   "label": "kafel MENU (dol, 1)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "HOME",
+   "to": "PALNIK",
+   "tap": [
+    172,
+    234
+   ],
+   "widget_size": [
+    68,
+    75
+   ],
+   "label": "kafel Palnik/plomien (dol, 3)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "HOME",
+   "to": "OGRZEWANIE",
+   "tap": [
+    241,
+    234
+   ],
+   "widget_size": [
+    68,
+    75
+   ],
+   "label": "kafel Ogrzewanie 1 (dol, 4)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "HOME",
+   "to": "OGRZEWANIE",
+   "tap": [
+    310,
+    234
+   ],
+   "widget_size": [
+    68,
+    75
+   ],
+   "label": "kafel Ogrzewanie 2 (dol, 5)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "HOME",
+   "to": "CWU",
+   "tap": [
+    379,
+    234
+   ],
+   "widget_size": [
+    68,
+    75
+   ],
+   "label": "kafel Woda (dol, 6)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "HOME",
+   "to": "OGRZEWANIE",
+   "tap": [
+    236,
+    218
+   ],
+   "widget_size": [
+    52,
+    36
+   ],
+   "label": "obszar kafla Ogrzewanie 1 (widget zagniezdzony)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "HOME",
+   "to": "OGRZEWANIE",
+   "tap": [
+    228,
+    221
+   ],
+   "widget_size": [
+    197,
+    33
+   ],
+   "label": "obszar kafla Ogrzewanie 1 (widget zagniezdzony)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
+   "from": "HOME",
+   "to": "OGRZEWANIE",
+   "tap": [
+    258,
+    226
+   ],
+   "widget_size": [
+    197,
+    33
+   ],
+   "label": "obszar kafla Ogrzewanie 1 (widget zagniezdzony)",
+   "level_min": 0,
+   "effect": "nav",
+   "evidence": "MEASURED (action_probe PASS 61/65; klasa docelowa po vtable)"
+  },
+  {
    "from": "TEST_WYJSC",
    "to": null,
    "tap": [
@@ -2460,55 +2597,46 @@
    "from": "HOME",
    "to": "DLG_PALIWO",
    "tap": null,
-   "label": "kafel Paliwo",
+   "label": "kafel Paliwo (103,234)",
    "level_min": 0,
    "effect": "dialog",
-   "evidence": "DOC PASS 42/50"
-  },
-  {
-   "from": "HOME",
-   "to": "OGRZEWANIE",
-   "tap": null,
-   "label": "kafel Ogrzewanie 1/2",
-   "level_min": 0,
-   "effect": "nav",
-   "evidence": "DOC"
-  },
-  {
-   "from": "HOME",
-   "to": "CWU",
-   "tap": null,
-   "label": "kafel Woda",
-   "level_min": 0,
-   "effect": "nav",
-   "evidence": "DOC"
+   "evidence": "MEASURED (zrzut + stukniecie)"
   },
   {
    "from": "HOME",
    "to": "DLG_ZASILANIE",
    "tap": null,
-   "label": "kafel zasilania",
+   "label": "kafel zasilania (448,234)",
    "level_min": 0,
    "effect": "dialog",
-   "evidence": "DOC PASS 50"
+   "evidence": "MEASURED (zrzut + stukniecie)"
   },
   {
    "from": "HOME",
    "to": "DLG_AUTO",
    "tap": null,
-   "label": "kafel AUTO",
+   "label": "kafel AUTO (415,76)",
    "level_min": 0,
    "effect": "dialog",
-   "evidence": "DOC"
+   "evidence": "MEASURED (zrzut + stukniecie)"
   },
   {
    "from": "HOME",
    "to": "DLG_CZAS",
    "tap": null,
-   "label": "zegar",
+   "label": "zegar (42,19)",
    "level_min": 0,
    "effect": "dialog",
-   "evidence": "DOC PASS 92"
+   "evidence": "MEASURED (zrzut + stukniecie)"
+  },
+  {
+   "from": "HOME",
+   "to": "DLG_DATA",
+   "tap": null,
+   "label": "data (240,19)",
+   "level_min": 0,
+   "effect": "dialog",
+   "evidence": "MEASURED (zrzut + stukniecie)"
   },
   {
    "from": "LISTA",

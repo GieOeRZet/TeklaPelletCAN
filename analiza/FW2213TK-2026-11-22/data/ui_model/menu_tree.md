@@ -89,6 +89,14 @@ Legenda dowodow: MEASURED / STRONG / DOC / OPEN. Pelne dane: `menu_tree.json`.
 | MAGAZYN | [479, 25] | HOME | ikona domu (prawy gorny rog) |
 | MAGAZYN | [91, 20] | MENU | napis < MENU (naglowek) |
 | MAGAZYN | [359, 249] | LISTA | kafel zebatki (NASTAWY) |
+| HOME | [34, 234] | MENU | kafel MENU (dol, 1) |
+| HOME | [172, 234] | PALNIK | kafel Palnik/plomien (dol, 3) |
+| HOME | [241, 234] | OGRZEWANIE | kafel Ogrzewanie 1 (dol, 4) |
+| HOME | [310, 234] | OGRZEWANIE | kafel Ogrzewanie 2 (dol, 5) |
+| HOME | [379, 234] | CWU | kafel Woda (dol, 6) |
+| HOME | [236, 218] | OGRZEWANIE | obszar kafla Ogrzewanie 1 (widget zagniezdzony) |
+| HOME | [228, 221] | OGRZEWANIE | obszar kafla Ogrzewanie 1 (widget zagniezdzony) |
+| HOME | [258, 226] | OGRZEWANIE | obszar kafla Ogrzewanie 1 (widget zagniezdzony) |
 | TEST_WYJSC | [375, 82] | None | stukniecie zapisuje PID |
 | TEST_WYJSC | [415, 82] | None | stukniecie zapisuje PID |
 | TEST_WYJSC | [375, 132] | None | stukniecie zapisuje PID |
@@ -108,6 +116,11 @@ Legenda dowodow: MEASURED / STRONG / DOC / OPEN. Pelne dane: `menu_tree.json`.
 | MENU | [240, 228] | None | stukniecie zapisuje PID |
 | MENU | [429, 229] | None | stukniecie zapisuje PID |
 | HOME | None | MENU | kafel MENU (34,235) |
+| HOME | None | DLG_PALIWO | kafel Paliwo (103,234) |
+| HOME | None | DLG_ZASILANIE | kafel zasilania (448,234) |
+| HOME | None | DLG_AUTO | kafel AUTO (415,76) |
+| HOME | None | DLG_CZAS | zegar (42,19) |
+| HOME | None | DLG_DATA | data (240,19) |
 | MENU | None | KOCIOL | wiersz 0: Kociol |
 | MENU | None | PALNIK | wiersz 1: Palnik |
 | MENU | None | OGRZEWANIE | wiersz 2: Ogrzewanie 1 |

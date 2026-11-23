@@ -1,0 +1,1190 @@
+[
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20016a80",
+  "x": 42,
+  "y": 19,
+  "w": 85,
+  "h": 38,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20016ab4",
+  "x": 240,
+  "y": 19,
+  "w": 100,
+  "h": 38,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20017cfc",
+  "x": 41,
+  "y": 26,
+  "w": 62,
+  "h": 33,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x200166e8",
+  "x": 26,
+  "y": 43,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20016730",
+  "x": 77,
+  "y": 43,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x200168d0",
+  "x": 128,
+  "y": 43,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20016778",
+  "x": 179,
+  "y": 43,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20017e50",
+  "x": 191,
+  "y": 50,
+  "w": 62,
+  "h": 33,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001b268",
+  "x": 76,
+  "y": 110,
+  "w": 82,
+  "h": 145,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001a918",
+  "x": 222,
+  "y": 62,
+  "w": 331,
+  "h": 46,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001aa14",
+  "x": 26,
+  "y": 62,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001aa5c",
+  "x": 419,
+  "y": 62,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "\u0002",
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001aed0",
+  "x": 127,
+  "y": 149,
+  "w": 67,
+  "h": 198,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20018164",
+  "x": 122,
+  "y": 134,
+  "w": 49,
+  "h": 156,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20019214",
+  "x": 179,
+  "y": 134,
+  "w": 79,
+  "h": 156,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20018560",
+  "x": 219,
+  "y": 134,
+  "w": 129,
+  "h": 156,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001939c",
+  "x": 266,
+  "y": 134,
+  "w": 79,
+  "h": 156,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x200186e8",
+  "x": 331,
+  "y": 134,
+  "w": 79,
+  "h": 156,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001b18c",
+  "x": 415,
+  "y": 76,
+  "w": 134,
+  "h": 37,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "\u0002",
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x200167c0",
+  "x": 26,
+  "y": 78,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20016804",
+  "x": 77,
+  "y": 78,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20016848",
+  "x": 128,
+  "y": 78,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001688c",
+  "x": 179,
+  "y": 78,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001afcc",
+  "x": 236,
+  "y": 78,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001a60c",
+  "x": 240,
+  "y": 103,
+  "w": 331,
+  "h": 46,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x200177ac",
+  "x": 258,
+  "y": 126,
+  "w": 197,
+  "h": 33,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001a708",
+  "x": 162,
+  "y": 150,
+  "w": 155,
+  "h": 38,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001a750",
+  "x": 317,
+  "y": 150,
+  "w": 155,
+  "h": 38,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001b014",
+  "x": 236,
+  "y": 158,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x200179ac",
+  "x": 258,
+  "y": 176,
+  "w": 197,
+  "h": 33,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "NONE",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": false,
+   "head_changed": false,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20016360",
+  "x": 34,
+  "y": 234,
+  "w": 68,
+  "h": 75,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "SCREEN",
+  "effects": {
+   "view_changed": true,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f66c",
+   "title": "Kaskada",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "\u0002",
+    "\u0002%",
+    ">",
+    "Bufor",
+    "Ciepła woda użytkowa",
+    "Dodatkowy magazyn paliwa",
+    "Historia alarmów",
+    "Informacje o programie",
+    "Kaskada",
+    "Kocioł",
+    "Konfiguracja",
+    "MENU",
+    "Ogrzewanie obwód 1",
+    "Ogrzewanie obwód 2",
+    "Ogrzewanie obwód 3",
+    "Ogrzewanie obwód 4",
+    "Palnik",
+    "Poziom menu (PIN)",
+    "Solary",
+    "Wpisz PIN",
+    "Zmiana kotła"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001648c",
+  "x": 103,
+  "y": 234,
+  "w": 68,
+  "h": 75,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001639c",
+  "x": 172,
+  "y": 234,
+  "w": 68,
+  "h": 75,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "SCREEN",
+  "effects": {
+   "view_changed": true,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808ede4",
+   "title": "PALNIK",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "\u0002",
+    "\u0002%",
+    "\u0002mV",
+    "A",
+    "OFF",
+    "ON",
+    "PALNIK",
+    "T. palnika=\u0002",
+    "Wyłączony",
+    "jasność=\u0002",
+    "moc[%]=\u0002",
+    "moc[kW]=\u0002",
+    "obroty=\u0002",
+    "spalanie[kg/h]=\u0002",
+    "spaliny[°C]=\u0002",
+    "tlen[%]=\u0002"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x200163d8",
+  "x": 241,
+  "y": 234,
+  "w": 68,
+  "h": 75,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "SCREEN",
+  "effects": {
+   "view_changed": true,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f5d0",
+   "title": "OGRZEWANIE 1",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "\u0002",
+    "\u0002%",
+    "\u0002mV",
+    "\u0002s",
+    "\u0002°C",
+    " ",
+    "OGRZEWANIE 1",
+    "W tym trybie temperatura\nzadawana jest automatycznie."
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20016414",
+  "x": 310,
+  "y": 234,
+  "w": 68,
+  "h": 75,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "SCREEN",
+  "effects": {
+   "view_changed": true,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f5d0",
+   "title": "OGRZEWANIE 2",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "\u0002",
+    "\u0002%",
+    "\u0002mV",
+    "\u0002s",
+    "\u0002°C",
+    " ",
+    "OGRZEWANIE 2",
+    "W tym trybie temperatura\nzadawana jest automatycznie."
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20016450",
+  "x": 379,
+  "y": 234,
+  "w": 68,
+  "h": 75,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "SCREEN",
+  "effects": {
+   "view_changed": true,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f604",
+   "title": "WODA",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "\u0002",
+    "\u0002%",
+    "\u0002°C",
+    "W tym trybie temperatura\nzadawana jest automatycznie.",
+    "WODA"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x200164c8",
+  "x": 448,
+  "y": 234,
+  "w": 68,
+  "h": 75,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "VISUAL",
+  "effects": {
+   "view_changed": false,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f708",
+   "title": "",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "Poniedziałek",
+    "Wyłączony"
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001adf8",
+  "x": 236,
+  "y": 218,
+  "w": 52,
+  "h": 36,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "SCREEN",
+  "effects": {
+   "view_changed": true,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f5d0",
+   "title": "OGRZEWANIE 1",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "\u0002",
+    "\u0002%",
+    "\u0002mV",
+    "\u0002s",
+    "\u0002°C",
+    " ",
+    "OGRZEWANIE 1",
+    "W tym trybie temperatura\nzadawana jest automatycznie."
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x2001ac60",
+  "x": 228,
+  "y": 221,
+  "w": 197,
+  "h": 33,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "SCREEN",
+  "effects": {
+   "view_changed": true,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f5d0",
+   "title": "OGRZEWANIE 1",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "\u0002",
+    "\u0002%",
+    "\u0002mV",
+    "\u0002s",
+    "\u0002°C",
+    " ",
+    "OGRZEWANIE 1",
+    "W tym trybie temperatura\nzadawana jest automatycznie."
+   ]
+  },
+  "handler": null
+ },
+ {
+  "node": "home",
+  "tap": "tap",
+  "widget": "0x20017bac",
+  "x": 258,
+  "y": 226,
+  "w": 197,
+  "h": 33,
+  "role": "other",
+  "text_pl": "",
+  "bitmap_id": null,
+  "effect": "SCREEN",
+  "effects": {
+   "view_changed": true,
+   "from_vptr": "0x808f708",
+   "view_vptr": "0x808f5d0",
+   "title": "OGRZEWANIE 1",
+   "body_changed": true,
+   "head_changed": true,
+   "pid": [],
+   "can": [],
+   "texts": [
+    "\u0002",
+    "\u0002%",
+    "\u0002mV",
+    "\u0002s",
+    "\u0002°C",
+    " ",
+    "OGRZEWANIE 1",
+    "W tym trybie temperatura\nzadawana jest automatycznie."
+   ]
+  },
+  "handler": null
+ }
+]

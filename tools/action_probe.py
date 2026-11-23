@@ -41,8 +41,9 @@ def can_key(f): return (f["id"], bytes(f["data"]).hex())
 
 def enter_node(s, d, rows, node, settle=700):
     """punkt kontrolny wezla inwentarza (IDX_screen / IDX_settings), ta sama sekwencja co screen_inventory_menu.grab"""
-    idx, kind = node.split("_", 1); idx = int(idx)
     st_path = os.path.join(d, "node_%s.state" % node)
+    if os.path.exists(st_path): return st_path                      # gotowy punkt kontrolny (np. node_home.state z home_inventory.py)
+    idx, kind = node.split("_", 1); idx = int(idx)
     if not os.path.exists(st_path):
         s.b.load_state(os.path.join(d, "menu.state")); s.wait(60)
         nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = rows

@@ -6,7 +6,7 @@ D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "F
 OUT = os.path.join(D, "ui_model"); os.makedirs(OUT, exist_ok=True)
 vt = json.load(open(os.path.join(D, "pass63_view_classes.json")))
 act = []
-for _f in ("actions_pass61_L0_partial.json", "actions_pass65_L0_nodes6-11.json", "actions_pass65_L1_nodes12-18.json", "actions_pass65_cfg_kaskada_magazyn.json"):
+for _f in ("actions_pass61_L0_partial.json", "actions_pass65_L0_nodes6-11.json", "actions_pass65_L1_nodes12-18.json", "actions_pass65_cfg_kaskada_magazyn.json", "actions_pass65_home.json"):
     act += json.load(open(os.path.join(D, _f)))
 # --- wezly (klasy ekranow po vtable) ---
 V = {"0x808f708": "HOME", "0x808f66c": "MENU", "0x808f910": "PROGRAM", "0x808f944": "LISTA",
@@ -30,10 +30,10 @@ node("KASKADA", "Kaskada (MASTER, SLAVE 1..3, stopien mocy)", "0x808ee18", evide
 node("MAGAZYN", "Dodatkowy magazyn paliwa", "0x808eb74", evidence="MEASURED (PASS 65: ekran odslonieto 0x3525=1; 47 widgetow, 1 wiazanie PID-diff, reszta live)")
 node("KONFIGURACJA", "Konfiguracja (lista klasy 0x10)", "0x808f944", evidence="MEASURED (LISTA z ctx 0x10)", note="zmienia widocznosc menu 0x2105..0x2108 od poziomu 1")
 node("STATYSTYKI", "Statystyki (lista klasy 0x11)", "0x808f944", level_min=1, evidence="STRONG (PASS 46: klasa 0x11, 13 pozycji; ctx 0x11)")
-for i, t, src in (("DLG_PIN", "Dialog PIN (4 cyfry, +/-, OK)", "DOC PASS 93/105"), ("DLG_PALIWO", "Dialog Paliwo (+/-, kg, czas, OK)", "DOC PASS 93/105"),
-                  ("DLG_CZAS", "Dialog Ustaw czas (z zegara na ekranie glownym)", "DOC PASS 92/105"), ("DLG_EDYCJA", "Dialog edycji wartosci (suwak min-max, -/+, OK; zapis CAN 0x584)", "DOC PASS 93/105"),
-                  ("DLG_ZASILANIE", "Okno trybow zasilania (z kafla zasilania)", "DOC PASS 50"), ("DLG_AUTO", "Okno AUTO (temperatury komfort/eco, suwaki)", "DOC MENU-TREE")):
-    node(i, t, None, kind="dialog", evidence=src, note="OPEN: vtable, widgety, wiazania, ramka TX")
+for i, t, src in (("DLG_PIN", "Dialog PIN (4 cyfry, +/-, OK)", "DOC PASS 93/105"), ("DLG_PALIWO", "Dialog Paliwo (+/-, kg, czas, OK)", "MEASURED (zrzut dialog_shots/home_dlg_paliwo.png; nakladka na HOME, wyzwalacz kafel 103,234)"),
+                  ("DLG_CZAS", "Dialog Ustaw czas (koła godzina/minuta, OK)", "MEASURED (zrzut home_dlg_czas.png; nakladka na HOME, wyzwalacz zegar 42,19)"), ("DLG_DATA", "Dialog Ustaw date (koła dzien/miesiac/rok, OK)", "MEASURED (zrzut home_dlg_data.png; nakladka na HOME, wyzwalacz 240,19)"), ("DLG_EDYCJA", "Dialog edycji wartosci (suwak min-max, -/+, OK; zapis CAN 0x584)", "DOC PASS 93/105"),
+                  ("DLG_ZASILANIE", "Okno trybow zasilania (Kociol on/off, Ogrzewanie 1/2, Woda: tryb off/eco/AUTO-zegar/comfort + suwak)", "MEASURED (zrzut home_dlg_zasilanie.png; wyzwalacz kafel 448,234)"), ("DLG_AUTO", "Okno AUTO (komunikat + suwak komfort/eco, OK)", "MEASURED (zrzut home_dlg_auto.png; wyzwalacz kafel 415,76)")):
+    node(i, t, None, kind="dialog", evidence=src, note="nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX" if i != "DLG_PIN" and i != "DLG_EDYCJA" else "OPEN: vtable, widgety, wiazania, ramka TX")
 # --- wiersze menu (21) ---
 rows = list(csv.DictReader(open(os.path.join(D, "menu_rows_21.csv")))); eff = {int(r["row"]): r for r in csv.DictReader(open(os.path.join(D, "menu_click_effects_21.csv")))}
 NAMES = [("Kociol", "KOCIOL", None), ("Palnik", "PALNIK", None), ("Ogrzewanie 1", "OGRZEWANIE", [("0x2105", ">=", 1)]), ("Ogrzewanie 2", "OGRZEWANIE", [("0x2105", ">=", 2)]),
@@ -53,7 +53,9 @@ for r in rows:
                           evidence="MEASURED (menu_sweep: wiersz widoczny gdy dodany do kontenera, 33 warianty konfiguracji x poziomy; ikona A=%d)" % int(r["bitmap_A"]) if SW else "STRONG (menu_rows_21 + PASS 40/41/46)"))
 # --- krawedzie zmierzone (action_probe, poziom 0, wezly 0..5): tap w srodek widgetu dotykowego ---
 KNOWN = {(65, 22): "przycisk powrotu < (naglowek, widget 130x45)", (91, 20): "napis < MENU (naglowek)", (479, 25): "ikona domu (prawy gorny rog)",
-         (359, 249): "kafel zebatki (NASTAWY)", (414, 130): "pasek programu (PROGRAM)"}
+         (359, 249): "kafel zebatki (NASTAWY)", (414, 130): "pasek programu (PROGRAM)",
+         (34, 234): "kafel MENU (dol, 1)", (172, 234): "kafel Palnik/plomien (dol, 3)", (241, 234): "kafel Ogrzewanie 1 (dol, 4)", (310, 234): "kafel Ogrzewanie 2 (dol, 5)", (379, 234): "kafel Woda (dol, 6)",
+         (236, 218): "obszar kafla Ogrzewanie 1 (widget zagniezdzony)", (228, 221): "obszar kafla Ogrzewanie 1 (widget zagniezdzony)", (258, 226): "obszar kafla Ogrzewanie 1 (widget zagniezdzony)"}
 E = []; seen = set()
 for a in act:
     if a["effect"] != "SCREEN": continue
@@ -75,8 +77,8 @@ for a in act:
     E.append({"from": f, "to": None, "tap": [a["x"], a["y"]], "widget_size": [a["w"], a["h"]], "label": "stukniecie zapisuje PID", "level_min": 1 if f in ("TEST_WYJSC", "INTERNET", "MENU") else 0, "effect": "write_pid",
               "pid_writes": [{"pid": q["pid"], "old": q["old"], "new": q["new"]} for q in a["effects"]["pid"] if q["pid"] != "0x2122"], "can_tx": [c["id"] + " " + c["data"] for c in a["effects"]["can"]],
               "evidence": "MEASURED (action_probe PASS 65; PID zmienione wzgledem przebiegu kontrolnego, ramki CAN spoza tla)"})
-for a, b, lab, ev in (("HOME", "MENU", "kafel MENU (34,235)", "MEASURED (ui_explore: tap 34,235)"), ("HOME", "DLG_PALIWO", "kafel Paliwo", "DOC PASS 42/50"), ("HOME", "OGRZEWANIE", "kafel Ogrzewanie 1/2", "DOC"), ("HOME", "CWU", "kafel Woda", "DOC"),
-                      ("HOME", "DLG_ZASILANIE", "kafel zasilania", "DOC PASS 50"), ("HOME", "DLG_AUTO", "kafel AUTO", "DOC"), ("HOME", "DLG_CZAS", "zegar", "DOC PASS 92"), ("LISTA", "DLG_EDYCJA", "wiersz liczbowy", "DOC PASS 93/105"),
+for a, b, lab, ev in (("HOME", "MENU", "kafel MENU (34,235)", "MEASURED (ui_explore: tap 34,235)"), ("HOME", "DLG_PALIWO", "kafel Paliwo (103,234)", "MEASURED (zrzut + stukniecie)"),
+                      ("HOME", "DLG_ZASILANIE", "kafel zasilania (448,234)", "MEASURED (zrzut + stukniecie)"), ("HOME", "DLG_AUTO", "kafel AUTO (415,76)", "MEASURED (zrzut + stukniecie)"), ("HOME", "DLG_CZAS", "zegar (42,19)", "MEASURED (zrzut + stukniecie)"), ("HOME", "DLG_DATA", "data (240,19)", "MEASURED (zrzut + stukniecie)"), ("LISTA", "DLG_EDYCJA", "wiersz liczbowy", "DOC PASS 93/105"),
                       ("MENU", "DLG_PIN", "wiersz Poziom menu", "STRONG (wiersz 14, klasa 15)")):
     E.append(dict(**{"from": a, "to": b}, tap=None, label=lab, level_min=0, effect="dialog" if b.startswith("DLG") else "nav", evidence=ev))
 for m in menu_rows:

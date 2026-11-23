@@ -1,0 +1,5406 @@
+{
+ "paliwo": {
+  "tap": [
+   103,
+   234
+  ],
+  "view_vptr": "0x808f708",
+  "appear": [
+   {
+    "this": "0x20016ae8",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b30",
+    "role": "other",
+    "pos": [
+     20,
+     25,
+     440,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b60",
+    "role": "image",
+    "pos": [
+     20,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 112,
+    "touch": 0,
+    "text": null,
+    "bmp": 112
+   },
+   {
+    "this": "0x20016b8c",
+    "role": "image",
+    "pos": [
+     450,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 113,
+    "touch": 0,
+    "text": null,
+    "bmp": 113
+   },
+   {
+    "this": "0x20016bb8",
+    "role": "image",
+    "pos": [
+     30,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016be4",
+    "role": "image",
+    "pos": [
+     40,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c10",
+    "role": "image",
+    "pos": [
+     50,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c3c",
+    "role": "image",
+    "pos": [
+     60,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c68",
+    "role": "image",
+    "pos": [
+     70,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c94",
+    "role": "image",
+    "pos": [
+     80,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016cc0",
+    "role": "image",
+    "pos": [
+     90,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016cec",
+    "role": "image",
+    "pos": [
+     100,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d18",
+    "role": "image",
+    "pos": [
+     110,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d44",
+    "role": "image",
+    "pos": [
+     120,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d70",
+    "role": "image",
+    "pos": [
+     130,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d9c",
+    "role": "image",
+    "pos": [
+     140,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016dc8",
+    "role": "image",
+    "pos": [
+     150,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016df4",
+    "role": "image",
+    "pos": [
+     160,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e20",
+    "role": "image",
+    "pos": [
+     170,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e4c",
+    "role": "image",
+    "pos": [
+     180,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e78",
+    "role": "image",
+    "pos": [
+     190,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016ea4",
+    "role": "image",
+    "pos": [
+     200,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016ed0",
+    "role": "image",
+    "pos": [
+     210,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016efc",
+    "role": "image",
+    "pos": [
+     220,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f28",
+    "role": "image",
+    "pos": [
+     230,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f54",
+    "role": "image",
+    "pos": [
+     240,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f80",
+    "role": "image",
+    "pos": [
+     250,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016fac",
+    "role": "image",
+    "pos": [
+     260,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016fd8",
+    "role": "image",
+    "pos": [
+     270,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017004",
+    "role": "image",
+    "pos": [
+     280,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017030",
+    "role": "image",
+    "pos": [
+     290,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001705c",
+    "role": "image",
+    "pos": [
+     300,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017088",
+    "role": "image",
+    "pos": [
+     310,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200170b4",
+    "role": "image",
+    "pos": [
+     320,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200170e0",
+    "role": "image",
+    "pos": [
+     330,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001710c",
+    "role": "image",
+    "pos": [
+     340,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017138",
+    "role": "image",
+    "pos": [
+     350,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017164",
+    "role": "image",
+    "pos": [
+     360,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017190",
+    "role": "image",
+    "pos": [
+     370,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200171bc",
+    "role": "image",
+    "pos": [
+     380,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200171e8",
+    "role": "image",
+    "pos": [
+     390,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017214",
+    "role": "image",
+    "pos": [
+     400,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017240",
+    "role": "image",
+    "pos": [
+     410,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001726c",
+    "role": "image",
+    "pos": [
+     420,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017298",
+    "role": "image",
+    "pos": [
+     430,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200172c4",
+    "role": "image",
+    "pos": [
+     440,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017438",
+    "role": "other",
+    "pos": [
+     5,
+     500,
+     480,
+     300
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017468",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200174e8",
+    "role": "other",
+    "pos": [
+     390,
+     700,
+     52,
+     36
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "text": null,
+    "bmp": null
+   }
+  ],
+  "disappear": [
+   "0x2001b0c8",
+   "0x2001b0f4"
+  ],
+  "changed": [
+   {
+    "this": "0x20016ae8",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017438",
+    "role": "other",
+    "pos": [
+     5,
+     500,
+     480,
+     300
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017468",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200174e8",
+    "role": "other",
+    "pos": [
+     390,
+     700,
+     52,
+     36
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200181c0",
+    "role": "text",
+    "pos": [
+     108,
+     128,
+     20,
+     1375
+    ],
+    "text_id": 430,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018240",
+    "role": "text",
+    "pos": [
+     108,
+     128,
+     20,
+     1375
+    ],
+    "text_id": 430,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200182ec",
+    "role": "text",
+    "pos": [
+     108,
+     1503,
+     20,
+     50
+    ],
+    "text_id": 431,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018354",
+    "role": "text",
+    "pos": [
+     108,
+     1553,
+     20,
+     50
+    ],
+    "text_id": 432,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200183bc",
+    "role": "text",
+    "pos": [
+     108,
+     1603,
+     20,
+     50
+    ],
+    "text_id": 435,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018424",
+    "role": "text",
+    "pos": [
+     108,
+     1503,
+     20,
+     50
+    ],
+    "text_id": 431,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001848c",
+    "role": "text",
+    "pos": [
+     108,
+     1553,
+     20,
+     50
+    ],
+    "text_id": 432,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200184f4",
+    "role": "text",
+    "pos": [
+     108,
+     1603,
+     20,
+     50
+    ],
+    "text_id": 435,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200185bc",
+    "role": "text",
+    "pos": [
+     165,
+     128,
+     90,
+     575
+    ],
+    "text_id": 335,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001863c",
+    "role": "text",
+    "pos": [
+     167,
+     128,
+     90,
+     575
+    ],
+    "text_id": 335,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018744",
+    "role": "text",
+    "pos": [
+     302,
+     128,
+     40,
+     1275
+    ],
+    "text_id": 429,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "2015\n\n2016\n\n2017\n\n2018\n\n2019\n\n2020\n\n2021\n\n2022\n\n",
+    "bmp": null
+   },
+   {
+    "this": "0x200187c4",
+    "role": "text",
+    "pos": [
+     304,
+     128,
+     40,
+     1275
+    ],
+    "text_id": 429,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "2015\n\n2016\n\n2017\n\n2018\n\n2019\n\n2020\n\n2021\n\n2022\n\n",
+    "bmp": null
+   },
+   {
+    "this": "0x2001af38",
+    "role": "image",
+    "pos": [
+     94,
+     73,
+     29,
+     155
+    ],
+    "text_id": null,
+    "bitmap_id": 49,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": 49
+   },
+   {
+    "this": "0x2001af64",
+    "role": "image",
+    "pos": [
+     104,
+     205,
+     57,
+     43
+    ],
+    "text_id": null,
+    "bitmap_id": 50,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": 50
+   },
+   {
+    "this": "0x2001af90",
+    "role": "other",
+    "pos": [
+     94,
+     226,
+     29,
+     2
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001b05c",
+    "role": "text",
+    "pos": [
+     197,
+     100,
+     90,
+     32
+    ],
+    "text_id": 450,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "180",
+    "bmp": null
+   },
+   {
+    "this": "0x2001b098",
+    "role": "other",
+    "pos": [
+     90,
+     175,
+     5,
+     49
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001b0c8",
+    "role": "other",
+    "pos": [
+     25,
+     0,
+     43,
+     19
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001b84c",
+    "role": "image",
+    "pos": [
+     75,
+     4,
+     32,
+     23
+    ],
+    "text_id": null,
+    "bitmap_id": 154,
+    "touch": 0,
+    "vis_before": 0,
+    "vis_after": 0,
+    "text": null,
+    "bmp": 154
+   }
+  ]
+ },
+ "zasilanie": {
+  "tap": [
+   448,
+   234
+  ],
+  "view_vptr": "0x808f708",
+  "appear": [
+   {
+    "this": "0x20016ae8",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b30",
+    "role": "other",
+    "pos": [
+     20,
+     25,
+     440,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b60",
+    "role": "image",
+    "pos": [
+     20,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 112,
+    "touch": 0,
+    "text": null,
+    "bmp": 112
+   },
+   {
+    "this": "0x20016b8c",
+    "role": "image",
+    "pos": [
+     450,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 113,
+    "touch": 0,
+    "text": null,
+    "bmp": 113
+   },
+   {
+    "this": "0x20016bb8",
+    "role": "image",
+    "pos": [
+     30,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016be4",
+    "role": "image",
+    "pos": [
+     40,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c10",
+    "role": "image",
+    "pos": [
+     50,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c3c",
+    "role": "image",
+    "pos": [
+     60,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c68",
+    "role": "image",
+    "pos": [
+     70,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c94",
+    "role": "image",
+    "pos": [
+     80,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016cc0",
+    "role": "image",
+    "pos": [
+     90,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016cec",
+    "role": "image",
+    "pos": [
+     100,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d18",
+    "role": "image",
+    "pos": [
+     110,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d44",
+    "role": "image",
+    "pos": [
+     120,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d70",
+    "role": "image",
+    "pos": [
+     130,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d9c",
+    "role": "image",
+    "pos": [
+     140,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016dc8",
+    "role": "image",
+    "pos": [
+     150,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016df4",
+    "role": "image",
+    "pos": [
+     160,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e20",
+    "role": "image",
+    "pos": [
+     170,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e4c",
+    "role": "image",
+    "pos": [
+     180,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e78",
+    "role": "image",
+    "pos": [
+     190,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016ea4",
+    "role": "image",
+    "pos": [
+     200,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016ed0",
+    "role": "image",
+    "pos": [
+     210,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016efc",
+    "role": "image",
+    "pos": [
+     220,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f28",
+    "role": "image",
+    "pos": [
+     230,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f54",
+    "role": "image",
+    "pos": [
+     240,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f80",
+    "role": "image",
+    "pos": [
+     250,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016fac",
+    "role": "image",
+    "pos": [
+     260,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016fd8",
+    "role": "image",
+    "pos": [
+     270,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017004",
+    "role": "image",
+    "pos": [
+     280,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017030",
+    "role": "image",
+    "pos": [
+     290,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001705c",
+    "role": "image",
+    "pos": [
+     300,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017088",
+    "role": "image",
+    "pos": [
+     310,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200170b4",
+    "role": "image",
+    "pos": [
+     320,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200170e0",
+    "role": "image",
+    "pos": [
+     330,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001710c",
+    "role": "image",
+    "pos": [
+     340,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017138",
+    "role": "image",
+    "pos": [
+     350,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017164",
+    "role": "image",
+    "pos": [
+     360,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017190",
+    "role": "image",
+    "pos": [
+     370,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200171bc",
+    "role": "image",
+    "pos": [
+     380,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200171e8",
+    "role": "image",
+    "pos": [
+     390,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017214",
+    "role": "image",
+    "pos": [
+     400,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017240",
+    "role": "image",
+    "pos": [
+     410,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001726c",
+    "role": "image",
+    "pos": [
+     420,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017298",
+    "role": "image",
+    "pos": [
+     430,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200172c4",
+    "role": "image",
+    "pos": [
+     440,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017438",
+    "role": "other",
+    "pos": [
+     5,
+     500,
+     480,
+     300
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017468",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200174e8",
+    "role": "other",
+    "pos": [
+     390,
+     700,
+     52,
+     36
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "text": null,
+    "bmp": null
+   }
+  ],
+  "disappear": [],
+  "changed": [
+   {
+    "this": "0x20016ae8",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017438",
+    "role": "other",
+    "pos": [
+     5,
+     500,
+     480,
+     300
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017468",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200174e8",
+    "role": "other",
+    "pos": [
+     390,
+     700,
+     52,
+     36
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200181c0",
+    "role": "text",
+    "pos": [
+     108,
+     128,
+     20,
+     1375
+    ],
+    "text_id": 430,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018240",
+    "role": "text",
+    "pos": [
+     108,
+     128,
+     20,
+     1375
+    ],
+    "text_id": 430,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200182ec",
+    "role": "text",
+    "pos": [
+     108,
+     1503,
+     20,
+     50
+    ],
+    "text_id": 431,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018354",
+    "role": "text",
+    "pos": [
+     108,
+     1553,
+     20,
+     50
+    ],
+    "text_id": 432,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200183bc",
+    "role": "text",
+    "pos": [
+     108,
+     1603,
+     20,
+     50
+    ],
+    "text_id": 435,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018424",
+    "role": "text",
+    "pos": [
+     108,
+     1503,
+     20,
+     50
+    ],
+    "text_id": 431,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001848c",
+    "role": "text",
+    "pos": [
+     108,
+     1553,
+     20,
+     50
+    ],
+    "text_id": 432,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200184f4",
+    "role": "text",
+    "pos": [
+     108,
+     1603,
+     20,
+     50
+    ],
+    "text_id": 435,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200185bc",
+    "role": "text",
+    "pos": [
+     165,
+     128,
+     90,
+     575
+    ],
+    "text_id": 335,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001863c",
+    "role": "text",
+    "pos": [
+     167,
+     128,
+     90,
+     575
+    ],
+    "text_id": 335,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018744",
+    "role": "text",
+    "pos": [
+     302,
+     128,
+     40,
+     1275
+    ],
+    "text_id": 429,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "2015\n\n2016\n\n2017\n\n2018\n\n2019\n\n2020\n\n2021\n\n2022\n\n",
+    "bmp": null
+   },
+   {
+    "this": "0x200187c4",
+    "role": "text",
+    "pos": [
+     304,
+     128,
+     40,
+     1275
+    ],
+    "text_id": 429,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "2015\n\n2016\n\n2017\n\n2018\n\n2019\n\n2020\n\n2021\n\n2022\n\n",
+    "bmp": null
+   },
+   {
+    "this": "0x2001b84c",
+    "role": "image",
+    "pos": [
+     75,
+     4,
+     32,
+     23
+    ],
+    "text_id": null,
+    "bitmap_id": 154,
+    "touch": 0,
+    "vis_before": 0,
+    "vis_after": 0,
+    "text": null,
+    "bmp": 154
+   }
+  ]
+ },
+ "auto": {
+  "tap": [
+   415,
+   76
+  ],
+  "view_vptr": "0x808f708",
+  "appear": [
+   {
+    "this": "0x20016ae8",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b30",
+    "role": "other",
+    "pos": [
+     20,
+     25,
+     440,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b60",
+    "role": "image",
+    "pos": [
+     20,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 112,
+    "touch": 0,
+    "text": null,
+    "bmp": 112
+   },
+   {
+    "this": "0x20016b8c",
+    "role": "image",
+    "pos": [
+     450,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 113,
+    "touch": 0,
+    "text": null,
+    "bmp": 113
+   },
+   {
+    "this": "0x20016bb8",
+    "role": "image",
+    "pos": [
+     30,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016be4",
+    "role": "image",
+    "pos": [
+     40,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c10",
+    "role": "image",
+    "pos": [
+     50,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c3c",
+    "role": "image",
+    "pos": [
+     60,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c68",
+    "role": "image",
+    "pos": [
+     70,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c94",
+    "role": "image",
+    "pos": [
+     80,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016cc0",
+    "role": "image",
+    "pos": [
+     90,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016cec",
+    "role": "image",
+    "pos": [
+     100,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d18",
+    "role": "image",
+    "pos": [
+     110,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d44",
+    "role": "image",
+    "pos": [
+     120,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d70",
+    "role": "image",
+    "pos": [
+     130,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d9c",
+    "role": "image",
+    "pos": [
+     140,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016dc8",
+    "role": "image",
+    "pos": [
+     150,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016df4",
+    "role": "image",
+    "pos": [
+     160,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e20",
+    "role": "image",
+    "pos": [
+     170,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e4c",
+    "role": "image",
+    "pos": [
+     180,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e78",
+    "role": "image",
+    "pos": [
+     190,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016ea4",
+    "role": "image",
+    "pos": [
+     200,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016ed0",
+    "role": "image",
+    "pos": [
+     210,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016efc",
+    "role": "image",
+    "pos": [
+     220,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f28",
+    "role": "image",
+    "pos": [
+     230,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f54",
+    "role": "image",
+    "pos": [
+     240,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f80",
+    "role": "image",
+    "pos": [
+     250,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016fac",
+    "role": "image",
+    "pos": [
+     260,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016fd8",
+    "role": "image",
+    "pos": [
+     270,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017004",
+    "role": "image",
+    "pos": [
+     280,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017030",
+    "role": "image",
+    "pos": [
+     290,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001705c",
+    "role": "image",
+    "pos": [
+     300,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017088",
+    "role": "image",
+    "pos": [
+     310,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200170b4",
+    "role": "image",
+    "pos": [
+     320,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200170e0",
+    "role": "image",
+    "pos": [
+     330,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001710c",
+    "role": "image",
+    "pos": [
+     340,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017138",
+    "role": "image",
+    "pos": [
+     350,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017164",
+    "role": "image",
+    "pos": [
+     360,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017190",
+    "role": "image",
+    "pos": [
+     370,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200171bc",
+    "role": "image",
+    "pos": [
+     380,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200171e8",
+    "role": "image",
+    "pos": [
+     390,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017214",
+    "role": "image",
+    "pos": [
+     400,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017240",
+    "role": "image",
+    "pos": [
+     410,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001726c",
+    "role": "image",
+    "pos": [
+     420,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017298",
+    "role": "image",
+    "pos": [
+     430,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200172c4",
+    "role": "image",
+    "pos": [
+     440,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017438",
+    "role": "other",
+    "pos": [
+     5,
+     500,
+     480,
+     300
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017468",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200174e8",
+    "role": "other",
+    "pos": [
+     390,
+     700,
+     52,
+     36
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "text": null,
+    "bmp": null
+   }
+  ],
+  "disappear": [],
+  "changed": [
+   {
+    "this": "0x20016ae8",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b30",
+    "role": "other",
+    "pos": [
+     20,
+     25,
+     440,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b8c",
+    "role": "image",
+    "pos": [
+     450,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 113,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": 113
+   },
+   {
+    "this": "0x20017438",
+    "role": "other",
+    "pos": [
+     5,
+     500,
+     480,
+     300
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017468",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200174e8",
+    "role": "other",
+    "pos": [
+     390,
+     700,
+     52,
+     36
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200181c0",
+    "role": "text",
+    "pos": [
+     108,
+     128,
+     20,
+     1375
+    ],
+    "text_id": 430,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018240",
+    "role": "text",
+    "pos": [
+     108,
+     128,
+     20,
+     1375
+    ],
+    "text_id": 430,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200182ec",
+    "role": "text",
+    "pos": [
+     108,
+     1503,
+     20,
+     50
+    ],
+    "text_id": 431,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018354",
+    "role": "text",
+    "pos": [
+     108,
+     1553,
+     20,
+     50
+    ],
+    "text_id": 432,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200183bc",
+    "role": "text",
+    "pos": [
+     108,
+     1603,
+     20,
+     50
+    ],
+    "text_id": 435,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018424",
+    "role": "text",
+    "pos": [
+     108,
+     1503,
+     20,
+     50
+    ],
+    "text_id": 431,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001848c",
+    "role": "text",
+    "pos": [
+     108,
+     1553,
+     20,
+     50
+    ],
+    "text_id": 432,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200184f4",
+    "role": "text",
+    "pos": [
+     108,
+     1603,
+     20,
+     50
+    ],
+    "text_id": 435,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200185bc",
+    "role": "text",
+    "pos": [
+     165,
+     128,
+     90,
+     575
+    ],
+    "text_id": 335,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001863c",
+    "role": "text",
+    "pos": [
+     167,
+     128,
+     90,
+     575
+    ],
+    "text_id": 335,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018744",
+    "role": "text",
+    "pos": [
+     302,
+     128,
+     40,
+     1275
+    ],
+    "text_id": 429,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "2015\n\n2016\n\n2017\n\n2018\n\n2019\n\n2020\n\n2021\n\n2022\n\n",
+    "bmp": null
+   },
+   {
+    "this": "0x200187c4",
+    "role": "text",
+    "pos": [
+     304,
+     128,
+     40,
+     1275
+    ],
+    "text_id": 429,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "2015\n\n2016\n\n2017\n\n2018\n\n2019\n\n2020\n\n2021\n\n2022\n\n",
+    "bmp": null
+   },
+   {
+    "this": "0x2001a564",
+    "role": "text",
+    "pos": [
+     209,
+     12,
+     62,
+     73
+    ],
+    "text_id": 446,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "65",
+    "bmp": null
+   },
+   {
+    "this": "0x2001a59c",
+    "role": "text",
+    "pos": [
+     75,
+     58,
+     26,
+     32
+    ],
+    "text_id": 448,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "60",
+    "bmp": null
+   },
+   {
+    "this": "0x2001a5d4",
+    "role": "text",
+    "pos": [
+     375,
+     58,
+     26,
+     32
+    ],
+    "text_id": 448,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "80",
+    "bmp": null
+   },
+   {
+    "this": "0x2001a6a0",
+    "role": "image",
+    "pos": [
+     232,
+     80,
+     46,
+     46
+    ],
+    "text_id": null,
+    "bitmap_id": 69,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": 69
+   },
+   {
+    "this": "0x2001a6cc",
+    "role": "other",
+    "pos": [
+     84,
+     94,
+     171,
+     16
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001b84c",
+    "role": "image",
+    "pos": [
+     75,
+     4,
+     32,
+     23
+    ],
+    "text_id": null,
+    "bitmap_id": 154,
+    "touch": 0,
+    "vis_before": 0,
+    "vis_after": 0,
+    "text": null,
+    "bmp": 154
+   }
+  ]
+ },
+ "zegar": {
+  "tap": [
+   42,
+   19
+  ],
+  "view_vptr": "0x808f708",
+  "appear": [
+   {
+    "this": "0x20016ae8",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b30",
+    "role": "other",
+    "pos": [
+     20,
+     25,
+     440,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b60",
+    "role": "image",
+    "pos": [
+     20,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 112,
+    "touch": 0,
+    "text": null,
+    "bmp": 112
+   },
+   {
+    "this": "0x20016b8c",
+    "role": "image",
+    "pos": [
+     450,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 113,
+    "touch": 0,
+    "text": null,
+    "bmp": 113
+   },
+   {
+    "this": "0x20016bb8",
+    "role": "image",
+    "pos": [
+     30,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016be4",
+    "role": "image",
+    "pos": [
+     40,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c10",
+    "role": "image",
+    "pos": [
+     50,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c3c",
+    "role": "image",
+    "pos": [
+     60,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c68",
+    "role": "image",
+    "pos": [
+     70,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c94",
+    "role": "image",
+    "pos": [
+     80,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016cc0",
+    "role": "image",
+    "pos": [
+     90,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016cec",
+    "role": "image",
+    "pos": [
+     100,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d18",
+    "role": "image",
+    "pos": [
+     110,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d44",
+    "role": "image",
+    "pos": [
+     120,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d70",
+    "role": "image",
+    "pos": [
+     130,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d9c",
+    "role": "image",
+    "pos": [
+     140,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016dc8",
+    "role": "image",
+    "pos": [
+     150,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016df4",
+    "role": "image",
+    "pos": [
+     160,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e20",
+    "role": "image",
+    "pos": [
+     170,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e4c",
+    "role": "image",
+    "pos": [
+     180,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e78",
+    "role": "image",
+    "pos": [
+     190,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016ea4",
+    "role": "image",
+    "pos": [
+     200,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016ed0",
+    "role": "image",
+    "pos": [
+     210,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016efc",
+    "role": "image",
+    "pos": [
+     220,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f28",
+    "role": "image",
+    "pos": [
+     230,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f54",
+    "role": "image",
+    "pos": [
+     240,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f80",
+    "role": "image",
+    "pos": [
+     250,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016fac",
+    "role": "image",
+    "pos": [
+     260,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016fd8",
+    "role": "image",
+    "pos": [
+     270,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017004",
+    "role": "image",
+    "pos": [
+     280,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017030",
+    "role": "image",
+    "pos": [
+     290,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001705c",
+    "role": "image",
+    "pos": [
+     300,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017088",
+    "role": "image",
+    "pos": [
+     310,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200170b4",
+    "role": "image",
+    "pos": [
+     320,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200170e0",
+    "role": "image",
+    "pos": [
+     330,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001710c",
+    "role": "image",
+    "pos": [
+     340,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017138",
+    "role": "image",
+    "pos": [
+     350,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017164",
+    "role": "image",
+    "pos": [
+     360,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017190",
+    "role": "image",
+    "pos": [
+     370,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200171bc",
+    "role": "image",
+    "pos": [
+     380,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200171e8",
+    "role": "image",
+    "pos": [
+     390,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017214",
+    "role": "image",
+    "pos": [
+     400,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017240",
+    "role": "image",
+    "pos": [
+     410,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001726c",
+    "role": "image",
+    "pos": [
+     420,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017298",
+    "role": "image",
+    "pos": [
+     430,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200172c4",
+    "role": "image",
+    "pos": [
+     440,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017438",
+    "role": "other",
+    "pos": [
+     5,
+     500,
+     480,
+     300
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017468",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200174e8",
+    "role": "other",
+    "pos": [
+     390,
+     700,
+     52,
+     36
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "text": null,
+    "bmp": null
+   }
+  ],
+  "disappear": [],
+  "changed": [
+   {
+    "this": "0x20016ae8",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017438",
+    "role": "other",
+    "pos": [
+     5,
+     500,
+     480,
+     300
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017468",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200174e8",
+    "role": "other",
+    "pos": [
+     390,
+     700,
+     52,
+     36
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200181c0",
+    "role": "text",
+    "pos": [
+     108,
+     128,
+     20,
+     1375
+    ],
+    "text_id": 430,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018240",
+    "role": "text",
+    "pos": [
+     108,
+     128,
+     20,
+     1375
+    ],
+    "text_id": 430,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200182ec",
+    "role": "text",
+    "pos": [
+     108,
+     1503,
+     20,
+     50
+    ],
+    "text_id": 431,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018354",
+    "role": "text",
+    "pos": [
+     108,
+     1553,
+     20,
+     50
+    ],
+    "text_id": 432,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200183bc",
+    "role": "text",
+    "pos": [
+     108,
+     1603,
+     20,
+     50
+    ],
+    "text_id": 435,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018424",
+    "role": "text",
+    "pos": [
+     108,
+     1503,
+     20,
+     50
+    ],
+    "text_id": 431,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001848c",
+    "role": "text",
+    "pos": [
+     108,
+     1553,
+     20,
+     50
+    ],
+    "text_id": 432,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200184f4",
+    "role": "text",
+    "pos": [
+     108,
+     1603,
+     20,
+     50
+    ],
+    "text_id": 435,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200185bc",
+    "role": "text",
+    "pos": [
+     165,
+     128,
+     90,
+     575
+    ],
+    "text_id": 335,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001863c",
+    "role": "text",
+    "pos": [
+     167,
+     128,
+     90,
+     575
+    ],
+    "text_id": 335,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018744",
+    "role": "text",
+    "pos": [
+     302,
+     128,
+     40,
+     1275
+    ],
+    "text_id": 429,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "2015\n\n2016\n\n2017\n\n2018\n\n2019\n\n2020\n\n2021\n\n2022\n\n",
+    "bmp": null
+   },
+   {
+    "this": "0x200187c4",
+    "role": "text",
+    "pos": [
+     304,
+     128,
+     40,
+     1275
+    ],
+    "text_id": 429,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "2015\n\n2016\n\n2017\n\n2018\n\n2019\n\n2020\n\n2021\n\n2022\n\n",
+    "bmp": null
+   },
+   {
+    "this": "0x2001b84c",
+    "role": "image",
+    "pos": [
+     75,
+     4,
+     32,
+     23
+    ],
+    "text_id": null,
+    "bitmap_id": 154,
+    "touch": 0,
+    "vis_before": 0,
+    "vis_after": 0,
+    "text": null,
+    "bmp": 154
+   }
+  ]
+ },
+ "dzien": {
+  "tap": [
+   240,
+   19
+  ],
+  "view_vptr": "0x808f708",
+  "appear": [
+   {
+    "this": "0x20016ae8",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b30",
+    "role": "other",
+    "pos": [
+     20,
+     25,
+     440,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20016b60",
+    "role": "image",
+    "pos": [
+     20,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 112,
+    "touch": 0,
+    "text": null,
+    "bmp": 112
+   },
+   {
+    "this": "0x20016b8c",
+    "role": "image",
+    "pos": [
+     450,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 113,
+    "touch": 0,
+    "text": null,
+    "bmp": 113
+   },
+   {
+    "this": "0x20016bb8",
+    "role": "image",
+    "pos": [
+     30,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016be4",
+    "role": "image",
+    "pos": [
+     40,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c10",
+    "role": "image",
+    "pos": [
+     50,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c3c",
+    "role": "image",
+    "pos": [
+     60,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c68",
+    "role": "image",
+    "pos": [
+     70,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016c94",
+    "role": "image",
+    "pos": [
+     80,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016cc0",
+    "role": "image",
+    "pos": [
+     90,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016cec",
+    "role": "image",
+    "pos": [
+     100,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d18",
+    "role": "image",
+    "pos": [
+     110,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d44",
+    "role": "image",
+    "pos": [
+     120,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d70",
+    "role": "image",
+    "pos": [
+     130,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016d9c",
+    "role": "image",
+    "pos": [
+     140,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016dc8",
+    "role": "image",
+    "pos": [
+     150,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016df4",
+    "role": "image",
+    "pos": [
+     160,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e20",
+    "role": "image",
+    "pos": [
+     170,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e4c",
+    "role": "image",
+    "pos": [
+     180,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016e78",
+    "role": "image",
+    "pos": [
+     190,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016ea4",
+    "role": "image",
+    "pos": [
+     200,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016ed0",
+    "role": "image",
+    "pos": [
+     210,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016efc",
+    "role": "image",
+    "pos": [
+     220,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f28",
+    "role": "image",
+    "pos": [
+     230,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f54",
+    "role": "image",
+    "pos": [
+     240,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016f80",
+    "role": "image",
+    "pos": [
+     250,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016fac",
+    "role": "image",
+    "pos": [
+     260,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20016fd8",
+    "role": "image",
+    "pos": [
+     270,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017004",
+    "role": "image",
+    "pos": [
+     280,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017030",
+    "role": "image",
+    "pos": [
+     290,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001705c",
+    "role": "image",
+    "pos": [
+     300,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017088",
+    "role": "image",
+    "pos": [
+     310,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200170b4",
+    "role": "image",
+    "pos": [
+     320,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200170e0",
+    "role": "image",
+    "pos": [
+     330,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001710c",
+    "role": "image",
+    "pos": [
+     340,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017138",
+    "role": "image",
+    "pos": [
+     350,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017164",
+    "role": "image",
+    "pos": [
+     360,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017190",
+    "role": "image",
+    "pos": [
+     370,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200171bc",
+    "role": "image",
+    "pos": [
+     380,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200171e8",
+    "role": "image",
+    "pos": [
+     390,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017214",
+    "role": "image",
+    "pos": [
+     400,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017240",
+    "role": "image",
+    "pos": [
+     410,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x2001726c",
+    "role": "image",
+    "pos": [
+     420,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017298",
+    "role": "image",
+    "pos": [
+     430,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x200172c4",
+    "role": "image",
+    "pos": [
+     440,
+     25,
+     10,
+     242
+    ],
+    "text_id": null,
+    "bitmap_id": 114,
+    "touch": 0,
+    "text": null,
+    "bmp": 114
+   },
+   {
+    "this": "0x20017438",
+    "role": "other",
+    "pos": [
+     5,
+     500,
+     480,
+     300
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017468",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200174e8",
+    "role": "other",
+    "pos": [
+     390,
+     700,
+     52,
+     36
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "text": null,
+    "bmp": null
+   }
+  ],
+  "disappear": [],
+  "changed": [
+   {
+    "this": "0x20016ae8",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017438",
+    "role": "other",
+    "pos": [
+     5,
+     500,
+     480,
+     300
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20017468",
+    "role": "other",
+    "pos": [
+     0,
+     0,
+     480,
+     272
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200174e8",
+    "role": "other",
+    "pos": [
+     390,
+     700,
+     52,
+     36
+    ],
+    "text_id": null,
+    "bitmap_id": null,
+    "touch": 1,
+    "vis_before": 0,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200181c0",
+    "role": "text",
+    "pos": [
+     108,
+     128,
+     20,
+     1375
+    ],
+    "text_id": 430,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018240",
+    "role": "text",
+    "pos": [
+     108,
+     128,
+     20,
+     1375
+    ],
+    "text_id": 430,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200182ec",
+    "role": "text",
+    "pos": [
+     108,
+     1503,
+     20,
+     50
+    ],
+    "text_id": 431,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018354",
+    "role": "text",
+    "pos": [
+     108,
+     1553,
+     20,
+     50
+    ],
+    "text_id": 432,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200183bc",
+    "role": "text",
+    "pos": [
+     108,
+     1603,
+     20,
+     50
+    ],
+    "text_id": 435,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018424",
+    "role": "text",
+    "pos": [
+     108,
+     1503,
+     20,
+     50
+    ],
+    "text_id": 431,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001848c",
+    "role": "text",
+    "pos": [
+     108,
+     1553,
+     20,
+     50
+    ],
+    "text_id": 432,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200184f4",
+    "role": "text",
+    "pos": [
+     108,
+     1603,
+     20,
+     50
+    ],
+    "text_id": 435,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x200185bc",
+    "role": "text",
+    "pos": [
+     165,
+     128,
+     90,
+     575
+    ],
+    "text_id": 335,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x2001863c",
+    "role": "text",
+    "pos": [
+     167,
+     128,
+     90,
+     575
+    ],
+    "text_id": 335,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": null,
+    "bmp": null
+   },
+   {
+    "this": "0x20018744",
+    "role": "text",
+    "pos": [
+     302,
+     128,
+     40,
+     1275
+    ],
+    "text_id": 429,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "2015\n\n2016\n\n2017\n\n2018\n\n2019\n\n2020\n\n2021\n\n2022\n\n",
+    "bmp": null
+   },
+   {
+    "this": "0x200187c4",
+    "role": "text",
+    "pos": [
+     304,
+     128,
+     40,
+     1275
+    ],
+    "text_id": 429,
+    "bitmap_id": null,
+    "touch": 0,
+    "vis_before": 1,
+    "vis_after": 1,
+    "text": "2015\n\n2016\n\n2017\n\n2018\n\n2019\n\n2020\n\n2021\n\n2022\n\n",
+    "bmp": null
+   },
+   {
+    "this": "0x2001b84c",
+    "role": "image",
+    "pos": [
+     75,
+     4,
+     32,
+     23
+    ],
+    "text_id": null,
+    "bitmap_id": 154,
+    "touch": 0,
+    "vis_before": 0,
+    "vis_after": 0,
+    "text": null,
+    "bmp": 154
+   }
+  ]
+ }
+}
