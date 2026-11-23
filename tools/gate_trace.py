@@ -27,6 +27,7 @@ if __name__ == "__main__":
     fw, out, level, idx = sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4]); gear = len(sys.argv) > 5 and sys.argv[5] == "gear"
     rows = pickle.load(open(os.path.join(out, "rows.pkl"), "rb")); nm = E.name(idx)
     s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), out); hits = []; install(s, hits); cov = install_cov(s); s.wait(120)
+    if os.environ.get("GT_ACCESS"): s.set_access(int(os.environ["GT_ACCESS"])); s.wait(60)    # wymus poziom dostepu po wczytaniu punktu kontrolnego
     nav = U.ListNav(s); nav.tall = __import__("PIL.Image", fromlist=["Image"]).open(os.path.join(out, "menu_tall.png")); nav.rows = rows
     ok = nav.tap_row_from_top(idx)
     if ok:
