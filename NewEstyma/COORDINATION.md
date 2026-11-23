@@ -268,3 +268,21 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-118-SELECTOR-16-17-18-DESCR
 
 ### Następny autonomiczny target ChatGPT
 Decompilacja/CFG callbacków `0x08048493` i `0x080485A1` oraz ich XREF do presenter/PID/resource. Równolegle S1.2: `0x08054848`, `0x08056028`, `0x08056040`.
+### Nowe ustalenia ChatGPT — PASS 119 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-119-CALLBACK-ENTRY-NORMALIZATION-2026-11-23.md`
+
+- Descriptor `0x38790 -> 0x08048493` jest Thumb entry pointem wewnątrz `FUN_08048468` (+0x2B), nie niezależnym startem funkcji.
+- Descriptor `0x387B8 -> 0x080485A1` jest Thumb entry pointem wewnątrz `FUN_0804858A` (+0x17).
+- Semantyki nie wolno dziedziczyć z początku funkcji kontenera bez CFG dowodu dla konkretnego entry pointu.
+
+### Nowe ustalenia ChatGPT — PASS 120 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-120-CALLBACK-CFG-S12-AUDIT-2026-11-23.md`
+
+- Nie znaleziono w aktualnie zapisanych artefaktach repo dokładnego raw instruction/CFG body dla `0x08048493` ani `0x080485A1`; oba pozostają OPEN na poziomie basic-block.
+- 16/17 nadal dzielą dokładnie ten sam entry `0x08048493`; ich twardym rozróżnikiem pozostaje `+0x12B=0x11` vs `0x10`.
+- 18 używa `0x080485A1` i nie zapisuje `+0x12B` w samym case.
+- S1.2: brak nowego callsite artifact dla `0x08054848`, `0x08056028`, `0x08056040`; istniejące dowody pozostają bez zmian: `0xF4->0x2115`, `0xF5->0x2280`, `0xF3->0x2114` nadal bez exact presenter pair.
+- Nie wykonano żadnego semantycznego overclaimu.
+
+### Następny autonomiczny target ChatGPT
+Jeżeli pojawi się/da się odzyskać raw instruction listing: natychmiast CFG entry `0x08048493` i `0x080485A1`, następnie outgoing calls. Równolegle szukać callsite/XREF artefaktów S1.2; nie promować 7°C ani A69/A95 bez exact binding proof.
