@@ -17,3 +17,10 @@
 - sposob wyboru "biezacego" wpisu (next index/number of alarms), sortowanie, znaczenie bit17 rejestru;
 - akcja POTWIERDZ (ramka CAN / zapis `0x4038+i`), "!" na ekranie glownym i dzwiek (PID 0x3506), reset pamieci (0x404E);
 - RTC: panel pokazuje czas `0:00` (brak modelu RTC w emulatorze).
+
+## Zachowanie (emulator, `screens/pass51_historia_alarmow_nawigacja_potwierdz.png`)
+- Ekran pokazuje wpisy **od najnowszego**: NR 1 = ostatni zapisany (tu kod 110), NR 2 = kod 105, NR 3 = kod 100. Strzalka "v" (445,187) zwieksza NR, "^" (445,118) zmniejsza.
+- **POTWIERDZ** (232,187): przycisk znika, pojawia sie linia **"Potwierdz.: DD.MM.RRRR G:MM"**; status zostaje "AKTYWNY" (czerwony) — status zalezy od bitu 16 rejestru, nie od potwierdzenia (do sprawdzenia: kiedy zmienia sie na nieaktywny).
+- Panel po POTWIERDZ wysyla CAN `0x584`: `42 12 40 01 69 00 01 00` (PID 0x4012 = rejestr 0x00010069) i `42 3A 40 01 80 98 25 3A` (PID 0x403A = potwierdzenie = 0x3A259880 = 975542400 = 30.11.2000 00:00) — czyli panel zapisuje wlasny czas jako potwierdzenie i publikuje wpis do sterownika.
+- **Alarmy "Komunikacja z modulem X" (100..110) generuje sam panel** (brak partnerow na CAN w emulatorze): wpisy 3..5 maja czas = zegar panelu **30.11.2000 0:00** (domyslny RTC po starcie; brak modelu RTC w emulatorze). To wyjasnia "przykladowe" dane domyslne z poprzedniej sekcji.
+- Wstrzykniete przeze mnie rejestry 0..2 zostaly nadpisane przez wlasny stan panelu (panel jest wlascicielem pierscienia i publikuje go po CAN) — pelna logika (next index / number of alarms / kto jest zrodlem prawdy) otwarta.
