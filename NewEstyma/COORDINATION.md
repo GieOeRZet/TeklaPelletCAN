@@ -153,3 +153,14 @@ Narzędzia: `tools/cg_l3_table23_scan.py`, `tools/test_cg_l3_table23_scan.py`
 - Dwa obiekty callerów mają potwierdzone vtable: runtime `0x0808F80C` (RAW `0x7F80C`) i runtime `0x0808F910` (RAW `0x7F910`). Konkretne ekrany nadal wymagają mapowania slot0/handler/resource.
 - A2: znaleziono rzeczywistą tablicę źródłową katalogu 23: SRAM `0x20008D84`, rekordy po `0x14` bajtów. Rekord #23 = `0x20008EFC`, zakres do `0x20008F0F`.
 - Nadal OPEN: wartość `record#23+0x0C`; nie należy jej zgadywać.
+
+
+### Nowe ustalenia ChatGPT — PASS 82 (2026-11-23)
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-82-BUFFER-L1-PROTECTION-2026-11-23.md
+
+- Bufor = klasa 0x07. W FUN_0804E714 ścieżka klasy 0x07 ma twardą bramkę RAW 0x3E7F2 -> ldrb [model,#0x158] -> cmp #0 -> beq; dodatkowy element Bufora jest więc widoczny dokładnie dla L>=1.
+- Drugi wpis jest budowany przez FUN_0803EFDA z parametrami r5/r2=5, resource/offset 0x110.
+- Prezenter Bufora RAW 0x3DF78 pobiera: 0xF1=0x2112, 0xF2=0x2113, 0xF5=0x2280, 0xF4=0x2115, 0xF8=0x3171, 0xF9=0x3172, 0xFA=0x3173, 0xFB=0x3174.
+- 0% = PID 0x3174 Buffer internal energy [%] — źródło zamknięte.
+- 7°C nie przypisano arbitralnie: PID-y 0x2114/0x2115 mają min 7°C, ale sam prezenter nie daje jeszcze jednoznacznego widget->setter dowodu dla konkretnego pola.
+- Ochrona kotła: prezenter Ogrzewanie RAW 0x3D37C czyta m.in. klucze 0xA8/0xB0/0xC6; hipoteza bezpośredniego warunku na CH status 0x22FD nie jest jeszcze HARD.
