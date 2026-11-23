@@ -1,0 +1,124 @@
+; PROJECT 0x8054848  RAW 0x54848  RUNTIME 0x8064848  dlugosc 0x140
+08054848  movs     r6, r5
+0805484a  movs     r5, r0
+0805484c  svc      #0x54
+0805484e  lsrs     r3, r3, #0x20
+08054850  adds     r5, #0xd8
+08054852  lsrs     r6, r3, #0x20
+08054854  movs     r2, r4
+08054856  movs     r5, r3
+08054858  movs     r7, r3
+0805485a  movs     r2, r0
+0805485c  movs     r2, r0
+0805485e  movs     r5, r1
+08054860  b        #0x8054674
+08054862  lsrs     r3, r3, #0x20
+08054864  subs     r1, #0xb4
+08054866  lsrs     r6, r3, #0x20
+08054868  movs     r2, r4
+0805486a  movs     r5, r3
+0805486c  movs     r7, r3
+0805486e  movs     r2, r0
+08054870  movs     r2, r0
+08054872  movs     r5, r1
+08054874  mrc      p8, #5, r0, c12, c11, #0
+08054878  subs     r5, #0x90
+0805487a  lsrs     r6, r3, #0x20
+0805487c  movs     r2, r4
+0805487e  movs     r5, r3
+08054880  movs     r7, r3
+08054882  movs     r2, r0
+08054884  movs     r2, r0
+08054886  movs     r5, r1
+08054888  str      r0, [r2, #0x58]
+0805488a  lsrs     r4, r1, #0x20
+0805488c  movs     r0, r0
+0805488e  movs     r0, r0
+08054890  lsls     r6, r6, #1
+08054892  lsls     r1, r2, #3
+08054894  movs     r0, r0
+08054896  movs     r0, r0
+08054898  lsls     r6, r6, #1
+0805489a  lsls     r1, r2, #3
+0805489c  str      r2, [sp, #0x1d0]
+0805489e  lsrs     r2, r3, #0x20
+080548a0  add      r1, sp, #0x3e0
+080548a2  lsrs     r5, r3, #0x20
+080548a4  movs     r3, r4
+080548a6  movs     r5, r4
+080548a8  movs     r1, r1
+080548aa  movs     r1, r3
+080548ac  movs     r5, r2
+080548ae  movs     r1, r0
+080548b0  ldrb     r0, [r4, #8]
+080548b2  lsrs     r6, r3, #0x20
+080548b4  ldm      r1!, {r6}
+080548b6  lsrs     r6, r3, #0x20
+080548b8  movs     r4, r2
+080548ba  movs     r4, r2
+080548bc  movs     r4, r0
+080548be  movs     r4, r0
+080548c0  movs     r4, r1
+080548c2  movs     r4, r1
+080548c4  ldrb     r0, [r0, #0x15]
+080548c6  lsrs     r6, r3, #0x20
+080548c8  ldm      r2!, {r4, r6, r7}
+080548ca  lsrs     r6, r3, #0x20
+080548cc  movs     r4, r2
+080548ce  movs     r4, r2
+080548d0  movs     r4, r0
+080548d2  movs     r4, r0
+080548d4  movs     r4, r1
+080548d6  movs     r4, r1
+080548d8  revsh    r0, r2
+080548da  lsrs     r4, r3, #0x20
+080548dc  movs     r0, r0
+080548de  movs     r0, r0
+080548e0  movs     r2, r4
+080548e2  movs     r3, r3
+080548e4  movs     r0, r0
+080548e6  movs     r0, r0
+080548e8  movs     r2, r4
+080548ea  movs     r3, r3
+080548ec  stm      r1!, {r2, r3, r4, r5, r6, r7}
+080548ee  lsrs     r4, r3, #0x20
+080548f0  movs     r0, r0
+080548f2  movs     r0, r0
+080548f4  movs     r2, r4
+080548f6  movs     r3, r3
+080548f8  movs     r0, r0
+080548fa  movs     r0, r0
+080548fc  movs     r2, r4
+080548fe  movs     r3, r3
+08054900  ldm      r1!, {r3, r5}
+08054902  lsrs     r4, r3, #0x20
+08054904  movs     r0, r0
+08054906  movs     r0, r0
+08054908  movs     r2, r4
+0805490a  movs     r3, r3
+0805490c  movs     r0, r0
+0805490e  movs     r0, r0
+08054910  movs     r2, r4
+08054912  movs     r3, r3
+08054914  beq      #0x80549c0
+08054916  lsrs     r4, r3, #0x20
+08054918  movs     r0, r0
+0805491a  movs     r0, r0
+0805491c  movs     r2, r4
+0805491e  movs     r3, r3
+08054920  movs     r0, r0
+08054922  movs     r0, r0
+08054924  movs     r2, r4
+08054926  movs     r3, r3
+08054928  cmp      r7, #0xd0
+0805492a  lsrs     r0, r3, #0x20
+0805492c  movs     r0, r0
+0805492e  movs     r0, r0
+08054930  movs     r6, r4
+08054932  movs     r0, r7
+08054934  movs     r0, r0
+08054936  movs     r0, r0
+08054938  movs     r6, r4
+0805493a  movs     r0, r7
+0805493c  cmp      r1, #0xf0
+0805493e  lsrs     r6, r3, #0x20

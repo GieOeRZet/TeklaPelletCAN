@@ -1,0 +1,149 @@
+; PROJECT 0x8048468  RAW 0x48468  RUNTIME 0x8058468  dlugosc 0x180
+08048468  push     {r3, r4, r5, r6, r7, lr}
+0804846a  mov      r5, r2
+0804846c  mov      r4, r0
+0804846e  movw     r2, #0x8f95
+08048472  movs     r0, #1
+08048474  strb     r0, [r4, r2]
+08048476  mov      r6, r3
+08048478  movw     r0, #0x8f70
+0804847c  adds     r7, r4, r0
+0804847e  uxth     r1, r1
+08048480  mov      r0, r7
+08048482  bl       #0x802e652
+08048486  ldr      r0, [sp, #0x1c]
+08048488  ldr      r3, [sp, #0x18]
+0804848a  str      r0, [sp]
+0804848c  mov      r2, r6
+0804848e  movw     r0, #0x8fd0
+08048492  mov      r1, r5
+08048494  add      r0, r4
+08048496  bl       #0x8034d74
+0804849a  movw     r0, #0x84f4
+0804849e  mov      r1, r7
+080484a0  add      r0, r4
+080484a2  bl       #0x802eade
+080484a6  mov      r0, r7
+080484a8  pop.w    {r1, r4, r5, r6, r7, lr}
+080484ac  b.w      #0x8032316
+080484b0  push     {r4, r5, lr}
+080484b2  mov      r4, r0
+080484b4  movw     r5, #0x9301
+080484b8  sub      sp, #0xc
+080484ba  movs     r0, #1
+080484bc  strb     r0, [r4, r5]
+080484be  uxth     r1, r1
+080484c0  movw     r0, #0x92dc
+080484c4  adds     r5, r4, r0
+080484c6  ldr      r0, [sp, #0x20]
+080484c8  str      r0, [sp, #8]
+080484ca  ldr      r0, [sp, #0x1c]
+080484cc  str      r0, [sp, #4]
+080484ce  ldr      r0, [sp, #0x18]
+080484d0  str      r0, [sp]
+080484d2  mov      r0, r5
+080484d4  bl       #0x8047334
+080484d8  movw     r0, #0x84f4
+080484dc  mov      r1, r5
+080484de  add      r0, r4
+080484e0  bl       #0x802eade
+080484e4  mov      r0, r5
+080484e6  add      sp, #0xc
+080484e8  pop.w    {r4, r5, lr}
+080484ec  b.w      #0x8032316
+080484f0  push     {r3, r4, r5, lr}
+080484f2  mov      r4, r0
+080484f4  movw     r5, #0xa291
+080484f8  movs     r0, #1
+080484fa  strb     r0, [r4, r5]
+080484fc  uxth     r1, r1
+080484fe  movw     r0, #0xa26c
+08048502  adds     r5, r4, r0
+08048504  mov      r0, r5
+08048506  bl       #0x8047ea0
+0804850a  movw     r0, #0x84f4
+0804850e  mov      r1, r5
+08048510  add      r0, r4
+08048512  bl       #0x802eade
+08048516  mov      r0, r5
+08048518  pop.w    {r1, r4, r5, lr}
+0804851c  b.w      #0x8032316
+08048520  push     {r4, r5, lr}
+08048522  mov      r4, r0
+08048524  sub      sp, #0xc
+08048526  movw     r0, #0x963c
+0804852a  adds     r5, r4, r0
+0804852c  ldrsh.w  r0, [sp, #0x1c]
+08048530  str      r0, [sp, #4]
+08048532  ldr      r0, [sp, #0x18]
+08048534  str      r0, [sp]
+08048536  mov      r0, r5
+08048538  bl       #0x8047a8a
+0804853c  movw     r0, #0x84f4
+08048540  mov      r1, r5
+08048542  add      r0, r4
+08048544  add      sp, #0xc
+08048546  pop.w    {r4, r5, lr}
+0804854a  b.w      #0x802eade
+0804854e  ldr      r0, [r0, #0x3c]
+08048550  ldr      r1, [r0]
+08048552  ldr      r1, [r1, #0x10]
+08048554  bx       r1
+08048556  bx       lr
+08048558  push     {r3, r4, r5, r6}
+0804855a  movs     r2, #0
+0804855c  mov.w    r3, #0x338
+08048560  movw     r4, #0x84ec
+08048564  b        #0x8048568
+08048566  adds     r2, r2, #1
+08048568  ldrb.w   r5, [r0, #0x3b8]
+0804856c  cmp      r2, r5
+0804856e  bge      #0x8048586
+08048570  ldr      r5, [r0, r4]
+08048572  mul      r6, r3, r2
+08048576  add      r5, r6
+08048578  cmp      r1, r5
+0804857a  bne      #0x8048566
+0804857c  ldr      r0, [r0, #0x3c]
+0804857e  uxth     r1, r2
+08048580  pop      {r2, r4, r5, r6}
+08048582  b.w      #0x803ec18
+08048586  pop      {r0, r4, r5, r6}
+08048588  bx       lr
+0804858a  push     {r4, r5, lr}
+0804858c  mov      r4, r0
+0804858e  movw     r0, #0x8f70
+08048592  add      r0, r4
+08048594  cmp      r1, r0
+08048596  sub      sp, #0x44
+08048598  bne      #0x80485a2
+0804859a  movw     r0, #0x929c
+0804859e  ldr      r1, [r4, r0]
+080485a0  b        #0x80485d8
+080485a2  movw     r0, #0x92dc
+080485a6  add      r0, r4
+080485a8  cmp      r1, r0
+080485aa  bne      #0x80485e2
+080485ac  movw     r2, #0x9358
+080485b0  movs     r1, #0
+080485b2  ldrh     r5, [r4, r2]
+080485b4  movw     r0, #0x9340
+080485b8  b        #0x80485bc
+080485ba  adds     r1, r1, #1
+080485bc  uxth     r3, r1
+080485be  cmp      r3, r5
+080485c0  bhs      #0x80485d4
+080485c2  uxth     r1, r1
+080485c4  add.w    r3, r4, r1, lsl #2
+080485c8  ldr      r3, [r3, r0]
+080485ca  ldrb.w   r3, [r3, #0x37]
+080485ce  cmp      r3, #0
+080485d0  beq      #0x80485ba
+080485d2  b        #0x80485d8
+080485d4  mov.w    r1, #-1
+080485d8  ldr      r0, [r4, #0x3c]
+080485da  bl       #0x803eecc
+080485de  add      sp, #0x44
+080485e0  pop      {r4, r5, pc}
+080485e2  movw     r0, #0x963c
+080485e6  add      r0, r4

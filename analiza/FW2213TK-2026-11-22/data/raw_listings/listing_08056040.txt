@@ -1,0 +1,48 @@
+; PROJECT 0x8056040  RAW 0x56040  RUNTIME 0x8066040  dlugosc 0x80
+08056040  mov      r7, r6
+08056042  ldr      r6, [sp, #4]
+08056044  uxth     r4, r4
+08056046  sub.w    lr, r6, r5
+0805604a  add      lr, r4
+0805604c  cmp      r8, lr
+0805604e  it       gt
+08056050  movgt    r8, lr
+08056052  sub.w    r5, r8, r4
+08056056  str      r5, [sp]
+08056058  uxth     r3, r3
+0805605a  ldr      r4, [sp]
+0805605c  subs     r3, r3, r4
+0805605e  mov      r4, r7
+08056060  mul      r3, r3, sb
+08056064  cmp      r4, #1
+08056066  blt.w    #0x80561aa
+0805606a  ldr      r5, [sp]
+0805606c  ldrb.w   r8, [sp, #0x74]
+08056070  mls      r5, r5, r2, ip
+08056074  str      r5, [sp, #0x1c]
+08056076  add      r5, sp, #0x6c
+08056078  ldrh     r5, [r5]
+0805607a  and      r5, r5, #0xf800
+0805607e  str      r5, [sp, #0x14]
+08056080  sub.w    r5, r3, sb
+08056084  str      r5, [sp, #0x10]
+08056086  ldr      r5, [sp, #0x6c]
+08056088  and      r5, r5, #0x1f
+0805608c  str      r5, [sp, #4]
+0805608e  ldr      r5, [sp, #0x6c]
+08056090  and      r5, r5, #0x7e0
+08056094  ldr      r7, [sp]
+08056096  cmp      r7, #1
+08056098  blt      #0x8056180
+0805609a  ldrb.w   lr, [r0]
+0805609e  ldr      r6, [sp, #0x20]
+080560a0  lsl.w    lr, lr, r1
+080560a4  and.w    r6, lr, r6
+080560a8  uxtb     r6, r6
+080560aa  cmp      r6, #0
+080560ac  beq      #0x805611c
+080560ae  ldr.w    lr, [sp, #0xc]
+080560b2  orr.w    r6, lr, r6
+080560b6  ldr.w    lr, [sp, #0x6c]
+080560ba  cmp      r6, #0xff
+080560bc  blt      #0x80560c4

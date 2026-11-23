@@ -55,6 +55,7 @@ def read_state(s, widgets):
 def sample_values(meta):
     """3-5 wartosci: min, max, 0/1 (jesli w zakresie), typowa (srodek), 5678 ('brak danych', jesli w zakresie) - bez duplikatow"""
     lo, hi = int(meta["min"]), int(meta["max"])
+    if hi - lo <= 8: return list(range(lo, hi + 1))      # male zakresy (typy, wyliczenia): wszystkie wartosci (np. 0x22A1 =4 steruje „Ochrona kotla”)
     cand = [lo, hi, (lo + hi) // 2, 1, 0, 5678]
     vals = []
     for v in cand:

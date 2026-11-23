@@ -1,0 +1,55 @@
+; PROJECT 0x8056a44  RAW 0x56a44  RUNTIME 0x8066a44  dlugosc 0x80
+08056a44  b.w      #0x8057224
+08056a48  ldr      r0, [pc, #0xac]
+08056a4a  ldr      r0, [r0]
+08056a4c  movs     r3, #0
+08056a4e  movs     r2, #0
+08056a50  movs     r1, #0
+08056a52  b.w      #0x80573b4
+08056a56  push     {r7, lr}
+08056a58  movs     r0, #0
+08056a5a  str      r0, [sp]
+08056a5c  movs     r3, #0
+08056a5e  ldr      r0, [pc, #0x98]
+08056a60  ldr      r0, [r0]
+08056a62  mov      r2, sp
+08056a64  movs     r1, #0
+08056a66  b        #0x8056a7c
+08056a68  ldr      r1, [pc, #0x8c]
+08056a6a  ldr      r0, [r1, #4]
+08056a6c  cbnz     r0, #0x8056a70
+08056a6e  bx       lr
+08056a70  push     {r7, lr}
+08056a72  movs     r2, #0
+08056a74  str      r2, [sp]
+08056a76  movs     r3, #0
+08056a78  mov      r2, sp
+08056a7a  adds     r1, #8
+08056a7c  bl       #0x805732a
+08056a80  ldr      r0, [sp]
+08056a82  cbz      r0, #0x8056a8c
+08056a84  ldr      r1, [pc, #0x74]
+08056a86  mov.w    r0, #0x10000000
+08056a8a  str      r0, [r1]
+08056a8c  pop      {r0, pc}
+08056a8e  push     {r4, lr}
+08056a90  ldr      r4, [pc, #0x64]
+08056a92  ldr      r0, [r4, #4]
+08056a94  movs     r3, #0
+08056a96  movs     r2, #0
+08056a98  add.w    r1, r4, #8
+08056a9c  bl       #0x80573b4
+08056aa0  ldr      r0, [r4, #4]
+08056aa2  add.w    r1, r4, #8
+08056aa6  pop.w    {r4, lr}
+08056aaa  movs     r3, #0
+08056aac  mov.w    r2, #-1
+08056ab0  b.w      #0x80573b4
+08056ab4  push     {r7, lr}
+08056ab6  ldr      r1, [pc, #0x48]
+08056ab8  ldr      r2, [r1]
+08056aba  cmp      r0, #0
+08056abc  ite      ne
+08056abe  movne    r1, #1
+08056ac0  moveq    r1, #0
+08056ac2  mov      r0, r2
