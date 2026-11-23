@@ -113,3 +113,6 @@ Raport `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-202
 
 ### 2026-11-23 — ChatGPT, PASS 100
 - PASS 100: znormalizowany pełny katalog 31 nazwanych kodów alarmowych z `alarm_raise_clear_sites.csv`: polskie teksty, wszystkie znane miejsca raise/clear i jawne braki. Nie przypisano żadnych predykatów na podstawie samej nazwy; per-site warunki pozostają OPEN.
+
+### 2026-11-23 — ChatGPT, PASS 101
+- PASS 101: pełny eksport T2 internal UI-key→PID z `resolver_t2.csv`: 372 poprawnych rekordów. Zamknięto wcześniejsze ręczne mapowania jako część kompletnej tabeli T2. T1/base+instance pozostaje osobną warstwą.
