@@ -140,6 +140,15 @@ class ListNav:
             e = np.abs(T[o:o + B.shape[0], :460] - B).mean()
             if best is None or e < best[0]: best = (e, o)
         return best
+    def tap_row_from_top(self, idx, settle=800):
+        """jak tap_row, ale TYLKO ruchy w gore (niezawodne); zaklada, ze lista jest na gorze (np. po wczytaniu punktu kontrolnego)"""
+        s = self.s; cy = self.rows[idx]["cy"]
+        for _ in range(14):
+            err, o = self.offset(s.shot()); y = self.BODY0 + cy - o
+            if 70 <= y <= 250: s.tap(240, y, settle=settle); return True
+            if y < 70: return False
+            if not s.drag_until_change(240, 235, 240, 175, attempts=4): return False
+        return False
     def tap_row(self, idx, settle=800):
         s = self.s; cy = self.rows[idx]["cy"]
         for _ in range(6):
