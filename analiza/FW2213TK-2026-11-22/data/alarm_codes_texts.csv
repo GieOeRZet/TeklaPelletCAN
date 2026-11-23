@@ -1,0 +1,69 @@
+alarm_code,typedtext_id,text_pl,table_raw_off
+100,336,Komunikacja z modułem 0,0x4098c
+101,337,Komunikacja z modułem 1,0x40990
+102,338,Komunikacja z modułem 2,0x40994
+103,339,Komunikacja z modułem 3,0x40998
+104,340,Komunikacja z modułem 4,0x4099c
+105,341,Komunikacja z modułem 5,0x409a0
+106,342,Komunikacja z modułem 6,0x409a4
+107,343,Komunikacja z modułem 7,0x409a8
+110,355,Komunikacja z modułem BIG,0x409ac
+115,370,Komunikacja z modułem Lambda,0x409b0
+123,372,Komunikacja z modułem Mini 7,0x409b4
+120,373,Komunikacja z modułem Mini 4,0x409b8
+119,374,Komunikacja z modułem Mini 3,0x409bc
+118,375,Komunikacja z modułem Mini 2,0x409c0
+116,376,Komunikacja z modułem Mini 0,0x409c4
+124,382,Komunikacja z przepływomierzem 1,0x409c8
+205,381,Przepływomierz powietrza 1 nieskalibrowany,0x409cc
+206,383,Przepływomierz powietrza uszkodzony,0x409d0
+1,332,Uszkodzenie czujnika kotla,0x409d4
+200,352,Błąd czyszczenia rusztu,0x409d8
+201,435,Uszkodzenie dmuchawy palnika,0x409dc
+202,354,Otwarte drzwi kotła,0x409e0
+203,420,Poziom tlenu bardzo niski,0x409e4
+140,329,Brak ognia/opału,0x409e8
+139,330,Nieudane rozpalanie,0x409ec
+130,353,Błąd czyszczenia,0x409f0
+2,333,Przegrzanie kotła,0x409f4
+3,419,Uszkodzenie czujnika powrotu do kotla,0x409f8
+4,368,Uszkodzenie czujnika palnika/podajnika,0x409fc
+6,369,Przegrzanie palnika/podajnika,0x40a00
+7,418,Przerwanie obwodu bezpieczeństwa palnika,0x40a04
+8,459,Uszkodzenie czujnika temperatury spalin,0x40a08
+20,356,Uszkodzenie czujnika pokojowego 1,0x40a0c
+21,357,Uszkodzenie czujnika pokojowego 2,0x40a10
+22,358,Uszkodzenie czujnika pokojowego 3,0x40a14
+23,359,Uszkodzenie czujnika pokojowego 4,0x40a18
+24,360,Uszkodzenie czujnika temperatury CO1,0x40a1c
+25,361,Uszkodzenie czujnika temperatury CO2,0x40a20
+26,362,Uszkodzenie czujnika temperatury CO3,0x40a24
+27,363,Uszkodzenie czujnika temperatury CO4,0x40a28
+30,408,Uszkodzenie czujnika ciepłej wody,0x40a2c
+31,409,Uszkodzenie czujnika buffora góra,0x40a30
+32,410,Uszkodzenie czujnika buffora dół,0x40a34
+36,436,Uszkodzenie czujnika temp. zewnętrznej,0x40a38
+40,411,Uszkodzenie czujnika kolektora solarnego,0x40a3c
+41,412,Uszkodzenie czujnika zbiornika solarnego,0x40a40
+42,413,Uszkodzenie czujnika powrotu solarów,0x40a44
+43,414,Uszkodzenie czujnika solar T4,0x40a48
+80,364,Przekroczenie temp. maksymalnej CO1,0x40a4c
+81,365,Przekroczenie temp. maksymalnej CO2,0x40a50
+82,366,Przekroczenie temp. maksymalnej CO3,0x40a54
+83,367,Przekroczenie temp. maksymalnej CO4,0x40a58
+50,415,Rezerwa paliwa,0x40a5c
+51,416,Brak paliwa,0x40a60
+52,379,Zalecany coroczny przegląd kotła,0x40a64
+53,389,Ciśnienie kotła,0x40a68
+131,348,Błąd wygaszania,0x40a6c
+150,371,Magazyn paliwa brak paliwa/czujnik max,0x40a70
+151,415,Rezerwa paliwa,0x40a74
+160,377,Wyczyść wymiennik,0x40a78
+161,378,Wyczyść palnik,0x40a7c
+204,380,Przepływ powietrza za niski,0x40a80
+251,384,Słaba bateria w czujniku pokojowym 1,0x40a84
+252,385,Słaba bateria w czujniku pokojowym 2,0x40a88
+253,386,Słaba bateria w czujniku pokojowym 3,0x40a8c
+254,387,Słaba bateria w czujniku pokojowym 4,0x40a90
+250,388,Słaba bateria w czujniku zewnętrznym,0x40a94
+5,417,STB,0x40a98
