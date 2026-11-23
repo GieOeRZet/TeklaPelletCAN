@@ -111,3 +111,7 @@ Najważniejszy następny cel nie jest już znalezienie callera FUN_08062638. Jes
 ### Nie robimy
 - nie nazywamy jeszcze źródła timestampu NTP/CAN bez write-site.
 - nie przypisujemy całej vtable do konkretnej klasy bez dodatkowych slotów/callerów.
+
+## 6. Reproducibility
+
+Dodano `tools/cg_rtc_vtable_scan.py` oraz `tools/test_cg_rtc_vtable_scan.py`. Scanner sprawdza bezpośrednio dwa najważniejsze 32-bitowe słowa w kanonicznym BIN: literal vptr `PROJECT 0x08010464 = 0x080A446C` oraz slot 0 `PROJECT 0x0809446C = 0x08072639`.
