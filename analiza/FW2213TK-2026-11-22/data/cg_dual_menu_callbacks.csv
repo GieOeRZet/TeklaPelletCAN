@@ -1,0 +1,3 @@
+handler,sender_match,record_stride,dispatch_target,semantic,confidence
+FUN_0807EB00,this+0x3B4+i*0x274,0x274,FUN_0803C064(index)->class[0x20005EF0+i],primary menu row action,HARD
+FUN_0807EB36,this+0x3B4+i*0x274,0x274,FUN_0803EC18(index)->resolver/widget list,secondary menu row action,HARD
