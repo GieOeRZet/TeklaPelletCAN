@@ -181,3 +181,11 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-84-PROVIDER-FLASH-PERSISTEN
 - Slot 1 RAW 0xDB78 = SET/typed encoding; zapis przechodzi przez FUN_08014C14/FUN_08014CC0 i walidację FUN_08014C58.
 - Konstruktor RAW 0xDB08 instaluje vptr i inicjalizuje warstwę flash przez FUN_08014870/FUN_08014A70.
 - Slot 4 RAW 0x517FE jest state/init transition; pełna nazwa nadal OPEN.
+
+### Nowe ustalenia ChatGPT — PASS 85 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-85-CAN-TIMESTAMP-ROLE-2026-11-23.md`
+
+- RAW 0x62AE4 buduje request 0x604/cmd 0x40/PID LE/sub1 do zdalnego endpointu.
+- RAW 0x62A90 przyjmuje 0x584 i kieruje go do generic write decoder; PID 0x2165 przechodzi tą ścieżką.
+- Zestaw z PASS78/79 daje strong model: boiler-side/source -> 0x584 WRITE PID 0x2165 -> 0x20008D28 -> RTC autosync 0x372F.
+- Nie ma statycznego dowodu, czy 0x2165 jest odpowiedzią na 0x604, czy unsolicited write w tym samym envelope; ACK i dokładny trigger pozostają OPEN.
