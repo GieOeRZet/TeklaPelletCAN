@@ -121,3 +121,9 @@ Pomyłki poprzednich passów są oznaczone `REJECTED/SUPERSEDED` w raportach (m.
 - Szacunek (nie metryka): CAN ~90% · parametry ~92% · PID->CAN ~75% · menu ~88% · poziomy dostepu ~80% · USTAWIENIA/dialogi ~60% · ekran glowny ~65% · grafiki ~95% · wykresy ~50% · narzedzia ~92% · **calosc ~70%**.
 - Kolejnosc prac: (1) porownanie pelnych list ustawien 0..3 (`tools/settings_tall.py`); (2) dane na ekranie glownym przez PID-y z trace (`UiSession.enable_trace`); (3) pokrycie zasobow (`tools/resource_coverage.py`); (4) Kaskada/Dod. magazyn, edycja wartosci, wykresy; (5) bramka pollera.
 - Uwaga praktyczna: przeciagniecia w dol sa zawodne -> uzywaj punktow kontrolnych (`UiSession.checkpoint/from_checkpoint`) i ruchow w gore; stuknieciom daj hold >= 130 ticków; trace wlaczaj po rozruchu.
+
+
+## TODO (zlecone przez wlasciciela 2026-11-23) — na SAM KONIEC rewersu, ale PRZED ESP32
+- **Kod 6666 = reset ustawien fabrycznych (potwierdzone przez wlasciciela).** W firmwarze: `0x08028634` (wywolywana z handlera PIN `0x0804C21C` PRZED ustawieniem poziomu `0x08047E74`) porownuje wpisana liczbe z 6666 (`movw #0x1a0a` @0x08028668) i ustawia `0x20021FA7` (= storage PID 0x0005 "Default settings request", u8 0..1) na 1; flaga wygasa po 61 tikach (licznik obj+0xE6 @0x08028684). Ten sam obiekt `0x20021FA0`; tabela 23 liczb w RAM `0x20008C50` (10,12,15,18,25,30,35,50,75,120,150,180,220,230,300,500,1220,1300,1550,2000,2500,3000) tez ustawia flage (znaczenie: do zbadania).
+  DO ZROBIENIA: (a) w emulatorze wpisac 6666 w ekran PIN i sprawdzic ramke CAN dla PID 0x0005 + reakcje wskaznika naglowka `+0x210`; (b) zaimplementowac w kliencie/ESP32 (NIE testowac na zywym kotle bez weryfikacji — skasuje konfiguracje); (c) szukac innych "ukrytych" kodow wpisywanych w polu PIN (poza 0900/0999/6154/6666).
+- Bramka pollera: `0x0804C234..0x0804C24E` zapisuje `[0x2002466C+0x10] = (poziom != 0)` po wpisaniu PINu — zweryfikowac, czy to warunek dzialania pollera.
