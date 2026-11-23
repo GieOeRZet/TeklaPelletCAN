@@ -11,6 +11,10 @@ WRAPPERS = [0x0805A510,0x0805A9EC,0x0805B1D4,0x0805C104,0x0805E9DC,0x0805F400,0x
 CTXPTR = 0x20024814
 if os.environ.get("GT_ADDRS"): WRAPPERS = [int(x, 16) for x in os.environ["GT_ADDRS"].split(",")]    # nadpisanie listy sledzonych funkcji (np. bramki ==0)
 TAG = os.environ.get("GT_TAG", "gate")
+def install_cov(s):
+    """pokrycie funkcji: zbior poczatkow blokow podstawowych wykonanych w obrazie (UC_HOOK_BLOCK); wynik w OUTDIR/cov_<nazwa>.json (patrz tools/coverage_report.py)"""
+    from unicorn import UC_HOOK_BLOCK
+    cov = set(); s.b.mu.hook_add(UC_HOOK_BLOCK, lambda uc, a, sz, ud: cov.add(a), begin=0x08010000, end=0x080A0000); return cov
 def install(s, hits):
     b = s.b
     def h(uc, a, sz, ud):
@@ -22,11 +26,12 @@ def install(s, hits):
 if __name__ == "__main__":
     fw, out, level, idx = sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4]); gear = len(sys.argv) > 5 and sys.argv[5] == "gear"
     rows = pickle.load(open(os.path.join(out, "rows.pkl"), "rb")); nm = E.name(idx)
-    s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), out); hits = []; install(s, hits); s.wait(120)
+    s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), out); hits = []; install(s, hits); cov = install_cov(s); s.wait(120)
     nav = U.ListNav(s); nav.tall = __import__("PIL.Image", fromlist=["Image"]).open(os.path.join(out, "menu_tall.png")); nav.rows = rows
     ok = nav.tap_row_from_top(idx)
     if ok:
         s.scroll_capture("gt_" + nm, dy=120)
         if gear: s.tap(400, 245, settle=800); s.scroll_capture("gt_" + nm + "_ust", dy=120)
     json.dump(dict(row=nm, entered=ok, level=level, hits=hits), open(os.path.join(out, TAG + "_%s%s.json" % (nm, "_ust" if gear else "")), "w"), indent=1)
+    json.dump(sorted(cov), open(os.path.join(out, "cov_%s%s.json" % (nm, "_ust" if gear else "")), "w"))
     print(nm, "gear" if gear else "", "entered" if ok else "FAIL", "hits", len(hits), flush=True)
