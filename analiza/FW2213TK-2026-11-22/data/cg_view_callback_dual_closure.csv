@@ -1,0 +1,3 @@
+handler,base_offset,stride,count_offset,dispatch,target,confidence,source
+0x0807EB00,0x3B4,0x274,0x3B8,0x0803C064,index->menu class,hard,raw snippet + PASS41
+0x0807EB36,0x3B4,0x274,0x3B8,0x0803EC18,index->registry refresh,hard,raw snippet 0807eb36-decompiled.c.txt
