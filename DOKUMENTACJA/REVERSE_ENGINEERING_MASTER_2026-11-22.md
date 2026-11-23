@@ -1419,3 +1419,11 @@ HARD (wykonanie FUN_0803E714 dla klas 0..0x11 x poziomy 0..3): liczba parametrow
 HARD: klucz grafu 0x48 (Wentylator wspomagajacy) pochodzi z klasy 0 Kociol od poziomu 1; 0x47 (Moc dmuchawy modulacja) z Palnika od poziomu 1. Konfiguracja (0x2105..0x2108, Main module type) edytowalna od poziomu 1; poziom 2 dodaje HALL Activated i Request reset alarm memory.
 HARD (obraz): poziom >=1 dodaje do menu: Jezyk, Alarm dzwiekowy, Test wyjsc, Statystyki, Siec, Internet; separatory z ikona klucza i cyfra w ekranach NASTAWY.
 OPEN: 17 bramek poziomu 3 -> ekrany; Kaskada i Dod. magazyn paliwa; edycja wartosci; porownanie zrzutow poziomow 0..2 (w toku).
+
+
+## PASS 47 — EKSPORT WSZYSTKICH 188 BITMAP I AUDYT BRAMEK POZIOMU DOSTEPU — 2026-11-23
+Bitmapy: analiza/FW2213TK-2026-11-22/data/bitmaps/ (png/000..187.png, manifest.csv z SHA-256, sheet_*.png) i bitmaps.zip ; narzędzie: tools/export_bitmaps.py (+ stary extract_fw_bitmap_table_direct.py)
+HARD: tablica deskryptorow RAW 0x54450, 188 x 0x14 B {data_ptr, extra_ptr(A8), w, h, solid rect}; dane RGB565 LE + opcjonalnie A8 (121 z alfa, 67 bez); wszystkie rozmiary zgodne z DOKUMENTACJA/bitmap_sizes.tsv; wyglad zweryfikowany na planszach (ikony, obrazy kotla 11/12/13, wentylatory, podajniki, klucze poziomow 91/92/93, przyciski).
+To zamyka luke z handoffu 20.11 ("komplet PNG 000..187 nie jest potwierdzony jako trwaly zestaw w GitHub").
+HARD (tools/access_gates_scan.py): 52 odczyty [model+0x158] w 42 funkcjach: 17x "cmp #3 ; blt" (>=3), 13x "!=0", 2x "cmp #2" (>=2), 18 konstruktorow stron przekazuje poziom do pomocnikow; brak porownan "==": poziomy KUMULATYWNE.
+HARD (sledzenie zasobow po rozruchu): UiSession.enable_trace — otwarcie MENU czyta 33 bitmapy i 21 tekstow PL; przy rozruchu czytane sa wszystkie (test integralnosci), wiec sledzenie wlaczac PO rozruchu.

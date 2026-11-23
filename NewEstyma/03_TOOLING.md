@@ -187,3 +187,5 @@ Czas: ~9 s na 3000 tikow. Debug: `Board.diag()` (zadanie, rejestry, slad wywolan
 - `tools/panel_lists.py` (PASS 46) — wykonuje FUN_0803E714 dla klas 0..0x11 i poziomow 0..3, zapisuje listy parametrow (CSV) i rozwiazuje klucze do PID/nazw.
 - `Board.save_state/load_state`, `UiSession.checkpoint/from_checkpoint` — punkty kontrolne (zapis 0.1 s, odczyt natychmiast, wynik identyczny z biegiem ciaglym).
 - `tools/ui_explore.py` v3 — `--prepare`, `--row IDX`, `--all`; tylko przewijanie w gore; rownolegle.
+
+- `tools/export_bitmaps.py` (PASS 47) — eksport 188 bitmap do PNG + manifest SHA-256 + plansze + ZIP. `tools/access_gates_scan.py` — skan wszystkich odczytow poziomu dostepu. `tools/compare_levels.py` — porownanie zrzutow poziomow. `tools/resource_coverage.py` + `UiSession.enable_trace/dump_trace` — pokrycie zasobow przez obejrzane ekrany.
