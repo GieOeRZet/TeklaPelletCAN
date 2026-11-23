@@ -40,13 +40,15 @@ NAMES = [("Kociol", "KOCIOL", None), ("Palnik", "PALNIK", None), ("Ogrzewanie 1"
          ("Dodatkowy magazyn paliwa", "MAGAZYN", [("0x3525", "!=", 0)]), ("Historia alarmow", "ALARMY", None), ("Informacje o programie", "INFO", None),
          ("Konfiguracja", "KONFIGURACJA", None), ("Poziom menu (PIN)", "DLG_PIN", None), ("Jezyk (Language)", None, None), ("Alarm dzwiekowy (przelacznik)", None, None),
          ("Test wyjsc", "TEST_WYJSC", None), ("Statystyki", "STATYSTYKI", None), ("Siec", "SIEC", None), ("Internet", "INTERNET", None)]
+SW = json.load(open(os.path.join(OUT, "menu_sweep.json"))) if os.path.exists(os.path.join(OUT, "menu_sweep.json")) else {}
 menu_rows = []
 for r in rows:
     i = int(r["row"]); n, tgt, cond = NAMES[i]; e = eff.get(i, {})
     menu_rows.append(dict(row=i, title_pl=n, target=tgt, runtime_class=int(e.get("class", -1)), icon_bitmaps=[int(r["bitmap_A"]), int(r["bitmap_B"])],
                           level_min=0 if r["built_at_access"] == "0" else 1, config_cond=[dict(pid=p, op=o, val=v) for p, o, v in (cond or [])],
                           embedded_control=("language_cycle (PID 0x0003, 8 jezykow)" if i == 15 else "switch PID 0x3506" if i == 16 else "PIN dialog" if i == 14 else None),
-                          evidence="STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46 + inwentarz L0); warunki konfiguracji: DOC (nie zmierzone przegladem konfiguracji)" if cond else "STRONG (menu_rows_21 + menu_click_effects_21 + PASS 40/41/46)"))
+                          visible_in=[k for k, v in SW.items() if i in v["rows_visible"]] if SW else None,
+                          evidence="MEASURED (menu_sweep: wiersz widoczny gdy dodany do kontenera, 33 warianty konfiguracji x poziomy; ikona A=%d)" % int(r["bitmap_A"]) if SW else "STRONG (menu_rows_21 + PASS 40/41/46)"))
 # --- krawedzie zmierzone (action_probe, poziom 0, wezly 0..5): tap w srodek widgetu dotykowego ---
 KNOWN = {(65, 22): "przycisk powrotu < (naglowek, widget 130x45)", (91, 20): "napis < MENU (naglowek)", (479, 25): "ikona domu (prawy gorny rog)",
          (359, 249): "kafel zebatki (NASTAWY)", (414, 130): "pasek programu (PROGRAM)"}
@@ -72,7 +74,7 @@ for r in pl:
     if r["inst"] in ("1", "") : cnt.setdefault(r["cls"], {})[r["level"]] = int(r["list_len"] or 0)
 lists = {c: dict(counts_by_level=v, source="panel_lists_by_level.csv (FUN_0803E714 wykonana w emulatorze, PASS 46)", evidence="MEASURED") for c, v in cnt.items()}
 open_items = ["HOME: wiazania widgetow, okna (Paliwo, zasilanie, AUTO) - vtable/widgety nie zmierzone", "PROGRAM: widgety i wiazania (harmonogram 7 dni x 24 h)", "Kaskada, Dodatkowy magazyn paliwa: odslonic konfiguracja 0x350C/0x3525, zmierzyc",
-              "Warunki wierszy menu wg konfiguracji (0x2105..0x2108, 0x350C, 0x3525): zmierzyc przegladem wartosci", "Poziomy 1 i 3: inwentarz widgetow (mamy L0 i L2); poziom 3 = tylko CPU% w naglowku + 6 wrapperow", "Graf akcji: tylko 6 z 24 wezlow L0 (232 stukniecia); brak pozostalych klas i klas poza menu",
+              "Poziomy 1 i 3: inwentarz widgetow ekranow (mamy L0 i L2); menu: L1=L2=L3 (zmierzone); poziom 3 = CPU% w naglowku + 6 wrapperow", "Graf akcji: tylko 6 z 24 wezlow L0 (232 stukniecia); brak pozostalych klas i klas poza menu",
               "Dialogi: vtable, widgety, wiazania, ramki TX (PIN, Paliwo, czas, edycja, zasilanie, AUTO, potwierdzenia, bledy)", "Wiersze 15/16 (Jezyk, Alarm dzwiekowy): kontrolki wbudowane w wiersz (nie ekran)", "Alarmy: warunki per alarm, prezentacja, ACK", "Wykresy/Statystyki: widoki i dane"]
 tree = dict(meta=dict(title="Drzewo menu igneoTouch FW2213TK (szkielet)", generated_by="tools/menu_tree_build.py (PASS 65)", firmware_sha256="1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071",
                       evidence_legend="MEASURED=zmierzone w emulatorze; STRONG=spojne z wielu zrodel; DOC=z raportow, nie zmierzone tu; OPEN=brak dowodu", levels="0..3 (PIN 900->1, 999->2, 6154->3)"),
