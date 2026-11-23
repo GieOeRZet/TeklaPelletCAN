@@ -11,8 +11,9 @@ LTDC = 0x40016800
 def screen_to_raw(sx, sy): return max(0, round((sx - 0.5) / 0.375)), max(0, round((sy - 0.5) / 0.354))
 
 class UiSession:
-    def __init__(self, binpath, outdir=None, tick=100000):
+    def __init__(self, binpath, outdir=None, tick=100000, rtc_start=None):
         self.b = C.Board(binpath, tick=tick); self.b.enable_dma2d(); self.can2 = self.b.enable_can2()
+        self.rtc = self.b.enable_rtc(rtc_start) if rtc_start else None      # model RTC tylko na zyczenie (domyslnie: zegar sprzetowy = 0)
         self.ft = I.FT5x06(); self.b.enable_i2c(slaves={0x38: self.ft}); self.out = outdir; self.n = 0; self.shots = {}
         if outdir: os.makedirs(outdir, exist_ok=True)
         self._hook_extra = None

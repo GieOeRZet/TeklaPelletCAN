@@ -158,6 +158,9 @@ class Board:
     def enable_i2c(self, base=0x40005400, slaves=None):
         import stm32_i2c; i = stm32_i2c.I2C(self, base, slaves); self.i2c = getattr(self, 'i2c', {}); self.i2c[base] = i; return i
 
+    def enable_rtc(self, start=None, ticks_per_s=1000):
+        import stm32_rtc; self.rtc = stm32_rtc.Rtc(self, start=start, ticks_per_s=ticks_per_s); return self.rtc
+
     def enable_can2(self):
         import stm32_can; self.can2 = stm32_can.Can2(self); return self.can2
 
