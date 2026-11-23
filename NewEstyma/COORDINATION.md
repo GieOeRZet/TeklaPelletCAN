@@ -163,6 +163,15 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-133-PROVIDER-SLOT4-SEMANTIC
 - 0x08061E78 zeruje +0x08/+0x0C przekazanego obiektu; 0x08062674 natychmiast wraca.
 - Slot 4 jest więc co najmniej initialization/reset-like, a nie GET/SET provider. Dokładny typ obiektu i pośredni target nadal OPEN.
 
+
+
+### Nowe ustalenia ChatGPT — PASS 134 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-134-62674-SUBENTRY-CORRECTION-2026-11-23.md`
+
+- Korekta PASS 133: 0x08062674 nie jest osobną funkcją. Leży +0x3C wewnątrz FUN_08062638 (718 B) i zaczyna się od BX LR.
+- Slot 4 wywołuje więc realny helper FUN_08061E78 na object+0x24 oraz interior immediate-return sub-entry 0x08062674.
+- 0x200248A4/A8 w slot4 pochodzą z jego własnego literal pool RAW 0x51A38/0x51A3C; inne wystąpienia 0x52650/0x52658 są literal pool FUN_08062638.
+
 ## 5. Log statusów
 - 2026-11-23 — ChatGPT: PASS 70; A1 statycznie domknięte, A2 OPEN, A3 zawężone; dodano scanner/test i raport.
 - 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANE.
