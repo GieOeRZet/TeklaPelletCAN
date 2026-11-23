@@ -33,7 +33,7 @@ Po synchronizacji [param+0x10] zostaje ustawione na [param+0x0C], czyli timestam
 | 0x080628E6 | bl FUN_08018E94 |
 | 0x08062920 | FUN_08062920, konwersja/normalizacja timestampu |
 
-Scanner tools/cg_rtc_autosync_scan.py potwierdza te sygnatury w kanonicznym BIN.
+Scanner tools/cg_rtc_autosync_scan.py potwierdza te sygnatury oraz obecność runtime pointera 0x08072639 w kanonicznym BIN.
 
 ## 3. Znaczenie pól obiektu
 
@@ -59,7 +59,7 @@ Mechanizm jest więc: zewnętrzny timestamp → konwersja → RTC hardware.
 ### Nadal OPEN
 1. Kto zapisuje [param+0x0C].
 2. Skąd pochodzi timestamp: CAN, NTP/Internet/Wi-Fi albo inny mechanizm panelu.
-3. Kto wywołuje FUN_08062638; w RAW nie znaleziono bezpośredniego BL do tego adresu, więc możliwe jest wywołanie przez wskaźnik/metodę lub task.
+3. Kto wywołuje FUN_08062638. Nie ma bezpośredniego BL do PROJECT 0x08062638, ale RAW zawiera runtime pointer 0x08072639 dokładnie raz, pod PROJECT 0x0809446C. To jest twardy dowód, że funkcja jest używana przez mechanizm wskaźnikowy/dynamic-dispatch; nie zamyka jeszcze konkretnego caller object.
 4. Dokładny format wszystkich pól daty przekazywanych do FUN_08018E94.
 5. Czy ustawienie czasu z UI korzysta z tej samej funkcji, czy bezpośrednio z RTC setterem.
 
