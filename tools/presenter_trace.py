@@ -51,8 +51,16 @@ def main():
         if r0 == v and cur["objs"]:
             lr = uc.reg_read(UC_ARM_REG_LR) & ~1
             cur["stack"].append((addr, cur["last"], lr, uc.reg_read(UC_ARM_REG_SP)))
+            if lr not in rets:                         # wywolanie przez b.w (tail call): powrot pod adres spoza listy BL
+                rets.add(lr); uc.hook_add(UC_HOOK_CODE, on_ret, begin=lr, end=lr)
     def on_wr(uc, acc, ad, sz, val, ud):
         if not cur["on"] or not cur["stack"]: return
+        sp = uc.reg_read(UC_ARM_REG_SP); st = cur["stack"]
+        while st and sp > st[-1][3]: st.pop()          # setter zakonczony (np. wywolany przez b.w / tail call - brak haka powrotu)
+        if not st: return
+        try:
+            if s.b.rd(s.b.tcb_ptr) != GUI_TCB: return  # zapisy innych zadan (przelaczenie kontekstu w trakcie settera)
+        except Exception: return
         w = cur["bufs"].get(ad & ~1)
         if w is None:
             i = bisect.bisect_right(cur["starts"], ad) - 1

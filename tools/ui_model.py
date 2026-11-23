@@ -77,6 +77,27 @@ def load_widgets(path):
             out.append(dict(item))
     return out
 
+RESOLVER = {}
+
+def load_resolver(d):
+    """data/resolver_t1.csv + resolver_t2.csv: klucz UI -> (value, rule, name). t1: PID=value+inst-1 (instancja CO)."""
+    out = {}
+    for fn in ("resolver_t2.csv", "resolver_t1.csv"):
+        pth = os.path.join(d, fn)
+        if not os.path.exists(pth): continue
+        for r in csv.DictReader(open(pth, encoding="utf-8")):
+            out.setdefault(hx(r["ui_key"]), (hx(r["value"]), r["rule"], r["name"]))
+    return out
+
+def resolve_key(key, title):
+    r = RESOLVER.get(key)
+    if not r: return None, None, None
+    val, rule, name = r
+    if "inst" in rule:
+        m = re.search(r"(\d+)\s*$", title or "")
+        return ("0x%04X" % (val + int(m.group(1)) - 1) if m else None), rule, name
+    return "0x%04X" % val, rule, name
+
 def bind(widgets, presenters, active=None):
     """active (PASS 61, presenter_trace.py): {node: {sites: {site: [keys]}, setters: {setter: ["view"|r0]}}}.
     Gdy podane, kandydat jest AKTYWNY tylko jesli jego setter zostal wykonany na tym wezle z r0 == aktywny widok
@@ -138,6 +159,9 @@ def bind(widgets, presenters, active=None):
                      "site": wr.get("site"), "ui_key": "0x%04X" % wr["key"] if wr.get("key") is not None else p.get("ui_key"),
                      "pid": p.get("pid"), "name": p.get("name"), "setter": wr.get("setter"), "formats": p.get("formats"),
                      "div10": int(p.get("div10") or 0), "fields": wr.get("field_offs"), "evidence": "DYNAMIC_WRITE"}
+                if c.get("pid") in (None, "") and wr.get("key") is not None:
+                    rp, rule, rn = resolve_key(wr["key"], w.get("title"))
+                    if rule: c.update(pid=rp, name=rn, pid_rule="resolver:" + rule)
                 if c not in dyn: dyn.append(c)
             if dyn:
                 candidates = dyn
@@ -162,6 +186,8 @@ def flat_rows(model):
                 "view_off": w.get("view_off"),
                 "role": w.get("role", w.get("type")),
                 "x": w.get("x"),
+                "ax": w.get("ax"),
+                "ay": w.get("ay"),
                 "y": w.get("y"),
                 "w": w.get("w"),
                 "h": w.get("h"),
@@ -236,11 +262,13 @@ def main():
     ap.add_argument("out_json")
     ap.add_argument("--csv", dest="csv_out")
     ap.add_argument("--report")
+    ap.add_argument("--resolver", help="katalog z resolver_t1.csv/resolver_t2.csv (klucz UI -> PID dla wiazan dynamicznych)")
     ap.add_argument("--active", help="presenter_trace.py JSON: zaweza kandydatow do setterow wykonanych na widoku wezla")
     args = ap.parse_args()
     p = load_presenters(args.presenter_csv)
     w = load_widgets(args.widget_json)
     active = json.load(open(args.active, encoding="utf-8")) if args.active else None
+    if args.resolver: RESOLVER.update(load_resolver(args.resolver))
     model = bind(w, p, active)
     with open(args.out_json, "w", encoding="utf-8") as f:
         json.dump({
