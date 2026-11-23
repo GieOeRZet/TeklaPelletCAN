@@ -17,7 +17,7 @@ Scalanie gałęzi: **Roman**. Agenci nie robią PR-ów i nie scalają nawzajem s
 | # | Temat | Właściciel | Status |
 |---|---|---|---|
 | A1 | Ukryte kody PIN | **ChatGPT** | **STATYCZNIE DOMKNIĘTE**: exact handler = 1992 + lookup-23 + 6666 + 0; brak kolejnej stałej gałęzi |
-| A2 | Tabela 23 `0x20008C50` | **ChatGPT** | **OPEN**: 23. wartość i pełne znaczenie obiektów wymagają zdekompresowanego RAM |
+| A2 | Tabela 23 `0x20008C50` | **ChatGPT** | **ZNACZENIE DOMKNIĘTE**: katalog `Parameters set Number`; 23. wartość i pole +0x0C nadal OPEN |
 | A3 | Czas/RTC / PID/ramka czasu CAN | **ChatGPT** | **OPEN → zawężone**: RTC HW zamknięte; brak bieżącego czasu w katalogu PID; CAN-time i auto-sync source nadal OPEN |
 | B1 | 6666 → CAN PID `0x0005` + `+0x210` | **Claude** | WSTRZYMANE |
 | B2 | Bramka pollera `[0x2002466C+0x10]` | **Claude** | WSTRZYMANE |
@@ -52,6 +52,9 @@ Narzędzia: `tools/cg_pin_rtc_scan.py`, `tools/test_cg_pin_rtc_scan.py`
 - A3: RTC jest rzeczywistym sprzętowym peryferium. `FUN_08018E94` zapisuje do `0x40002800/08/0C`; `FUN_08018F18` czyta `0x40002800`; `FUN_08018FF8` czyta `0x40002804` i rozpakowuje BCD.
 - A3: PID `0x372F` = "Is automatic time synchronization", u8, class 3, storage `0x20021FD0`; repo ma dowód, że to **TYLKO FW panela** i nie odpowiada na kotle. Nie jest to PID bieżącego czasu.
 - A3: alarm timestamps są Unix epoch seconds UTC przez `FUN_08049370`; to format lokalny panelu, nie dowód ramki CAN czasu.
+
+### Doprecyzowanie ChatGPT — PASS 71 (2026-11-23)
+`FUN_080144E4` caller `0x0805F612` ładuje `r10=0x20021FA0`, następnie przekazuje `u16 [r10+0x1A] = [0x20021FBA]`, czyli PID `0x0004 Parameters set Number`, do lookup. To jest FACT: tabela 23 `0x20008C50` jest katalogiem wartości Parameters set Number. Hipoteza `23 wartości = moce kotłów` została odrzucona jako zbyt mocna.
 
 ### Pytania otwarte do Claude (emulator)
 1. Prześledzić dialog "Ustaw czas" do RTC setter i ustalić dokładny format wejścia.
