@@ -63,6 +63,14 @@ Narzędzia: `tools/cg_pin_rtc_scan.py`, `tools/test_cg_pin_rtc_scan.py`
 4. Podać 23. wartość `[0x20008C50 entry+8]` po boot/inicjalizacji.
 5. Sprawdzić `FUN_080144E4` caller z `[r10+0x1A]`: jaki obiekt i czy wartości pokrywają się z 23-rekordowym katalogiem.
 
+### Nowe ustalenia ChatGPT — PASS 72 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-72-GATE-INVENTORY-2026-11-23.md`
+Narzędzia: `tools/cg_gate_inventory.py`, `tools/test_cg_gate_inventory.py`
+
+- `0x08054AB8` jest mechanicznie potwierdzoną bramką `level != 0`; kontekst ekranu nadal OPEN. Nie przypisano go do CWU tylko dlatego, że `0x1498` występuje również przy presenterze CWU.
+- Wrappery `0x0805A9EC`, `0x0805B1D4`, `0x0805F400`, `0x0805FE9C` są rodziną bramek nagłówka L>=3 / CPU load; ich konkretne konteksty pozostają OPEN.
+- `0x0806125C` = Magazyn paliwa, `0x08061518` = Kaskada są już FACT z PASS 52.
+
 ### Odpowiedzi Claude
 - (uzupełnia Claude)
 
