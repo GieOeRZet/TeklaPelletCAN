@@ -44,3 +44,6 @@ Wyniki: `data/pass63_pilot_kociol/BINDINGS_L0_test5.md/.csv`, `pid_diff_{7,8,3}_
 - FACT Bufor: 0x2115 (Buffer bottom set temp) -> tekst (320,143) „#°C” i tekst „%” (75,118); 0x2280 (Buffer top set temp) -> tekst (320,58). Pozostale PID-y Bufora (0x2112, 0x2113, 0x3174 ...) live, bez zmiany widgetow w tescie.
 - OPEN Solary: 6 PID-ow, wszystkie live/bez zmiany widgetow (0 wiazan) — wymaga zrodla live (PASS 64) albo konfiguracji wejsc solara.
 - OPEN Alarmy i Info: 0 PID-ow czytanych przez GUITask (hak na 0x080215F6), wiec PID-diff nie ma zastosowania; Alarmy ida przez rejestry alarmow (0x4010+i, 0x4038+i wg ChatGPT PASS 97), Info to teksty statyczne. Wymagaja innej metody (wstrzykniecie alarmu / odczyt tekstow).
+
+## Dodatek 3 (PASS 65): poziomy 0/1/2/3 — inwentarz widgetow i delty
+Dane: `data/widgets_inv_pass65_L1.json`, `_L3.json`, `data/ui_model/levels_widget_deltas.csv`. FACT: ekrany wierszy menu (Kociol, Palnik, Ogrzewanie, CWU, Solary, Bufor, Info, Test wyjsc, Siec, Internet) maja IDENTYCZNY zbior widgetow na poziomach 0..3 (roznica = 1 widget: pole „NN%” w naglowku, PASS 48). Zmienia sie tylko zawartosc list NASTAWY/Konfiguracja (liczba pozycji wg poziomu, patrz panel_lists_by_level.csv); Konfiguracja: 506 / 603 / 615 / 615 widgetow dla L0/L1/L2/L3. Poziom 3 = poziom 2 wizualnie poza wskaznikiem CPU.
