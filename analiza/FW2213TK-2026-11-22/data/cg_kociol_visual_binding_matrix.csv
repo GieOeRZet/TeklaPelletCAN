@@ -1,0 +1,10 @@
+pid,name,widget,effect,confidence,evidence
+0x350A,Return to boiler temp sensor,0x20016A24,0 hidden / 1 visible; text T. powrotu=,HARD,PASS63
+0x350D,Pressure sensor,0x20016A94,0 hidden / 1 visible; text Ciśnienie=,HARD,PASS63
+0x2005,Boiler on/off,0x20016918,0 bmp120 / 1 bmp122,HARD,PASS63
+0x2002,Boiler program,0x20016918;0x200169EC,0 bmp133/text7; 1 bmp135/text65; 3 bmp128/text65,HARD,PASS63
+0x216F,CH mixer state,0x20016ACC;0x20016B24,0 hidden/bmp107; 1 visible/bmp106; 2 visible/bmp107,HARD,PASS63
+0x3629,Energy meter type,0x20016274;0x20016A5C,0 header43/hidden; 1/2 header44/visible,HARD,PASS63
+0x370A,Boiler image selector,0x20016894,1 bmp11; 2 bmp12; 3 bmp13,HARD,PASS63
+0x22A1,Room temp sensor type,0x20016274;0x200162F8;0x20017584;0x200175C8,0/1/2 visible on image widget; 5 hides 0x200162F8; exact text variants as pilot,HARD,PASS63
+0x2277,Boiler pump state,0x200162F8,live animation frames 138→142; 0x584 pilot cannot isolate value injection,STRONG,PASS63 limitation
