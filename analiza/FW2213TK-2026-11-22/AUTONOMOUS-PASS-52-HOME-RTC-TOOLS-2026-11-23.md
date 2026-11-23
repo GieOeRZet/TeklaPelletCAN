@@ -35,3 +35,7 @@ Prezenter ekranu Kaskada: `0x0804E45C` (klucze 0x11C, 0x157, 0x153..0x156, 0x158
 Wlaczone przez `set_local`: Is this device cascade master (0x350C)=1, Additional fuel storage (0x3525)=1, Cascade slaves number (0x351A)=2 (poziom 2).
 - **KASKADA**: trzy "kotly" (MASTER, SLAVE 1, SLAVE 2; slave z "---" czerwonym = brak danych), temperatura, "Stopien mocy N"; kafel NASTAWY: Liczba kotlow slave, Master/Slave 1..3 stopien mocy (+ progi) — lista klasa 8 (`panel_lists_by_level.md`).
 - **MAGAZYN PALIWA**: schemat zasobnika z dwoma silnikami (1 transport, 2 podajnik); NASTAWY: Praca/Pauza silnika transportujacego (1) [s], Praca/Pauza silnika podajnika (2) [s] (klasa 9).
+
+## Edycja wartosci (HARD, emulator): dialog numeryczny -> zapis -> CAN
+Kociol / NASTAWY, wiersz "Temperatura zadana [°C]" (PID 0x2003, 60..80, 65): dotkniecie wiersza otwiera dialog (tytul = nazwa, suwak z min/max z deskryptora, duza wartosc, przyciski "-" (125,205), "+" (295,205), "OK" (415,230)).
+3x "+" i OK -> storage 0x2003 = 68 i panel wysyla **CAN 0x584: `42 03 20 01 44 00 00 00`** (cmd 0x42, indeks PID LE `03 20`, subindeks 1, wartosc u32 LE = 68). Zapis uzytkownika = ta sama ramka co odpowiedz sterownika.
