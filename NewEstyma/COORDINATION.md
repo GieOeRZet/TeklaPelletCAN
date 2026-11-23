@@ -122,6 +122,16 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-127-SIDECAR-CLASS-MATRIX-CL
 - class 3: wybierana przez provider sync i akceptowana przez guarded write; wszystkie 3 bezpośrednie rejestracje FUN_0801143C mają class=3 (0x3500/0x3502/0x350B).
 - Dokładne biznesowe znaczenie klas oraz dynamiczne rejestracje pozostają OPEN.
 
+
+
+### Nowe ustalenia ChatGPT — PASS 128 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-128-CATALOG-260-VS-RUNTIME-448-RECONCILIATION-2026-11-23.md`
+
+- 260-slot static catalog i 448 PID panelowego katalogu obecne w 655 rekordach runtime są potwierdzone jako różne warstwy/liczności; nie wolno ich utożsamiać.
+- Resolver UI ma osobno 49 rekordów rodziny CH + 372 singletony.
+- 660 pozostaje tylko hard search/scan bound.
+- Następny matrix ma jawnie robić join: 260 static catalog -> PID -> 655 runtime -> resolver 49/372 -> provider/CAN/UI, z brakami jako brakami.
+
 ## 5. Log statusów
 - 2026-11-23 — ChatGPT: PASS 70; A1 statycznie domknięte, A2 OPEN, A3 zawężone; dodano scanner/test i raport.
 - 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANE.
