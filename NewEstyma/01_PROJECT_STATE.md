@@ -641,3 +641,12 @@ OPEN: individual business conditions for the many per-code clear sites.
 ## AUTONOMOUS PASS 98 — KOCIOŁ BINDING RECONCILIATION — 2026-11-23
 Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-98-KOCIOL-BINDING-RECONCILIATION-2026-11-23.md`; data/tool/test: `cg_kociol_bindings_reconciled.*`.
 HARD: 0x370A→0x20016894 (bitmap 11/12/13), 0x350D→0x20016A94 (Ciśnienie= visibility), 0x350A→0x20016A24 (T. powrotu= visibility), 0x2005→0x20016918 (bmp120/122). 0x2277→pump bitmap138 confirmed but exact widget address remains OPEN.
+
+
+## AUTONOMOUS PASS 99–103 — 2026-11-23
+- PASS 99: dual menu callbacks closed: 0x0807EB00→0x0803C064 and 0x0807EB36→0x0803EC18 using common row registry.
+- PASS 100: 31-code alarm catalog/site inventory normalized; per-site predicates remain OPEN.
+- PASS 101: 372 valid T2 internal UI-key→PID mappings exported.
+- PASS 102: 137 unique presenter setters fully indexed from existing presenter_map widget-offset evidence.
+- PASS 103: Kocioł visual binding matrix closed from PASS63 pilot evidence.
+- **CORRECTION:** prior PASS98 attribution `0x2277→bitmap138` is REJECTED. Bitmap138 is explicitly tied to `0x22A1` in pilot data; `0x200162F8` is also the live pump-animation widget (frames 138→142), while `0x2277` remains a live pump-state source whose 0x584 value injection is blocked by the sensor refresh path.
