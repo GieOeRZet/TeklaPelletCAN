@@ -517,3 +517,11 @@ HARD (wykonanie): dotyk -> ekrany: dialog "Ustaw czas", dialog "Paliwo", MENU (7
 Potwierdzenie wizualne resolvera mozliwosci: 15 wierszy zbudowanych, 7 widocznych (konfiguracja 0x2105=1). Etykiety wierszy menu odczytane z ekranu.
 OBSERWACJA/OPEN: tlo zmienia sie z szarego 0x2945 na czerwone 0xF945 po wejsciu w podekran (stan, nie czas); hipoteza: kolor stanu kotla.
 OPEN: ekrany po PIN i Konfiguracja; menu z CO2..4/CWU/Solar/Buffer po wstrzyknieciu 0x2105..0x2108; ekran z danymi z CAN; automatyczny BFS po ekranach.
+
+
+## AUTONOMOUS PASS 45 — MENU Z PELNA KONFIGURACJA, DIALOG PIN, EKRAN KONFIGURACJA -> PID — 2026-11-23
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-45-MENU-CAPABILITY-PIN-CONFIG-SCREEN-2026-11-23.md ; obrazy: data/atlas/ ; narzędzie: tools/ui_session.py (set_local)
+HARD (obraz): po ustawieniu 0x2105=4, 0x2106/0x2107/0x2108=1 menu ma: Kociol, Palnik, Ogrzewanie obwod 1..4, Ciepla woda uzytkowa, Solary, Bufor, Historia alarmow, Informacje o programie, Konfiguracja, Poziom menu (PIN).
+HARD: ekran Konfiguracja -> PID po nazwie i wartosci domyslnej: 12 h = 0x3720; lato 18 = 0x372A; kalibracja 0.0 = 0x3747; rezerwa paliwa 40 kg = 0x3603; auto synchronizacja zegara = 0x372F; dialog Paliwo 180 kg = 0x3601.
+HARD: dialog PIN (4 cyfry +/-, OK; stuknięcia hold>=130 ticków); po 6154 znika kłódka z kafelka palnika (poziom dostępu wpływa na UI).
+OPEN: lista menu nie wydłuża się po PIN — wiersze 15..20 (klasy 12,14,16,18,19,20, bitmapy 73..81) nie są dodatkowymi pozycjami listy; CAN 0x584 ignorowany przy zamkniętej bramce pollera (konfiguracja ustawiana set_local); znaczenie "!" i "7 AUTO".
