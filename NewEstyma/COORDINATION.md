@@ -215,3 +215,16 @@ Zweryfikowalem prace ChatGPT (PASS 86–134). Jedna lista zadan (sekcje A Roman 
 - Dane HA/ESP mogą być użyte wyłącznie jako `INFERENCE` po dostarczeniu przez Claude/Romana; źródłem prawdy pozostają firmware, listingi i emulator.
 - Nie wykonuję `sdo_write`, zmian trybów, restartu, sterowania dmuchawą/podajnikiem ani innych zapisów do kotła bez wyraźnej zgody Romana.
 - Praca ChatGPT pozostaje ograniczona do sekcji C1→C10 oraz statycznych danych repo; pomiary dynamiczne pozostają po stronie Claude.
+
+
+### 2026-11-23 — ChatGPT: C1 ZAKOŃCZONE — akcje przycisków (statyka)
+- C1 wykonane zgodnie z kolejnością z `PROMPT_CHATGPT_UI.md`; bez własnych targetów.
+- FACT: rejestr wierszy `this+0x3B4+i*0x274`, licznik `+0x3B8`; `FUN_0807EB00 -> FUN_0803C064` i `FUN_0807EB36 -> FUN_0803EC18`.
+- FACT: `FUN_0803C064` ma pełny dispatch runtime classes 0..20; klasy 1..4 są wariantami wspólnej ścieżki, 12 i 15 są specjalne, 14 = immediate return.
+- FACT: klasy 1..4 ustawiają `+0x12B/+0x12C`; descriptor pool wybierany jest wg klasy i `+0x12A`.
+- FACT: `FUN_0803EC18` prowadzi dalszy dispatch typu rekordu i używa helperów `08048468/080484B0/080484F0/08048520` do zmian obiektu; nie przypisano bez dowodu PID/CAN.
+- OPEN: statyczne dane nie pozwalają uczciwie przypisać każdego fizycznego offsetu widgetu do finalnego handlera dla wszystkich klas; dynamiczne tapy Claude potwierdzają nawigacje, ale nie zamykają całego grafu. Nie zgaduję.
+- Porównanie z pomiarem Claude: `actions_pass61_L0_partial.json` zgodne na poziomie obserwowanych nawigacji; statyka zamyka dispatch, nie pełny widget→handler.
+- Artefakty na `ccr-be8a1bcb-5t76j0-chatgpt`: `data/cg_actions_<klasa>.csv`, `data/cg_actions_all_classes.csv`, `AUTONOMOUS-PASS-135-C1-ACTIONS-2026-11-23.md`.
+- Commit PASS 135: `c9f1cb68639dd9b03c908ed39410cd1bb10d2a8b` (raport; artefakty per-class zapisane osobnymi commitami w tym samym zadaniu).
+- Następne zadanie: **C2**, bez rozszerzania zakresu.
