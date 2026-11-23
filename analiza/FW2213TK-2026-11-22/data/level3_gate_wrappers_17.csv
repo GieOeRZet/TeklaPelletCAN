@@ -1,0 +1,18 @@
+wrapper_runtime,hit_in_L3_exploration,screens,ctx12A,ctx12B,child_0x23C,typedtext_field,meaning
+0x805a510,yes,alarmy,2,0,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x805a9ec,no,,,,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x805b1d4,no,,,,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x805c104,yes,kociol(ust),2,0,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x805e9dc,yes,bufor(ust);co1(ust);co2(ust);co3(ust);co4(ust);cwu(ust);kociol(ust);konfiguracja;palnik(ust);solar(ust);test_wyjsc,3,0;1;10;16;17;2;3;4;5;6;7,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x805f400,no,,,,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x805f744,yes,siec;statystyki,2,0,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x805fe9c,no,,,,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x806019c,yes,palnik(ust),2,10,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x8060458,yes,co1(ust);co2(ust);co3(ust);co4(ust),2,1;2;3;4,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x8060714,yes,cwu(ust),2,5,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x8060a28,yes,internet,2,19,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x8060ce4,yes,bufor(ust),2,7,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x8060fa0,yes,solar(ust),2,6,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x806125c,no,,,,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x8061518,no,,,,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
+0x806fab4,yes,info(ust),2,0,0x23C text,"454 (wspolna wartosc, nie etykieta)",header: CPU load % (100-idle) na L>=3
