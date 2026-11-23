@@ -659,3 +659,9 @@ CORRECTED HARD: 0x370A→0x20016894 (bitmap 11/12/13), 0x350D→0x20016A94 (Ciś
 
 ## AUTONOMOUS PASS 110 — 2026-11-23
 - Audyt katalogu alarmów wykazał kody clear-only (7,43,53,115,250) i raise-only (131,139,140,150,160,161). Nie traktować asymetrii jako dowodu brakującego wywołania; wymagany jest trace caller/context.
+
+
+## AUTONOMOUS PASS 112–113 — UI binding audit — 2026-11-23
+- PASS 112: przeprowadzono statyczny audyt modelu UI Home/Kocioł/Bufor. `view_off` jest użytecznym lokalizatorem, ale repo ma również dynamiczny audyt wskazujący, że samo view_off/presenter_trace bywa wieloznaczne; dlatego nie promowano takich dopasowań do faktów semantycznych.
+- PASS 113: twardo zlokalizowano widget „Ochrona kotła”: OGRZEWANIE 1, this 0x200177ec, view_off 6068, text_id 30; sąsiedni bitmap widget this 0x20017820, view_off 6120, bitmap 130. Warunek wejściowy A69/A95 jest zamknięty przez PID 0x22A1 + 0x2301, ale przypisanie A69/A95 do tych konkretnych widgetów nadal OPEN.
+- PASS 113: T2 potwierdza UI key 0xF3→PID 0x2114, 0xF4→0x2115, 0xF5→0x2280. 0x2114/0x2115 mają min 7°C. W presenter_map obecnie brak wiersza 0xF3→0x2114, więc pole 7°C nadal OPEN na poziomie widget→setter.
