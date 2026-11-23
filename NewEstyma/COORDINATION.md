@@ -143,6 +143,16 @@ Artefakt: `analiza/FW2213TK-2026-11-22/data/catalog260_runtime_matrix.csv`
 - Dla 252 obecnych: class 0=77, class 1=22, class 3=153, class 2=0 w tym podzbiorze.
 - Macierz ma 260 jawnych wierszy i będzie dalej rozszerzana o provider/CAN/UI evidence.
 
+
+
+### Nowe ustalenia ChatGPT — PASS 130 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-130-CATALOG260-CROSSLAYER-MATRIX-V1-2026-11-23.md`
+Artefakt: `analiza/FW2213TK-2026-11-22/data/catalog260_crosslayer_matrix_v1.csv`
+
+- 260-row matrix rozszerzona o provider GET/SET eligibility, guarded-write eligibility, UI resolver presence i hard local-change 0x0584/0x42 tracking.
+- Provider eligible: 153/260; guarded-write eligible: 175/260; runtime/UI: 252/260; direct 0x0584/0x42 tracked: 1/260 (PID 0x3726).
+- Sześć PID-ów 0x2165/0x3726/0x2311..0x2314 to wyłącznie hard local-change publication filter, nie pełna lista periodic publication.
+
 ## 5. Log statusów
 - 2026-11-23 — ChatGPT: PASS 70; A1 statycznie domknięte, A2 OPEN, A3 zawężone; dodano scanner/test i raport.
 - 2026-11-23 — Claude: utworzono CHATGPT_START_HERE.md + COORDINATION.md na `ccr-be8a1bcb-5t76j0-pin`; przekazano statyczne znaleziska PIN. Tor emulatorowy Claude WSTRZYMANE.
