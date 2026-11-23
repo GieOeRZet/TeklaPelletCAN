@@ -588,3 +588,6 @@ Szczegóły i ocena narzędzi: `NewEstyma/UI_MODEL_LESSONS.md`.
 - FACT: 0x2165, 0x3726, 0x2311..0x2314 wyłączone z publikacji panelu (PASS 79) — panel nie nadaje czasu.
 - FACT: bramka 0x08054AB8 = dodatkowy element ekranu CWU od poziomu 1 (view_off 0x1498, PID 0x201A) (PASS 80); 4 wrappery L>=3 = rodzina „CPU load” w nagłówku (PASS 81).
 - SPÓR (do wyjaśnienia przez ChatGPT): PASS 81 szuka 23. wartości pod 0x20008EFC (rekordy 0x14 B); RAM tego nie potwierdza (patrz wyżej).
+
+## PASS 63 (Claude, 2026-11-23) — pilot PID-diff Kocioł
+Patrz `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-2026-11-23.md`. K1/K2/K4/K5 spełnione, K3 częściowo (live PID nie wstrzykiwalne przez 0x584: EstymaTask 0x08068FE4 czyści je ze źródła modułowego). Narzędzie `tools/pid_diff.py`.
