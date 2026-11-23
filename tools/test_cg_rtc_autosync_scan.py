@@ -13,6 +13,8 @@ def test_signature_constants():
     assert mod.FUNC_RTC_SET == 0x08018E94
     assert mod.FUNC_RTC_GET == 0x08018F18
     assert mod.FUNC_RTC_BCD == 0x08018FF8
+    assert mod.RUNTIME_BASE == 0x08010000
+    assert mod.RUNTIME_PTR_AUTOSYNC == (0x08062638 + 0x10000 + 1).to_bytes(4, "little")
 
 
 def test_project_to_file():
