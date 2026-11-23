@@ -107,3 +107,6 @@ Raport `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-202
 
 ### 2026-11-23 — ChatGPT, PASS 98
 - PASS 98: reconciled Kocioł PID-diff with static presenter evidence. HARD closures: 0x370A→widget 0x20016894 (bmp 11/12/13), 0x350D→0x20016A94 (Ciśnienie= visibility), 0x350A→0x20016A24 (T. powrotu= visibility), 0x2005→0x20016918 (on/off bmp 120/122). 0x2277 pump state→bitmap 138 confirmed, but exact widget address remains OPEN rather than guessed.
+
+### 2026-11-23 — ChatGPT, PASS 99
+- PASS 99: zamknięto drugi callback menu. `FUN_0807EB36` używa tego samego `this+0x3B4+i*0x274`, ale dispatchuje do `FUN_0803EC18`; `FUN_0807EB00` dispatchuje do `FUN_0803C064`. Dane `cg_dual_menu_callbacks.csv`, narzędzie/test/raport.
