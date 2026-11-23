@@ -1,0 +1,5 @@
+dialog,type,opening,controls,effect,confidence,evidence
+PIN,numeric,menu row PIN / access,4 digits +/- OK,0900/0999/6154 -> levels1/2/3; 0 -> level0,HARD,PASS44+70+93
+Fuel,numeric,home fuel tile,minus plus OK,edits PID0x3601; pilot default 180kg,HARD,PASS44+45+93
+Time,time-editor,home clock at (30,40),hour/minute selection OK,updates panel RTC via HAL; exact panel TX after edit OPEN,HARD,PASS44+62
+Value edit,numeric,settings row with writable descriptor,minus plus OK,updates selected PID and emits CAN write,HARD,PASS52
