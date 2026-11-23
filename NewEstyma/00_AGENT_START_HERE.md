@@ -104,9 +104,10 @@ Szybki start (kilka sekund): `python3 -I tools/render_screen.py FW2213TK_kopia.b
 | 40 | wiersze menu zbudowane w firmware; argumenty row-buildera = ID bitmap | AUTONOMOUS-PASS-40 |
 | 41 | dotyk wiersza -> handler 0x0807EB00 -> klasa -> efekt (wiersz 15 = język, wiersze 2..5 = CO1..CO4) | AUTONOMOUS-PASS-41 |
 | 42 | **emulacja systemowa; firmware sam rysuje ekran główny** (`data/screen_home_emulated.png`) | AUTONOMOUS-PASS-42 |
+| 44 | **dotyk FT5x06 + atlas ekranow** (MENU, Kociol, Palnik, Ogrzewanie 1, alarmy, dialogi); przeliczenie wspolrzednych 0.375/0.354 | AUTONOMOUS-PASS-44 |
 | 43 | ruch CAN panelu po starcie przy pustej magistrali (heartbeat 0x704, SDO do węzłów 5..7, rodziny PDO-podobne), skan 0x1018, poller włączany z menu | AUTONOMOUS-PASS-43 |
 
-**Najważniejsze otwarte (kolejność):** (1) wstrzyknąć dotyk i wyrenderować wszystkie ekrany menu jako obrazy (ekran -> widżet -> zasób -> PID); (2) wstrzyknąć odpowiedzi CAN (`0x584`, węzły 5..7 `0x585..0x587`) i obserwować zmianę ekranu;
+**Najważniejsze otwarte (kolejność):** (1) `tools/ui_session.py`: wyrenderować pozostałe ekrany (CO2..4/CWU/Solar/Buffer po wstrzyknięciu 0x2105..0x2108, PIN, Konfiguracja) jako obrazy (ekran -> widżet -> zasób -> PID); (2) wstrzyknąć odpowiedzi CAN (`0x584`, węzły 5..7 `0x585..0x587`) i obserwować zmianę ekranu;
 (3) ustalić, które klasy menu ustawiają bramkę pollera `0x2002466C+0x10/+8`; (4) semantyka ramek PDO-podobnych `0x2xx..0x5xx`; (5) czy skan tożsamości `0x1018:02` jest wywoływany i jakie ID uznaje za centralę.
 **Zasady, które kosztowały błędy:** adresy narzędzi = RUNTIME (PROJECT+0x10000); tick ~100000 instrukcji; PendSV po instrukcji zapisu ICSR; wyrównanie ramki wyjątku (STKALIGN); rekordy tabel są wyrównane do bazy (odczyt z przesunięciem 2 B dawał fałszywe pary); pola wartości w rekordzie parametru znaczą tylko szerokość własnego typu.
 Pomyłki poprzednich passów są oznaczone `REJECTED/SUPERSEDED` w raportach (m.in. PASS 26, odczyt „tekstów” wierszy menu).

@@ -181,3 +181,5 @@ Czas: ~9 s na 3000 tikow. Debug: `Board.diag()` (zadanie, rejestry, slad wywolan
 - `tools/stm32_i2c.py` — model I2C (flagi START/ADDR/TXE/BTF/RXNE, log transakcji) + slave `FT5x06` (adres 0x38; rejestry 0x02..0x06; `touch(x,y)`, `release()` niesie ostatnia pozycje). `Board.enable_i2c(slaves={0x38: ft})`.
 - `tools/touch_screen.py` — sesja z dotykiem: `--tap X,Y@TICK`, zrzuty PNG; pierwsze odpytanie kontrolera ok. ticku 141, potem co ~40 tikow.
 - Ustalone: firmware odpytuje FT5x06 sekwencja START, 0x70, 0x03, START, 0x71, odczyt 1 B, STOP (potem blok 0x03..0x07 po wykryciu dotyku). Dotkniecie zegara (30,40) otwiera dialog "Ustaw czas"; mapowanie wspolrzednych wymaga kalibracji (siatka w toku, patrz kolejny raport).
+
+- `tools/ui_session.py` (PASS 44) — klasa `UiSession`: `boot()`, `wait()`, `tap(x,y)`, `swipe()`, `shot(name)`, `can()`, `set_param(pid,val)`; wspolrzedne ekranowe 480x272 (przeliczane na surowe FT5x06). Preferowane do eksploracji UI.

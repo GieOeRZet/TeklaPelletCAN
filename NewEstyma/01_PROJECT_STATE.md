@@ -508,3 +508,12 @@ HARD (wykonanie): panel nadaje dopiero po ~3.3 s (scheduler obiektow okresowych 
 HARD (kod): tablica obecnosci wezlow (handler 0x0800F894: heartbeat 0x701..0x77F i SDO 0x581..0x5FF, waznosc 300) i skan tozsamosci 0x600+k: 40 18 10 02 (obiekt 0x1018 sub 2 wg CiA 301) -> protokol to CANopen SDO.
 HARD (eksperyment): heartbeaty i odpowiedzi tozsamosci nie wlaczaja pollera 0x604; STRONG: bramka obj+0x10 jest ustawiana przez kod klas menu (0x0804C24E, 0x0804C260), nie przez wykrycie magistrali.
 OPEN: ktore klasy ustawiaja obj+0x10/+8; kto wola skan 0x1018:02; semantyka ramek 0x2xx..0x5xx po podaniu danych; odpowiedzi wezlow 5..7.
+
+
+## AUTONOMOUS PASS 44 — DOTYK FT5x06, PRZELICZENIE WSPOLRZEDNYCH, ATLAS EKRANOW — 2026-11-23
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-44-TOUCH-FT5X06-UI-ATLAS-2026-11-23.md ; obrazy: data/atlas/ ; narzędzia: tools/stm32_i2c.py, touch_screen.py, ui_session.py
+HARD: kontroler dotyku FT5x06 @0x38 na I2C1, odpytywany ~25 Hz; sampleTouch 0x080759DC: x_ekran=0.375*x_raw, y_ekran=0.354*y_raw (panel ~1280x768); zwolnienie niesie ostatnia pozycje.
+HARD (wykonanie): dotyk -> ekrany: dialog "Ustaw czas", dialog "Paliwo", MENU (7 widocznych wierszy przy dostepie 0), Kociol, Palnik, Ogrzewanie 1, Historia alarmow.
+Potwierdzenie wizualne resolvera mozliwosci: 15 wierszy zbudowanych, 7 widocznych (konfiguracja 0x2105=1). Etykiety wierszy menu odczytane z ekranu.
+OBSERWACJA/OPEN: tlo zmienia sie z szarego 0x2945 na czerwone 0xF945 po wejsciu w podekran (stan, nie czas); hipoteza: kolor stanu kotla.
+OPEN: ekrany po PIN i Konfiguracja; menu z CO2..4/CWU/Solar/Buffer po wstrzyknieciu 0x2105..0x2108; ekran z danymi z CAN; automatyczny BFS po ekranach.
