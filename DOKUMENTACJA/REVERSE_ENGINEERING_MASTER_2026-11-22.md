@@ -1386,3 +1386,11 @@ HARD: zadania firmware EstymaTask, GUITask, CanRxTask, CanTxTask, IDLE uruchomio
 HARD (wynik): ekran glowny wyrenderowany przez firmware (1352 operacje DMA2D) — godzina, dzien, "0.0", "Wylaczony", obraz kotla, 7 kafelkow; stan domyslny (brak CAN/RTC/dotyku).
 Poprawki modelu wyjatkow: SysTick po svc; PendSV po instrukcji zapisu ICSR; STKALIGN (bit 9 xPSR); tick ~100k instrukcji; FPU lazy stacking niemodelowany.
 OPEN: wstrzykniecie CAN (IRQ64) i dotyku; eksport wszystkich ekranow; ekran -> widzet -> zasob -> PID jako obrazy.
+
+
+## AUTONOMOUS PASS 43 — RUCH CAN PANELU PO STARCIE (PUSTA MAGISTRALA), TABLICA WEZLOW, BRAMKA POLLERA — 2026-11-23
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-43-CAN-BOOT-TRAFFIC-NODE-TABLE-2026-11-23.md ; dane: data/can_tx_boot_no_partners.csv ; narzędzia: tools/stm32_can.py, can_boot_trace.py (+test)
+HARD (wykonanie): panel nadaje dopiero po ~3.3 s (scheduler obiektow okresowych 0x080247C8, licznik 30); przy pustej magistrali: heartbeat 0x704=05 co 1 s; SDO do wezlow 5,6,7: zapis 0x3004:01=0 i odczyt 0x2001:01 co 1 s; publikacje 0x584; serie ramek PDO-podobnych 0x240..0x247, 0x250, 0x254/5, 0x26F..0x271, 0x278..0x27F, 0x340..0x347, 0x378..0x37F, 0x440..0x447, 0x540..0x547, 0x201.
+HARD (kod): tablica obecnosci wezlow (handler 0x0800F894: heartbeat 0x701..0x77F i SDO 0x581..0x5FF, waznosc 300) i skan tozsamosci 0x600+k: 40 18 10 02 (obiekt 0x1018 sub 2 wg CiA 301) -> protokol to CANopen SDO.
+HARD (eksperyment): heartbeaty i odpowiedzi tozsamosci nie wlaczaja pollera 0x604; STRONG: bramka obj+0x10 jest ustawiana przez kod klas menu (0x0804C24E, 0x0804C260), nie przez wykrycie magistrali.
+OPEN: ktore klasy ustawiaja obj+0x10/+8; kto wola skan 0x1018:02; semantyka ramek 0x2xx..0x5xx po podaniu danych; odpowiedzi wezlow 5..7.

@@ -113,6 +113,9 @@ class Board:
 
     def raise_irq(self, irqn): self.pend.add(16 + irqn)
 
+    def enable_can2(self):
+        import stm32_can; self.can2 = stm32_can.Can2(self); return self.can2
+
     def enable_dma2d(self):
         import stm32_dma2d; self.dma2d = stm32_dma2d.Dma2D(self); return self.dma2d
 

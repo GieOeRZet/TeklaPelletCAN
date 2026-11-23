@@ -173,3 +173,6 @@ Function-level harness: ustaw r0/r1, LR=SENT|1, SP w SRAM, hook UC_HOOK_CODE na 
 - `tools/render_screen.py` / `test_render_screen.py` — render ekranu do PNG z bufora LTDC (adres/format z rejestrow), test z asercjami.
 Zasady: tick ~100000 instrukcji (nie 2000); SysTick dopiero po `svc`; PendSV zatrzymuj PO instrukcji zapisu ICSR; ramka wyjatku wyrownana do 8 B z bitem 9 xPSR; SDRAM 0xC0000000 (16 MB) zmapowana z gory.
 Czas: ~9 s na 3000 tikow. Debug: `Board.diag()` (zadanie, rejestry, slad wywolan ze stosu); GUITask blokuje sie na semaforze bufora [0x20005F20] dopoki DMA2D nie zgłosi TCIF.
+
+- `tools/stm32_can.py` (PASS 43) — model CAN2: TME w TSR, przechwyt TX (TIxR.TXRQ), `inject(id,data)` do FIFO0 + IRQ 64; `Board.enable_can2()`.
+- `tools/can_boot_trace.py` (+ `test_can_boot_trace.py`) — ruch CAN po starcie; `--inject 701:05@3500`. Pierwsze ramki dopiero ok. ticku 3300 (scheduler okresowy), wiec symuluj >= 4000 tikow.
