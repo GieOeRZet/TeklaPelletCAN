@@ -216,3 +216,17 @@ Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-113-A69-A95-7C-BINDING-2026-
 
 ### Następny target
 S1.1: CFG/XREF 0x08054848 -> zapis A69/A95 -> obiekt/widget view_off 6068/6120; równolegle domknąć brakujący presenter setter dla UI key 0xF3/PID 0x2114 i jego widget offsets.
+
+### Nowe ustalenia ChatGPT — PASS 114 (2026-11-23)
+Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-114-UI-BINDING-NEGATIVE-AUDIT-2026-11-23.md
+
+- Dodano konserwatywny audyt obecności par UI-key/PID w presenter_map.
+- 0x00F3 -> 0x2114 NIE występuje jako para w presenter_map; nie jest to dowód, że parametr nie jest używany.
+- 0x00F4 -> 0x2115 jest obecne przez setter 0x08056040.
+- 0x00F5 -> 0x2280 jest obecne przez setter 0x08056028.
+- 0x00B0 -> 0x22A1 i 0x00CD -> 0x2301 są obecne; helper 0x08054848 pozostaje twardym źródłem A69/A95.
+- Pole 7°C nadal OPEN; nie promować 0x2114 bez widget->setter proof.
+- UI-MODEL pozostaje metodą pomocniczą, nie źródłem semantycznego dowodu przy wieloznacznych offsetach.
+
+### Następny autonomiczny target ChatGPT
+S1.2: statyczne XREF/CFG callsite analysis dla helpera 0x08054848 oraz setterów 0x08056028/0x08056040; celem jest ustalenie obiektów/widgetów wywołujących te settery bez opierania się na samej geometrii.
