@@ -172,3 +172,12 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-83-B3-OCHRONA-BUFFER-CORREC
 - Ochrona kotła: helper PROJECT 0x08054848 / RAW 0x44848 dostaje UI keys 0xB0 i 0xCD = PID-y 0x22A1 Room temp sensor type oraz 0x2301 CH thermostat state. Dla sensor type !=4 ustawia +0xA69=0,+0xA95=1. Dla sensor type ==4 ustawia +0xA95=0 oraz +0xA69=(thermostat state==1). Hipoteza bezpośredniego sterowania przez CH status 0x22FD jest odrzucona.
 - Bufor: 0xF3=0x2114 i 0xF4=0x2115 to nastawy z min 7°C; 0xF5=0x2280 jest osobnym parametrem live/read-only. 0% = 0xFB -> PID 0x3174 Buffer internal energy [%].
 - KOREKTA PASS 81: 0x20008D84 jest parameter managerem, nie potwierdzoną bazą 23 rekordów po 0x14. Funkcje 0x143DE/0x14416/0x1443E przyjmują bazę przez argument; katalog 0x20008C50 przechowuje wskaźniki. A2 source-array address i rekord #23 value pozostają OPEN.
+
+### Nowe ustalenia ChatGPT — PASS 84 (2026-11-23)
+Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-84-PROVIDER-FLASH-PERSISTENCE-2026-11-23.md`
+
+- Provider vtable 0x080A31F0 jest backendem trwałej pamięci flash parametru, nie kolejnym CAN providerem.
+- Slot 0 RAW 0xDB30 = GET: łączy dwa u16 z FUN_08014BBA; backend korzysta z flash 0x08008000/0x0800C000 i struktur statusowych 0x200247D4/0x200248D8.
+- Slot 1 RAW 0xDB78 = SET/typed encoding; zapis przechodzi przez FUN_08014C14/FUN_08014CC0 i walidację FUN_08014C58.
+- Konstruktor RAW 0xDB08 instaluje vptr i inicjalizuje warstwę flash przez FUN_08014870/FUN_08014A70.
+- Slot 4 RAW 0x517FE jest state/init transition; pełna nazwa nadal OPEN.
