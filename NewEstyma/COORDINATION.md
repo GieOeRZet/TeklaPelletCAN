@@ -83,6 +83,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-74-RTC-VTABLE-DISPATCH-2026
 - Runtime vptr `0x080A446C` koreluje z vtable PROJECT `0x0809446C`.
 - Slot 0 vtable = `FUN_08062638`.
 - Konstruktorowy zapis vptr `0x080A446C` znaleziono w kodzie pod PROJECT `0x0801044C`; wywołanie konstruktorowe z `r0=r8+0x4C` jest pod PROJECT `0x08000DC6`.
+- Dodano `tools/cg_rtc_vtable_scan.py` + test regresyjny.
 - To zamyka mechanizm dispatch; pozostaje identyfikacja wszystkich zapisów do `[object+0x0C]` i źródła timestampu.
 
 - `FUN_08062638` jest bezpośrednią ścieżką auto-synchronizacji RTC.
