@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PASS 54: polskie etykiety wierszy ekranu NASTAWY w kolejnosci rysowania. Wchodzi na ekran (wiersz menu + kafel ustawien), przewija w gore
+"""PASS 54 (v2: hook od wejscia; kolejnosc odczytow TypedText = kolejnosc wierszy listy): polskie etykiety wierszy ekranu NASTAWY w kolejnosci rysowania. Wchodzi na ekran (wiersz menu + kafel ustawien), przewija w gore
 i zapisuje identyfikatory TypedText czytane przez firmware (w kolejnosci pierwszego odczytu) po kazdym kroku -> ids + tekst PL.
 python3 -I tools/settings_labels.py FW.bin OUTDIR ROW_IDX LEVEL OUT.json   (OUTDIR: menu.state/rows.pkl/menu_tall.png z ui_explore --prepare)"""
 import os, sys, json, pickle, struct
@@ -21,13 +21,13 @@ def pl(i):
 rows = pickle.load(open(os.path.join(out, "rows.pkl"), "rb"))
 s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), None); s.wait(120)
 nav = U.ListNav(s); nav.tall = Image.open(os.path.join(out, "menu_tall.png")); nav.rows = rows
-nav.tap_row_from_top(idx); s.wait(600); s.tap(400, 245, settle=1200)
 order = []
 tb = U.UiSession.TEXT_LANG_PTRS[0] - 57 * 4
 def rt(uc, a, ad, sz, v, ud):
     i = (ad - tb) // 4
     if i not in order: order.append(i)
-s.b.mu.hook_add(UC_HOOK_MEM_READ, rt, begin=tb, end=tb + 495 * 4 - 1)
+s.b.mu.hook_add(UC_HOOK_MEM_READ, rt, begin=tb, end=tb + 495 * 4 - 1)          # hook PRZED wejsciem: kolejnosc pierwszych odczytow = kolejnosc wierszy listy
+nav.tap_row_from_top(idx); s.wait(600); s.tap(400, 245, settle=1200)
 pages = []; last = None
 for step in range(14):
     s.wait(400); h = s.body_hash(s.shot())
