@@ -1,0 +1,16 @@
+class_vtable,class_name,widget_offset,handler,effect,confidence,source
+0x808ed7c,Kociol,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808ed7c,Kociol,ALL_MENU_ROWS,FUN_0807EB36->FUN_0803EC18,secondary row/resource dispatch,FACT,08048468+0807eb36
+0x808ede4,Palnik,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808ede4,Palnik,ALL_MENU_ROWS,FUN_0807EB36->FUN_0803EC18,secondary row/resource dispatch,FACT,08048468+0807eb36
+0x808f5d0,Ogrzewanie_CO1_CO4,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808f604,Woda_CWU,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808f978,Solary,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808edb0,Bufor,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808ec10,Historia_alarmow,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808f638,Informacje,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808f944,Lista,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808f80c,Test_wyjsc,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808f770,Siec,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+0x808f9ac,Internet,ALL_MENU_ROWS,FUN_0807EB00->FUN_0803C064,navigation by runtime class/TBB row,FACT,08048468+0803c064
+HOME,Home,SCREEN_TOUCH_TARGETS,home handler chain,screen navigation,OPEN,static evidence incomplete
