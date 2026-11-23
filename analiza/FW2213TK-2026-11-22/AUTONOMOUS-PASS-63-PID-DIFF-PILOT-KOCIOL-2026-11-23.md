@@ -34,3 +34,6 @@ UWAGA (konflikt do rozstrzygnięcia): handoff ChatGPT wymienia „370A 1/2/3 →
 
 ## Werdykt pilota
 K1, K2, K4, K5 spełnione; K3 spełnione dla PID-ów typu nastawa/konfiguracja (7 wiązań, 11 widżetów), niespełnione dla live (przyczyna ustalona, patrz wyżej). Skalowanie na Palnik/Ogrzewanie 1/Woda jest sensowne dla warstwy nastaw; dla live trzeba najpierw modułowego źródła danych.
+
+## Dodatek: test na 4 ekranach (Kociol, Palnik, Ogrzewanie 1, Woda), poziom 0
+Tabela wiazan: `data/pass63_pilot_kociol/BINDINGS_L0_pilot.md` / `.csv` (45 wiazan widget -> PID -> regula; generator `tools/pid_diff_report.py`). Czas: Kociol 60 s, Palnik 156 s, CO1 125 s, CWU 50 s. Korekta: nie wszystkie PID-y live sa blokowane - tekst „jasnosc=”, „spalanie=”, „moc=”, temperatura CWU 0x201A, temp. CO 0x4001 reaguja na wstrzykniecie; blokowane sa te zasilane ze zrodel czujnikowych (0x2001, 0x2277, 0x3333, 0x2007 ...). Wartosci spoza realnego zakresu daja smieciowy tekst (np. 6553., 'ÿÿÿ') - to artefakt probkowania min/max.
