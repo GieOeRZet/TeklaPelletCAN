@@ -37,9 +37,9 @@ To jest istotne, ponieważ od teraz można szukać producenta timestampu bez abs
 | 0x20008D28 | +0x0C | **timestamp producer input / bieżąca wartość czasu** |
 | 0x20008D2C | +0x10 | poprzednio zapamiętana wartość do compare |
 | 0x20008D30 | +0x14 | licznik wywołań, resetowany co 10 |
-| 0x20008D36.. | +0x1A.. | rozłożone pola daty/czasu |
+| 0x20008D3A..0x20008D44 | +0x1E..+0x28 | rozłożone pola daty/czasu używane przez metodę |
 
-Uwaga: +0x16..+0x1E są wypełniane przez FUN_08039370 przed RTC write; nie należy traktować ich jako trwałego wejścia.
+Uwaga: pola +0x1E..+0x28 są wypełniane przez FUN_08039370 przed RTC write; nie należy traktować ich jako trwałego wejścia.
 
 ## 2. Co robi FUN_08062638 z tym obiektem
 
@@ -47,7 +47,7 @@ Uwaga: +0x16..+0x1E są wypełniane przez FUN_08039370 przed RTC write; nie nale
 - przy wartości 10 jest zerowane i wykonywana jest cięższa ścieżka.
 - `[0x20008D2C]` jest porównywane z `[0x20008D28]`.
 - gdy są różne, PID `0x372F` decyduje, czy synchronizacja ma wykonać zapis RTC.
-- po odczycie/normalizacji bieżącego RTC `FUN_08062920` daje wartość epoch, która trafia do `[0x20008D20?]`/pola czasowego obiektu; dokładne mapowanie niskopoziomowe należy utrzymać zgodnie z rejestrami r5/r4 z disassembly.
+- po odczycie/normalizacji bieżącego RTC `FUN_08062920` daje wartość epoch, która trafia do `[object+0x0C] = 0x20008D28`, a następnie `[object+0x10] = 0x20008D2C`.
 
 Najważniejsze dla dalszego skanu pozostaje:
 
