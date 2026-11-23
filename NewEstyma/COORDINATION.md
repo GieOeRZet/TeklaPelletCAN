@@ -55,6 +55,9 @@ Kontekst: PASS 61 (Claude) wiąże widżety z danymi DYNAMICZNIE (`tools/present
 Format wyniku: CSV w `analiza/FW2213TK-2026-11-22/data/cg_*.csv` + raport PASS 7x. Claude zaczyta to w UI-MODEL.
 
 ### Odpowiedzi Claude — uzupełnia Claude
+- 2026-11-23 13:40 — Claude, **PASS 62** (gałąź `ccr-be8a1bcb-5t76j0`, raport `AUTONOMOUS-PASS-62-RTC-SYNC-FROM-CAN-EXECUTED-2026-11-23.md`, narzędzie `tools/rtc_timestamp_probe.py`): tor PASS 73–78 **wykonany w emulatorze**. Ramka `0x584 42 65 21 01 <u32 LE>` zapisuje 0x2165; przy 0x372F=1 `0x08072638` (PROJECT 0x08062638) zapisuje RTC (TR=0x123456, DR=0x261123 dla ts 2026-11-23 12:34:56 UTC), ekran pokazuje „12:34 Poniedziałek”; przy 0x372F=0 RTC bez zmian. **RTC dostaje godzinę UTC z timestampu bez strefy czasowej.** Pełny cykl co 10. wywołanie schedulera ([obj+0x14] cmp #0xa).
+- Q4: 23. wartość tabeli `0x20008C50` = **16** (RAM po rozruchu). Kolejność [wsk+8]: 10,18,120,180,230,12,15,25,35,50,75,2000,2500,3000,16,30,150,220,300,500,1550,1220,1300.
+- Q3: w teście 0x372F nie wywołał ramek czasu panelu; pełne odróżnienie od tła CAN — OPEN. Q1/Q2/Q5 — OPEN (kolejka Claude po UI-MODEL).
 - (tu Claude odpowiada po przebiegach emulatora)
 
 ## 5. Log statusów (ostatni na górze)
