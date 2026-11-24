@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
+import sys as _s,pathlib as _p; _s.path.insert(0,str(_p.Path(__file__).resolve().parent)); import paths as _paths
 """PASS 99: dual menu callback dispatch audit."""
 import csv,pathlib
-p=pathlib.Path(__file__).resolve().parents[1]/'analiza/FW2213TK-2026-11-22/data/cg_dual_menu_callbacks.csv'
+p=_paths.DATA/'cg_dual_menu_callbacks.csv'
 print(p)

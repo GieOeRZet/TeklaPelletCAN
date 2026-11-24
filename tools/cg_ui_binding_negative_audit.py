@@ -12,13 +12,14 @@ No firmware execution and no semantic assignment from geometry.
 """
 
 from __future__ import annotations
+import sys as _s,pathlib as _p; _s.path.insert(0,str(_p.Path(__file__).resolve().parent)); import paths as _paths
 import csv
 from pathlib import Path
 from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "analiza/FW2213TK-2026-11-22/data/presenter_map.csv"
-OUT = ROOT / "analiza/FW2213TK-2026-11-22/data/cg_ui_binding_negative_audit.csv"
+SRC = _paths.DATA / "presenter_map.csv"
+OUT = _paths.DATA / "cg_ui_binding_negative_audit.csv"
 
 TARGETS = [
     ("0x00F3", "0x2114", "Buffer top set temperature"),

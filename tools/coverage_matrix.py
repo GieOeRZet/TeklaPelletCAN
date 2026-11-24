@@ -15,6 +15,7 @@ Usage:
   python3 -I tools/coverage_matrix.py --threshold 5
 """
 from __future__ import annotations
+import sys as _s,pathlib as _p; _s.path.insert(0,str(_p.Path(__file__).resolve().parent)); import paths as _paths
 import argparse, csv, json, re
 from pathlib import Path
 
@@ -45,7 +46,7 @@ def filename_provenance(stem):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--root", default="analiza/FW2213TK-2026-11-22/data/ui_model")
+    ap.add_argument("--root", default=str(_paths.UI_MODEL))
     ap.add_argument("--threshold", type=float, default=5.0)
     ap.add_argument("--out", default=None)
     args = ap.parse_args()

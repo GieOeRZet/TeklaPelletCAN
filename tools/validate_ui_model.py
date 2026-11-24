@@ -2,7 +2,9 @@
 from __future__ import annotations
 import argparse,csv,json,re
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1]; UI=ROOT/"analiza/FW2213TK-2026-11-22/data/ui_model"; SCHEMA=UI/"schema"; PIDCSV=ROOT/"analiza/FW2213TK-2026-11-22/data/pid_matrix_655.csv"
+import sys; sys.path.insert(0,str(Path(__file__).resolve().parent))
+from paths import ROOT,UI_MODEL as UI,SCHEMA,DATA
+PIDCSV=DATA/"pid_matrix_655.csv"
 PID=re.compile(r"^0x[0-9A-Fa-f]{4}$"); ANY=re.compile(r"(?i)\bPID\b[^0-9A-Fa-f]{0,12}(0x[0-9A-Fa-f]{4})")
 def walk(x,p=""):
  yield p,x

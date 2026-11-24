@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-24T12:46:09.679363+00:00",
+  "generated_at": "2026-11-24T13:32:14.603634+00:00",
   "root": "analiza/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -8,7 +8,7 @@
       "schema": "schema/alarms.schema.json",
       "schema_version": "1.0",
       "records": 68,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.533823+00:00",
       "evidence_paths": []
     },
     {
@@ -16,15 +16,55 @@
       "schema": null,
       "schema_version": "1.0",
       "records": 6,
-      "date": "2026-11-24T12:45:59.776267+00:00",
+      "date": "2026-11-24T13:31:05.535581+00:00",
       "evidence_paths": []
     },
     {
       "file": "dialog_render/RUN_SUMMARY.json",
       "schema": null,
       "schema_version": null,
-      "records": 3,
-      "date": "2026-11-24T12:45:18.438035+00:00",
+      "records": 5,
+      "date": "2026-11-24T13:31:05.535581+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "dialog_render/internet_editor_data.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 2,
+      "date": "2026-11-24T13:31:05.539887+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "dialog_render/number_dialog_data.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 2,
+      "date": "2026-11-24T13:31:05.539887+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "dialog_render/pin_data.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 2,
+      "date": "2026-11-24T13:31:05.539887+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "dialog_render/program_copy_data.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 2,
+      "date": "2026-11-24T13:31:05.539887+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "dialog_render/program_day_data.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 2,
+      "date": "2026-11-24T13:31:05.539887+00:00",
       "evidence_paths": []
     },
     {
@@ -32,7 +72,7 @@
       "schema": "schema/dialogs_edit_pin.schema.json",
       "schema_version": "1.0",
       "records": 7,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.551581+00:00",
       "evidence_paths": []
     },
     {
@@ -40,7 +80,7 @@
       "schema": null,
       "schema_version": null,
       "records": 280,
-      "date": "2026-11-24T00:22:45.344820+00:00",
+      "date": "2026-11-24T13:31:05.551581+00:00",
       "evidence_paths": []
     },
     {
@@ -48,7 +88,7 @@
       "schema": null,
       "schema_version": null,
       "records": 54,
-      "date": "2026-11-24T00:22:31.222052+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -56,7 +96,7 @@
       "schema": null,
       "schema_version": null,
       "records": 496,
-      "date": "2026-11-24T00:22:32.627807+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -64,7 +104,7 @@
       "schema": null,
       "schema_version": null,
       "records": 19,
-      "date": "2026-11-24T00:22:53.704821+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -72,7 +112,7 @@
       "schema": null,
       "schema_version": null,
       "records": 0,
-      "date": "2026-11-24T00:22:54.370836+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -80,7 +120,7 @@
       "schema": null,
       "schema_version": null,
       "records": 506,
-      "date": "2026-11-24T00:22:56.216156+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -88,7 +128,7 @@
       "schema": null,
       "schema_version": null,
       "records": 8,
-      "date": "2026-11-24T00:23:00.664777+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -96,7 +136,7 @@
       "schema": null,
       "schema_version": null,
       "records": 81,
-      "date": "2026-11-24T00:22:33.377033+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -104,7 +144,7 @@
       "schema": null,
       "schema_version": null,
       "records": 509,
-      "date": "2026-11-24T00:22:35.215506+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -112,7 +152,7 @@
       "schema": null,
       "schema_version": null,
       "records": 157,
-      "date": "2026-11-24T00:22:35.957059+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -120,7 +160,7 @@
       "schema": null,
       "schema_version": null,
       "records": 541,
-      "date": "2026-11-24T00:22:37.774286+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -128,7 +168,7 @@
       "schema": null,
       "schema_version": null,
       "records": 157,
-      "date": "2026-11-24T00:22:38.496819+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -136,7 +176,7 @@
       "schema": null,
       "schema_version": null,
       "records": 541,
-      "date": "2026-11-24T00:22:40.411615+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -144,7 +184,7 @@
       "schema": null,
       "schema_version": null,
       "records": 158,
-      "date": "2026-11-24T00:22:41.184170+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -152,7 +192,7 @@
       "schema": null,
       "schema_version": null,
       "records": 541,
-      "date": "2026-11-24T00:22:42.854817+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -160,7 +200,7 @@
       "schema": null,
       "schema_version": null,
       "records": 158,
-      "date": "2026-11-24T00:22:43.537022+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -168,7 +208,7 @@
       "schema": null,
       "schema_version": null,
       "records": 541,
-      "date": "2026-11-24T00:22:45.236820+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -176,7 +216,7 @@
       "schema": null,
       "schema_version": null,
       "records": 138,
-      "date": "2026-11-24T00:22:45.895267+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -184,7 +224,7 @@
       "schema": null,
       "schema_version": null,
       "records": 521,
-      "date": "2026-11-24T00:22:47.796820+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -192,7 +232,7 @@
       "schema": null,
       "schema_version": null,
       "records": 51,
-      "date": "2026-11-24T00:22:48.426658+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -200,7 +240,7 @@
       "schema": null,
       "schema_version": null,
       "records": 496,
-      "date": "2026-11-24T00:22:49.947312+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -208,7 +248,7 @@
       "schema": null,
       "schema_version": null,
       "records": 54,
-      "date": "2026-11-24T00:22:50.604434+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -216,7 +256,7 @@
       "schema": null,
       "schema_version": null,
       "records": 491,
-      "date": "2026-11-24T00:22:51.851697+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -224,7 +264,7 @@
       "schema": null,
       "schema_version": null,
       "records": 324,
-      "date": "2026-11-24T00:22:52.452821+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -232,7 +272,7 @@
       "schema": null,
       "schema_version": null,
       "records": 0,
-      "date": "2026-11-24T00:22:53.057599+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -240,7 +280,7 @@
       "schema": null,
       "schema_version": null,
       "records": 5,
-      "date": "2026-11-24T00:22:31.292135+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -248,7 +288,7 @@
       "schema": null,
       "schema_version": null,
       "records": 314,
-      "date": "2026-11-24T00:22:32.007853+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -256,7 +296,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T00:22:32.711078+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -264,7 +304,7 @@
       "schema": null,
       "schema_version": null,
       "records": 349,
-      "date": "2026-11-24T00:22:33.402931+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -272,7 +312,7 @@
       "schema": null,
       "schema_version": null,
       "records": 2,
-      "date": "2026-11-24T00:22:34.125859+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -280,7 +320,7 @@
       "schema": null,
       "schema_version": null,
       "records": 546,
-      "date": "2026-11-24T00:22:36.143454+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -288,7 +328,7 @@
       "schema": null,
       "schema_version": null,
       "records": 2,
-      "date": "2026-11-24T00:22:37.835569+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -296,7 +336,7 @@
       "schema": null,
       "schema_version": null,
       "records": 136,
-      "date": "2026-11-24T00:22:38.576002+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -304,7 +344,7 @@
       "schema": null,
       "schema_version": null,
       "records": 77,
-      "date": "2026-11-24T00:22:39.314996+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -312,7 +352,7 @@
       "schema": null,
       "schema_version": null,
       "records": 50,
-      "date": "2026-11-24T00:22:42.746750+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -320,7 +360,7 @@
       "schema": null,
       "schema_version": null,
       "records": 503,
-      "date": "2026-11-24T00:22:44.437399+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -328,7 +368,7 @@
       "schema": null,
       "schema_version": null,
       "records": 75,
-      "date": "2026-11-24T00:22:40.252788+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -336,7 +376,7 @@
       "schema": null,
       "schema_version": null,
       "records": 526,
-      "date": "2026-11-24T00:22:42.091618+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -344,7 +384,7 @@
       "schema": "schema/home_dialogs.schema.json",
       "schema_version": "1.0",
       "records": 5,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -352,7 +392,7 @@
       "schema": "schema/home_dialogs_widgets.schema.json",
       "schema_version": "1.0",
       "records": 7,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -360,7 +400,7 @@
       "schema": "schema/home_overlays_changed.schema.json",
       "schema_version": "1.0",
       "records": 7,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": []
     },
     {
@@ -368,7 +408,7 @@
       "schema": "schema/internet_editor.schema.json",
       "schema_version": "1.0",
       "records": 9,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.554858+00:00",
       "evidence_paths": [
         "MEASURED (PASS 70, tools/sii_editor_probe.py, firmware w emulatorze; zrzuty: sii_acceptance/editor/editor_seq.png)"
       ]
@@ -378,7 +418,7 @@
       "schema": "schema/list_scales.schema.json",
       "schema_version": "1.0",
       "records": 6,
-      "date": "2026-11-24T11:44:05.553879+00:00",
+      "date": "2026-11-24T13:31:05.555581+00:00",
       "evidence_paths": []
     },
     {
@@ -386,7 +426,7 @@
       "schema": "schema/lists.schema.json",
       "schema_version": "1.0",
       "records": 4,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.555581+00:00",
       "evidence_paths": []
     },
     {
@@ -394,7 +434,7 @@
       "schema": "schema/live_sources.schema.json",
       "schema_version": "1.0",
       "records": 10,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.555581+00:00",
       "evidence_paths": []
     },
     {
@@ -402,7 +442,7 @@
       "schema": "schema/menu_sweep.schema.json",
       "schema_version": "1.0",
       "records": 32,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.555581+00:00",
       "evidence_paths": []
     },
     {
@@ -410,7 +450,7 @@
       "schema": "schema/menu_tree.schema.json",
       "schema_version": "1.0",
       "records": 30,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.555581+00:00",
       "evidence_paths": [
         "MEASURED (zrzut dialog_shots/home_dlg_paliwo.png; nakladka na HOME, wyzwalacz kafel 103,234)",
         "MEASURED (zrzut home_dlg_auto.png; wyzwalacz kafel 415,76)",
@@ -424,7 +464,7 @@
       "schema": "schema/outputs_test.schema.json",
       "schema_version": "1.0",
       "records": 22,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.555581+00:00",
       "evidence_paths": []
     },
     {
@@ -432,7 +472,7 @@
       "schema": "schema/program_bit_to_rect_kociol_monday.schema.json",
       "schema_version": "1.0",
       "records": 27,
-      "date": "2026-11-24T11:07:14.090314+00:00",
+      "date": "2026-11-24T13:31:05.555581+00:00",
       "evidence_paths": []
     },
     {
@@ -440,7 +480,7 @@
       "schema": "schema/program_screen.schema.json",
       "schema_version": "1.0",
       "records": 13,
-      "date": "2026-11-24T12:32:59.654605+00:00",
+      "date": "2026-11-24T13:31:05.555581+00:00",
       "evidence_paths": [
         "MEASURED (PASS 70, emulator, Kociol/Sroda -> Pn+Nd oraz -> Wt+Pt+Sb+Cz; zrzut dialog_shots/program_copy_sequence.png)",
         "dialog_shots/program_day_dialog.png",
@@ -454,7 +494,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -462,7 +502,7 @@
       "schema": null,
       "schema_version": null,
       "records": 6,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -470,7 +510,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -478,7 +518,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -486,7 +526,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -494,7 +534,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -502,7 +542,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -510,7 +550,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -518,7 +558,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -526,7 +566,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -534,7 +574,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -542,7 +582,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -550,7 +590,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -558,7 +598,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -566,7 +606,7 @@
       "schema": null,
       "schema_version": null,
       "records": 3,
-      "date": "2026-11-24T11:07:14.093477+00:00",
+      "date": "2026-11-24T13:31:05.558154+00:00",
       "evidence_paths": []
     },
     {
@@ -574,7 +614,7 @@
       "schema": null,
       "schema_version": null,
       "records": 10,
-      "date": "2026-11-24T08:39:05.165714+00:00",
+      "date": "2026-11-24T13:31:05.558316+00:00",
       "evidence_paths": []
     },
     {
@@ -582,7 +622,7 @@
       "schema": null,
       "schema_version": null,
       "records": 1,
-      "date": "2026-11-24T08:38:30.369798+00:00",
+      "date": "2026-11-24T13:31:05.558336+00:00",
       "evidence_paths": []
     },
     {
@@ -590,7 +630,7 @@
       "schema": null,
       "schema_version": null,
       "records": 1,
-      "date": "2026-11-24T08:35:10.223111+00:00",
+      "date": "2026-11-24T13:31:05.558887+00:00",
       "evidence_paths": []
     },
     {
@@ -598,7 +638,7 @@
       "schema": null,
       "schema_version": null,
       "records": 1,
-      "date": "2026-11-24T08:35:12.358763+00:00",
+      "date": "2026-11-24T13:31:05.559324+00:00",
       "evidence_paths": []
     }
   ]

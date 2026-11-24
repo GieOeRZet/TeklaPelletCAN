@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+import sys as _s,pathlib as _p; _s.path.insert(0,str(_p.Path(__file__).resolve().parent)); import paths as _paths
 """PASS 102: aggregate all presenter_map widget offsets by setter."""
 import csv,pathlib
-src=pathlib.Path(__file__).resolve().parents[1]/"analiza/FW2213TK-2026-11-22/data/presenter_map.csv"; out=pathlib.Path(__file__).resolve().parents[1]/"analiza/FW2213TK-2026-11-22/data/cg_presenter_setter_offsets_full.csv"
+src=_paths.DATA/"presenter_map.csv"; out=_paths.DATA/"cg_presenter_setter_offsets_full.csv"
 d={}
 with src.open(encoding="utf-8-sig") as f:
  for r in csv.DictReader(f):

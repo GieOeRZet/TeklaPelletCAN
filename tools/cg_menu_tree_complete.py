@@ -7,11 +7,12 @@ cg_menu_dispatch_closure.csv. It never guesses missing semantic fields.
 """
 
 from __future__ import annotations
+import sys as _s,pathlib as _p; _s.path.insert(0,str(_p.Path(__file__).resolve().parent)); import paths as _paths
 import csv
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "analiza/FW2213TK-2026-11-22/data"
+DATA = _paths.DATA
 
 def read_csv(name):
     with (DATA / name).open(encoding="utf-8", newline="") as f:

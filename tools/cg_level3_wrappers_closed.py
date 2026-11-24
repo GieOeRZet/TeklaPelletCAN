@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import sys as _s,pathlib as _p; _s.path.insert(0,str(_p.Path(__file__).resolve().parent)); import paths as _paths
 """PASS 106: level-3 wrapper structural inventory."""
 import pathlib
-print(pathlib.Path(__file__).resolve().parents[1]/"analiza/FW2213TK-2026-11-22/data/cg_level3_wrappers_closed.csv")
+print(_paths.DATA/"cg_level3_wrappers_closed.csv")
