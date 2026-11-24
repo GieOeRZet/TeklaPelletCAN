@@ -10,3 +10,11 @@ def tap_incremental(s, nav, i):
         if d == 0: return False
         off += d; prev = cur
     return False
+
+def tap_tail(s, nav, i, n_total):
+    """ogon MENU: przewin do konca (dragi 200->80 do braku zmiany), stuknij od dolu (ostatni wiersz y=227, pitch 50); zwraca True gdy widok sie zmienil"""
+    for _ in range(40):
+        if not s.drag_until_change(240, 200, 240, 80, attempts=6, ticks=240, pause_end=160): break
+    s.wait(900); y = 227 - 50 * (n_total - 1 - i)
+    if not (60 <= y <= 250): return False
+    s.tap(240, y, settle=800); s.wait(300); return hex(s.b.rd(s.b.rd(0x20024818))) != "0x808f66c"

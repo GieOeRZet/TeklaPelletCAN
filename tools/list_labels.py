@@ -14,7 +14,12 @@ for key, lst in sc.items():
     node = lst["node"]; idx, kind = node.split("_", 1); idx = int(idx); d = lc3 if idx in (9, 10) else l3
     s = U.UiSession.from_checkpoint(str(paths.FIRMWARE), os.path.join(d, "menu.state"), None); s.wait(120)
     nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = pickle.load(open(os.path.join(d, "rows.pkl"), "rb")); t = C.Tracer(s); t.log.clear()
-    if not ui_nav.tap_incremental(s, nav, idx): print(key, "TAP_FAILED", flush=True); continue
+    ok = ui_nav.tap_incremental(s, nav, idx) and hex(s.b.rd(s.b.rd(0x20024818))) != "0x808f66c"
+    if not ok and idx >= 13:      # ogon menu poziomu 3 (19 wierszy w konfiguracji FULL)
+        s = U.UiSession.from_checkpoint(str(paths.FIRMWARE), os.path.join(d, "menu.state"), None); s.wait(120)
+        nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = pickle.load(open(os.path.join(d, "rows.pkl"), "rb")); t = C.Tracer(s); t.log.clear()
+        ok = ui_nav.tap_tail(s, nav, idx, 19)
+    if not ok: print(key, "TAP_FAILED", flush=True); continue
     s.wait(700)
     if kind == "settings": s.tap(400, 245, settle=800); s.wait(500)
     ws = C.widget_table(s, t); ex = X.extract(s, ws); lab = {}
@@ -29,12 +34,17 @@ for key, lst in sc.items():
         if lo and hi:
             a, b = max(lo), min(hi)
             if known[a] - a == known[b] - b: return r["idx"] + known[a] - a, "wnioskowany (kotwice o tym samym przesunieciu)"
+        if lo and not hi: a = max(lo); return r["idx"] + known[a] - a, "ekstrapolowany (ostatnia kotwica)"
+        if hi and not lo: b = min(hi); return r["idx"] + known[b] - b, "ekstrapolowany (pierwsza kotwica)"
         return None, None
+    used = set()
     for r in R_:
         if base is None: continue
         sl, how = slot_of(r)
         if sl is None or not r.get("pid"): continue
         t_ = lab.get(base + 50 * sl)
+        if t_ and (sl in used): t_ = None
+        if t_: used.add(sl)
         if t_: rows[str(r["idx"])] = dict(slot=sl, label_pl=t_, pid=r.get("pid"), how=how)
     res[key] = dict(node=node, base_ay=base, labels_found=len(lab), rows=rows); json.dump(res, open(out, "w"), ensure_ascii=False, indent=1)
     print(key, node, "etykiet:", len(lab), "przypisano:", len(rows), "z", len(lst["rows"]), flush=True)

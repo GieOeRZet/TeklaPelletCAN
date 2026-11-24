@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### 1:1 (2026-11-24) etykiety PL list: wszystkie wiersze z PID w 13 listach (Statystyki 13/13)
+Zrobilem: nawigacja do Statystyk (ogon MENU L3), ekstrapolacja slotow z kotwic na krancach; etykiety PL (MEASURED z RAM) dla praktycznie wszystkich wierszy z PID, w tym Statystyki i Konfiguracja 21/26 (reszta bez PID). Dane: `ui_model/list_labels_pl.json`. Pozostalo: etykiety opcji enum tekstowych, stan online, krok dialogu wszystkich wierszy, Kopiuj/INTERNET, 2 komorki Konfiguracja przy kaskadzie.
+
 ### 1:1 (2026-11-24) nawigacja do ogona MENU naprawiona: 634 komorki, 0 nierozstrzygnietych poza 2
 Zrobilem: fallback przewijania do konca menu i stukania od dolu (`coverage_gen.py`) - 16 komorek (Test wyjsc, Statystyki, Siec, Internet w konfiguracjach DEFAULT, 2105=0, 2105=2, L3 DEFAULT) zmierzone: **0.2-2.3%** (wiersze istnieja w kazdej konfiguracji, wiec `visible_in` bylo poprawne; 'prawdopodobnie niedostepne' bylo bledem). Wynik calosci: **634 komorki, mediana 0.2%, 99.7% < 3%, 0 > 8%**. Zostaly 2 komorki: KONFIGURACJA przy kaskadzie+magazynie (L1, L3) - stukniecie trafia o jeden wiersz dalej (okno 'Wpisz PIN'), blad przewijania przyrostowego. Pozostalo: etykiety enum tekstowych, Statystyki/Siec etykiety, stan 'online', krok dialogu wszystkich wierszy, Kopiuj/INTERNET.
 

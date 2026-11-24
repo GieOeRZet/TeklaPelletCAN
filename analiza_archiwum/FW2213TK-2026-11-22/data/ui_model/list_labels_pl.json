@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0",
- "evidence": "MEASURED (teksty widgetow etykiet z RAM emulatora, poziom 3); przypisanie do wiersza: slot zmierzony (list_scales) albo wnioskowany miedzy kotwicami o tym samym przesunieciu (pole how)",
+ "evidence": "MEASURED (teksty widgetow etykiet z RAM emulatora, poziom 3); przypisanie do wiersza: slot zmierzony (list_scales), wnioskowany miedzy kotwicami albo ekstrapolowany (pole how); wiersze bez PID (wykresy/separatory) pominiete",
  "lists": {
   "0x00": {
    "node": "0_settings",
@@ -374,6 +374,18 @@
      "label_pl": "Czas mieszacza [s]",
      "pid": "0x22B5",
      "how": "zmierzony"
+    },
+    "21": {
+     "slot": 22,
+     "label_pl": "Stała pompa",
+     "pid": "0x22F1",
+     "how": "ekstrapolowany (ostatnia kotwica)"
+    },
+    "22": {
+     "slot": 23,
+     "label_pl": "Obniżenie Tco dla ochrony powrotu",
+     "pid": "0x22F9",
+     "how": "ekstrapolowany (ostatnia kotwica)"
     }
    }
   },
@@ -501,6 +513,18 @@
      "label_pl": "Czas mieszacza [s]",
      "pid": "0x22B6",
      "how": "zmierzony"
+    },
+    "21": {
+     "slot": 22,
+     "label_pl": "Stała pompa",
+     "pid": "0x22F2",
+     "how": "ekstrapolowany (ostatnia kotwica)"
+    },
+    "22": {
+     "slot": 23,
+     "label_pl": "Obniżenie Tco dla ochrony powrotu",
+     "pid": "0x22FA",
+     "how": "ekstrapolowany (ostatnia kotwica)"
     }
    }
   },
@@ -628,6 +652,18 @@
      "label_pl": "Czas mieszacza [s]",
      "pid": "0x22B7",
      "how": "zmierzony"
+    },
+    "21": {
+     "slot": 22,
+     "label_pl": "Stała pompa",
+     "pid": "0x22F3",
+     "how": "ekstrapolowany (ostatnia kotwica)"
+    },
+    "22": {
+     "slot": 23,
+     "label_pl": "Obniżenie Tco dla ochrony powrotu",
+     "pid": "0x22FB",
+     "how": "ekstrapolowany (ostatnia kotwica)"
     }
    }
   },
@@ -755,6 +791,18 @@
      "label_pl": "Czas mieszacza [s]",
      "pid": "0x22B8",
      "how": "zmierzony"
+    },
+    "21": {
+     "slot": 22,
+     "label_pl": "Stała pompa",
+     "pid": "0x22F4",
+     "how": "ekstrapolowany (ostatnia kotwica)"
+    },
+    "22": {
+     "slot": 23,
+     "label_pl": "Obniżenie Tco dla ochrony powrotu",
+     "pid": "0x22FC",
+     "how": "ekstrapolowany (ostatnia kotwica)"
     }
    }
   },
@@ -920,6 +968,12 @@
      "label_pl": "Delta załączenia pompy [°C]",
      "pid": "0x3170",
      "how": "zmierzony"
+    },
+    "6": {
+     "slot": 7,
+     "label_pl": "Stopniowa redukcja mocy",
+     "pid": "0x3011",
+     "how": "ekstrapolowany (ostatnia kotwica)"
     }
    }
   },
@@ -1115,14 +1169,135 @@
      "label_pl": "Numer profilu",
      "pid": "0x350B",
      "how": "zmierzony"
+    },
+    "18": {
+     "slot": 19,
+     "label_pl": "Pompa kotłowa",
+     "pid": "0x299E",
+     "how": "ekstrapolowany (ostatnia kotwica)"
+    },
+    "19": {
+     "slot": 20,
+     "label_pl": "Kaskada master",
+     "pid": "0x350C",
+     "how": "ekstrapolowany (ostatnia kotwica)"
+    },
+    "20": {
+     "slot": 21,
+     "label_pl": "Czujnik ciśnienia",
+     "pid": "0x350D",
+     "how": "ekstrapolowany (ostatnia kotwica)"
+    },
+    "21": {
+     "slot": 22,
+     "label_pl": "Dodatkowy magazyn paliwa",
+     "pid": "0x3525",
+     "how": "ekstrapolowany (ostatnia kotwica)"
+    },
+    "22": {
+     "slot": 23,
+     "label_pl": "Pomiar energii",
+     "pid": "0x3629",
+     "how": "ekstrapolowany (ostatnia kotwica)"
+    },
+    "23": {
+     "slot": 24,
+     "label_pl": "Kopiuj nastawy z innego sterownika",
+     "pid": "0x3722",
+     "how": "ekstrapolowany (ostatnia kotwica)"
+    },
+    "25": {
+     "slot": 26,
+     "label_pl": "Dmuchawa z HALL",
+     "pid": "0x404E",
+     "how": "ekstrapolowany (ostatnia kotwica)"
     }
    }
   },
   "0x11": {
    "node": "16_screen",
-   "base_ay": null,
-   "labels_found": 0,
-   "rows": {}
+   "base_ay": 59,
+   "labels_found": 13,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Licznik rozpaleń",
+     "pid": "0x3608",
+     "how": "zmierzony"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Średni czas rozpalania [s]",
+     "pid": "0x3609",
+     "how": "zmierzony"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Średnia moc palnika z 50 godzin [%]",
+     "pid": "0x3610",
+     "how": "zmierzony"
+    },
+    "3": {
+     "slot": 3,
+     "label_pl": "Czas pracy podajnika 1 [h]",
+     "pid": "0x3611",
+     "how": "zmierzony"
+    },
+    "4": {
+     "slot": 4,
+     "label_pl": "Czas pracy podajnika 2 [h]",
+     "pid": "0x3612",
+     "how": "zmierzony"
+    },
+    "5": {
+     "slot": 5,
+     "label_pl": "Całkowite zużycie paliwa [kg]",
+     "pid": "0x3507",
+     "how": "zmierzony"
+    },
+    "6": {
+     "slot": 6,
+     "label_pl": "Średni tlen dla mocy 30% [%]",
+     "pid": "0x3613",
+     "how": "zmierzony"
+    },
+    "7": {
+     "slot": 7,
+     "label_pl": "Średni tlen dla mocy 50% [%]",
+     "pid": "0x3614",
+     "how": "zmierzony"
+    },
+    "8": {
+     "slot": 8,
+     "label_pl": "Średni tlen dla mocy 70% [%]",
+     "pid": "0x3615",
+     "how": "zmierzony"
+    },
+    "9": {
+     "slot": 9,
+     "label_pl": "Średni tlen dla mocy 90% [%]",
+     "pid": "0x3616",
+     "how": "zmierzony"
+    },
+    "10": {
+     "slot": 10,
+     "label_pl": "Liczba czyszczeń wymiennika",
+     "pid": "0x3618",
+     "how": "zmierzony"
+    },
+    "11": {
+     "slot": 11,
+     "label_pl": "Liczba przegrzań kotła",
+     "pid": "0x3619",
+     "how": "zmierzony"
+    },
+    "12": {
+     "slot": 12,
+     "label_pl": "Liczba zaników zasilania",
+     "pid": "0x362A",
+     "how": "zmierzony"
+    }
+   }
   }
  }
 }
