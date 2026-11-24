@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E3 korekta (2026-11-24): 644 komorek, 0 falszywych 'niewidocznych'; 8 nierozstrzygnietych
+Zrobilem: poprawka metody - wczesniejsze 'NOT_VISIBLE' (19) byly w czesci bledem pomiaru (zszyty obraz MENU urywa sie po 13 wierszach; po przewinieciu do konca widac Test wyjsc/Statystyki/Siec/Internet, np. L1 + 2105=2). Teraz stukanie przewija i sumuje przesuniecia (`tap_incremental`). Wynik: **644 komorki, mediana 0.2%, 93.5% < 3%, 96.3% < 8%**. Nierozstrzygniete 8: L1/L3 DEFAULT (Test wyjsc, Statystyki, Siec, Internet - lista konczy sie przed nimi, prawdopodobnie realnie niedostepne w tej konfiguracji) i KONFIGURACJA przy kaskadzie+magazynie (stukniecie trafia w inny wiersz). Pozostalo: ALARMY L0 (12.6%, OPEN#2 - stan statyczny, niezalezny od taktowania; ramka obrazu przesunieta o ~100 px z zawinieciem, mechanizm nieznany), stan online.
+
 ### E7 (2026-11-24) ekran PROGRAM w karcie + poprawka kafla Paliwo
 Zrobilem: ekran PROGRAM (harmonogram tygodniowy z danych firmware) otwierany z Kociola paskiem harmonogramu, wstecz `<`; poprawiony konflikt obszarow dotyku HOME (kafel MENU vs Paliwo); testy Playwright: HOME->MENU, 5 okien HOME, Kociol->PROGRAM->Kociol: OK. README prototypu. Stan E7: 18 ekranow + 5 okien. Pozostalo: edycja PROGRAM/dialogow, listy przewijalne, /api/v1/states (tylko odczyt), ALARMY L0 (OPEN#2), stan 'online'.
 
