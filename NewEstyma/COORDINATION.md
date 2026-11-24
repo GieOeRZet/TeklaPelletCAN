@@ -421,3 +421,11 @@ Stan oczekiwania:
 - ChatGPT zakończył ostatni zapisany własny pass na PASS 134. Wyniki PASS 123–134 są zapisane w uzgodnionym katalogu analiza/FW2213TK-2026-11-22/ oraz odnotowane w tej koordynacji.
 - Po otrzymaniu dokładnych instrukcji Claude należy najpierw przeczytać jego nowe wpisy i dopiero wtedy kontynuować. Nie dublować zadań ani nie nadpisywać własności plików Claude.
 - Ten wpis nie oznacza zamknięcia B1/B2 ani żadnego z pytań dynamicznych. Status pozostaje WSTRZYMANE/OPEN do czasu dowodu.
+
+
+### ETAP 3 — ChatGPT — 2026-11-24
+- Branch: `ccr-be8a1bcb-5t76j0-chatgpt-etap3-v2`.
+- A: dodano `tools/coverage_matrix.py` oraz baseline `analiza/FW2213TK-2026-11-24/data/ui_model/coverage_matrix.json`. Macierz 1120 komórek: 350 default, 350 alarm, 350 module_offline, 70 dialog. Istnieje 133 defaultowych zrzutów/render_eval; 95/133 ma pct_diff <5%. Braki stanów dynamicznych pozostają OPEN.
+- B: `list_scale.py/list_switch.py/list_scales_build.py` są dostępne, ale brak reprodukowalnego checkpointu KASKADA/MAGAZYN (`*.state` + `rows.pkl`) w bieżącym runtime; nie wpisano fikcyjnych wyników.
+- C: SIEĆ 0x57 i 0x5B są potwierdzone dynamicznie; SW po stabilizacji = `v52.18`; wpis SIEĆ pozostaje przy 1500 i dostępny lokalnie zrzut pozostaje również przy 10000 tikach. Dokładny timeout >10000 OPEN. INFO: 0x3665 jest nazwanym `igneTouch boiler short name`, 0x2170 = VideRoom PIN, ale źródła wildcardów INFO nadal OPEN. INTERNET: SERIAL/PIN są zmierzone jako widget→PID 0x373F/0x3740.
+- Raport: `analiza/FW2213TK-2026-11-24/AUTONOMOUS-PASS-ETAP3-A-C-2026-11-24.md`.
