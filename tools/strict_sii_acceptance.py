@@ -123,27 +123,65 @@ def feed_nodes(nodes, rounds=8):
 
 
 def discover_tap_for_label(s, label):
-    """Derive a touch coordinate from live widget RAM, never from a screenshot."""
-    tracer = CT.Tracer(s)
-    # Re-run the current screen construction from its parent is outside this
-    # helper; callers should pass a session already positioned on the screen.
-    # Existing widgets can still be enumerated when tracer has captured the
-    # current view construction. If not, fail rather than guessing.
-    ws = CT.widget_table(s, tracer)
-    labels = [w for w in ws if w.get("role") == "text" and w.get("wildcard") == label]
-    if not labels:
-        raise RuntimeError("label not found in widget trace: %r" % label)
-    lab = labels[0]
-    candidates = [
-        w for w in ws
-        if w.get("touch") == 1 and w.get("vis") == 1
-        and w.get("ax", -9999) >= lab.get("ax", 0)
-        and abs(w.get("ay", 0) - lab.get("ay", 0)) <= max(20, lab.get("h", 0))
-    ]
-    if not candidates:
-        raise RuntimeError("no touchable widget found for label: %r" % label)
-    w = min(candidates, key=lambda x: (abs(x["ay"] - lab["ay"]), abs(x["ax"] - lab["ax"])))
-    return [w["ax"] + w["w"] // 2, w["ay"] + w["h"] // 2], w
+    """Find a touchable widget in live RAM adjacent to a rendered text label."""
+    rd = s.b.rd
+    text_vptrs = {0x0807E15C, 0x0807E1D8, 0x0807E7F8}
+    found = []
+    for a in range(0x20000000, 0x20030000, 4):
+        try:
+            if rd(a, 4) not in text_vptrs:
+                continue
+            vis = rd(a + 0x25, 1)
+            if vis != 1:
+                continue
+            bp = rd(a + 0x34, 4) if rd(a, 4) != 0x0807E7F8 else 0
+            text = ""
+            if 0x20000000 <= bp < 0x2002FFC0:
+                chars = []
+                for i in range(48):
+                    ch = rd(bp + 2 * i, 2)
+                    if ch == 0:
+                        break
+                    chars.append(chr(ch))
+                text = "".join(chars)
+            if text != label:
+                continue
+            def rect(q):
+                vals = []
+                for i in range(4):
+                    lo, hi = rd(q + 4 + 2*i, 1), rd(q + 5 + 2*i, 1)
+                    v = lo | (hi << 8)
+                    if v & 0x8000:
+                        v -= 0x10000
+                    vals.append(v)
+                return vals
+            x, y, w, h = rect(a)
+            # Walk the live object tree by scanning valid Drawable parents.
+            candidates = []
+            for q in range(0x20000000, 0x20030000, 4):
+                try:
+                    if rd(q + 0x24, 1) != 1 or rd(q + 0x25, 1) != 1:
+                        continue
+                    rx, ry, rw, rh = rect(q)
+                    if rw <= 0 or rh <= 0 or rw > 480 or rh > 272:
+                        continue
+                    if abs(ry - y) > max(20, h) or rx < x:
+                        continue
+                    candidates.append((abs(ry-y) + abs(rx-x), q, rx, ry, rw, rh))
+                except Exception:
+                    continue
+            if not candidates:
+                raise RuntimeError("no touchable widget next to label %r" % label)
+            _, q, rx, ry, rw, rh = min(candidates)
+            return [rx + rw//2, ry + rh//2], {
+                "label_addr": hex(a), "label_rect": [x,y,w,h],
+                "touch_addr": hex(q), "touch_rect": [rx,ry,rw,rh],
+            }
+        except RuntimeError:
+            raise
+        except Exception:
+            continue
+    raise RuntimeError("label not found in live RAM: %r" % label)
 
 def tap(x, y, settle=700):
     def action(s):
