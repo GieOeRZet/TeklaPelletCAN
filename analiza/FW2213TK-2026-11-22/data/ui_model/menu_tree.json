@@ -99,12 +99,12 @@
   },
   {
    "id": "TEST_WYJSC",
-   "title_pl": "Test wyjsc",
+   "title_pl": "Test wyjsc (22 wyjscia, A/OFF/ON)",
    "vtable": "0x808f80c",
    "kind": "screen",
    "level_min": 1,
    "evidence": "MEASURED (vtable w pass63_view_classes.json)",
-   "note": ""
+   "note": "wiersz -> PID testowy, wartosci 0/1/2: ui_model/outputs_test.json"
   },
   {
    "id": "SIEC",

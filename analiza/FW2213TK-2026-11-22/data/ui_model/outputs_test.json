@@ -1,0 +1,285 @@
+{
+ "evidence": "MEASURED/STRONG (PASS 69, emulator: stukniecia OFF i ON w kazdy wiersz, pozycje przyciskow z widzetow, odczyt PID i ramek 0x584); wiersze oznaczone STRONG: pomiar dal duplikat sasiedniego wiersza, przypisanie wg nazwy PID",
+ "screen": {
+  "node": "TEST_WYJSC",
+  "vtable": "0x808f80c",
+  "level_min": 1,
+  "title": "TEST WYJSC",
+  "layout": "lista 22 wyjsc; przy kazdym trzy pola wyboru: A (auto) / OFF / ON; wiersze Dm. i WentWyc maja dodatkowo suwak mocy",
+  "columns": {
+   "A": {
+    "x": 320,
+    "size": [
+     30,
+     31
+    ],
+    "value": 0,
+    "meaning": "auto (sterowanie przez logike kotla)"
+   },
+   "OFF": {
+    "x": 360,
+    "size": [
+     30,
+     31
+    ],
+    "value": 1,
+    "meaning": "wymuszone wylaczenie"
+   },
+   "ON": {
+    "x": 400,
+    "size": [
+     30,
+     31
+    ],
+    "value": 2,
+    "meaning": "wymuszone wlaczenie"
+   }
+  },
+  "row_height": 50,
+  "first_row_y": 59,
+  "pid_write": "stuknięcie A/OFF/ON zapisuje PID 'XXX test' wartoscia 0/1/2 (ramka 0x584: 42 <pid_lo> <pid_hi> 01 <wartosc>), natychmiast; ON dodatkowo uruchamia powiazane stany (np. pompa CWU -> 0x2278 stan pompy)"
+ },
+ "rows": [
+  {
+   "row": 0,
+   "label": "Pompa CWU",
+   "test_pid": "0x2296",
+   "test_pid_name": "HW1 pump test",
+   "related": [
+    {
+     "pid": "0x2278",
+     "name": "Hot water pump state"
+    }
+   ],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 1,
+   "label": "Pompa cyrkulacyjna CWU",
+   "test_pid": "0x374A",
+   "test_pid_name": "HW1 circular pump test",
+   "related": [
+    {
+     "pid": "0x3749",
+     "name": "Hot water circular pump state"
+    }
+   ],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 2,
+   "label": "Pompa kotlowa",
+   "test_pid": "0x2286",
+   "test_pid_name": "Boiler pump test",
+   "related": [],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 3,
+   "label": "Pompa solarna",
+   "test_pid": "0x311F",
+   "test_pid_name": "Solar pump test",
+   "related": [
+    {
+     "pid": "0x311C",
+     "name": "Solar pump state"
+    }
+   ],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 4,
+   "label": "Podajnik",
+   "test_pid": "0x2259",
+   "test_pid_name": "Burner storage feeder test",
+   "related": [],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 5,
+   "label": "Ruszt",
+   "test_pid": "0x2279",
+   "test_pid_name": "Burner grate test",
+   "related": [],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 6,
+   "label": "Wymiennik",
+   "test_pid": "0x2285",
+   "test_pid_name": "Exchanger cleaner test",
+   "related": [],
+   "evidence": "STRONG (nazwa PID; pomiar dal duplikat sasiedniego wiersza)"
+  },
+  {
+   "row": 7,
+   "label": "Zapalarka",
+   "test_pid": "0x2284",
+   "test_pid_name": "Igniter test",
+   "related": [],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 8,
+   "label": "Podajnik palnika",
+   "test_pid": "0x2295",
+   "test_pid_name": "Burner feeder test",
+   "related": [],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 9,
+   "label": "Magazyn paliwa transport(1)",
+   "test_pid": "0x351E",
+   "test_pid_name": "External fuel storage motor 1 test",
+   "related": [
+    {
+     "pid": "0x3522",
+     "name": "External fuel storage motor 1 state"
+    }
+   ],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 10,
+   "label": "Magazyn paliwa podajnik(2)",
+   "test_pid": "0x351F",
+   "test_pid_name": "External fuel storage motor 2 test",
+   "related": [
+    {
+     "pid": "0x3523",
+     "name": "External fuel storage motor 2 state"
+    }
+   ],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 11,
+   "label": "Dm. (dmuchawa)",
+   "test_pid": "0x2283",
+   "test_pid_name": "Blower test",
+   "related": [
+    {
+     "pid": "0x2254",
+     "name": "Burner blower"
+    }
+   ],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 12,
+   "label": "WentWyc (wentylator wyciagowy)",
+   "test_pid": "0x2293",
+   "test_pid_name": "Exhaust fan test",
+   "related": [],
+   "evidence": "STRONG (nazwa PID; pomiar dal duplikat sasiedniego wiersza)"
+  },
+  {
+   "row": 13,
+   "label": "Pompa CO1",
+   "test_pid": "0x229D",
+   "test_pid_name": "CH pump test",
+   "related": [],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 14,
+   "label": "Pompa CO2",
+   "test_pid": "0x229E",
+   "test_pid_name": "CH pump test",
+   "related": [],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 15,
+   "label": "Pompa CO3",
+   "test_pid": "0x229F",
+   "test_pid_name": "CH pump test",
+   "related": [],
+   "evidence": "STRONG (nazwa PID; pomiar dal duplikat sasiedniego wiersza)"
+  },
+  {
+   "row": 16,
+   "label": "Pompa CO4",
+   "test_pid": "0x22A0",
+   "test_pid_name": "CH pump test",
+   "related": [],
+   "evidence": "STRONG (nazwa PID; pomiar dal duplikat sasiedniego wiersza)"
+  },
+  {
+   "row": 17,
+   "label": "Mieszacz CO1",
+   "test_pid": "0x214A",
+   "test_pid_name": "CH mixer test",
+   "related": [
+    {
+     "pid": "0x22B9",
+     "name": "CH mixer state"
+    }
+   ],
+   "evidence": "STRONG (nazwa PID; pomiar dal duplikat sasiedniego wiersza)"
+  },
+  {
+   "row": 18,
+   "label": "Mieszacz CO2",
+   "test_pid": "0x214B",
+   "test_pid_name": "CH mixer test",
+   "related": [
+    {
+     "pid": "0x22BA",
+     "name": "CH mixer state"
+    }
+   ],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 19,
+   "label": "Mieszacz CO3",
+   "test_pid": "0x214C",
+   "test_pid_name": "CH mixer test",
+   "related": [
+    {
+     "pid": "0x22BB",
+     "name": "CH mixer state"
+    }
+   ],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 20,
+   "label": "Mieszacz CO4",
+   "test_pid": "0x214D",
+   "test_pid_name": "CH mixer test",
+   "related": [
+    {
+     "pid": "0x22BC",
+     "name": "CH mixer state"
+    }
+   ],
+   "evidence": "MEASURED"
+  },
+  {
+   "row": 21,
+   "label": "Mieszacz powrotu",
+   "test_pid": "0x216D",
+   "test_pid_name": "Boiler return mixer test",
+   "related": [
+    {
+     "pid": "0x216F",
+     "name": "CH mixer state"
+    }
+   ],
+   "evidence": "MEASURED"
+  }
+ ],
+ "power_sliders": {
+  "blower_power": "0x2288 (Blower test power)",
+  "exhaust_fan_power": "0x2298 (Exhaust fan test power)",
+  "note": "suwaki mocy przy wierszach dmuchawy i wentylatora; zakresy i zapis OPEN"
+ },
+ "open": [
+  "wiersze 6, 12, 15, 16, 17: potwierdzic pomiarem (duplikaty przy przewijaniu)",
+  "suwaki mocy 0x2288/0x2298: zakres i ramka",
+  "wartosc 'A' (0) - stukniecie w A nie mierzone osobno"
+ ]
+}

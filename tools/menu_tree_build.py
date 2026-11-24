@@ -23,7 +23,7 @@ node("OGRZEWANIE", "Ogrzewanie obwod 1..4 (jedna klasa, instancje)", "0x808f5d0"
 node("CWU", "Ciepla woda uzytkowa", "0x808f604"); node("SOLARY", "Solary", "0x808f978"); node("BUFOR", "Bufor", "0x808edb0")
 node("ALARMY", "Historia alarmow", "0x808ec10", note="dane z rejestrow alarmow 0x4010..0x404D (nie z PID-ow GUI); szczegoly: ui_model/alarms.json")
 node("INFO", "Informacje o programie", "0x808f638", note="teksty statyczne")
-node("TEST_WYJSC", "Test wyjsc", "0x808f80c", level_min=1); node("SIEC", "Siec", "0x808f770", level_min=1); node("INTERNET", "Internet", "0x808f9ac", level_min=1)
+node("TEST_WYJSC", "Test wyjsc (22 wyjscia, A/OFF/ON)", "0x808f80c", level_min=1, note="wiersz -> PID testowy, wartosci 0/1/2: ui_model/outputs_test.json"); node("SIEC", "Siec", "0x808f770", level_min=1); node("INTERNET", "Internet", "0x808f9ac", level_min=1)
 node("PROGRAM", "PROGRAM (harmonogram tygodniowy)", "0x808f910", evidence="MEASURED (PASS 66; szczegoly: ui_model/program_screen.json)", note="7 dni x bitmaska 24 h (bit=1 komfort); dialog edycji dnia i dialog Kopiuj jako nakladki")
 node("LISTA", "Lista parametrow (NASTAWY / Konfiguracja / Statystyki)", "0x808f944", note="jedna klasa; tresc = klasa runtime x poziom -> panel_lists_by_level.csv")
 node("KASKADA", "Kaskada (MASTER, SLAVE 1..3, stopien mocy)", "0x808ee18", evidence="MEASURED (PASS 65: ekran odslonieto 0x350C=1; 72 widgety, 18 wiazan PID-diff)")
