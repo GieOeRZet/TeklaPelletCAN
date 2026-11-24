@@ -13,3 +13,8 @@ Cel: karta HA/www/Android/ESP wygladajaca i zachowujaca sie jak oryginalny panel
 | E7 | Szkielet karty HA (web) z `ui_model`: nawigacja wg menu_tree, ekran Kociol + lista Nastawy z zywymi wartosciami (dane przykladowe) | prototyp w `web/` otwiera sie i nawiguje |
 
 Zasady anty-petlowe: kazdy etap max 2 iteracje poprawek po osiagnieciu kryterium; nowe znaleziska -> `BACKLOG.md`. Jesli etap blokuje sie > 1 h bez postepu - zapis w `OPEN_POD_MUREM.md` i dalej.
+
+## Harmonogram i raportowanie (ustalone z wlascicielem 2026-11-24, praca autonomiczna kilka godzin)
+Raport "zrobilem X z Y, pozostalo Z" na gore `RAPORT_POSTEPU.md` + commit + push: po KAZDYM podetapie (nie rzadziej niz co ~30-40 min pracy), nawet krotki ("heartbeat" z liczbami).
+Kolejnosc: E2a okna HOME x5 (osobno kazde okno = wpis) -> E2b dialog enum -> E2c tor suwaka + Kopiuj <5% -> E3 (a: generator komorek, b: stany alarm, c: offline/dialog, d: tabela %) -> E4 (paczki ekranow po ~8, wpis po paczce, % mediana) -> E5 (freeze, `git mv analiza analiza_archiwum` + odwolania, smoke_test przed/po) -> E6 odswiezenie po zmianach -> E7 rozbudowa prototypu (ekran Kociol, zywe wartosci przez pid_to_point).
+Odtworzenie w nowym czacie: `HANDOFF_AGENT_UI.md` + `bash tools/rebuild_env.sh` (~3 min) + WYMAGANE ponowne wgranie `FW2213TK_kopia.bin` przez wlasciciela (poza gitem; decyzja o LFS/repo otwarta). Zasady: 4 procesy max, ESTYMA_IDLE_FAST=1, zakaz sterowania kotlem, merge `--no-rebase`.

@@ -1,5 +1,7 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### PLAN (2026-11-24): firmware wgrany, srodowisko /tmp/w odtworzone; start E2a. Plan i kadencja raportow: PLAN_PRACY_AGENT_UI.md (dol). Stan: E1,E6,E7 gotowe, E5 czesciowo, E2 ~90%, E3-E4 przed nami.
+
 ### E7 (2026-11-24) SZKIELET DZIALA: prototyp karty z ui_model (`web/estyma_prototype/`)
 Zrobilem: `tools/build_proto_model.py` -> `model.json` (58 KB), `index.html`+`app.js` (vanilla, nie dotyka istniejacych kart): MENU z filtrem poziomu PIN i warunkow konfiguracji (0x2105-0x3525), klik Kociol -> lista nastaw z wartosciami domyslnymi z firmware i formatem ze skal, przycisk wstecz. Test Playwright: L0 = 9 wierszy menu, L3 = 15, Kociol 3 wiersze na L0, 0 bledow konsoli. Dane przykladowe, brak lacznosci z urzadzeniem (zero zapisow). Pozostalo: ekran Kociol z kafelkami (renderer), zywe wartosci przez /api/v1/states + pid_to_point.json, pozostale ekrany, wyglad 1:1 (po E3/E4).
 

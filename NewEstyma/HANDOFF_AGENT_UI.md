@@ -50,3 +50,10 @@ Wiersze menu (L1/L3): 0 kociol,1 palnik,2-5 CO1-4,6 cwu,7 solar,8 bufor,9 alarmy
 
 ## 7. Nastepne kroki
 Patrz `NewEstyma/PLAN_PRACY_AGENT_UI.md` (etapy E2-E7) i raportuj do `NewEstyma/RAPORT_POSTEPU.md`.
+
+
+## 8. Wznowienie w nowym czacie (checklista)
+1. Przeczytaj ten plik, PLAN_PRACY_AGENT_UI.md (harmonogram na dole), RAPORT_POSTEPU.md (gora = stan).
+2. Firmware: jesli brak `FW2213TK_kopia.bin` - popros Romana o wgranie (jedna krotka prosba), w miedzyczasie pracuj nad rzeczami bez emulatora.
+3. `pip install unicorn capstone pillow numpy; bash tools/rebuild_env.sh` (~3 min), `python3 tools/smoke_test.py`.
+4. Nowe narzedzia: sciezki przez `tools/paths.py`; E6/E7 gotowe (API_KONTRAKT.md, web/estyma_prototype/).
