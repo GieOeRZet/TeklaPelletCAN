@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) dialog liczbowy jak w panelu, PROGRAM klikalny, etykiety PL list
+Zrobilem: (1) uwaga wlasciciela - suwak mial niebieska galke przegladarki: dialog liczbowy odbudowany z bitmap i pozycji firmware (tor, wypelnienie, srebrna galka 46x46, przyciski -/+, OK; przeciaganie), tlo `dialogs/number_bg.png` z danych (`tools/export_dialog_static.py`); (2) PROGRAM: klik w dzien -> dialog dnia, Kopiuj -> dialog kopiowania, OK zamyka (obrazy z danych; edycja segmentow OPEN); (3) `tools/list_labels.py` + `ui_model/list_labels_pl.json`: 144 etykiety PL wierszy list (MEASURED) - karta pokazuje polskie nazwy zamiast angielskich nazw rejestrow (Konfiguracja 7 z 26, Statystyki 0 - inny uklad ekranu, do dopracowania). Ikona w lewym gornym rogu PROGRAM (zaznaczona w uwagach): nie ma jeszcze funkcji w karcie - sprawdze w firmware co robi.
+
 ### E7 (2026-11-24) karta Lovelace `estyma-panel-card` dziala na atrapie HA
 Zrobilem: `web/estyma-panel-card.js` (custom element: iframe z prototypem + most postMessage; stany z `hass.states`, mapowanie `entities:` albo domyslnie sensor.*_<id>), strona testowa `estyma_prototype/test_card.html`; test Playwright: temperatura Kotla 77.7 z atrapy hass pojawia sie na ekranie karty, 0 bledow. TYLKO ODCZYT (zero uslug HA). Instalacja opisana w naglowku pliku (kopiowanie do /config/www). Nie testowane w prawdziwym Home Assistant (brak dostepu). Pozostalo: etykiety PL list, PROGRAM edycja, dialog radio, ALARMY L0, stan online, porzadek HANDOFF/PLAN.
 

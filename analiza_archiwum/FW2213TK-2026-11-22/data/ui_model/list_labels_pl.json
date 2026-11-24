@@ -1,0 +1,816 @@
+{
+ "schema_version": "1.0",
+ "evidence": "MEASURED (teksty widgetow etykiet z RAM emulatora, poziom 3; przypisanie do wiersza po slocie z list_scales.json)",
+ "lists": {
+  "0x00": {
+   "node": "0_settings",
+   "base_ay": 59,
+   "labels_found": 13,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Temperatura zadana  [°C]",
+     "pid": "0x2003"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Histereza załączenia [°C]",
+     "pid": "0x2208"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Histereza wyłączenia [°C]",
+     "pid": "0x2291"
+    },
+    "4": {
+     "slot": 5,
+     "label_pl": "Minimalna temp. pomp [°C]",
+     "pid": "0x2207"
+    },
+    "5": {
+     "slot": 6,
+     "label_pl": "Wybieg pompy [min]",
+     "pid": "0x3708"
+    },
+    "6": {
+     "slot": 7,
+     "label_pl": "Cisza nocna od",
+     "pid": "0x3508"
+    },
+    "7": {
+     "slot": 8,
+     "label_pl": "Cisza nocna do",
+     "pid": "0x3509"
+    },
+    "8": {
+     "slot": 9,
+     "label_pl": "Minimalna temp. powrotu [°C]",
+     "pid": "0x216C"
+    },
+    "9": {
+     "slot": 10,
+     "label_pl": "Czas mieszacza [s]",
+     "pid": "0x216E"
+    },
+    "10": {
+     "slot": 11,
+     "label_pl": "Rezerwa paliwa stop [kg]",
+     "pid": "0x3604"
+    },
+    "11": {
+     "slot": 12,
+     "label_pl": "Ciśnienie min. [bar]",
+     "pid": "0x3129"
+    },
+    "12": {
+     "slot": 13,
+     "label_pl": "Ciśnienie max. [bar]",
+     "pid": "0x312A"
+    }
+   }
+  },
+  "0x0A": {
+   "node": "1_settings",
+   "base_ay": 59,
+   "labels_found": 28,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Korekta powietrza [%]",
+     "pid": "0x2273"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Moc min [%]",
+     "pid": "0x2270"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Moc max [%]",
+     "pid": "0x2271"
+    },
+    "3": {
+     "slot": 3,
+     "label_pl": "Wartość opałowa [kWh/kg]",
+     "pid": "0x2292"
+    },
+    "4": {
+     "slot": 4,
+     "label_pl": "Ilość paliwa test [kg/h]",
+     "pid": "0x2272"
+    },
+    "6": {
+     "slot": 7,
+     "label_pl": "Podawanie max [s]",
+     "pid": "0x2257"
+    },
+    "7": {
+     "slot": 8,
+     "label_pl": "Wstępna dawka paliwa [s]",
+     "pid": "0x2256"
+    },
+    "8": {
+     "slot": 9,
+     "label_pl": "Próg foto",
+     "pid": "0x226A"
+    },
+    "9": {
+     "slot": 10,
+     "label_pl": "Moc dmuchawy rozpalanie [%]",
+     "pid": "0x2289"
+    },
+    "10": {
+     "slot": 11,
+     "label_pl": "Moc dmuchawy rozżarzanie [%]",
+     "pid": "0x3704"
+    },
+    "11": {
+     "slot": 12,
+     "label_pl": "Moc dmuchawy wygaszanie [%]",
+     "pid": "0x300C"
+    },
+    "12": {
+     "slot": 13,
+     "label_pl": "Czas rozżarzania [min]",
+     "pid": "0x2290"
+    },
+    "13": {
+     "slot": 14,
+     "label_pl": "Rozżarzanie paliwo [%]",
+     "pid": "0x299A"
+    },
+    "14": {
+     "slot": 15,
+     "label_pl": "Czas wygaszania [min]",
+     "pid": "0x226B"
+    },
+    "16": {
+     "slot": 17,
+     "label_pl": "Tlen dla mocy 30%",
+     "pid": "0x214E"
+    },
+    "17": {
+     "slot": 18,
+     "label_pl": "Tlen dla mocy 100%",
+     "pid": "0x2152"
+    },
+    "18": {
+     "slot": 19,
+     "label_pl": "Liczba czyszczeń rusztu",
+     "pid": "0x2258"
+    },
+    "19": {
+     "slot": 20,
+     "label_pl": "Odstęp czyszczenia [h]",
+     "pid": "0x2999"
+    },
+    "20": {
+     "slot": 21,
+     "label_pl": "Czas pauzy [min]",
+     "pid": "0x3715"
+    },
+    "21": {
+     "slot": 22,
+     "label_pl": "Moc w pauzie [%]",
+     "pid": "0x3716"
+    },
+    "22": {
+     "slot": 23,
+     "label_pl": "Dmuchawa w pauzie [%]",
+     "pid": "0x3717"
+    },
+    "23": {
+     "slot": 24,
+     "label_pl": "Szybkość modulacji mocy",
+     "pid": "0x225A"
+    },
+    "24": {
+     "slot": 26,
+     "label_pl": "Bezwładność palnika [min]",
+     "pid": "0x2153"
+    },
+    "25": {
+     "slot": 27,
+     "label_pl": "Czas ruchu rusztu [s]",
+     "pid": "0x3003"
+    },
+    "26": {
+     "slot": 28,
+     "label_pl": "Pod. palnika [% pod. zasobnika]",
+     "pid": "0x370B"
+    },
+    "27": {
+     "slot": 29,
+     "label_pl": "Okres podajnika zasobnika [s]",
+     "pid": "0x3700"
+    }
+   }
+  },
+  "0x01": {
+   "node": "2_settings",
+   "base_ay": 59,
+   "labels_found": 23,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Temperatura komfortowa [°C]  ",
+     "pid": "0x2032"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Temperatura ekonomiczna [°C] ",
+     "pid": "0x2048"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Histereza [°C]",
+     "pid": "0x22BD"
+    },
+    "3": {
+     "slot": 3,
+     "label_pl": "Kalibracja czujnika pok. [°C]",
+     "pid": "0x22C1"
+    },
+    "5": {
+     "slot": 5,
+     "label_pl": "Temperatura CO zadana ręcznie [°C]",
+     "pid": "0x2146"
+    },
+    "6": {
+     "slot": 6,
+     "label_pl": "Temperatura CO dla -20°C [°C]",
+     "pid": "0x22C5"
+    },
+    "7": {
+     "slot": 7,
+     "label_pl": "Temperatura CO dla -10°C [°C]",
+     "pid": "0x400C"
+    },
+    "8": {
+     "slot": 8,
+     "label_pl": "Temperatura CO dla  0°C [°C]",
+     "pid": "0x22C9"
+    },
+    "9": {
+     "slot": 9,
+     "label_pl": "Temperatura CO dla 10°C [°C]",
+     "pid": "0x22CD"
+    },
+    "11": {
+     "slot": 11,
+     "label_pl": "Nazwa",
+     "pid": "0x2321"
+    },
+    "13": {
+     "slot": 14,
+     "label_pl": "Zwiększenie temperatury źródła [°C]",
+     "pid": "0x22B1"
+    },
+    "15": {
+     "slot": 16,
+     "label_pl": "Temp. maksymalna [°C]",
+     "pid": "0x22D5"
+    },
+    "17": {
+     "slot": 18,
+     "label_pl": "Wsp. korekcji t. CO [°C/°C]",
+     "pid": "0x22D9"
+    },
+    "18": {
+     "slot": 19,
+     "label_pl": "Obniżenie temperatury CO [°C]",
+     "pid": "0x22E5"
+    },
+    "19": {
+     "slot": 20,
+     "label_pl": "MIN temperatura CO pomp [°C]",
+     "pid": "0x22E9"
+    },
+    "20": {
+     "slot": 21,
+     "label_pl": "Czas mieszacza [s]",
+     "pid": "0x22B5"
+    }
+   }
+  },
+  "0x02": {
+   "node": "3_settings",
+   "base_ay": 59,
+   "labels_found": 23,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Temperatura komfortowa [°C]  ",
+     "pid": "0x2033"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Temperatura ekonomiczna [°C] ",
+     "pid": "0x2049"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Histereza [°C]",
+     "pid": "0x22BE"
+    },
+    "3": {
+     "slot": 3,
+     "label_pl": "Kalibracja czujnika pok. [°C]",
+     "pid": "0x22C2"
+    },
+    "5": {
+     "slot": 5,
+     "label_pl": "Temperatura CO zadana ręcznie [°C]",
+     "pid": "0x2147"
+    },
+    "6": {
+     "slot": 6,
+     "label_pl": "Temperatura CO dla -20°C [°C]",
+     "pid": "0x22C6"
+    },
+    "7": {
+     "slot": 7,
+     "label_pl": "Temperatura CO dla -10°C [°C]",
+     "pid": "0x400D"
+    },
+    "8": {
+     "slot": 8,
+     "label_pl": "Temperatura CO dla  0°C [°C]",
+     "pid": "0x22CA"
+    },
+    "9": {
+     "slot": 9,
+     "label_pl": "Temperatura CO dla 10°C [°C]",
+     "pid": "0x22CE"
+    },
+    "11": {
+     "slot": 11,
+     "label_pl": "Nazwa",
+     "pid": "0x2322"
+    },
+    "13": {
+     "slot": 14,
+     "label_pl": "Zwiększenie temperatury źródła [°C]",
+     "pid": "0x22B2"
+    },
+    "15": {
+     "slot": 16,
+     "label_pl": "Temp. maksymalna [°C]",
+     "pid": "0x22D6"
+    },
+    "17": {
+     "slot": 18,
+     "label_pl": "Wsp. korekcji t. CO [°C/°C]",
+     "pid": "0x22DA"
+    },
+    "18": {
+     "slot": 19,
+     "label_pl": "Obniżenie temperatury CO [°C]",
+     "pid": "0x22E6"
+    },
+    "19": {
+     "slot": 20,
+     "label_pl": "MIN temperatura CO pomp [°C]",
+     "pid": "0x22EA"
+    },
+    "20": {
+     "slot": 21,
+     "label_pl": "Czas mieszacza [s]",
+     "pid": "0x22B6"
+    }
+   }
+  },
+  "0x03": {
+   "node": "4_settings",
+   "base_ay": 59,
+   "labels_found": 23,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Temperatura komfortowa [°C]  ",
+     "pid": "0x2034"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Temperatura ekonomiczna [°C] ",
+     "pid": "0x204A"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Histereza [°C]",
+     "pid": "0x22BF"
+    },
+    "3": {
+     "slot": 3,
+     "label_pl": "Kalibracja czujnika pok. [°C]",
+     "pid": "0x22C3"
+    },
+    "5": {
+     "slot": 5,
+     "label_pl": "Temperatura CO zadana ręcznie [°C]",
+     "pid": "0x2148"
+    },
+    "6": {
+     "slot": 6,
+     "label_pl": "Temperatura CO dla -20°C [°C]",
+     "pid": "0x22C7"
+    },
+    "7": {
+     "slot": 7,
+     "label_pl": "Temperatura CO dla -10°C [°C]",
+     "pid": "0x400E"
+    },
+    "8": {
+     "slot": 8,
+     "label_pl": "Temperatura CO dla  0°C [°C]",
+     "pid": "0x22CB"
+    },
+    "9": {
+     "slot": 9,
+     "label_pl": "Temperatura CO dla 10°C [°C]",
+     "pid": "0x22CF"
+    },
+    "11": {
+     "slot": 11,
+     "label_pl": "Nazwa",
+     "pid": "0x2323"
+    },
+    "13": {
+     "slot": 14,
+     "label_pl": "Zwiększenie temperatury źródła [°C]",
+     "pid": "0x22B3"
+    },
+    "15": {
+     "slot": 16,
+     "label_pl": "Temp. maksymalna [°C]",
+     "pid": "0x22D7"
+    },
+    "17": {
+     "slot": 18,
+     "label_pl": "Wsp. korekcji t. CO [°C/°C]",
+     "pid": "0x22DB"
+    },
+    "18": {
+     "slot": 19,
+     "label_pl": "Obniżenie temperatury CO [°C]",
+     "pid": "0x22E7"
+    },
+    "19": {
+     "slot": 20,
+     "label_pl": "MIN temperatura CO pomp [°C]",
+     "pid": "0x22EB"
+    },
+    "20": {
+     "slot": 21,
+     "label_pl": "Czas mieszacza [s]",
+     "pid": "0x22B7"
+    }
+   }
+  },
+  "0x04": {
+   "node": "5_settings",
+   "base_ay": 59,
+   "labels_found": 23,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Temperatura komfortowa [°C]  ",
+     "pid": "0x2035"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Temperatura ekonomiczna [°C] ",
+     "pid": "0x204B"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Histereza [°C]",
+     "pid": "0x22C0"
+    },
+    "3": {
+     "slot": 3,
+     "label_pl": "Kalibracja czujnika pok. [°C]",
+     "pid": "0x22C4"
+    },
+    "5": {
+     "slot": 5,
+     "label_pl": "Temperatura CO zadana ręcznie [°C]",
+     "pid": "0x2149"
+    },
+    "6": {
+     "slot": 6,
+     "label_pl": "Temperatura CO dla -20°C [°C]",
+     "pid": "0x22C8"
+    },
+    "7": {
+     "slot": 7,
+     "label_pl": "Temperatura CO dla -10°C [°C]",
+     "pid": "0x400F"
+    },
+    "8": {
+     "slot": 8,
+     "label_pl": "Temperatura CO dla  0°C [°C]",
+     "pid": "0x22CC"
+    },
+    "9": {
+     "slot": 9,
+     "label_pl": "Temperatura CO dla 10°C [°C]",
+     "pid": "0x22D0"
+    },
+    "11": {
+     "slot": 11,
+     "label_pl": "Nazwa",
+     "pid": "0x2324"
+    },
+    "13": {
+     "slot": 14,
+     "label_pl": "Zwiększenie temperatury źródła [°C]",
+     "pid": "0x22B4"
+    },
+    "15": {
+     "slot": 16,
+     "label_pl": "Temp. maksymalna [°C]",
+     "pid": "0x22D8"
+    },
+    "17": {
+     "slot": 18,
+     "label_pl": "Wsp. korekcji t. CO [°C/°C]",
+     "pid": "0x22DC"
+    },
+    "18": {
+     "slot": 19,
+     "label_pl": "Obniżenie temperatury CO [°C]",
+     "pid": "0x22E8"
+    },
+    "19": {
+     "slot": 20,
+     "label_pl": "MIN temperatura CO pomp [°C]",
+     "pid": "0x22EC"
+    },
+    "20": {
+     "slot": 21,
+     "label_pl": "Czas mieszacza [s]",
+     "pid": "0x22B8"
+    }
+   }
+  },
+  "0x05": {
+   "node": "6_settings",
+   "base_ay": 59,
+   "labels_found": 12,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Temperatura komfortowa [°C]  ",
+     "pid": "0x2010"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Temperatura ekonomiczna [°C] ",
+     "pid": "0x2012"
+    },
+    "3": {
+     "slot": 3,
+     "label_pl": "Histereza [°C]",
+     "pid": "0x2212"
+    },
+    "6": {
+     "slot": 6,
+     "label_pl": "Cyrkulacja praca [min]",
+     "pid": "0x374B"
+    },
+    "7": {
+     "slot": 7,
+     "label_pl": "Cyrkulacja pauza [min]",
+     "pid": "0x374C"
+    },
+    "9": {
+     "slot": 10,
+     "label_pl": "Zwiększenie temperatury źródła [°C]",
+     "pid": "0x2216"
+    },
+    "10": {
+     "slot": 11,
+     "label_pl": "Delta załączenia pompy [°C]",
+     "pid": "0x2218"
+    },
+    "11": {
+     "slot": 12,
+     "label_pl": "Temp. maksymalna [°C]",
+     "pid": "0x201C"
+    }
+   }
+  },
+  "0x06": {
+   "node": "7_settings",
+   "base_ay": 59,
+   "labels_found": 7,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Przepływ [l/min]",
+     "pid": "0x2116"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Delta załączenia [°C]",
+     "pid": "0x3116"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Delta wyłączenia  [°C]",
+     "pid": "0x3117"
+    },
+    "3": {
+     "slot": 4,
+     "label_pl": "Ciepło właściwe [kJ/(kg*K)]",
+     "pid": "0x3118"
+    },
+    "4": {
+     "slot": 5,
+     "label_pl": "Temperatura maksymalna wody  [°C]",
+     "pid": "0x3119"
+    },
+    "5": {
+     "slot": 6,
+     "label_pl": "Max temp kolektora (alarmowa) [°C]",
+     "pid": "0x311A"
+    },
+    "6": {
+     "slot": 7,
+     "label_pl": "Min temp kolektora (alarmowa)  [°C]",
+     "pid": "0x311B"
+    }
+   }
+  },
+  "0x07": {
+   "node": "8_settings",
+   "base_ay": 59,
+   "labels_found": 7,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Temp. minimalna (góra) [°C]",
+     "pid": "0x2114"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Temp. maksymalna (dół) [°C]  ",
+     "pid": "0x2115"
+    },
+    "2": {
+     "slot": 3,
+     "label_pl": "Minimalna temp. pomp [°C]",
+     "pid": "0x2281"
+    },
+    "4": {
+     "slot": 5,
+     "label_pl": "Zwiększenie temperatury źródła [°C]",
+     "pid": "0x299B"
+    },
+    "5": {
+     "slot": 6,
+     "label_pl": "Delta załączenia pompy [°C]",
+     "pid": "0x3170"
+    }
+   }
+  },
+  "0x08": {
+   "node": "9_settings",
+   "base_ay": 59,
+   "labels_found": 9,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Liczba kotłów slave",
+     "pid": "0x351A"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Master stopień mocy",
+     "pid": "0x3511"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Slave 1 stopień mocy",
+     "pid": "0x3512"
+    },
+    "3": {
+     "slot": 3,
+     "label_pl": "Slave 2 stopień mocy",
+     "pid": "0x3513"
+    },
+    "4": {
+     "slot": 4,
+     "label_pl": "Slave 3 stopień mocy",
+     "pid": "0x3514"
+    },
+    "5": {
+     "slot": 5,
+     "label_pl": "Próg zwiększania stopnia mocy [%]",
+     "pid": "0x3515"
+    },
+    "6": {
+     "slot": 6,
+     "label_pl": "Próg zmniejszania stopnia mocy [%]",
+     "pid": "0x3516"
+    },
+    "7": {
+     "slot": 7,
+     "label_pl": "Opóźn. zwiększ. stopnia mocy [min]",
+     "pid": "0x3517"
+    },
+    "8": {
+     "slot": 8,
+     "label_pl": "Opóźn. zmniejsz. stopnia mocy [min]",
+     "pid": "0x3518"
+    }
+   }
+  },
+  "0x09": {
+   "node": "10_settings",
+   "base_ay": 59,
+   "labels_found": 7,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Praca silnika transportującego (1) [s]",
+     "pid": "0x3520"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Pauza silnika transportującego (1) [s]",
+     "pid": "0x3521"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Praca silnika podajnika (2) [s]",
+     "pid": "0x3527"
+    },
+    "3": {
+     "slot": 3,
+     "label_pl": "Pauza silnika podajnika (2) [s]",
+     "pid": "0x3528"
+    },
+    "5": {
+     "slot": 6,
+     "label_pl": "Maksymalna liczba cykli",
+     "pid": "0x352B"
+    },
+    "6": {
+     "slot": 7,
+     "label_pl": "Wybieg silnika transportującego (1) [s]",
+     "pid": "0x3526"
+    }
+   }
+  },
+  "0x10": {
+   "node": "11_screen",
+   "base_ay": 59,
+   "labels_found": 26,
+   "rows": {
+    "0": {
+     "slot": 0,
+     "label_pl": "Uśrednianie temp. zewnętrznej [h]",
+     "pid": "0x3720"
+    },
+    "1": {
+     "slot": 1,
+     "label_pl": "Temperatura przełączenia na lato [C]",
+     "pid": "0x372A"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Kalibracja czujnika zew. [°C]",
+     "pid": "0x3747"
+    },
+    "3": {
+     "slot": 3,
+     "label_pl": "Rezerwa zbiornika paliwa [kg]",
+     "pid": "0x3603"
+    },
+    "8": {
+     "slot": 9,
+     "label_pl": "Ilość obwodów grzewczych",
+     "pid": "0x2105"
+    },
+    "15": {
+     "slot": 16,
+     "label_pl": "Pojemność zbiornika paliwa [kg]",
+     "pid": "0x3600"
+    },
+    "17": {
+     "slot": 18,
+     "label_pl": "Numer profilu",
+     "pid": "0x350B"
+    }
+   }
+  },
+  "0x11": {
+   "node": "16_screen",
+   "base_ay": null,
+   "labels_found": 0,
+   "rows": {}
+  }
+ }
+}

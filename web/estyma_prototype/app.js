@@ -35,6 +35,9 @@ function screenView(s, node, title, target, row){
   const sc = SCREENS[node]; const box = document.createElement("div"); box.className = "scr"; box.style.backgroundImage = "url(screens/" + node + ".png)";
   (sc.dynamic || []).forEach(f => { const e = document.createElement("div"); e.className = "dyn"; Object.assign(e.style, {left: f.rect[0]+"px", top: f.rect[1]+"px", width: f.rect[2]+"px", height: f.rect[3]+"px", color: f.color, font: FONT_PX[f.font]+"px/"+f.rect[3]+"px 'Roboto Condensed','Arial Narrow',sans-serif", textAlign: ["left","center","right"][f.align]}); e.textContent = liveText(f); e._f = f; box.append(e); });
   box.onclick = ev => { const r = box.getBoundingClientRect(), k = 480 / r.width, x = (ev.clientX - r.left) * k, y = (ev.clientY - r.top) * k;
+    if (node === "PROGRAM") { const dlg = box.querySelector(".dlg");       // wiersz dnia -> dialog dnia (obraz z danych; edycja segmentow: OPEN), Kopiuj -> dialog kopiowania, OK zamyka
+      if (dlg) { if (x > 385 && y > 205 && y < 250) dlg.remove(); else if (dlg.dataset.k === "program_day" && x > 190 && x < 290 && y > 185 && y < 215) { dlg.dataset.k = "program_copy"; dlg.style.backgroundImage = "url(dialogs/program_copy.png)"; } return; }
+      if (y > 45 && x > 55 && x < 430) { const d = document.createElement("div"); d.className = "dlg"; d.dataset.k = "program_day"; d.style.backgroundImage = "url(dialogs/program_day.png)"; box.append(d); return; } }
     if (node === "HOME") { const dlg = box.querySelector(".dlg"); if (dlg) { if (x > 385 && y > 205 && y < 250) dlg.remove(); return; }
       const hit = [["home_paliwo", x >= 70 && x < 135 && y > 195], ["home_zasilanie", x > 415 && y > 195], ["home_auto", x > 340 && y < 100 && y > 50], ["home_czas", x < 90 && y < 45], ["home_data", x > 160 && x < 320 && y < 45]].find(h => h[1]);
       if (hit) { const d = document.createElement("div"); d.className = "dlg"; d.style.backgroundImage = "url(dialogs/" + hit[0] + ".png)"; box.append(d); return; }
@@ -52,12 +55,15 @@ function open(r){
 }
 Promise.all(["HOME", "PROGRAM"].concat(Object.values(SCREEN_BY_ROW)).map(n => fetch("screens/" + n + ".json").then(r => r.ok ? r.json() : null).then(j => { if (j) SCREENS[n] = j; }).catch(() => {}))).then(() => fetch("model.json")).then(r=>r.json()).then(m=>{ M=m; document.querySelectorAll("#bar select").forEach(x=>x.onchange=()=>{stack=["SCR:HOME:Ekran glowny:HOME:-1"];render()}); render(); }).catch(e=>{$("scr").textContent="Blad ladowania model.json: "+e});
 
-function numDialog(host, r){        // dialog liczbowy jak w panelu: tytul, duza wartosc, min/max, suwak, -/+, OK (FACT-DYNAMIC: enum liczbowy otwiera ten sam dialog)
+function numDialog(host, r){        // dialog liczbowy jak w panelu (pozycje i bitmapy z danych firmware, ui_model/dialog_render/number_dialog_data.json); FACT-DYNAMIC: enum liczbowy otwiera ten sam dialog
   let v = VALS[r.pid] ?? r.def ?? r.min; const d = document.createElement("div"); d.className = "ndlg";
-  d.innerHTML = '<div class="nt"></div><div class="nv"></div><div class="nmin"></div><div class="nmax"></div><input type="range" class="nr"><div class="nb"><button class="m">&minus;</button><button class="p">+</button></div><button class="nok">OK</button>';
+  d.innerHTML = '<div class="nt"></div><div class="nv"></div><div class="nmin"></div><div class="nmax"></div><div class="ntr"><div class="nfill"></div></div><img class="nknob" src="img/knob.png" draggable="false"><div class="nm"></div><div class="np"></div><div class="nok"></div>';
   const q = c => d.querySelector(c), sc = (r.fmt && r.fmt.scale) || 1, dec = (r.fmt && r.fmt.decimals) || 0, show = x => (x * sc).toFixed(dec);
   q(".nt").textContent = r.name; q(".nmin").textContent = show(r.min); q(".nmax").textContent = show(r.max);
-  const rg = q(".nr"); rg.min = r.min; rg.max = r.max; rg.step = 1; const upd = () => { rg.value = v; q(".nv").textContent = show(v); };
-  rg.oninput = () => { v = +rg.value; upd(); }; q(".m").onclick = () => { v = Math.max(r.min, v - 1); upd(); }; q(".p").onclick = () => { v = Math.min(r.max, v + 1); upd(); };
+  const upd = () => { const k = r.max > r.min ? (v - r.min) / (r.max - r.min) : 0; q(".nv").textContent = show(v); q(".nfill").style.width = (22 + k * 255) + "px"; q(".nknob").style.left = (64 + k * 255 - 2) + "px"; };
+  const setX = ev => { const b = q(".ntr").getBoundingClientRect(), k = Math.min(1, Math.max(0, ((ev.clientX - b.left) * (480 / d.getBoundingClientRect().width) - 23) / 255)); v = Math.round(r.min + k * (r.max - r.min)); upd(); };
+  const drag = ev => { d._drag = true; setX(ev); }; q(".ntr").onpointerdown = drag; q(".nknob").onpointerdown = drag;
+  d.onpointermove = ev => { if (d._drag) setX(ev); }; d.onpointerup = () => { d._drag = false; };
+  q(".nm").onclick = () => { v = Math.max(r.min, v - 1); upd(); }; q(".np").onclick = () => { v = Math.min(r.max, v + 1); upd(); };
   q(".nok").onclick = () => { VALS[r.pid] = v; d.remove(); render(); }; upd(); host.append(d);
 }
