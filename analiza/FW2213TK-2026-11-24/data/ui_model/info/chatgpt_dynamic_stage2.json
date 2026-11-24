@@ -1,0 +1,89 @@
+{
+  "topic": "INFO",
+  "view": "0x808f638",
+  "checkpoint": "node10_screen",
+  "results": [
+    {
+      "id": "info_version_pid",
+      "status": "STRONG",
+      "pid": "0x3664",
+      "tests": [
+        {
+          "value": 2213,
+          "screen": "igneoTouch v2.213 TE"
+        },
+        {
+          "value": 39321,
+          "screen": "igneoTouch v39.321 TE"
+        }
+      ]
+    },
+    {
+      "id": "info_3665",
+      "status": "OPEN",
+      "pid": "0x3665",
+      "tests": [
+        "0x12345678",
+        "0x41424344",
+        "0x45460000",
+        "0x30303030"
+      ],
+      "result": "boiler name stayed Bio Compact 10kW"
+    },
+    {
+      "id": "info_pin",
+      "status": "OPEN",
+      "pid": "0x2170",
+      "test": "local storage changed to 0x4321 before entry",
+      "result": "videRoom PIN remained 0"
+    },
+    {
+      "id": "info_trace",
+      "status": "STRONG",
+      "trace": {
+        "pid_reads": [],
+        "text_ids": [
+          [
+            0,
+            109
+          ],
+          [
+            4,
+            14
+          ]
+        ],
+        "bitmap_ids": [
+          79
+        ]
+      },
+      "result": "no live PID lookup observed during INFO rendering"
+    },
+    {
+      "id": "info_access",
+      "status": "STRONG",
+      "levels": {
+        "L0": "person icon",
+        "L1": "key icon"
+      },
+      "body": "identical"
+    },
+    {
+      "id": "info_static",
+      "status": "STRONG",
+      "texts": [
+        "INFO",
+        "Controller by Estyma (www.estyma.pl)"
+      ],
+      "unresolved": [
+        "boiler name source",
+        "videRoom PIN source",
+        "trailing 0 wildcard"
+      ]
+    }
+  ],
+  "open": [
+    "true source of boiler short name",
+    "true source of videRoom PIN/trailing 0",
+    "full-range PID diff under exact repo harness"
+  ]
+}
