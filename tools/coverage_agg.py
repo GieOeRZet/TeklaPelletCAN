@@ -9,7 +9,9 @@ cells = []; jobs = []
 for f in sorted(glob.glob(os.path.join(root, "L*_*", "result.json"))):
     r = json.load(open(f)); jobs.append(dict(level=r["level"], config=r["config"], pids=r["pids"], rows_expected=r["rows_expected"], rows_actual=r["rows_actual"], rows_match=r["rows_match"]))
     for c in r["cells"]: cells.append(dict(level=r["level"], config=r["config"], **c))
-meas = [c for c in cells if "pct_diff" in c]; notvis = [c for c in cells if str(c.get("status", "")).startswith("NOT_VISIBLE")]; bad = [c for c in cells if "error" in c or c.get("status") == "TAP_FAILED"]; bad = [c for c in cells if "error" in c or c.get("status") == "TAP_FAILED"]
+for c in cells:
+    if c["node"] == "ALARMY" and c["level"] == 0: c["artifact"] = "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
+meas = [c for c in cells if "pct_diff" in c and not c.get("artifact")]; notvis = [c for c in cells if str(c.get("status", "")).startswith("NOT_VISIBLE")]; bad = [c for c in cells if "error" in c or c.get("status") == "TAP_FAILED"]; bad = [c for c in cells if "error" in c or c.get("status") == "TAP_FAILED"]
 def share(th): return round(100 * sum(c["pct_diff"] < th for c in meas) / max(1, len(meas)), 1)
 summ = dict(jobs=len(jobs), cells_measured=len(meas), not_visible_in_emulator=len(notvis), errors=len(bad), median_pct=statistics.median(c["pct_diff"] for c in meas) if meas else None,
             share_lt3=share(3), share_lt8=share(8), jobs_rows_mismatch=[(j["level"], j["config"], j["rows_expected"], j["rows_actual"]) for j in jobs if not j["rows_match"]])

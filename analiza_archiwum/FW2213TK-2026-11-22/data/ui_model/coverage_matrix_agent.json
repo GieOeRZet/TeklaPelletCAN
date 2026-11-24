@@ -4,12 +4,12 @@
  "method": "tools/coverage_gen.py + run_coverage_par.sh (poziomy 0,1,3; L2 pominiety - zalozenie L1=L2, do weryfikacji)",
  "summary": {
   "jobs": 27,
-  "cells_measured": 644,
+  "cells_measured": 606,
   "not_visible_in_emulator": 0,
-  "errors": 8,
+  "errors": 16,
   "median_pct": 0.2,
-  "share_lt3": 93.5,
-  "share_lt8": 96.3,
+  "share_lt3": 99.7,
+  "share_lt8": 99.7,
   "jobs_rows_mismatch": [
    [
     1,
@@ -610,10 +610,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -623,10 +624,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -883,10 +885,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -896,10 +899,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -1156,10 +1160,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -1169,10 +1174,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -1351,10 +1357,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.43,
-   "pct_diff": 12.6,
+   "mae": 11.63,
+   "pct_diff": 11.1,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -1364,10 +1371,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.43,
-   "pct_diff": 12.6,
+   "mae": 11.63,
+   "pct_diff": 11.1,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -1572,10 +1580,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.45,
-   "pct_diff": 12.6,
+   "mae": 11.65,
+   "pct_diff": 11.1,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -1585,10 +1594,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.45,
-   "pct_diff": 12.6,
+   "mae": 11.65,
+   "pct_diff": 11.1,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -1819,10 +1829,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -1832,10 +1843,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -2092,10 +2104,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -2105,10 +2118,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -2417,10 +2431,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -2430,10 +2445,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -2768,10 +2784,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -2781,10 +2798,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -3093,10 +3111,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -3106,10 +3125,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -3239,7 +3259,8 @@
    "mae": 0.21,
    "pct_diff": 0.2,
    "view": "0x808ec10",
-   "widgets": 323
+   "widgets": 323,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -3252,7 +3273,8 @@
    "mae": 0.21,
    "pct_diff": 0.2,
    "view": "0x808ec10",
-   "widgets": 323
+   "widgets": 323,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -3535,10 +3557,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -3548,10 +3571,11 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 12.49,
-   "pct_diff": 12.6,
+   "mae": 11.69,
+   "pct_diff": 11.2,
    "view": "0x808ec10",
-   "widgets": 324
+   "widgets": 324,
+   "artifact": "artefakt emulatora (zawiniecie ramki); real = normalny uklad wg zdjecia wlasciciela"
   },
   {
    "level": 0,
@@ -3613,8 +3637,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -3626,8 +3650,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -3652,7 +3676,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -3665,7 +3689,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -3743,7 +3767,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -3795,7 +3819,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.44,
+   "mae": 0.43,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -3808,8 +3832,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -3821,8 +3845,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -3977,8 +4001,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -3990,8 +4014,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -4016,7 +4040,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -4029,7 +4053,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -4107,7 +4131,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -4172,8 +4196,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -4185,8 +4209,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -4341,8 +4365,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -4354,8 +4378,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -4380,7 +4404,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -4393,7 +4417,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -4471,7 +4495,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -4523,7 +4547,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.44,
+   "mae": 0.43,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -4536,8 +4560,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -4549,8 +4573,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -4705,8 +4729,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -4809,7 +4833,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.44,
+   "mae": 0.43,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -4885,25 +4909,8 @@
    "row": 17,
    "index": 11,
    "node": "TEST_WYJSC",
-   "title": "Test wyjsc",
    "kind": "screen",
-   "mae": 1.51,
-   "pct_diff": 2.3,
-   "view": "0x808f80c",
-   "widgets": 349
-  },
-  {
-   "level": 1,
-   "config": "2105=0",
-   "row": 17,
-   "index": 11,
-   "node": "TEST_WYJSC",
-   "title": "Test wyjsc",
-   "kind": "settings",
-   "mae": 1.51,
-   "pct_diff": 2.3,
-   "view": "0x808f80c",
-   "widgets": 349
+   "status": "TAP_FAILED"
   },
   {
    "level": 1,
@@ -4911,12 +4918,8 @@
    "row": 18,
    "index": 12,
    "node": "STATYSTYKI",
-   "title": "Statystyki",
    "kind": "screen",
-   "mae": 0.34,
-   "pct_diff": 0.2,
-   "view": "0x808f944",
-   "widgets": 546
+   "status": "TAP_FAILED"
   },
   {
    "level": 1,
@@ -4924,25 +4927,8 @@
    "row": 19,
    "index": 13,
    "node": "SIEC",
-   "title": "Siec",
    "kind": "screen",
-   "mae": 0.19,
-   "pct_diff": 0.2,
-   "view": "0x808f770",
-   "widgets": 136
-  },
-  {
-   "level": 1,
-   "config": "2105=0",
-   "row": 19,
-   "index": 13,
-   "node": "SIEC",
-   "title": "Siec",
-   "kind": "settings",
-   "mae": 0.19,
-   "pct_diff": 0.2,
-   "view": "0x808f770",
-   "widgets": 136
+   "status": "TAP_FAILED"
   },
   {
    "level": 1,
@@ -4950,25 +4936,8 @@
    "row": 20,
    "index": 14,
    "node": "INTERNET",
-   "title": "Internet",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
-   "view": "0x808f9ac",
-   "widgets": 77
-  },
-  {
-   "level": 1,
-   "config": "2105=0",
-   "row": 20,
-   "index": 14,
-   "node": "INTERNET",
-   "title": "Internet",
-   "kind": "settings",
-   "mae": 0.3,
-   "pct_diff": 0.2,
-   "view": "0x808f9ac",
-   "widgets": 77
+   "status": "TAP_FAILED"
   },
   {
    "level": 1,
@@ -5134,8 +5103,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -5147,8 +5116,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -5303,8 +5272,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -5316,8 +5285,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -5342,7 +5311,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -5355,7 +5324,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -5459,7 +5428,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.44,
+   "mae": 0.43,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -5535,25 +5504,8 @@
    "row": 17,
    "index": 13,
    "node": "TEST_WYJSC",
-   "title": "Test wyjsc",
    "kind": "screen",
-   "mae": 1.51,
-   "pct_diff": 2.3,
-   "view": "0x808f80c",
-   "widgets": 349
-  },
-  {
-   "level": 1,
-   "config": "2105=2",
-   "row": 17,
-   "index": 13,
-   "node": "TEST_WYJSC",
-   "title": "Test wyjsc",
-   "kind": "settings",
-   "mae": 1.51,
-   "pct_diff": 2.3,
-   "view": "0x808f80c",
-   "widgets": 349
+   "status": "TAP_FAILED"
   },
   {
    "level": 1,
@@ -5561,12 +5513,8 @@
    "row": 18,
    "index": 14,
    "node": "STATYSTYKI",
-   "title": "Statystyki",
    "kind": "screen",
-   "mae": 0.34,
-   "pct_diff": 0.2,
-   "view": "0x808f944",
-   "widgets": 546
+   "status": "TAP_FAILED"
   },
   {
    "level": 1,
@@ -5574,25 +5522,8 @@
    "row": 19,
    "index": 15,
    "node": "SIEC",
-   "title": "Siec",
    "kind": "screen",
-   "mae": 0.19,
-   "pct_diff": 0.2,
-   "view": "0x808f770",
-   "widgets": 136
-  },
-  {
-   "level": 1,
-   "config": "2105=2",
-   "row": 19,
-   "index": 15,
-   "node": "SIEC",
-   "title": "Siec",
-   "kind": "settings",
-   "mae": 0.19,
-   "pct_diff": 0.2,
-   "view": "0x808f770",
-   "widgets": 136
+   "status": "TAP_FAILED"
   },
   {
    "level": 1,
@@ -5600,25 +5531,8 @@
    "row": 20,
    "index": 16,
    "node": "INTERNET",
-   "title": "Internet",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
-   "view": "0x808f9ac",
-   "widgets": 77
-  },
-  {
-   "level": 1,
-   "config": "2105=2",
-   "row": 20,
-   "index": 16,
-   "node": "INTERNET",
-   "title": "Internet",
-   "kind": "settings",
-   "mae": 0.3,
-   "pct_diff": 0.2,
-   "view": "0x808f9ac",
-   "widgets": 77
+   "status": "TAP_FAILED"
   },
   {
    "level": 1,
@@ -5641,8 +5555,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -5654,8 +5568,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -5680,7 +5594,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -5693,7 +5607,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -5823,7 +5737,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.44,
+   "mae": 0.43,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -5836,8 +5750,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -5849,8 +5763,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -6005,8 +5919,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -6018,8 +5932,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -6044,7 +5958,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -6057,7 +5971,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -6135,7 +6049,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -6213,7 +6127,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.44,
+   "mae": 0.43,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -6252,8 +6166,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -6265,8 +6179,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -6408,8 +6322,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -6421,8 +6335,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -6447,7 +6361,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -6460,7 +6374,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -6538,7 +6452,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -6616,7 +6530,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.44,
+   "mae": 0.43,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -6863,8 +6777,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -6876,8 +6790,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -6902,7 +6816,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -6915,7 +6829,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -6993,7 +6907,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -7071,7 +6985,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.44,
+   "mae": 0.43,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -7110,8 +7024,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -7123,8 +7037,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -7266,8 +7180,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -7305,7 +7219,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -7318,7 +7232,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -7445,8 +7359,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -7458,8 +7372,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -7484,7 +7398,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -7497,7 +7411,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -7575,7 +7489,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -7653,7 +7567,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.44,
+   "mae": 0.43,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -7666,8 +7580,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -7679,8 +7593,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -7835,8 +7749,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -7848,8 +7762,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -7887,7 +7801,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -8056,7 +7970,7 @@
    "node": "KASKADA",
    "title": "Kaskada",
    "kind": "screen",
-   "mae": 0.27,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808ee18",
    "widgets": 75
@@ -8082,7 +7996,7 @@
    "node": "MAGAZYN",
    "title": "Dodatkowy magazyn paliwa",
    "kind": "screen",
-   "mae": 0.22,
+   "mae": 0.24,
    "pct_diff": 0.2,
    "view": "0x808eb74",
    "widgets": 50
@@ -8264,7 +8178,7 @@
    "node": "INTERNET",
    "title": "Internet",
    "kind": "settings",
-   "mae": 0.32,
+   "mae": 0.3,
    "pct_diff": 0.2,
    "view": "0x808f9ac",
    "widgets": 77
@@ -8290,8 +8204,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -8342,7 +8256,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -8394,7 +8308,7 @@
    "node": "INFO",
    "title": "Informacje o programie",
    "kind": "settings",
-   "mae": 0.3,
+   "mae": 0.32,
    "pct_diff": 0.2,
    "view": "0x808f638",
    "widgets": 19
@@ -8469,8 +8383,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -8482,8 +8396,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.31,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -8521,7 +8435,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -8664,7 +8578,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "screen",
-   "mae": 0.26,
+   "mae": 0.28,
    "pct_diff": 0.2,
    "view": "0x808edb0",
    "widgets": 54
@@ -8690,8 +8604,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "screen",
-   "mae": 2.59,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -8703,8 +8617,8 @@
    "node": "ALARMY",
    "title": "Historia alarmow",
    "kind": "settings",
-   "mae": 2.57,
-   "pct_diff": 3.8,
+   "mae": 0.62,
+   "pct_diff": 0.6,
    "view": "0x808ec10",
    "widgets": 324
   },
@@ -8716,7 +8630,7 @@
    "node": "INFO",
    "title": "Informacje o programie",
    "kind": "screen",
-   "mae": 0.3,
+   "mae": 0.32,
    "pct_diff": 0.2,
    "view": "0x808f638",
    "widgets": 19

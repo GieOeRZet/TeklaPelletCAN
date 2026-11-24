@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E3 (2026-11-24) ponowny pelny przebieg po wszystkich poprawkach renderera: 606 komorek, mediana 0.2%, 99.7% < 3%
+Zrobilem: pelny przebieg 3 poziomy x 12 konfiguracji (4 procesy) + powtorka 14 zadan po poprawce stukania w ogon menu (najpierw zszyty obraz, potem przewijanie przyrostowe). ALARMY L0 wylaczone z oceny (artefakt emulatora potwierdzony zdjeciem wlasciciela). Wynik: **606 komorek, mediana 0.2%, 99.7% < 3%, 0 komorek > 8%**. Nierozstrzygniete 18 komorek (nie zmierzone, nie bledy renderera): 16 x stukniecie w Test wyjsc/Statystyki/Siec/Internet w konfiguracjach DEFAULT/2105=0/2105=2 (L1) i DEFAULT (L3) - wiersze istnieja w menu (potwierdzone zrzutem dla 2105=2), ale przewijanie nie dociera; 2 x KONFIGURACJA przy kaskadzie+magazynie (stukniecie trafia w inny wiersz). Pozostalo: ta nawigacja (BACKLOG), przewijanie PROGRAM w karcie, wlaczenie zdjec prawdziwego panelu do porownan (wlasciciel moze dostarczac zdjecia ekranow).
+
 ### OPEN#2 ROZWIAZANE (2026-11-24) dzieki zdjeciu wlasciciela
 Historia alarmow na L0 w prawdziwym panelu ma normalny uklad (ikony po prawej, przyciski gora/dol), wiec przesuniecie ~100 px w emulatorze to artefakt emulatora; komorki ALARMY L0 nie liczone do bledu renderera (po wylaczeniu: mediana nadal 0.2%, >8% prawie 0). Karta uzywa ukladu normalnego (z L1). Dopisane: status NIEAKTYWNY zielony / AKTYWNY czerwony, linia Potwierdz. - zgodne z danymi.
 ### E7 (2026-11-24) etykiety PL list: 173 z ~190 wierszy (bylo 144)

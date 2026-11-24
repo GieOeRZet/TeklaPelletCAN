@@ -53,7 +53,15 @@ for i, er in enumerate(exp):
     if not tgt or nodes.get(tgt, {}).get("kind") != "screen" or tgt == "PROGRAM": continue
     s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), None); s.wait(120)
     nav = U.ListNav(s); nav.tall = Image.open(os.path.join(out, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
-    ok = tap_incremental(s, nav, i)
+    ok = nav.tap_row_from_top(i) if i < len(rows) else False      # najpierw zszyty obraz (szybko), jesli widok sie nie zmienil - przewijanie przyrostowe
+    if ok:
+        s.wait(300)
+        if hex(s.b.rd(s.b.rd(0x20024818))) == "0x808f66c":       # nadal MENU: stukniecie nie weszlo
+            ok = False
+    if not ok:
+        s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), None); s.wait(120)
+        nav = U.ListNav(s); nav.tall = Image.open(os.path.join(out, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
+        ok = tap_incremental(s, nav, i)
     if not ok: res["cells"].append(dict(row=er["row"], index=i, node=tgt, kind="screen", status="TAP_FAILED")); continue
     s.wait(700)
     cell = {}
