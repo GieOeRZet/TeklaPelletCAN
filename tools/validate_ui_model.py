@@ -11,14 +11,14 @@ def walk(x,p=""):
  elif isinstance(x,list):
   for i,v in enumerate(x): yield from walk(v,f"{p}[{i}]")
 def main():
- ap=argparse.ArgumentParser(); ap.add_argument("root",nargs="?",default=str(UI)); ap.add_argument("--json",action="store_true"); a=ap.parse_args(); root=Path(a.root)
+ ap=argparse.ArgumentParser(); ap.add_argument("root",nargs="?",default=str(UI)); ap.add_argument("--json",action="store_true"); ap.add_argument("--recursive",action="store_true"); a=ap.parse_args(); root=Path(a.root)
  known=set()
  if PIDCSV.exists():
   with PIDCSV.open(encoding="utf-8-sig",newline="") as f:
    for r in csv.reader(f):
     if r and PID.match(r[0].strip()): known.add(r[0].strip().upper())
  errors=[]; warnings=[]; records=[]
- for p in sorted(root.rglob("*.json")):
+ for p in sorted((root.rglob("*.json") if a.recursive else root.glob("*.json"))):
   if p.name=="INDEX.json": continue
   rel=p.relative_to(root).as_posix(); sch=SCHEMA/(p.stem+".schema.json")
   if not sch.exists(): warnings.append({"file":rel,"problem":"missing schema"})
