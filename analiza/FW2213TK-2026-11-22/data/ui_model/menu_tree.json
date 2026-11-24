@@ -194,7 +194,7 @@
    "kind": "dialog",
    "level_min": 0,
    "evidence": "MEASURED (PASS 66)",
-   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); wnetrze, przyciski i efekty OK (PID, ramki 0x584): ui_model/home_dialogs.json"
   },
   {
    "id": "DLG_TEKST",
@@ -203,7 +203,7 @@
    "kind": "dialog",
    "level_min": 0,
    "evidence": "MEASURED (zrzut; zapis OPEN)",
-   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); wnetrze, przyciski i efekty OK (PID, ramki 0x584): ui_model/home_dialogs.json"
   },
   {
    "id": "DLG_PROGRAM_DZIEN",
@@ -212,7 +212,7 @@
    "kind": "dialog",
    "level_min": 0,
    "evidence": "MEASURED (PASS 66; program_screen.json)",
-   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); wnetrze, przyciski i efekty OK (PID, ramki 0x584): ui_model/home_dialogs.json"
   },
   {
    "id": "DLG_PROGRAM_KOPIUJ",
@@ -221,7 +221,7 @@
    "kind": "dialog",
    "level_min": 0,
    "evidence": "MEASURED (PASS 66; zrzut)",
-   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); wnetrze, przyciski i efekty OK (PID, ramki 0x584): ui_model/home_dialogs.json"
   },
   {
    "id": "DLG_PALIWO",
@@ -230,7 +230,7 @@
    "kind": "dialog",
    "level_min": 0,
    "evidence": "MEASURED (zrzut dialog_shots/home_dlg_paliwo.png; nakladka na HOME, wyzwalacz kafel 103,234)",
-   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); wnetrze, przyciski i efekty OK (PID, ramki 0x584): ui_model/home_dialogs.json"
   },
   {
    "id": "DLG_CZAS",
@@ -239,7 +239,7 @@
    "kind": "dialog",
    "level_min": 0,
    "evidence": "MEASURED (zrzut home_dlg_czas.png; nakladka na HOME, wyzwalacz zegar 42,19)",
-   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); wnetrze, przyciski i efekty OK (PID, ramki 0x584): ui_model/home_dialogs.json"
   },
   {
    "id": "DLG_DATA",
@@ -248,7 +248,7 @@
    "kind": "dialog",
    "level_min": 0,
    "evidence": "MEASURED (zrzut home_dlg_data.png; nakladka na HOME, wyzwalacz 240,19)",
-   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); wnetrze, przyciski i efekty OK (PID, ramki 0x584): ui_model/home_dialogs.json"
   },
   {
    "id": "DLG_EDYCJA",
@@ -266,7 +266,7 @@
    "kind": "dialog",
    "level_min": 0,
    "evidence": "MEASURED (zrzut home_dlg_zasilanie.png; wyzwalacz kafel 448,234)",
-   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); wnetrze, przyciski i efekty OK (PID, ramki 0x584): ui_model/home_dialogs.json"
   },
   {
    "id": "DLG_AUTO",
@@ -275,7 +275,7 @@
    "kind": "dialog",
    "level_min": 0,
    "evidence": "MEASURED (zrzut home_dlg_auto.png; wyzwalacz kafel 415,76)",
-   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); widgety ukrytych kontenerow sa w widgets_inv_pass65_home_L0.json; OPEN: lista przyciskow/wiazan w oknie, ramki TX"
+   "note": "nakladka w widoku HOME (ten sam vtable 0x808f708); wnetrze, przyciski i efekty OK (PID, ramki 0x584): ui_model/home_dialogs.json"
   }
  ],
  "menu_rows": [

@@ -1,0 +1,645 @@
+{
+ "evidence": "MEASURED (PASS 69, emulator: efektywna widocznosc sceny z RAM, stukniecia, sekwencje z OK, odczyt PID i ramek 0x584)",
+ "general": "okna sa nakladkami w widoku HOME (vtable 0x808f708, ukryte kontenery); przycisk OK ~ (415,228); zapis PID dopiero przy OK (z wyjatkiem przycisku podajnika w oknie Paliwo)",
+ "dialogs": {
+  "paliwo": {
+   "open_tap": [
+    103,
+    234
+   ],
+   "title": "Paliwo",
+   "elements": {
+    "widget_count": 65,
+    "elements": [
+     {
+      "cls": "other",
+      "rect": [
+       0,
+       0,
+       480,
+       272
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "text",
+      "rect": [
+       201,
+       20,
+       68,
+       32
+      ],
+      "text": "Paliwo",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "btn",
+      "rect": [
+       210,
+       200,
+       52,
+       36
+      ],
+      "text": null,
+      "bmp": 168,
+      "touch": 1
+     },
+     {
+      "cls": "text",
+      "rect": [
+       269,
+       200,
+       50,
+       32
+      ],
+      "text": "0s",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "text",
+      "rect": [
+       77,
+       203,
+       10,
+       25
+      ],
+      "text": "E",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "other",
+      "rect": [
+       94,
+       50,
+       67,
+       198
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "btn",
+      "rect": [
+       210,
+       60,
+       52,
+       36
+      ],
+      "text": null,
+      "bmp": 168,
+      "touch": 1
+     },
+     {
+      "cls": "btn",
+      "rect": [
+       210,
+       140,
+       52,
+       36
+      ],
+      "text": null,
+      "bmp": 168,
+      "touch": 1
+     },
+     {
+      "cls": "text",
+      "rect": [
+       197,
+       100,
+       90,
+       32
+      ],
+      "text": "180kg",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "box",
+      "rect": [
+       90,
+       175,
+       5,
+       49
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 0
+     }
+    ]
+   },
+   "controls": {
+    "plus": [
+     236,
+     78
+    ],
+    "minus": [
+     236,
+     158
+    ],
+    "feeder_run_button": [
+     236,
+     218
+    ],
+    "slider": [
+     127,
+     149
+    ],
+    "ok": [
+     415,
+     228
+    ]
+   },
+   "effects": {
+    "feeder_run_button": "od razu: PID 0x2259 0->2 (Burner storage feeder test), 0x2266 0->1 (Refueling need request), 0x2267 czas podawania; ramka 0x584 42 67 22 01 1d 00 00 00",
+    "ok": "zapis PID 0x3601 'How much fuel left in tank [kg]' (przyklad 180 -> 179), ramka 0x584: 42 01 36 01 b3 00 00 00; +/- zmieniaja wartosc lokalnie do OK"
+   },
+   "texts": [
+    "Paliwo",
+    "180kg",
+    "0s",
+    "E"
+   ]
+  },
+  "zasilanie": {
+   "open_tap": [
+    448,
+    234
+   ],
+   "title": "(okno trybow zasilania)",
+   "elements": {
+    "widget_count": 91,
+    "elements": [
+     {
+      "cls": "other",
+      "rect": [
+       0,
+       0,
+       480,
+       272
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "text",
+      "rect": [
+       30,
+       35,
+       300,
+       50
+      ],
+      "text": "Kocioł",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "text",
+      "rect": [
+       30,
+       100,
+       300,
+       50
+      ],
+      "text": "Ogrzewanie 1",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "text",
+      "rect": [
+       30,
+       150,
+       300,
+       50
+      ],
+      "text": "Ogrzewanie 2",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "text",
+      "rect": [
+       30,
+       200,
+       300,
+       50
+      ],
+      "text": "Woda użytkowa",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "other",
+      "rect": [
+       160,
+       110,
+       197,
+       33
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "other",
+      "rect": [
+       160,
+       160,
+       197,
+       33
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "other",
+      "rect": [
+       160,
+       210,
+       197,
+       33
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "other",
+      "rect": [
+       160,
+       34,
+       62,
+       33
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     }
+    ]
+   },
+   "controls": {
+    "boiler_switch": [
+     191,
+     50
+    ],
+    "heating1_row": [
+     258,
+     126
+    ],
+    "heating2_row": [
+     258,
+     176
+    ],
+    "hot_water_row": [
+     258,
+     226
+    ],
+    "ok": [
+     415,
+     228
+    ]
+   },
+   "effects": {
+    "ok": "zapis programow/stanow: 0x2005 Boiler on/off, 0x2064 CH program (Ogrzewanie 1), 0x2166 CH res, 0x2260; ramki 0x584: 42 05 20 01 00 00 00 00 (kociol), 42 64 20 01 01 00 00 00 (CO1 program 1), 42 66 21 01 b4 00 00 00, 42 60 22 01 58 02 00 00"
+   },
+   "texts": [
+    "Kocioł",
+    "Ogrzewanie 1",
+    "Ogrzewanie 2",
+    "Woda użytkowa"
+   ]
+  },
+  "auto": {
+   "open_tap": [
+    415,
+    76
+   ],
+   "title": "(AUTO: komunikat + suwak trybow)",
+   "elements": {
+    "widget_count": 62,
+    "elements": [
+     {
+      "cls": "other",
+      "rect": [
+       0,
+       0,
+       480,
+       272
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "text",
+      "rect": [
+       0,
+       55,
+       480,
+       157
+      ],
+      "text": "W tym trybie temperatura\\nzadawana jest automatycznie.",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "other",
+      "rect": [
+       130,
+       205,
+       197,
+       33
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     }
+    ]
+   },
+   "controls": {
+    "slider": [
+     150,
+     225
+    ],
+    "ok": [
+     415,
+     228
+    ]
+   },
+   "effects": {
+    "ok": "zapis PID 0x2002 Boiler program (przyklad 2 -> 0), ramka 0x584: 42 02 20 01 00 00 00 00"
+   },
+   "texts": [
+    "W tym trybie temperatura zadawana jest automatycznie."
+   ]
+  },
+  "czas": {
+   "open_tap": [
+    42,
+    19
+   ],
+   "title": "Ustaw czas",
+   "elements": {
+    "widget_count": 66,
+    "elements": [
+     {
+      "cls": "other",
+      "rect": [
+       0,
+       0,
+       480,
+       272
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "text",
+      "rect": [
+       191,
+       20,
+       87,
+       25
+      ],
+      "text": "Ustaw czas",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "box",
+      "rect": [
+       29,
+       57,
+       279,
+       156
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "other",
+      "rect": [
+       140,
+       56,
+       79,
+       156
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "box",
+      "rect": [
+       140,
+       121,
+       79,
+       32
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "other",
+      "rect": [
+       227,
+       56,
+       79,
+       156
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "box",
+      "rect": [
+       227,
+       121,
+       79,
+       32
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 0
+     }
+    ]
+   },
+   "controls": {
+    "hour_wheel": [
+     179,
+     134
+    ],
+    "minute_wheel": [
+     266,
+     134
+    ],
+    "ok": [
+     415,
+     228
+    ]
+   },
+   "effects": {
+    "ok": "zapis PID 0x2165 Compatibility timestamp = nowy czas (przyklad +2 h: 975542400 -> 975549600); RTC ustawia sie przez autosync 0x372F (PASS 62)"
+   }
+  },
+  "data": {
+   "open_tap": [
+    240,
+    19
+   ],
+   "title": "Ustaw date",
+   "elements": {
+    "widget_count": 85,
+    "elements": [
+     {
+      "cls": "other",
+      "rect": [
+       0,
+       0,
+       480,
+       272
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "text",
+      "rect": [
+       192,
+       20,
+       86,
+       25
+      ],
+      "text": "Ustaw datę",
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "box",
+      "rect": [
+       94,
+       57,
+       279,
+       156
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "other",
+      "rect": [
+       98,
+       56,
+       49,
+       156
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "box",
+      "rect": [
+       98,
+       121,
+       49,
+       32
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "other",
+      "rect": [
+       155,
+       56,
+       129,
+       156
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "box",
+      "rect": [
+       155,
+       121,
+       129,
+       32
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 0
+     },
+     {
+      "cls": "other",
+      "rect": [
+       292,
+       56,
+       79,
+       156
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 1
+     },
+     {
+      "cls": "box",
+      "rect": [
+       292,
+       121,
+       79,
+       32
+      ],
+      "text": null,
+      "bmp": null,
+      "touch": 0
+     }
+    ]
+   },
+   "controls": {
+    "day_wheel": [
+     122,
+     134
+    ],
+    "month_wheel": [
+     219,
+     134
+    ],
+    "year_wheel": [
+     331,
+     134
+    ],
+    "ok": [
+     415,
+     228
+    ]
+   },
+   "effects": {
+    "ok": "zapis PID 0x2165 = nowa data (przyklad 975542400 -> 1420243200 = 03.01.2015)"
+   }
+  }
+ },
+ "open": [
+  "zakresy i wartosci suwakow (Paliwo, AUTO): mapowanie pozycja -> wartosc/program",
+  "pelna tabela opcji okna zasilania (off/eco/AUTO-zegar/comfort) -> wartosc programu per urzadzenie",
+  "kolejnosc/ilosc +/- w Paliwo (180->179 przy +,+,-: sprawdzic krok i kierunek)",
+  "ramka CAN dla czasu/daty (zapis lokalny 0x2165; brak ramki 0x584 w tescie)"
+ ]
+}
