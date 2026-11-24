@@ -1,4 +1,4 @@
-# Instrukcja pracy z emulatorem dla ChatGPT (zgodna z metodą agenta UI / Claude, stan 2026-11-24)
+# Metodyka pracy z emulatorem (ogólna; dla ChatGPT i agenta UI/Claude)
 
 Cel: każdy wynik "dynamiczny" ma powstać tak samo jak u mnie: realny firmware → emulator → akcja → pomiar → powtórzenie → dane w repo. Binarka jest jedynym źródłem prawdy. Wspomnienia właściciela i integracja HA to tylko podpowiedź (INFERENCE).
 
@@ -24,7 +24,7 @@ NIE nawiguj przez `boot()` + `ListNav` w każdej sesji (to daje 10 zamiast 19 wi
 python3 -I tools/ui_prepare_cfg.py FW2213TK_kopia.bin /tmp/L1 1      # poziom 1; /tmp/L0 dla poziomu 0; wynik: menu.state, rows.pkl, rows.txt
 python3 -I tools/action_probe.py ... --nodes 17_screen   # lub bezpośrednio: tools/action_probe.enter_node(s, dir, rows, "17_screen")
 ```
-Wiersze menu (L1): 0 kociol, 1 palnik, 2-5 CO1-4, 6 cwu, 7 solar, 8 bufor, 9 alarmy, 10 info, 11 konfiguracja, 12 pin, 13 jezyk, 14 alarm_dzw, 15 test_wyjsc, 16 statystyki, 17 siec, 18 internet (+ kaskada/magazyn gdy 0x350C/0x3525). Węzeł = `<wiersz>_screen` lub `<wiersz>_settings` (np. `17_screen` = SIEĆ). Dalej każdy test: `UiSession.from_checkpoint(FW, "<dir>/node_17_screen.state", None)`.
+Numer wiersza dowolnego ekranu: `<dir>/rows.txt` (po `ui_prepare_cfg.py`) lub `ui_model/menu_tree.json` (warunki widoczności wiersza). Węzeł = `<wiersz>_screen` lub `<wiersz>_settings` (np. `17_screen`). Ekrany spoza menu (okna HOME, dialogi, edytory) wchodzi się z węzła rodzica rzeczywistym tapem i zapisuje własny punkt kontrolny (`s.checkpoint(path)`) - wzór: `tools/home_dialogs.py`, `tools/overlay_probe.py`. Dalej każdy test: `UiSession.from_checkpoint(FW, "<dir>/node_17_screen.state", None)`.
 Zrzut `shot()` to 480×272; ciało ekranu = y≥46.
 
 ## 3. Reguły fizyczne emulatora (zmierzone, ważne)
@@ -51,6 +51,21 @@ FACT-DYNAMIC = wykonane w emulatorze według pkt 4, dowód w repo. FACT-STATIC =
 ## 6. Git
 Pracuj na swojej gałęzi, `git pull --rebase` przed pushem, commit + push po każdym etapie, bez PR. Krótki raport po etapie (co zmierzone / co otwarte). Nie dotykaj plików agenta UI w `ui_model/` bez ustalenia (dopisuj własne pliki/podkatalogi).
 
-## 7. Co już jest zmierzone (nie powtarzaj)
-Drzewo menu i warunki (`ui_model/menu_tree.json`), alarmy (`alarms.json`), PROGRAM, okna HOME, Test wyjść (`outputs_test.json`: kolumny A/OFF/ON, Ruszt+mieszacze A/CLOSE/OPEN, suwaki 0x2288/0x2298), źródła live (`live_sources.json`), SIEĆ (`audit_siec.py`, `sii_acceptance/siec`), edytor INTERNET (`internet_editor.json`: klawiatura rolkowa ^ v OK < ABC abc 123.0 ?!&; OK zapisuje znak do 0x3730 jako u32 BE-znak).
-Otwarte dla Ciebie (propozycja): INTERNET - kasowanie `<`, wiele znaków/chunki 0x3730..35, limit 24/25, PASSWORD/SERIAL/PIN, trwałość, korelacja 0x5B; INFO - skąd teksty; SIEĆ - SW z PDO1 (bajty 6/7), 3+ moduły, 4. kolumna dla innych modułów.
+## 7. Jak podejść do DOWOLNEGO nowego tematu (szablon)
+1. Ustal ekran: wiersz menu / węzeł (`menu_tree.json`), poziom dostępu, konfigurację (`ui_prepare_cfg.py ... 0xPID=wartość`). Zapisz punkt kontrolny.
+2. Inwentarz widgetów ekranu: `tools/screen_inventory_menu.py` / `tools/ui_extras.py` (rect, widoczność efektywna przez rodziców, bitmapy, teksty) - to lista tego, co może się zmieniać.
+3. Źródła wartości: `tools/pid_diff.py` (PID → widget, wartości z zakresu z `pid_matrix_655.csv`; PID-y modułowe: `live_diff.py`/`live_scan.py`).
+4. Akcje: `tools/action_probe.py` (tap w każdy aktywny widget: nawigacja, dialog, nowe ramki 0x584, zmiana PID).
+5. Każdy znaleziony fakt przechodzi test wg pkt 4 (kontrola + powtórzenie) zanim dostanie FACT-DYNAMIC.
+6. Wynik jako DANE (json/csv), nie opis: widgety → PID → reguła, akcje, warunki. Opis w md tylko jako komentarz do danych.
+7. Narzędzie, którego brakuje: stwórz/ulepsz w `tools/` (masz zgodę właściciela), wzór: czytelny docstring z użyciem, wynik przyrostowy i wznawialny, bez haków z pkt 0.
+
+## 8. Podział pracy i przekazanie (ChatGPT ⟷ agent UI)
+- Każdy ma swoje tematy; temat ma jednego właściciela naraz. Przydział i status: `NewEstyma/COORDINATION.md` (wpis: temat, właściciel, status, gałąź, pliki). Zmiana właściciela tylko wpisem.
+- Pracuj na własnej gałęzi; nie edytuj cudzych plików w `ui_model/` - dopisuj własne pliki/podkatalogi. Wspólne narzędzia (`tools/ui_session.py`, `live_sim.py`, `pid_diff.py`...) zmieniaj tylko drobno i wstecznie zgodnie; zmianę opisz w commicie.
+- **Przekazanie tematu** (np. ChatGPT zostawia, agent UI domyka): w COORDINATION podaj (a) co zmierzone i gdzie dowody w repo, (b) lista OPEN z warunkami testu, (c) polecenie odtworzenia (komenda + punkt kontrolny), (d) znane pułapki. Domykający NIE poprawia po cichu: błąd w cudzym wyniku zapisuje jako errata (co było, co jest, dowód) obok oryginału i dopiero potem podmienia dane.
+- Audyt cudzego wyniku = ponowne uruchomienie jego testu na firmware + własny test kontrolny; rozbieżność zgłaszana, nie ukrywana.
+- Po każdym etapie: commit + push, krótki raport (zmierzone / otwarte / ryzyka). Przy ~95% limitu kontekstu: zapis stanu do `NewEstyma/01_PROJECT_STATE.md` i handoff.
+
+## 9. Stan wiedzy
+Aktualne wyniki i otwarte punkty nie są w tym pliku (żeby się nie starzał): `NewEstyma/01_PROJECT_STATE.md`, `NewEstyma/COORDINATION.md`, `analiza/FW2213TK-2026-11-22/data/ui_model/` (menu_tree, alarms, outputs_test, live_sources, internet_editor, sii_acceptance ...) oraz raporty `AUTONOMOUS-PASS-*`.
