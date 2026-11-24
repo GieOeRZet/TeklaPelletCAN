@@ -14,13 +14,23 @@ SC = {   # nazwa: (katalog, [kroki]) ; krok = ("row", idx) | ("tap", x, y, settl
  "program_day": (L0, [("row", 0), ("tap", 414, 130, 900), ("tap", 235, 175, 900)]),
  "program_copy": (L0, [("row", 0), ("tap", 414, 130, 900), ("tap", 235, 175, 900), ("tap", 235, 200, 900)]),
  "internet_editor": (L1, [("row", 18), ("tap", 180, 62, 900)]),
+ "home_paliwo": ("HOME", [("tap", 103, 234, 900)]),
+ "home_zasilanie": ("HOME", [("tap", 448, 234, 900)]),
+ "home_auto": ("HOME", [("tap", 415, 76, 900)]),
+ "home_czas": ("HOME", [("tap", 42, 19, 900)]),
+ "home_data": ("HOME", [("tap", 240, 19, 900)]),
  "number_dialog": (L3, [("row", 0), ("tap", 400, 245, 900), ("tap", 375, 76, 900)]),
 }
 res = {}
 for name, (d, steps) in SC.items():
     if only and name not in only: continue
-    rows = pickle.load(open(os.path.join(d, "rows.pkl"), "rb")); s = U.UiSession.from_checkpoint(fw, os.path.join(d, "menu.state"), None); s.wait(120)
-    nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
+    if d == "HOME":   # swiezy rozruch jak home_inventory.py (konfiguracja: 4 obiegi CO, CWU, bufor, solar)
+        s = U.UiSession(fw, None); t = C.Tracer(s); s.boot(500)
+        for p_, v_ in {0x2105: 4, 0x2106: 1, 0x2107: 1, 0x2108: 1}.items(): s.set_local(p_, v_)
+        s.set_access(0); s.wait(4500); nav = None   # log NIE czyszczony: okna HOME to ukryte kontenery zbudowane przy starcie
+    else:
+        rows = pickle.load(open(os.path.join(d, "rows.pkl"), "rb")); s = U.UiSession.from_checkpoint(fw, os.path.join(d, "menu.state"), None); s.wait(120)
+        nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
     for st in steps:
         if st[0] == "clear": t.log.clear(); continue
         if st[0] == "row": nav.tap_row_from_top(st[1]); s.wait(700)

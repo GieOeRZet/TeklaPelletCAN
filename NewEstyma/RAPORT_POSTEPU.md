@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E2a (2026-11-24) okna HOME: 5 z 5 wyrenderowane, 3 z 5 < 1%
+Zrobilem: HOME okna w `dialog_render_eval.py` (swiezy rozruch, log konstrukcji zachowany - okna to ukryte kontenery), renderer: przycinanie do kontenerow-przodkow, tekst wieloliniowy, klasa kolek wyboru (vptr 0x807ddd8). Wyniki (% pikseli rozni): paliwo **0.0**, czas **0.0**, zasilanie **0.0**, auto **9.2**, data **20.4**. Przy okazji: liczbowy 2.5 -> **0.2**, INTERNET 6.0 -> **5.2**, PIN 0.3, PROGRAM dzien 0.4, Kopiuj 5.8 (bez regresji). Nowe: `tools/run_dialogs_par.sh` (4 procesy, 1.5 min na 10 dialogow). Pozostalo z E2: auto (suwak), data, Kopiuj <5%, dialog enum, tor suwaka.
+
 ### PLAN (2026-11-24): firmware wgrany, srodowisko /tmp/w odtworzone; start E2a. Plan i kadencja raportow: PLAN_PRACY_AGENT_UI.md (dol). Stan: E1,E6,E7 gotowe, E5 czesciowo, E2 ~90%, E3-E4 przed nami.
 
 ### E7 (2026-11-24) SZKIELET DZIALA: prototyp karty z ui_model (`web/estyma_prototype/`)

@@ -38,6 +38,17 @@ def bitmap(i):
         f = os.path.join(D, "bitmaps", "png", "%03d.png" % i); _bc[i] = Image.open(f).convert("RGBA") if os.path.exists(f) else None
     return _bc[i]
 def rgb565(v): r, g, b = v >> 11 & 31, v >> 5 & 63, v & 31; return (r << 3 | r >> 2, g << 2 | g >> 4, b << 3 | b >> 2)
+def clip_rect(w, W):                          # przeciecie prostokatow wszystkich przodkow (kontenery TouchGFX/ScrollableContainer przycinaja potomkow)
+    x0, y0, x1, y1 = w["ax"], w["ay"], w["ax"] + w["w"], w["ay"] + w["h"]; a = W.get(w["parent"]); n = 0; cx0, cy0, cx1, cy1 = 0, 0, 480, 272
+    while a is not None and n < 20:
+        if a["w"] > 0 and a["h"] > 0 and a["w"] < 2000:
+            cx0, cy0, cx1, cy1 = max(cx0, a["ax"]), max(cy0, a["ay"]), min(cx1, a["ax"] + a["w"]), min(cy1, a["ay"] + a["h"])
+        a = W.get(a["parent"]); n += 1
+    return (cx0, cy0, cx1, cy1), (x0 < cx0 or y0 < cy0 or x1 > cx1 or y1 > cy1)
+def draw_text_ml(img, i, s, x, y, w, align, color):          # wiele linii: krok = wysokosc czcionki + piksele pod linia bazowa
+    step = font(i)[2] + font(i)[3]
+    for k, ln in enumerate(s.split("\n")):
+        if ln: draw_text(img, i, ln, x, y + k * step, w, align, color)
 def render(widgets, extras=None, size=(480, 272), dim=None):          # dim=(alfa, z_progu): przed pierwszym widgetem o z>=z_progu rysowana jest czarna nakladka o danej alfie (okno modalne)
     img = Image.new("RGB", size, BG); W = {w["this"]: w for w in widgets}
     def visible(w):
@@ -54,6 +65,7 @@ def render(widgets, extras=None, size=(480, 272), dim=None):          # dim=(alf
         if w["w"] <= 0 or w["h"] <= 0 or w["w"] > 2000 or (extras is None and not visible(w)) or w["ax"] > 480 or w["ay"] > 272 or w["ax"] + w["w"] < 0 or w["ay"] + w["h"] < 0: continue
         ex = (extras or {}).get(w["this"])
         if ex and ex.get("hidden"): continue                       # efektywna niewidocznosc wg RAM biezacego punktu kontrolnego
+        crect, needclip = clip_rect(w, W); base = img.copy() if needclip else None
         if ex and ex.get("cls") == "box":
             col = rgb565(ex["box"]); al = ex.get("alpha", 255)
             if (w["w"], w["h"]) == (480, 272) and col == BG and al >= 255: continue          # pelnoekranowe tlo; polprzezroczysta nakladka (dialog) rysowana
@@ -68,10 +80,12 @@ def render(widgets, extras=None, size=(480, 272), dim=None):          # dim=(alf
                 ib = bitmap(ex["icon"])
                 if ib is not None: img.paste(ib.convert("RGB"), (w["ax"] + ex["icon_xy"][0], w["ay"] + ex["icon_xy"][1]), ib.getchannel("A"))
         elif ex and ex.get("cls") == "text":
-            if ex["text"]: draw_text(img, ex["font"], ex["text"], w["ax"], w["ay"] + DY, w["w"], ex["align"], rgb565(ex["color"]))
+            if ex["text"]: draw_text_ml(img, ex["font"], ex["text"], w["ax"], w["ay"] + DY, w["w"], ex["align"], rgb565(ex["color"]))
         elif w["role"] == "text" and (w.get("text_pl") or w.get("wildcard")):
             s = (w.get("text_pl") or "\x02").replace("\x02", w.get("wildcard") or "")
             draw_text(img, w.get("font") or 0, s, w["ax"], w["ay"] + DY, w["w"], w.get("align") or 0)
+        if base is not None:
+            m = Image.new("L", size, 0); m.paste(255, crect); img = Image.composite(img, base, m)
     return img
 if __name__ == "__main__":
     inv = {n["node"]: n for n in json.load(open(sys.argv[1]))}; ex = json.load(open(sys.argv[sys.argv.index("--extras") + 1])) if "--extras" in sys.argv else None
