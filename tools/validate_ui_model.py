@@ -22,6 +22,13 @@ def main():
   if p.name=="INDEX.json": continue
   rel=p.relative_to(root).as_posix(); sch=SCHEMA/(p.stem+".schema.json")
   if not sch.exists(): warnings.append({"file":rel,"problem":"missing schema"})
+  else:
+   try:
+    sd=json.loads(sch.read_text(encoding="utf-8")); req=sd.get("required")
+    if req is None and "$ref" in sd:
+     common_schema=SCHEMA/"common.schema.json"; req=json.loads(common_schema.read_text(encoding="utf-8")).get("required",[])
+    if not isinstance(req,list): errors.append({"file":rel,"problem":"schema has no required list"})
+   except Exception as e: errors.append({"file":rel,"problem":"invalid schema: "+str(e)})
   try:d=json.loads(p.read_text(encoding="utf-8"))
   except Exception as e: errors.append({"file":rel,"problem":"invalid JSON: "+str(e)}); continue
   if not isinstance(d,dict): errors.append({"file":rel,"problem":"root must be object"}); continue
