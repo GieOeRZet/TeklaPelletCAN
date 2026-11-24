@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) edycja wartosci + tryb odczytu z urzadzenia
+Zrobilem: dialog liczbowy w liscie nastaw (suwak, -/+, OK; wartosci domyslne z firmware, edycja tylko w pamieci strony), tryb `?api=http://host` - odczyt `GET /api/v1/states` co 2 s i podstawienie wartosci pol (binding po id punktu); test na atrapie serwera: karta pokazuje 81.7 z API. Prawdziwego urzadzenia nie dotykalem. Pozostalo: etykiety PL w listach (dane `settings_labels` do zweryfikowania dialogami), PROGRAM edycja, dialog radio dla enum tekstowych, ALARMY L0, stan online; porzadek dokumentacji (HANDOFF/PLAN) na koniec.
+
 ### E3 korekta (2026-11-24): 644 komorek, 0 falszywych 'niewidocznych'; 8 nierozstrzygnietych
 Zrobilem: poprawka metody - wczesniejsze 'NOT_VISIBLE' (19) byly w czesci bledem pomiaru (zszyty obraz MENU urywa sie po 13 wierszach; po przewinieciu do konca widac Test wyjsc/Statystyki/Siec/Internet, np. L1 + 2105=2). Teraz stukanie przewija i sumuje przesuniecia (`tap_incremental`). Wynik: **644 komorki, mediana 0.2%, 93.5% < 3%, 96.3% < 8%**. Nierozstrzygniete 8: L1/L3 DEFAULT (Test wyjsc, Statystyki, Siec, Internet - lista konczy sie przed nimi, prawdopodobnie realnie niedostepne w tej konfiguracji) i KONFIGURACJA przy kaskadzie+magazynie (stukniecie trafia w inny wiersz). Pozostalo: ALARMY L0 (12.6%, OPEN#2 - stan statyczny, niezalezny od taktowania; ramka obrazu przesunieta o ~100 px z zawinieciem, mechanizm nieznany), stan online.
 

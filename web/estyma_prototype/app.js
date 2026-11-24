@@ -5,7 +5,8 @@ const cfg = () => ({"0x2105":+$("c2105").value,"0x2106":+$("c2106").value,"0x210
 const lvl = () => +$("lvl").value;
 const ops = {">=":(a,b)=>a>=b,"!=":(a,b)=>a!=b,"==":(a,b)=>a==b,"<=":(a,b)=>a<=b,">":(a,b)=>a>b,"<":(a,b)=>a<b};
 function visible(r){ if ((r.level_min||0) > lvl()) return false; const c = cfg(); return (r.config_cond||[]).every(x => (ops[x.op]||(()=>true))(c[x.pid]??0, x.val)); }
-function fmt(r){ const v = r.def ?? 0, f = r.fmt || {}, d = f.decimals || 0, s = f.scale || 1; return (v*s).toFixed(d); }
+const VALS = {};      // wartosci edytowane w prototypie (tylko pamiec strony; NIC nie jest zapisywane do urzadzenia)
+function fmt(r){ const v = (VALS[r.pid] ?? r.def) ?? 0, f = r.fmt || {}, d = f.decimals || 0, s = f.scale || 1; return (v*s).toFixed(d); }
 function head(t){ const e = document.createElement("div"); e.className="hd"; if (stack.length>1){ const b=document.createElement("button"); b.textContent="<"; b.onclick=()=>{stack.pop();render()}; e.append(b);} e.append(t); return e; }
 function row(p, n, v, cb){ const e = document.createElement("div"); e.className="row"; e.innerHTML = '<span class="n"></span><span class="v"></span>'; e.children[0].textContent=n; e.children[1].textContent=v; if(cb) e.onclick=cb; p.append(e); }
 function msg(t){ const e = document.createElement("div"); e.className="mut"; e.textContent=t; return e; }
@@ -16,12 +17,17 @@ function render(){
   if (cur.startsWith("LISTA:")){ const [, key, title] = cur.split(":"); s.append(head(title + " - nastawy"));
     const rows = (M.lists[key]||[]).filter(r => r.pid && (r.level_min||0) <= lvl());
     if (!rows.length) s.append(msg("Brak wierszy dla tego poziomu/listy w ui_model."));
-    rows.forEach(r => row(s, r.name, fmt(r), null)); return; }
+    rows.forEach(r => row(s, r.name, fmt(r), (r.kind === "number" || r.kind === "enum") && r.min != null && r.max != null ? () => numDialog(s, r) : null)); return; }
   s.append(head((M.nodes[cur]||{}).title || cur)); s.append(msg("Ekran w przygotowaniu (szkielet E7)."));
 }
 const FONT_PX = [12, 20, 26, 36, 64, 92], DEMO = {"0x2001": 653, "0x2110": 480, "0x2112": 400, "0x2113": 400, "0x226C": 62};     // dane przykladowe: PID -> wartosc SUROWA (tak jak w pamieci panelu); prawdziwe: /api/v1/states przez pid_to_point.json
 const SCREENS = {}, SCREEN_BY_ROW = {0:"KOCIOL",1:"PALNIK",2:"OGRZEWANIE1",3:"OGRZEWANIE2",4:"OGRZEWANIE3",5:"OGRZEWANIE4",6:"CWU",7:"SOLARY",8:"BUFOR",9:"KASKADA",10:"MAGAZYN",11:"ALARMY",12:"INFO",17:"TEST_WYJSC",18:"STATYSTYKI",19:"SIEC",20:"INTERNET"}; let tick = 0;
-function liveText(f){ const b = (f.bind || []).find(x => DEMO[x.pid] !== undefined && x.scale); if (!b) return f.template.replace("{}", ""); const m = /(\d+\.(\d+))/.exec(f.sample || ""), dec = m ? m[2].length : 0; const v = (DEMO[b.pid] + (b.pid === "0x2001" ? 8 * Math.sin(tick / 5) : 0)) * b.scale; return (f.sample || "").replace(/-?\d+(\.\d+)?/, v.toFixed(dec)); }
+const API = new URLSearchParams(location.search).get("api"), LIVE = {};      // ?api=http://host - tryb ODCZYTU z /api/v1/states (GET, bez autoryzacji, zero zapisow); id punktu = koncowka id encji
+function pollApi(){ fetch(API.replace(/\/$/, "") + "/api/v1/states").then(r => r.json()).then(j => { (j.states || []).forEach(x => { const n = parseFloat(x.state); if (!isNaN(n)) LIVE[x.id] = n; }); }).catch(() => {}); }
+if (API) { pollApi(); setInterval(pollApi, 2000); }
+function liveVal(b){ if (!API) return DEMO[b.pid] === undefined ? undefined : (DEMO[b.pid] + (b.pid === "0x2001" ? 8 * Math.sin(tick / 5) : 0)) * b.scale;
+  const k = Object.keys(LIVE).find(k => k === b.id || k.endsWith("_" + b.id)); return k === undefined ? undefined : LIVE[k]; }
+function liveText(f){ const b = (f.bind || []).find(x => x.scale && liveVal(x) !== undefined); if (!b) return f.template.replace("{}", ""); const m = /(\d+\.(\d+))/.exec(f.sample || ""), dec = m ? m[2].length : 0; return (f.sample || "").replace(/-?\d+(\.\d+)?/, liveVal(b).toFixed(dec)); }
 function listKey(target, row){ const ks = Object.keys(M.lists).filter(k => k.split("|")[1] === target).sort(); return ks[target === "OGRZEWANIE" ? Math.min(Math.max(row - 2, 0), ks.length - 1) : 0]; }
 function screenView(s, node, title, target, row){
   const sc = SCREENS[node]; const box = document.createElement("div"); box.className = "scr"; box.style.backgroundImage = "url(screens/" + node + ".png)";
@@ -43,3 +49,13 @@ function open(r){
   render();
 }
 Promise.all(["HOME", "PROGRAM"].concat(Object.values(SCREEN_BY_ROW)).map(n => fetch("screens/" + n + ".json").then(r => r.ok ? r.json() : null).then(j => { if (j) SCREENS[n] = j; }).catch(() => {}))).then(() => fetch("model.json")).then(r=>r.json()).then(m=>{ M=m; document.querySelectorAll("#bar select").forEach(x=>x.onchange=()=>{stack=["SCR:HOME:Ekran glowny:HOME:-1"];render()}); render(); }).catch(e=>{$("scr").textContent="Blad ladowania model.json: "+e});
+
+function numDialog(host, r){        // dialog liczbowy jak w panelu: tytul, duza wartosc, min/max, suwak, -/+, OK (FACT-DYNAMIC: enum liczbowy otwiera ten sam dialog)
+  let v = VALS[r.pid] ?? r.def ?? r.min; const d = document.createElement("div"); d.className = "ndlg";
+  d.innerHTML = '<div class="nt"></div><div class="nv"></div><div class="nmin"></div><div class="nmax"></div><input type="range" class="nr"><div class="nb"><button class="m">&minus;</button><button class="p">+</button></div><button class="nok">OK</button>';
+  const q = c => d.querySelector(c), sc = (r.fmt && r.fmt.scale) || 1, dec = (r.fmt && r.fmt.decimals) || 0, show = x => (x * sc).toFixed(dec);
+  q(".nt").textContent = r.name; q(".nmin").textContent = show(r.min); q(".nmax").textContent = show(r.max);
+  const rg = q(".nr"); rg.min = r.min; rg.max = r.max; rg.step = 1; const upd = () => { rg.value = v; q(".nv").textContent = show(v); };
+  rg.oninput = () => { v = +rg.value; upd(); }; q(".m").onclick = () => { v = Math.max(r.min, v - 1); upd(); }; q(".p").onclick = () => { v = Math.min(r.max, v + 1); upd(); };
+  q(".nok").onclick = () => { VALS[r.pid] = v; d.remove(); render(); }; upd(); host.append(d);
+}
