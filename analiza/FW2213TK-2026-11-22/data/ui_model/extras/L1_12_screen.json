@@ -1,1 +1,1 @@
-{"0x20016330": {"cls": "box", "box": 65535, "alpha": 120}, "0x20016360": {"cls": "box", "box": 65535, "alpha": 120}}
+{"0x20016330": {"cls": "box", "box": 65535, "alpha": 120, "hidden": true, "z": 1}, "0x20016360": {"cls": "box", "box": 65535, "alpha": 120, "hidden": true, "z": 0}, "0x200163b8": {"cls": "other", "hidden": false, "z": 2}, "0x2001a138": {"cls": "other", "hidden": false, "z": 3}, "0x2001a264": {"cls": "other", "hidden": false, "z": 4}}

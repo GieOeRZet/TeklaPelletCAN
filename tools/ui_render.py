@@ -46,15 +46,20 @@ def render(widgets, extras=None, size=(480, 272)):
             if a["vis"] != 1: return False
             a = W.get(a["parent"]); n += 1
         return True
+    if extras and any("z" in e for e in extras.values()): widgets = sorted(widgets, key=lambda w: (extras.get(w["this"]) or {}).get("z", 10**6))
     for w in widgets:
-        if w["w"] <= 0 or w["h"] <= 0 or w["w"] > 2000 or not visible(w) or w["ax"] > 480 or w["ay"] > 272 or w["ax"] + w["w"] < 0 or w["ay"] + w["h"] < 0: continue
+        if w["w"] <= 0 or w["h"] <= 0 or w["w"] > 2000 or (extras is None and not visible(w)) or w["ax"] > 480 or w["ay"] > 272 or w["ax"] + w["w"] < 0 or w["ay"] + w["h"] < 0: continue
         ex = (extras or {}).get(w["this"])
+        if ex and ex.get("hidden"): continue                       # efektywna niewidocznosc wg RAM biezacego punktu kontrolnego
         if ex and ex.get("cls") == "box":
             col = rgb565(ex["box"]); al = ex.get("alpha", 255)
             if (w["w"], w["h"]) == (480, 272) and col == BG: continue
             layer = Image.new("RGB", (w["w"], w["h"]), col); img.paste(layer, (w["ax"], w["ay"]), Image.new("L", (w["w"], w["h"]), al))
         elif w["role"] == "image" and w.get("bitmap_id") is not None:
             b = bitmap(w["bitmap_id"])
+            if b is not None: img.paste(b.convert("RGB"), (w["ax"], w["ay"]), b.getchannel("A"))
+        elif ex and ex.get("cls") == "btn":
+            b = bitmap(ex["bmp"])
             if b is not None: img.paste(b.convert("RGB"), (w["ax"], w["ay"]), b.getchannel("A"))
         elif ex and ex.get("cls") == "text":
             if ex["text"]: draw_text(img, ex["font"], ex["text"], w["ax"], w["ay"] + DY, w["w"], ex["align"], rgb565(ex["color"]))

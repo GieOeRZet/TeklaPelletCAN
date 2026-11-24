@@ -1,0 +1,44 @@
+# Ocena renderera z danych vs atlas emulatora
+
+mediana: MAE 4.50, % pikseli roznych 6.3; ekranow: 38
+
+| ekran | MAE | % pikseli roznych |
+|---|---|---|
+| L1_12_screen | 49.77 | 98.7 |
+| L0_11_settings | 43.36 | 96.7 |
+| L1_15_settings | 15.48 | 22.7 |
+| L1_16_settings | 15.53 | 17.0 |
+| L0_9_settings | 12.04 | 16.8 |
+| L1_14_screen | 13.21 | 15.9 |
+| L1_13_screen | 14.08 | 14.2 |
+| L0_10_settings | 10.96 | 13.6 |
+| L0_9_screen | 12.49 | 12.6 |
+| L0_6_settings | 6.32 | 9.1 |
+| L0_3_settings | 6.2 | 8.7 |
+| L0_4_settings | 6.2 | 8.7 |
+| L0_5_settings | 6.18 | 8.7 |
+| LC_9_settings | 6.17 | 8.7 |
+| L0_1_settings | 6.21 | 8.6 |
+| L0_2_settings | 6.16 | 8.6 |
+| L1_16_screen | 5.96 | 8.2 |
+| L0_11_screen | 5.89 | 8.1 |
+| LC_10_settings | 4.99 | 6.9 |
+| L0_7_settings | 4.01 | 5.8 |
+| L0_0_settings | 3.93 | 5.4 |
+| L0_8_settings | 2.67 | 3.6 |
+| H_home | 3.33 | 3.4 |
+| L1_15_screen | 1.13 | 1.1 |
+| L1_18_screen | 0.77 | 1.0 |
+| L0_0_screen | 0.33 | 0.3 |
+| L0_2_screen | 0.31 | 0.3 |
+| L0_3_screen | 0.31 | 0.3 |
+| L0_4_screen | 0.31 | 0.3 |
+| L0_5_screen | 0.31 | 0.3 |
+| L0_8_screen | 0.33 | 0.3 |
+| L0_10_screen | 0.3 | 0.2 |
+| L0_1_screen | 0.3 | 0.2 |
+| L0_6_screen | 0.22 | 0.2 |
+| L0_7_screen | 0.24 | 0.2 |
+| L1_17_screen | 0.19 | 0.2 |
+| LC_10_screen | 0.21 | 0.2 |
+| LC_9_screen | 0.24 | 0.2 |

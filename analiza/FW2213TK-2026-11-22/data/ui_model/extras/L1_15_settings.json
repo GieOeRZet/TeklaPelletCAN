@@ -1,1 +1,1 @@
-{"0x2001bc90": {"cls": "box", "box": 65535, "alpha": 120}, "0x2001bcc0": {"cls": "box", "box": 65535, "alpha": 120}}
+{"0x2001bc90": {"cls": "box", "box": 65535, "alpha": 120, "hidden": true, "z": 0}, "0x2001bcc0": {"cls": "box", "box": 65535, "alpha": 120, "hidden": true, "z": 1}}
