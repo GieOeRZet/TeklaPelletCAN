@@ -429,3 +429,9 @@ Stan oczekiwania:
 - B: `list_scale.py/list_switch.py/list_scales_build.py` są dostępne, ale brak reprodukowalnego checkpointu KASKADA/MAGAZYN (`*.state` + `rows.pkl`) w bieżącym runtime; nie wpisano fikcyjnych wyników.
 - C: SIEĆ 0x57 i 0x5B są potwierdzone dynamicznie; SW po stabilizacji = `v52.18`; wpis SIEĆ pozostaje przy 1500 i dostępny lokalnie zrzut pozostaje również przy 10000 tikach. Dokładny timeout >10000 OPEN. INFO: 0x3665 jest nazwanym `igneTouch boiler short name`, 0x2170 = VideRoom PIN, ale źródła wildcardów INFO nadal OPEN. INTERNET: SERIAL/PIN są zmierzone jako widget→PID 0x373F/0x3740.
 - Raport: `analiza/FW2213TK-2026-11-24/AUTONOMOUS-PASS-ETAP3-A-C-2026-11-24.md`.
+
+
+### ETAP 3 — doprecyzowanie wykonania B/C — 2026-11-24
+- **B:** istniejące PASS 52 potwierdza wyrenderowane ekrany KASKADA/MAGAZYN po ustawieniu `0x350C=1`, `0x3525=1`, `0x351A=2`. Nie jest to jednak pomiar `list_scale.py/list_switch.py`. Zgodnie z zasadą NO-FABRICATION zapisano osobny artefakt `analiza/FW2213TK-2026-11-24/data/ui_model/chatgpt/list_scales_kaskada_magazyn.json` ze statycznym katalogiem 13 PID-ów i jawnym `OPEN_RUNTIME_REQUIRED` dla skali/enum/switch.
+- **C:** SERIAL/PIN w INTERNET są już FACT-DYNAMIC (`0x373F` / `0x3740`). Dla korelacji `0x5B` istnieje zapisany test negatywny: obecność `0x5B` nie zmieniła obrazu INTERNET w przetestowanym scenariuszu heartbeat+identity/PDO; klasyfikacja pozostaje `NEGATIVE_UNDER_TEST`, nie uniwersalne CLOSED. `v52.18` zostaje wynikiem po stabilizacji. Timeout SIEĆ pozostaje OPEN >10000 tików.
+- Raport artefaktów: `analiza/FW2213TK-2026-11-24/data/ui_model/chatgpt/etap3_c_status.json`.
