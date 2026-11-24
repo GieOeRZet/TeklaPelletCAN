@@ -1,5 +1,9 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### 1:1 (2026-11-24) po Twojej uwadze wrocilem do domykania rewersu: HOME 0.0%, krok dialogu liczbowego
+Zrobilem: pelny render HOME ze stanem bazowym = **0.0%** roznicy (z danych firmware); Kopiuj 5.8% i edytor INTERNET 5.0% - roznica to 1 px przesuniecie/alfa bitmap checkboxow i przyciemnienie naglowka (zmierzone, nie blokuje); `tools/list_dialogs.py` (dialog edycji wiersza listy: rodzaj, tytul PL, min/max, krok +/-): FACT-DYNAMIC dla wierszy Kociola 0,1,2,4: suwak, **krok = 1 jednostka surowa** (+1 daje 66/11/1/46), zakresy zgodne z lists.json (60-80, 0-20, 0-20, 20-70). Przewijanie do dalszych wierszy dalej zawodne (offset po drag) - narzedzie eksperymentalne, reszta wierszy w BACKLOG. Wniosek: krok dialogu = 1 raw dla wszystkich dotychczas zmierzonych; dla pozostalych wierszy przyjmuje sie 1 (INFERENCE).
+Pozostale luki 1:1 (po kolei): etykiety opcji enum tekstowych (poza IN17/Energy meter/Glowny modul IO), Statystyki/Siec etykiety, render PROGRAM z danych, stan online, 18 komorek pokrycia.
+
 ### E7 (2026-11-24) PROGRAM: przewijanie dni (Pn-Cz <-> Cz-Nd)
 Zrobilem: drugi ekran PROGRAM (zrzut z emulatora po przewinieciu), przewijanie kolkiem myszy/przeciagnieciem w karcie; test Playwright OK. Stan E7: 18 ekranow + PROGRAM x2, 5 okien HOME, dialog liczbowy, dialogi PROGRAM (dzien/Kopiuj), etykiety PL, tryb API (odczyt), karta Lovelace. Pozostalo: edycja segmentow PROGRAM i dialog radio dla enum tekstowych (OPEN: brak pelnych etykiet), listy Statystyki/Siec (przewijanie), test w prawdziwym HA, nawigacja pokrycia (18 komorek).
 

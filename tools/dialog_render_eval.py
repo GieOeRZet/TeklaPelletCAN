@@ -14,6 +14,7 @@ SC = {   # nazwa: (katalog, [kroki]) ; krok = ("row", idx) | ("tap", x, y, settl
  "program_day": (L0, [("row", 0), ("tap", 414, 130, 900), ("tap", 235, 175, 900)]),
  "program_copy": (L0, [("row", 0), ("tap", 414, 130, 900), ("tap", 235, 175, 900), ("tap", 235, 200, 900)]),
  "internet_editor": (L1, [("row", 18), ("tap", 180, 62, 900)]),
+ "home_base": ("HOME", []),
  "home_paliwo": ("HOME", [("tap", 103, 234, 900)]),
  "home_zasilanie": ("HOME", [("tap", 448, 234, 900)]),
  "home_auto": ("HOME", [("tap", 415, 76, 900)]),
