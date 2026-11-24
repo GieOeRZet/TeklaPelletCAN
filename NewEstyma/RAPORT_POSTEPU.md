@@ -1,5 +1,7 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### OPEN#2 ROZWIAZANE (2026-11-24) dzieki zdjeciu wlasciciela
+Historia alarmow na L0 w prawdziwym panelu ma normalny uklad (ikony po prawej, przyciski gora/dol), wiec przesuniecie ~100 px w emulatorze to artefakt emulatora; komorki ALARMY L0 nie liczone do bledu renderera (po wylaczeniu: mediana nadal 0.2%, >8% prawie 0). Karta uzywa ukladu normalnego (z L1). Dopisane: status NIEAKTYWNY zielony / AKTYWNY czerwony, linia Potwierdz. - zgodne z danymi.
 ### E7 (2026-11-24) etykiety PL list: 173 z ~190 wierszy (bylo 144)
 Zrobilem: wnioskowanie slotow miedzy zmierzonymi kotwicami (`tools/list_labels.py`, pole `how`), wspolna nawigacja `tools/ui_nav.py` (tap_incremental). Konfiguracja 14 z 26, reszta list 91-100%. Pozostalo: Statystyki (nie da sie wejsc z L3 w tej metodzie), skrajne wiersze bez kotwic. PROGRAM: ikona w kolku, ktora zaznaczyles, to artefakt MOJEGO renderu z danych (nie ma jej w panelu) - tlo PROGRAM w karcie to teraz zrzut z emulatora, bug renderu w BACKLOG.
 
