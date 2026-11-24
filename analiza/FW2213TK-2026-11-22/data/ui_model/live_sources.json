@@ -481,9 +481,7 @@
   "0x311C/0x3120 Solar pump state/status z temperatur solarnych",
   "stany pomp i palnika (0x2277, 0x2007) wyliczane przez logike EstymaTask z temperatur - nie sa wejsciami"
  ],
- "unmapped_live": [
-  "SLAVE 1..3 (SDO 0x605..0x607) kaskada - niesprawdzone"
- ],
+ "unmapped_live": [],
  "scan_pass70": {
   "tool": "tools/live_scan.py",
   "method": "kazdy z 12 kanalow wezla dostaje surowe 500/2000/3000 (reszta 1000), roznica wszystkich PID-ow wzgledem bazy; bez hakow",
@@ -517,5 +515,22 @@
    "0x3628 Statistics - total energy produced [kWh]"
   ],
   "conclusion": "STRONG: te wartosci dostarcza sterownik kotla protokolem 0x584 (jak wiekszosc PID-ow), nie modul CAN IO; w modelu UI zrodlo = \"controller\", wstrzykiwanie przez 0x584 jest wlasciwe. Uwaga: 0x371A po inject 777 -> stored 65487 (nadpisywane przez wlasne zrodlo PDO1)."
+ },
+ "cascade_slaves": {
+  "evidence": "MEASURED (PASS 70, emulator; kaskada wlaczona: 0x350C=2, 0x351A=3 przez inject_param; odpowiedzi wstrzykiwane po jednej ramce, 8 powtorzen)",
+  "requests_from_panel": "co ~1000 tikow dla kazdego slave: 0x605/0x606/0x607 dane 40 01 20 01 00 00 00 00 (SDO upload obiektu 0x2001:01) oraz 20 04 30 01 00 00 00 00 (obiekt 0x3004:01, wartosc wysylana do slave: zadana temperatura wirtualnego odbiornika energii; w tym stanie 0)",
+  "responses": {
+   "frame": "0x585/0x586/0x587 = 0x580+node (node 5,6,7), dane 4B 01 20 01 <u16 LE> (SDO expedited 2 bajty) -> wartosc w dC bez krzywej",
+   "mapping": {
+    "0x585 (SLAVE 1)": "0x200A Remote boiler 1 temp[dC] s16 0..1500",
+    "0x586 (SLAVE 2)": "0x200B Remote boiler 2 temp[dC]",
+    "0x587 (SLAVE 3)": "0x200C Remote boiler 3 temp[dC]"
+   },
+   "notes": "wartosc ujemna (65436 = -100) zapisuje sie jako s16; odpowiedzi na 0x3004 (4B i ack 60) nie zmieniaja zadnego PID"
+  },
+  "open": [
+   "czy slave odpowiada tez na inne obiekty (kolejne zapytania pojawiaja sie wg poziomu mocy 0x3512..0x3514)",
+   "zachowanie przy braku odpowiedzi (offline slave) - wyswietlanie na ekranie Kaskada"
+  ]
  }
 }
