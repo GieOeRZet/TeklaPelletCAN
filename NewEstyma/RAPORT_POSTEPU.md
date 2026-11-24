@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) ekran PROGRAM w karcie + poprawka kafla Paliwo
+Zrobilem: ekran PROGRAM (harmonogram tygodniowy z danych firmware) otwierany z Kociola paskiem harmonogramu, wstecz `<`; poprawiony konflikt obszarow dotyku HOME (kafel MENU vs Paliwo); testy Playwright: HOME->MENU, 5 okien HOME, Kociol->PROGRAM->Kociol: OK. README prototypu. Stan E7: 18 ekranow + 5 okien. Pozostalo: edycja PROGRAM/dialogow, listy przewijalne, /api/v1/states (tylko odczyt), ALARMY L0 (OPEN#2), stan 'online'.
+
 ### E7 (2026-11-24) okna HOME w karcie: 5 z 5 otwieraja sie i zamykaja (OK)
 Zrobilem: nakladki Paliwo, Zasilanie, Auto, Czas, Data (obrazy z renderera z danych firmware, 0.0-4.0% roznicy) otwierane kafelkami HOME, zamykane OK; test Playwright 5/5, 0 bledow. Obrazy statyczne (bez edycji wartosci). Pozostalo: edycja wartosci w oknach/dialogach, podpiecie /api/v1/states (tylko odczyt), listy przewijalne, PROGRAM; BACKLOG: ALARMY L0, stan 'online'.
 

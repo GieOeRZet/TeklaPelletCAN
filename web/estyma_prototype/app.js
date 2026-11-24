@@ -28,10 +28,10 @@ function screenView(s, node, title, target, row){
   (sc.dynamic || []).forEach(f => { const e = document.createElement("div"); e.className = "dyn"; Object.assign(e.style, {left: f.rect[0]+"px", top: f.rect[1]+"px", width: f.rect[2]+"px", height: f.rect[3]+"px", color: f.color, font: FONT_PX[f.font]+"px/"+f.rect[3]+"px 'Roboto Condensed','Arial Narrow',sans-serif", textAlign: ["left","center","right"][f.align]}); e.textContent = liveText(f); e._f = f; box.append(e); });
   box.onclick = ev => { const r = box.getBoundingClientRect(), k = 480 / r.width, x = (ev.clientX - r.left) * k, y = (ev.clientY - r.top) * k;
     if (node === "HOME") { const dlg = box.querySelector(".dlg"); if (dlg) { if (x > 385 && y > 205 && y < 250) dlg.remove(); return; }
-      const hit = [["home_paliwo", x < 135 && y > 195], ["home_zasilanie", x > 415 && y > 195], ["home_auto", x > 340 && y < 100 && y > 50], ["home_czas", x < 90 && y < 45], ["home_data", x > 160 && x < 320 && y < 45]].find(h => h[1]);
+      const hit = [["home_paliwo", x >= 70 && x < 135 && y > 195], ["home_zasilanie", x > 415 && y > 195], ["home_auto", x > 340 && y < 100 && y > 50], ["home_czas", x < 90 && y < 45], ["home_data", x > 160 && x < 320 && y < 45]].find(h => h[1]);
       if (hit) { const d = document.createElement("div"); d.className = "dlg"; d.style.backgroundImage = "url(dialogs/" + hit[0] + ".png)"; box.append(d); return; }
       if (x < 70 && y > 195) { stack = ["SCR:HOME:Ekran glowny:HOME:-1", "MENU"]; render(); } return; }
-    if (x > 420 && y < 45) { stack = ["SCR:HOME:Ekran glowny:HOME:-1"]; render(); } else if (x < 130 && y < 45) { stack.pop(); render(); } else if (x > 240 && y > 225) { const k = listKey(target, +row); if (k) { stack.push("LISTA:" + k + ":" + title); render(); } } };
+    if (x > 420 && y < 45) { stack = ["SCR:HOME:Ekran glowny:HOME:-1"]; render(); } else if (x < 130 && y < 45) { stack.pop(); render(); } else if (node === "KOCIOL" && x > 345 && y > 110 && y < 150) { stack.push("SCR:PROGRAM:Program:PROGRAM:-1"); render(); } else if (x > 240 && y > 225) { const k = listKey(target, +row); if (k) { stack.push("LISTA:" + k + ":" + title); render(); } } };
   s.append(box);
 }
 setInterval(() => { tick++; document.querySelectorAll(".dyn").forEach(e => e.textContent = liveText(e._f)); }, 1000);
@@ -42,4 +42,4 @@ function open(r){
   else if (r.target) stack.push(r.target);
   render();
 }
-Promise.all(["HOME"].concat(Object.values(SCREEN_BY_ROW)).map(n => fetch("screens/" + n + ".json").then(r => r.ok ? r.json() : null).then(j => { if (j) SCREENS[n] = j; }).catch(() => {}))).then(() => fetch("model.json")).then(r=>r.json()).then(m=>{ M=m; document.querySelectorAll("#bar select").forEach(x=>x.onchange=()=>{stack=["SCR:HOME:Ekran glowny:HOME:-1"];render()}); render(); }).catch(e=>{$("scr").textContent="Blad ladowania model.json: "+e});
+Promise.all(["HOME", "PROGRAM"].concat(Object.values(SCREEN_BY_ROW)).map(n => fetch("screens/" + n + ".json").then(r => r.ok ? r.json() : null).then(j => { if (j) SCREENS[n] = j; }).catch(() => {}))).then(() => fetch("model.json")).then(r=>r.json()).then(m=>{ M=m; document.querySelectorAll("#bar select").forEach(x=>x.onchange=()=>{stack=["SCR:HOME:Ekran glowny:HOME:-1"];render()}); render(); }).catch(e=>{$("scr").textContent="Blad ladowania model.json: "+e});

@@ -23,6 +23,8 @@ else:
     nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = pickle.load(open(os.path.join(d, "rows.pkl"), "rb")); t = C.Tracer(s); t.log.clear()
     assert nav.tap_row_from_top(row); s.wait(700)
 if settings: s.tap(400, 245, settle=800); s.wait(500)
+for tp in filter(None, os.environ.get("EXTRA_TAPS", "").split(";")):      # np. EXTRA_TAPS="414,130" (kolejne stukniecia po wejsciu w ekran)
+    x_, y_ = [int(v) for v in tp.split(",")]; s.tap(x_, y_, settle=900); s.wait(400)
 ws = C.widget_table(s, t); ex = X.extract(s, ws); ref = s.shot()
 dyn = []; static = []
 for w in ws:

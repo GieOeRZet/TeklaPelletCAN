@@ -1,0 +1,9 @@
+{
+ "name": "PROGRAM",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}
