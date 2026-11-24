@@ -8,11 +8,12 @@ INV = {"L0": "widgets_inv_pass61_L0.json", "L1": "widgets_inv_pass65_L1_all.json
 rows = []
 for pre, f in INV.items():
     inv = {n["node"]: n for n in json.load(open(A + f))}
-    for ef in sorted(glob.glob(A + "ui_model/extras/%s_*.json" % pre)):
+    EXD = os.environ.get("ESTYMA_EXTRAS", A + "ui_model/extras"); OUTD = os.environ.get("ESTYMA_EVAL_OUT", A + "ui_model")      # katalog extras i wyjscia mozna nadpisac
+    for ef in sorted(glob.glob(os.path.join(EXD, "%s_*.json" % pre))):
         node = os.path.basename(ef)[len(pre) + 1:-5]; at = A + "ui_model/atlas/%s_%s.png" % (pre, node)
         if not os.path.exists(at) or node not in inv: continue
         _, _, mae, fr, _ = C.compare(inv[node]["widgets"], at, json.load(open(ef))); rows.append(dict(screen="%s_%s" % (pre, node), mae=round(mae, 2), pct_diff=round(fr * 100, 1)))
-w = csv.DictWriter(open(A + "ui_model/render_eval.csv", "w", newline=""), fieldnames=["screen", "mae", "pct_diff"]); w.writeheader(); w.writerows(rows)
+w = csv.DictWriter(open(os.path.join(OUTD, "render_eval.csv"), "w", newline=""), fieldnames=["screen", "mae", "pct_diff"]); w.writeheader(); w.writerows(rows)
 md = ["# Ocena renderera z danych vs atlas emulatora\n", "mediana: MAE %.2f, %% pikseli roznych %.1f; ekranow: %d\n" % (statistics.median(r["mae"] for r in rows), statistics.median(r["pct_diff"] for r in rows), len(rows)), "| ekran | MAE | % pikseli roznych |", "|---|---|---|"]
 md += ["| %s | %s | %s |" % (r["screen"], r["mae"], r["pct_diff"]) for r in sorted(rows, key=lambda r: -r["pct_diff"])]
-open(A + "ui_model/render_eval.md", "w", encoding="utf-8").write("\n".join(md) + "\n"); print(md[1])
+open(os.path.join(OUTD, "render_eval.md"), "w", encoding="utf-8").write("\n".join(md) + "\n"); print(md[1])
