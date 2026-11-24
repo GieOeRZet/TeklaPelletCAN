@@ -429,50 +429,34 @@
   "0x54": {
    "name": "Airflowmeter 1",
    "evidence": "MEASURED (PASS 70, 12 rund ramki PDO1, konfiguracja 0x362B=1)",
-   "pdo1": "0x180+node: bajty 6-7 (u16 LE) = surowy odczyt przeplywu -> 0x371A; bajty 0-1 = wersja SW (('0x3666', '0x3667'))",
+   "pdo1": "0x180+node: bajt 6 = czesc calkowita, bajt 7 = ulamek (8.8, big-endian: X=(b6<<8)|b7); wartosc PID = X * 1469/65536 (= b6 * 5.738 + b7 * 0.0224); bajty 0-1 = wersja SW (Airflowmeter 1: PID 0x3666/0x3667)",
    "pids_primary": [
     "0x371A"
    ],
    "raw_to_value_samples": {
-    "0": 0,
-    "20": 114,
-    "50": 287,
-    "100": 574,
-    "200": 1148,
-    "300": 252,
-    "500": 1401,
-    "800": 183,
-    "1000": 1332,
-    "1500": 1263,
-    "2000": 1194,
-    "3000": 1056,
-    "4000": 919
+    "b6=0": 0,
+    "b6=100": 574,
+    "b6=200": 1148,
+    "b6=255": 1464
    },
-   "note": "zakres 0..200: wartosc = 5.74 x surowy (liniowo); powyzej 200 nieregularnie (filtr 8 probek / odrzucanie bledow - OPEN: dokladna krzywa i jednostka)"
+   "note": "ERRATA: wczesniejszy opis \"u16 LE bajty 6-7 z nieregularna krzywa\" byl bledny; nieregularnosc wynikala z wysylania u16 do bajtu 6 (obcinanie do 8 bitow, zawijanie co 256). Krzywa jest liniowa.",
+   "formula": "PID = round((b6*256+b7) * 0.022415); max 1469 przy 0xFFFF; MEASURED: 0..4100 co 25 (flow_a/b/c, tools/flow_curve.py), b7 osobno: b6=100,b7=255 -> 579"
   },
   "0x55": {
    "name": "Airflowmeter 2",
    "evidence": "MEASURED (PASS 70, 12 rund ramki PDO1, konfiguracja 0x362B=1)",
-   "pdo1": "0x180+node: bajty 6-7 (u16 LE) = surowy odczyt przeplywu -> 0x371E; bajty 0-1 = wersja SW (PID wersji nie zmierzony)",
+   "pdo1": "0x180+node: bajt 6 = czesc calkowita, bajt 7 = ulamek (8.8, big-endian: X=(b6<<8)|b7); wartosc PID = X * 1469/65536 (= b6 * 5.738 + b7 * 0.0224); bajty 0-1 = wersja SW (Airflowmeter 1: PID 0x3666/0x3667)",
    "pids_primary": [
     "0x371E"
    ],
    "raw_to_value_samples": {
-    "0": 0,
-    "20": 114,
-    "50": 287,
-    "100": 574,
-    "200": 1148,
-    "300": 252,
-    "500": 1401,
-    "800": 183,
-    "1000": 1332,
-    "1500": 1263,
-    "2000": 1194,
-    "3000": 1056,
-    "4000": 919
+    "b6=0": 0,
+    "b6=100": 574,
+    "b6=200": 1148,
+    "b6=255": 1464
    },
-   "note": "zakres 0..200: wartosc = 5.74 x surowy (liniowo); powyzej 200 nieregularnie (filtr 8 probek / odrzucanie bledow - OPEN: dokladna krzywa i jednostka)"
+   "note": "ERRATA: wczesniejszy opis \"u16 LE bajty 6-7 z nieregularna krzywa\" byl bledny; nieregularnosc wynikala z wysylania u16 do bajtu 6 (obcinanie do 8 bitow, zawijanie co 256). Krzywa jest liniowa.",
+   "formula": "PID = round((b6*256+b7) * 0.022415); max 1469 przy 0xFFFF; MEASURED: 0..4100 co 25 (flow_a/b/c, tools/flow_curve.py), b7 osobno: b6=100,b7=255 -> 579"
   }
  },
  "derived_by_controller": [
