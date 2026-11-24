@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
-"""ETAP 3A: build a conservative UI appearance coverage matrix.
+"""ETAP 3A: conservative UI appearance coverage matrix.
 
-The matrix is deliberately evidence-conservative:
-- menu_tree.json defines nodes, access levels and gating configurations;
-- atlas/*.png and render_eval.csv prove only the captured/default visual state;
-- alarm/offline/dialog cells are OPEN unless a dedicated state capture is discoverable;
-- this tool never modifies renderer code or measured source data.
+Important evidence rule:
+- A screenshot is NOT reused across different gating configurations unless its
+  filename/provenance explicitly identifies that configuration.
+- Atlas filenames such as L1_17_screen prove level/row only; they do not prove
+  0x350C/0x3525/etc. Therefore such a shot is assigned only to DEFAULT when
+  DEFAULT is an explicit configuration, otherwise the cell remains OPEN.
+- alarm/module_offline/dialog require dedicated captures.
+- Renderer code and measured source data are never modified.
 
 Usage:
   python3 -I tools/coverage_matrix.py
   python3 -I tools/coverage_matrix.py --threshold 5
-  python3 -I tools/coverage_matrix.py --root analiza/FW2213TK-2026-11-22/data/ui_model
 """
 from __future__ import annotations
-import argparse, csv, json
+import argparse, csv, json, re
 from pathlib import Path
 
 STATES_SCREEN = ("default", "alarm", "module_offline")
@@ -29,6 +31,17 @@ def render_map(p):
     with p.open(encoding="utf-8", newline="") as f:
         return {r["screen"]: {"mae": float(r["mae"]), "pct_diff": float(r["pct_diff"])}
                 for r in csv.DictReader(f)}
+
+def filename_provenance(stem):
+    """Return (level,row,kind,config,state) only when the filename encodes them."""
+    # Supported explicit forms can be extended without changing acceptance logic.
+    m = re.fullmatch(r"L(\d+)_(\d+)_(screen|settings)(?:__(.+))?", stem)
+    if m:
+        return int(m.group(1)), int(m.group(2)), m.group(3), (m.group(4) or "DEFAULT"), "default"
+    m = re.fullmatch(r"L(\d+)_(\d+)_(screen|settings)_(alarm|module_offline|dialog)(?:__(.+))?", stem)
+    if m:
+        return int(m.group(1)), int(m.group(2)), m.group(3), (m.group(5) or "DEFAULT"), m.group(4)
+    return None
 
 def main():
     ap = argparse.ArgumentParser()
@@ -47,6 +60,14 @@ def main():
     for row in menu.get("menu_rows", []):
         rows_by_target.setdefault(row.get("target"), []).append(row)
 
+    # Build an exact screenshot index. No configuration is inferred from the
+    # existence of a screen row in menu_tree.
+    shot_index = {}
+    for stem, p in atlas.items():
+        prov = filename_provenance(stem)
+        if prov:
+            shot_index[prov] = p
+
     cells = []
     for node in menu.get("nodes", []):
         nid = node["id"]
@@ -62,19 +83,30 @@ def main():
             for cfg in cfgs:
                 for state in states:
                     shot = None
+                    # HOME has an explicit H_home capture, but its provenance
+                    # does not encode config/level; count it only for DEFAULT.
                     if state == "default":
-                        if nid == "HOME" and "H_home" in atlas:
+                        if nid == "HOME" and cfg == "DEFAULT" and "H_home" in atlas:
                             shot = atlas["H_home"]
                         else:
-                            candidates = []
+                            # Find the menu row for this node and exact level.
                             for r in rows:
-                                if any(v.endswith(f"|L{level}") for v in r.get("visible_in", [])):
-                                    candidates += [f"L{level}_{r['row']}_screen",
-                                                   f"L{level}_{r['row']}_settings"]
-                            for c in candidates:
-                                if c in atlas:
-                                    shot = atlas[c]
+                                if not any(v.endswith(f"|L{level}") and v.split("|",1)[0] == cfg
+                                           for v in r.get("visible_in", [])):
+                                    continue
+                                candidates = [
+                                    (f"L{level}_{r['row']}_screen", "screen"),
+                                    (f"L{level}_{r['row']}_settings", "settings"),
+                                ]
+                                for stem, kind in candidates:
+                                    if stem in atlas:
+                                        prov = filename_provenance(stem)
+                                        if prov and prov[3] == cfg and prov[4] == state:
+                                            shot = atlas[stem]
+                                            break
+                                if shot:
                                     break
+
                     ev = renders.get(shot.stem) if shot else None
                     cells.append({
                         "node": nid, "kind": node.get("kind"), "level": level,
@@ -85,23 +117,24 @@ def main():
                         "mae": ev["mae"] if ev else None,
                         "pct_diff": ev["pct_diff"] if ev else None,
                         "pass": bool(ev and ev["pct_diff"] < args.threshold),
-                        "evidence": "STATIC-BASELINE" if shot else "OPEN",
+                        "evidence": "STATIC-BASELINE-EXACT-CONFIG" if shot else "OPEN",
                     })
 
     covered = [c for c in cells if c["screenshot"]]
     evaluated = [c for c in cells if c["render_eval"]]
     passed = [c for c in cells if c["pass"]]
     result = {
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "evidence": "STATIC-BASELINE",
         "firmware_sha256": menu.get("meta", {}).get("firmware_sha256"),
         "threshold_pct_diff": args.threshold,
         "method": {
             "nodes": "menu_tree.nodes",
             "levels": [0,1,2,3],
-            "configurations": "menu_rows.visible_in, exact per-level signatures",
+            "configurations": "menu_rows.visible_in exact signatures",
             "states": list(STATES_SCREEN) + ["dialog"],
             "visual_evidence": "atlas/*.png + render_eval.csv",
+            "config_rule": "never infer gating config from row visibility; exact-config screenshot provenance required",
             "dynamic_backfill": "not performed automatically; missing cells remain OPEN"
         },
         "summary": {
