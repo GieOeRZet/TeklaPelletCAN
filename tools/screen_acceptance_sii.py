@@ -85,7 +85,7 @@ def info_suite(out):
 
 def internet_suite(out):
     s = boot(out)
-    menu_to_row(s,20)
+    menu_to_row(s,18)
     base = snapshot(s,out,"internet_baseline")
     tests=[]
     # Direct PID/state tests first. Editor tests are intentionally separate:
@@ -108,7 +108,7 @@ def internet_suite(out):
             "label":label,"pid":hex(pid),"value":val,
             "body_changed":bool(diff(before,after,os.path.join(out,label+"_diff.png"))),
             "state":s.state(),
-            "tx_total":tx_before,
+            "tx_before":tx_before, "tx_after":len(s.can2.tx),
         })
     # SSID serialization probes: use 6 u32 chunks. "Home" is the known
     # big-endian-per-u32 representation 0x486f6d65.
@@ -134,7 +134,7 @@ def internet_suite(out):
 
 def siec_suite(out):
     s = boot(out)
-    menu_to_row(s,19)
+    menu_to_row(s,17)
     base=s.shot("siec_empty")
     tests=[]
     # The harness first captures the empty state. Node-module injection is
