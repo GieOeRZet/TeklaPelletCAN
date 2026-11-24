@@ -7568,6 +7568,1039 @@
     }
    ]
   },
+  "0x08": {
+   "node": "9_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "Cascade slaves number",
+     "pid": "0x351A",
+     "kind": "enum",
+     "raw_min": 1,
+     "raw_max": 3,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      }
+     ],
+     "control": {
+      "pid": "0x351A",
+      "values": [
+       1,
+       2,
+       3
+      ],
+      "stored": [
+       1,
+       2,
+       3
+      ],
+      "slot": 0,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 275,
+        "ay": 59,
+        "w": 175,
+        "h": 32,
+        "per_value": {
+         "1": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "1",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "2",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "3",
+          "tid": 106,
+          "label": "SOLARY"
+         }
+        }
+       }
+      ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "1": 106,
+      "2": 106,
+      "3": 106
+     }
+    },
+    {
+     "idx": 1,
+     "name_en": "Cascade master power level",
+     "pid": "0x3511",
+     "kind": "enum",
+     "raw_min": 1,
+     "raw_max": 4,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 4,
+       "text": "4"
+      }
+     ],
+     "control": {
+      "pid": "0x3511",
+      "values": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "stored": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "slot": 1,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 275,
+        "ay": 109,
+        "w": 175,
+        "h": 32,
+        "per_value": {
+         "1": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "1",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "2",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "3",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "4": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "4",
+          "tid": 106,
+          "label": "SOLARY"
+         }
+        }
+       }
+      ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "1": 106,
+      "2": 106,
+      "3": 106,
+      "4": 106
+     }
+    },
+    {
+     "idx": 2,
+     "name_en": "Cascade slave 1 power level",
+     "pid": "0x3512",
+     "kind": "enum",
+     "raw_min": 1,
+     "raw_max": 4,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 4,
+       "text": "4"
+      }
+     ],
+     "control": {
+      "pid": "0x3512",
+      "values": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "stored": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "slot": 2,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 275,
+        "ay": 159,
+        "w": 175,
+        "h": 32,
+        "per_value": {
+         "1": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "1",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "2",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "3",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "4": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "4",
+          "tid": 106,
+          "label": "SOLARY"
+         }
+        }
+       }
+      ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "1": 106,
+      "2": 106,
+      "3": 106,
+      "4": 106
+     }
+    },
+    {
+     "idx": 3,
+     "name_en": "Cascade slave 2 power level",
+     "pid": "0x3513",
+     "kind": "enum",
+     "raw_min": 1,
+     "raw_max": 4,
+     "slot": 3,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 4,
+       "text": "4"
+      }
+     ],
+     "control": {
+      "pid": "0x3513",
+      "values": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "stored": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "slot": 3,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 275,
+        "ay": 209,
+        "w": 175,
+        "h": 32,
+        "per_value": {
+         "1": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "1",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "2",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "3",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "4": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "4",
+          "tid": 106,
+          "label": "SOLARY"
+         }
+        }
+       }
+      ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "1": 106,
+      "2": 106,
+      "3": 106,
+      "4": 106
+     }
+    },
+    {
+     "idx": 4,
+     "name_en": "Cascade slave 3 power level",
+     "pid": "0x3514",
+     "kind": "enum",
+     "raw_min": 1,
+     "raw_max": 4,
+     "slot": 4,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 4,
+       "text": "4"
+      }
+     ],
+     "control": {
+      "pid": "0x3514",
+      "values": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "stored": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "slot": 4,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 275,
+        "ay": 259,
+        "w": 175,
+        "h": 32,
+        "per_value": {
+         "1": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "1",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "2",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "3",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "4": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "4",
+          "tid": 106,
+          "label": "SOLARY"
+         }
+        }
+       }
+      ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "1": 106,
+      "2": 106,
+      "3": 106,
+      "4": 106
+     }
+    },
+    {
+     "idx": 5,
+     "name_en": "Cascade minimal energy [%]",
+     "pid": "0x3515",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 100,
+     "slot": 5,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 6,
+     "name_en": "Cascade maximal energy [%]",
+     "pid": "0x3516",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 100,
+     "slot": 6,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 7,
+     "name_en": "Cascade time to inc power lvel [min]",
+     "pid": "0x3517",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 240,
+     "slot": 7,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 120,
+       "text": "120"
+      },
+      {
+       "raw": 240,
+       "text": "240"
+      }
+     ]
+    },
+    {
+     "idx": 8,
+     "name_en": "Cascade time to dec power lvel [min]",
+     "pid": "0x3518",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 240,
+     "slot": 8,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 120,
+       "text": "120"
+      },
+      {
+       "raw": 240,
+       "text": "240"
+      }
+     ]
+    }
+   ]
+  },
+  "0x09": {
+   "node": "10_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "Ext. fuel storage motor 1 transport. time [s]",
+     "pid": "0x3520",
+     "kind": "number",
+     "raw_min": 5,
+     "raw_max": 60,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 32,
+       "text": "32"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "Ext. fuel storage time [s] to empty transport. hose",
+     "pid": "0x3521",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 30,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Ext. fuel storage feeder work time [s]",
+     "pid": "0x3527",
+     "kind": "number",
+     "raw_min": 1,
+     "raw_max": 60,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "Ext. fuel storage feeder pause time [s]",
+     "pid": "0x3528",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 30,
+     "slot": 3,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 4,
+     "name_en": "Ext. fuel storage reserve sensor",
+     "pid": "0x3529",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x3529",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 5,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 310,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 315,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 5,
+     "name_en": "Ext. fuel storage max cycles no.",
+     "pid": "0x352B",
+     "kind": "number",
+     "raw_min": 5,
+     "raw_max": 100,
+     "slot": 6,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 52,
+       "text": "52"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 6,
+     "name_en": "Ext. fuel storage motor 1 overrun time [s]",
+     "pid": "0x3526",
+     "kind": "number",
+     "raw_min": 3,
+     "raw_max": 15,
+     "slot": 7,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 4,
+       "text": "4"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 9,
+       "text": "9"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      }
+     ]
+    }
+   ]
+  },
   "0x10": {
    "node": "11_screen",
    "rows": [
@@ -9918,8 +10951,8 @@
   }
  },
  "summary": {
-  "liczba": 138,
-  "zaleznosc": 47,
+  "liczba": 153,
+  "zaleznosc": 48,
   "niejednoznaczne": 9,
   "tekst": 4
  },

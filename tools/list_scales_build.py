@@ -3,7 +3,8 @@
 import json, collections, sys, os
 SRC = sys.argv[1]
 INV = {n['node']: {w['this']: w for w in n['widgets']} for n in json.load(open('analiza/FW2213TK-2026-11-22/data/widgets_inv_pass65_L3.json'))}
-M = {'0_settings': '0x00', '1_settings': '0x0A', '2_settings': '0x01', '3_settings': '0x02', '4_settings': '0x03', '5_settings': '0x04', '6_settings': '0x05', '7_settings': '0x06', '8_settings': '0x07', '11_screen': '0x10', '16_screen': '0x11'}
+for _n in json.load(open('analiza/FW2213TK-2026-11-22/data/widgets_inv_pass70_cascade_fuelstore_L3.json')): INV[_n['node']] = {w['this']: w for w in _n['widgets']}
+M = {'0_settings': '0x00', '1_settings': '0x0A', '2_settings': '0x01', '3_settings': '0x02', '4_settings': '0x03', '5_settings': '0x04', '6_settings': '0x05', '7_settings': '0x06', '8_settings': '0x07', '9_settings': '0x08', '10_settings': '0x09', '11_screen': '0x10', '16_screen': '0x11'}
 out = dict(evidence='MEASURED (PASS 70, tools/list_scale.py, emulator, poziom 3, CO2-4: PID bazowy + (k-1)): dla kazdego wiersza wstrzykniete surowe wartosci PID (min, min+1, srodek, domyslna, max), odczytany tekst wyswietlany w widgecie wartosci (jedyny widget, ktorego tekst sie zmienil)', lists={})
 stat = collections.Counter()
 def ctrl(c):
