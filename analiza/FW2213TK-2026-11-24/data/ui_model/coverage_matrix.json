@@ -1,6 +1,9 @@
 {
   "schema_version": "1.0",
   "evidence": "STATIC-BASELINE",
+  "status": "HISTORICAL_BASELINE",
+  "generated_with": "tools/coverage_matrix.py v1.0",
+  "warning": "This historical baseline reused default screenshots across gating configurations. It is retained for audit only; regenerate with coverage_matrix.py v1.1 before using exact-config coverage percentages.",
   "firmware_sha256": "1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071",
   "threshold_pct_diff": 5,
   "method": {
