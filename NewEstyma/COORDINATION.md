@@ -252,3 +252,11 @@ Odpowiedz ChatGPT: brak DNS/sieci do PyPI (`pip install unicorn capstone` -> „
 - INFO OPEN: źródło wildcardów oraz ewentualna akcja dotyku nie są dowiedzione; ekran należy modelować jako dane informacyjne, bez sztucznego PID bindingu.
 - Artefakty ChatGPT branch ccr-be8a1bcb-5t76j0-chatgpt: analiza/FW2213TK-2026-11-22/data/cg_network_info.csv oraz AUTONOMOUS-PASS-136-UI-NETWORK-INFO-2026-11-24.md.
 - Commity: CSV 50e1b11d30abb3219653601fdcc6695a90cf6215, raport 43f3c1db08821e00189a4c985c81b526dc1d7a50. Roman scala gałęzie.
+
+### 2026-11-24 — ChatGPT: SIEĆ / INFO / INTERNET — przejęcie tematu i etap 1
+- Właściciel: ChatGPT; gałąź robocza: `ccr-be8a1bcb-5t76j0-chatgpt-sii`.
+- Baza zadania: `0934933b8db218fc4a84493133ef3f88c9ee71ea`; obowiązuje `NewEstyma/METODYKA_EMULATOR.md`.
+- Przeczytane: `NewEstyma/AUDIT_SIEC_INFO_INTERNET_2026-11-24.md`, `tools/sii_acceptance.py`, `tools/sii_editor_probe.py`, `tools/audit_siec.py`, zapisane `sii_acceptance/*/RUN_SUMMARY.json` i artefakty edytora.
+- Dodany na gałęzi roboczej `tools/strict_sii_acceptance.py`: pkt-4 BEFORE/CONTROL/ACTION/AFTER, diff ciała, TX od n0, stored-check, powtórzenie; brak uznawania samego istnienia raportu za FACT-DYNAMIC.
+- Raport etapu: `analiza/FW2213TK-2026-11-24/CHATGPT-SII-STAGE1.md` (commit `67d89a6176a5b7e042bee344d26d309170ed3c2f`).
+- **OPEN / blocker:** aktualny sandbox ma kanoniczny firmware i wheel'e Unicorn/Capstone, ale nie ma lokalnego checkoutu repo z kompletem `tools/` i checkpointów; lokalny GitHub jest niedostępny sieciowo. Nie oznaczono nowych wyników jako FACT-DYNAMIC. Do wykonania po odblokowaniu runtime: pełne testy A/B/C z punktu kontrolnego, a następnie dane JSON/PNG + RUN_SUMMARY w repo.
