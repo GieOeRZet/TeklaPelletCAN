@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-24T21:49:39.840227+00:00",
+  "generated_at": "2026-11-24T21:59:47.337312+00:00",
   "root": "analiza_archiwum/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -225,6 +225,14 @@
       "schema_version": "1.0",
       "records": 6,
       "date": "2026-11-24T21:03:49.831815+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "coverage_matrix_online.json",
+      "schema": "schema/coverage_matrix_online.schema.json",
+      "schema_version": "1.0",
+      "records": 6,
+      "date": "2026-11-24T21:59:47.147477+00:00",
       "evidence_paths": []
     },
     {
@@ -831,6 +839,14 @@
       "schema_version": null,
       "records": 3,
       "date": "2026-11-24T15:38:18.876122+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/coverage_matrix_online.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T21:59:47.152015+00:00",
       "evidence_paths": []
     },
     {

@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### 1:1 (2026-11-24) stan 'online' (moduly CAN karmia panel): zmierzony
+Zrobilem: `COV_LIVE=1 tools/coverage_gen.py` (LiveSim 500 tikow przed zrzutem) dla 4 konfiguracji (L0 FULL, L1 FULL, L1 DEFAULT, L3 kaskada+magazyn): ~95 komorek, mediana 0.2-0.3%, wszystkie < 3% poza ALARMY L0 (artefakt emulatora). Dane `ui_model/coverage_matrix_online.json`. Wniosek: renderer zgodny takze gdy zrodla live sa aktywne. Pozostalo: krok dialogu wszystkich wierszy (zakladany 1 raw), 2 komorki Konfiguracja przy kaskadzie, Kopiuj/INTERNET (kosmetyka), 'alarm aktywny' wstrzykniety (bez wlasnych danych).
+
 ### 1:1 (2026-11-24) ETYKIETY OPCJI ENUM: FACT-DYNAMIC; etykiety PL wierszy 212 z 213
 Zrobilem: `tools/enum_labels.py` - bez dialogu: wstrzykniecie kazdej wartosci PID (emulator) i odczyt tekstu wiersza listy z RAM. Wynik `ui_model/enum_labels.json`: Czujnik pokojowy CO (brak/CTP1/CTP2/videROOM/termostat/CAN), Czujnik temp. zewnetrznej (brak/CTZ1/CAN), Konfiguracja IN17 (brak/czujnik rezerwy paliwa/czujnik temp. spalin), Pompa kotlowa (ladujaca/ochrony powrotu/buforowa), Pomiar energii (brak/ciepłomierz/przeplywomierz), Glowny modul IO (BIG/STD), Modul rozszerzajacy CO (STD/MINI); enumy liczbowe (obiegi, stopnie mocy kaskady, profil, czyszczenia rusztu) pokazuja liczby; przelaczniki = galka. CO2-4 dziedzicza opcje CO1 (INFERENCE). Etykiety PL list: **212 z 213 wierszy z PID** (kolejne wolne sloty miedzy kotwicami rozwiazaly separatory), Statystyki 13/13. Wiersz bez etykiety: 1 (wykres). Pozostalo: stan 'online', krok dialogu wszystkich wierszy (zakladany 1 raw), 2 komorki Konfiguracja przy kaskadzie, Kopiuj/INTERNET.
 

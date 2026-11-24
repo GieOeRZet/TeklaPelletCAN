@@ -23,7 +23,7 @@ def cfg_pids(c):
     return p
 if False: pass
 pids = cfg_pids(config); slug = re.sub(r"[^0-9A-Za-z]+", "_", config).strip("_")
-out = os.path.join(outroot, "L%d_%s" % (level, slug)); os.makedirs(out, exist_ok=True)
+out = os.path.join(outroot, "L%d_%s%s" % (level, slug, "_live" if os.environ.get("COV_LIVE") else "")); os.makedirs(out, exist_ok=True)
 fw = str(paths.FIRMWARE)
 _m = json.load(open(paths.UI_MODEL / "menu_tree.json"))
 if not any("%s|L%d" % (config, level) in r["visible_in"] for r in _m["menu_rows"]): print("BRAK wierszy w komorce", level, config); sys.exit(0)
@@ -77,6 +77,9 @@ for i, er in enumerate(exp):
     if not ok: res["cells"].append(dict(row=er["row"], index=i, node=tgt, kind="screen", status="TAP_FAILED")); continue
     s.wait(700)
     cell = {}
+    if os.environ.get("COV_LIVE"):      # stan 'online': symulator modulow CAN karmi panel (LiveSim) - zrodla live aktywne
+        import live_sim as LS
+        LS.LiveSim(s).run(500); s.wait(300)
     for kind, tap in (("screen", None), ("settings", (400, 245))):
         try:
             if kind == "settings" and cell.get("view") == "0x808f944": break      # ekran jest juz lista nastaw (brak kafla nastaw)
