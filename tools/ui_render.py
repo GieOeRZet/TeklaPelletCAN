@@ -80,7 +80,11 @@ def render(widgets, extras=None, size=(480, 272), dim=None):          # dim=(alf
                 ib = bitmap(ex["icon"])
                 if ib is not None: img.paste(ib.convert("RGB"), (w["ax"] + ex["icon_xy"][0], w["ay"] + ex["icon_xy"][1]), ib.getchannel("A"))
         elif ex and ex.get("cls") == "text":
-            if ex["text"]: draw_text_ml(img, ex["font"], ex["text"], w["ax"], w["ay"] + DY, w["w"], ex["align"], rgb565(ex["color"]))
+            if ex.get("bg") is not None:
+                bb = bitmap(ex["bg"])
+                if bb is not None: img.paste(bb.convert("RGB"), (w["ax"], w["ay"]), bb.getchannel("A"))
+            ty = w["ay"] + DY + ((w["h"] - font(ex["font"])[2] - font(ex["font"])[3]) // 2 if ex.get("bg") is not None else 0)       # etykieta przycisku: pionowo wysrodkowana
+            if ex["text"]: draw_text_ml(img, ex["font"], ex["text"], w["ax"], ty, w["w"], ex["align"], rgb565(ex["color"]))
         elif w["role"] == "text" and (w.get("text_pl") or w.get("wildcard")):
             s = (w.get("text_pl") or "\x02").replace("\x02", w.get("wildcard") or "")
             draw_text(img, w.get("font") or 0, s, w["ax"], w["ay"] + DY, w["w"], w.get("align") or 0)

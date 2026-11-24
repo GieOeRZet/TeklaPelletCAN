@@ -54,6 +54,11 @@ def extract(s, widgets):
         t = TT.get(tid)
         if t is None: continue
         ex[w["this"]] = dict(cls="text", hidden=hidden, color=col, text=t["pl_text"].replace("\\x02", "\x02").replace("\x02", wc(rd, bp)), font=int(t["font_index"]), align=int(t["align(0=left,1=center,2=right)"]), tid=tid)
+        cand = _BM.get((w["w"], w["h"]))                     # przycisk z etykieta (Label o rozmiarze bitmapy tla): id tla w polach obiektu
+        if cand and v in LABEL and w["w"] > 40 and w["h"] > 20:
+            for off in range(0x20, 0x70, 2):
+                if rd(a + off, 2) in cand:
+                                        ex[w["this"]]["bg"] = min(cand); break          # najnizszy id kandydata = stan spoczynkowy
     # kolejnosc rysowania (z-order): drzewo kontenerow; rodzic +0x14, nastepny brat +0x18, poprzedni brat +0x1C; DFS: widget, potem jego dzieci w kolejnosci rodzenstwa
     addrs = {int(w["this"], 16) for w in widgets}; kids = collections.defaultdict(list)
     for w in widgets: kids[rd(int(w["this"], 16) + 0x14)].append(int(w["this"], 16))
