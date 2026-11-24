@@ -1,0 +1,448 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-11-24",
+  "generated_by": "tools/build_ui_model_index.py",
+  "root": "analiza/FW2213TK-2026-11-22/data/ui_model/",
+  "files": [
+    {
+      "file": "alarms.json",
+      "schema": "schema/alarms.schema.json",
+      "schema_version": null,
+      "records": 68,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "dialogs_edit_pin.json",
+      "schema": "schema/dialogs_edit_pin.schema.json",
+      "schema_version": null,
+      "records": 6,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/H_home.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_0_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_0_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_10_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_10_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_11_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_11_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_1_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_1_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_2_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_2_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_3_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_3_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_4_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_4_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_5_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_5_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_6_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_6_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_7_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_7_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_8_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_8_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_9_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L0_9_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L1_12_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L1_13_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L1_14_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L1_15_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L1_15_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L1_16_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L1_16_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L1_17_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/L1_18_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/LC_10_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/LC_10_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/LC_9_screen.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "extras/LC_9_settings.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "home_dialogs.json",
+      "schema": "schema/home_dialogs.schema.json",
+      "schema_version": null,
+      "records": 4,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "home_dialogs_widgets.json",
+      "schema": "schema/home_dialogs_widgets.schema.json",
+      "schema_version": null,
+      "records": 5,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "home_overlays_changed.json",
+      "schema": "schema/home_overlays_changed.schema.json",
+      "schema_version": null,
+      "records": 5,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "internet_editor.json",
+      "schema": "schema/internet_editor.schema.json",
+      "schema_version": null,
+      "records": 8,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "lists.json",
+      "schema": "schema/lists.schema.json",
+      "schema_version": null,
+      "records": 2,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "live_sources.json",
+      "schema": "schema/live_sources.schema.json",
+      "schema_version": null,
+      "records": 9,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "menu_sweep.json",
+      "schema": "schema/menu_sweep.schema.json",
+      "schema_version": null,
+      "records": 30,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "menu_tree.json",
+      "schema": "schema/menu_tree.schema.json",
+      "schema_version": null,
+      "records": 30,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "outputs_test.json",
+      "schema": "schema/outputs_test.schema.json",
+      "schema_version": null,
+      "records": 22,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "program_bit_to_rect_kociol_monday.json",
+      "schema": "schema/program_bit_to_rect_kociol_monday.schema.json",
+      "schema_version": null,
+      "records": 25,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "program_screen.json",
+      "schema": "schema/program_screen.schema.json",
+      "schema_version": null,
+      "records": 12,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "sii_acceptance/editor/editor_seq.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "sii_acceptance/info/RUN_SUMMARY.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "sii_acceptance/internet/RUN_SUMMARY.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    },
+    {
+      "file": "sii_acceptance/siec/RUN_SUMMARY.json",
+      "schema": null,
+      "schema_version": null,
+      "records": null,
+      "date": null,
+      "evidence_paths": []
+    }
+  ]
+}
