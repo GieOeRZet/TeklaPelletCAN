@@ -41,4 +41,17 @@ for k, pid in enumerate(pids):
         if base.get(w) != tx: res.append(dict(pid="0x%04X" % pid, id=cand[pid], widget=w, before=base.get(w), after=tx, injected=val, stored=got))
     if res and res[-1]["pid"] == "0x%04X" % pid: print(res[-1], flush=True)
     if k % 20 == 0: json.dump(dict(name=name, bindings=res, done=k, total=len(pids)), open(out, "w"), ensure_ascii=False, indent=1)
+# faza 2: zrodla LIVE przez symulator modulow CAN (LiveSim) - wartosci modulowe nie ida przez wstrzykniecie 0x584
+import live_sim as LS
+def live_texts(pid=None, val=55.3):
+    s.b.load_state(tmp); s.wait(100); sim = LS.LiveSim(s)
+    if pid is not None: sim.set(pid, val)
+    sim.run(500); s.wait(200); return texts()
+try:
+    base2 = live_texts()
+    for pid in sorted(LS.LiveSim(s).where):
+        cur = live_texts(pid)
+        for w, tx in cur.items():
+            if base2.get(w) != tx: res.append(dict(pid="0x%04X" % pid, id=cand.get(pid, "live"), widget=w, before=base2.get(w), after=tx, injected=553, stored=553, source="LiveSim 55.3 C")); print(res[-1], flush=True)
+except Exception as e: print("LIVE ERR", repr(e)[:100], flush=True)
 json.dump(dict(name=name, bindings=res, done=len(pids), total=len(pids)), open(out, "w"), ensure_ascii=False, indent=1); print("DONE", name, len(res), "powiazan")

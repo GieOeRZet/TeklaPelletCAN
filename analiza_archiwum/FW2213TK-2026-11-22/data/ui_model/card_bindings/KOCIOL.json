@@ -1,0 +1,61 @@
+{
+ "name": "KOCIOL",
+ "bindings": [
+  {
+   "pid": "0x2002",
+   "id": "boiler_mode",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "65",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2064",
+   "id": "co_mode",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2065",
+   "id": "co2_mode",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x350A",
+   "id": "list",
+   "widget": "0x20016a24",
+   "before": null,
+   "after": "T. powrotu=0.0",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x350D",
+   "id": "list",
+   "widget": "0x20016a94",
+   "before": null,
+   "after": "Ciśnienie=0.0",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3629",
+   "id": "list",
+   "widget": "0x20016a5c",
+   "before": null,
+   "after": "Energia łącznie [kWh]=0",
+   "injected": 2,
+   "stored": 2
+  }
+ ],
+ "done": 222,
+ "total": 222
+}

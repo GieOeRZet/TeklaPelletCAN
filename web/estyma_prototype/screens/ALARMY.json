@@ -33,7 +33,20 @@
    "color": "#ffffff",
    "template": "KOD: 110",
    "sample": "KOD: 110",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2123",
+     "id": "list",
+     "scale": 115.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    },
+    {
+     "pid": "0x22A1",
+     "id": "co1_room_sensor",
+     "scale": 4.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x200164cc",
@@ -93,7 +106,20 @@
    "color": "#ffffff",
    "template": "KOD: 105",
    "sample": "KOD: 105",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2123",
+     "id": "list",
+     "scale": 110.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    },
+    {
+     "pid": "0x22A1",
+     "id": "co1_room_sensor",
+     "scale": 22.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016874",
@@ -153,7 +179,20 @@
    "color": "#ffffff",
    "template": "KOD: 100",
    "sample": "KOD: 100",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2123",
+     "id": "list",
+     "scale": 105.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    },
+    {
+     "pid": "0x22A1",
+     "id": "co1_room_sensor",
+     "scale": 21.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016c1c",
@@ -186,5 +225,6 @@
    "bind": []
   }
  ],
- "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne",
+ "bindings_source": "tools/bind_screen.py"
 }

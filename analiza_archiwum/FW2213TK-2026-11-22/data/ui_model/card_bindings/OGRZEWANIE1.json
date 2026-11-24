@@ -1,0 +1,70 @@
+{
+ "name": "OGRZEWANIE1",
+ "bindings": [
+  {
+   "pid": "0x2064",
+   "id": "co_mode",
+   "widget": "0x20017694",
+   "before": "7°C",
+   "after": "60°C",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x20017584",
+   "before": null,
+   "after": "7.0",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x200175c8",
+   "before": null,
+   "after": "0.0",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x200177ec",
+   "before": "Ochrona kotła",
+   "after": "Alarm",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A5",
+   "id": "co1_co_sensor",
+   "widget": "0x2001760c",
+   "before": null,
+   "after": "0.0",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22D5",
+   "id": "co1_tmax",
+   "widget": "0x20017650",
+   "before": "70",
+   "after": "43",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x2321",
+   "id": "list",
+   "widget": "0x200181ac",
+   "before": "",
+   "after": "UUU\\",
+   "injected": 1431655772,
+   "stored": 1431655772
+  }
+ ],
+ "done": 222,
+ "total": 222
+}

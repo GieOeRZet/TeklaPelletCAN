@@ -1,0 +1,16 @@
+{
+ "name": "BUFOR",
+ "bindings": [
+  {
+   "pid": "0x2115",
+   "id": "list",
+   "widget": "0x20016924",
+   "before": "65°C",
+   "after": "36°C",
+   "injected": 36,
+   "stored": 36
+  }
+ ],
+ "done": 222,
+ "total": 222
+}

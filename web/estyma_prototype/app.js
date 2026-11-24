@@ -19,9 +19,9 @@ function render(){
     rows.forEach(r => row(s, r.name, fmt(r), null)); return; }
   s.append(head((M.nodes[cur]||{}).title || cur)); s.append(msg("Ekran w przygotowaniu (szkielet E7)."));
 }
-const FONT_PX = [12, 20, 26, 36, 64, 92], DEMO = {"0x2001": 65.3, "0x2004": 70};     // dane przykladowe (PID -> wartosc); prawdziwe: /api/v1/states przez pid_to_point.json
+const FONT_PX = [12, 20, 26, 36, 64, 92], DEMO = {"0x2001": 653, "0x2110": 480, "0x2112": 400, "0x2113": 400, "0x226C": 62};     // dane przykladowe: PID -> wartosc SUROWA (tak jak w pamieci panelu); prawdziwe: /api/v1/states przez pid_to_point.json
 const SCREENS = {}, SCREEN_BY_ROW = {0:"KOCIOL",1:"PALNIK",2:"OGRZEWANIE1",3:"OGRZEWANIE2",4:"OGRZEWANIE3",5:"OGRZEWANIE4",6:"CWU",7:"SOLARY",8:"BUFOR",9:"KASKADA",10:"MAGAZYN",11:"ALARMY",12:"INFO",17:"TEST_WYJSC",18:"STATYSTYKI",19:"SIEC",20:"INTERNET"}; let tick = 0;
-function liveText(f){ const b = (f.bind || []).find(x => DEMO[x.pid] !== undefined); if (!b) return f.template.replace("{}", ""); const v = DEMO[b.pid] + (b.pid === "0x2001" ? Math.sin(tick / 5) : 0); return f.template.replace("{}", v.toFixed(1)); }
+function liveText(f){ const b = (f.bind || []).find(x => DEMO[x.pid] !== undefined && x.scale); if (!b) return f.template.replace("{}", ""); const m = /(\d+\.(\d+))/.exec(f.sample || ""), dec = m ? m[2].length : 0; const v = (DEMO[b.pid] + (b.pid === "0x2001" ? 8 * Math.sin(tick / 5) : 0)) * b.scale; return (f.sample || "").replace(/-?\d+(\.\d+)?/, v.toFixed(dec)); }
 function listKey(target, row){ const ks = Object.keys(M.lists).filter(k => k.split("|")[1] === target).sort(); return ks[target === "OGRZEWANIE" ? Math.min(Math.max(row - 2, 0), ks.length - 1) : 0]; }
 function screenView(s, node, title, target, row){
   const sc = SCREENS[node]; const box = document.createElement("div"); box.className = "scr"; box.style.backgroundImage = "url(screens/" + node + ".png)";

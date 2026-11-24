@@ -1,0 +1,16 @@
+{
+ "name": "CWU",
+ "bindings": [
+  {
+   "pid": "0x201A",
+   "id": "hw_set_result",
+   "widget": "0x2001743c",
+   "before": "0",
+   "after": "173",
+   "injected": 173,
+   "stored": 173
+  }
+ ],
+ "done": 222,
+ "total": 222
+}

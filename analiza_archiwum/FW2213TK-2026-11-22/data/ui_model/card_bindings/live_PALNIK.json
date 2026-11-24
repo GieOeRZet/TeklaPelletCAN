@@ -1,0 +1,17 @@
+{
+ "name": "PALNIK",
+ "bindings": [
+  {
+   "pid": "0x226C",
+   "id": "burner_temp",
+   "widget": "0x20016dc0",
+   "before": "T. palnika=69",
+   "after": "T. palnika=55",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  }
+ ],
+ "done": 1,
+ "total": 1
+}

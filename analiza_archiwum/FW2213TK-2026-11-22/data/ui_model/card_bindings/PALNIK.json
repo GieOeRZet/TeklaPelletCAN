@@ -1,0 +1,61 @@
+{
+ "name": "PALNIK",
+ "bindings": [
+  {
+   "pid": "0x2123",
+   "id": "list",
+   "widget": "0x20016d18",
+   "before": null,
+   "after": "tlen[%]=0.0",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2250",
+   "id": "burner_flame",
+   "widget": "0x20016b90",
+   "before": "jasność=0",
+   "after": "jasność=40",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2283",
+   "id": "blower_mode",
+   "widget": "0x20016bc8",
+   "before": null,
+   "after": "100",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3606",
+   "id": "list",
+   "widget": "0x20016ea0",
+   "before": null,
+   "after": "spaliny[°C]=0",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3710",
+   "id": "k_cons",
+   "widget": "0x20016ae8",
+   "before": "spalanie[kg/h]=0.0",
+   "after": "spalanie[kg/h]=2185.",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x4005",
+   "id": "burner_power",
+   "widget": "0x20016b20",
+   "before": "moc[%]=0",
+   "after": "moc[%]=40",
+   "injected": 40,
+   "stored": 40
+  }
+ ],
+ "done": 222,
+ "total": 222
+}

@@ -1,0 +1,1978 @@
+{
+ "name": "MAGAZYN",
+ "bindings": [
+  {
+   "pid": "0x2001",
+   "id": "boiler_temp",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x2002",
+   "id": "boiler_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2003",
+   "id": "boiler_set_manual",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 60,
+   "stored": 60
+  },
+  {
+   "pid": "0x2004",
+   "id": "boiler_set_result",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 77,
+   "stored": 77
+  },
+  {
+   "pid": "0x2005",
+   "id": "boiler_on",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2006",
+   "id": "in_zakaz",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2007",
+   "id": "burner_state",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2010",
+   "id": "hw_set_comfort",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 37,
+   "stored": 37
+  },
+  {
+   "pid": "0x2012",
+   "id": "hw_set_eco",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 37,
+   "stored": 37
+  },
+  {
+   "pid": "0x2014",
+   "id": "cwu_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x201A",
+   "id": "hw_set_result",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x201C",
+   "id": "cwu_tmax",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x2032",
+   "id": "co_set_comfort",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 157,
+   "stored": 157
+  },
+  {
+   "pid": "0x2048",
+   "id": "co_set_eco",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 140,
+   "stored": 140
+  },
+  {
+   "pid": "0x2064",
+   "id": "co_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2065",
+   "id": "co2_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2105",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x2106",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2107",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2108",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2110",
+   "id": "hw_temp",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 473,
+   "stored": 473
+  },
+  {
+   "pid": "0x2114",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 36,
+   "stored": 36
+  },
+  {
+   "pid": "0x2115",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 36,
+   "stored": 36
+  },
+  {
+   "pid": "0x2116",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 76,
+   "stored": 76
+  },
+  {
+   "pid": "0x2123",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2142",
+   "id": "co1_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2146",
+   "id": "ch1_set_manual",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2147",
+   "id": "ch2_set_manual",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x214A",
+   "id": "co1_mixer_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x214B",
+   "id": "co2_mixer_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x214C",
+   "id": "co3_mixer_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x214D",
+   "id": "co4_mixer_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x214E",
+   "id": "p_o2_30",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 77,
+   "stored": 77
+  },
+  {
+   "pid": "0x2152",
+   "id": "p_o2_100",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 83,
+   "stored": 83
+  },
+  {
+   "pid": "0x2153",
+   "id": "p_inertia",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 27,
+   "stored": 27
+  },
+  {
+   "pid": "0x215F",
+   "id": "outside_temp",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x216C",
+   "id": "boiler_ret_min",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x216D",
+   "id": "ret_mixer_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x216E",
+   "id": "boiler_mixer_time",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 132,
+   "stored": 132
+  },
+  {
+   "pid": "0x2207",
+   "id": "boiler_pump_min",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 37,
+   "stored": 37
+  },
+  {
+   "pid": "0x2208",
+   "id": "boiler_hyst_on",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x2210",
+   "id": "cwu_boost",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2212",
+   "id": "cwu_hyst",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 18,
+   "stored": 18
+  },
+  {
+   "pid": "0x2214",
+   "id": "cwu_src",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2216",
+   "id": "cwu_src_inc",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x2218",
+   "id": "cwu_delta",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 14,
+   "stored": 14
+  },
+  {
+   "pid": "0x2250",
+   "id": "burner_flame",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2253",
+   "id": "burn_ign",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2254",
+   "id": "blower_pct",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2256",
+   "id": "p_prefeed",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 77,
+   "stored": 77
+  },
+  {
+   "pid": "0x2257",
+   "id": "p_feed_max",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 60,
+   "stored": 60
+  },
+  {
+   "pid": "0x2258",
+   "id": "p_cleans",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2259",
+   "id": "feeder_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x225A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x2261",
+   "id": "fan_mod_1",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2262",
+   "id": "fan_mod_2",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2263",
+   "id": "fan_mod_3",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2264",
+   "id": "fan_mod_4",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2265",
+   "id": "fan_mod_5",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2267",
+   "id": "feed_manual_off",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1207,
+   "stored": 1207
+  },
+  {
+   "pid": "0x2268",
+   "id": "exh_c1",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x226A",
+   "id": "p_photo",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 42,
+   "stored": 42
+  },
+  {
+   "pid": "0x226B",
+   "id": "p_stop_time",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x226C",
+   "id": "burner_temp",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x226D",
+   "id": "burner_feed_time",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 340,
+   "stored": 340
+  },
+  {
+   "pid": "0x226E",
+   "id": "exh_c2",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x226F",
+   "id": "exh_c3",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2270",
+   "id": "power_min",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 50,
+   "stored": 50
+  },
+  {
+   "pid": "0x2271",
+   "id": "power_max",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 50,
+   "stored": 50
+  },
+  {
+   "pid": "0x2272",
+   "id": "fuel_test",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 357,
+   "stored": 357
+  },
+  {
+   "pid": "0x2273",
+   "id": "air_corr",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x2275",
+   "id": "exh_c4",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2278",
+   "id": "hw_pump",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2279",
+   "id": "grate_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x227A",
+   "id": "exh_c5",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2281",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 32,
+   "stored": 32
+  },
+  {
+   "pid": "0x2282",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2283",
+   "id": "blower_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2284",
+   "id": "igniter_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2285",
+   "id": "exchanger_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2286",
+   "id": "boiler_pump_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2288",
+   "id": "blower_test_pct",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2289",
+   "id": "p_blow_ign",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x228C",
+   "id": "k_exh_pct",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2290",
+   "id": "p_glow_time",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 10,
+   "stored": 10
+  },
+  {
+   "pid": "0x2291",
+   "id": "boiler_hyst_off",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x2292",
+   "id": "fuel_heat",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x2293",
+   "id": "exh_fan_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2295",
+   "id": "burner_feeder_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2296",
+   "id": "cwu_pump_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2297",
+   "id": "cwu_legion",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2298",
+   "id": "exh_fan_pct",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2299",
+   "id": "ch1_pump",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x229A",
+   "id": "ch2_pump",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x229D",
+   "id": "co1_pump_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x229E",
+   "id": "co2_pump_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x229F",
+   "id": "co3_pump_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x22A0",
+   "id": "co4_pump_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A5",
+   "id": "co1_co_sensor",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22AD",
+   "id": "ch1_set_result",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22AE",
+   "id": "ch2_set_result",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22B1",
+   "id": "co1_src_inc",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x22B5",
+   "id": "co1_mixer_time",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 147,
+   "stored": 147
+  },
+  {
+   "pid": "0x22B9",
+   "id": "mixer_co1_state",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x22BD",
+   "id": "co1_hyst",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 23,
+   "stored": 23
+  },
+  {
+   "pid": "0x22C1",
+   "id": "co1_calib",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 7,
+   "stored": 7
+  },
+  {
+   "pid": "0x22C5",
+   "id": "co1_curve_m20",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22C9",
+   "id": "co1_curve_0",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22CD",
+   "id": "co1_curve_10",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22D1",
+   "id": "co1_source",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22D5",
+   "id": "co1_tmax",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x22D9",
+   "id": "co1_corr",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x22E5",
+   "id": "co1_lower",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 20,
+   "stored": 20
+  },
+  {
+   "pid": "0x22E9",
+   "id": "co1_pump_min",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 33,
+   "stored": 33
+  },
+  {
+   "pid": "0x22F1",
+   "id": "co1_const_pump",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22F9",
+   "id": "co1_ret_protect",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2301",
+   "id": "in_regulator",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2315",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2321",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x2999",
+   "id": "p_clean_gap",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 11,
+   "stored": 11
+  },
+  {
+   "pid": "0x299A",
+   "id": "p_glow_fuel",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 30,
+   "stored": 30
+  },
+  {
+   "pid": "0x299B",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 18,
+   "stored": 18
+  },
+  {
+   "pid": "0x299D",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x299E",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3003",
+   "id": "p_grate_time",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 73,
+   "stored": 73
+  },
+  {
+   "pid": "0x300C",
+   "id": "p_blow_stop",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 48,
+   "stored": 48
+  },
+  {
+   "pid": "0x300D",
+   "id": "cwu_prio",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x300E",
+   "id": "p_min_rpm",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x3011",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3116",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x3117",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 10,
+   "stored": 10
+  },
+  {
+   "pid": "0x3118",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 32,
+   "stored": 32
+  },
+  {
+   "pid": "0x3119",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 70,
+   "stored": 70
+  },
+  {
+   "pid": "0x311A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 90,
+   "stored": 90
+  },
+  {
+   "pid": "0x311B",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": -7,
+   "stored": 65529
+  },
+  {
+   "pid": "0x311F",
+   "id": "solar_pump_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3122",
+   "id": "k_exch_int",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 210,
+   "stored": 210
+  },
+  {
+   "pid": "0x3129",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 12,
+   "stored": 12
+  },
+  {
+   "pid": "0x312A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 16,
+   "stored": 16
+  },
+  {
+   "pid": "0x3170",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 14,
+   "stored": 14
+  },
+  {
+   "pid": "0x3500",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3501",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3502",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3505",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3506",
+   "id": "alarm_snd",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3507",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3508",
+   "id": "alarm_sil_from",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 15,
+   "stored": 15
+  },
+  {
+   "pid": "0x3509",
+   "id": "alarm_sil_to",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 15,
+   "stored": 15
+  },
+  {
+   "pid": "0x350A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x350B",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x350C",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x350D",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3511",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x3512",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x3513",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x3514",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x3515",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3516",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3517",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 87,
+   "stored": 87
+  },
+  {
+   "pid": "0x3518",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 87,
+   "stored": 87
+  },
+  {
+   "pid": "0x351A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x351E",
+   "id": "fuel_transporter_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x351F",
+   "id": "fuel_storage_feeder_mode",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3520",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 28,
+   "stored": 28
+  },
+  {
+   "pid": "0x3521",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x3525",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3526",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x3527",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 27,
+   "stored": 27
+  },
+  {
+   "pid": "0x3528",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x3529",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x352B",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 42,
+   "stored": 42
+  },
+  {
+   "pid": "0x3600",
+   "id": "tank_cap",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 510,
+   "stored": 510
+  },
+  {
+   "pid": "0x3601",
+   "id": "tank_kg",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3603",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3604",
+   "id": "boil_fuel_reserve",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3605",
+   "id": "p_lambda",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3606",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3608",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3609",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3610",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3611",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3612",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3613",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3614",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3615",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3616",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3618",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3619",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3629",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x362A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3700",
+   "id": "p_feeder_period",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 68,
+   "stored": 68
+  },
+  {
+   "pid": "0x3701",
+   "id": "k_egt_min",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 70,
+   "stored": 70
+  },
+  {
+   "pid": "0x3703",
+   "id": "k_egt_max",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 180,
+   "stored": 180
+  },
+  {
+   "pid": "0x3704",
+   "id": "p_blow_glow",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 50,
+   "stored": 50
+  },
+  {
+   "pid": "0x3706",
+   "id": "k_pwr",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3708",
+   "id": "boil_pump_run",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x3709",
+   "id": "k_nominal",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 75,
+   "stored": 75
+  },
+  {
+   "pid": "0x370B",
+   "id": "p_burner_feed",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 190,
+   "stored": 190
+  },
+  {
+   "pid": "0x370D",
+   "id": "feed_manual_run",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 107,
+   "stored": 107
+  },
+  {
+   "pid": "0x370E",
+   "id": "k_predose_g",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x3710",
+   "id": "k_cons",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3711",
+   "id": "k_grate_t",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3715",
+   "id": "p_pause_time",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x3716",
+   "id": "p_pause_power",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x3717",
+   "id": "p_pause_blow",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 23,
+   "stored": 23
+  },
+  {
+   "pid": "0x3720",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 23,
+   "stored": 23
+  },
+  {
+   "pid": "0x3722",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x372A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x372F",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3747",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 7,
+   "stored": 7
+  },
+  {
+   "pid": "0x374B",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 10,
+   "stored": 10
+  },
+  {
+   "pid": "0x374C",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 27,
+   "stored": 27
+  },
+  {
+   "pid": "0x4000",
+   "id": "ret_temp",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x4001",
+   "id": "ch1_temp",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 473,
+   "stored": 473
+  },
+  {
+   "pid": "0x4002",
+   "id": "ch2_temp",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 473,
+   "stored": 473
+  },
+  {
+   "pid": "0x4005",
+   "id": "burner_power",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x400C",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x404E",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "99%",
+   "after": "98%",
+   "injected": 1,
+   "stored": 1
+  }
+ ],
+ "done": 222,
+ "total": 222
+}

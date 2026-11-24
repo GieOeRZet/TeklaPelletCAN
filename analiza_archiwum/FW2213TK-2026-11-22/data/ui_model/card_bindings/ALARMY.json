@@ -1,0 +1,115 @@
+{
+ "name": "ALARMY",
+ "bindings": [
+  {
+   "pid": "0x2123",
+   "id": "list",
+   "widget": "0x200163a0",
+   "before": "KOD: 110",
+   "after": "KOD: 115",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2123",
+   "id": "list",
+   "widget": "0x200163d8",
+   "before": "Komunikacja z modułem BIG",
+   "after": "Komunikacja z modułem Lambda",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2123",
+   "id": "list",
+   "widget": "0x20016748",
+   "before": "KOD: 105",
+   "after": "KOD: 110",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2123",
+   "id": "list",
+   "widget": "0x20016780",
+   "before": "Komunikacja z modułem 5",
+   "after": "Komunikacja z modułem BIG",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2123",
+   "id": "list",
+   "widget": "0x20016af0",
+   "before": "KOD: 100",
+   "after": "KOD: 105",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2123",
+   "id": "list",
+   "widget": "0x20016b28",
+   "before": "Komunikacja z modułem 0",
+   "after": "Komunikacja z modułem 5",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x200163a0",
+   "before": "KOD: 110",
+   "after": "KOD: 20",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x200163d8",
+   "before": "Komunikacja z modułem BIG",
+   "after": "Uszkodzenie czujnika pokojowego 1",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x20016748",
+   "before": "KOD: 105",
+   "after": "KOD: 110",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x20016780",
+   "before": "Komunikacja z modułem 5",
+   "after": "Komunikacja z modułem BIG",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x20016af0",
+   "before": "KOD: 100",
+   "after": "KOD: 105",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x20016b28",
+   "before": "Komunikacja z modułem 0",
+   "after": "Komunikacja z modułem 5",
+   "injected": 5,
+   "stored": 5
+  }
+ ],
+ "done": 222,
+ "total": 222
+}

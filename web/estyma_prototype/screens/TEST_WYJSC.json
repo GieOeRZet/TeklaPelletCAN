@@ -18,7 +18,14 @@
    "color": "#ffffff",
    "template": "0",
    "sample": "0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3608",
+     "id": "list",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016a10",
@@ -33,7 +40,14 @@
    "color": "#ffffff",
    "template": "0",
    "sample": "0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3609",
+     "id": "list",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016d48",
@@ -48,7 +62,14 @@
    "color": "#ffffff",
    "template": "0",
    "sample": "0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3610",
+     "id": "list",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20017080",
@@ -93,7 +114,14 @@
    "color": "#ffffff",
    "template": "0",
    "sample": "0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3507",
+     "id": "list",
+     "scale": 0.0001,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20017a28",
@@ -108,7 +136,14 @@
    "color": "#ffffff",
    "template": " 0.0",
    "sample": " 0.0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3613",
+     "id": "list",
+     "scale": 0.1,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20017d60",
@@ -123,7 +158,14 @@
    "color": "#ffffff",
    "template": " 0.0",
    "sample": " 0.0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3614",
+     "id": "list",
+     "scale": 0.1,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20018098",
@@ -138,7 +180,14 @@
    "color": "#ffffff",
    "template": " 0.0",
    "sample": " 0.0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3615",
+     "id": "list",
+     "scale": 0.1,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x200183d0",
@@ -153,7 +202,14 @@
    "color": "#ffffff",
    "template": " 0.0",
    "sample": " 0.0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3616",
+     "id": "list",
+     "scale": 0.1,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20018708",
@@ -168,7 +224,14 @@
    "color": "#ffffff",
    "template": "0",
    "sample": "0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3618",
+     "id": "list",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20018a40",
@@ -183,7 +246,14 @@
    "color": "#ffffff",
    "template": "0",
    "sample": "0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3619",
+     "id": "list",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20018d78",
@@ -198,8 +268,16 @@
    "color": "#ffffff",
    "template": "0",
    "sample": "0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x362A",
+     "id": "list",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   }
  ],
- "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne",
+ "bindings_source": "tools/bind_screen.py"
 }

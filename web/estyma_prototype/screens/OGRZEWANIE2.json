@@ -18,7 +18,14 @@
    "color": "#ffffff",
    "template": "70",
    "sample": "70",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x22D5",
+     "id": "co1_tmax",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20017694",
@@ -33,8 +40,16 @@
    "color": "#ffffff",
    "template": "7°C",
    "sample": "7°C",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2064",
+     "id": "co_mode",
+     "scale": 20.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   }
  ],
- "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne",
+ "bindings_source": "tools/bind_screen.py"
 }

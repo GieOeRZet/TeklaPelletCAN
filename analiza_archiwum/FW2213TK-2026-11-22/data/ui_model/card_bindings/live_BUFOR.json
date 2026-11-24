@@ -1,0 +1,27 @@
+{
+ "name": "BUFOR",
+ "bindings": [
+  {
+   "pid": "0x2112",
+   "id": "live",
+   "widget": "0x2001695c",
+   "before": "69.1",
+   "after": "55.2",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  },
+  {
+   "pid": "0x2113",
+   "id": "live",
+   "widget": "0x200168ec",
+   "before": "69.1",
+   "after": "55.2",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  }
+ ],
+ "done": 1,
+ "total": 1
+}

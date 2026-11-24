@@ -63,7 +63,14 @@
    "color": "#ffffff",
    "template": "0.0°",
    "sample": "0.0°",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2001",
+     "id": "boiler_temp",
+     "scale": 0.099819,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016a48",
@@ -93,7 +100,14 @@
    "color": "#ffffff",
    "template": "1",
    "sample": "1",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3511",
+     "id": "list",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016b74",
@@ -153,7 +167,14 @@
    "color": "#ffffff",
    "template": "2",
    "sample": "2",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3512",
+     "id": "list",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016d10",
@@ -198,8 +219,16 @@
    "color": "#ffffff",
    "template": "3",
    "sample": "3",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3513",
+     "id": "list",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   }
  ],
- "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne",
+ "bindings_source": "tools/bind_screen.py"
 }

@@ -48,7 +48,14 @@
    "color": "#ffffff",
    "template": "0.0",
    "sample": "0.0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2001",
+     "id": "boiler_temp",
+     "scale": 0.099819,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x2001b398",
@@ -66,5 +73,6 @@
    "bind": []
   }
  ],
- "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne",
+ "bindings_source": "tools/bind_screen.py"
 }

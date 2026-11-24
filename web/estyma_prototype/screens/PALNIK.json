@@ -18,7 +18,14 @@
    "color": "#ffffff",
    "template": "spalanie[kg/h]=0.0",
    "sample": "spalanie[kg/h]=0.0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x3710",
+     "id": "k_cons",
+     "scale": 0.099991,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016b20",
@@ -33,7 +40,14 @@
    "color": "#ffffff",
    "template": "moc[%]=0",
    "sample": "moc[%]=0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x4005",
+     "id": "burner_power",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016b58",
@@ -63,7 +77,14 @@
    "color": "#ffffff",
    "template": "jasność=0",
    "sample": "jasność=0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2250",
+     "id": "burner_flame",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016dc0",
@@ -78,7 +99,14 @@
    "color": "#ffffff",
    "template": "T. palnika=0",
    "sample": "T. palnika=0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x226C",
+     "id": "burner_temp",
+     "scale": 0.099458,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016ed8",
@@ -96,5 +124,6 @@
    "bind": []
   }
  ],
- "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne",
+ "bindings_source": "tools/bind_screen.py"
 }

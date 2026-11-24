@@ -18,7 +18,14 @@
    "color": "#ffffff",
    "template": "0.0",
    "sample": "0.0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2109",
+     "id": "live",
+     "scale": 0.099819,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x200169b0",
@@ -33,7 +40,14 @@
    "color": "#ffffff",
    "template": "0.0",
    "sample": "0.0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2103",
+     "id": "live",
+     "scale": 0.099819,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x200169e8",
@@ -48,7 +62,14 @@
    "color": "#ffffff",
    "template": "0.0",
    "sample": "0.0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2102",
+     "id": "live",
+     "scale": 0.099819,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20016a20",
@@ -66,5 +87,6 @@
    "bind": []
   }
  ],
- "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne",
+ "bindings_source": "tools/bind_screen.py"
 }

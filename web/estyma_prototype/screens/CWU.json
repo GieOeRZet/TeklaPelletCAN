@@ -18,7 +18,14 @@
    "color": "#ffffff",
    "template": "0.0",
    "sample": "0.0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x2110",
+     "id": "hw_temp",
+     "scale": 0.099819,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x2001743c",
@@ -33,7 +40,14 @@
    "color": "#ffffff",
    "template": "0",
    "sample": "0",
-   "bind": []
+   "bind": [
+    {
+     "pid": "0x201A",
+     "id": "hw_set_result",
+     "scale": 1.0,
+     "evidence": "FACT-DYNAMIC (wstrzykniecie w emulatorze)"
+    }
+   ]
   },
   {
    "widget": "0x20017474",
@@ -51,5 +65,6 @@
    "bind": []
   }
  ],
- "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne",
+ "bindings_source": "tools/bind_screen.py"
 }

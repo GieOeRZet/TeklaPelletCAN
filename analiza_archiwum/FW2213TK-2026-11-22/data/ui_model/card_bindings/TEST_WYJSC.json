@@ -1,0 +1,106 @@
+{
+ "name": "TEST_WYJSC",
+ "bindings": [
+  {
+   "pid": "0x3507",
+   "id": "list",
+   "widget": "0x200176f0",
+   "before": "0",
+   "after": "143165",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3608",
+   "id": "list",
+   "widget": "0x200166d8",
+   "before": "0",
+   "after": "21852",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3609",
+   "id": "list",
+   "widget": "0x20016a10",
+   "before": "0",
+   "after": "21852",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3610",
+   "id": "list",
+   "widget": "0x20016d48",
+   "before": "0",
+   "after": "40",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3613",
+   "id": "list",
+   "widget": "0x20017a28",
+   "before": " 0.0",
+   "after": " 9.2",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3614",
+   "id": "list",
+   "widget": "0x20017d60",
+   "before": " 0.0",
+   "after": " 9.2",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3615",
+   "id": "list",
+   "widget": "0x20018098",
+   "before": " 0.0",
+   "after": " 9.2",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3616",
+   "id": "list",
+   "widget": "0x200183d0",
+   "before": " 0.0",
+   "after": " 9.2",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3618",
+   "id": "list",
+   "widget": "0x20018708",
+   "before": "0",
+   "after": "21852",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3619",
+   "id": "list",
+   "widget": "0x20018a40",
+   "before": "0",
+   "after": "21852",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x362A",
+   "id": "list",
+   "widget": "0x20018d78",
+   "before": "0",
+   "after": "21852",
+   "injected": 21852,
+   "stored": 21852
+  }
+ ],
+ "done": 222,
+ "total": 222
+}

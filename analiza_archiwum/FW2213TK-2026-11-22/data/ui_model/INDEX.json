@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-24T15:38:18.958986+00:00",
+  "generated_at": "2026-11-24T16:09:56.650360+00:00",
   "root": "analiza_archiwum/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -9,6 +9,206 @@
       "schema_version": "1.0",
       "records": 68,
       "date": "2026-11-24T13:31:05.533823+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/ALARMY.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.560563+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/BUFOR.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.560734+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/CWU.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.560856+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/HOME.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.560977+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/INFO.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.561081+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/INTERNET.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.561329+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/KASKADA.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.561724+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/KOCIOL.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.561912+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/MAGAZYN.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.562005+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/OGRZEWANIE1.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.562111+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/PALNIK.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.562190+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/SOLARY.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.562266+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/TEST_WYJSC.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:09:07.562349+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_ALARMY.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.867525+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_BUFOR.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.870273+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_CWU.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.873791+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_HOME.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.877877+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_INFO.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.881169+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_KASKADA.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.884445+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_KOCIOL.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.887615+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_MAGAZYN.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.891111+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_OGRZEWANIE1.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.894084+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_PALNIK.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.897425+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_SOLARY.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.900632+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "card_bindings/live_TEST_WYJSC.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-24T16:08:59.903500+00:00",
       "evidence_paths": []
     },
     {
