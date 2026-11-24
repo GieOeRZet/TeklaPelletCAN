@@ -75,10 +75,32 @@
    "rule": "ramka 0x584: 42 <pid_lo> <pid_hi> 01 <u32 LE>; para: rejestr alarmu 0x4010+i oraz czas potwierdzenia 0x4038+i",
    "evidence": "MEASURED (PASS 51 i PASS 68)"
   },
+  "status_display": {
+   "active": "bit16 = 1: 'AKTYWNY' na czerwono",
+   "inactive": "bit16 = 0: 'NIEAKTYWNY' na zielono",
+   "evidence": "MEASURED (PASS 68)"
+  },
+  "numbering": {
+   "rule": "NR n <-> slot pierscienia (0x404C - n) mod 20 (NR 1 = najnowszy zapisany); przyklad: next=5: NR1=slot 4, NR2=slot 3, NR3=slot 2",
+   "ring_start": "po rozruchu indeks zapisu = 1 (slot 0 pusty)",
+   "evidence": "MEASURED (ack NR 2 -> 0x4012 przy next=4)"
+  },
+  "clearing": {
+   "comm_alarms": "alarmy komunikacji (100-110, kod = 100 + wezel/modul) tracą bit16, gdy moduł zaczyna nadawac PDO (watchdog online): 0x3006E -> 0x2006E po zasileniu modulu 0x56 (kod 110), 0x30069 -> 0x20069 po zasileniu 0x45 (kod 105)",
+   "unack": "bit17 zostaje do potwierdzenia: 0x2006E nadal wymaga POTWIERDZ; po potwierdzeniu 0x20069 -> 0x69 (oba bity 0)",
+   "confirm_available": "POTWIERDZ jest dostepny dopoki bit17 = 1, niezaleznie od aktywnosci",
+   "side_effect": "zasilenie modulu 0x56/0x45 w symulacji spowodowalo tez podniesienie kodu 5 (STB, 0x30005) - warunek STB OPEN",
+   "evidence": "MEASURED (PASS 68, LiveSim)"
+  },
+  "level_layout_cause": {
+   "finding": "uklad zalezny od poziomu jest DETERMINISTYCZNY (nie zalezy od czasu otwarcia: 0/20000/60000 tikow); animacja wjazdu ekranu (setX 480 -> ...) konczy sie na x=80 przy poziomie 0 i na x=0 przy poziomie 1 w tym samym momencie; sciezka wykonania w kodzie widoku alarmow (PROJECT 0x08040000-0x08043000) jest identyczna na obu poziomach; poziom (model+0x158) jest czytany tylko przez wspolny naglowek (0x0804A20C: ikona klucza/poziom; 0x0804A566: pole CPU% od poziomu 3) i przez ogolna funkcje bramki (0x0807FCAA, uzywana tez w menu)",
+   "status": "przyczyna przesuniecia nie zlokalizowana w statycznym kodzie widoku (OPEN), opis zachowania pewny",
+   "evidence": "MEASURED + analiza listingu"
+  },
   "open": [
-   "mapowanie NR -> numer slotu pierscienia (zalezy od indeksu zapisu 0x404C); w tescie NR 2 = slot 2",
-   "kiedy status zmienia sie na nieaktywny (kasowanie bitu 16 po ustapieniu warunku)",
-   "format godziny: G:MM (np. 0:00)"
+   "format godziny: G:MM (np. 0:00)",
+   "mechanizm przesuniecia o 80 px na poziomie 0 (patrz level_layout_cause)",
+   "przelaczanie tekstury strzalek na nieaktywna: nie zaobserwowane w binarce (bitmapy 168/169 stale)"
   ]
  },
  "alarm_automaton": {
@@ -1262,6 +1284,6 @@
  ],
  "codes_total": 68,
  "open": [
-  "warunki wyzwolenia per alarm (clear-only: 7,43,53,115,250; raise-only: 131,139,140,150,160,161 - asymetria katalogu PASS 110)"
+  "warunki wyzwolenia per alarm (logika sterownika, poza zakresem UI): clear-only 7,43,53,115,250; raise-only 131,139,140,150,160,161 (asymetria katalogu PASS 110); warunek STB (kod 5)"
  ]
 }
