@@ -27,7 +27,10 @@ function screenView(s, node, title, target, row){
   const sc = SCREENS[node]; const box = document.createElement("div"); box.className = "scr"; box.style.backgroundImage = "url(screens/" + node + ".png)";
   (sc.dynamic || []).forEach(f => { const e = document.createElement("div"); e.className = "dyn"; Object.assign(e.style, {left: f.rect[0]+"px", top: f.rect[1]+"px", width: f.rect[2]+"px", height: f.rect[3]+"px", color: f.color, font: FONT_PX[f.font]+"px/"+f.rect[3]+"px 'Roboto Condensed','Arial Narrow',sans-serif", textAlign: ["left","center","right"][f.align]}); e.textContent = liveText(f); e._f = f; box.append(e); });
   box.onclick = ev => { const r = box.getBoundingClientRect(), k = 480 / r.width, x = (ev.clientX - r.left) * k, y = (ev.clientY - r.top) * k;
-    if (node === "HOME") { if (x < 70 && y > 195) { stack = ["SCR:HOME:Ekran glowny:HOME:-1", "MENU"]; render(); } return; }
+    if (node === "HOME") { const dlg = box.querySelector(".dlg"); if (dlg) { if (x > 385 && y > 205 && y < 250) dlg.remove(); return; }
+      const hit = [["home_paliwo", x < 135 && y > 195], ["home_zasilanie", x > 415 && y > 195], ["home_auto", x > 340 && y < 100 && y > 50], ["home_czas", x < 90 && y < 45], ["home_data", x > 160 && x < 320 && y < 45]].find(h => h[1]);
+      if (hit) { const d = document.createElement("div"); d.className = "dlg"; d.style.backgroundImage = "url(dialogs/" + hit[0] + ".png)"; box.append(d); return; }
+      if (x < 70 && y > 195) { stack = ["SCR:HOME:Ekran glowny:HOME:-1", "MENU"]; render(); } return; }
     if (x > 420 && y < 45) { stack = ["SCR:HOME:Ekran glowny:HOME:-1"]; render(); } else if (x < 130 && y < 45) { stack.pop(); render(); } else if (x > 240 && y > 225) { const k = listKey(target, +row); if (k) { stack.push("LISTA:" + k + ":" + title); render(); } } };
   s.append(box);
 }

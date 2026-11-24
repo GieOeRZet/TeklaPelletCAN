@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) okna HOME w karcie: 5 z 5 otwieraja sie i zamykaja (OK)
+Zrobilem: nakladki Paliwo, Zasilanie, Auto, Czas, Data (obrazy z renderera z danych firmware, 0.0-4.0% roznicy) otwierane kafelkami HOME, zamykane OK; test Playwright 5/5, 0 bledow. Obrazy statyczne (bez edycji wartosci). Pozostalo: edycja wartosci w oknach/dialogach, podpiecie /api/v1/states (tylko odczyt), listy przewijalne, PROGRAM; BACKLOG: ALARMY L0, stan 'online'.
+
 ### E7 (2026-11-24) bindingi PID pol ekranow: zmierzone w emulatorze, karta pokazuje zywa temperature
 Zrobilem: `tools/bind_screen.py` (wstrzykniecie ~220 PID + zrodla live przez LiveSim, porownanie tekstow widgetow; FACT-DYNAMIC), `tools/merge_bindings.py`; 16 ekranow, wyniki w `ui_model/card_bindings/`. Znalezione powiazania pol->PID (np. duza temperatura Kociol = 0x2001 skala 0.1, T. palnika 0x226C, temperatury CWU/Solary 0x2110/0x2112/0x2113, 11 pol Testu wyjsc, 6 pol Alarmow); w karcie (demo) temperatura Kociol zmienia sie na zywo. Szum (licznik % w naglowku) odfiltrowany. Pozostalo: 7 ekranow z 0 powiazan (HOME tylko 1, INFO, INTERNET, MAGAZYN - wartosci przez inne zrodla/tekst), pola tekstowe (statusy, nazwy) bez skali, podpiecie /api/v1/states (tylko odczyt) i okna HOME w karcie.
 
