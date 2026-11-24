@@ -1,0 +1,205 @@
+{
+ "name": "TEST_WYJSC",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x200166d8",
+   "rect": [
+    275,
+    59,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  },
+  {
+   "widget": "0x20016a10",
+   "rect": [
+    275,
+    109,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  },
+  {
+   "widget": "0x20016d48",
+   "rect": [
+    275,
+    159,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  },
+  {
+   "widget": "0x20017080",
+   "rect": [
+    275,
+    209,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  },
+  {
+   "widget": "0x200173b8",
+   "rect": [
+    275,
+    259,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  },
+  {
+   "widget": "0x200176f0",
+   "rect": [
+    275,
+    309,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  },
+  {
+   "widget": "0x20017a28",
+   "rect": [
+    275,
+    359,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": " 0.0",
+   "sample": " 0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x20017d60",
+   "rect": [
+    275,
+    409,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": " 0.0",
+   "sample": " 0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x20018098",
+   "rect": [
+    275,
+    459,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": " 0.0",
+   "sample": " 0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x200183d0",
+   "rect": [
+    275,
+    509,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": " 0.0",
+   "sample": " 0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x20018708",
+   "rect": [
+    275,
+    559,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  },
+  {
+   "widget": "0x20018a40",
+   "rect": [
+    275,
+    609,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  },
+  {
+   "widget": "0x20018d78",
+   "rect": [
+    275,
+    659,
+    175,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}

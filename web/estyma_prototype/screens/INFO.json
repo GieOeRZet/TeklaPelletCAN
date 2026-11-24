@@ -1,0 +1,70 @@
+{
+ "name": "INFO",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x200162f8",
+   "rect": [
+    40,
+    50,
+    175,
+    25
+   ],
+   "font": 1,
+   "align": 0,
+   "color": "#ffffff",
+   "template": "igneoTouch v2.213 TE",
+   "sample": "igneoTouch v2.213 TE",
+   "bind": []
+  },
+  {
+   "widget": "0x20016364",
+   "rect": [
+    40,
+    114,
+    125,
+    25
+   ],
+   "font": 1,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "videRoom PIN 0",
+   "sample": "videRoom PIN 0",
+   "bind": []
+  },
+  {
+   "widget": "0x2001639c",
+   "rect": [
+    470,
+    152,
+    10,
+    25
+   ],
+   "font": 1,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  },
+  {
+   "widget": "0x200163d4",
+   "rect": [
+    40,
+    82,
+    148,
+    25
+   ],
+   "font": 1,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "Bio Compact 10kW",
+   "sample": "Bio Compact 10kW",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}

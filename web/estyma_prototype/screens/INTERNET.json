@@ -1,0 +1,70 @@
+{
+ "name": "INTERNET",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x20016c48",
+   "rect": [
+    35,
+    50,
+    45,
+    25
+   ],
+   "font": 1,
+   "align": 0,
+   "color": "#ffffff",
+   "template": "SSID:",
+   "sample": "SSID:",
+   "bind": []
+  },
+  {
+   "widget": "0x20016c80",
+   "rect": [
+    35,
+    80,
+    100,
+    25
+   ],
+   "font": 1,
+   "align": 0,
+   "color": "#ffffff",
+   "template": "PASSWORD:",
+   "sample": "PASSWORD:",
+   "bind": []
+  },
+  {
+   "widget": "0x20016d60",
+   "rect": [
+    35,
+    140,
+    120,
+    25
+   ],
+   "font": 1,
+   "align": 0,
+   "color": "#ffffff",
+   "template": "PIN:",
+   "sample": "PIN:",
+   "bind": []
+  },
+  {
+   "widget": "0x20016d98",
+   "rect": [
+    35,
+    110,
+    190,
+    25
+   ],
+   "font": 1,
+   "align": 0,
+   "color": "#ffffff",
+   "template": "SERIAL:",
+   "sample": "SERIAL:",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}

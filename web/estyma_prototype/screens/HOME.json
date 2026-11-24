@@ -1,0 +1,70 @@
+{
+ "name": "HOME",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x20016a24",
+   "rect": [
+    0,
+    5,
+    55,
+    25
+   ],
+   "font": 1,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0:00",
+   "sample": "0:00",
+   "bind": []
+  },
+  {
+   "widget": "0x2001b328",
+   "rect": [
+    358,
+    53,
+    36,
+    44
+   ],
+   "font": 3,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "7",
+   "sample": "7",
+   "bind": []
+  },
+  {
+   "widget": "0x2001b360",
+   "rect": [
+    180,
+    35,
+    157,
+    104
+   ],
+   "font": 5,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "0.0",
+   "sample": "0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x2001b398",
+   "rect": [
+    82,
+    202,
+    41,
+    15
+   ],
+   "font": 0,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "180kg",
+   "sample": "180kg",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}

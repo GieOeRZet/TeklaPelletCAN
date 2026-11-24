@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) 17 ekranow w karcie: HOME + 16 ekranow menu
+Zrobilem: eksport HOME, Alarmy, Info, Test wyjsc, Statystyki, SIEC, INTERNET, Kaskada, Magazyn (razem z 8 poprzednimi = 17 ekranow w `screens/`), start karty = HOME, nawigacja HOME -> MENU -> ekran -> nastawy -> wstecz, ikona domu wraca na HOME; test Playwright 0 bledow. Dane pol = przykladowe z emulatora (np. alarm 110). Pozostalo: bindingi PID (w toku), podpiecie /api/v1/states (tylko odczyt), przewijalne listy (Statystyki/SIEC/INFO), okna HOME (Paliwo, Zasilanie, Auto, Czas, Data) i dialogi w karcie.
+
 ### E7 (2026-11-24) 6 z 9 ekranow glownych w karcie: Kociol, Palnik, Ogrzewanie 1-4, CWU, Solary, Bufor
 Zrobilem: eksport 8 ekranow z emulatora (`screens/*.png|json`, w tym Solary i Bufor) i ich widok w prototypie (tlo + pola dynamiczne), nawigacja do list nastaw wg instancji; test Playwright MENU->ekran->nastawy->wstecz dla 5 pierwszych wierszy: 0 bledow. Pozostalo: bindingi PID (data_binding w toku, ~40% z 655), HOME, Kaskada/Magazyn/INFO/ALARMY/TEST/SIEC jako ekrany, podpiecie /api/v1/states.
 

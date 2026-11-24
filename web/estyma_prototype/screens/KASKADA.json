@@ -1,0 +1,205 @@
+{
+ "name": "KASKADA",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x20016274",
+   "rect": [
+    439,
+    0,
+    40,
+    30
+   ],
+   "font": 0,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "99%",
+   "sample": "99%",
+   "bind": []
+  },
+  {
+   "widget": "0x200168ec",
+   "rect": [
+    205,
+    195,
+    200,
+    70
+   ],
+   "font": 1,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "Stopień mocy 0",
+   "sample": "Stopień mocy 0",
+   "bind": []
+  },
+  {
+   "widget": "0x200169d8",
+   "rect": [
+    50,
+    180,
+    70,
+    20
+   ],
+   "font": 0,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "MASTER",
+   "sample": "MASTER",
+   "bind": []
+  },
+  {
+   "widget": "0x20016a10",
+   "rect": [
+    50,
+    100,
+    70,
+    50
+   ],
+   "font": 1,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "0.0°",
+   "sample": "0.0°",
+   "bind": []
+  },
+  {
+   "widget": "0x20016a48",
+   "rect": [
+    75,
+    90,
+    45,
+    50
+   ],
+   "font": 0,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "7°",
+   "sample": "7°",
+   "bind": []
+  },
+  {
+   "widget": "0x20016a80",
+   "rect": [
+    80,
+    150,
+    45,
+    50
+   ],
+   "font": 0,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "1",
+   "sample": "1",
+   "bind": []
+  },
+  {
+   "widget": "0x20016b74",
+   "rect": [
+    150,
+    180,
+    70,
+    20
+   ],
+   "font": 0,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "SLAVE 1",
+   "sample": "SLAVE 1",
+   "bind": []
+  },
+  {
+   "widget": "0x20016bac",
+   "rect": [
+    150,
+    100,
+    70,
+    50
+   ],
+   "font": 1,
+   "align": 1,
+   "color": "#ff0000",
+   "template": "---",
+   "sample": "---",
+   "bind": []
+  },
+  {
+   "widget": "0x20016be4",
+   "rect": [
+    175,
+    90,
+    45,
+    50
+   ],
+   "font": 0,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "7°",
+   "sample": "7°",
+   "bind": []
+  },
+  {
+   "widget": "0x20016c1c",
+   "rect": [
+    180,
+    150,
+    45,
+    50
+   ],
+   "font": 0,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "2",
+   "sample": "2",
+   "bind": []
+  },
+  {
+   "widget": "0x20016d10",
+   "rect": [
+    250,
+    180,
+    70,
+    20
+   ],
+   "font": 0,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "SLAVE 2",
+   "sample": "SLAVE 2",
+   "bind": []
+  },
+  {
+   "widget": "0x20016d80",
+   "rect": [
+    275,
+    90,
+    45,
+    50
+   ],
+   "font": 0,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "7°",
+   "sample": "7°",
+   "bind": []
+  },
+  {
+   "widget": "0x20016db8",
+   "rect": [
+    280,
+    150,
+    45,
+    50
+   ],
+   "font": 0,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "3",
+   "sample": "3",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}

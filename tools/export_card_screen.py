@@ -14,9 +14,14 @@ for b in bind:
     for w in b.get("widgets", []):
         if w.get("widget"): wpid.setdefault(w["widget"], []).append(dict(pid=b["pid"], fmt=w.get("fmt")))
 os.makedirs(out, exist_ok=True)
-s = U.UiSession.from_checkpoint(str(paths.FIRMWARE), os.path.join(d, "menu.state"), None); s.wait(120)
-nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = pickle.load(open(os.path.join(d, "rows.pkl"), "rb")); t = C.Tracer(s); t.log.clear()
-assert nav.tap_row_from_top(row); s.wait(700)
+if row < 0:      # ROW=-1: ekran glowny (swiezy rozruch, konfiguracja jak home_inventory.py)
+    s = U.UiSession(str(paths.FIRMWARE), None); t = C.Tracer(s); s.boot(500)
+    for p_, v_ in {0x2105: 4, 0x2106: 1, 0x2107: 1, 0x2108: 1}.items(): s.set_local(p_, v_)
+    s.set_access(0); s.wait(4500)
+else:
+    s = U.UiSession.from_checkpoint(str(paths.FIRMWARE), os.path.join(d, "menu.state"), None); s.wait(120)
+    nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = pickle.load(open(os.path.join(d, "rows.pkl"), "rb")); t = C.Tracer(s); t.log.clear()
+    assert nav.tap_row_from_top(row); s.wait(700)
 if settings: s.tap(400, 245, settle=800); s.wait(500)
 ws = C.widget_table(s, t); ex = X.extract(s, ws); ref = s.shot()
 dyn = []; static = []

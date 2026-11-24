@@ -1,0 +1,25 @@
+{
+ "name": "MAGAZYN",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x20016274",
+   "rect": [
+    439,
+    0,
+    40,
+    30
+   ],
+   "font": 0,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "98%",
+   "sample": "98%",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}
