@@ -19,6 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ui_session as U
+import ctor_trace as CT
 
 from PIL import Image, ImageChops
 
@@ -121,6 +122,29 @@ def feed_nodes(nodes, rounds=8):
     return action
 
 
+def discover_tap_for_label(s, label):
+    """Derive a touch coordinate from live widget RAM, never from a screenshot."""
+    tracer = CT.Tracer(s)
+    # Re-run the current screen construction from its parent is outside this
+    # helper; callers should pass a session already positioned on the screen.
+    # Existing widgets can still be enumerated when tracer has captured the
+    # current view construction. If not, fail rather than guessing.
+    ws = CT.widget_table(s, tracer)
+    labels = [w for w in ws if w.get("role") == "text" and w.get("wildcard") == label]
+    if not labels:
+        raise RuntimeError("label not found in widget trace: %r" % label)
+    lab = labels[0]
+    candidates = [
+        w for w in ws
+        if w.get("touch") == 1 and w.get("vis") == 1
+        and w.get("ax", -9999) >= lab.get("ax", 0)
+        and abs(w.get("ay", 0) - lab.get("ay", 0)) <= max(20, lab.get("h", 0))
+    ]
+    if not candidates:
+        raise RuntimeError("no touchable widget found for label: %r" % label)
+    w = min(candidates, key=lambda x: (abs(x["ay"] - lab["ay"]), abs(x["ax"] - lab["ax"])))
+    return [w["ax"] + w["w"] // 2, w["ay"] + w["h"] // 2], w
+
 def tap(x, y, settle=700):
     def action(s):
         s.tap(x, y, settle=settle)
@@ -195,13 +219,16 @@ def run_internet(fw, state, out):
                 inject_test(pid, v), inject_test(pid, v + 1 if v < 65535 else v - 1), settle=300
             )
 
-    # SSID editor entry is a real TAP, not a PID injection.
-    # The coordinates are a checkpoint-derived result from the current inventory;
-    # a future runner should replace them by the widget rect lookup when inventory
-    # is available. We still record the exact tap and view change.
+    # SSID editor entry must use a touch rectangle from live widget RAM.
+    # If the construction trace cannot identify it, the test fails explicitly;
+    # no screenshot coordinate fallback is allowed.
+    def editor_action(s):
+        xy, widget = discover_tap_for_label(s, "SSID")
+        s.tap(*xy, settle=1000)
+        return {"tap": xy, "widget": widget}
     tests["ssid_editor_open"] = strict_repeat(
         fw, state, state, out, "internet_ssid_editor",
-        tap(180, 62, 1000), tap(180, 62, 1000), settle=300
+        editor_action, editor_action, settle=300
     )
     return tests
 
