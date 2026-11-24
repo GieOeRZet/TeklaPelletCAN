@@ -26,6 +26,12 @@
       "result": "named runtime parameter 'igneTouch boiler short name'; runtime wildcard producer not proven"
     },
     {
+      "topic": "INFO 0x3664",
+      "status": "FACT-DYNAMIC",
+      "result": "software version source; 0x0214 -> v2.213 TE and 0x9999 (39321) -> v39.321 TE when set before entering INFO",
+      "basis": "local CHATGPT-SII-STAGE2 runtime evidence"
+    },
+    {
       "topic": "INFO 0x2170",
       "status": "FACT-STATIC",
       "result": "runtime parameter 'VideRoom PIN'; current injection path rejects/does not alter INFO; true wildcard producer not proven"
