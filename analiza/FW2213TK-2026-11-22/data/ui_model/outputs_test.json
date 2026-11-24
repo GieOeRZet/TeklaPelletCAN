@@ -1,5 +1,5 @@
 {
- "evidence": "MEASURED/STRONG (PASS 69, emulator: stukniecia OFF i ON w kazdy wiersz, pozycje przyciskow z widzetow, odczyt PID i ramek 0x584); wiersze oznaczone STRONG: pomiar dal duplikat sasiedniego wiersza, przypisanie wg nazwy PID",
+ "evidence": "MEASURED (PASS 69, emulator); wiersze 15-18 i WentWyc/Wymiennik potwierdzone ponownie: stukniecie + kontrola wizualna zaznaczonego pola + ramka 0x584",
  "screen": {
   "node": "TEST_WYJSC",
   "vtable": "0x808f80c",
@@ -37,7 +37,8 @@
   },
   "row_height": 50,
   "first_row_y": 59,
-  "pid_write": "stuknięcie A/OFF/ON zapisuje PID 'XXX test' wartoscia 0/1/2 (ramka 0x584: 42 <pid_lo> <pid_hi> 01 <wartosc>), natychmiast; ON dodatkowo uruchamia powiazane stany (np. pompa CWU -> 0x2278 stan pompy)"
+  "pid_write": "stuknięcie pola zapisuje PID testowy 0/1/2 (ramka 0x584: 42 <pid_lo> <pid_hi> 01 <wartosc> 00 00 00)",
+  "columns_note": "Podpisy nad polami: wiekszosc wierszy A / OFF / ON (wartosc 0/1/2); Ruszt i wszystkie Mieszacze (CO1-4, powrotu): A / CLOSE / OPEN (0/1/2, zamknij/otworz). Dm. i WentWyc maja dodatkowo suwak mocy po lewej od pol."
  },
  "rows": [
   {
@@ -51,7 +52,12 @@
      "name": "Hot water pump state"
     }
    ],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 1,
@@ -64,7 +70,12 @@
      "name": "Hot water circular pump state"
     }
    ],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 2,
@@ -72,7 +83,12 @@
    "test_pid": "0x2286",
    "test_pid_name": "Boiler pump test",
    "related": [],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 3,
@@ -85,7 +101,12 @@
      "name": "Solar pump state"
     }
    ],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 4,
@@ -93,7 +114,12 @@
    "test_pid": "0x2259",
    "test_pid_name": "Burner storage feeder test",
    "related": [],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 5,
@@ -101,7 +127,12 @@
    "test_pid": "0x2279",
    "test_pid_name": "Burner grate test",
    "related": [],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "CLOSE",
+    "OPEN"
+   ]
   },
   {
    "row": 6,
@@ -109,7 +140,12 @@
    "test_pid": "0x2285",
    "test_pid_name": "Exchanger cleaner test",
    "related": [],
-   "evidence": "STRONG (nazwa PID; pomiar dal duplikat sasiedniego wiersza)"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 7,
@@ -117,7 +153,12 @@
    "test_pid": "0x2284",
    "test_pid_name": "Igniter test",
    "related": [],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 8,
@@ -125,7 +166,12 @@
    "test_pid": "0x2295",
    "test_pid_name": "Burner feeder test",
    "related": [],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 9,
@@ -138,7 +184,12 @@
      "name": "External fuel storage motor 1 state"
     }
    ],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 10,
@@ -151,7 +202,12 @@
      "name": "External fuel storage motor 2 state"
     }
    ],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 11,
@@ -164,7 +220,20 @@
      "name": "Burner blower"
     }
    ],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ],
+   "slider": {
+    "pid": "0x2288",
+    "name": "Blower test power",
+    "range": [
+     0,
+     100
+    ]
+   }
   },
   {
    "row": 12,
@@ -172,7 +241,20 @@
    "test_pid": "0x2293",
    "test_pid_name": "Exhaust fan test",
    "related": [],
-   "evidence": "STRONG (nazwa PID; pomiar dal duplikat sasiedniego wiersza)"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ],
+   "slider": {
+    "pid": "0x2298",
+    "name": "Exhaust fan test power",
+    "range": [
+     0,
+     100
+    ]
+   }
   },
   {
    "row": 13,
@@ -180,7 +262,12 @@
    "test_pid": "0x229D",
    "test_pid_name": "CH pump test",
    "related": [],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 14,
@@ -188,7 +275,12 @@
    "test_pid": "0x229E",
    "test_pid_name": "CH pump test",
    "related": [],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 15,
@@ -196,7 +288,12 @@
    "test_pid": "0x229F",
    "test_pid_name": "CH pump test",
    "related": [],
-   "evidence": "STRONG (nazwa PID; pomiar dal duplikat sasiedniego wiersza)"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 16,
@@ -204,7 +301,12 @@
    "test_pid": "0x22A0",
    "test_pid_name": "CH pump test",
    "related": [],
-   "evidence": "STRONG (nazwa PID; pomiar dal duplikat sasiedniego wiersza)"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "OFF",
+    "ON"
+   ]
   },
   {
    "row": 17,
@@ -217,7 +319,12 @@
      "name": "CH mixer state"
     }
    ],
-   "evidence": "STRONG (nazwa PID; pomiar dal duplikat sasiedniego wiersza)"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "CLOSE",
+    "OPEN"
+   ]
   },
   {
    "row": 18,
@@ -230,7 +337,12 @@
      "name": "CH mixer state"
     }
    ],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "CLOSE",
+    "OPEN"
+   ]
   },
   {
    "row": 19,
@@ -243,7 +355,12 @@
      "name": "CH mixer state"
     }
    ],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "CLOSE",
+    "OPEN"
+   ]
   },
   {
    "row": 20,
@@ -256,7 +373,12 @@
      "name": "CH mixer state"
     }
    ],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "CLOSE",
+    "OPEN"
+   ]
   },
   {
    "row": 21,
@@ -269,17 +391,38 @@
      "name": "CH mixer state"
     }
    ],
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "columns": [
+    "A",
+    "CLOSE",
+    "OPEN"
+   ]
   }
  ],
  "power_sliders": {
-  "blower_power": "0x2288 (Blower test power)",
-  "exhaust_fan_power": "0x2298 (Exhaust fan test power)",
-  "note": "suwaki mocy przy wierszach dmuchawy i wentylatora; zakresy i zapis OPEN"
+  "blower": {
+   "row": "Dm.",
+   "pid": "0x2288",
+   "range": [
+    0,
+    100
+   ],
+   "evidence": "MEASURED"
+  },
+  "exhaust_fan": {
+   "row": "WentWyc",
+   "pid": "0x2298",
+   "range": [
+    0,
+    100
+   ],
+   "evidence": "MEASURED"
+  },
+  "write": "przeciaganie wysyla seria ramek 0x584 (42 88 22 01 <0..100>) w trakcie ruchu, wartosc rosnie w prawo; suwak = bitmapy (grafika pasek+gałka z atlasu), pozycja ~ wartosc/100",
+  "note": "zakres/wygląd potwierdzone przez wlasciciela: im bardziej w prawo, tym mocniej (INFERENCE od wlasciciela, zgodne z pomiarem: 98 przy prawym skrajnym polozeniu, po przeciagnieciu w lewo 34)"
  },
  "open": [
-  "wiersze 6, 12, 15, 16, 17: potwierdzic pomiarem (duplikaty przy przewijaniu)",
-  "suwaki mocy 0x2288/0x2298: zakres i ramka",
-  "wartosc 'A' (0) - stukniecie w A nie mierzone osobno"
+  "stukniecie w pole A (0) osobno niemierzone (A = domyslny)",
+  "pierwotny pomiar rzedow 12 i 15-18 byl przesuniety o wiersz (dryf przewijania); poprawione weryfikacja wizualna"
  ]
 }
