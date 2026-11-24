@@ -5,7 +5,7 @@ Klasy po vptr: TextArea (0x807e15c, 0x807e1d8: id +0x26, kolor +0x2C, bufor wild
 import csv, json, os, pickle, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ui_session as U, action_probe as AP
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data")
 TT = {int(r["typedtext_id_relative"]): r for r in csv.DictReader(open(os.path.join(D, "typedtext_database.csv"), encoding="utf-8"))}
 TEXTA, LABEL, BOX = (0x807e15c, 0x807e1d8, 0x807ddd8), (0x807e7f8,), (0x807f24c,)
 import collections

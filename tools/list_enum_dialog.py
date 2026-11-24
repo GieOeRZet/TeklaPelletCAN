@@ -6,7 +6,7 @@ import json, os, pickle, struct, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ui_session as U, action_probe as AP
 fw, d, inv_path, node, key, out = sys.argv[1:7]; idxs = [int(x) for x in sys.argv[7:]]
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data", "ui_model")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data", "ui_model")
 meta = {r["idx"]: r for r in [v for k, v in json.load(open(os.path.join(D, "lists.json")))["lists"].items() if k.startswith(key + "|")][0]}
 sc = json.load(open(os.path.join(D, "list_scales.json")))["lists"][key]["rows"]; sc = {r["idx"]: r for r in sc}
 RAW = open(fw, "rb").read()

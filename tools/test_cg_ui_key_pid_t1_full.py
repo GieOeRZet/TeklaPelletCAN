@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import csv,sys
-p=sys.argv[1] if len(sys.argv)>1 else "analiza/FW2213TK-2026-11-22/data/cg_ui_key_pid_t1_full.csv"
+p=sys.argv[1] if len(sys.argv)>1 else "analiza_archiwum/FW2213TK-2026-11-22/data/cg_ui_key_pid_t1_full.csv"
 rows=list(csv.DictReader(open(p,encoding="utf-8")))
 assert len(rows)==49, len(rows)
 assert [int(r["idx"]) for r in rows]==list(range(49))

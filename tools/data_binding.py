@@ -12,7 +12,7 @@ fw, st, out = sys.argv[1:4]
 raw = open(fw, "rb").read(); B = 0x08010000
 s = U.UiSession.from_checkpoint(fw, st, None); s.enable_trace(); s.wait(500)
 import csv
-pids = sorted(int(r["key"], 16) for r in csv.DictReader(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data", "runtime_param_table_655.csv"), encoding="utf-8")) if int(r["key"], 16) not in (0x3722, 0x3723))
+pids = sorted(int(r["key"], 16) for r in csv.DictReader(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data", "runtime_param_table_655.csv"), encoding="utf-8")) if int(r["key"], 16) not in (0x3722, 0x3723))
 if os.environ.get("BIND_PIDS"): pids = [int(x, 16) for x in os.environ["BIND_PIDS"].split(",")]
 print("PID-y do wstrzykniecia:", len(pids), flush=True)
 events = []

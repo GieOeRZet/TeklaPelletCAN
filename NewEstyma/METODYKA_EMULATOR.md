@@ -42,7 +42,7 @@ Zrzut `shot()` to 480×272; ciało ekranu = y≥46.
 4. Przed akcją `n0 = len(s.can2.tx)`; po akcji nowe ramki 0x584 (`42 <pid_lo> <pid_hi> 01 <wartość u32 LE>`), z odfiltrowaniem okresowych (0x2167, 0x229A, 0x3723).
 5. Widok = vtable `rd(rd(0x20024818))` (HOME 0x808f708, MENU 0x808f66c, SIEC 0x808f770, INFO 0x808f638, INTERNET 0x808f9ac, TEST_WYJSC 0x808f80c ...).
 6. Powtórzenie z innej wartości/stanu (min. 2 niezależne przebiegi); wynik niezgodny = nie zaliczaj.
-7. Zapis do repo: `RUN_SUMMARY.json` + małe PNG (ciało ekranu) w `analiza/FW2213TK-2026-11-22/data/ui_model/<temat>/`; surowe dowody MUSZĄ być w repo (nie `/mnt/data`).
+7. Zapis do repo: `RUN_SUMMARY.json` + małe PNG (ciało ekranu) w `analiza_archiwum/FW2213TK-2026-11-22/data/ui_model/<temat>/`; surowe dowody MUSZĄ być w repo (nie `/mnt/data`).
 Wzorzec gotowy: `tools/sii_acceptance.py FW STATEDIR OUT {siec|info|internet|all}`, `tools/sii_editor_probe.py`, `tools/audit_siec.py`.
 
 ## 5. Etykiety wyników
@@ -68,4 +68,4 @@ Pracuj na swojej gałęzi, `git pull --rebase` przed pushem, commit + push po ka
 - Po każdym etapie: commit + push, krótki raport (zmierzone / otwarte / ryzyka). Przy ~95% limitu kontekstu: zapis stanu do `NewEstyma/01_PROJECT_STATE.md` i handoff.
 
 ## 9. Stan wiedzy
-Aktualne wyniki i otwarte punkty nie są w tym pliku (żeby się nie starzał): `NewEstyma/01_PROJECT_STATE.md`, `NewEstyma/COORDINATION.md`, `analiza/FW2213TK-2026-11-22/data/ui_model/` (menu_tree, alarms, outputs_test, live_sources, internet_editor, sii_acceptance ...) oraz raporty `AUTONOMOUS-PASS-*`.
+Aktualne wyniki i otwarte punkty nie są w tym pliku (żeby się nie starzał): `NewEstyma/01_PROJECT_STATE.md`, `NewEstyma/COORDINATION.md`, `analiza_archiwum/FW2213TK-2026-11-22/data/ui_model/` (menu_tree, alarms, outputs_test, live_sources, internet_editor, sii_acceptance ...) oraz raporty `AUTONOMOUS-PASS-*`.

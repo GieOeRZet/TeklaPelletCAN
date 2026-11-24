@@ -16,7 +16,7 @@ def pl(i):
         return "".join(r)
     except Exception: return "?"
 man = {}
-mp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data", "bitmaps", "manifest.csv")
+mp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data", "bitmaps", "manifest.csv")
 if os.path.exists(mp): man = {int(r["id"]): (r["width"], r["height"]) for r in csv.DictReader(open(mp))}
 s = U.UiSession.from_checkpoint(fw, states[0], None); res = []
 for st in states:

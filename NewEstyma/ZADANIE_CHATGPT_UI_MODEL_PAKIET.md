@@ -1,7 +1,7 @@
 # Zadanie dla ChatGPT: pakiet `ui_model` (schemat, walidator, indeks, README) - etap 1 teraz, etap 2 po komplecie danych
 
 Właściciel: ChatGPT. Agent UI dalej dostarcza dane (listy, PROGRAM "Kopiuj", renderer); Ty budujesz kontrakt, który te dane sprawdza.
-Przeczytaj `NewEstyma/METODYKA_EMULATOR.md` (pkt 5, 6, 8) i katalog `analiza/FW2213TK-2026-11-22/data/ui_model/` (menu_tree.json, alarms.json, outputs_test.json, live_sources.json, lists.json, program_screen.json, home_dialogs.json, internet_editor.json, sii_acceptance/*). Gałąź robocza: Twoja.
+Przeczytaj `NewEstyma/METODYKA_EMULATOR.md` (pkt 5, 6, 8) i katalog `analiza_archiwum/FW2213TK-2026-11-22/data/ui_model/` (menu_tree.json, alarms.json, outputs_test.json, live_sources.json, lists.json, program_screen.json, home_dialogs.json, internet_editor.json, sii_acceptance/*). Gałąź robocza: Twoja.
 
 ## Etap 1 (teraz, nie czekaj na komplet danych)
 1. **JSON Schema** (draft 2020-12) dla każdego istniejącego pliku `ui_model/*.json`, w katalogu `ui_model/schema/`. Wspólne pola obowiązkowe: `evidence` (MEASURED/STRONG/INFERENCE/OPEN/REJECTED + opis), poziom dostępu tam gdzie ma znaczenie, PID jako `0x....` istniejący w `pid_matrix_655.csv`. Schematy mają być **addytywne**: nieznane pola dozwolone (`additionalProperties: true`), wersja schematu w polu `schema_version`, bo dane jeszcze rosną (listy, PROGRAM, renderer).

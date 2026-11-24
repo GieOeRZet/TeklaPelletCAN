@@ -13,10 +13,10 @@ Stage 2 dynamic evidence:
 - INTERNET: SSID 24-char editor, 4 chars/u32, 0x3730..0x3735, backspace, cancel paths, full character-set lengths/content, PASSWORD PID 0x3736, WiFi 0x373E, remote changes 0x3741, persistence after re-entry.
 
 Repo data:
-- analiza/FW2213TK-2026-11-24/data/ui_model/siec/chatgpt_dynamic_stage2.json
-- analiza/FW2213TK-2026-11-24/data/ui_model/info/chatgpt_dynamic_stage2.json
-- analiza/FW2213TK-2026-11-24/data/ui_model/internet/chatgpt_dynamic_stage2.json
-- analiza/FW2213TK-2026-11-24/CHATGPT-SII-STAGE2.md
+- analiza_archiwum/FW2213TK-2026-11-24/data/ui_model/siec/chatgpt_dynamic_stage2.json
+- analiza_archiwum/FW2213TK-2026-11-24/data/ui_model/info/chatgpt_dynamic_stage2.json
+- analiza_archiwum/FW2213TK-2026-11-24/data/ui_model/internet/chatgpt_dynamic_stage2.json
+- analiza_archiwum/FW2213TK-2026-11-24/CHATGPT-SII-STAGE2.md
 
 Classification:
 Results are recorded as STRONG dynamic evidence because the local execution used a reconstructed runtime core from repository tools. Do not silently promote to FACT-DYNAMIC until the exact repo acceptance harness is rerun.

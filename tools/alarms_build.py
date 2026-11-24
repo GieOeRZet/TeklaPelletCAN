@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """PASS 68: dane alarmow (ui_model/alarms.json): kody, teksty w 8 jezykach (TypedText), miejsca ustawiania/kasowania (ChatGPT PASS 100/110), model rejestrow historii (zmierzony), zachowanie ekranu."""
 import csv, json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data")
 TT = {int(r["id_relative"]): r for r in csv.DictReader(open(os.path.join(D, "texts_all_languages.csv"), encoding="utf-8"))}
 codes = {}
 for r in csv.DictReader(open(os.path.join(D, "alarm_codes_texts.csv"), encoding="utf-8")):

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import csv
-p="analiza/FW2213TK-2026-11-22/data/cg_kociol_visual_binding_matrix.csv"; r=list(csv.DictReader(open(p)))
+p="analiza_archiwum/FW2213TK-2026-11-22/data/cg_kociol_visual_binding_matrix.csv"; r=list(csv.DictReader(open(p)))
 assert len(r)==9
 by={x["pid"]:x for x in r}
 assert by["0x370A"]["widget"]=="0x20016894"

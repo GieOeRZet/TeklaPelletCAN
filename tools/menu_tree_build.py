@@ -2,7 +2,7 @@
 """PASS 65: szkielet drzewa menu (ui_model/menu_tree.json) ze zgromadzonych danych. Nic nie jest zgadywane bez oznaczenia:
 evidence = MEASURED (emulator, krawedz/vtable), STRONG (spojne z kilku zrodel), DOC (opis z raportow PASS), OPEN (brak dowodu)."""
 import csv, json, os, collections
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data")
 OUT = os.path.join(D, "ui_model"); os.makedirs(OUT, exist_ok=True)
 vt = json.load(open(os.path.join(D, "pass63_view_classes.json")))
 act = []

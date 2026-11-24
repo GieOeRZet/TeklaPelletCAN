@@ -3,7 +3,7 @@
 Pisz po polsku. Właściciel: Roman. Cel: UI panelu Estyma igneoTouch (FW2213TK) opisany **danymi** tak, by dało się go później odtworzyć (karty Home Assistant, WWW, Android). Model danych i pełna lista zadań: `NewEstyma/TODO_UI_RECONSTRUCTION.md` (sekcja 0 i C). Czytaj ją najpierw.
 
 ## 1. GAŁĘZIE I WYMIANA (git jako jedyny kanał)
-- Repo `GieOeRZet/TeklaPelletCAN`. Twoja gałąź: `ccr-be8a1bcb-5t76j0-chatgpt` (pliki `tools/cg_*`, `tools/test_cg_*`, `analiza/FW2213TK-2026-11-22/data/cg_*.csv`, raporty PASS 135+).
+- Repo `GieOeRZet/TeklaPelletCAN`. Twoja gałąź: `ccr-be8a1bcb-5t76j0-chatgpt` (pliki `tools/cg_*`, `tools/test_cg_*`, `analiza_archiwum/FW2213TK-2026-11-22/data/cg_*.csv`, raporty PASS 135+).
 - Gałąź Claude (narzędzia emulatora, pomiary, surowe listingi): `ccr-be8a1bcb-5t76j0` — **tylko czytaj i uruchamiaj**.
 - **Wymiana wyłącznie przez `NewEstyma/COORDINATION.md` na gałęzi `ccr-be8a1bcb-5t76j0-pin`.** Przed każdym wpisem `git pull --rebase`, wpis na dole z datą i podpisem, push. NIE prowadź własnej kopii COORDINATION na innych gałęziach.
 - Commit i push po każdym zadaniu. Bez PR-ów. Scala tylko Roman.
@@ -15,7 +15,7 @@ pip install unicorn capstone pillow numpy
 git fetch origin ccr-be8a1bcb-5t76j0 && git checkout -b cg-ui origin/ccr-be8a1bcb-5t76j0     # tylko do uruchamiania narzędzi Claude
 time python3 -I tools/render_screen.py FW2213TK_kopia.bin /tmp/home.png                         # test dymny ~10 s: „ekran 480x272 ... DMA2D operacji 1352”
 mkdir -p /tmp/w/L0 && python3 -I tools/ui_explore.py FW2213TK_kopia.bin /tmp/w/L0 --level 0 --prepare   # ~80 s: menu.state, rows.pkl
-python3 -I tools/pid_diff.py FW2213TK_kopia.bin /tmp/w/L0 analiza/FW2213TK-2026-11-22/data/widgets_inv_pass61_L0.json 6_screen /tmp/w/woda --phase all   # Woda ~50 s, kończy się „DONE”
+python3 -I tools/pid_diff.py FW2213TK_kopia.bin /tmp/w/L0 analiza_archiwum/FW2213TK-2026-11-22/data/widgets_inv_pass61_L0.json 6_screen /tmp/w/woda --phase all   # Woda ~50 s, kończy się „DONE”
 python3 -I tools/pid_diff_report.py /tmp/w/woda.md /tmp/w/woda.csv FW2213TK_kopia.bin /tmp/w/woda.json
 python3 -I tools/dump_listing.py FW2213TK_kopia.bin OUT 0xADRES:0xDLUGOSC                       # surowy listing Thumb (adresy PROJECT; RUNTIME = PROJECT+0x10000)
 ```
@@ -32,7 +32,7 @@ Roman ma ESP32 z integracją HA (`custom_components/teklapelletcan`). **Integrac
 
 ## 4. ZADANIA (kolejność C1…C10 z TODO; po każdym commit + wpis)
 C1 akcje przycisków (klasa ekranu → offset widżetu → handler → efekt: nawigacja / zapis PID / dialog / CAN); C2 warunki widoczności i dostępności widżetów (PID/poziom/konfiguracja → vis/touch/bitmapa); C3 PID-y czytane na każdym ekranie (klucze UI→T1/T2→PID→format); C4 format wyświetlania każdego PID (format, skala, jednostka, 5678=brak danych, wyliczenia); C5 struktura menu i warunki wierszy (poziom, konfiguracja 0x2105/0x350C/0x3525…) + listy NASTAWY z metadanymi PID; C6 brakujące ekrany (PROGRAM, dialog czasu, Statystyki, wykresy); C7 dialogi (PIN, Paliwo, Ustaw czas, edycja wartości, tryby zasilania, AUTO, potwierdzenia, błędy); C8 alarmy (per-alarm warunki, teksty 8 języków, prezentacja, ACK); C9 źródło LIVE (tabele kanałów modułów CAN IO, obiekty czujników → PID, konwersja `[r5+6]`); C10 mapowanie TypedText → widżet/ekran.
-Wejście: surowe listingi w `analiza/FW2213TK-2026-11-22/data/raw_listings/`, T1/T2, `presenter_map.csv`, pomiary Claude (`data/pass63_pilot_kociol/BINDINGS_L0_pilot.md/.csv`, `data/pass63_view_classes.json`, `AUTONOMOUS-PASS-63/64`).
+Wejście: surowe listingi w `analiza_archiwum/FW2213TK-2026-11-22/data/raw_listings/`, T1/T2, `presenter_map.csv`, pomiary Claude (`data/pass63_pilot_kociol/BINDINGS_L0_pilot.md/.csv`, `data/pass63_view_classes.json`, `AUTONOMOUS-PASS-63/64`).
 Jeśli emulator działa (sekcja 2): po C1–C3 przejmij pomiar T1 (delty poziomów/konfiguracji, klasy Solary/Bufor/Alarmy/Info/Test wyjść/Sieć/Internet, Kaskada i Magazyn) wg wpisu w COORDINATION; przed długim przebiegiem **podaj Romanowi szacowany czas**.
 
 ## 5. JAK PRACOWAĆ

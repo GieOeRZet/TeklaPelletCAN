@@ -1,4 +1,4 @@
-"""Jedno miejsce na sciezki repo. Po przeniesieniu `analiza/` -> `analiza_archiwum/` zmienia sie tylko ten plik.
+"""Jedno miejsce na sciezki repo. Po przeniesieniu `analiza_archiwum/` -> `analiza_archiwum/` zmienia sie tylko ten plik.
 Uzycie: from paths import ROOT, DATA, UI_MODEL, FIRMWARE   (tools/ jest na sys.path gdy skrypt uruchamiany z tools/)
 Nadpisanie przez zmienna srodowiskowa ESTYMA_ANALIZA (np. katalog po zmianie nazwy)."""
 from __future__ import annotations
@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ANALIZA = ROOT / os.environ.get("ESTYMA_ANALIZA", "analiza")
+ANALIZA = ROOT / os.environ.get("ESTYMA_ANALIZA", "analiza_archiwum")
 RUN = ANALIZA / "FW2213TK-2026-11-22"
 DATA = RUN / "data"
 UI_MODEL = DATA / "ui_model"

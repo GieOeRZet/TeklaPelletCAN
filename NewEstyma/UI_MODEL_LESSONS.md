@@ -6,7 +6,7 @@ i jak przepisać narzędzie. Nowy wątek zaczyna od pilota na JEDNYM ekranie (Ko
 ## 1. Co zostało zrobione (dane trwałe w repo)
 | element | plik | ocena |
 |---|---|---|
-| Inwentarz widżetów 24 węzłów poziomu 0 i 30 węzłów poziomu 2 (ekran wiersza menu + ekran po stuknięciu 400,245) | `analiza/FW2213TK-2026-11-22/data/widgets_inv_pass61_L0.json`, `..._L2.json`, wiersze menu `menu_rows_pass61_L*.txt` | **dobre** (te same dane co PASS 57, komplet). Pola: this, view_off, ax/ay, x,y,w,h, parent, vis (+0x25), touch (+0x24), text_id, bitmap_id, wildcard, text_pl, font |
+| Inwentarz widżetów 24 węzłów poziomu 0 i 30 węzłów poziomu 2 (ekran wiersza menu + ekran po stuknięciu 400,245) | `analiza_archiwum/FW2213TK-2026-11-22/data/widgets_inv_pass61_L0.json`, `..._L2.json`, wiersze menu `menu_rows_pass61_L*.txt` | **dobre** (te same dane co PASS 57, komplet). Pola: this, view_off, ax/ay, x,y,w,h, parent, vis (+0x25), touch (+0x24), text_id, bitmap_id, wildcard, text_pl, font |
 | Stuknięcia w kontrolki (graf akcji) | `data/actions_pass61_L0_partial.json` (232 stuknięcia: 71 SCREEN, 108 VISUAL, 53 NONE; węzły 0..5 poziomu 0) | **dobre, częściowe**. Potwierdzone: nagłówek „<” → MENU, ikona domu → ekran główny, pasek programu → PROGRAM, zębatka → NASTAWY |
 | PASS 62: zegar z CAN | `AUTONOMOUS-PASS-62-RTC-SYNC-FROM-CAN-EXECUTED-2026-11-23.md` | **HARD** |
 | Narzędzia | `tools/action_probe.py`, `tools/presenter_trace.py`, `tools/ui_model.py` (--active, --resolver), `tools/ui_model_screens.py`, `tools/condition_probe.py`, `tools/action_graph.py` (target_screen) | patrz §3 |

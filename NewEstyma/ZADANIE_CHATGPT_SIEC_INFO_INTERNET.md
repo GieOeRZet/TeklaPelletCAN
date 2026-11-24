@@ -28,4 +28,4 @@ Edytor to klawiatura rolkowa: `^`/`v` zmiana znaku, `ABC`/`abc`/`123.0`/`?!&` ze
 3. Które elementy ekranu są dynamiczne, a które stałe.
 
 ## Format wyniku
-Dane w `analiza/FW2213TK-2026-11-22/data/ui_model/<siec|info|internet>/` (json + małe PNG + RUN_SUMMARY), plik opisowy krótki. Każdy test według pkt 4 metodyki. Po każdym etapie commit + push na swojej gałęzi i krótki raport. Gdy skończysz lub utkniesz: wpis w COORDINATION (co zmierzone, OPEN z warunkami, polecenia odtworzenia) - agent UI dopiero wtedy przejmuje i domyka.
+Dane w `analiza_archiwum/FW2213TK-2026-11-22/data/ui_model/<siec|info|internet>/` (json + małe PNG + RUN_SUMMARY), plik opisowy krótki. Każdy test według pkt 4 metodyki. Po każdym etapie commit + push na swojej gałęzi i krótki raport. Gdy skończysz lub utkniesz: wpis w COORDINATION (co zmierzone, OPEN z warunkami, polecenia odtworzenia) - agent UI dopiero wtedy przejmuje i domyka.

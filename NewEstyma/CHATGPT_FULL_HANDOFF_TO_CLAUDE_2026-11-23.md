@@ -2,7 +2,7 @@
 ## NewEstyma / TeklaPelletCAN — stan 2026-11-23
 
 > Raport zbiorczy przekazujący Claude'owi cały wykonany przez ChatGPT zakres RE. Jest to dokument handoff, nie nowy etap analizy.
-> Źródła: `NewEstyma/00_AGENT_START_HERE.md`, `NewEstyma/01_PROJECT_STATE.md`, `DOKUMENTACJA/REVERSE_ENGINEERING_MASTER_2026-11-22.md` oraz raporty AUTONOMOUS-PASS w `analiza/FW2213TK-2026-11-22/`.
+> Źródła: `NewEstyma/00_AGENT_START_HERE.md`, `NewEstyma/01_PROJECT_STATE.md`, `DOKUMENTACJA/REVERSE_ENGINEERING_MASTER_2026-11-22.md` oraz raporty AUTONOMOUS-PASS w `analiza_archiwum/FW2213TK-2026-11-22/`.
 
 ---
 

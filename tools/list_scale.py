@@ -7,7 +7,7 @@ import json, os, pickle, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ui_session as U, action_probe as AP, pid_diff as P
 fw, d, inv_path, node, key, out = sys.argv[1:7]
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data", "ui_model")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data", "ui_model")
 lists = json.load(open(os.path.join(D, "lists.json")))["lists"]
 CO = int(os.environ.get("CO_OFFSET", "0"))       # obwody CO2..CO4: PID wiersza = PID bazowy + (k-1), jesli rekord o tej samej nazwie istnieje (lists.json podaje PID CO1)
 PM = P.pid_meta()

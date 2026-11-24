@@ -8,7 +8,7 @@ It deliberately does not invent semantic mappings for OPEN fields.
 from pathlib import Path
 import csv
 
-CSV = Path(__file__).resolve().parents[1] / "analiza/FW2213TK-2026-11-22/data/cg_menu_tree_complete.csv"
+CSV = Path(__file__).resolve().parents[1] / "analiza_archiwum/FW2213TK-2026-11-22/data/cg_menu_tree_complete.csv"
 
 EXPECTED_ROWS = 21
 EXPECTED_HANDLERS = {

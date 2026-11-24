@@ -20,9 +20,9 @@ Menu+warunki ~95%, widget->PID ~80%, HOME+okna ~85%, PROGRAM ~85% (Kopiuj zmierz
 
 ## 3. Struktura repo (wazne)
 - `tools/` - narzedzia (emulator: `cortexm_rtos.py`, `ui_session.py`, `live_sim.py`, `pid_diff.py`, `action_probe.py`, `live_scan*.py`, `list_*`, `dialog_render_eval.py`, `ui_render.py`, `render_eval.py`, `coverage_matrix.py`(ChatGPT), `validate_ui_model.py`, `build_ui_model_index.py`, `inventory_repo.py`, `sii_acceptance.py`, `audit_siec.py`, `flow_curve.py`, `ui_prepare_cfg.py`).
-- `analiza/FW2213TK-2026-11-22/data/ui_model/` - **jedyne zrodlo prawdy**: `menu_tree.json`, `alarms.json`, `outputs_test.json`, `live_sources.json`, `lists.json`, `list_scales.json`, `program_screen.json`, `home_dialogs*.json`, `dialogs_edit_pin.json`, `internet_editor.json`, `schema/`, `INDEX.json`, atlas/dialog_shots/sii_acceptance/dialog_render.
+- `analiza_archiwum/FW2213TK-2026-11-22/data/ui_model/` - **jedyne zrodlo prawdy**: `menu_tree.json`, `alarms.json`, `outputs_test.json`, `live_sources.json`, `lists.json`, `list_scales.json`, `program_screen.json`, `home_dialogs*.json`, `dialogs_edit_pin.json`, `internet_editor.json`, `schema/`, `INDEX.json`, atlas/dialog_shots/sii_acceptance/dialog_render.
 - `NewEstyma/` - dokumentacja: `METODYKA_EMULATOR.md` (OBOWIAZKOWA), `PLAN_ZAMKNIECIA_I_PORZADKU.md`, `PLAN_PRACY_AGENT_UI.md`, `RAPORT_POSTEPU.md`, `BACKLOG.md`, `OPEN_POD_MUREM.md`, `COORDINATION.md`, `WERYFIKACJA_SII_STAGE2.md`, `porzadek/` (ChatGPT inwentarz), `porzadek_lokalny/` (moj inwentarz: linie+SHA-256).
-- `analiza/` ma zostac zmieniona na `analiza_archiwum` PO zamrozeniu i porzadkowaniu (ustalone z wlascicielem; najpierw `tools/paths.py`, test dymny, `git mv`; odwolania do `analiza/`: 9 w narzedziach, ~207 w dokumentacji).
+- `analiza_archiwum/` ma zostac zmieniona na `analiza_archiwum` PO zamrozeniu i porzadkowaniu (ustalone z wlascicielem; najpierw `tools/paths.py`, test dymny, `git mv`; odwolania do `analiza_archiwum/`: 9 w narzedziach, ~207 w dokumentacji).
 
 ## 4. Odtworzenie srodowiska (po utracie /tmp)
 ```bash
@@ -57,3 +57,5 @@ Patrz `NewEstyma/PLAN_PRACY_AGENT_UI.md` (etapy E2-E7) i raportuj do `NewEstyma/
 2. Firmware: jesli brak `FW2213TK_kopia.bin` - popros Romana o wgranie (jedna krotka prosba), w miedzyczasie pracuj nad rzeczami bez emulatora.
 3. `pip install unicorn capstone pillow numpy; bash tools/rebuild_env.sh` (~3 min), `python3 tools/smoke_test.py`.
 4. Nowe narzedzia: sciezki przez `tools/paths.py`; E6/E7 gotowe (API_KONTRAKT.md, web/estyma_prototype/).
+
+5. (E5 zrobione) Katalog `analiza/` ma teraz nazwe `analiza_archiwum/`; sciezki przez `tools/paths.py`; etapy E1-E6 DONE, E7 szkielet; wyniki: RAPORT_POSTEPU.md.

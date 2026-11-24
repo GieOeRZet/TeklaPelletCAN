@@ -16,7 +16,7 @@ Address model:
 - RAW = TRUE - 0x08010000
 
 Example:
-python3 tools/re_scan.py FW2213TK_kopia.bin --target 0x08010FCE --target 0x0806E59C --target 0x08057224 --target 0x080629FC --out analiza/generated/re_scan
+python3 tools/re_scan.py FW2213TK_kopia.bin --target 0x08010FCE --target 0x0806E59C --target 0x08057224 --target 0x080629FC --out analiza_archiwum/generated/re_scan
 
 Evidence rule: direct references are mechanical observations. Indirect edges are not resolved without independent runtime/object/vtable evidence.
 

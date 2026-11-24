@@ -5,7 +5,7 @@ Model: tlo = kolor Box 0x2945 (41,40,41); widget 'image' -> bitmapa id (data/bit
 'other' z kolorem w extras (vptr Box + kolor RGB565 +0x28, alfa +0x26) -> prostokat. Kolejnosc rysowania = kolejnosc w inwentarzu (po adresie)."""
 import csv, json, os, sys
 from PIL import Image
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data")
 FONTS = [("font0_h12", 12, 3), ("font1_h20", 20, 5), ("font2_h26", 26, 6), ("font3_h36", 36, 8), ("font4_h64", 64, 9), ("font5_h92", 92, 12)]
 BG = (41, 40, 41); DY = 0
 _fc = {}; _bc = {}

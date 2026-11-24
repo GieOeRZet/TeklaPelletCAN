@@ -29,7 +29,7 @@ Zasady bez kolizji: ChatGPT raporty PASS **od 70**; narzędzia ChatGPT z prefiks
 ## 3. Właściciele plików
 | Plik/wzorzec | Właściciel |
 |---|---|
-| `analiza/.../AUTONOMOUS-PASS-70+...` | ChatGPT |
+| `analiza_archiwum/.../AUTONOMOUS-PASS-70+...` | ChatGPT |
 | `tools/cg_*`, `tools/test_cg_*` | ChatGPT |
 | pozostałe `tools/*`, `NewEstyma/00..05`, `ui_*`, `cortexm_rtos.py` | Claude / wspólne |
 | `NewEstyma/CHATGPT_START_HERE.md`, `NewEstyma/COORDINATION.md` | wspólne |
@@ -43,7 +43,7 @@ Zasady bez kolizji: ChatGPT raporty PASS **od 70**; narzędzia ChatGPT z prefiks
 - Tabela `0x20008C50`: 23 wskaźniki; 22 wartości znane z toru dynamicznego; 23. OPEN.
 
 ### Nowe ustalenia ChatGPT — PASS 70 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-70-PIN-TABLE23-RTC-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-70-PIN-TABLE23-RTC-2026-11-23.md`
 Narzędzia: `tools/cg_pin_rtc_scan.py`, `tools/test_cg_pin_rtc_scan.py`
 
 - A1: RAW potwierdza dokładny handler `FUN_08018634`: 1992 @ PROJECT `0x08018638`, 6666 @ `0x08018668`, 0 @ `0x08018676..`; brak kolejnej niezależnej stałej w tym handlerze. Nie zgadywać nowych PIN-ów z przypadkowych literalów BIN.
@@ -64,7 +64,7 @@ Narzędzia: `tools/cg_pin_rtc_scan.py`, `tools/test_cg_pin_rtc_scan.py`
 5. Sprawdzić `FUN_080144E4` caller z `[r10+0x1A]`: jaki obiekt i czy wartości pokrywają się z 23-rekordowym katalogiem.
 
 ### Nowe ustalenia ChatGPT — PASS 72 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-72-GATE-INVENTORY-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-72-GATE-INVENTORY-2026-11-23.md`
 Narzędzia: `tools/cg_gate_inventory.py`, `tools/test_cg_gate_inventory.py`
 
 - `0x08054AB8` jest mechanicznie potwierdzoną bramką `level != 0`; kontekst ekranu nadal OPEN. Nie przypisano go do CWU tylko dlatego, że `0x1498` występuje również przy presenterze CWU.
@@ -72,11 +72,11 @@ Narzędzia: `tools/cg_gate_inventory.py`, `tools/test_cg_gate_inventory.py`
 - `0x0806125C` = Magazyn paliwa, `0x08061518` = Kaskada są już FACT z PASS 52.
 
 ### Nowe ustalenia ChatGPT — PASS 73 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-73-RTC-AUTOSYNC-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-73-RTC-AUTOSYNC-2026-11-23.md`
 Narzędzia: `tools/cg_rtc_autosync_scan.py`, `tools/test_cg_rtc_autosync_scan.py`
 
 ### Nowe ustalenia ChatGPT — PASS 74 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-74-RTC-VTABLE-DISPATCH-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-74-RTC-VTABLE-DISPATCH-2026-11-23.md`
 
 - `FUN_08062638` jest używana przez dynamic dispatch, nie przez direct BL.
 - Runtime pointer `0x08072639` występuje dokładnie raz, pod PROJECT `0x0809446C`.
@@ -105,7 +105,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-74-RTC-VTABLE-DISPATCH-2026
 
 
 ### Nowe ustalenia ChatGPT — PASS 126 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-126-PROVIDER-SLOT4-EXACT-TARGET-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-126-PROVIDER-SLOT4-EXACT-TARGET-2026-11-23.md`
 
 - Provider vtable RAW `0x931F0` ma sloty: 0=`0x0801DB31`, +4=`0x0801DB79`, +8=NULL, +C=NULL, +10=`0x080617FF`.
 - `0x080617FF` jest interior entry `+0x23` funkcji `FUN_080617DC`, czyli CAN2 RX mailbox serializer; nie jest to potwierdzony "state/init" provider method.
@@ -114,7 +114,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-126-PROVIDER-SLOT4-EXACT-TA
 
 
 ### Nowe ustalenia ChatGPT — PASS 127 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-127-SIDECAR-CLASS-MATRIX-CLOSURE-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-127-SIDECAR-CLASS-MATRIX-CLOSURE-2026-11-23.md`
 
 - R(i)+0x2C jest twardo zamknięte jako rejestracyjna/state class byte dla dwóch mechanizmów: guarded write i provider sync.
 - class 1: akceptowana przez guarded write, nie wybierana przez sync.
@@ -125,7 +125,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-127-SIDECAR-CLASS-MATRIX-CL
 
 
 ### Nowe ustalenia ChatGPT — PASS 128 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-128-CATALOG-260-VS-RUNTIME-448-RECONCILIATION-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-128-CATALOG-260-VS-RUNTIME-448-RECONCILIATION-2026-11-23.md`
 
 - 260-slot static catalog i 448 PID panelowego katalogu obecne w 655 rekordach runtime są potwierdzone jako różne warstwy/liczności; nie wolno ich utożsamiać.
 - Resolver UI ma osobno 49 rekordów rodziny CH + 372 singletony.
@@ -135,8 +135,8 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-128-CATALOG-260-VS-RUNTIME-
 
 
 ### Nowe ustalenia ChatGPT — PASS 129 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-129-CATALOG260-RUNTIME-MATRIX-01-2026-11-23.md`
-Artefakt: `analiza/FW2213TK-2026-11-22/data/catalog260_runtime_matrix.csv`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-129-CATALOG260-RUNTIME-MATRIX-01-2026-11-23.md`
+Artefakt: `analiza_archiwum/FW2213TK-2026-11-22/data/catalog260_runtime_matrix.csv`
 
 - Zamknięto pierwszy pełny join 260 katalogowych wierszy: indeksy 0..259, RAW 0x37578..0x37984.
 - 252/260 mają runtime match w pid_matrix_655; 8/260 ma hard in_runtime=0 i pozostaje jawnie poza runtime.
@@ -146,8 +146,8 @@ Artefakt: `analiza/FW2213TK-2026-11-22/data/catalog260_runtime_matrix.csv`
 
 
 ### Nowe ustalenia ChatGPT — PASS 130 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-130-CATALOG260-CROSSLAYER-MATRIX-V1-2026-11-23.md`
-Artefakt: `analiza/FW2213TK-2026-11-22/data/catalog260_crosslayer_matrix_v1.csv`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-130-CATALOG260-CROSSLAYER-MATRIX-V1-2026-11-23.md`
+Artefakt: `analiza_archiwum/FW2213TK-2026-11-22/data/catalog260_crosslayer_matrix_v1.csv`
 
 - 260-row matrix rozszerzona o provider GET/SET eligibility, guarded-write eligibility, UI resolver presence i hard local-change 0x0584/0x42 tracking.
 - Provider eligible: 153/260; guarded-write eligible: 175/260; runtime/UI: 252/260; direct 0x0584/0x42 tracked: 1/260 (PID 0x3726).
@@ -156,7 +156,7 @@ Artefakt: `analiza/FW2213TK-2026-11-22/data/catalog260_crosslayer_matrix_v1.csv`
 
 
 ### Nowe ustalenia ChatGPT — PASS 133 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-133-PROVIDER-SLOT4-SEMANTIC-NARROWING-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-133-PROVIDER-SLOT4-SEMANTIC-NARROWING-2026-11-23.md`
 
 - Slot provider +0x10 jest twardo zamknięty jako osobna 38-bajtowa funkcja startująca 0x080617FE.
 - Funkcja zapisuje 0x200248A4 do object+0x00, wykonuje jeden pośredni BLX przez 0x200248A8, wywołuje 0x08061E78 na object+0x24, a następnie 0x08062674 na object+0x10.
@@ -166,7 +166,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-133-PROVIDER-SLOT4-SEMANTIC
 
 
 ### Nowe ustalenia ChatGPT — PASS 134 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-134-62674-SUBENTRY-CORRECTION-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-134-62674-SUBENTRY-CORRECTION-2026-11-23.md`
 
 - Korekta PASS 133: 0x08062674 nie jest osobną funkcją. Leży +0x3C wewnątrz FUN_08062638 (718 B) i zaczyna się od BX LR.
 - Slot 4 wywołuje więc realny helper FUN_08061E78 na object+0x24 oraz interior immediate-return sub-entry 0x08062674.
@@ -178,7 +178,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-134-62674-SUBENTRY-CORRECTI
 
 
 ### Nowe ustalenia ChatGPT — PASS 78 (2026-11-23)
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-78-CAN-TIMESTAMP-FRAME-2026-11-23.md
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-78-CAN-TIMESTAMP-FRAME-2026-11-23.md
 Narzędzia: tools/cg_can_timestamp_frame_scan.py, tools/test_cg_can_timestamp_frame_scan.py
 
 - Domknięto transportowy tor zapisu PID 0x2165: caller FUN_08062A90/FUN_08062AB2 sprawdza StdId 0x584, a następnie wywołuje FUN_08062B22.
@@ -190,7 +190,7 @@ Narzędzia: tools/cg_can_timestamp_frame_scan.py, tools/test_cg_can_timestamp_fr
 
 
 ### Nowe ustalenia ChatGPT — PASS 79 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-79-CAN-TIMESTAMP-TX-EXCLUSION-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-79-CAN-TIMESTAMP-TX-EXCLUSION-2026-11-23.md`
 Narzędzia: `tools/cg_timestamp_tx_exclusion_scan.py`, `tools/test_cg_timestamp_tx_exclusion_scan.py`
 
 - Publisher PROJECT `0x0802117C` jawnie wyklucza PID `0x2165` przed zbudowaniem standardowej publikacji `0x0584/0x42`.
@@ -202,7 +202,7 @@ Narzędzia: `tools/cg_timestamp_tx_exclusion_scan.py`, `tools/test_cg_timestamp_
 
 
 ### Nowe ustalenia ChatGPT — PASS 80 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-80-GATE-054AB8-CWU-CONTEXT-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-80-GATE-054AB8-CWU-CONTEXT-2026-11-23.md`
 Narzędzia: `tools/cg_gate_054ab8_scan.py`, `tools/test_cg_gate_054ab8_scan.py`
 
 - B4 gate artifact `0x08054AB8` został prawidłowo znormalizowany do RAW `0x44AB8`; caller artifact `0x08054CA6` -> RAW `0x44CA6` (korekta runtime-vs-project).
@@ -214,7 +214,7 @@ Narzędzia: `tools/cg_gate_054ab8_scan.py`, `tools/test_cg_gate_054ab8_scan.py`
 
 
 ### Nowe ustalenia ChatGPT — PASS 81 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-81-L3-WRAPPERS-TABLE23-SOURCE-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-81-L3-WRAPPERS-TABLE23-SOURCE-2026-11-23.md`
 Narzędzia: `tools/cg_l3_table23_scan.py`, `tools/test_cg_l3_table23_scan.py`
 
 - Cztery wrappery L>=3: artifact `0x0805A9EC/0x0805B1D4/0x0805F400/0x0805FE9C` -> RAW `0x4A9EC/0x4B1D4/0x4F400/0x4FE9C`.
@@ -226,7 +226,7 @@ Narzędzia: `tools/cg_l3_table23_scan.py`, `tools/test_cg_l3_table23_scan.py`
 
 
 ### Nowe ustalenia ChatGPT — PASS 82 (2026-11-23)
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-82-BUFFER-L1-PROTECTION-2026-11-23.md
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-82-BUFFER-L1-PROTECTION-2026-11-23.md
 
 - Bufor = klasa 0x07. W FUN_0804E714 ścieżka klasy 0x07 ma twardą bramkę RAW 0x3E7F2 -> ldrb [model,#0x158] -> cmp #0 -> beq; dodatkowy element Bufora jest więc widoczny dokładnie dla L>=1.
 - Drugi wpis jest budowany przez FUN_0803EFDA z parametrami r5/r2=5, resource/offset 0x110.
@@ -237,14 +237,14 @@ Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-82-BUFFER-L1-PROTECTION-2026
 
 
 ### Nowe ustalenia ChatGPT — PASS 83 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-83-B3-OCHRONA-BUFFER-CORRECTION-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-83-B3-OCHRONA-BUFFER-CORRECTION-2026-11-23.md`
 
 - Ochrona kotła: helper PROJECT 0x08054848 / RAW 0x44848 dostaje UI keys 0xB0 i 0xCD = PID-y 0x22A1 Room temp sensor type oraz 0x2301 CH thermostat state. Dla sensor type !=4 ustawia +0xA69=0,+0xA95=1. Dla sensor type ==4 ustawia +0xA95=0 oraz +0xA69=(thermostat state==1). Hipoteza bezpośredniego sterowania przez CH status 0x22FD jest odrzucona.
 - Bufor: 0xF3=0x2114 i 0xF4=0x2115 to nastawy z min 7°C; 0xF5=0x2280 jest osobnym parametrem live/read-only. 0% = 0xFB -> PID 0x3174 Buffer internal energy [%].
 - KOREKTA PASS 81: 0x20008D84 jest parameter managerem, nie potwierdzoną bazą 23 rekordów po 0x14. Funkcje 0x143DE/0x14416/0x1443E przyjmują bazę przez argument; katalog 0x20008C50 przechowuje wskaźniki. A2 source-array address i rekord #23 value pozostają OPEN.
 
 ### Nowe ustalenia ChatGPT — PASS 84 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-84-PROVIDER-FLASH-PERSISTENCE-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-84-PROVIDER-FLASH-PERSISTENCE-2026-11-23.md`
 
 - Provider vtable 0x080A31F0 jest backendem trwałej pamięci flash parametru, nie kolejnym CAN providerem.
 - Slot 0 RAW 0xDB30 = GET: łączy dwa u16 z FUN_08014BBA; backend korzysta z flash 0x08008000/0x0800C000 i struktur statusowych 0x200247D4/0x200248D8.
@@ -253,7 +253,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-84-PROVIDER-FLASH-PERSISTEN
 - Slot 4 RAW 0x517FE jest state/init transition; pełna nazwa nadal OPEN.
 
 ### Nowe ustalenia ChatGPT — PASS 85 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-85-CAN-TIMESTAMP-ROLE-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-85-CAN-TIMESTAMP-ROLE-2026-11-23.md`
 
 - RAW 0x62AE4 buduje request 0x604/cmd 0x40/PID LE/sub1 do zdalnego endpointu.
 - RAW 0x62A90 przyjmuje 0x584 i kieruje go do generic write decoder; PID 0x2165 przechodzi tą ścieżką.
@@ -262,7 +262,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-85-CAN-TIMESTAMP-ROLE-2026-
 
 
 ### Nowe ustalenia ChatGPT — PASS 112 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-112-UI-MODEL-HOME-BINDING-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-112-UI-MODEL-HOME-BINDING-2026-11-23.md`
 
 - Potwierdzono na bazie `data/presenter_map.csv` + `data/widgets_home_with_view_off.json`, że model UI należy łączyć przez `view_off`, a nie przez geometrię/ID bitmapy.
 - Home root widoku ma `this=0x2001603c`, `view_off=4`; dzieci są w tym samym obiekcie z offsetami.
@@ -275,7 +275,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-112-UI-MODEL-HOME-BINDING-2
 S1: CFG-aware closure widget/view_off -> presenter setter -> UI key/PID dla ekranów Home/Kocioł/Bufor, z osobnym audytem A69/A95 i pola 7°C.
 
 ### Nowe ustalenia ChatGPT — PASS 113 (2026-11-23)
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-113-A69-A95-7C-BINDING-2026-11-23.md
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-113-A69-A95-7C-BINDING-2026-11-23.md
 
 - Z widgets_invm2_L2_partial.json zamknięto konkretny widget etykiety „Ochrona kotła”: screen OGRZEWANIE 1, this=0x200177ec, view_off=6068, text_id=30, widoczny.
 - Bezpośrednio obok znajduje się obraz this=0x20017820, view_off=6120, bitmapa 130, widoczny.
@@ -288,7 +288,7 @@ Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-113-A69-A95-7C-BINDING-2026-
 S1.1: CFG/XREF 0x08054848 -> zapis A69/A95 -> obiekt/widget view_off 6068/6120; równolegle domknąć brakujący presenter setter dla UI key 0xF3/PID 0x2114 i jego widget offsets.
 
 ### Nowe ustalenia ChatGPT — PASS 114 (2026-11-23)
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-114-UI-BINDING-NEGATIVE-AUDIT-2026-11-23.md
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-114-UI-BINDING-NEGATIVE-AUDIT-2026-11-23.md
 
 - Dodano konserwatywny audyt obecności par UI-key/PID w presenter_map.
 - 0x00F3 -> 0x2114 NIE występuje jako para w presenter_map; nie jest to dowód, że parametr nie jest używany.
@@ -302,7 +302,7 @@ Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-114-UI-BINDING-NEGATIVE-AUDI
 S1.2: statyczne XREF/CFG callsite analysis dla helpera 0x08054848 oraz setterów 0x08056028/0x08056040; celem jest ustalenie obiektów/widgetów wywołujących te settery bez opierania się na samej geometrii.
 
 ### Nowe ustalenia ChatGPT — PASS 115 (2026-11-23)
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-115-UI-CONTEXT-REGISTRY-2026-11-23.md
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-115-UI-CONTEXT-REGISTRY-2026-11-23.md
 
 - Nie promujemy już view_off jako samodzielnego semantycznego dowodu UI.
 - Zamknięto statycznie relację registry selector -> FUN_0803C064 -> +0x12B -> page-family resource.
@@ -316,7 +316,7 @@ Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-115-UI-CONTEXT-REGISTRY-2026
 S1.3: odzyskać source/runtime registry dla rekordów 16/17/18 i połączyć je z title/resource/PID/callback. Nie używać geometrii ani bitmap ID jako jedynego dowodu.
 
 ### Nowe ustalenia ChatGPT — PASS 116 (2026-11-23)
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-116-REGISTRY-CLAUDE-TODO-AUDIT-2026-11-23.md
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-116-REGISTRY-CLAUDE-TODO-AUDIT-2026-11-23.md
 
 - Potwierdzono łańcuch FUN_0807EB00 -> registry +0x3B4/stride 0x274 -> FUN_0803C064 -> tabela 0x20005EF0.
 - Selector 16 -> FUN_0803856C -> +0x12B=0x11; selector 17 -> FUN_08038568 -> +0x12B=0x10; selector 18 -> FUN_08038574.
@@ -328,7 +328,7 @@ S1.3 kontynuacja: XREF źródła registry 0x20005EF0 + inicjalizacja rekordów +
 
 
 ### Nowe ustalenia ChatGPT — PASS 118 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-118-SELECTOR-16-17-18-DESCRIPTOR-CLOSURE-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-118-SELECTOR-16-17-18-DESCRIPTOR-CLOSURE-2026-11-23.md`
 
 - Selector 16 i 17 używają dokładnie tego samego rekordu descriptor `0x38790` -> callback/config `0x08048493`.
 - Selector 16 -> `+0x12B=0x11`; selector 17 -> `+0x12B=0x10`.
@@ -339,14 +339,14 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-118-SELECTOR-16-17-18-DESCR
 ### Następny autonomiczny target ChatGPT
 Decompilacja/CFG callbacków `0x08048493` i `0x080485A1` oraz ich XREF do presenter/PID/resource. Równolegle S1.2: `0x08054848`, `0x08056028`, `0x08056040`.
 ### Nowe ustalenia ChatGPT — PASS 119 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-119-CALLBACK-ENTRY-NORMALIZATION-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-119-CALLBACK-ENTRY-NORMALIZATION-2026-11-23.md`
 
 - Descriptor `0x38790 -> 0x08048493` jest Thumb entry pointem wewnątrz `FUN_08048468` (+0x2B), nie niezależnym startem funkcji.
 - Descriptor `0x387B8 -> 0x080485A1` jest Thumb entry pointem wewnątrz `FUN_0804858A` (+0x17).
 - Semantyki nie wolno dziedziczyć z początku funkcji kontenera bez CFG dowodu dla konkretnego entry pointu.
 
 ### Nowe ustalenia ChatGPT — PASS 120 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-120-CALLBACK-CFG-S12-AUDIT-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-120-CALLBACK-CFG-S12-AUDIT-2026-11-23.md`
 
 - Nie znaleziono w aktualnie zapisanych artefaktach repo dokładnego raw instruction/CFG body dla `0x08048493` ani `0x080485A1`; oba pozostają OPEN na poziomie basic-block.
 - 16/17 nadal dzielą dokładnie ten sam entry `0x08048493`; ich twardym rozróżnikiem pozostaje `+0x12B=0x11` vs `0x10`.
@@ -357,7 +357,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-120-CALLBACK-CFG-S12-AUDIT-
 ### Następny autonomiczny target ChatGPT
 Jeżeli pojawi się/da się odzyskać raw instruction listing: natychmiast CFG entry `0x08048493` i `0x080485A1`, następnie outgoing calls. Równolegle szukać callsite/XREF artefaktów S1.2; nie promować 7°C ani A69/A95 bez exact binding proof.
 ### Nowe ustalenia ChatGPT — PASS 121 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-121-CLAUDE-TODO-STATIC-CLOSURE-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-121-CLAUDE-TODO-STATIC-CLOSURE-2026-11-23.md`
 
 - A1 hidden PIN: statycznie CLOSED — 900/999/6154 są jedynymi proven access-level PINs; 1992/6666/0 są specjalnymi stałymi w handlerze; nie ma podstaw do dopisywania kolejnych PIN-ów.
 - A2 tabela 23: mechanizm/rola CLOSED jako katalog Parameters set Number; exact entry #23 nadal OPEN.
@@ -371,7 +371,7 @@ Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-121-CLAUDE-TODO-STATIC-CLOS
 - S1.3: callback entries 0x08048493/0x080485A1 nadal OPEN do raw CFG.
 - S1.2: helper/setters nadal wymagają exact caller/widget proof.
 ### Nowe ustalenia ChatGPT — PASS 122 (2026-11-23)
-Raport: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-122-RAW-ARTIFACT-COMPLETENESS-2026-11-23.md`
+Raport: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-122-RAW-ARTIFACT-COMPLETENESS-2026-11-23.md`
 
 - Wykonano repository-wide tree scan aktywnej gałęzi dla artefaktów 0x080485/0x080548/0x080560.
 - Jedyny znaleziony raw snippet z rodziny 0x080485xx to `08048520-decompiled.c.txt`.
@@ -418,23 +418,23 @@ Stan oczekiwania:
 - Claude dynamiczne B1: 6666 → CAN PID 0x0005 + reakcja wskaźnika/header +0x210 — WSTRZYMANE / oczekuje na dokładne instrukcje Claude.
 - Claude dynamiczne B2: bramka pollera [0x2002466C+0x10] = (level != 0) — WSTRZYMANE / oczekuje na dokładne instrukcje Claude.
 - Otwarte pytania A3 przekazane Claude: dialog „Ustaw czas” → RTC setter i format; trace CAN przy ustawianiu czasu; toggle PID 0x372F i aktywność CAN; 23. wartość tabeli 0x20008C50; caller FUN_080144E4 i zgodność katalogu 23.
-- ChatGPT zakończył ostatni zapisany własny pass na PASS 134. Wyniki PASS 123–134 są zapisane w uzgodnionym katalogu analiza/FW2213TK-2026-11-22/ oraz odnotowane w tej koordynacji.
+- ChatGPT zakończył ostatni zapisany własny pass na PASS 134. Wyniki PASS 123–134 są zapisane w uzgodnionym katalogu analiza_archiwum/FW2213TK-2026-11-22/ oraz odnotowane w tej koordynacji.
 - Po otrzymaniu dokładnych instrukcji Claude należy najpierw przeczytać jego nowe wpisy i dopiero wtedy kontynuować. Nie dublować zadań ani nie nadpisywać własności plików Claude.
 - Ten wpis nie oznacza zamknięcia B1/B2 ani żadnego z pytań dynamicznych. Status pozostaje WSTRZYMANE/OPEN do czasu dowodu.
 
 
 ### ETAP 3 — ChatGPT — 2026-11-24
 - Branch: `ccr-be8a1bcb-5t76j0-chatgpt-etap3-v2`.
-- A: dodano `tools/coverage_matrix.py` oraz baseline `analiza/FW2213TK-2026-11-24/data/ui_model/coverage_matrix.json`. Macierz 1120 komórek: 350 default, 350 alarm, 350 module_offline, 70 dialog. Istnieje 133 defaultowych zrzutów/render_eval; 95/133 ma pct_diff <5%. Braki stanów dynamicznych pozostają OPEN.
+- A: dodano `tools/coverage_matrix.py` oraz baseline `analiza_archiwum/FW2213TK-2026-11-24/data/ui_model/coverage_matrix.json`. Macierz 1120 komórek: 350 default, 350 alarm, 350 module_offline, 70 dialog. Istnieje 133 defaultowych zrzutów/render_eval; 95/133 ma pct_diff <5%. Braki stanów dynamicznych pozostają OPEN.
 - B: `list_scale.py/list_switch.py/list_scales_build.py` są dostępne, ale brak reprodukowalnego checkpointu KASKADA/MAGAZYN (`*.state` + `rows.pkl`) w bieżącym runtime; nie wpisano fikcyjnych wyników.
 - C: SIEĆ 0x57 i 0x5B są potwierdzone dynamicznie; SW po stabilizacji = `v52.18`; wpis SIEĆ pozostaje przy 1500 i dostępny lokalnie zrzut pozostaje również przy 10000 tikach. Dokładny timeout >10000 OPEN. INFO: 0x3665 jest nazwanym `igneTouch boiler short name`, 0x2170 = VideRoom PIN, ale źródła wildcardów INFO nadal OPEN. INTERNET: SERIAL/PIN są zmierzone jako widget→PID 0x373F/0x3740.
-- Raport: `analiza/FW2213TK-2026-11-24/AUTONOMOUS-PASS-ETAP3-A-C-2026-11-24.md`.
+- Raport: `analiza_archiwum/FW2213TK-2026-11-24/AUTONOMOUS-PASS-ETAP3-A-C-2026-11-24.md`.
 
 
 ### ETAP 3 — doprecyzowanie wykonania B/C — 2026-11-24
-- **B:** istniejące PASS 52 potwierdza wyrenderowane ekrany KASKADA/MAGAZYN po ustawieniu `0x350C=1`, `0x3525=1`, `0x351A=2`. Nie jest to jednak pomiar `list_scale.py/list_switch.py`. Zgodnie z zasadą NO-FABRICATION zapisano osobny artefakt `analiza/FW2213TK-2026-11-24/data/ui_model/chatgpt/list_scales_kaskada_magazyn.json` ze statycznym katalogiem 13 PID-ów i jawnym `OPEN_RUNTIME_REQUIRED` dla skali/enum/switch.
+- **B:** istniejące PASS 52 potwierdza wyrenderowane ekrany KASKADA/MAGAZYN po ustawieniu `0x350C=1`, `0x3525=1`, `0x351A=2`. Nie jest to jednak pomiar `list_scale.py/list_switch.py`. Zgodnie z zasadą NO-FABRICATION zapisano osobny artefakt `analiza_archiwum/FW2213TK-2026-11-24/data/ui_model/chatgpt/list_scales_kaskada_magazyn.json` ze statycznym katalogiem 13 PID-ów i jawnym `OPEN_RUNTIME_REQUIRED` dla skali/enum/switch.
 - **C:** SERIAL/PIN w INTERNET są już FACT-DYNAMIC (`0x373F` / `0x3740`). Dla korelacji `0x5B` istnieje zapisany test negatywny: obecność `0x5B` nie zmieniła obrazu INTERNET w przetestowanym scenariuszu heartbeat+identity/PDO; klasyfikacja pozostaje `NEGATIVE_UNDER_TEST`, nie uniwersalne CLOSED. `v52.18` zostaje wynikiem po stabilizacji. Timeout SIEĆ pozostaje OPEN >10000 tików.
-- Raport artefaktów: `analiza/FW2213TK-2026-11-24/data/ui_model/chatgpt/etap3_c_status.json`.
+- Raport artefaktów: `analiza_archiwum/FW2213TK-2026-11-24/data/ui_model/chatgpt/etap3_c_status.json`.
 
 
 ### ETAP 3 — korekta C po odczycie lokalnego raportu dynamicznego — 2026-11-24

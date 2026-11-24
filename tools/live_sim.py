@@ -4,7 +4,7 @@ na temperature wg krzywej NTC. Mapowanie kanal->PID zmierzone przy domyslnej kon
     sim = LiveSim(session); sim.set(0x2001, 65.0); sim.run(300)     # temperatury w stopniach C
 Ramki musza isc POJEDYNCZO z odstepem (~12 tikow): odbiornik CAN przyjmuje jedna naraz. Wartosci uspredniane (filtr 8 probek), wiec potrzeba >= 8 rund."""
 import json, os, bisect
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data", "ui_model")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data", "ui_model")
 class LiveSim:
     def __init__(self, session, src=None):
         self.s = session; self.src = json.load(open(src or os.path.join(D, "live_sources.json")))

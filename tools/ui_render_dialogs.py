@@ -4,7 +4,7 @@ import argparse,json,sys
 from pathlib import Path
 from PIL import Image,ImageDraw
 ROOT=Path(__file__).resolve().parents[1]
-DATA=ROOT/"analiza"/"FW2213TK-2026-11-22"/"data"
+DATA=ROOT/"analiza_archiwum"/"FW2213TK-2026-11-22"/"data"
 BG=(41,40,41)
 def locate(name):
     for p in (ROOT/"ui_model"/name,DATA/"ui_model"/name,ROOT/"NewEstyma"/"ui_model"/name):

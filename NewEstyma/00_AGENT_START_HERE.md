@@ -23,7 +23,7 @@ RAW BIN is the source of truth.
 1. Continue autonomously. Do not stop after a fixed number of passes.
 2. HARD means a fact is proven; HARD is not 100% project completion.
 3. If a tool becomes insufficient, improve or create it and continue.
-4. Every meaningful pass gets a report under analiza/FW2213TK-2026-11-22/.
+4. Every meaningful pass gets a report under analiza_archiwum/FW2213TK-2026-11-22/.
 5. Update the master state after important closures.
 6. Separate FACT, STRONG, INFERENCE, OPEN and REJECTED.
 7. Never promote an inference because it looks plausible.
@@ -81,13 +81,13 @@ If a repeated manual operation appears, automate it.
 4. 03_TOOLING.md
 5. 04_FIRMWARE_MANIFEST.md
 6. DOKUMENTACJA/REVERSE_ENGINEERING_MASTER_2026-11-22.md
-7. newest pass reports in analiza/
+7. newest pass reports in analiza_archiwum/
 
 Important: 260 catalog != 660 runtime table. Mechanism closure != semantic closure. HARD != 100%.
 
 
 ## PASS 35 — emulator startupu
-Do odczytu stanu RAM po inicjalizacji użyj `tools/emu_startup.py` / `boot()` (patrz 03_TOOLING.md). Tabela runtime 655 rekordów jest w `analiza/FW2213TK-2026-11-22/data/`. Klucz runtime = PID (z nazwą ASCII w rekordzie).
+Do odczytu stanu RAM po inicjalizacji użyj `tools/emu_startup.py` / `boot()` (patrz 03_TOOLING.md). Tabela runtime 655 rekordów jest w `analiza_archiwum/FW2213TK-2026-11-22/data/`. Klucz runtime = PID (z nazwą ASCII w rekordzie).
 
 
 ## STAN NA 2026-11-23 (PASS 35..43) — CZYTAJ TO PIERWSZE
@@ -139,7 +139,7 @@ Pomyłki poprzednich passów są oznaczone `REJECTED/SUPERSEDED` w raportach (m.
 
 ## UWAGA WLASCICIELA (2026-11-23) — do poprawy w NOWYM UI (po wiernym 1:1 / przy ESP32)
 Oryginalny firmware ma prawdopodobnie zamienione tekstury wypelnienia sliderow: slider TEMPERATURY (dialog numeryczny, np. "Temperatura zadana") jest niebieski, a slider USTAWIEN/trybu (okno power, "Woda uzytkowa", "Ogrzewanie") ma kolorowy gradient niebieski->zolty->czerwony.
-Zyczenie: gradient (zimno->cieplo) na sliderze temperatury, jednolity niebieski na sliderze ustawien/trybu. W replice 1:1 zachowac oryginal; zmiana tylko w nowym interfejsie. POTWIERDZONE sledzeniem bitmap (emulator): dialog numeryczny (slider temperatury/wartosci) rysuje tlo **163** + wypelnienie **165** (niebieskie, 301x16); okno power (slider trybu) rysuje tlo **186** + wypelnienie **187** (gradient niebieski->zolty->czerwony, 181x11). Podglad: `analiza/FW2213TK-2026-11-22/screens/pass52_slider_bitmaps_163_165_186_187.png`. W nowym UI: gradient (187, rozciagniety/przeskalowany) dla sliderow temperatury, niebieski (165) dla slidera trybu.
+Zyczenie: gradient (zimno->cieplo) na sliderze temperatury, jednolity niebieski na sliderze ustawien/trybu. W replice 1:1 zachowac oryginal; zmiana tylko w nowym interfejsie. POTWIERDZONE sledzeniem bitmap (emulator): dialog numeryczny (slider temperatury/wartosci) rysuje tlo **163** + wypelnienie **165** (niebieskie, 301x16); okno power (slider trybu) rysuje tlo **186** + wypelnienie **187** (gradient niebieski->zolty->czerwony, 181x11). Podglad: `analiza_archiwum/FW2213TK-2026-11-22/screens/pass52_slider_bitmaps_163_165_186_187.png`. W nowym UI: gradient (187, rozciagniety/przeskalowany) dla sliderow temperatury, niebieski (165) dla slidera trybu.
 
 ## TODO (pytanie wlasciciela 2026-11-23) — emulacja "zakazu rozpalenia" w NASZYM projekcie (nie w replice 1:1)
 Klodka na kafelku palnika = PID 0x2006 "Burner external permission" == 0 (PASS 53). Emulacja: wysylac ramke 0x584 `42 06 20 01 <0|1> 00 00 00` jako wezel sterownika. Uwaga: to zmienia tylko UI panelu; blokada rozpalania jest po stronie sterownika/modulu BIG.
@@ -157,7 +157,7 @@ Bitmapy 301x16: tlo 163, wypelnienie niebieskie 165, wypelnienie GRADIENT 167. B
 Uzycie w oryginale: dialog numeryczny NASTAWY (np. "Temperatura zadana") = 163+165 (niebieski); okno temperatur komfort/eco (Ogrzewanie, Woda) = suwaki z gradientem (163+167); okno power (tryb off/eco/harmonogram/komfort) = 186+187 (gradient). Zyczenie wlasciciela: gradient na KAZDYM sliderze temperatury (takze w dialogu numerycznym dla parametrow temperaturowych), niebieski na sliderze trybu/ustawien (w nowym UI przeskalowac 165 do 181 px).
 
 ## STAN NA KONIEC SESJI 2026-11-23 (limit zasobow sesji) — jak kontynuowac
-Plan: `NewEstyma/05_PLAN_1TO1.md`. Zrobione w tej sesji: czcionki (A1), teksty 8 jezykow (A4), katalog widgetow `analiza/FW2213TK-2026-11-22/WIDGETS-BY-SCREEN-2026-11-23.md`, drzewo menu `MENU-TREE-2026-11-23.md`, specyfikacja poziomow 0/1/2 `SPEC-POZIOMY-DOSTEPU-0-1-2.md`, alarmy PASS 51, ekran glowny/Kaskada/Internet PASS 52-54, kloda zakazu rozpalania PASS 53.
+Plan: `NewEstyma/05_PLAN_1TO1.md`. Zrobione w tej sesji: czcionki (A1), teksty 8 jezykow (A4), katalog widgetow `analiza_archiwum/FW2213TK-2026-11-22/WIDGETS-BY-SCREEN-2026-11-23.md`, drzewo menu `MENU-TREE-2026-11-23.md`, specyfikacja poziomow 0/1/2 `SPEC-POZIOMY-DOSTEPU-0-1-2.md`, alarmy PASS 51, ekran glowny/Kaskada/Internet PASS 52-54, kloda zakazu rozpalania PASS 53.
 NASTEPNE KROKI (kolejnosc): (1) `UI-MODEL`: polaczyc inwentarz widgetow z mapa prezenterow (`data/presenter_map.csv`) przez `view_off` = this - widok (`tools/ctor_trace.py`; czesciowe wyniki: `data/widgets_home_with_view_off.json`, `widgets_invm2_*_partial.json`; pelny przebieg: `tools/screen_inventory_menu.py FW DIR OUT.json` na stanach z `ui_explore.py --prepare`); (2) graf akcji: dotykanie srodka kazdej kontrolki (nowe narzedzie), skutki = ekran/dialog/ramka CAN/zmiana PID; (3) warunki widocznosci i dialogi jako dane; (4) test akceptacyjny 1:1 (korpus zrzutow + porownywarka); (5) alarmy (wybor biezacego wpisu, dzwiek), formatowanie pol, luki ekranow (PROGRAM edycja, dialog czasu, wykresy).
 Uwagi praktyczne: emulator ~2-3 min/ekran, max 3 procesy naraz (4 rdzenie); pliki stanu/scratchpad NIE sa w repo (po restarcie trzeba odtworzyc: `tools/ui_explore.py`, `ui_fuzz.py`).
 

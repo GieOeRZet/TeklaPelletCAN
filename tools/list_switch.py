@@ -5,7 +5,7 @@ import json, os, pickle, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ui_session as U, action_probe as AP, pid_diff as P
 fw, d, inv_path, node, key, out = sys.argv[1:7]
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data", "ui_model")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data", "ui_model")
 rows_meta = [v for k, v in json.load(open(os.path.join(D, "lists.json")))["lists"].items() if k.startswith(key + "|")][0]
 CO = int(os.environ.get("CO_OFFSET", "0")); PM = P.pid_meta()
 ws = P.good_widgets({n["node"]: n for n in json.load(open(inv_path))}[node])

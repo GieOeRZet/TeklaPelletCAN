@@ -3,7 +3,7 @@
 from pathlib import Path
 import csv
 
-P = Path(__file__).resolve().parents[1] / "analiza/FW2213TK-2026-11-22/data/cg_ui_binding_negative_audit.csv"
+P = Path(__file__).resolve().parents[1] / "analiza_archiwum/FW2213TK-2026-11-22/data/cg_ui_binding_negative_audit.csv"
 
 def main():
     rows = list(csv.DictReader(P.open(encoding="utf-8", newline="")))

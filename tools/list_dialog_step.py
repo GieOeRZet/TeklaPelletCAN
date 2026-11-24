@@ -6,7 +6,7 @@ import json, os, pickle, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ui_session as U, action_probe as AP, pid_diff as P
 fw, d, inv_path, node, key, resdir, out = sys.argv[1:8]
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data", "ui_model")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data", "ui_model")
 CO = int(os.environ.get("CO_OFFSET", "0")); PM = P.pid_meta()
 n = json.load(open(os.path.join(resdir, "n_%s.json" % node)))
 inv = {x["node"]: x for x in json.load(open(inv_path))}[node]; W = {w["this"]: w for w in inv["widgets"]}

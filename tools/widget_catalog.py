@@ -5,7 +5,7 @@ import collections, csv, json, os, sys
 out = sys.argv[1]; screens = []
 for f in sys.argv[2:]: screens += json.load(open(f))
 man = {}
-mp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data", "bitmaps", "manifest.csv")
+mp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data", "bitmaps", "manifest.csv")
 if os.path.exists(mp): man = {int(r["id"]): "%sx%s" % (r["width"], r["height"]) for r in csv.DictReader(open(mp))}
 FN = {0: "12px", 1: "20px", 2: "26px", 3: "36px", 4: "64px", 5: "92px"}; AL = {0: "L", 1: "C", 2: "R"}
 groups = collections.OrderedDict()

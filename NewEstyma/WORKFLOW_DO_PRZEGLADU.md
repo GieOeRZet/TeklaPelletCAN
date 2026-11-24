@@ -31,4 +31,4 @@ Python + Unicorn (Cortex-M4, FreeRTOS: GUITask/EstymaTask/CanRxTask), modele LTD
 6. Otwarte zagadki: `OPEN_POD_MUREM.md`.
 
 ## Pliki do przeczytania (kolejność)
-`NewEstyma/METODYKA_EMULATOR.md`, `NewEstyma/OPEN_POD_MUREM.md`, `tools/ui_session.py`, `tools/pid_diff.py`, `tools/live_scan.py`, `analiza/FW2213TK-2026-11-22/data/ui_model/` (menu_tree, alarms, outputs_test, live_sources, internet_editor), `AUTONOMOUS-PASS-63..70`.
+`NewEstyma/METODYKA_EMULATOR.md`, `NewEstyma/OPEN_POD_MUREM.md`, `tools/ui_session.py`, `tools/pid_diff.py`, `tools/live_scan.py`, `analiza_archiwum/FW2213TK-2026-11-22/data/ui_model/` (menu_tree, alarms, outputs_test, live_sources, internet_editor), `AUTONOMOUS-PASS-63..70`.

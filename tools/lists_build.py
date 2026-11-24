@@ -3,7 +3,7 @@
 Wiersz listy = jeden schemat: kind (number|switch|enum), PID, nazwa, typ, zakres surowy, domyslna, jednostka (wskazowka z nazwy EN; w UI jednostka jest czescia etykiety), poziom_min.
 kind jest WYWNIOSKOWANY z zakresu (INFERENCE) i potwierdzony w emulatorze na przykladach (dialog liczbowy z suwakiem, dialog wyboru radio, edytor tekstu)."""
 import csv, json, os, re, collections
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data")
 pm = {r["pid"]: r for r in csv.DictReader(open(os.path.join(D, "pid_matrix_655.csv")))}
 rows = [r for r in csv.DictReader(open(os.path.join(D, "panel_lists_by_level.csv"))) if r["pid"] or r["panel_key"]]
 CLS = {"0x00": "KOCIOL", "0x01": "OGRZEWANIE", "0x02": "OGRZEWANIE", "0x03": "OGRZEWANIE", "0x04": "OGRZEWANIE", "0x05": "CWU", "0x06": "SOLARY", "0x07": "BUFOR", "0x08": "KASKADA", "0x09": "MAGAZYN", "0x0A": "PALNIK", "0x10": "KONFIGURACJA", "0x11": "STATYSTYKI"}

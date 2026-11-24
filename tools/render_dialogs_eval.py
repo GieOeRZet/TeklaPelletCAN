@@ -4,7 +4,7 @@ import argparse,csv,json,subprocess,sys
 from pathlib import Path
 from PIL import Image
 import numpy as np
-ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/"analiza"/"FW2213TK-2026-11-22"/"data"/"ui_model"
+ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/"analiza_archiwum"/"FW2213TK-2026-11-22"/"data"/"ui_model"
 REFS={"paliwo":"dialog_shots/home_dlg_paliwo.png","zasilanie":"dialog_shots/home_dlg_zasilanie.png","auto":"dialog_shots/home_dlg_auto.png","czas":"dialog_shots/home_dlg_czas.png","data":"dialog_shots/home_dlg_data.png","number":"dialog_shots/edit_number_enum_sheet.png","enum":"dialog_shots/edit_number_enum_sheet.png","pin":"dialog_shots/pin_dialog_sheet.png","internet":"dialog_shots/home_control.png","program_day":"dialog_shots/program_day_dialog.png","program_copy":"dialog_shots/program_copy_sequence.png"}
 def metric(a,b):
  x=np.asarray(a.convert("RGB")).astype(np.int16); y=np.asarray(b.convert("RGB")).astype(np.int16); d=np.abs(x-y).sum(axis=2)

@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ui_session as U, action_probe as AP, live_sim as L
 import pickle
 
-DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data")
+DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data")
 VIEW = 0x20024818
 S16 = lambda lo, hi: (lo | hi << 8) - (1 << 16) if (lo | hi << 8) & 0x8000 else (lo | hi << 8)
 

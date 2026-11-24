@@ -3,7 +3,7 @@
 import csv, glob, json, os, statistics, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import render_compare as C
-A = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data") + os.sep
+A = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data") + os.sep
 INV = {"L0": "widgets_inv_pass61_L0.json", "L1": "widgets_inv_pass65_L1_all.json", "LC": "widgets_inv_pass65_cascade_fuelstore_L0.json", "H": "widgets_inv_pass65_home_L0.json"}
 rows = []
 for pre, f in INV.items():

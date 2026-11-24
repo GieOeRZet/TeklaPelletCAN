@@ -4,7 +4,7 @@ rejestrowanej przy konstrukcji menu). Uzycie: menu_sweep.py FW.bin OUT.json  (ma
 import csv, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ui_session as U, ctor_trace as C
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data")
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza_archiwum", "FW2213TK-2026-11-22", "data")
 A2ROW = {int(r["bitmap_A"]): int(r["row"]) for r in csv.DictReader(open(os.path.join(D, "menu_rows_21.csv")))}
 FULL = {0x2105: 4, 0x2106: 1, 0x2107: 1, 0x2108: 1, 0x350C: 0, 0x3525: 0}
 def variants():

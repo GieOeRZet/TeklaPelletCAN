@@ -13,7 +13,7 @@ def kind(p):
     if p.endswith((".md", ".txt", ".rst")): return "dokumentacja"
     if p.startswith(("custom_components/", "firmware/", "android/", "web/", "software/", "rejestry/")): return "INTEGRACJA-uwaga"
     return "inne"
-rx = re.compile(r"analiza/[^\s\"'`)>,;]*")
+rx = re.compile(r"analiza_archiwum/[^\s\"'`)>,;]*")
 sha = {}; refs = []; dup = collections.defaultdict(list)
 for p in files:
     try:
@@ -30,7 +30,7 @@ with open("NewEstyma/porzadek_lokalny/odwolania_lokalne.csv", "w", newline="") a
 with open("NewEstyma/porzadek_lokalny/sha256_pliki.csv", "w", newline="") as f:
     w = csv.writer(f); w.writerow(["plik", "rozmiar", "sha256"]); [w.writerow([p, s, h]) for p, (s, h) in sorted(sha.items())]
 with open("NewEstyma/porzadek_lokalny/duplikaty_sha256.csv", "w", newline="") as f:
-    w = csv.writer(f); w.writerow(["sha256", "liczba", "pliki"]); [w.writerow([h, len(v), " | ".join(v)]) for h, v in dup.items() if len(v) > 1 and any(x.startswith("analiza/") for x in v)]
-nd = sum(1 for v in dup.values() if len(v) > 1 and any(x.startswith("analiza/") for x in v))
+    w = csv.writer(f); w.writerow(["sha256", "liczba", "pliki"]); [w.writerow([h, len(v), " | ".join(v)]) for h, v in dup.items() if len(v) > 1 and any(x.startswith("analiza_archiwum/") for x in v)]
+nd = sum(1 for v in dup.values() if len(v) > 1 and any(x.startswith("analiza_archiwum/") for x in v))
 print("plikow", len(files), "odwolan", len(refs), "w plikach", len({r[0] for r in refs}), "grup duplikatow (analiza)", nd)
 print(collections.Counter(r[3] for r in refs))

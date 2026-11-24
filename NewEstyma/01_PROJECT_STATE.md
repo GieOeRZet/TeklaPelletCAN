@@ -111,7 +111,7 @@ OPEN:
 ## AUTONOMOUS PASS 24 — THUMB-2 BOUNDARY / POINTER-FLOW CORRECTION — 2026-11-22
 
 Report:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-24-THUMB2-POINTER-FLOW-CORRECTION-2026-11-22.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-24-THUMB2-POINTER-FLOW-CORRECTION-2026-11-22.md
 
 ### CRITICAL CORRECTION
 
@@ -163,7 +163,7 @@ Regression test passed on the canonical BIN.
 ## AUTONOMOUS PASS 25 — MENU ACCESS TABLE → ROW OBJECT → PID 0x0117 — 2026-11-22
 
 Report:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-25-MENU-ACCESS-ROW-PID117-CLOSURE-2026-11-22.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-25-MENU-ACCESS-ROW-PID117-CLOSURE-2026-11-22.md
 
 ### NEW-HARD
 
@@ -200,7 +200,7 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-25-MENU-ACCESS-ROW-PID117-CLOSURE-20
 ## AUTONOMOUS PASS 26 — PID 0x0117 RESOLVER NEGATIVE CLOSURE — 2026-11-22
 
 Report:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-26-PID0117-RESOLVER-NEGATIVE-CLOSURE-2026-11-22.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-26-PID0117-RESOLVER-NEGATIVE-CLOSURE-2026-11-22.md
 
 ### NEW-HARD
 
@@ -229,7 +229,7 @@ Correct chain:
 ## AUTONOMOUS PASS 27 — ROW +0xF8 DESCRIPTOR / VALUE 0x15 — 2026-11-22
 
 Report:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-27-ROW-F8-DESCRIPTOR-VALUE15-CLOSURE-2026-11-22.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-27-ROW-F8-DESCRIPTOR-VALUE15-CLOSURE-2026-11-22.md
 
 ### NEW-HARD
 
@@ -264,7 +264,7 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-27-ROW-F8-DESCRIPTOR-VALUE15-CLOSURE
 ## AUTONOMOUS PASS 28 — RUNTIME CLASS 0..20 FIRST-LEVEL UI DISPATCH — 2026-11-22
 
 Report:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-28-RUNTIME-CLASS-FIRST-LEVEL-UI-DISPATCH-2026-11-22.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-28-RUNTIME-CLASS-FIRST-LEVEL-UI-DISPATCH-2026-11-22.md
 
 ### NEW-HARD
 
@@ -289,7 +289,7 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-28-RUNTIME-CLASS-FIRST-LEVEL-UI-DISP
 ## AUTONOMOUS PASS 29 — RUNTIME CLASS → CALLBACK/DESCRIPTOR LAYER — 2026-11-22
 
 Report:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-29-RUNTIME-CLASS-CALLBACK-DESCRIPTOR-LAYER-2026-11-22.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-29-RUNTIME-CLASS-CALLBACK-DESCRIPTOR-LAYER-2026-11-22.md
 
 ### NEW-HARD
 
@@ -320,7 +320,7 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-29-RUNTIME-CLASS-CALLBACK-DESCRIPTOR
 ## AUTONOMOUS PASS 30 — UI CALLBACK OBJECT VTABLE 0x0809F848 — 2026-11-22
 
 Report:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-30-UI-CALLBACK-OBJECT-VTABLE-2026-11-22.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-30-UI-CALLBACK-OBJECT-VTABLE-2026-11-22.md
 
 ### NEW-HARD
 
@@ -346,7 +346,7 @@ analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-30-UI-CALLBACK-OBJECT-VTABLE-2026-11
 ## AUTONOMOUS PASS 31 — VTABLE SLOT 2 → STATIC CALLBACK BRIDGE — 2026-11-22
 
 Report:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-31-VTABLE-SLOT2-CALLBACK-BRIDGE-2026-11-22.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-31-VTABLE-SLOT2-CALLBACK-BRIDGE-2026-11-22.md
 
 ### NEW-HARD
 
@@ -402,7 +402,7 @@ OPEN:
 
 ## AUTONOMOUS PASS 34 — RUNTIME KEY 3 STORAGE / TYPE CLOSURE — 2026-11-22
 
-Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-34-RUNTIME-KEY3-STORAGE-TYPE-CLOSURE-2026-11-22.md`
+Report: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-34-RUNTIME-KEY3-STORAGE-TYPE-CLOSURE-2026-11-22.md`
 
 ### NEW-HARD
 - Runtime key 3 startup storage is `0x20021FAA = 0x200208EC + 0x16BE`.
@@ -424,8 +424,8 @@ Do not infer catalog PID identity from runtime lookup key 3. Key 3 is a runtime-
 
 ## AUTONOMOUS PASS 35 — RUNTIME PARAMETER TABLE Z EMULACJI STARTUPU — 2026-11-22
 
-Report: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-35-RUNTIME-PARAM-TABLE-EMULATION-2026-11-22.md
-Data: analiza/FW2213TK-2026-11-22/data/ (runtime_param_table_655.csv, resolver_t1.csv, resolver_t2.csv)
+Report: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-35-RUNTIME-PARAM-TABLE-EMULATION-2026-11-22.md
+Data: analiza_archiwum/FW2213TK-2026-11-22/data/ (runtime_param_table_655.csv, resolver_t1.csv, resolver_t2.csv)
 
 ### NEW-HARD
 - Startup firmware uruchomiony w emulatorze (tools/emu_startup.py); 655 wywołań 0x0801143C wypełnia 655 unikalnych rekordów tabeli manager'a 0x20008D84.
@@ -456,7 +456,7 @@ a dla wszystkich 448 PID katalogu panelu nazwa z rekordu = nazwa z katalogu (448
 
 
 ## AUTONOMOUS PASS 36 — MACIERZ PID I KLASA DOSTĘPU — 2026-11-22
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-36-PID-MATRIX-ACCESS-CLASS-2026-11-22.md ; dane: data/pid_matrix_655.csv ; narzędzie: tools/pid_matrix.py
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-36-PID-MATRIX-ACCESS-CLASS-2026-11-22.md ; dane: data/pid_matrix_655.csv ; narzędzie: tools/pid_matrix.py
 
 HARD: klasa sidecar (rekord +0x24) = tryb dostępu: 0 live (208), 1 komenda (49), 2 lustro z centrali (44), 3 nastawa (354); zgodna 448/448 z `access` katalogu panelu;
 bramki kodu: 0x08011812 z kontrolą przyjmuje 1,3; sync 0x08011368 obejmuje 2,3. 557/655 PID ma klucz UI (T1 z instancjami + T2). Key 3 Language nie ma klucza UI (dostęp bezpośredni z class 12).
@@ -465,7 +465,7 @@ OPEN: wartość 0x300B w runtime; semantyka klasy 2 (INFERENCE: stan tylko z cen
 
 
 ## AUTONOMOUS PASS 37 — SEKWENCJA ODCZYTU 0x0604 I ZACHOWANIE RX 0x0584 — 2026-11-22
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-37-CAN-POLLER-AND-RX-BEHAVIOR-2026-11-22.md ; dane: data/poll_sequence_655.csv ; narzędzia: tools/poller_trace.py, tools/can_rx_inject.py
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-37-CAN-POLLER-AND-RX-BEHAVIOR-2026-11-22.md ; dane: data/poll_sequence_655.csv ; narzędzia: tools/poller_trace.py, tools/can_rx_inject.py
 
 HARD (wykonane w firmware): ramka odczytu na szynie = StdId 0x0604, DLC 8, Data = 40 idx_lo idx_hi 01 00 00 00 00 (Data[0]=cmd, [1..2]=indeks LE, [3]=subindeks 1, [4..7]=wartość). Poller wysyła 655 żądań (każdy PID raz, kolejność slotów).
 RX 0x0584/cmd 0x42/sub 1: wartość zapisywana z walidacją min/max rekordu (także klasa live, także s16 ujemne); ignorowane cmd 0x60, sub != 1, StdId 0x585.
@@ -475,14 +475,14 @@ OPEN: okres pollera i producent +0x08/+0x10; timeout/+0x0C; pełna zgodność z 
 
 
 ## AUTONOMOUS PASS 38 — PUBLIKACJA LOKALNEJ ZMIANY PARAMETRU — 2026-11-22
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-38-LOCAL-CHANGE-PUBLICATION-2026-11-22.md ; narzędzie: tools/publish_probe.py
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-38-LOCAL-CHANGE-PUBLICATION-2026-11-22.md ; narzędzie: tools/publish_probe.py
 HARD (wykonane w firmware): lokalna zmiana storage Language 0->7 + callback managera 0x08010FCE => dokładnie jedna ramka 0x584, DLC 8, Data 42 03 00 01 07 xx xx xx; brak powtórzeń bez zmiany (on-change).
 Nieużywane bajty wartości ponad szerokość typu nie są zerowane (śmieci) — moduł ESP32 ma wysyłać zera, odbiorca maskować.
 OPEN: klasa 2 i klasa 0 lokalnie zmieniona; okno przetwarzania i okres callbacku; kierunki/role urządzeń na żywym CAN.
 
 
 ## AUTONOMOUS PASS 39 — CLASS 12 = PRZEŁĄCZANIE JĘZYKA (setLanguage) — 2026-11-22
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-39-LANGUAGE-CLASS12-SETLANGUAGE-2026-11-22.md ; narzędzie: tools/lang_cycle_probe.py
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-39-LANGUAGE-CLASS12-SETLANGUAGE-2026-11-22.md ; narzędzie: tools/lang_cycle_probe.py
 HARD (wykonane w firmware): class 12: GET key 3 -> +1 -> zapis key 3 (mod 8, typ 5) -> tail-call FUN_080391D6 = setLanguage (currentLanguage u16 @0x20024860, currentLanguagePtr = tablica[v]); cykl 0..7 potwierdzony.
 HARD: tablica języków SRAM 0x20011844 ma 8 wpisów: 0 PL, 1 EN, 2 LT, 3 SK, 4 CZ, 5 ES, 6 RO, 7 EST (identyfikacja z treści tabel TypedText).
 STRONG: wiersz menu 15 (klasa 12, budowany przy access != 0) uruchamia zmianę języka. UWAGA: klasy wierszy 15..20 są równe polu +2 rekordu menu (nie selektorowi z pola +0); wyprowadzenie nie wykazane.
@@ -490,7 +490,7 @@ OPEN: 3 pozostałe wywołania setLanguage i przywracanie języka przy starcie; z
 
 
 ## AUTONOMOUS PASS 40 — WIERSZE MENU ZBUDOWANE W FIRMWARE — 2026-11-22
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-40-MENU-ROWS-BUILT-IN-FIRMWARE-2026-11-22.md ; dane: data/menu_rows_21.csv ; narzędzie: tools/menu_rows_probe.py
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-40-MENU-ROWS-BUILT-IN-FIRMWARE-2026-11-22.md ; dane: data/menu_rows_21.csv ; narzędzie: tools/menu_rows_probe.py
 HARD (wykonane w firmware): access 0 -> row-builder dla wierszy 0..14, access 3 -> 0..20; vptr ekranu 0x0808F66C, wiersze +0xF8=0x0807C540 (zgodnie z PASS 27). Pełny konstruktor ekranu RUNTIME 0x0804BF7C (z konstruktorem bazowym).
 KOREKTA: argumenty FUN_0804BC6C(row,A,B) to ID BITMAP (A: 60..81, B: 82..101,159), nie ID tekstów; wcześniejszy odczyt "Sterownik/Palnik/..." z pola +2 był błędny.
 STRONG: wiersze 15..20 czytają (A,B)=(u16@+4,u16@+6) i klasę u16@+2; "selektory" 90/97/100/98/95 to pola sąsiednich rekordów = bitmapy B, więc teza "selector 90 -> Language" z MENUTREE jest niepewna.
@@ -498,14 +498,14 @@ OPEN: źródło etykiet i ekranów docelowych; pętla drugiego etapu 15..20 z ko
 
 
 ## AUTONOMOUS PASS 41 — NAWIGACJA MENU: DOTYK WIERSZA -> KLASA -> EFEKT — 2026-11-22
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-41-MENU-CLICK-DISPATCH-EXECUTED-2026-11-22.md ; dane: data/menu_click_effects_21.csv ; narzędzie: tools/menu_click_probe.py
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-41-MENU-CLICK-DISPATCH-EXECUTED-2026-11-22.md ; dane: data/menu_click_effects_21.csv ; narzędzie: tools/menu_click_probe.py
 HARD (kod): handler przycisku FUN_0807EB00(this, sender): sender == this[+0x3B4] + i*0x274 -> FUN_0803C064(this[+0x3C], i) -> klasa 0x20005EF0[i]. Wiersz nie ma własnego callbacka (+0x26C = 0).
 HARD (wykonanie): wiersz 15 (klasa 12) = zmiana języka (key3 i currentLanguage 0->1); wiersze 2..5 (klasy 1..4) ustawiają +0x12B i +0x12C = 1..4 (wybór CO1..CO4) — producent instancji [ctx+0x12C] dla rodziny CH to menu główne.
 OPEN: klasy 11/13/14/15/18/19; samo przełączenie ekranu po +0x12A/+0x12B; drugi handler FUN_0807EB36 -> 0804EC18; etykiety i ekrany docelowe.
 
 
 ## AUTONOMOUS PASS 42 — EMULACJA SYSTEMOWA (FreeRTOS + LTDC + DMA2D) I RENDER EKRANU GŁÓWNEGO — 2026-11-22
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-42-FULL-SYSTEM-EMULATION-HOME-SCREEN-RENDER-2026-11-22.md ; obraz: data/screen_home_emulated.png ; narzędzia: tools/cortexm_rtos.py, stm32_dma2d.py, render_screen.py (+ test_render_screen.py)
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-42-FULL-SYSTEM-EMULATION-HOME-SCREEN-RENDER-2026-11-22.md ; obraz: data/screen_home_emulated.png ; narzędzia: tools/cortexm_rtos.py, stm32_dma2d.py, render_screen.py (+ test_render_screen.py)
 HARD: zadania firmware EstymaTask, GUITask, CanRxTask, CanTxTask, IDLE uruchomione; LTDC IRQ 88 (vsync -> signalVSync), DMA2D IRQ 90 (semafor bufora ramki); LTDC: RGB565 480x272, bufor 0xC0000000/0xC003FC00 (podwojne buforowanie).
 HARD (wynik): ekran glowny wyrenderowany przez firmware (1352 operacje DMA2D) — godzina, dzien, "0.0", "Wylaczony", obraz kotla, 7 kafelkow; stan domyslny (brak CAN/RTC/dotyku).
 Poprawki modelu wyjatkow: SysTick po svc; PendSV po instrukcji zapisu ICSR; STKALIGN (bit 9 xPSR); tick ~100k instrukcji; FPU lazy stacking niemodelowany.
@@ -513,7 +513,7 @@ OPEN: wstrzykniecie CAN (IRQ64) i dotyku; eksport wszystkich ekranow; ekran -> w
 
 
 ## AUTONOMOUS PASS 43 — RUCH CAN PANELU PO STARCIE (PUSTA MAGISTRALA), TABLICA WEZLOW, BRAMKA POLLERA — 2026-11-23
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-43-CAN-BOOT-TRAFFIC-NODE-TABLE-2026-11-23.md ; dane: data/can_tx_boot_no_partners.csv ; narzędzia: tools/stm32_can.py, can_boot_trace.py (+test)
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-43-CAN-BOOT-TRAFFIC-NODE-TABLE-2026-11-23.md ; dane: data/can_tx_boot_no_partners.csv ; narzędzia: tools/stm32_can.py, can_boot_trace.py (+test)
 HARD (wykonanie): panel nadaje dopiero po ~3.3 s (scheduler obiektow okresowych 0x080247C8, licznik 30); przy pustej magistrali: heartbeat 0x704=05 co 1 s; SDO do wezlow 5,6,7: zapis 0x3004:01=0 i odczyt 0x2001:01 co 1 s; publikacje 0x584; serie ramek PDO-podobnych 0x240..0x247, 0x250, 0x254/5, 0x26F..0x271, 0x278..0x27F, 0x340..0x347, 0x378..0x37F, 0x440..0x447, 0x540..0x547, 0x201.
 HARD (kod): tablica obecnosci wezlow (handler 0x0800F894: heartbeat 0x701..0x77F i SDO 0x581..0x5FF, waznosc 300) i skan tozsamosci 0x600+k: 40 18 10 02 (obiekt 0x1018 sub 2 wg CiA 301) -> protokol to CANopen SDO.
 HARD (eksperyment): heartbeaty i odpowiedzi tozsamosci nie wlaczaja pollera 0x604; STRONG: bramka obj+0x10 jest ustawiana przez kod klas menu (0x0804C24E, 0x0804C260), nie przez wykrycie magistrali.
@@ -521,7 +521,7 @@ OPEN: ktore klasy ustawiaja obj+0x10/+8; kto wola skan 0x1018:02; semantyka rame
 
 
 ## AUTONOMOUS PASS 44 — DOTYK FT5x06, PRZELICZENIE WSPOLRZEDNYCH, ATLAS EKRANOW — 2026-11-23
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-44-TOUCH-FT5X06-UI-ATLAS-2026-11-23.md ; obrazy: data/atlas/ ; narzędzia: tools/stm32_i2c.py, touch_screen.py, ui_session.py
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-44-TOUCH-FT5X06-UI-ATLAS-2026-11-23.md ; obrazy: data/atlas/ ; narzędzia: tools/stm32_i2c.py, touch_screen.py, ui_session.py
 HARD: kontroler dotyku FT5x06 @0x38 na I2C1, odpytywany ~25 Hz; sampleTouch 0x080759DC: x_ekran=0.375*x_raw, y_ekran=0.354*y_raw (panel ~1280x768); zwolnienie niesie ostatnia pozycje.
 HARD (wykonanie): dotyk -> ekrany: dialog "Ustaw czas", dialog "Paliwo", MENU (7 widocznych wierszy przy dostepie 0), Kociol, Palnik, Ogrzewanie 1, Historia alarmow.
 Potwierdzenie wizualne resolvera mozliwosci: 15 wierszy zbudowanych, 7 widocznych (konfiguracja 0x2105=1). Etykiety wierszy menu odczytane z ekranu.
@@ -530,7 +530,7 @@ OPEN: ekrany po PIN i Konfiguracja; menu z CO2..4/CWU/Solar/Buffer po wstrzyknie
 
 
 ## AUTONOMOUS PASS 45 — MENU Z PELNA KONFIGURACJA, DIALOG PIN, EKRAN KONFIGURACJA -> PID — 2026-11-23
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-45-MENU-CAPABILITY-PIN-CONFIG-SCREEN-2026-11-23.md ; obrazy: data/atlas/ ; narzędzie: tools/ui_session.py (set_local)
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-45-MENU-CAPABILITY-PIN-CONFIG-SCREEN-2026-11-23.md ; obrazy: data/atlas/ ; narzędzie: tools/ui_session.py (set_local)
 HARD (obraz): po ustawieniu 0x2105=4, 0x2106/0x2107/0x2108=1 menu ma: Kociol, Palnik, Ogrzewanie obwod 1..4, Ciepla woda uzytkowa, Solary, Bufor, Historia alarmow, Informacje o programie, Konfiguracja, Poziom menu (PIN).
 HARD: ekran Konfiguracja -> PID po nazwie i wartosci domyslnej: 12 h = 0x3720; lato 18 = 0x372A; kalibracja 0.0 = 0x3747; rezerwa paliwa 40 kg = 0x3603; auto synchronizacja zegara = 0x372F; dialog Paliwo 180 kg = 0x3601.
 HARD: dialog PIN (4 cyfry +/-, OK; stuknięcia hold>=130 ticków); po 6154 znika kłódka z kafelka palnika (poziom dostępu wpływa na UI).
@@ -538,7 +538,7 @@ OPEN: lista menu nie wydłuża się po PIN — wiersze 15..20 (klasy 12,14,16,18
 
 
 ## AUTONOMOUS PASS 46 — POZIOMY DOSTEPU: LISTY PARAMETROW EKRANOW USTAWIEN — 2026-11-23
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-46-ACCESS-LEVELS-PANEL-LISTS-2026-11-23.md ; dane: data/panel_lists_by_level.csv/.md ; narzędzia: tools/panel_lists.py, ui_explore.py v3, Board.save_state/load_state
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-46-ACCESS-LEVELS-PANEL-LISTS-2026-11-23.md ; dane: data/panel_lists_by_level.csv/.md ; narzędzia: tools/panel_lists.py, ui_explore.py v3, Board.save_state/load_state
 HARD (wykonanie FUN_0803E714 dla klas 0..0x11 x poziomy 0..3): liczba parametrow: Kociol 3/13/13, CO 12/23/23, CWU 8/12/12, Solary 3/7/7, Bufor 2/7/7, Kaskada 9, Dod. magazyn 4/7/7, Palnik 5/24/28, Konfiguracja 5/24/26, Statystyki 13. Poziom 3 = 2 w tym konstruktorze.
 HARD: klucz grafu 0x48 (Wentylator wspomagajacy) pochodzi z klasy 0 Kociol od poziomu 1; 0x47 (Moc dmuchawy modulacja) z Palnika od poziomu 1. Konfiguracja (0x2105..0x2108, Main module type) edytowalna od poziomu 1; poziom 2 dodaje HALL Activated i Request reset alarm memory.
 HARD (obraz): poziom >=1 dodaje do menu: Jezyk, Alarm dzwiekowy, Test wyjsc, Statystyki, Siec, Internet; separatory z ikona klucza i cyfra w ekranach NASTAWY.
@@ -546,7 +546,7 @@ OPEN: 17 bramek poziomu 3 -> ekrany; Kaskada i Dod. magazyn paliwa; edycja warto
 
 
 ## PASS 47 — EKSPORT WSZYSTKICH 188 BITMAP I AUDYT BRAMEK POZIOMU DOSTEPU — 2026-11-23
-Bitmapy: analiza/FW2213TK-2026-11-22/data/bitmaps/ (png/000..187.png, manifest.csv z SHA-256, sheet_*.png) i bitmaps.zip ; narzędzie: tools/export_bitmaps.py (+ stary extract_fw_bitmap_table_direct.py)
+Bitmapy: analiza_archiwum/FW2213TK-2026-11-22/data/bitmaps/ (png/000..187.png, manifest.csv z SHA-256, sheet_*.png) i bitmaps.zip ; narzędzie: tools/export_bitmaps.py (+ stary extract_fw_bitmap_table_direct.py)
 HARD: tablica deskryptorow RAW 0x54450, 188 x 0x14 B {data_ptr, extra_ptr(A8), w, h, solid rect}; dane RGB565 LE + opcjonalnie A8 (121 z alfa, 67 bez); wszystkie rozmiary zgodne z DOKUMENTACJA/bitmap_sizes.tsv; wyglad zweryfikowany na planszach (ikony, obrazy kotla 11/12/13, wentylatory, podajniki, klucze poziomow 91/92/93, przyciski).
 To zamyka luke z handoffu 20.11 ("komplet PNG 000..187 nie jest potwierdzony jako trwaly zestaw w GitHub").
 HARD (tools/access_gates_scan.py): 52 odczyty [model+0x158] w 42 funkcjach: 17x "cmp #3 ; blt" (>=3), 13x "!=0", 2x "cmp #2" (>=2), 18 konstruktorow stron przekazuje poziom do pomocnikow; brak porownan "==": poziomy KUMULATYWNE.
@@ -554,7 +554,7 @@ HARD (sledzenie zasobow po rozruchu): UiSession.enable_trace — otwarcie MENU c
 
 
 ## PASS 47 — BRAMKI POZIOMU DOSTEPU (SKAN), EKSPORT BITMAP, SLEDZENIE ZASOBOW/PID — 2026-11-23
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-47-GATES-BITMAPS-TRACING-2026-11-23.md
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-47-GATES-BITMAPS-TRACING-2026-11-23.md
 HARD: 52 odczyty [model+0x158] w 42 funkcjach: 17x ">=3", 13x "!=0", 2x ">=2", brak "=="; poziomy kumulatywne. Eksport 188 bitmap (PNG+manifest SHA-256, RGB565+A8 w oryginale). Sledzenie zasobow i PID-ow czytanych przez GUITask.
 KOREKTA: porownanie poziomow 1/2/3 "identyczne" bylo bledem narzedzia (ucinane strony); naprawa: stitch_body + settings_tall (w toku).
 DECYZJE: ESP32 i Home Assistant odlozone do domkniecia 1:1; skalowanie grafik odlozone.
@@ -563,7 +563,7 @@ Procenty: CAN ~90, parametry ~92, PID->CAN ~75, menu ~88, poziomy dostepu ~80, U
 
 ## AUTONOMOUS PASS 59 — UI-MODEL — 2026-11-23
 
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-59-UI-MODEL-2026-11-23.md ; narzedzia: tools/ui_model.py, tools/test_ui_model.py
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-59-UI-MODEL-2026-11-23.md ; narzedzia: tools/ui_model.py, tools/test_ui_model.py
 
 HARD (mechanizm): widget.view_off mozna laczyc bezposrednio z presenter_map.widget_offsets. Narzedzie buduje model widget -> presenter candidates -> PID/name/setter/format.
 
@@ -575,7 +575,7 @@ Nastepny krok: graf akcji dotykalnych widgetow — widget -> handler -> ekran/di
 
 ## AUTONOMOUS PASS 60 — UI ACTION GRAPH — 2026-11-23
 
-Raport: analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-60-UI-ACTION-GRAPH-2026-11-23.md ; narzedzia: tools/action_graph.py, tools/test_action_graph.py
+Raport: analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-60-UI-ACTION-GRAPH-2026-11-23.md ; narzedzia: tools/action_graph.py, tools/test_action_graph.py
 
 HARD (narzedzie): po UI-MODEL mozna laczyc zdarzenie dotyku z widgetem po this/addr albo node+tap i propagowac jego znanych presenter candidates do grafu akcji.
 
@@ -600,7 +600,7 @@ Szczegóły i ocena narzędzi: `NewEstyma/UI_MODEL_LESSONS.md`.
 - SPÓR (do wyjaśnienia przez ChatGPT): PASS 81 szuka 23. wartości pod 0x20008EFC (rekordy 0x14 B); RAM tego nie potwierdza (patrz wyżej).
 
 ## PASS 63 (Claude, 2026-11-23) — pilot PID-diff Kocioł
-Patrz `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-2026-11-23.md`. K1/K2/K4/K5 spełnione, K3 częściowo (live PID nie wstrzykiwalne przez 0x584: EstymaTask 0x08068FE4 czyści je ze źródła modułowego). Narzędzie `tools/pid_diff.py`.
+Patrz `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-2026-11-23.md`. K1/K2/K4/K5 spełnione, K3 częściowo (live PID nie wstrzykiwalne przez 0x584: EstymaTask 0x08068FE4 czyści je ze źródła modułowego). Narzędzie `tools/pid_diff.py`.
 
 ## PASS 79 — timestamp TX exclusion boundary (2026-11-23)
 - Standard parameter publisher `0x0802117C` excludes PID `0x2165` before constructing `0x0584/0x42`.
@@ -656,18 +656,18 @@ OPEN:
 
 
 ## AUTONOMOUS PASS 96 — MENU DISPATCH CLOSURE — 2026-11-23
-Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-96-MENU-DISPATCH-CLOSURE-2026-11-23.md`; data: `data/cg_menu_dispatch_closure.csv`; tool/test: `tools/cg_menu_dispatch_closure.py`, `tools/test_cg_menu_dispatch_closure.py`.
+Report: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-96-MENU-DISPATCH-CLOSURE-2026-11-23.md`; data: `data/cg_menu_dispatch_closure.csv`; tool/test: `tools/cg_menu_dispatch_closure.py`, `tools/test_cg_menu_dispatch_closure.py`.
 HARD: rows 11..20 closed at row→class→first-level handler boundary using the already recovered 21-class TBB graph. Row 11 class 11 -> 0x080384B0; row 12 class 13 -> 0x0803850C; row 13 class 17 -> 0x0803850C; row 14 class 15 -> 0x08042318 path; row 15 class 12 -> 0x080373BA/0x080373E6; row 16 class 14 -> no-op; row 17 class 18 -> 0x08038574; row 18 class 16 -> 0x0803856C; row 19 class 19 -> 0x08038638; row 20 class 20 -> 0x080382EE.
 OPEN: final handler→page constructor/resource/widget chains remain separate.
 
 ## AUTONOMOUS PASS 97 — ALARM MANAGER CLOSURE — 2026-11-23
-Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-97-ALARM-CLOSURE-2026-11-23.md`; data: `data/cg_alarm_closure.csv`; tool/test: `tools/cg_alarm_closure.py`, `tools/test_cg_alarm_closure.py`.
+Report: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-97-ALARM-CLOSURE-2026-11-23.md`; data: `data/cg_alarm_closure.csv`; tool/test: `tools/cg_alarm_closure.py`, `tools/test_cg_alarm_closure.py`.
 HARD: generic alarm state machine closed: raise `0x08025198`; bit17 unack `0x08025134`; bit16 active `0x0802516C`; clear-by-code helper `0x08025104`; ACK writes alarm register and confirmation timestamp; reset memory PID `0x404E`. ACK is independent from ACTIVE and does not itself clear bit16.
 OPEN: individual business conditions for the many per-code clear sites.
 
 
 ## AUTONOMOUS PASS 98 — KOCIOŁ BINDING RECONCILIATION — 2026-11-23
-Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-98-KOCIOL-BINDING-RECONCILIATION-2026-11-23.md`; data/tool/test: `cg_kociol_bindings_reconciled.*`.
+Report: `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-98-KOCIOL-BINDING-RECONCILIATION-2026-11-23.md`; data/tool/test: `cg_kociol_bindings_reconciled.*`.
 CORRECTED HARD: 0x370A→0x20016894 (bitmap 11/12/13), 0x350D→0x20016A94 (Ciśnienie= visibility), 0x350A→0x20016A24 (T. powrotu= visibility), 0x2005→0x20016918 (bmp120/122). REJECTED: 0x2277→bitmap138. PASS 63 shows 0x200162F8 as live pump animation (frames 138→142); explicit bitmap138 binding is PID 0x22A1, where value 5 hides the widget and 0/1/2 show it.
 
 

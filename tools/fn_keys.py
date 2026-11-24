@@ -6,7 +6,7 @@ raw=open(sys.argv[1],"rb").read(); B=0x08010000
 md=Cs(CS_ARCH_ARM,CS_MODE_THUMB|CS_MODE_MCLASS)
 res={}
 for fn in ("resolver_t1.csv","resolver_t2.csv"):
-    for r in csv.DictReader(open("/home/user/teklapelletcan/analiza/FW2213TK-2026-11-22/data/"+fn,encoding="utf-8")): res.setdefault(int(r["ui_key"],16),(r["value"],r["name"]))
+    for r in csv.DictReader(open("/home/user/teklapelletcan/analiza_archiwum/FW2213TK-2026-11-22/data/"+fn,encoding="utf-8")): res.setdefault(int(r["ui_key"],16),(r["value"],r["name"]))
 a=int(sys.argv[2],16); n=int(sys.argv[3],16); code=list(md.disasm(raw[a-B:a-B+n],a))
 key=None
 for i in code:

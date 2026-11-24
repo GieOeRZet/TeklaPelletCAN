@@ -76,11 +76,11 @@ Dynamiczny CAN2 smoke:
 To są rzeczywiście wykonane testy dynamiczne, ale NIE oznaczają jeszcze pełnego dynamicznego odtworzenia UI.
 
 Raport został zapisany w:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-RUNTIME-PACKAGE-ACCEPTANCE-2026-11-24.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-RUNTIME-PACKAGE-ACCEPTANCE-2026-11-24.md
 Commit: e338b343f100475ac71bea490de245c0969c6ce5
 
 Wcześniejszy preflight:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-RUNTIME-PREFLIGHT-UPDATE-2026-11-24.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-RUNTIME-PREFLIGHT-UPDATE-2026-11-24.md
 Commit: 2eb4988708e86c1e8af7d7349fc2ed991fc55ac5
 
 ## Co robić dalej

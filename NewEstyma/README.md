@@ -16,4 +16,4 @@ FW2213TK_kopia.bin
 SHA-256:
 1d679d6810cfb44a4c1d862d67552b7220f3edeb3a2807f3067d46185d0c5071
 
-Detailed evidence remains in analiza/ and the canonical master remains in DOKUMENTACJA/.
+Detailed evidence remains in analiza_archiwum/ and the canonical master remains in DOKUMENTACJA/.

@@ -44,7 +44,7 @@ If the same manual operation is needed repeatedly:
 
 E. Report
 Create:
-analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-XX-<NAME>-2026-11-22.md
+analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-XX-<NAME>-2026-11-22.md
 
 Include:
 - objective

@@ -13,7 +13,7 @@
 - Ty pracujesz na gałęzi **`ccr-be8a1bcb-5t76j0-chatgpt`** (utwórz ją z `ccr-be8a1bcb-5t76j0-pin`, gdzie leży ten plik i COORDINATION.md).
 - Claude pracuje na gałęzi **`ccr-be8a1bcb-5t76j0`** (główna robocza). Scala Roman.
 - **Nie edytuj plików, które pisze Claude** (patrz COORDINATION.md — kolumna „właściciel pliku”). Twoje raporty i narzędzia nazywaj tak, żeby się nie nakładały.
-- Raporty PASS numeruj **od 70 w górę** (`analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-7X-...-2026-11-23.md`), żeby nie kolidować z numeracją Claude.
+- Raporty PASS numeruj **od 70 w górę** (`analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-7X-...-2026-11-23.md`), żeby nie kolidować z numeracją Claude.
 - Własne narzędzia dozwolone w `tools/` — nazwy z prefiksem `cg_` (np. `tools/cg_pin_scan.py`) + test `tools/test_cg_*.py`. Nie nadpisuj istniejących narzędzi.
 - Commituj i pushuj po każdym etapie na swoją gałąź. PR-ów nie twórz. Stopka commita jak w repo.
 
@@ -69,7 +69,7 @@ Kotwice: handler PIN `FUN_0803C21C`; flaga resetu `0x20021FA7` (PID `0x0005`) w 
 FACT (dowód bajtami, z adresem) / STRONG / INFERENCE / OPEN / REJECTED. Nigdy nie awansuj domysłu, bo „brzmi sensownie”. Zachowuj wyniki negatywne. Źródło prawdy = bajty `.bin`, nie streszczenia.
 
 ## 8. Format raportu (każdy PASS)
-Plik `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-7X-<TEMAT>-2026-11-23.md`:
+Plik `analiza_archiwum/FW2213TK-2026-11-22/AUTONOMOUS-PASS-7X-<TEMAT>-2026-11-23.md`:
 ```
 # PASS 7X — <temat>
 ## Streszczenie
