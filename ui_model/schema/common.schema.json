@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TeklaPelletCAN ui_model common contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(MEASURED|STRONG|INFERENCE|OPEN|REJECTED)\\b.*"
+    },
+    "access_level": {
+      "type": [
+        "integer",
+        "string"
+      ]
+    },
+    "access": {
+      "type": [
+        "integer",
+        "string",
+        "array",
+        "object"
+      ]
+    },
+    "pid": {
+      "type": "string",
+      "pattern": "^0x[0-9A-Fa-f]{4}$"
+    },
+    "pids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^0x[0-9A-Fa-f]{4}$"
+      }
+    },
+    "vtable": {
+      "type": "string",
+      "pattern": "^0x[0-9A-Fa-f]{6,8}$"
+    }
+  },
+  "additionalProperties": true
+}
