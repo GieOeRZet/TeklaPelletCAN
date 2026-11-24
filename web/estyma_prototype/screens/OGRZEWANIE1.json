@@ -1,0 +1,40 @@
+{
+ "name": "OGRZEWANIE1",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x20017650",
+   "rect": [
+    71,
+    80,
+    26,
+    32
+   ],
+   "font": 2,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "70",
+   "sample": "70",
+   "bind": []
+  },
+  {
+   "widget": "0x20017694",
+   "rect": [
+    429,
+    195,
+    49,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "7°C",
+   "sample": "7°C",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}

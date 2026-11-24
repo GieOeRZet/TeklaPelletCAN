@@ -1,0 +1,100 @@
+{
+ "name": "BUFOR",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x200168ec",
+   "rect": [
+    0,
+    135,
+    300,
+    73
+   ],
+   "font": 4,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0.0",
+   "sample": "0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x20016924",
+   "rect": [
+    320,
+    143,
+    67,
+    44
+   ],
+   "font": 3,
+   "align": 0,
+   "color": "#ffffff",
+   "template": "65°C",
+   "sample": "65°C",
+   "bind": []
+  },
+  {
+   "widget": "0x2001695c",
+   "rect": [
+    0,
+    50,
+    300,
+    73
+   ],
+   "font": 4,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0.0",
+   "sample": "0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x20016994",
+   "rect": [
+    320,
+    58,
+    67,
+    44
+   ],
+   "font": 3,
+   "align": 0,
+   "color": "#ffffff",
+   "template": "0°C",
+   "sample": "0°C",
+   "bind": []
+  },
+  {
+   "widget": "0x20016a74",
+   "rect": [
+    75,
+    118,
+    138,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0%",
+   "sample": "0%",
+   "bind": []
+  },
+  {
+   "widget": "0x20016aac",
+   "rect": [
+    416,
+    195,
+    62,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "7°C",
+   "sample": "7°C",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}

@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) 6 z 9 ekranow glownych w karcie: Kociol, Palnik, Ogrzewanie 1-4, CWU, Solary, Bufor
+Zrobilem: eksport 8 ekranow z emulatora (`screens/*.png|json`, w tym Solary i Bufor) i ich widok w prototypie (tlo + pola dynamiczne), nawigacja do list nastaw wg instancji; test Playwright MENU->ekran->nastawy->wstecz dla 5 pierwszych wierszy: 0 bledow. Pozostalo: bindingi PID (data_binding w toku, ~40% z 655), HOME, Kaskada/Magazyn/INFO/ALARMY/TEST/SIEC jako ekrany, podpiecie /api/v1/states.
+
 ### E7 (2026-11-24) ROZBUDOWA: ekran Kociol w karcie wyglada jak panel
 Zrobilem: `tools/export_card_screen.py` (tlo PNG z danych firmware bez pol dynamicznych + JSON pol dynamicznych: pozycja, czcionka, kolor, wyrownanie, szablon, binding PID), `web/estyma_prototype/screens/KOCIOL.{png,json}`, widok SCR w prototypie: tlo + zywe pola (demo, odswiezane co 1 s), klik w naglowek = wstecz, klik w kafel nastaw (prawy dol) = lista nastaw, klik wstecz -> MENU. Test Playwright: 0 bledow, nawigacja MENU->Kociol->Nastawy->Kociol->MENU OK; zrzut zgodny z panelem. Bindingi PID pol (duza temperatura, zadana) - dane z `data_binding.py` jeszcze licza sie w tle (~25% z 655 PID); do tego czasu pola pokazuja wartosci przykladowe. Pozostalo: bindingi PID -> /api/v1/states, eksport pozostalych ekranow (Palnik, Ogrzewanie, CWU, Solary, Bufor), HOME, test na prawdziwym API (po zgodzie wlasciciela; tylko odczyt).
 

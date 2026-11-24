@@ -1,0 +1,70 @@
+{
+ "name": "SOLARY",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x20016978",
+   "rect": [
+    0,
+    52,
+    90,
+    44
+   ],
+   "font": 3,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0.0",
+   "sample": "0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x200169b0",
+   "rect": [
+    0,
+    168,
+    150,
+    44
+   ],
+   "font": 3,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "0.0",
+   "sample": "0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x200169e8",
+   "rect": [
+    256,
+    57,
+    480,
+    73
+   ],
+   "font": 4,
+   "align": 0,
+   "color": "#ffffff",
+   "template": "0.0",
+   "sample": "0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x20016a20",
+   "rect": [
+    258,
+    154,
+    480,
+    44
+   ],
+   "font": 3,
+   "align": 0,
+   "color": "#ffffff",
+   "template": "P=0W",
+   "sample": "P=0W",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}

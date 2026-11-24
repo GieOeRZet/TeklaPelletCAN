@@ -1,0 +1,55 @@
+{
+ "name": "CWU",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x20017404",
+   "rect": [
+    180,
+    50,
+    157,
+    104
+   ],
+   "font": 5,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "0.0",
+   "sample": "0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x2001743c",
+   "rect": [
+    352,
+    65,
+    63,
+    44
+   ],
+   "font": 3,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "0",
+   "sample": "0",
+   "bind": []
+  },
+  {
+   "widget": "0x20017474",
+   "rect": [
+    429,
+    195,
+    49,
+    32
+   ],
+   "font": 2,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "7°C",
+   "sample": "7°C",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}

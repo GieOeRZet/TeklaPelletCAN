@@ -1,0 +1,100 @@
+{
+ "name": "PALNIK",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x20016ae8",
+   "rect": [
+    270,
+    50,
+    200,
+    70
+   ],
+   "font": 1,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "spalanie[kg/h]=0.0",
+   "sample": "spalanie[kg/h]=0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x20016b20",
+   "rect": [
+    270,
+    100,
+    200,
+    70
+   ],
+   "font": 1,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "moc[%]=0",
+   "sample": "moc[%]=0",
+   "bind": []
+  },
+  {
+   "widget": "0x20016b58",
+   "rect": [
+    270,
+    75,
+    200,
+    70
+   ],
+   "font": 1,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "moc[kW]=0.0",
+   "sample": "moc[kW]=0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x20016b90",
+   "rect": [
+    270,
+    125,
+    200,
+    70
+   ],
+   "font": 1,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "jasność=0",
+   "sample": "jasność=0",
+   "bind": []
+  },
+  {
+   "widget": "0x20016dc0",
+   "rect": [
+    270,
+    175,
+    200,
+    70
+   ],
+   "font": 1,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "T. palnika=0",
+   "sample": "T. palnika=0",
+   "bind": []
+  },
+  {
+   "widget": "0x20016ed8",
+   "rect": [
+    103,
+    127,
+    12,
+    15
+   ],
+   "font": 0,
+   "align": 2,
+   "color": "#ffffff",
+   "template": "F1",
+   "sample": "F1",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}
