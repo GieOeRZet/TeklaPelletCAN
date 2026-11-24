@@ -1,0 +1,2235 @@
+{
+ "schema_version": "1.0.0",
+ "evidence": "STRONG (statyczny join, nie zmierzony): join ui_model/lists.json (PID panelu) z rejestry/odczyty.csv i punkty.csv po indeksie",
+ "pids": [
+  {
+   "pid": "0x2003",
+   "name_en": "Boiler set manual temp[C]",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 60,
+   "raw_max": 80,
+   "point_id": "boiler_set_manual",
+   "write_key": "104",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_boiler_set_manual",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2208",
+   "name_en": "Boiler on histeresis",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 20,
+   "point_id": "boiler_hyst_on",
+   "write_key": "10",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_boiler_hyst_on",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2291",
+   "name_en": "Boiler off histeresis",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 20,
+   "point_id": "boiler_hyst_off",
+   "write_key": "11",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_boiler_hyst_off",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2207",
+   "name_en": "Boiler minimal pump temperature",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 70,
+   "point_id": "boiler_pump_min",
+   "write_key": "48",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_boiler_pump_min",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3708",
+   "name_en": "Boiler pump overrun [min]",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 120,
+   "point_id": "boil_pump_run",
+   "write_key": "64",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_boil_pump_run",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3508",
+   "name_en": "Silence hours from",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 24,
+   "point_id": "alarm_sil_from",
+   "write_key": "74",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_alarm_sil_from",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3509",
+   "name_en": "Silence hours to",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 24,
+   "point_id": "alarm_sil_to",
+   "write_key": "75",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_alarm_sil_to",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x216C",
+   "name_en": "Boiler minimal return temperature",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 35,
+   "raw_max": 75,
+   "point_id": "boiler_ret_min",
+   "write_key": "49",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_boiler_ret_min",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x216E",
+   "name_en": "Boiler mixer opening time [s]",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 15,
+   "raw_max": 360,
+   "point_id": "boiler_mixer_time",
+   "write_key": "50",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_boiler_mixer_time",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3604",
+   "name_en": "Fuel reserve [kg]",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 100,
+   "point_id": "boil_fuel_reserve",
+   "write_key": "65",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_boil_fuel_reserve",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3129",
+   "name_en": "Boiler min hydraulic pressure [0.1bar]",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 1,
+   "raw_max": 15,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x312A",
+   "name_en": "Boiler max hydraulic pressure [0.1bar]",
+   "lists": [
+    "0x00|KOCIOL|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 4,
+   "raw_max": 25,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2032",
+   "name_en": "CH comf temp set [dC]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 150,
+   "raw_max": 300,
+   "point_id": "co_set_comfort",
+   "write_key": "102",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_co_set_comfort",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2048",
+   "name_en": "CH eco temp set [dC]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 100,
+   "raw_max": 300,
+   "point_id": "co_set_eco",
+   "write_key": "103",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_co_set_eco",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22BD",
+   "name_en": "Room temp hysteresis [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 50,
+   "point_id": "co1_hyst",
+   "write_key": "12",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_hyst",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22C1",
+   "name_en": "Room sensor cal [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": -30,
+   "raw_max": 30,
+   "point_id": "co1_calib",
+   "write_key": "13",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_calib",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2142",
+   "name_en": "CH mode",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": "co1_mode",
+   "write_key": "14",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_mode",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2146",
+   "name_en": "Tch set manual [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 80,
+   "point_id": "ch1_set_manual",
+   "write_key": "15",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_ch1_set_manual",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22C5",
+   "name_en": "CH temp for -20C [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 80,
+   "point_id": "co1_curve_m20",
+   "write_key": "16",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_curve_m20",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x400C",
+   "name_en": "CH temp for -10C [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 80,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x22C9",
+   "name_en": "CH temp for 0C [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 80,
+   "point_id": "co1_curve_0",
+   "write_key": "17",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_curve_0",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22CD",
+   "name_en": "CH temp for -20C [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 80,
+   "point_id": "co1_curve_10",
+   "write_key": "18",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_curve_10",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2315",
+   "name_en": "Automatic summer recognition",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2321",
+   "name_en": "CH circuit name part1",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 4294967295,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x22D1",
+   "name_en": "CH source",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": "co1_source",
+   "write_key": "61",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_source",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22B1",
+   "name_en": "CH delta source [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 30,
+   "point_id": "co1_src_inc",
+   "write_key": "51",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_src_inc",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22A1",
+   "name_en": "Room temp sensor type",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 0,
+   "raw_max": 5,
+   "point_id": "co1_room_sensor",
+   "write_key": "63",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_room_sensor",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22D5",
+   "name_en": "CH max temp [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 30,
+   "raw_max": 80,
+   "point_id": "co1_tmax",
+   "write_key": "52",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_tmax",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22A5",
+   "name_en": "CH sensor use",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": "co1_co_sensor",
+   "write_key": "62",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_co_sensor",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22D9",
+   "name_en": "CH correction factor [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 20,
+   "point_id": "co1_corr",
+   "write_key": "53",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_corr",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22E5",
+   "name_en": "CH temp lowering [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 40,
+   "point_id": "co1_lower",
+   "write_key": "56",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_lower",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22E9",
+   "name_en": "Min CH temp for pump [C]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 60,
+   "point_id": "co1_pump_min",
+   "write_key": "57",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_pump_min",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22B5",
+   "name_en": "CH mixer opening time [s]",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 60,
+   "raw_max": 360,
+   "point_id": "co1_mixer_time",
+   "write_key": "58",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_mixer_time",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22F1",
+   "name_en": "Permament pump",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": "co1_const_pump",
+   "write_key": "59",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_const_pump",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x22F9",
+   "name_en": "Tch lowering for energ. consumption reduction",
+   "lists": [
+    "0x01|OGRZEWANIE|inst1",
+    "0x02|OGRZEWANIE|inst1",
+    "0x03|OGRZEWANIE|inst1",
+    "0x04|OGRZEWANIE|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": "co1_ret_protect",
+   "write_key": "60",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_co1_ret_protect",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2010",
+   "name_en": "Hot water 1 comfort temperature",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 70,
+   "point_id": "hw_set_comfort",
+   "write_key": "100",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_hw_set_comfort",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2012",
+   "name_en": "Hot water 1 economical temperature",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 70,
+   "point_id": "hw_set_eco",
+   "write_key": "101",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_hw_set_eco",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2210",
+   "name_en": "Hot water 1 heat now",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": "cwu_boost",
+   "write_key": "20",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_cwu_boost",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2212",
+   "name_en": "Hot water 1 histeresis",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 5,
+   "raw_max": 30,
+   "point_id": "cwu_hyst",
+   "write_key": "19",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_cwu_hyst",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2297",
+   "name_en": "HW1 anti legionella",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": "cwu_legion",
+   "write_key": "67",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_cwu_legion",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x300D",
+   "name_en": "Hot water priority",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": "cwu_prio",
+   "write_key": "21",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_cwu_prio",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x374B",
+   "name_en": "Hot water 1 circular pump fork time",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 10,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x374C",
+   "name_en": "Hot water 1 circular pump pause time",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 60,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2214",
+   "name_en": "Hot water 1 source",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": "cwu_src",
+   "write_key": "44",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_cwu_src",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2216",
+   "name_en": "Hot water 1 delta source",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 2,
+   "raw_max": 30,
+   "point_id": "cwu_src_inc",
+   "write_key": "45",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_cwu_src_inc",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2218",
+   "name_en": "Hot water 1 delta min temperature",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 2,
+   "raw_max": 20,
+   "point_id": "cwu_delta",
+   "write_key": "46",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_cwu_delta",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x201C",
+   "name_en": "Hot water 1 temperature max",
+   "lists": [
+    "0x05|CWU|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 40,
+   "raw_max": 80,
+   "point_id": "cwu_tmax",
+   "write_key": "66",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_cwu_tmax",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2116",
+   "name_en": "Solar flow [l/min]",
+   "lists": [
+    "0x06|SOLARY|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 7,
+   "raw_max": 200,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3116",
+   "name_en": "Solar delta on [C]",
+   "lists": [
+    "0x06|SOLARY|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 20,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3117",
+   "name_en": "Solar delta off [C]",
+   "lists": [
+    "0x06|SOLARY|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 10,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3118",
+   "name_en": "Solar liquid specific heat [kJ/(kg * C)]",
+   "lists": [
+    "0x06|SOLARY|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 15,
+   "raw_max": 60,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3119",
+   "name_en": "Solar temperature water max [C]",
+   "lists": [
+    "0x06|SOLARY|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 70,
+   "raw_max": 95,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x311A",
+   "name_en": "Solar temperature alarm max[C]",
+   "lists": [
+    "0x06|SOLARY|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 90,
+   "raw_max": 145,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x311B",
+   "name_en": "Solar temperature alarm min[C]",
+   "lists": [
+    "0x06|SOLARY|inst1"
+   ],
+   "kind": "number",
+   "raw_min": -40,
+   "raw_max": 0,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2114",
+   "name_en": "Buffer top set temperature",
+   "lists": [
+    "0x07|BUFOR|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 7,
+   "raw_max": 80,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2115",
+   "name_en": "Buffer bottom set temperature",
+   "lists": [
+    "0x07|BUFOR|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 7,
+   "raw_max": 80,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2281",
+   "name_en": "Buffer minimal pump temperature",
+   "lists": [
+    "0x07|BUFOR|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 15,
+   "raw_max": 60,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2282",
+   "name_en": "Buffer is automatic top temperature",
+   "lists": [
+    "0x07|BUFOR|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x299B",
+   "name_en": "",
+   "lists": [
+    "0x07|BUFOR|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 3,
+   "raw_max": 30,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3170",
+   "name_en": "Buffer pump delta min temperature",
+   "lists": [
+    "0x07|BUFOR|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 2,
+   "raw_max": 20,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3011",
+   "name_en": "Burner pwr. depend of buf. energy level",
+   "lists": [
+    "0x07|BUFOR|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x351A",
+   "name_en": "Cascade slaves number",
+   "lists": [
+    "0x08|KASKADA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 1,
+   "raw_max": 3,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3511",
+   "name_en": "Cascade master power level",
+   "lists": [
+    "0x08|KASKADA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 1,
+   "raw_max": 4,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3512",
+   "name_en": "Cascade slave 1 power level",
+   "lists": [
+    "0x08|KASKADA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 1,
+   "raw_max": 4,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3513",
+   "name_en": "Cascade slave 2 power level",
+   "lists": [
+    "0x08|KASKADA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 1,
+   "raw_max": 4,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3514",
+   "name_en": "Cascade slave 3 power level",
+   "lists": [
+    "0x08|KASKADA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 1,
+   "raw_max": 4,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3515",
+   "name_en": "Cascade minimal energy [%]",
+   "lists": [
+    "0x08|KASKADA|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 100,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3516",
+   "name_en": "Cascade maximal energy [%]",
+   "lists": [
+    "0x08|KASKADA|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 100,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3517",
+   "name_en": "Cascade time to inc power lvel [min]",
+   "lists": [
+    "0x08|KASKADA|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 240,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3518",
+   "name_en": "Cascade time to dec power lvel [min]",
+   "lists": [
+    "0x08|KASKADA|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 240,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3520",
+   "name_en": "Ext. fuel storage motor 1 transport. time [s]",
+   "lists": [
+    "0x09|MAGAZYN|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 5,
+   "raw_max": 60,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3521",
+   "name_en": "Ext. fuel storage time [s] to empty transport. hose",
+   "lists": [
+    "0x09|MAGAZYN|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 30,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3527",
+   "name_en": "Ext. fuel storage feeder work time [s]",
+   "lists": [
+    "0x09|MAGAZYN|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 1,
+   "raw_max": 60,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3528",
+   "name_en": "Ext. fuel storage feeder pause time [s]",
+   "lists": [
+    "0x09|MAGAZYN|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 30,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3529",
+   "name_en": "Ext. fuel storage reserve sensor",
+   "lists": [
+    "0x09|MAGAZYN|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x352B",
+   "name_en": "Ext. fuel storage max cycles no.",
+   "lists": [
+    "0x09|MAGAZYN|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 5,
+   "raw_max": 100,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3526",
+   "name_en": "Ext. fuel storage motor 1 overrun time [s]",
+   "lists": [
+    "0x09|MAGAZYN|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 3,
+   "raw_max": 15,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2273",
+   "name_en": "Burner blower corretion",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": -10,
+   "raw_max": 40,
+   "point_id": "air_corr",
+   "write_key": "3",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_air_corr",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2270",
+   "name_en": "Min power",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 30,
+   "raw_max": 100,
+   "point_id": "power_min",
+   "write_key": "0",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_power_min",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2271",
+   "name_en": "Max power",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 30,
+   "raw_max": 100,
+   "point_id": "power_max",
+   "write_key": "1",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_power_max",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2292",
+   "name_en": "Fuel calorific [kWh/kg]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 100,
+   "point_id": "fuel_heat",
+   "write_key": "2",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_fuel_heat",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2272",
+   "name_en": "Feeder rate [dkg/h]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 50,
+   "raw_max": 1000,
+   "point_id": "fuel_test",
+   "write_key": "4",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_fuel_test",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2254",
+   "name_en": "Burner blower",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 100,
+   "point_id": "blower_pct",
+   "write_key": null,
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_blower_pct",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2257",
+   "name_en": "Max Feeding [s]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 10,
+   "raw_max": 150,
+   "point_id": "p_feed_max",
+   "write_key": "23",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_p_feed_max",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2256",
+   "name_en": "Pellet predose [s]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 10,
+   "raw_max": 200,
+   "point_id": "p_prefeed",
+   "write_key": "22",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_prefeed",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x226A",
+   "name_en": "Brightness threshold",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 5,
+   "raw_max": 100,
+   "point_id": "p_photo",
+   "write_key": "24",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_photo",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2289",
+   "name_en": "Blower power during fire up",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 100,
+   "point_id": "p_blow_ign",
+   "write_key": "25",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_p_blow_ign",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3704",
+   "name_en": "Blower power in incandescing [%]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 30,
+   "raw_max": 100,
+   "point_id": "p_blow_glow",
+   "write_key": "26",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_blow_glow",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x300C",
+   "name_en": "Blower power in burning off [%]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 25,
+   "raw_max": 100,
+   "point_id": "p_blow_stop",
+   "write_key": "27",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_blow_stop",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2290",
+   "name_en": "Incandescing time [min]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 1,
+   "raw_max": 10,
+   "point_id": "p_glow_time",
+   "write_key": "28",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_glow_time",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x299A",
+   "name_en": "Incandenscing fuel [%]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 20,
+   "raw_max": 50,
+   "point_id": "p_glow_fuel",
+   "write_key": "29",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_glow_fuel",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x226B",
+   "name_en": "Burning off time [min]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 2,
+   "raw_max": 6,
+   "point_id": "p_stop_time",
+   "write_key": "30",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_stop_time",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3605",
+   "name_en": "Lambda oxygen control",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": "p_lambda",
+   "write_key": "31",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_lambda",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x214E",
+   "name_en": "Oxygen for 30% of power [%]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 60,
+   "raw_max": 150,
+   "point_id": "p_o2_30",
+   "write_key": "32",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_o2_30",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2152",
+   "name_en": "Oxygen for 100% of power [%]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 80,
+   "raw_max": 150,
+   "point_id": "p_o2_100",
+   "write_key": "33",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_o2_100",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2258",
+   "name_en": "Grate cleaning number",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 1,
+   "raw_max": 3,
+   "point_id": "p_cleans",
+   "write_key": "34",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_cleans",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x2999",
+   "name_en": "Burner max continuous work time [h]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 1,
+   "raw_max": 12,
+   "point_id": "p_clean_gap",
+   "write_key": "35",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_clean_gap",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3715",
+   "name_en": "Burner pause time [min]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 120,
+   "point_id": "p_pause_time",
+   "write_key": "36",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_pause_time",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3716",
+   "name_en": "Burner pause power [%]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 30,
+   "point_id": "p_pause_power",
+   "write_key": "37",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_pause_power",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3717",
+   "name_en": "Burner pause blower power [%]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 50,
+   "point_id": "p_pause_blow",
+   "write_key": "38",
+   "read": "odczyty:l1",
+   "entity": "sensor.<node>_p_pause_blow",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x225A",
+   "name_en": "Pwr reg. speed",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 2,
+   "raw_max": 30,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2153",
+   "name_en": "Burner inertia [min]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 1,
+   "raw_max": 60,
+   "point_id": "p_inertia",
+   "write_key": "39",
+   "read": "odczyty:l2",
+   "entity": "sensor.<node>_p_inertia",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3003",
+   "name_en": "Grate move in modulation [0.1s]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 200,
+   "point_id": "p_grate_time",
+   "write_key": "40",
+   "read": "odczyty:l2",
+   "entity": "sensor.<node>_p_grate_time",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x370B",
+   "name_en": "Burner feeder % of stor. feeder",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 50,
+   "raw_max": 500,
+   "point_id": "p_burner_feed",
+   "write_key": "41",
+   "read": "odczyty:l2",
+   "entity": "sensor.<node>_p_burner_feed",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3700",
+   "name_en": "Storage feeder period [s]",
+   "lists": [
+    "0x0A|PALNIK|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 5,
+   "raw_max": 180,
+   "point_id": "p_feeder_period",
+   "write_key": "42",
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_p_feeder_period",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x3720",
+   "name_en": "Outside temp. averaging period [h]",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 48,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x372A",
+   "name_en": "Summer time threshold temp. [C]",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 5,
+   "raw_max": 25,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3747",
+   "name_en": "Outside calibration [dC]",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "number",
+   "raw_min": -30,
+   "raw_max": 30,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3603",
+   "name_en": "Fuel reserve [kg]",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 100,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x372F",
+   "name_en": "Is automatic time synchronization",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3501",
+   "name_en": "Autoconfig activation",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3500",
+   "name_en": "Main module type",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3502",
+   "name_en": "CH expansion module type",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2105",
+   "name_en": "Heating configuration",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 0,
+   "raw_max": 4,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3505",
+   "name_en": "Outside temperature sensor configuration",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 0,
+   "raw_max": 2,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2106",
+   "name_en": "Hot water configuration",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2108",
+   "name_en": "Solar configuration",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2107",
+   "name_en": "Buffer configuration",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x2123",
+   "name_en": "Lambda module presence",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3606",
+   "name_en": "Input IN17 config",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 0,
+   "raw_max": 2,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3600",
+   "name_en": "Tank capacity [kg]",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 10,
+   "raw_max": 1500,
+   "point_id": "tank_cap",
+   "write_key": null,
+   "read": "odczyty:live",
+   "entity": "sensor.<node>_tank_cap",
+   "status": "MAPPED"
+  },
+  {
+   "pid": "0x350A",
+   "name_en": "Return to boiler temperature sensor",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x350B",
+   "name_en": "Profile number",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 1,
+   "raw_max": 3,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x299E",
+   "name_en": "Boiler pump work mode",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 0,
+   "raw_max": 2,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x350C",
+   "name_en": "Is this device cascade master",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x350D",
+   "name_en": "Pressure sensor",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3525",
+   "name_en": "Additional fuel storage",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3629",
+   "name_en": "Energy meter type",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "enum",
+   "raw_min": 0,
+   "raw_max": 2,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3722",
+   "name_en": "Start settings recovery",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x299D",
+   "name_en": "HALL Activated",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x404E",
+   "name_en": "Request reset alarm memory",
+   "lists": [
+    "0x10|KONFIGURACJA|inst1"
+   ],
+   "kind": "switch",
+   "raw_min": 0,
+   "raw_max": 1,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3608",
+   "name_en": "Statistics - Ignition cnt",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 65535,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3609",
+   "name_en": "Statistics - Avg ignition time [s]",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 65535,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3610",
+   "name_en": "Statistics - Avg burner power [%]",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 100,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3611",
+   "name_en": "Feeder 1 total work time [h]",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 4294967295,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3612",
+   "name_en": "Feeder 2 total work time [h]",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 4294967295,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3507",
+   "name_en": "Total fuel counter[kg]",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 4294967295,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3613",
+   "name_en": "Average oxygen for 30% pwr [%]",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 255,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3614",
+   "name_en": "Average oxygen for 50% pwr [%]",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 255,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3615",
+   "name_en": "Average oxygen for 70% pwr [%]",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 255,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3616",
+   "name_en": "Average oxygen for 90% pwr [%]",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 255,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3618",
+   "name_en": "Statistics - Exchanger cleaning count",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 65535,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x3619",
+   "name_en": "Statistics - Boiler overheat count",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 65535,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  },
+  {
+   "pid": "0x362A",
+   "name_en": "Statistics - reset count",
+   "lists": [
+    "0x11|STATYSTYKI|inst1"
+   ],
+   "kind": "number",
+   "raw_min": 0,
+   "raw_max": 65535,
+   "point_id": null,
+   "write_key": null,
+   "read": null,
+   "entity": null,
+   "status": "NO_DEVICE_POINT"
+  }
+ ]
+}

@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E6 (2026-11-24) DOMKNIETY (statycznie): kontrakt API <-> ui_model
+Zrobilem: `ui_model/API_KONTRAKT.md` (podzial: struktura z ui_model, wartosci z `/api/v1/states`, zapis `/api/v1/call|write`, reguly renderowania), generator `tools/build_api_contract.py` -> `ui_model/pid_to_point.json` (+ schemat), walidator PASS, smoke PASS. Wynik: z 144 PID w listach panelu 68 ma punkt w `rejestry/odczyty.csv|punkty.csv`, **76 bez punktu w urzadzeniu** (lista w API_KONTRAKT.md - kandydaci do dodania, decyzja wlasciciela; nie zmienialem katalogu urzadzenia). Zrodla live: 6 z 23 PID ma punkt odczytu. Pozostalo: decyzja o dodaniu brakujacych punktow; etykiety enum (OPEN).
+
 ### E5 (2026-11-24) CZESCIOWO (bez emulatora): paths.py + test dymny
 Zrobilem: `tools/paths.py` (jedno miejsce na sciezki, nadpisanie `ESTYMA_ANALIZA`), przepiecie 17 narzedzi (cg_*, validate/index/coverage_matrix, list_scales_build) na `paths`, `tools/smoke_test.py` (kompilacja, walidator, zgodnosc INDEX; PASS), odswiezony INDEX.json. Pozostalo: `git mv analiza analiza_archiwum` + poprawa ~207 odwolan w dokumentacji - CELOWO PO E3/E4 (te etapy zapisuja do `analiza/`, wymagaja emulatora i firmware, ktorego brak w tym czacie). Znane, istniejace wczesniej bledy: `tools/re_scan.py`, `tools/test_cg_alarm_asymmetry_audit.py` (skladnia), 7 testow cg_* bez CSV.
 
