@@ -129,9 +129,13 @@ def tap(x, y, settle=700):
 
 
 def run_siec(fw, state, out):
-    tests = {}
+    s0 = new_session(fw, state)
+    b0 = s0.shot()
+    s0.wait(100)
+    c0 = s0.shot()
+    tests = {"empty_baseline": {"control_diff": diff_box(b0, c0), "status": "BASELINE"}}
     for label, nodes in (
-        ("empty", []), ("n56", [0x56]), ("n57", [0x57]),
+        ("n56", [0x56]), ("n57", [0x57]),
         ("n56_n57", [0x56, 0x57]), ("n57_n56", [0x57, 0x56]),
         ("n5b", [0x5B]), ("n45", [0x45]), ("n22_unknown", [0x22]),
     ):
@@ -172,7 +176,7 @@ def run_info(fw, state, out):
             name = "info_%04X_%d" % (pid, v)
             tests[name] = strict_repeat(
                 fw, state, state, out, name,
-                inject_test(pid, v), inject_test(pid, v), settle=300
+                inject_test(pid, v), inject_test(pid, v + 1 if v < 65535 else v - 1), settle=300
             )
     return tests
 
@@ -188,7 +192,7 @@ def run_internet(fw, state, out):
             name = "internet_%04X_%d" % (pid, v)
             tests[name] = strict_repeat(
                 fw, state, state, out, name,
-                inject_test(pid, v), inject_test(pid, v), settle=300
+                inject_test(pid, v), inject_test(pid, v + 1 if v < 65535 else v - 1), settle=300
             )
 
     # SSID editor entry is a real TAP, not a PID injection.
