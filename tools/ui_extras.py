@@ -44,6 +44,8 @@ def extract(s, widgets):
                 for off in range(0x20, 0x70, 2):
                     if rd(a + off, 2) in cand:
                         ex[w["this"]] = dict(cls="btn", bmp=rd(a + off, 2), off=off, vptr=hex(v), hidden=hidden)
+                        pv = rd(a + off - 2, 2)
+                        if 0 < pv < 188 and pv == rd(a + off, 2) - 1: ex[w["this"]]["bmp"] = pv           # para (bitmapa spoczynkowa, wcisnieta) sasiednie id: rysuj spoczynkowa (np. wiersz listy 80=linia 440x1, 81=podswietlenie 440x50)
                         ic = rd(a + off + 6, 2); sx = lambda q: q - 65536 if q > 32767 else q          # przycisk z ikona (TouchGFX ButtonWithIcon): id ikony +0x34, iconX +0x38, iconY +0x3A (przy off=0x2E)
                         if 0 < ic < 188 and ic != rd(a + off, 2) and ic != rd(a + off + 2, 2): ex[w["this"]].update(icon=ic, icon_xy=[sx(rd(a + off + 10, 2)), sx(rd(a + off + 12, 2))])
                         break

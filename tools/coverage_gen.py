@@ -32,25 +32,38 @@ if not os.path.exists(os.path.join(out, "rows.pkl")):
 menu = json.load(open(paths.UI_MODEL / "menu_tree.json")); nodes = {n["id"]: n for n in menu["nodes"]}
 exp = sorted([r for r in menu["menu_rows"] if "%s|L%d" % (config, level) in r["visible_in"]], key=lambda r: r["row"])
 rows = pickle.load(open(os.path.join(out, "rows.pkl"), "rb"))
-res = dict(level=level, config=config, pids={hex(k): v for k, v in pids.items()}, rows_actual=len(rows), rows_expected=len(exp), rows_match=len(rows) == len(exp), cells=[])
+def true_rows():      # rzeczywista dlugosc MENU: przewin do konca (ListNav.build bywa zawyzone przy zszywaniu)
+    s0 = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), None); s0.wait(120)
+    nv = U.ListNav(s0); nv.tall = Image.open(os.path.join(out, "menu_tall.png")); nv.rows = rows
+    for _ in range(30):
+        if not s0.drag_until_change(240, 235, 240, 175, attempts=4): break
+    o = nv.offset(s0.shot())[1]; return round((o + 272 - 46 - 4) / 50), o
+n_true, o_end = true_rows()
+res = dict(level=level, config=config, pids={hex(k): v for k, v in pids.items()}, rows_actual=n_true, rows_stitched=len(rows), rows_expected=len(exp), rows_match=n_true == len(exp), cells=[])
 def metrics(ws, ex, ref):
     a = R.render(ws, ex); dd = np.abs(np.asarray(a).astype(int) - np.asarray(ref.convert("RGB")).astype(int)).sum(axis=2)
     return a, round(float(dd.mean() / 3), 2), round(float((dd > 40).mean() * 100), 1)
 for i, er in enumerate(exp):
     tgt = er.get("target")
+    if i >= n_true and tgt and nodes.get(tgt, {}).get("kind") == "screen":
+        res["cells"].append(dict(row=er["row"], index=i, node=tgt, title=er["title_pl"], kind="screen", status="NOT_VISIBLE_IN_EMULATOR (wg visible_in oczekiwany, brak w MENU)")); continue
     if i >= len(rows) or not tgt or nodes.get(tgt, {}).get("kind") != "screen" or tgt == "PROGRAM": continue
     s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), None); s.wait(120)
     nav = U.ListNav(s); nav.tall = Image.open(os.path.join(out, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
-    nav.tap_row_from_top(i); s.wait(700)
+    if not nav.tap_row_from_top(i): res["cells"].append(dict(row=er["row"], index=i, node=tgt, kind="screen", status="TAP_FAILED")); continue
+    s.wait(700)
+    cell = {}
     for kind, tap in (("screen", None), ("settings", (400, 245))):
         try:
+            if kind == "settings" and cell.get("view") == "0x808f944": break      # ekran jest juz lista nastaw (brak kafla nastaw)
             if tap: s.tap(tap[0], tap[1], settle=800); s.wait(500)
             ws = C.widget_table(s, t); ex = X.extract(s, ws); ref = s.shot(); a, mae, pct = metrics(ws, ex, ref)
             cell = dict(row=er["row"], index=i, node=tgt, title=er["title_pl"], kind=kind, mae=mae, pct_diff=pct, view=hex(s.b.rd(s.b.rd(0x20024818))), widgets=len(ws))
             if pct > 8:
                 base = os.path.join(out, "%s_%s_%d" % (tgt, kind, er["row"])); ref.save(base + "_ref.png"); a.save(base + "_render.png")
         except Exception as e: cell = dict(row=er["row"], index=i, node=tgt, kind=kind, error=repr(e)[:120])
-        res["cells"].append(cell); print(level, config, cell, flush=True)
+        if cell.get("kind"): res["cells"].append(cell)
+        print(level, config, cell, flush=True)
     json.dump(res, open(os.path.join(out, "result.json"), "w"), ensure_ascii=False, indent=1)
 json.dump(res, open(os.path.join(out, "result.json"), "w"), ensure_ascii=False, indent=1)
 print("DONE", out, "rows_match", res["rows_match"], len(res["cells"]), "komorek")
