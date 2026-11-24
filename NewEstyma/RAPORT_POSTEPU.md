@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E3 w toku (2026-11-24): 9 z 36 zadan (poziom x konfiguracja) gotowe
+Zrobilem: 254 komorek (ekran/nastawy) zmierzonych, **mediana 0.2%, 93.7% komorek < 3%, 100% < 8%**; 15 komorek oczekiwanych wg visible_in nie istnieje w MENU emulatora. Pozostalo: 27 zadan (~35 min), potem stany alarm/offline (E3c) i raport koncowy E3 z tabela w `ui_model/coverage_matrix_agent.json|md`.
+
 ### E4 (czesc) + start E3 (2026-11-24): listy nastaw 8.6% -> 0.3-0.8%
 Zrobilem: znaleziona przyczyna najwiekszego bledu renderera ekranow nastaw: wiersze listy to przyciski z para bitmap (80 = linia 440x1 w spoczynku, 81 = podswietlenie 440x50 gdy wcisniety); renderer rysowal wcisnieta -> poswiata na calej liscie. Poprawka w `ui_extras.py` (rysuj bitmape spoczynkowa). Pomiar na 4 punktach kontrolnych (L0 DEFAULT/FULL, L1 DEFAULT, L3 kaskada+magazyn): ekrany 0.2%, nastawy 0.3-0.8% (Kociol, Palnik, Ogrzewanie 1-4, CWU, Solary, Bufor, Kaskada, Magazyn). Znalezione: KONFIGURACJA 'nastawy' = ta sama lista (artefakt metody, pomijam kafel), ALARMY w L0 FULL 12.6% (znany uklad L0, OPEN#2), przy L1 DEFAULT wiersze 17-20 (Test wyjsc, Statystyki, SIEC, INTERNET) NIE ISTNIEJA w MENU emulatora mimo visible_in (dane do poprawy). `coverage_gen.py` mierzy teraz prawdziwa dlugosc menu. Uruchomiony pelny przebieg E3: 3 poziomy x 12 konfiguracji na 4 procesach (~40-60 min). Pozostalo: wynik E3 (tabela pokrycia), stany alarm/offline/dialog (E3c), HOME ekran, INTERNET/SIEC/TEST/STATYSTYKI (E4).
 
