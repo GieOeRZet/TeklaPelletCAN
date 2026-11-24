@@ -1,0 +1,135 @@
+{
+  "topic": "SIEC",
+  "view": "0x808f770",
+  "checkpoint": "node17_screen",
+  "results": [
+    {
+      "id": "siec_56_pdo_version",
+      "status": "STRONG",
+      "node": "0x56",
+      "pdo1_bytes_6_7": "34 12",
+      "screen": "CAN IO BIG | Node ID-86 | SW v52.1c"
+    },
+    {
+      "id": "siec_56_pdo_version_5678",
+      "status": "STRONG",
+      "node": "0x56",
+      "pdo1_bytes_6_7": "78 56",
+      "screen": "CAN IO BIG | Node ID-86 | SW v120.c"
+    },
+    {
+      "id": "siec_57_version",
+      "status": "STRONG",
+      "node": "0x57",
+      "pdo1_bytes_6_7": "34 12",
+      "screen": "CAN IO BIG | Node ID-87 | no SW field"
+    },
+    {
+      "id": "siec_5b",
+      "status": "STRONG",
+      "node": "0x5B",
+      "screen": "VIDE NET WIFI | Node ID-91 | SW v0.0"
+    },
+    {
+      "id": "siec_45",
+      "status": "STRONG",
+      "node": "0x45",
+      "screen": "CAN IO 5 | Node ID-69 | SW v52.1c | T=150"
+    },
+    {
+      "id": "siec_40",
+      "status": "STRONG",
+      "node": "0x40",
+      "screen": "CAN IO 0 | Node ID-64 | SW v0.0 | T=150"
+    },
+    {
+      "id": "siec_46",
+      "status": "STRONG",
+      "node": "0x46",
+      "screen": "CAN IO 6 | Node ID-70 | SW v0.0 | T=150"
+    },
+    {
+      "id": "siec_78",
+      "status": "STRONG",
+      "node": "0x78",
+      "screen": "CAN IO MINI 0 | Node ID-120 | SW v0.0 | T=-273"
+    },
+    {
+      "id": "siec_50",
+      "status": "STRONG",
+      "node": "0x50",
+      "screen": "MODUL LAMBDA | Node ID-80 | SW v0.0 | no 4th column"
+    },
+    {
+      "id": "siec_54",
+      "status": "STRONG",
+      "node": "0x54",
+      "screen": "FLOWMETER 1 | Node ID-84 | SW v0.0 | no 4th column"
+    },
+    {
+      "id": "siec_55",
+      "status": "STRONG",
+      "node": "0x55",
+      "screen": "FLOWMETER 2 | Node ID-85 | SW v0.0 | no 4th column"
+    },
+    {
+      "id": "siec_7a_7d",
+      "status": "STRONG",
+      "nodes": [
+        "0x7A",
+        "0x7B",
+        "0x7C",
+        "0x7D"
+      ],
+      "screen": "CAN IO MINI 2..5 | Node ID-122..125 | no SW/4th column"
+    },
+    {
+      "id": "siec_8_row_limit",
+      "status": "STRONG",
+      "screen": "8 rows visible; 9th omitted",
+      "forward_visible": [
+        "0x40",
+        "0x41",
+        "0x42",
+        "0x43",
+        "0x44",
+        "0x45",
+        "0x46",
+        "0x47"
+      ],
+      "reverse_visible": [
+        "0x41",
+        "0x42",
+        "0x43",
+        "0x44",
+        "0x45",
+        "0x46",
+        "0x47",
+        "0x50"
+      ]
+    },
+    {
+      "id": "siec_identity",
+      "status": "STRONG",
+      "node": "0x56",
+      "tests": [
+        "heartbeat only",
+        "SDO identity=0x11223344",
+        "SDO identity=0xAABBCCDD"
+      ],
+      "result": "same CAN IO BIG / Node ID-86; heartbeat alone creates row; name follows Node-ID mapping"
+    },
+    {
+      "id": "siec_10000_timeout",
+      "status": "STRONG",
+      "node": "0x56",
+      "result": "row remained visible after 10000 ticks without heartbeat; exact offline timeout threshold OPEN"
+    }
+  ],
+  "open": [
+    "exact SW formatting algorithm",
+    "why 0x57 omits SW",
+    "exact fourth-column source matrix",
+    "exact offline timeout threshold"
+  ]
+}
