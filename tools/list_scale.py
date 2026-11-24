@@ -9,6 +9,8 @@ import ui_session as U, action_probe as AP, pid_diff as P
 fw, d, inv_path, node, key, out = sys.argv[1:7]
 D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analiza", "FW2213TK-2026-11-22", "data", "ui_model")
 lists = json.load(open(os.path.join(D, "lists.json")))["lists"]
+CO = int(os.environ.get("CO_OFFSET", "0"))       # obwody CO2..CO4: PID wiersza = PID bazowy + (k-1), jesli rekord o tej samej nazwie istnieje (lists.json podaje PID CO1)
+PM = P.pid_meta()
 rows_meta = [r for r in [v for k, v in lists.items() if k.startswith(key + "|")][0]]
 inv = {n["node"]: n for n in json.load(open(inv_path))}[node]
 ws = inv["widgets"]
@@ -25,6 +27,9 @@ res = json.load(open(out)) if os.path.exists(out) else {}
 def text_of(w): return P.read_text(s, int(w["this"], 16))
 for i, meta in enumerate(rows_meta):
     k = "%d" % meta["idx"]
+    if CO and meta.get("pid"):
+        b = int(meta["pid"], 16); q = PM.get(b + CO)
+        if q and q["name"] == PM[b]["name"]: meta = dict(meta, pid="0x%04X" % (b + CO))
     if k in res or i >= len(labs): continue
     vw = next(iter(vals.values()))
     e = dict(row=i, name_en=meta["name_en"], pid=meta["pid"], kind=meta["kind"], raw_min=meta.get("raw_min"), raw_max=meta.get("raw_max"), value_widget=vw["this"] if vw else None, samples=[])
@@ -41,5 +46,5 @@ for i, meta in enumerate(rows_meta):
         if len(cand) == 1: e["samples"] = [dict(raw=x["raw"], stored=x["stored"], text=x["all"][cand[0]]) for x in e["samples"]]
         else: e["samples"] = [dict(raw=x["raw"], stored=x["stored"]) for x in e["samples"]]
     res[k] = e; json.dump(res, open(out, "w"), ensure_ascii=False, indent=1)
-    print(k, e["name_en"], [(x["raw"], x["text"]) for x in e["samples"]][:5], flush=True)
+    print(k, e["name_en"], [(x["raw"], x.get("text")) for x in e["samples"]][:5], flush=True)
 print("DONE")

@@ -1,0 +1,9856 @@
+{
+ "evidence": "MEASURED (PASS 70, tools/list_scale.py, emulator, poziom 3, CO2-4: PID bazowy + (k-1)): dla kazdego wiersza wstrzykniete surowe wartosci PID (min, min+1, srodek, domyslna, max), odczytany tekst wyswietlany w widgecie wartosci (jedyny widget, ktorego tekst sie zmienil)",
+ "lists": {
+  "0x00": {
+   "node": "0_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "Boiler set manual temp[C]",
+     "pid": "0x2003",
+     "kind": "number",
+     "raw_min": 60,
+     "raw_max": 80,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 60,
+       "text": "60"
+      },
+      {
+       "raw": 61,
+       "text": "61"
+      },
+      {
+       "raw": 65,
+       "text": "65"
+      },
+      {
+       "raw": 70,
+       "text": "70"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "Boiler on histeresis",
+     "pid": "0x2208",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 20,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Boiler off histeresis",
+     "pid": "0x2291",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 20,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "",
+     "pid": null,
+     "kind": "chart_or_special",
+     "raw_min": null,
+     "raw_max": null,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza"
+    },
+    {
+     "idx": 4,
+     "name_en": "Boiler minimal pump temperature",
+     "pid": "0x2207",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 70,
+     "slot": 5,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 45,
+       "text": "45"
+      },
+      {
+       "raw": 70,
+       "text": "70"
+      }
+     ]
+    },
+    {
+     "idx": 5,
+     "name_en": "Boiler pump overrun [min]",
+     "pid": "0x3708",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 120,
+     "slot": 6,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      },
+      {
+       "raw": 120,
+       "text": "120"
+      }
+     ]
+    },
+    {
+     "idx": 6,
+     "name_en": "Silence hours from",
+     "pid": "0x3508",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 24,
+     "slot": 7,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 12,
+       "text": "12"
+      },
+      {
+       "raw": 22,
+       "text": "22"
+      },
+      {
+       "raw": 24,
+       "text": "24"
+      }
+     ]
+    },
+    {
+     "idx": 7,
+     "name_en": "Silence hours to",
+     "pid": "0x3509",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 24,
+     "slot": 8,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 12,
+       "text": "12"
+      },
+      {
+       "raw": 24,
+       "text": "24"
+      }
+     ]
+    },
+    {
+     "idx": 8,
+     "name_en": "Boiler minimal return temperature",
+     "pid": "0x216C",
+     "kind": "number",
+     "raw_min": 35,
+     "raw_max": 75,
+     "slot": 9,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 35,
+       "text": "35"
+      },
+      {
+       "raw": 36,
+       "text": "36"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 55,
+       "text": "55"
+      },
+      {
+       "raw": 75,
+       "text": "75"
+      }
+     ]
+    },
+    {
+     "idx": 9,
+     "name_en": "Boiler mixer opening time [s]",
+     "pid": "0x216E",
+     "kind": "number",
+     "raw_min": 15,
+     "raw_max": 360,
+     "slot": 10,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 16,
+       "text": "16"
+      },
+      {
+       "raw": 180,
+       "text": "180"
+      },
+      {
+       "raw": 187,
+       "text": "187"
+      },
+      {
+       "raw": 360,
+       "text": "360"
+      }
+     ]
+    },
+    {
+     "idx": 10,
+     "name_en": "Fuel reserve [kg]",
+     "pid": "0x3604",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 100,
+     "slot": 11,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 11,
+     "name_en": "Boiler min hydraulic pressure [0.1bar]",
+     "pid": "0x3129",
+     "kind": "number",
+     "raw_min": 1,
+     "raw_max": 15,
+     "slot": 12,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "0.1"
+      },
+      {
+       "raw": 2,
+       "text": "0.2"
+      },
+      {
+       "raw": 8,
+       "text": "0.8"
+      },
+      {
+       "raw": 15,
+       "text": "1.5"
+      }
+     ]
+    },
+    {
+     "idx": 12,
+     "name_en": "Boiler max hydraulic pressure [0.1bar]",
+     "pid": "0x312A",
+     "kind": "number",
+     "raw_min": 4,
+     "raw_max": 25,
+     "slot": 13,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 4,
+       "text": "0.4"
+      },
+      {
+       "raw": 5,
+       "text": "0.5"
+      },
+      {
+       "raw": 14,
+       "text": "1.4"
+      },
+      {
+       "raw": 20,
+       "text": "2.0"
+      },
+      {
+       "raw": 25,
+       "text": "2.5"
+      }
+     ]
+    }
+   ]
+  },
+  "0x0A": {
+   "node": "1_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "Burner blower corretion",
+     "pid": "0x2273",
+     "kind": "number",
+     "raw_min": -10,
+     "raw_max": 40,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": -10,
+       "text": "-10"
+      },
+      {
+       "raw": -9,
+       "text": "-9"
+      },
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "Min power",
+     "pid": "0x2270",
+     "kind": "number",
+     "raw_min": 30,
+     "raw_max": 100,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 31,
+       "text": "31"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 65,
+       "text": "65"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Max power",
+     "pid": "0x2271",
+     "kind": "number",
+     "raw_min": 30,
+     "raw_max": 100,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 31,
+       "text": "31"
+      },
+      {
+       "raw": 65,
+       "text": "65"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "Fuel calorific [kWh/kg]",
+     "pid": "0x2292",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 100,
+     "slot": 3,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "2.0"
+      },
+      {
+       "raw": 21,
+       "text": "2.1"
+      },
+      {
+       "raw": 50,
+       "text": "5.0"
+      },
+      {
+       "raw": 60,
+       "text": "6.0"
+      },
+      {
+       "raw": 100,
+       "text": "10.0"
+      }
+     ]
+    },
+    {
+     "idx": 4,
+     "name_en": "Feeder rate [dkg/h]",
+     "pid": "0x2272",
+     "kind": "number",
+     "raw_min": 50,
+     "raw_max": 1000,
+     "slot": 4,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 50,
+       "text": "5.0"
+      },
+      {
+       "raw": 51,
+       "text": "5.1"
+      },
+      {
+       "raw": 130,
+       "text": "13.0"
+      },
+      {
+       "raw": 525,
+       "text": "52.5"
+      },
+      {
+       "raw": 1000,
+       "text": "100.0"
+      }
+     ]
+    },
+    {
+     "idx": 5,
+     "name_en": "Burner blower",
+     "pid": "0x2254",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 100,
+     "display": "widget wartosci niejednoznaczny",
+     "bound_candidates": []
+    },
+    {
+     "idx": 6,
+     "name_en": "Max Feeding [s]",
+     "pid": "0x2257",
+     "kind": "number",
+     "raw_min": 10,
+     "raw_max": 150,
+     "slot": 7,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 10,
+       "text": "1.0"
+      },
+      {
+       "raw": 11,
+       "text": "1.1"
+      },
+      {
+       "raw": 30,
+       "text": "3.0"
+      },
+      {
+       "raw": 80,
+       "text": "8.0"
+      },
+      {
+       "raw": 150,
+       "text": "15.0"
+      }
+     ]
+    },
+    {
+     "idx": 7,
+     "name_en": "Pellet predose [s]",
+     "pid": "0x2256",
+     "kind": "number",
+     "raw_min": 10,
+     "raw_max": 200,
+     "slot": 8,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 11,
+       "text": "11"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 105,
+       "text": "105"
+      },
+      {
+       "raw": 200,
+       "text": "200"
+      }
+     ]
+    },
+    {
+     "idx": 8,
+     "name_en": "Brightness threshold",
+     "pid": "0x226A",
+     "kind": "number",
+     "raw_min": 5,
+     "raw_max": 100,
+     "slot": 9,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 52,
+       "text": "52"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 9,
+     "name_en": "Blower power during fire up",
+     "pid": "0x2289",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 100,
+     "slot": 10,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 10,
+     "name_en": "Blower power in incandescing [%]",
+     "pid": "0x3704",
+     "kind": "number",
+     "raw_min": 30,
+     "raw_max": 100,
+     "slot": 11,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 31,
+       "text": "31"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      },
+      {
+       "raw": 65,
+       "text": "65"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 11,
+     "name_en": "Blower power in burning off [%]",
+     "pid": "0x300C",
+     "kind": "number",
+     "raw_min": 25,
+     "raw_max": 100,
+     "slot": 12,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 25,
+       "text": "25"
+      },
+      {
+       "raw": 26,
+       "text": "26"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 62,
+       "text": "62"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 12,
+     "name_en": "Incandescing time [min]",
+     "pid": "0x2290",
+     "kind": "number",
+     "raw_min": 1,
+     "raw_max": 10,
+     "slot": 13,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      }
+     ]
+    },
+    {
+     "idx": 13,
+     "name_en": "Incandenscing fuel [%]",
+     "pid": "0x299A",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 50,
+     "slot": 14,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 35,
+       "text": "35"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      }
+     ]
+    },
+    {
+     "idx": 14,
+     "name_en": "Burning off time [min]",
+     "pid": "0x226B",
+     "kind": "enum",
+     "raw_min": 2,
+     "raw_max": 6,
+     "slot": 15,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 4,
+       "text": "4"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      }
+     ],
+     "control": {
+      "pid": "0x226B",
+      "values": [
+       2,
+       3,
+       4,
+       5,
+       6
+      ],
+      "stored": [
+       2,
+       3,
+       4,
+       5,
+       6
+      ],
+      "slot": 15,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 275,
+        "ay": 809,
+        "w": 175,
+        "h": 32,
+        "per_value": {
+         "2": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "2",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "3",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "4": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "4",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "5": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "5",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "6": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "6",
+          "tid": 106,
+          "label": "SOLARY"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 15,
+     "name_en": "Lambda oxygen control",
+     "pid": "0x3605",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x3605",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 16,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 860,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 865,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 16,
+     "name_en": "Oxygen for 30% of power [%]",
+     "pid": "0x214E",
+     "kind": "number",
+     "raw_min": 60,
+     "raw_max": 150,
+     "slot": 17,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 60,
+       "text": "6.0"
+      },
+      {
+       "raw": 61,
+       "text": "6.1"
+      },
+      {
+       "raw": 105,
+       "text": "10.5"
+      },
+      {
+       "raw": 120,
+       "text": "12.0"
+      },
+      {
+       "raw": 150,
+       "text": "15.0"
+      }
+     ]
+    },
+    {
+     "idx": 17,
+     "name_en": "Oxygen for 100% of power [%]",
+     "pid": "0x2152",
+     "kind": "number",
+     "raw_min": 80,
+     "raw_max": 150,
+     "slot": 18,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 80,
+       "text": "8.0"
+      },
+      {
+       "raw": 81,
+       "text": "8.1"
+      },
+      {
+       "raw": 115,
+       "text": "11.5"
+      },
+      {
+       "raw": 150,
+       "text": "15.0"
+      }
+     ]
+    },
+    {
+     "idx": 18,
+     "name_en": "Grate cleaning number",
+     "pid": "0x2258",
+     "kind": "enum",
+     "raw_min": 1,
+     "raw_max": 3,
+     "slot": 19,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      }
+     ],
+     "control": {
+      "pid": "0x2258",
+      "values": [
+       1,
+       2,
+       3
+      ],
+      "stored": [
+       1,
+       2,
+       3
+      ],
+      "slot": 19,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 275,
+        "ay": 1009,
+        "w": 175,
+        "h": 32,
+        "per_value": {
+         "1": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "1",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "2",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "3",
+          "tid": 106,
+          "label": "SOLARY"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 19,
+     "name_en": "Burner max continuous work time [h]",
+     "pid": "0x2999",
+     "kind": "number",
+     "raw_min": 1,
+     "raw_max": 12,
+     "slot": 20,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 12,
+       "text": "12"
+      }
+     ]
+    },
+    {
+     "idx": 20,
+     "name_en": "Burner pause time [min]",
+     "pid": "0x3715",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 120,
+     "slot": 21,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      },
+      {
+       "raw": 120,
+       "text": "120"
+      }
+     ]
+    },
+    {
+     "idx": 21,
+     "name_en": "Burner pause power [%]",
+     "pid": "0x3716",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 30,
+     "slot": 22,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 22,
+     "name_en": "Burner pause blower power [%]",
+     "pid": "0x3717",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 50,
+     "slot": 23,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 25,
+       "text": "25"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      }
+     ]
+    },
+    {
+     "idx": 23,
+     "name_en": "Pwr reg. speed",
+     "pid": "0x225A",
+     "kind": "number",
+     "raw_min": 2,
+     "raw_max": 30,
+     "slot": 24,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 16,
+       "text": "16"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 24,
+     "name_en": "Burner inertia [min]",
+     "pid": "0x2153",
+     "kind": "number",
+     "raw_min": 1,
+     "raw_max": 60,
+     "slot": 26,
+     "slot_shift": 2,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      }
+     ]
+    },
+    {
+     "idx": 25,
+     "name_en": "Grate move in modulation [0.1s]",
+     "pid": "0x3003",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 200,
+     "slot": 27,
+     "slot_shift": 2,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 1,
+       "text": "0.1"
+      },
+      {
+       "raw": 100,
+       "text": "10.0"
+      },
+      {
+       "raw": 200,
+       "text": "20.0"
+      }
+     ]
+    },
+    {
+     "idx": 26,
+     "name_en": "Burner feeder % of stor. feeder",
+     "pid": "0x370B",
+     "kind": "number",
+     "raw_min": 50,
+     "raw_max": 500,
+     "slot": 28,
+     "slot_shift": 2,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 51,
+       "text": "51"
+      },
+      {
+       "raw": 275,
+       "text": "275"
+      },
+      {
+       "raw": 400,
+       "text": "400"
+      },
+      {
+       "raw": 500,
+       "text": "500"
+      }
+     ]
+    },
+    {
+     "idx": 27,
+     "name_en": "Storage feeder period [s]",
+     "pid": "0x3700",
+     "kind": "number",
+     "raw_min": 5,
+     "raw_max": 180,
+     "slot": 29,
+     "slot_shift": 2,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 92,
+       "text": "92"
+      },
+      {
+       "raw": 180,
+       "text": "180"
+      }
+     ]
+    }
+   ]
+  },
+  "0x01": {
+   "node": "2_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "CH comf temp set [dC]",
+     "pid": "0x2032",
+     "kind": "number",
+     "raw_min": 150,
+     "raw_max": 300,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 150,
+       "text": "15.0"
+      },
+      {
+       "raw": 151,
+       "text": "15.1"
+      },
+      {
+       "raw": 210,
+       "text": "21.0"
+      },
+      {
+       "raw": 225,
+       "text": "22.5"
+      },
+      {
+       "raw": 300,
+       "text": "30.0"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "CH eco temp set [dC]",
+     "pid": "0x2048",
+     "kind": "number",
+     "raw_min": 100,
+     "raw_max": 300,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 100,
+       "text": "10.0"
+      },
+      {
+       "raw": 101,
+       "text": "10.1"
+      },
+      {
+       "raw": 180,
+       "text": "18.0"
+      },
+      {
+       "raw": 200,
+       "text": "20.0"
+      },
+      {
+       "raw": 300,
+       "text": "30.0"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Room temp hysteresis [C]",
+     "pid": "0x22BD",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 50,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 1,
+       "text": "0.1"
+      },
+      {
+       "raw": 5,
+       "text": "0.5"
+      },
+      {
+       "raw": 25,
+       "text": "2.5"
+      },
+      {
+       "raw": 50,
+       "text": "5.0"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "Room sensor cal [C]",
+     "pid": "0x22C1",
+     "kind": "number",
+     "raw_min": -30,
+     "raw_max": 30,
+     "slot": 3,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": -30,
+       "text": "-3.0"
+      },
+      {
+       "raw": -29,
+       "text": "-2.9"
+      },
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 30,
+       "text": "3.0"
+      }
+     ]
+    },
+    {
+     "idx": 4,
+     "name_en": "CH mode",
+     "pid": "0x2142",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2142",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 4,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 383,
+        "ay": 259,
+        "w": 67,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           363,
+           9,
+           67,
+           32
+          ],
+          "text": null,
+          "tid": 172,
+          "label": "Wsp. korekcji t. CO [°C/°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           324,
+           9,
+           106,
+           32
+          ],
+          "text": null,
+          "tid": 173,
+          "label": "MIN temperatura CO pomp [°C]"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 5,
+     "name_en": "Tch set manual [C]",
+     "pid": "0x2146",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 5,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 6,
+     "name_en": "CH temp for -20C [C]",
+     "pid": "0x22C5",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 6,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 55,
+       "text": "55"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 7,
+     "name_en": "CH temp for -10C [C]",
+     "pid": "0x400C",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 7,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 8,
+     "name_en": "CH temp for 0C [C]",
+     "pid": "0x22C9",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 8,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 45,
+       "text": "45"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 9,
+     "name_en": "CH temp for -20C [C]",
+     "pid": "0x22CD",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 9,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 10,
+     "name_en": "Automatic summer recognition",
+     "pid": "0x2315",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2315",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 10,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 427,
+        "ay": 560,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 565,
+        "w": 36,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 11,
+     "name_en": "CH circuit name part1",
+     "pid": "0x2321",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 4294967295,
+     "slot": 11,
+     "slot_shift": 0,
+     "display": "text",
+     "samples": [
+      {
+       "raw": 0,
+       "text": ""
+      },
+      {
+       "raw": 1,
+       "text": ""
+      },
+      {
+       "raw": 2147483647,
+       "text": "ÿÿÿ"
+      },
+      {
+       "raw": 4294967295,
+       "text": ""
+      }
+     ]
+    },
+    {
+     "idx": 12,
+     "name_en": "CH source",
+     "pid": "0x22D1",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22D1",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 13,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 386,
+        "ay": 709,
+        "w": 64,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           366,
+           9,
+           64,
+           32
+          ],
+          "text": null,
+          "tid": 60,
+          "label": "Sterownik"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           374,
+           9,
+           56,
+           32
+          ],
+          "text": null,
+          "tid": 67,
+          "label": "Moc 1"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 13,
+     "name_en": "CH delta source [C]",
+     "pid": "0x22B1",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 30,
+     "slot": 14,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 14,
+     "name_en": "Room temp sensor type",
+     "pid": "0x22A1",
+     "kind": "enum",
+     "raw_min": 0,
+     "raw_max": 5,
+     "display": "widget wartosci niejednoznaczny",
+     "bound_candidates": [],
+     "control": {
+      "pid": "0x22A1",
+      "values": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "stored": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "slot": 15,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 405,
+        "ay": 809,
+        "w": 45,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           385,
+           9,
+           45,
+           32
+          ],
+          "text": null,
+          "tid": 175,
+          "label": "Temperatura CO zadana ręcznie [°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           376,
+           9,
+           54,
+           32
+          ],
+          "text": null,
+          "tid": 176,
+          "label": "Priorytet CWU   "
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           376,
+           9,
+           54,
+           32
+          ],
+          "text": null,
+          "tid": 177,
+          "label": "Test pompy      "
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           324,
+           9,
+           106,
+           32
+          ],
+          "text": null,
+          "tid": 179,
+          "label": "Stała pompa"
+         },
+         "4": {
+          "vis": 1,
+          "rect": [
+           331,
+           9,
+           99,
+           32
+          ],
+          "text": null,
+          "tid": 180,
+          "label": "Magazyn paliwa transport(1)"
+         },
+         "5": {
+          "vis": 1,
+          "rect": [
+           386,
+           9,
+           44,
+           32
+          ],
+          "text": null,
+          "tid": 181,
+          "label": "Magazyn paliwa podajnik(2)"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 15,
+     "name_en": "CH max temp [C]",
+     "pid": "0x22D5",
+     "kind": "number",
+     "raw_min": 30,
+     "raw_max": 80,
+     "slot": 16,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 31,
+       "text": "31"
+      },
+      {
+       "raw": 55,
+       "text": "55"
+      },
+      {
+       "raw": 70,
+       "text": "70"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 16,
+     "name_en": "CH sensor use",
+     "pid": "0x22A5",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22A5",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 17,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 910,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 915,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 17,
+     "name_en": "CH correction factor [C]",
+     "pid": "0x22D9",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 20,
+     "slot": 18,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      }
+     ]
+    },
+    {
+     "idx": 18,
+     "name_en": "CH temp lowering [C]",
+     "pid": "0x22E5",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 40,
+     "slot": 19,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      }
+     ]
+    },
+    {
+     "idx": 19,
+     "name_en": "Min CH temp for pump [C]",
+     "pid": "0x22E9",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 60,
+     "slot": 20,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      }
+     ]
+    },
+    {
+     "idx": 20,
+     "name_en": "CH mixer opening time [s]",
+     "pid": "0x22B5",
+     "kind": "number",
+     "raw_min": 60,
+     "raw_max": 360,
+     "slot": 21,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 60,
+       "text": "60"
+      },
+      {
+       "raw": 61,
+       "text": "61"
+      },
+      {
+       "raw": 180,
+       "text": "180"
+      },
+      {
+       "raw": 210,
+       "text": "210"
+      },
+      {
+       "raw": 360,
+       "text": "360"
+      }
+     ]
+    },
+    {
+     "idx": 21,
+     "name_en": "Permament pump",
+     "pid": "0x22F1",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22F1",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 22,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1160,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1165,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 22,
+     "name_en": "Tch lowering for energ. consumption reduction",
+     "pid": "0x22F9",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22F9",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 23,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1210,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1215,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "0x02": {
+   "node": "3_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "CH comf temp set [dC]",
+     "pid": "0x2033",
+     "kind": "number",
+     "raw_min": 150,
+     "raw_max": 300,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 150,
+       "text": "15.0"
+      },
+      {
+       "raw": 151,
+       "text": "15.1"
+      },
+      {
+       "raw": 210,
+       "text": "21.0"
+      },
+      {
+       "raw": 225,
+       "text": "22.5"
+      },
+      {
+       "raw": 300,
+       "text": "30.0"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "CH eco temp set [dC]",
+     "pid": "0x2049",
+     "kind": "number",
+     "raw_min": 100,
+     "raw_max": 300,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 100,
+       "text": "10.0"
+      },
+      {
+       "raw": 101,
+       "text": "10.1"
+      },
+      {
+       "raw": 180,
+       "text": "18.0"
+      },
+      {
+       "raw": 200,
+       "text": "20.0"
+      },
+      {
+       "raw": 300,
+       "text": "30.0"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Room temp hysteresis [C]",
+     "pid": "0x22BE",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 50,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 1,
+       "text": "0.1"
+      },
+      {
+       "raw": 5,
+       "text": "0.5"
+      },
+      {
+       "raw": 25,
+       "text": "2.5"
+      },
+      {
+       "raw": 50,
+       "text": "5.0"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "Room sensor cal [C]",
+     "pid": "0x22C2",
+     "kind": "number",
+     "raw_min": -30,
+     "raw_max": 30,
+     "slot": 3,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": -30,
+       "text": "-3.0"
+      },
+      {
+       "raw": -29,
+       "text": "-2.9"
+      },
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 30,
+       "text": "3.0"
+      }
+     ]
+    },
+    {
+     "idx": 4,
+     "name_en": "CH mode",
+     "pid": "0x2143",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2143",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 4,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 383,
+        "ay": 259,
+        "w": 67,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           363,
+           9,
+           67,
+           32
+          ],
+          "text": null,
+          "tid": 172,
+          "label": "Wsp. korekcji t. CO [°C/°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           324,
+           9,
+           106,
+           32
+          ],
+          "text": null,
+          "tid": 173,
+          "label": "MIN temperatura CO pomp [°C]"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 5,
+     "name_en": "Tch set manual [C]",
+     "pid": "0x2147",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 5,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 6,
+     "name_en": "CH temp for -20C [C]",
+     "pid": "0x22C6",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 6,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 55,
+       "text": "55"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 7,
+     "name_en": "CH temp for -10C [C]",
+     "pid": "0x400D",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 7,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 8,
+     "name_en": "CH temp for 0C [C]",
+     "pid": "0x22CA",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 8,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 45,
+       "text": "45"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 9,
+     "name_en": "CH temp for -20C [C]",
+     "pid": "0x22CE",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 9,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 10,
+     "name_en": "Automatic summer recognition",
+     "pid": "0x2316",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2316",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 10,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 427,
+        "ay": 560,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 565,
+        "w": 36,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 11,
+     "name_en": "CH circuit name part1",
+     "pid": "0x2322",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 4294967295,
+     "slot": 11,
+     "slot_shift": 0,
+     "display": "text",
+     "samples": [
+      {
+       "raw": 0,
+       "text": ""
+      },
+      {
+       "raw": 1,
+       "text": ""
+      },
+      {
+       "raw": 2147483647,
+       "text": "ÿÿÿ"
+      },
+      {
+       "raw": 4294967295,
+       "text": ""
+      }
+     ]
+    },
+    {
+     "idx": 12,
+     "name_en": "CH source",
+     "pid": "0x22D2",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22D2",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 13,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 386,
+        "ay": 709,
+        "w": 64,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           366,
+           9,
+           64,
+           32
+          ],
+          "text": null,
+          "tid": 60,
+          "label": "Sterownik"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           374,
+           9,
+           56,
+           32
+          ],
+          "text": null,
+          "tid": 67,
+          "label": "Moc 1"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 13,
+     "name_en": "CH delta source [C]",
+     "pid": "0x22B2",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 30,
+     "slot": 14,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 14,
+     "name_en": "Room temp sensor type",
+     "pid": "0x22A2",
+     "kind": "enum",
+     "raw_min": 0,
+     "raw_max": 5,
+     "display": "widget wartosci niejednoznaczny",
+     "bound_candidates": [],
+     "control": {
+      "pid": "0x22A2",
+      "values": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "stored": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "slot": 15,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 405,
+        "ay": 809,
+        "w": 45,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           385,
+           9,
+           45,
+           32
+          ],
+          "text": null,
+          "tid": 175,
+          "label": "Temperatura CO zadana ręcznie [°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           376,
+           9,
+           54,
+           32
+          ],
+          "text": null,
+          "tid": 176,
+          "label": "Priorytet CWU   "
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           376,
+           9,
+           54,
+           32
+          ],
+          "text": null,
+          "tid": 177,
+          "label": "Test pompy      "
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           324,
+           9,
+           106,
+           32
+          ],
+          "text": null,
+          "tid": 179,
+          "label": "Stała pompa"
+         },
+         "4": {
+          "vis": 1,
+          "rect": [
+           331,
+           9,
+           99,
+           32
+          ],
+          "text": null,
+          "tid": 180,
+          "label": "Magazyn paliwa transport(1)"
+         },
+         "5": {
+          "vis": 1,
+          "rect": [
+           386,
+           9,
+           44,
+           32
+          ],
+          "text": null,
+          "tid": 181,
+          "label": "Magazyn paliwa podajnik(2)"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 15,
+     "name_en": "CH max temp [C]",
+     "pid": "0x22D6",
+     "kind": "number",
+     "raw_min": 30,
+     "raw_max": 80,
+     "slot": 16,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 31,
+       "text": "31"
+      },
+      {
+       "raw": 55,
+       "text": "55"
+      },
+      {
+       "raw": 70,
+       "text": "70"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 16,
+     "name_en": "CH sensor use",
+     "pid": "0x22A6",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22A6",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 17,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 910,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 915,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 17,
+     "name_en": "CH correction factor [C]",
+     "pid": "0x22DA",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 20,
+     "slot": 18,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      }
+     ]
+    },
+    {
+     "idx": 18,
+     "name_en": "CH temp lowering [C]",
+     "pid": "0x22E6",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 40,
+     "slot": 19,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      }
+     ]
+    },
+    {
+     "idx": 19,
+     "name_en": "Min CH temp for pump [C]",
+     "pid": "0x22EA",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 60,
+     "slot": 20,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      }
+     ]
+    },
+    {
+     "idx": 20,
+     "name_en": "CH mixer opening time [s]",
+     "pid": "0x22B6",
+     "kind": "number",
+     "raw_min": 60,
+     "raw_max": 360,
+     "slot": 21,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 60,
+       "text": "60"
+      },
+      {
+       "raw": 61,
+       "text": "61"
+      },
+      {
+       "raw": 180,
+       "text": "180"
+      },
+      {
+       "raw": 210,
+       "text": "210"
+      },
+      {
+       "raw": 360,
+       "text": "360"
+      }
+     ]
+    },
+    {
+     "idx": 21,
+     "name_en": "Permament pump",
+     "pid": "0x22F2",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22F2",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 22,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1160,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1165,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 22,
+     "name_en": "Tch lowering for energ. consumption reduction",
+     "pid": "0x22FA",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22FA",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 23,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1210,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1215,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "0x03": {
+   "node": "4_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "CH comf temp set [dC]",
+     "pid": "0x2034",
+     "kind": "number",
+     "raw_min": 150,
+     "raw_max": 300,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 150,
+       "text": "15.0"
+      },
+      {
+       "raw": 151,
+       "text": "15.1"
+      },
+      {
+       "raw": 210,
+       "text": "21.0"
+      },
+      {
+       "raw": 225,
+       "text": "22.5"
+      },
+      {
+       "raw": 300,
+       "text": "30.0"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "CH eco temp set [dC]",
+     "pid": "0x204A",
+     "kind": "number",
+     "raw_min": 100,
+     "raw_max": 300,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 100,
+       "text": "10.0"
+      },
+      {
+       "raw": 101,
+       "text": "10.1"
+      },
+      {
+       "raw": 180,
+       "text": "18.0"
+      },
+      {
+       "raw": 200,
+       "text": "20.0"
+      },
+      {
+       "raw": 300,
+       "text": "30.0"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Room temp hysteresis [C]",
+     "pid": "0x22BF",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 50,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 1,
+       "text": "0.1"
+      },
+      {
+       "raw": 5,
+       "text": "0.5"
+      },
+      {
+       "raw": 25,
+       "text": "2.5"
+      },
+      {
+       "raw": 50,
+       "text": "5.0"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "Room sensor cal [C]",
+     "pid": "0x22C3",
+     "kind": "number",
+     "raw_min": -30,
+     "raw_max": 30,
+     "slot": 3,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": -30,
+       "text": "-3.0"
+      },
+      {
+       "raw": -29,
+       "text": "-2.9"
+      },
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 30,
+       "text": "3.0"
+      }
+     ]
+    },
+    {
+     "idx": 4,
+     "name_en": "CH mode",
+     "pid": "0x2144",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2144",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 4,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 383,
+        "ay": 259,
+        "w": 67,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           363,
+           9,
+           67,
+           32
+          ],
+          "text": null,
+          "tid": 172,
+          "label": "Wsp. korekcji t. CO [°C/°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           324,
+           9,
+           106,
+           32
+          ],
+          "text": null,
+          "tid": 173,
+          "label": "MIN temperatura CO pomp [°C]"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 5,
+     "name_en": "Tch set manual [C]",
+     "pid": "0x2148",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 5,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 6,
+     "name_en": "CH temp for -20C [C]",
+     "pid": "0x22C7",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 6,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 55,
+       "text": "55"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 7,
+     "name_en": "CH temp for -10C [C]",
+     "pid": "0x400E",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 7,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 8,
+     "name_en": "CH temp for 0C [C]",
+     "pid": "0x22CB",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 8,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 45,
+       "text": "45"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 9,
+     "name_en": "CH temp for -20C [C]",
+     "pid": "0x22CF",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 9,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 10,
+     "name_en": "Automatic summer recognition",
+     "pid": "0x2317",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2317",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 10,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 427,
+        "ay": 560,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 565,
+        "w": 36,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 11,
+     "name_en": "CH circuit name part1",
+     "pid": "0x2323",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 4294967295,
+     "slot": 11,
+     "slot_shift": 0,
+     "display": "text",
+     "samples": [
+      {
+       "raw": 0,
+       "text": ""
+      },
+      {
+       "raw": 1,
+       "text": ""
+      },
+      {
+       "raw": 2147483647,
+       "text": "ÿÿÿ"
+      },
+      {
+       "raw": 4294967295,
+       "text": ""
+      }
+     ]
+    },
+    {
+     "idx": 12,
+     "name_en": "CH source",
+     "pid": "0x22D3",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22D3",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 13,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 386,
+        "ay": 709,
+        "w": 64,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           366,
+           9,
+           64,
+           32
+          ],
+          "text": null,
+          "tid": 60,
+          "label": "Sterownik"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           374,
+           9,
+           56,
+           32
+          ],
+          "text": null,
+          "tid": 67,
+          "label": "Moc 1"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 13,
+     "name_en": "CH delta source [C]",
+     "pid": "0x22B3",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 30,
+     "slot": 14,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 14,
+     "name_en": "Room temp sensor type",
+     "pid": "0x22A3",
+     "kind": "enum",
+     "raw_min": 0,
+     "raw_max": 5,
+     "display": "widget wartosci niejednoznaczny",
+     "bound_candidates": [],
+     "control": {
+      "pid": "0x22A3",
+      "values": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "stored": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "slot": 15,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 405,
+        "ay": 809,
+        "w": 45,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           385,
+           9,
+           45,
+           32
+          ],
+          "text": null,
+          "tid": 175,
+          "label": "Temperatura CO zadana ręcznie [°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           376,
+           9,
+           54,
+           32
+          ],
+          "text": null,
+          "tid": 176,
+          "label": "Priorytet CWU   "
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           376,
+           9,
+           54,
+           32
+          ],
+          "text": null,
+          "tid": 177,
+          "label": "Test pompy      "
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           324,
+           9,
+           106,
+           32
+          ],
+          "text": null,
+          "tid": 179,
+          "label": "Stała pompa"
+         },
+         "4": {
+          "vis": 1,
+          "rect": [
+           331,
+           9,
+           99,
+           32
+          ],
+          "text": null,
+          "tid": 180,
+          "label": "Magazyn paliwa transport(1)"
+         },
+         "5": {
+          "vis": 1,
+          "rect": [
+           386,
+           9,
+           44,
+           32
+          ],
+          "text": null,
+          "tid": 181,
+          "label": "Magazyn paliwa podajnik(2)"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 15,
+     "name_en": "CH max temp [C]",
+     "pid": "0x22D7",
+     "kind": "number",
+     "raw_min": 30,
+     "raw_max": 80,
+     "slot": 16,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 31,
+       "text": "31"
+      },
+      {
+       "raw": 55,
+       "text": "55"
+      },
+      {
+       "raw": 70,
+       "text": "70"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 16,
+     "name_en": "CH sensor use",
+     "pid": "0x22A7",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22A7",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 17,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 910,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 915,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 17,
+     "name_en": "CH correction factor [C]",
+     "pid": "0x22DB",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 20,
+     "slot": 18,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      }
+     ]
+    },
+    {
+     "idx": 18,
+     "name_en": "CH temp lowering [C]",
+     "pid": "0x22E7",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 40,
+     "slot": 19,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      }
+     ]
+    },
+    {
+     "idx": 19,
+     "name_en": "Min CH temp for pump [C]",
+     "pid": "0x22EB",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 60,
+     "slot": 20,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      }
+     ]
+    },
+    {
+     "idx": 20,
+     "name_en": "CH mixer opening time [s]",
+     "pid": "0x22B7",
+     "kind": "number",
+     "raw_min": 60,
+     "raw_max": 360,
+     "slot": 21,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 60,
+       "text": "60"
+      },
+      {
+       "raw": 61,
+       "text": "61"
+      },
+      {
+       "raw": 180,
+       "text": "180"
+      },
+      {
+       "raw": 210,
+       "text": "210"
+      },
+      {
+       "raw": 360,
+       "text": "360"
+      }
+     ]
+    },
+    {
+     "idx": 21,
+     "name_en": "Permament pump",
+     "pid": "0x22F3",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22F3",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 22,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1160,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1165,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 22,
+     "name_en": "Tch lowering for energ. consumption reduction",
+     "pid": "0x22FB",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22FB",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 23,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1210,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1215,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "0x04": {
+   "node": "5_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "CH comf temp set [dC]",
+     "pid": "0x2035",
+     "kind": "number",
+     "raw_min": 150,
+     "raw_max": 300,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 150,
+       "text": "15.0"
+      },
+      {
+       "raw": 151,
+       "text": "15.1"
+      },
+      {
+       "raw": 210,
+       "text": "21.0"
+      },
+      {
+       "raw": 225,
+       "text": "22.5"
+      },
+      {
+       "raw": 300,
+       "text": "30.0"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "CH eco temp set [dC]",
+     "pid": "0x204B",
+     "kind": "number",
+     "raw_min": 100,
+     "raw_max": 300,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 100,
+       "text": "10.0"
+      },
+      {
+       "raw": 101,
+       "text": "10.1"
+      },
+      {
+       "raw": 180,
+       "text": "18.0"
+      },
+      {
+       "raw": 200,
+       "text": "20.0"
+      },
+      {
+       "raw": 300,
+       "text": "30.0"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Room temp hysteresis [C]",
+     "pid": "0x22C0",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 50,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 1,
+       "text": "0.1"
+      },
+      {
+       "raw": 5,
+       "text": "0.5"
+      },
+      {
+       "raw": 25,
+       "text": "2.5"
+      },
+      {
+       "raw": 50,
+       "text": "5.0"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "Room sensor cal [C]",
+     "pid": "0x22C4",
+     "kind": "number",
+     "raw_min": -30,
+     "raw_max": 30,
+     "slot": 3,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": -30,
+       "text": "-3.0"
+      },
+      {
+       "raw": -29,
+       "text": "-2.9"
+      },
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 30,
+       "text": "3.0"
+      }
+     ]
+    },
+    {
+     "idx": 4,
+     "name_en": "CH mode",
+     "pid": "0x2145",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2145",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 4,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 383,
+        "ay": 259,
+        "w": 67,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           363,
+           9,
+           67,
+           32
+          ],
+          "text": null,
+          "tid": 172,
+          "label": "Wsp. korekcji t. CO [°C/°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           324,
+           9,
+           106,
+           32
+          ],
+          "text": null,
+          "tid": 173,
+          "label": "MIN temperatura CO pomp [°C]"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 5,
+     "name_en": "Tch set manual [C]",
+     "pid": "0x2149",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 5,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 6,
+     "name_en": "CH temp for -20C [C]",
+     "pid": "0x22C8",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 6,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 55,
+       "text": "55"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 7,
+     "name_en": "CH temp for -10C [C]",
+     "pid": "0x400F",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 7,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 8,
+     "name_en": "CH temp for 0C [C]",
+     "pid": "0x22CC",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 8,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 45,
+       "text": "45"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 9,
+     "name_en": "CH temp for -20C [C]",
+     "pid": "0x22D0",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 80,
+     "slot": 9,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 10,
+     "name_en": "Automatic summer recognition",
+     "pid": "0x2318",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2318",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 10,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 427,
+        "ay": 560,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 565,
+        "w": 36,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 11,
+     "name_en": "CH circuit name part1",
+     "pid": "0x2324",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 4294967295,
+     "slot": 11,
+     "slot_shift": 0,
+     "display": "text",
+     "samples": [
+      {
+       "raw": 0,
+       "text": ""
+      },
+      {
+       "raw": 1,
+       "text": ""
+      },
+      {
+       "raw": 2147483647,
+       "text": "ÿÿÿ"
+      },
+      {
+       "raw": 4294967295,
+       "text": ""
+      }
+     ]
+    },
+    {
+     "idx": 12,
+     "name_en": "CH source",
+     "pid": "0x22D4",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22D4",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 13,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 386,
+        "ay": 709,
+        "w": 64,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           366,
+           9,
+           64,
+           32
+          ],
+          "text": null,
+          "tid": 60,
+          "label": "Sterownik"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           374,
+           9,
+           56,
+           32
+          ],
+          "text": null,
+          "tid": 67,
+          "label": "Moc 1"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 13,
+     "name_en": "CH delta source [C]",
+     "pid": "0x22B4",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 30,
+     "slot": 14,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 14,
+     "name_en": "Room temp sensor type",
+     "pid": "0x22A4",
+     "kind": "enum",
+     "raw_min": 0,
+     "raw_max": 5,
+     "display": "widget wartosci niejednoznaczny",
+     "bound_candidates": [],
+     "control": {
+      "pid": "0x22A4",
+      "values": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "stored": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "slot": 15,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 405,
+        "ay": 809,
+        "w": 45,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           385,
+           9,
+           45,
+           32
+          ],
+          "text": null,
+          "tid": 175,
+          "label": "Temperatura CO zadana ręcznie [°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           376,
+           9,
+           54,
+           32
+          ],
+          "text": null,
+          "tid": 176,
+          "label": "Priorytet CWU   "
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           376,
+           9,
+           54,
+           32
+          ],
+          "text": null,
+          "tid": 177,
+          "label": "Test pompy      "
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           324,
+           9,
+           106,
+           32
+          ],
+          "text": null,
+          "tid": 179,
+          "label": "Stała pompa"
+         },
+         "4": {
+          "vis": 1,
+          "rect": [
+           331,
+           9,
+           99,
+           32
+          ],
+          "text": null,
+          "tid": 180,
+          "label": "Magazyn paliwa transport(1)"
+         },
+         "5": {
+          "vis": 1,
+          "rect": [
+           386,
+           9,
+           44,
+           32
+          ],
+          "text": null,
+          "tid": 181,
+          "label": "Magazyn paliwa podajnik(2)"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 15,
+     "name_en": "CH max temp [C]",
+     "pid": "0x22D8",
+     "kind": "number",
+     "raw_min": 30,
+     "raw_max": 80,
+     "slot": 16,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 31,
+       "text": "31"
+      },
+      {
+       "raw": 55,
+       "text": "55"
+      },
+      {
+       "raw": 70,
+       "text": "70"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 16,
+     "name_en": "CH sensor use",
+     "pid": "0x22A8",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22A8",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 17,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 910,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 915,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 17,
+     "name_en": "CH correction factor [C]",
+     "pid": "0x22DC",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 20,
+     "slot": 18,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      }
+     ]
+    },
+    {
+     "idx": 18,
+     "name_en": "CH temp lowering [C]",
+     "pid": "0x22E8",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 40,
+     "slot": 19,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      }
+     ]
+    },
+    {
+     "idx": 19,
+     "name_en": "Min CH temp for pump [C]",
+     "pid": "0x22EC",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 60,
+     "slot": 20,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      }
+     ]
+    },
+    {
+     "idx": 20,
+     "name_en": "CH mixer opening time [s]",
+     "pid": "0x22B8",
+     "kind": "number",
+     "raw_min": 60,
+     "raw_max": 360,
+     "slot": 21,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 60,
+       "text": "60"
+      },
+      {
+       "raw": 61,
+       "text": "61"
+      },
+      {
+       "raw": 180,
+       "text": "180"
+      },
+      {
+       "raw": 210,
+       "text": "210"
+      },
+      {
+       "raw": 360,
+       "text": "360"
+      }
+     ]
+    },
+    {
+     "idx": 21,
+     "name_en": "Permament pump",
+     "pid": "0x22F4",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22F4",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 22,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1160,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1165,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 22,
+     "name_en": "Tch lowering for energ. consumption reduction",
+     "pid": "0x22FC",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x22FC",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 23,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1210,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1215,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "0x05": {
+   "node": "6_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "Hot water 1 comfort temperature",
+     "pid": "0x2010",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 70,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 45,
+       "text": "45"
+      },
+      {
+       "raw": 70,
+       "text": "70"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "Hot water 1 economical temperature",
+     "pid": "0x2012",
+     "kind": "number",
+     "raw_min": 20,
+     "raw_max": 70,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 21,
+       "text": "21"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 45,
+       "text": "45"
+      },
+      {
+       "raw": 70,
+       "text": "70"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Hot water 1 heat now",
+     "pid": "0x2210",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2210",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 2,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 160,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 165,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 3,
+     "name_en": "Hot water 1 histeresis",
+     "pid": "0x2212",
+     "kind": "number",
+     "raw_min": 5,
+     "raw_max": 30,
+     "slot": 3,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 17,
+       "text": "17"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 4,
+     "name_en": "HW1 anti legionella",
+     "pid": "0x2297",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2297",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 4,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 260,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 265,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 5,
+     "name_en": "Hot water priority",
+     "pid": "0x300D",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x300D",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 5,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 310,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 315,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 6,
+     "name_en": "Hot water 1 circular pump fork time",
+     "pid": "0x374B",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 10,
+     "slot": 6,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      }
+     ]
+    },
+    {
+     "idx": 7,
+     "name_en": "Hot water 1 circular pump pause time",
+     "pid": "0x374C",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 60,
+     "slot": 7,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      }
+     ]
+    },
+    {
+     "idx": 8,
+     "name_en": "Hot water 1 source",
+     "pid": "0x2214",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2214",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 9,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 386,
+        "ay": 509,
+        "w": 64,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           366,
+           9,
+           64,
+           32
+          ],
+          "text": null,
+          "tid": 60,
+          "label": "Sterownik"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           374,
+           9,
+           56,
+           32
+          ],
+          "text": null,
+          "tid": 67,
+          "label": "Moc 1"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 9,
+     "name_en": "Hot water 1 delta source",
+     "pid": "0x2216",
+     "kind": "number",
+     "raw_min": 2,
+     "raw_max": 30,
+     "slot": 10,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 16,
+       "text": "16"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 10,
+     "name_en": "Hot water 1 delta min temperature",
+     "pid": "0x2218",
+     "kind": "number",
+     "raw_min": 2,
+     "raw_max": 20,
+     "slot": 11,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 11,
+       "text": "11"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      }
+     ]
+    },
+    {
+     "idx": 11,
+     "name_en": "Hot water 1 temperature max",
+     "pid": "0x201C",
+     "kind": "number",
+     "raw_min": 40,
+     "raw_max": 80,
+     "slot": 12,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 40,
+       "text": "40"
+      },
+      {
+       "raw": 41,
+       "text": "41"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      },
+      {
+       "raw": 70,
+       "text": "70"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    }
+   ]
+  },
+  "0x06": {
+   "node": "7_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "Solar flow [l/min]",
+     "pid": "0x2116",
+     "kind": "number",
+     "raw_min": 7,
+     "raw_max": 200,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 7,
+       "text": "0.7"
+      },
+      {
+       "raw": 8,
+       "text": "0.8"
+      },
+      {
+       "raw": 40,
+       "text": "4.0"
+      },
+      {
+       "raw": 103,
+       "text": "10.3"
+      },
+      {
+       "raw": 200,
+       "text": "20.0"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "Solar delta on [C]",
+     "pid": "0x3116",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 20,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Solar delta off [C]",
+     "pid": "0x3117",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 10,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 10,
+       "text": "10"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "Solar liquid specific heat [kJ/(kg * C)]",
+     "pid": "0x3118",
+     "kind": "number",
+     "raw_min": 15,
+     "raw_max": 60,
+     "slot": 4,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 15,
+       "text": "1.5"
+      },
+      {
+       "raw": 16,
+       "text": "1.6"
+      },
+      {
+       "raw": 25,
+       "text": "2.5"
+      },
+      {
+       "raw": 37,
+       "text": "3.7"
+      },
+      {
+       "raw": 60,
+       "text": "6.0"
+      }
+     ]
+    },
+    {
+     "idx": 4,
+     "name_en": "Solar temperature water max [C]",
+     "pid": "0x3119",
+     "kind": "number",
+     "raw_min": 70,
+     "raw_max": 95,
+     "slot": 5,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 70,
+       "text": "70"
+      },
+      {
+       "raw": 71,
+       "text": "71"
+      },
+      {
+       "raw": 82,
+       "text": "82"
+      },
+      {
+       "raw": 95,
+       "text": "95"
+      }
+     ]
+    },
+    {
+     "idx": 5,
+     "name_en": "Solar temperature alarm max[C]",
+     "pid": "0x311A",
+     "kind": "number",
+     "raw_min": 90,
+     "raw_max": 145,
+     "slot": 6,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 90,
+       "text": "90"
+      },
+      {
+       "raw": 91,
+       "text": "91"
+      },
+      {
+       "raw": 117,
+       "text": "117"
+      },
+      {
+       "raw": 145,
+       "text": "145"
+      }
+     ]
+    },
+    {
+     "idx": 6,
+     "name_en": "Solar temperature alarm min[C]",
+     "pid": "0x311B",
+     "kind": "number",
+     "raw_min": -40,
+     "raw_max": 0,
+     "slot": 7,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": -40,
+       "text": "-40"
+      },
+      {
+       "raw": -39,
+       "text": "-39"
+      },
+      {
+       "raw": -34,
+       "text": "-34"
+      },
+      {
+       "raw": -20,
+       "text": "-20"
+      },
+      {
+       "raw": 0,
+       "text": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "0x07": {
+   "node": "8_settings",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "Buffer top set temperature",
+     "pid": "0x2114",
+     "kind": "number",
+     "raw_min": 7,
+     "raw_max": 80,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 7,
+       "text": "7"
+      },
+      {
+       "raw": 8,
+       "text": "8"
+      },
+      {
+       "raw": 43,
+       "text": "43"
+      },
+      {
+       "raw": 45,
+       "text": "45"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "Buffer bottom set temperature",
+     "pid": "0x2115",
+     "kind": "number",
+     "raw_min": 7,
+     "raw_max": 80,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 7,
+       "text": "7"
+      },
+      {
+       "raw": 8,
+       "text": "8"
+      },
+      {
+       "raw": 43,
+       "text": "43"
+      },
+      {
+       "raw": 65,
+       "text": "65"
+      },
+      {
+       "raw": 80,
+       "text": "80"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Buffer minimal pump temperature",
+     "pid": "0x2281",
+     "kind": "number",
+     "raw_min": 15,
+     "raw_max": 60,
+     "slot": 3,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 16,
+       "text": "16"
+      },
+      {
+       "raw": 25,
+       "text": "25"
+      },
+      {
+       "raw": 37,
+       "text": "37"
+      },
+      {
+       "raw": 60,
+       "text": "60"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "Buffer is automatic top temperature",
+     "pid": "0x2282",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2282",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 4,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 260,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 265,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 4,
+     "name_en": "",
+     "pid": "0x299B",
+     "kind": "number",
+     "raw_min": 3,
+     "raw_max": 30,
+     "slot": 5,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 4,
+       "text": "4"
+      },
+      {
+       "raw": 16,
+       "text": "16"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      },
+      {
+       "raw": 30,
+       "text": "30"
+      }
+     ]
+    },
+    {
+     "idx": 5,
+     "name_en": "Buffer pump delta min temperature",
+     "pid": "0x3170",
+     "kind": "number",
+     "raw_min": 2,
+     "raw_max": 20,
+     "slot": 6,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 11,
+       "text": "11"
+      },
+      {
+       "raw": 20,
+       "text": "20"
+      }
+     ]
+    },
+    {
+     "idx": 6,
+     "name_en": "Burner pwr. depend of buf. energy level",
+     "pid": "0x3011",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x3011",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 7,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 410,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 415,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "0x10": {
+   "node": "11_screen",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "Outside temp. averaging period [h]",
+     "pid": "0x3720",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 48,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 12,
+       "text": "12"
+      },
+      {
+       "raw": 24,
+       "text": "24"
+      },
+      {
+       "raw": 48,
+       "text": "48"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "Summer time threshold temp. [C]",
+     "pid": "0x372A",
+     "kind": "number",
+     "raw_min": 5,
+     "raw_max": 25,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 5,
+       "text": "5"
+      },
+      {
+       "raw": 6,
+       "text": "6"
+      },
+      {
+       "raw": 15,
+       "text": "15"
+      },
+      {
+       "raw": 18,
+       "text": "18"
+      },
+      {
+       "raw": 25,
+       "text": "25"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Outside calibration [dC]",
+     "pid": "0x3747",
+     "kind": "number",
+     "raw_min": -30,
+     "raw_max": 30,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 0.1,
+     "ratios": [
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": -30,
+       "text": "-3.0"
+      },
+      {
+       "raw": -29,
+       "text": "-2.9"
+      },
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 30,
+       "text": "3.0"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "Fuel reserve [kg]",
+     "pid": "0x3603",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 100,
+     "slot": 3,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 40,
+       "text": "40"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      }
+     ]
+    },
+    {
+     "idx": 4,
+     "name_en": "Is automatic time synchronization",
+     "pid": "0x372F",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x372F",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 4,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 260,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 265,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 5,
+     "name_en": "Autoconfig activation",
+     "pid": "0x3501",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x3501",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 6,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 427,
+        "ay": 360,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 365,
+        "w": 36,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 6,
+     "name_en": "Main module type",
+     "pid": "0x3500",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x3500",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 7,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 414,
+        "ay": 409,
+        "w": 36,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           394,
+           9,
+           36,
+           32
+          ],
+          "text": null,
+          "tid": 478,
+          "label": "Szybkość modulacji mocy"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           388,
+           9,
+           42,
+           32
+          ],
+          "text": null,
+          "tid": 480,
+          "label": "czujnik rezerwy paliwa"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 7,
+     "name_en": "CH expansion module type",
+     "pid": "0x3502",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x3502",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 8,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 408,
+        "ay": 459,
+        "w": 42,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           388,
+           9,
+           42,
+           32
+          ],
+          "text": null,
+          "tid": 480,
+          "label": "czujnik rezerwy paliwa"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           381,
+           9,
+           49,
+           32
+          ],
+          "text": null,
+          "tid": 479,
+          "label": "Moduł rozrzerzający obwody CO"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 8,
+     "name_en": "Heating configuration",
+     "pid": "0x2105",
+     "kind": "enum",
+     "raw_min": 0,
+     "raw_max": 4,
+     "slot": 9,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      },
+      {
+       "raw": 4,
+       "text": "4"
+      }
+     ],
+     "control": {
+      "pid": "0x2105",
+      "values": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "stored": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "slot": 9,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 275,
+        "ay": 509,
+        "w": 175,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "0",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "1",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "2",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "3",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "4": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "4",
+          "tid": 106,
+          "label": "SOLARY"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 9,
+     "name_en": "Outside temperature sensor configuration",
+     "pid": "0x3505",
+     "kind": "enum",
+     "raw_min": 0,
+     "raw_max": 2,
+     "display": "widget wartosci niejednoznaczny",
+     "bound_candidates": [],
+     "control": {
+      "pid": "0x3505",
+      "values": [
+       0,
+       1,
+       2
+      ],
+      "stored": [
+       0,
+       1,
+       2
+      ],
+      "slot": 10,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 405,
+        "ay": 559,
+        "w": 45,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           385,
+           9,
+           45,
+           32
+          ],
+          "text": "|\u0001赠 Ẑ ",
+          "tid": 175,
+          "label": "Temperatura CO zadana ręcznie [°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           377,
+           9,
+           53,
+           32
+          ],
+          "text": "|\u0001赠 Ẑ ",
+          "tid": 178,
+          "label": "Test mieszacza  "
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           386,
+           9,
+           44,
+           32
+          ],
+          "text": "|\u0001赠 Ẑ ",
+          "tid": 181,
+          "label": "Magazyn paliwa podajnik(2)"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 10,
+     "name_en": "Hot water configuration",
+     "pid": "0x2106",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2106",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 11,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 427,
+        "ay": 610,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 615,
+        "w": 36,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 11,
+     "name_en": "Solar configuration",
+     "pid": "0x2108",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2108",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 12,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 427,
+        "ay": 660,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 665,
+        "w": 36,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 12,
+     "name_en": "Buffer configuration",
+     "pid": "0x2107",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2107",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 13,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 427,
+        "ay": 710,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 715,
+        "w": 36,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 13,
+     "name_en": "Lambda module presence",
+     "pid": "0x2123",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x2123",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 14,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 760,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 765,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 14,
+     "name_en": "Input IN17 config",
+     "pid": "0x3606",
+     "kind": "enum",
+     "raw_min": 0,
+     "raw_max": 2,
+     "display": "widget wartosci niejednoznaczny",
+     "bound_candidates": [],
+     "control": {
+      "pid": "0x3606",
+      "values": [
+       0,
+       1,
+       2
+      ],
+      "stored": [
+       0,
+       1,
+       2
+      ],
+      "slot": 15,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 405,
+        "ay": 809,
+        "w": 45,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           385,
+           9,
+           45,
+           32
+          ],
+          "text": null,
+          "tid": 175,
+          "label": "Temperatura CO zadana ręcznie [°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           200,
+           9,
+           230,
+           32
+          ],
+          "text": null,
+          "tid": 423,
+          "label": "buforowa"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           226,
+           9,
+           204,
+           32
+          ],
+          "text": null,
+          "tid": 424,
+          "label": "pellet"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 15,
+     "name_en": "Tank capacity [kg]",
+     "pid": "0x3600",
+     "kind": "number",
+     "raw_min": 10,
+     "raw_max": 1500,
+     "slot": 16,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 10,
+       "text": "10"
+      },
+      {
+       "raw": 11,
+       "text": "11"
+      },
+      {
+       "raw": 135,
+       "text": "135"
+      },
+      {
+       "raw": 755,
+       "text": "755"
+      },
+      {
+       "raw": 1500,
+       "text": "1500"
+      }
+     ]
+    },
+    {
+     "idx": 16,
+     "name_en": "Return to boiler temperature sensor",
+     "pid": "0x350A",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x350A",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 17,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 910,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 915,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 17,
+     "name_en": "Profile number",
+     "pid": "0x350B",
+     "kind": "enum",
+     "raw_min": 1,
+     "raw_max": 3,
+     "slot": 18,
+     "slot_shift": 1,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2,
+       "text": "2"
+      },
+      {
+       "raw": 3,
+       "text": "3"
+      }
+     ],
+     "control": {
+      "pid": "0x350B",
+      "values": [
+       1,
+       2,
+       3
+      ],
+      "stored": [
+       1,
+       2,
+       3
+      ],
+      "slot": 18,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 275,
+        "ay": 959,
+        "w": 175,
+        "h": 32,
+        "per_value": {
+         "1": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "1",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "2",
+          "tid": 106,
+          "label": "SOLARY"
+         },
+         "3": {
+          "vis": 1,
+          "rect": [
+           255,
+           9,
+           175,
+           32
+          ],
+          "text": "3",
+          "tid": 106,
+          "label": "SOLARY"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 18,
+     "name_en": "Boiler pump work mode",
+     "pid": "0x299E",
+     "kind": "enum",
+     "raw_min": 0,
+     "raw_max": 2,
+     "display": "widget wartosci niejednoznaczny",
+     "bound_candidates": [],
+     "control": {
+      "pid": "0x299E",
+      "values": [
+       0,
+       1,
+       2
+      ],
+      "stored": [
+       0,
+       1,
+       2
+      ],
+      "slot": 19,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 364,
+        "ay": 1009,
+        "w": 86,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           344,
+           9,
+           86,
+           32
+          ],
+          "text": null,
+          "tid": 364,
+          "label": "Przekroczenie temp. maksymalnej CO1"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           256,
+           9,
+           174,
+           32
+          ],
+          "text": null,
+          "tid": 365,
+          "label": "Przekroczenie temp. maksymalnej CO2"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           333,
+           9,
+           97,
+           32
+          ],
+          "text": null,
+          "tid": 366,
+          "label": "Przekroczenie temp. maksymalnej CO3"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 19,
+     "name_en": "Is this device cascade master",
+     "pid": "0x350C",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x350C",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 20,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1060,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1065,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 20,
+     "name_en": "Pressure sensor",
+     "pid": "0x350D",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x350D",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 21,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1110,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1115,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 21,
+     "name_en": "Additional fuel storage",
+     "pid": "0x3525",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x3525",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 22,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1160,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1165,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 22,
+     "name_en": "Energy meter type",
+     "pid": "0x3629",
+     "kind": "enum",
+     "raw_min": 0,
+     "raw_max": 2,
+     "display": "widget wartosci niejednoznaczny",
+     "bound_candidates": [],
+     "control": {
+      "pid": "0x3629",
+      "values": [
+       0,
+       1,
+       2
+      ],
+      "stored": [
+       0,
+       1,
+       2
+      ],
+      "slot": 23,
+      "widgets": [
+       {
+        "role": "text",
+        "ax": 405,
+        "ay": 1209,
+        "w": 45,
+        "h": 32,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           385,
+           9,
+           45,
+           32
+          ],
+          "text": null,
+          "tid": 175,
+          "label": "Temperatura CO zadana ręcznie [°C]"
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           312,
+           9,
+           118,
+           32
+          ],
+          "text": null,
+          "tid": 184,
+          "label": "Konfiguracja IN17"
+         },
+         "2": {
+          "vis": 1,
+          "rect": [
+           270,
+           9,
+           160,
+           32
+          ],
+          "text": null,
+          "tid": 185,
+          "label": "Odstęp czyszczenia [h]"
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 23,
+     "name_en": "Start settings recovery",
+     "pid": "0x3722",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x3722",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       0
+      ],
+      "slot": null,
+      "widgets": []
+     }
+    },
+    {
+     "idx": 24,
+     "name_en": "HALL Activated",
+     "pid": "0x299D",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x299D",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 26,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1360,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1365,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    {
+     "idx": 25,
+     "name_en": "Request reset alarm memory",
+     "pid": "0x404E",
+     "kind": "switch",
+     "raw_min": 0,
+     "raw_max": 1,
+     "slot": 0,
+     "display": "zaleznosc: zmiana PID zmienia widget wartosci WCZESNIEJSZEGO wiersza (slot 0), nie wlasna wartosc wiersza",
+     "control": {
+      "pid": "0x404E",
+      "values": [
+       0,
+       1
+      ],
+      "stored": [
+       0,
+       1
+      ],
+      "slot": 27,
+      "widgets": [
+       {
+        "role": "image",
+        "ax": 398,
+        "ay": 1410,
+        "w": 33,
+        "h": 33,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           0,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           29,
+           0,
+           33,
+           33
+          ],
+          "bmp": 70
+         }
+        }
+       },
+       {
+        "role": "other",
+        "ax": 407,
+        "ay": 1415,
+        "w": 7,
+        "h": 20,
+        "per_value": {
+         "0": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           7,
+           20
+          ]
+         },
+         "1": {
+          "vis": 1,
+          "rect": [
+           9,
+           5,
+           36,
+           20
+          ]
+         }
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "0x11": {
+   "node": "16_screen",
+   "rows": [
+    {
+     "idx": 0,
+     "name_en": "Statistics - Ignition cnt",
+     "pid": "0x3608",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 65535,
+     "slot": 0,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5678,
+       "text": "5678"
+      },
+      {
+       "raw": 32767,
+       "text": "32767"
+      },
+      {
+       "raw": 65535,
+       "text": "65535"
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "name_en": "Statistics - Avg ignition time [s]",
+     "pid": "0x3609",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 65535,
+     "slot": 1,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5678,
+       "text": "5678"
+      },
+      {
+       "raw": 32767,
+       "text": "32767"
+      },
+      {
+       "raw": 65535,
+       "text": "65535"
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "name_en": "Statistics - Avg burner power [%]",
+     "pid": "0x3610",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 100,
+     "slot": 2,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": null,
+     "ratios": [
+      0.0081,
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 50,
+       "text": "50"
+      },
+      {
+       "raw": 100,
+       "text": "100"
+      },
+      {
+       "raw": 5678,
+       "text": "46"
+      }
+     ]
+    },
+    {
+     "idx": 3,
+     "name_en": "Feeder 1 total work time [h]",
+     "pid": "0x3611",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 4294967295,
+     "slot": 3,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": null,
+     "ratios": [
+      0.0,
+      0.0001,
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5678,
+       "text": "5678"
+      },
+      {
+       "raw": 2147483647,
+       "text": "214748"
+      },
+      {
+       "raw": 4294967295,
+       "text": "0"
+      }
+     ]
+    },
+    {
+     "idx": 4,
+     "name_en": "Feeder 2 total work time [h]",
+     "pid": "0x3612",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 4294967295,
+     "slot": 4,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": null,
+     "ratios": [
+      0.0,
+      0.0001,
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5678,
+       "text": "5678"
+      },
+      {
+       "raw": 2147483647,
+       "text": "214748"
+      },
+      {
+       "raw": 4294967295,
+       "text": "0"
+      }
+     ]
+    },
+    {
+     "idx": 5,
+     "name_en": "Total fuel counter[kg]",
+     "pid": "0x3507",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 4294967295,
+     "slot": 5,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": null,
+     "ratios": [
+      0.0,
+      0.0001,
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 2147483647,
+       "text": "214748"
+      },
+      {
+       "raw": 4294967295,
+       "text": "0"
+      }
+     ]
+    },
+    {
+     "idx": 6,
+     "name_en": "Average oxygen for 30% pwr [%]",
+     "pid": "0x3613",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 255,
+     "slot": 6,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": null,
+     "ratios": [
+      0.0008,
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 1,
+       "text": "0.1"
+      },
+      {
+       "raw": 127,
+       "text": "12.7"
+      },
+      {
+       "raw": 255,
+       "text": "25.5"
+      },
+      {
+       "raw": 5678,
+       "text": "4.6"
+      }
+     ]
+    },
+    {
+     "idx": 7,
+     "name_en": "Average oxygen for 50% pwr [%]",
+     "pid": "0x3614",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 255,
+     "slot": 7,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": null,
+     "ratios": [
+      0.0008,
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 1,
+       "text": "0.1"
+      },
+      {
+       "raw": 127,
+       "text": "12.7"
+      },
+      {
+       "raw": 255,
+       "text": "25.5"
+      },
+      {
+       "raw": 5678,
+       "text": "4.6"
+      }
+     ]
+    },
+    {
+     "idx": 8,
+     "name_en": "Average oxygen for 70% pwr [%]",
+     "pid": "0x3615",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 255,
+     "slot": 8,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": null,
+     "ratios": [
+      0.0008,
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 1,
+       "text": "0.1"
+      },
+      {
+       "raw": 127,
+       "text": "12.7"
+      },
+      {
+       "raw": 255,
+       "text": "25.5"
+      },
+      {
+       "raw": 5678,
+       "text": "4.6"
+      }
+     ]
+    },
+    {
+     "idx": 9,
+     "name_en": "Average oxygen for 90% pwr [%]",
+     "pid": "0x3616",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 255,
+     "slot": 9,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": null,
+     "ratios": [
+      0.0008,
+      0.1
+     ],
+     "decimals": 1,
+     "leading_space": true,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0.0"
+      },
+      {
+       "raw": 1,
+       "text": "0.1"
+      },
+      {
+       "raw": 127,
+       "text": "12.7"
+      },
+      {
+       "raw": 255,
+       "text": "25.5"
+      },
+      {
+       "raw": 5678,
+       "text": "4.6"
+      }
+     ]
+    },
+    {
+     "idx": 10,
+     "name_en": "Statistics - Exchanger cleaning count",
+     "pid": "0x3618",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 65535,
+     "slot": 10,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5678,
+       "text": "5678"
+      },
+      {
+       "raw": 32767,
+       "text": "32767"
+      },
+      {
+       "raw": 65535,
+       "text": "65535"
+      }
+     ]
+    },
+    {
+     "idx": 11,
+     "name_en": "Statistics - Boiler overheat count",
+     "pid": "0x3619",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 65535,
+     "slot": 11,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5678,
+       "text": "5678"
+      },
+      {
+       "raw": 32767,
+       "text": "32767"
+      },
+      {
+       "raw": 65535,
+       "text": "65535"
+      }
+     ]
+    },
+    {
+     "idx": 12,
+     "name_en": "Statistics - reset count",
+     "pid": "0x362A",
+     "kind": "number",
+     "raw_min": 0,
+     "raw_max": 65535,
+     "slot": 12,
+     "slot_shift": 0,
+     "display": "number",
+     "scale": 1.0,
+     "ratios": [
+      1.0
+     ],
+     "decimals": 0,
+     "leading_space": false,
+     "samples": [
+      {
+       "raw": 0,
+       "text": "0"
+      },
+      {
+       "raw": 1,
+       "text": "1"
+      },
+      {
+       "raw": 5678,
+       "text": "5678"
+      },
+      {
+       "raw": 32767,
+       "text": "32767"
+      },
+      {
+       "raw": 65535,
+       "text": "65535"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "summary": {
+  "liczba": 138,
+  "zaleznosc": 47,
+  "niejednoznaczne": 9,
+  "tekst": 4
+ },
+ "open": [
+  "etykiety wartosci wyliczen (enum): widget tekstowy zmienia sie, ale odczyt id +0x26 przez tablice PL daje nietrafne napisy - wymaga odczytu przez prawdziwa sciezke TypedText lub zrzuty; zmierzono tylko ze widget (ax,ay) zmienia sie z wartoscia",
+  "wiersze number 0x11 Statystyki z duzymi zakresami (u32): wartosc wyswietlana nasyca sie / formatuje inaczej - skala niejednoznaczna",
+  "krok i zakres w dialogu (+/-) niezmierzone dla wszystkich wierszy: tylko skala wyswietlania",
+  "przelaczniki: stan = polozenie galki (rect x 7 -> 36 dla 0 -> 1), nie bitmapa",
+  "kaskada 0x08 i magazyn 0x09 (wymaga 0x350C/0x3525) niezmierzone"
+ ]
+}
