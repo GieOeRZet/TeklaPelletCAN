@@ -1,20 +1,32 @@
 {
+ "pin": {
+  "widgets": 316,
+  "mae": 0.78,
+  "pct_diff": 0.3,
+  "view": "0x808f66c"
+ },
  "program_day": {
   "widgets": 323,
-  "mae": 8.75,
-  "pct_diff": 19.3,
+  "mae": 0.84,
+  "pct_diff": 0.4,
+  "view": "0x808f910"
+ },
+ "program_copy": {
+  "widgets": 323,
+  "mae": 2.92,
+  "pct_diff": 5.8,
   "view": "0x808f910"
  },
  "internet_editor": {
   "widgets": 77,
-  "mae": 3.27,
-  "pct_diff": 6.1,
+  "mae": 3.13,
+  "pct_diff": 6.0,
   "view": "0x808f9ac"
  },
  "number_dialog": {
   "widgets": 583,
-  "mae": 10.21,
-  "pct_diff": 20.9,
+  "mae": 2.58,
+  "pct_diff": 2.5,
   "view": "0x808f944"
  }
 }

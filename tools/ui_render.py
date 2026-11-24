@@ -38,7 +38,7 @@ def bitmap(i):
         f = os.path.join(D, "bitmaps", "png", "%03d.png" % i); _bc[i] = Image.open(f).convert("RGBA") if os.path.exists(f) else None
     return _bc[i]
 def rgb565(v): r, g, b = v >> 11 & 31, v >> 5 & 63, v & 31; return (r << 3 | r >> 2, g << 2 | g >> 4, b << 3 | b >> 2)
-def render(widgets, extras=None, size=(480, 272)):
+def render(widgets, extras=None, size=(480, 272), dim=None):          # dim=(alfa, z_progu): przed pierwszym widgetem o z>=z_progu rysowana jest czarna nakladka o danej alfie (okno modalne)
     img = Image.new("RGB", size, BG); W = {w["this"]: w for w in widgets}
     def visible(w):
         a = w; n = 0
@@ -47,7 +47,10 @@ def render(widgets, extras=None, size=(480, 272)):
             a = W.get(a["parent"]); n += 1
         return True
     if extras and any("z" in e for e in extras.values()): widgets = sorted(widgets, key=lambda w: (extras.get(w["this"]) or {}).get("z", 10**6))
+    dimmed = dim is None
     for w in widgets:
+        if not dimmed and ((extras or {}).get(w["this"]) or {}).get("z", -1) >= dim[1]:
+            img = Image.composite(Image.new("RGB", size, (0, 0, 0)), img, Image.new("L", size, dim[0])); dimmed = True
         if w["w"] <= 0 or w["h"] <= 0 or w["w"] > 2000 or (extras is None and not visible(w)) or w["ax"] > 480 or w["ay"] > 272 or w["ax"] + w["w"] < 0 or w["ay"] + w["h"] < 0: continue
         ex = (extras or {}).get(w["this"])
         if ex and ex.get("hidden"): continue                       # efektywna niewidocznosc wg RAM biezacego punktu kontrolnego
@@ -61,6 +64,9 @@ def render(widgets, extras=None, size=(480, 272)):
         elif ex and ex.get("cls") == "btn":
             b = bitmap(ex["bmp"])
             if b is not None: img.paste(b.convert("RGB"), (w["ax"], w["ay"]), b.getchannel("A"))
+            if ex.get("icon"):
+                ib = bitmap(ex["icon"])
+                if ib is not None: img.paste(ib.convert("RGB"), (w["ax"] + ex["icon_xy"][0], w["ay"] + ex["icon_xy"][1]), ib.getchannel("A"))
         elif ex and ex.get("cls") == "text":
             if ex["text"]: draw_text(img, ex["font"], ex["text"], w["ax"], w["ay"] + DY, w["w"], ex["align"], rgb565(ex["color"]))
         elif w["role"] == "text" and (w.get("text_pl") or w.get("wildcard")):
