@@ -1,0 +1,1212 @@
+{
+ "evidence": "MEASURED (rejestry i ekran: PASS 68, emulator) + STRONG (ChatGPT PASS 97/100/110: automat alarmowy, miejsca raise/clear) + opis zachowania ekranu od wlasciciela (firmware)",
+ "history_ring": {
+  "size": 20,
+  "registers": {
+   "alarm_register": "0x4010+i (u32): niskie 16 bitow = kod; bit16 = AKTYWNY; bit17 = NIEPOTWIERDZONY",
+   "date_timestamp": "0x4024+i (u32, unix)",
+   "confirm_timestamp": "0x4038+i (u32, unix; 0 = niepotwierdzony)",
+   "next_index": "0x404C (u8)",
+   "count": "0x404D (u8)"
+  },
+  "measured": "przy braku modulow silnik sam dopisuje alarmy 100, 105, 110 (komunikacja z modulami) z flagami 0x30000 (aktywny + niepotwierdzony); znacznik czasu = RTC panelu (bez RTC = 2000-12-01 => 975542400)"
+ },
+ "screen": {
+  "node": "ALARMY",
+  "vtable": "0x808ec10",
+  "title": "HISTORIA ALARMOW",
+  "layout": "lewa kolumna strzalek '>' (jedna na alarm), okno szczegolow: NR, KOD, tekst alarmu (TypedText wg jezyka), 'Powstanie:' data i godzina, przycisk POTWIERDZ, status (AKTYWNY na czerwono)",
+  "behaviour": [
+   "pierwsze okno = ostatni alarm wymagajacy potwierdzenia (wg firmware)",
+   "historia trzyma 20 wpisow; strzalki pojawiaja sie przy wiekszej liczbie wpisow (paginacja)",
+   "POTWIERDZ: zapis czasu potwierdzenia do rejestru (0x4038+i) i zdjecie flagi NIEPOTWIERDZONY; nie kasuje flagi AKTYWNY (ChatGPT PASS 97)"
+  ],
+  "open": [
+   "dokladne zachowanie strzalek (wybor/paginacja) i ramka CAN przy POTWIERDZ - stukniecia w emulatorze (strzalki x=67, POTWIERDZ 337,187) nie zmienily PID w tescie",
+   "format daty (DD.MM.RRRR) i godziny (po prawej, '0' w zrzucie)"
+  ]
+ },
+ "alarm_automaton": {
+  "raise_fn": "RUNTIME 0x08025198",
+  "active_bit": "bit16 (0x0802516C)",
+  "unack_bit": "bit17 (0x08025134)",
+  "clear_fn": "0x08025104",
+  "ack": "zapis rejestru 0x4010+i i znacznika 0x4038+i",
+  "memory_reset": "lokalny reset pamieci alarmow: 0x404E",
+  "source": "ChatGPT PASS 97"
+ },
+ "codes": [
+  {
+   "code": 1,
+   "typedtext_id": 332,
+   "text": {
+    "PL": "Ciśnienie kotła",
+    "EN": "Boiler pressure",
+    "LT": "Boiler pressure",
+    "SK": "Boiler pressure",
+    "CZ": "Boiler pressure",
+    "ES": "Boiler pressure",
+    "RO": "Presiune centrală termică",
+    "EST": "Boiler pressure"
+   },
+   "raise_sites": [
+    "0x806902C"
+   ],
+   "clear_sites": [
+    "0x8069010"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 2,
+   "typedtext_id": 333,
+   "text": {
+    "PL": "Ustaw czas",
+    "EN": "Set time",
+    "LT": "Nustatyti laiką",
+    "SK": "Nastavenie času ",
+    "CZ": "Nastavení času",
+    "ES": "Poner en hora",
+    "RO": "Setare timp",
+    "EST": "Seadista aeg"
+   },
+   "raise_sites": [
+    "0x8068E58"
+   ],
+   "clear_sites": [
+    "0x8068E6A"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 3,
+   "typedtext_id": 419,
+   "text": {
+    "PL": "PP - dawka wstępna [s]",
+    "EN": "PP - fuel predose [s]",
+    "LT": "PP - fuel predose [s]",
+    "SK": "PP - fuel predose [s]",
+    "CZ": "PP - fuel predose [s]",
+    "ES": "PP - fuel predose [s]",
+    "RO": "Prealimentare combustibil din rezervor [s]",
+    "EST": "PP - fuel predose [s]"
+   },
+   "raise_sites": [
+    "0x8069064"
+   ],
+   "clear_sites": [
+    "0x8069048",
+    "0x806906E"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 4,
+   "typedtext_id": 368,
+   "text": {
+    "PL": "drewno",
+    "EN": "wood",
+    "LT": "Malkos",
+    "SK": "Drevo ",
+    "CZ": "Dřevo ",
+    "ES": "Madera",
+    "RO": "lemne",
+    "EST": "Halupuu"
+   },
+   "raise_sites": [
+    "0x8062EBE"
+   ],
+   "clear_sites": [
+    "0x8062EA6",
+    "0x8062F0C"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 5,
+   "typedtext_id": 417,
+   "text": {
+    "PL": "Auto synchronizacja zegara",
+    "EN": "Auto clock synchronization",
+    "LT": "Auto clock synchronization",
+    "SK": "Auto clock synchronization",
+    "CZ": "Auto clock synchronization",
+    "ES": "Auto clock synchronization",
+    "RO": "Sincronizare automată oră",
+    "EST": "Auto clock synchronization"
+   },
+   "raise_sites": [
+    "0x806909C"
+   ],
+   "clear_sites": [
+    "0x80690A4"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 6,
+   "typedtext_id": 369,
+   "text": {
+    "PL": "drewno->pellet",
+    "EN": "wood->pellets",
+    "LT": "Malkos -> granulės",
+    "SK": "Drevo->pelety ",
+    "CZ": "Dřevo->pelety ",
+    "ES": "Madera-> pellets",
+    "RO": "lemne->peleți",
+    "EST": "Halupuu->Pellet"
+   },
+   "raise_sites": [
+    "0x8062EDC"
+   ],
+   "clear_sites": [
+    "0x8062F04"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 7,
+   "typedtext_id": 418,
+   "text": {
+    "PL": "Zmiany zdalne",
+    "EN": "Remote changes",
+    "LT": "Remote changes",
+    "SK": "Remote changes",
+    "CZ": "Remote changes",
+    "ES": "Remote changes",
+    "RO": "Modificări de la distanță",
+    "EST": "Remote changes"
+   },
+   "raise_sites": [],
+   "clear_sites": [
+    "0x8062F18"
+   ],
+   "condition": "OPEN: no raise site recovered"
+  },
+  {
+   "code": 8,
+   "typedtext_id": 459,
+   "text": {
+    "PL": "<W>",
+    "EN": "<W>",
+    "LT": "<W>",
+    "SK": "<W>",
+    "CZ": "<W>",
+    "ES": "<W>",
+    "RO": "<W>",
+    "EST": "<W>"
+   }
+  },
+  {
+   "code": 20,
+   "typedtext_id": 356,
+   "text": {
+    "PL": "Uszkodzenie czujnika powrotu solarów",
+    "EN": "Return to solar sensor damage",
+    "LT": "Pažeistas saulės kolektorių grįžtamas daviklis",
+    "SK": "Poškodenie čidla spiatočky solárov ",
+    "CZ": "Poškození čidla zpátečky solarů",
+    "ES": "Sonda retorno Dep. Solar dañada",
+    "RO": "Senzor retur solar deteriorat",
+    "EST": "Päiksekütte T3 anduri viga"
+   }
+  },
+  {
+   "code": 21,
+   "typedtext_id": 357,
+   "text": {
+    "PL": "Uszkodzenie czujnika solar T4",
+    "EN": "Solar T4 sensor damage",
+    "LT": "Pažeistas solar T4 daviklis",
+    "SK": "Poškodenie čidla soláru T4",
+    "CZ": "Poškození čidla solaru T4",
+    "ES": "Sonda Solar  T4 dañada",
+    "RO": "Senzor solar T4 deteriorat",
+    "EST": "Päiksekütte T4 anduri viga"
+   }
+  },
+  {
+   "code": 22,
+   "typedtext_id": 358,
+   "text": {
+    "PL": "Rezerwa paliwa",
+    "EN": "Fuel reserve",
+    "LT": "Kuro rezervas",
+    "SK": "Rezerva paliva ",
+    "CZ": "Rezerva paliva ",
+    "ES": "Reserva de combustible",
+    "RO": "Rezervă combustibil",
+    "EST": "Kütuse reserv"
+   }
+  },
+  {
+   "code": 23,
+   "typedtext_id": 359,
+   "text": {
+    "PL": "Brak paliwa",
+    "EN": "Fuel tank empty",
+    "LT": "Nėra kuro",
+    "SK": "Chýba palivo",
+    "CZ": "Chybí palivo ",
+    "ES": "Depósito de combustible vacío",
+    "RO": "Rezervor gol",
+    "EST": "Kütusemahuti tühi"
+   }
+  },
+  {
+   "code": 24,
+   "typedtext_id": 360,
+   "text": {
+    "PL": "STB",
+    "EN": "STB",
+    "LT": "STB",
+    "SK": "STB",
+    "CZ": "STB",
+    "ES": "STB",
+    "RO": "STB",
+    "EST": "STB"
+   }
+  },
+  {
+   "code": 25,
+   "typedtext_id": 361,
+   "text": {
+    "PL": "Przerwanie obwodu bezpieczeństwa palnika",
+    "EN": "Burner safety circuit open",
+    "LT": "Saugumo grandies nutrukimas",
+    "SK": "Otvorenie bezpečnostného okruhu horáka",
+    "CZ": "Otevření bezpečnostního okruhu hořáku",
+    "ES": "Circuito seguridad del quemador abierto",
+    "RO": "Circuit de siguranță arzător deschis",
+    "EST": "Põleti turvalüliti häire"
+   }
+  },
+  {
+   "code": 26,
+   "typedtext_id": 362,
+   "text": {
+    "PL": "Uszkodzenie czujnika powrotu do kotla",
+    "EN": "Return to boiler sensor damage",
+    "LT": "Pažeistas grįžtamos temp. daviklis",
+    "SK": "Poškodenie čidla spiatočky  ",
+    "CZ": "Poškození čidla zpátečky ",
+    "ES": "Sonda circ. Retorno caldera dañada",
+    "RO": "Senzor retur centrală deteriorat",
+    "EST": "Tagasivoolu temp anduri häire"
+   }
+  },
+  {
+   "code": 27,
+   "typedtext_id": 363,
+   "text": {
+    "PL": "Poziom tlenu bardzo niski",
+    "EN": "Oxygen level very low",
+    "LT": "Oxygen level very low",
+    "SK": "Oxygen level very low",
+    "CZ": "Velmi nízký kyslík",
+    "ES": "Oxygen level very low",
+    "RO": "Nivel oxigen prea scăzut",
+    "EST": "O2 tase väga madal"
+   }
+  },
+  {
+   "code": 30,
+   "typedtext_id": 408,
+   "text": {
+    "PL": "Wybieg silnika transportującego (1) [s]",
+    "EN": "Transport. motor (1) overrun time [s]",
+    "LT": "Transport. motor (1) overrun time [s]",
+    "SK": "Transport. motor (1) overrun time [s]",
+    "CZ": "Transport. motor (1) overrun time [s]",
+    "ES": "Transport. motor (1) overrun time [s]",
+    "RO": "Timp depășire  alimentator (1)  [s]",
+    "EST": "Transport. motor (1) overrun time [s]"
+   },
+   "raise_sites": [
+    "0x8071E1C"
+   ],
+   "clear_sites": [
+    "0x8071DFC",
+    "0x8071E28"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 31,
+   "typedtext_id": 409,
+   "text": {
+    "PL": "Kopiuj nastawy z innego sterownika",
+    "EN": "Copy settings from other controller",
+    "LT": "Copy settings from other controller",
+    "SK": "Copy settings from other controller",
+    "CZ": "Copy settings from other controller",
+    "ES": "Copy settings from other controller",
+    "RO": "Copiați setările de pe alt controler",
+    "EST": "Copy settings from other controller"
+   },
+   "raise_sites": [
+    "0x802677E"
+   ],
+   "clear_sites": [
+    "0x8026760",
+    "0x80267B4"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 32,
+   "typedtext_id": 410,
+   "text": {
+    "PL": "Praca podajnika palnika [s]",
+    "EN": "Burner feeder work time [s]",
+    "LT": "Burner feeder work time [s]",
+    "SK": "Burner feeder work time [s]",
+    "CZ": "Burner feeder work time [s]",
+    "ES": "Burner feeder work time [s]",
+    "RO": "Timp funcționare alimentator arzător [s]",
+    "EST": "Burner feeder work time [s]"
+   },
+   "raise_sites": [
+    "0x80267AC"
+   ],
+   "clear_sites": [
+    "0x802678A",
+    "0x80267C0"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 36,
+   "typedtext_id": 436,
+   "text": {
+    "PL": "<",
+    "EN": "<",
+    "LT": "<",
+    "SK": "<",
+    "CZ": "<",
+    "ES": "<",
+    "RO": "<",
+    "EST": "<"
+   },
+   "raise_sites": [
+    "0x8028714",
+    "0x8028734"
+   ],
+   "clear_sites": [
+    "0x80286D2"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 40,
+   "typedtext_id": 411,
+   "text": {
+    "PL": "Ruch rusztu interwał [min]",
+    "EN": "Grate interval in modulation [min]",
+    "LT": "Grate interval in modulation [min]",
+    "SK": "Grate interval in modulation [min]",
+    "CZ": "Interval pohybu roštu [min]",
+    "ES": "Grate interval in modulation [min]",
+    "RO": "Interval grătar în modulație [min]",
+    "EST": "Resti intervall moduleerimisel [min]"
+   },
+   "raise_sites": [
+    "0x8073912"
+   ],
+   "clear_sites": [
+    "0x80738F6",
+    "0x8073974"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 41,
+   "typedtext_id": 412,
+   "text": {
+    "PL": "Temperatura przełączenia na lato [C]",
+    "EN": "Summer threshold temperature [C]",
+    "LT": "Summer threshold temperature [C]",
+    "SK": "Summer threshold temperature [C]",
+    "CZ": "Summer threshold temperature [C]",
+    "ES": "Summer threshold temperature [C]",
+    "RO": "Temperatură comutare pe vară [C]",
+    "EST": "Summer threshold temperature [C]"
+   },
+   "raise_sites": [
+    "0x8073938"
+   ],
+   "clear_sites": [
+    "0x807391C",
+    "0x807397C"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 42,
+   "typedtext_id": 413,
+   "text": {
+    "PL": "Automatyczny tryb lato",
+    "EN": "Automatic summer recognition",
+    "LT": "Automatic summer recognition",
+    "SK": "Automatic summer recognition",
+    "CZ": "Automatic summer recognition",
+    "ES": "Automatic summer recognition",
+    "RO": "Trecere automată în mod vară",
+    "EST": "Automatic summer recognition"
+   },
+   "raise_sites": [
+    "0x807396C"
+   ],
+   "clear_sites": [
+    "0x8073946",
+    "0x8073984"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 43,
+   "typedtext_id": 414,
+   "text": {
+    "PL": "Przepływomierz powietrza",
+    "EN": "Airflow meter",
+    "LT": "Airflow meter",
+    "SK": "Airflow meter",
+    "CZ": "Airflow meter",
+    "ES": "Airflow meter",
+    "RO": "Debitmetru aer",
+    "EST": "Airflow meter"
+   },
+   "raise_sites": [],
+   "clear_sites": [
+    "0x8073990"
+   ],
+   "condition": "OPEN: no raise site recovered"
+  },
+  {
+   "code": 50,
+   "typedtext_id": 415,
+   "text": {
+    "PL": "Ciśnienie min. [bar]",
+    "EN": "Minimal pressure [bar]",
+    "LT": "Minimal pressure [bar]",
+    "SK": "Minimal pressure [bar]",
+    "CZ": "Minimal pressure [bar]",
+    "ES": "Minimal pressure [bar]",
+    "RO": "Presiune minimă [bar]",
+    "EST": "Minimal pressure [bar]"
+   },
+   "raise_sites": [
+    "0x8064186"
+   ],
+   "clear_sites": [
+    "0x806418E"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 51,
+   "typedtext_id": 416,
+   "text": {
+    "PL": "Ciśnienie max. [bar]",
+    "EN": "Maximal pressure [bar]",
+    "LT": "Maximal pressure [bar]",
+    "SK": "Maximal pressure [bar]",
+    "CZ": "Maximal pressure [bar]",
+    "ES": "Maximal pressure [bar]",
+    "RO": "Presiune maximă [bar]",
+    "EST": "Maximal pressure [bar]"
+   },
+   "raise_sites": [
+    "0x806419E"
+   ],
+   "clear_sites": [
+    "0x80641A8"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 52,
+   "typedtext_id": 379,
+   "text": {
+    "PL": "Uszkodzenie czujnika temp. zewnętrznej",
+    "EN": "Outside temp. sensor damage",
+    "LT": "Outside temp. sensor damage",
+    "SK": "Outside temp. sensor damage",
+    "CZ": "Poškození venkovního čidla",
+    "ES": "Outside temp. sensor damage",
+    "RO": "Senzor temp. exterioară deteriorat",
+    "EST": "Outside temp. sensor damage"
+   },
+   "raise_sites": [
+    "0x80287B6"
+   ],
+   "clear_sites": [
+    "0x80287C0"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 53,
+   "typedtext_id": 389,
+   "text": {
+    "PL": "Moc dmuchawy wygaszanie [%]",
+    "EN": "Blower in burning off [%]",
+    "LT": "Blower in burning off [%]",
+    "SK": "Výkon ventilátora vyhasínanie [%]",
+    "CZ": "Výkon ventilátoru vyhasínaní [%]",
+    "ES": "Výkon ventilátoru vyhasínaní [%]",
+    "RO": "Ventilator la stingere [%]",
+    "EST": "Tühjaks põlenud [%]"
+   },
+   "raise_sites": [],
+   "clear_sites": [
+    "0x8068ECE",
+    "0x8068ED8"
+   ],
+   "condition": "OPEN: no raise site recovered"
+  },
+  {
+   "code": 80,
+   "typedtext_id": 364,
+   "text": {
+    "PL": "ładująca",
+    "EN": "loading pump",
+    "LT": "Pakrovimas",
+    "SK": "Obehová",
+    "CZ": "Oběhové čerpadlo",
+    "ES": "Bomba de carga",
+    "RO": "pompă încărcare",
+    "EST": "Katla rets. Pump"
+   }
+  },
+  {
+   "code": 81,
+   "typedtext_id": 365,
+   "text": {
+    "PL": "ochrony powrotu",
+    "EN": "return guard",
+    "LT": "Grįžtamo apsauga",
+    "SK": "Skratové čerpadlo ",
+    "CZ": "Zkratové čerpadlo ",
+    "ES": "Guardia de regreso",
+    "RO": "protecție retur",
+    "EST": "Katla tagasivoolu t. järgi pump"
+   }
+  },
+  {
+   "code": 82,
+   "typedtext_id": 366,
+   "text": {
+    "PL": "buforowa",
+    "EN": "buffer",
+    "LT": "buffer",
+    "SK": "buffer",
+    "CZ": "buffer",
+    "ES": "buffer",
+    "RO": "puffer",
+    "EST": "buffer"
+   }
+  },
+  {
+   "code": 83,
+   "typedtext_id": 367,
+   "text": {
+    "PL": "pellet",
+    "EN": "pellets",
+    "LT": "Granulės",
+    "SK": "Pelety ",
+    "CZ": "Pelety ",
+    "ES": "Pellets",
+    "RO": "peleți",
+    "EST": "Pellet"
+   }
+  },
+  {
+   "code": 100,
+   "typedtext_id": 336,
+   "text": {
+    "PL": "jasność=<W>",
+    "EN": "brightness=<W>",
+    "LT": "ryškumas=<W>",
+    "SK": "Jas=<W>",
+    "CZ": "Jas=<W>",
+    "ES": "Brillo=<W>",
+    "RO": "luminozitate=<W>",
+    "EST": "Leegi heledus=<W>"
+   }
+  },
+  {
+   "code": 101,
+   "typedtext_id": 337,
+   "text": {
+    "PL": "obroty=<W>",
+    "EN": "RPM=<W>",
+    "LT": "apsukos=<W>",
+    "SK": "Otáčky=<W>",
+    "CZ": "Otáčky=<W>",
+    "ES": "RPM=<W>",
+    "RO": "RPM=<W>",
+    "EST": "Põleti vent RPM=<W>"
+   }
+  },
+  {
+   "code": 102,
+   "typedtext_id": 338,
+   "text": {
+    "PL": "T. palnika=<W>",
+    "EN": "burner temperature=<W>",
+    "LT": "temperatūra=<W>",
+    "SK": "Teplota=<W>",
+    "CZ": "Teplota=<W>",
+    "ES": "Temperature=<W>",
+    "RO": "temperatură=<W>",
+    "EST": "Põleti temp.=<W>"
+   }
+  },
+  {
+   "code": 103,
+   "typedtext_id": 339,
+   "text": {
+    "PL": "Ciśnienie=<W>",
+    "EN": "Pressure=<W>",
+    "LT": "spaudimas=<W>",
+    "SK": "Pressure=<W>",
+    "CZ": "Tlak=<W>",
+    "ES": "Presión=<W>",
+    "RO": "Presiune=<W>",
+    "EST": "Katla rõhk=<W>"
+   }
+  },
+  {
+   "code": 104,
+   "typedtext_id": 340,
+   "text": {
+    "PL": "Energia łącznie [kWh]=<W>",
+    "EN": "Total energy [kWh]=<W>",
+    "LT": "Total energy [kWh]=<W>",
+    "SK": "Total energy [kWh]=<W>",
+    "CZ": "Vyrobená energie [kWh]=<W>",
+    "ES": "Total energy [kWh]=<W>",
+    "RO": "Total energy [kWh]=<W>",
+    "EST": "Tood. enenergia [kWh]=<W>"
+   }
+  },
+  {
+   "code": 105,
+   "typedtext_id": 341,
+   "text": {
+    "PL": "T. powrotu=<W>",
+    "EN": "T. return=<W>",
+    "LT": "grįžtama temp.=<W>",
+    "SK": "Teplota spiatočky=<W>",
+    "CZ": "Teplota zpátečky=<W>",
+    "ES": "T. returno=<W>",
+    "RO": "T. retur=<W>",
+    "EST": "Katla temp.=<W>"
+   }
+  },
+  {
+   "code": 106,
+   "typedtext_id": 342,
+   "text": {
+    "PL": "tlen[%]=<W>",
+    "EN": "oxygen=<W>",
+    "LT": "deguonis=<W>",
+    "SK": "Kyslík=<W>",
+    "CZ": "Kyslík=<W>",
+    "ES": "Oxígeno=<W>",
+    "RO": "oxigen=<W>",
+    "EST": "O2=<W>"
+   }
+  },
+  {
+   "code": 107,
+   "typedtext_id": 343,
+   "text": {
+    "PL": "moc[kW]=<W>",
+    "EN": "power[kW]=<W>",
+    "LT": "galia [kW]=<W>",
+    "SK": "Výkon [kW]=<W>",
+    "CZ": "Příkon kotle [kW]=<W>",
+    "ES": "Potencia [kW]=<W>",
+    "RO": "putere[kW]=<W>",
+    "EST": "Võimsus [kW]=<W>"
+   }
+  },
+  {
+   "code": 110,
+   "typedtext_id": 355,
+   "text": {
+    "PL": "Uszkodzenie czujnika zbiornika solarnego",
+    "EN": "Solar tank sensor damage",
+    "LT": "Pažeistas saulės kolektorių talpos daviklis",
+    "SK": "Poškodenie čidla solárneho zásobníka",
+    "CZ": "Poškození čidla solárního zásobníku ",
+    "ES": "Sonda Deposito Solar dañada",
+    "RO": "Senzor rezervor solar deteriorat",
+    "EST": "Päiksekütte T2 anduri viga"
+   },
+   "raise_sites": [
+    "0x801E9D0"
+   ],
+   "clear_sites": [
+    "0x801EA42"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 115,
+   "typedtext_id": 370,
+   "text": {
+    "PL": "Moc dmuchawy rozżarzanie [%]",
+    "EN": "Blower in incandescing",
+    "LT": "Ventiliatoriaus galia pakaitinimo metu",
+    "SK": "Výkon ventilátora rozhorenie [%]",
+    "CZ": "Výkon ventilátoru rozhoření [%]",
+    "ES": "Soplador en incandescencia",
+    "RO": "Ventilator la incandescență [%]",
+    "EST": "Vent. stabiliseerimine"
+   },
+   "raise_sites": [],
+   "clear_sites": [
+    "0x8073D4E",
+    "0x8073D70"
+   ],
+   "condition": "OPEN: no raise site recovered"
+  },
+  {
+   "code": 116,
+   "typedtext_id": 376,
+   "text": {
+    "PL": "Ruch rusztu [kg]",
+    "EN": "Grate interval in modulation [kg]",
+    "LT": "Grate interval in modulation [kg]",
+    "SK": "Grate interval in modulation [kg]",
+    "CZ": "Interval pohybu roštu [kg]",
+    "ES": "Grate interval in modulation [kg]",
+    "RO": "Mișcare grătar greutate [kg]",
+    "EST": "Resti intervall moduleerimisel [kg]"
+   }
+  },
+  {
+   "code": 118,
+   "typedtext_id": 375,
+   "text": {
+    "PL": "Czas ruchu rusztu [s]",
+    "EN": "Grate move in modulation [s]",
+    "LT": "Lėkštelės žingsnis moduliacijos metu",
+    "SK": "Pohyb roštu v modulácii [s]",
+    "CZ": "Pohyb roštu v modulaci [s]",
+    "ES": "Parrilla mover en la modulación [s]",
+    "RO": "Mișcare grătar timp [s]",
+    "EST": "Resti liikumine moduleerimisel [s]"
+   }
+  },
+  {
+   "code": 119,
+   "typedtext_id": 374,
+   "text": {
+    "PL": "spaliny[°C]=<W>",
+    "EN": "EGT[°C]=<W>",
+    "LT": "išmetamųjų dūmų temp.=<W>",
+    "SK": "T. spalín=<W>",
+    "CZ": "Teplota spalin [°C]=<W>",
+    "ES": "EGT=<W>",
+    "RO": "Evacuare[°C]=<W>",
+    "EST": "Põleti EGT [°C]=<W>"
+   }
+  },
+  {
+   "code": 120,
+   "typedtext_id": 373,
+   "text": {
+    "PL": "Dmuchawa z HALL",
+    "EN": "Blower with HALL",
+    "LT": "Ventiliatorius su HALL",
+    "SK": "Ventilátor s HALL",
+    "CZ": "Hallova sonda ventilátoru",
+    "ES": "Soplador con HALL",
+    "RO": "Ventilator cu HALL",
+    "EST": "Vent RPM anduriga"
+   }
+  },
+  {
+   "code": 123,
+   "typedtext_id": 372,
+   "text": {
+    "PL": "Pompa kotłowa",
+    "EN": "Boiler pump",
+    "LT": "Katilo siublys",
+    "SK": "Kotlové čerpadlo ",
+    "CZ": "Kotlové čerpadlo",
+    "ES": "Bomba de caldera",
+    "RO": "Pompă centrală",
+    "EST": "Katla pump"
+   },
+   "raise_sites": [
+    "0x801DEF4"
+   ],
+   "clear_sites": [
+    "0x801DF5E"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 124,
+   "typedtext_id": 382,
+   "text": {
+    "PL": "Wybieg pompy [min]",
+    "EN": "Pump overrun time [min]",
+    "LT": "Siurblio inercija",
+    "SK": "Dobeh čerpadla [min]",
+    "CZ": "Doběh čerpadla kotle[min]",
+    "ES": "Tiempo recirculación bomba [min]",
+    "RO": "Timp depășire pompă [min]",
+    "EST": "Pumpa ületöötamise aega [min]"
+   }
+  },
+  {
+   "code": 130,
+   "typedtext_id": 353,
+   "text": {
+    "PL": "Uszkodzenie czujnika buffora dół",
+    "EN": "Buffer bottom sensor damage",
+    "LT": "Pažeistas akumuliacinės talpos apat. daviklis",
+    "SK": "Poškodenie dolného čidla Akumulačnej nádrže ",
+    "CZ": "Poškození dolního čidla Aku nádrže",
+    "ES": "Sonda Inf. Inecia dañada",
+    "RO": "Senzor inferior puffer deteriorat",
+    "EST": "Akupaagi alumise anduri viga"
+   }
+  },
+  {
+   "code": 131,
+   "typedtext_id": 348,
+   "text": {
+    "PL": "Stopień mocy <W>",
+    "EN": "Power level <W>",
+    "LT": "Power level <W>",
+    "SK": "Power level <W>",
+    "CZ": "Výkonová hranice <W>",
+    "ES": "Power level <W>",
+    "RO": "Power level <W>",
+    "EST": "Võimsuse aste <W>"
+   },
+   "raise_sites": [
+    "0x80637FC"
+   ],
+   "clear_sites": [],
+   "condition": "OPEN: clear site not recovered"
+  },
+  {
+   "code": 139,
+   "typedtext_id": 330,
+   "text": {
+    "PL": "Słaba bateria w czujniku pokojowym 4",
+    "EN": "Battery low in room sensor 4",
+    "LT": "Battery low in room sensor 4",
+    "SK": "Battery low in room sensor 4",
+    "CZ": "Battery low in room sensor 4",
+    "ES": "Battery low in room sensor 4",
+    "RO": "Baterie descărcată senzor cameră 4",
+    "EST": "Battery low in room sensor 4"
+   },
+   "raise_sites": [
+    "0x80632E4"
+   ],
+   "clear_sites": [],
+   "condition": "OPEN: clear site not recovered"
+  },
+  {
+   "code": 140,
+   "typedtext_id": 329,
+   "text": {
+    "PL": "Słaba bateria w czujniku pokojowym 3",
+    "EN": "Battery low in room sensor 3",
+    "LT": "Battery low in room sensor 3",
+    "SK": "Battery low in room sensor 3",
+    "CZ": "Battery low in room sensor 3",
+    "ES": "Battery low in room sensor 3",
+    "RO": "Baterie descărcată senzor cameră 3",
+    "EST": "Battery low in room sensor 3"
+   },
+   "raise_sites": [
+    "0x801F77E",
+    "0x80630C8",
+    "0x8063ACE"
+   ],
+   "clear_sites": [],
+   "condition": "OPEN: clear site not recovered"
+  },
+  {
+   "code": 150,
+   "typedtext_id": 371,
+   "text": {
+    "PL": "Moc dmuchawy podtrzymanie [%]",
+    "EN": "Blower in hold/pause",
+    "LT": "Ventiliatoriaus galia palaikymo metu",
+    "SK": "Výkon ventilátora útlm [%]",
+    "CZ": "Výkon ventilátoru útlum [%]",
+    "ES": "Soplador en espera/pausa",
+    "RO": "Ventilator la stingere [%]",
+    "EST": "Vent.  ootel/paus"
+   },
+   "raise_sites": [
+    "0x80742CE"
+   ],
+   "clear_sites": [],
+   "condition": "OPEN: clear site not recovered"
+  },
+  {
+   "code": 151,
+   "typedtext_id": 415,
+   "text": {
+    "PL": "Ciśnienie min. [bar]",
+    "EN": "Minimal pressure [bar]",
+    "LT": "Minimal pressure [bar]",
+    "SK": "Minimal pressure [bar]",
+    "CZ": "Minimal pressure [bar]",
+    "ES": "Minimal pressure [bar]",
+    "RO": "Presiune minimă [bar]",
+    "EST": "Minimal pressure [bar]"
+   },
+   "raise_sites": [
+    "0x8074344"
+   ],
+   "clear_sites": [
+    "0x807434C",
+    "0x807436C"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 160,
+   "typedtext_id": 377,
+   "text": {
+    "PL": "Czas rozgrzewania zapalarki [s]",
+    "EN": "Igniter preheat time [s]",
+    "LT": "Igniter preheat time [s]",
+    "SK": "Igniter preheat time [s]",
+    "CZ": "Předehřev žhaviče [s]",
+    "ES": "Igniter preheat time [s]",
+    "RO": "Timp încălzire aprinzător [s]",
+    "EST": "Süütaja eelkütte aeg [s]"
+   },
+   "raise_sites": [
+    "0x8068B66"
+   ],
+   "clear_sites": [],
+   "condition": "OPEN: clear site not recovered"
+  },
+  {
+   "code": 161,
+   "typedtext_id": 378,
+   "text": {
+    "PL": "Uszkodzenie dmuchawy palnika",
+    "EN": "Burner blower damage",
+    "LT": "Pažeistas ventiliatorius",
+    "SK": "Poškodenie ventilátora horáka",
+    "CZ": "Poškození ventilátoru hořáku",
+    "ES": "Daño soplador del encendido",
+    "RO": "Ventilator arzător deteriorat",
+    "EST": "Ventilaator vigane"
+   },
+   "raise_sites": [
+    "0x8068B38"
+   ],
+   "clear_sites": [],
+   "condition": "OPEN: clear site not recovered"
+  },
+  {
+   "code": 200,
+   "typedtext_id": 352,
+   "text": {
+    "PL": "Uszkodzenie czujnika buffora góra",
+    "EN": "Buffer top sensor damage",
+    "LT": "Pažeistas akumuliacinės talpos virš. daviklis",
+    "SK": "Poškodenie horného čidla Akumulačnej nádrže ",
+    "CZ": "Poškození horního čidla Aku nádrže",
+    "ES": "Sonda Sup. Inecia dañada",
+    "RO": "Senzor superior puffer deteriorat",
+    "EST": "Akupaagi ülemise anduri viga"
+   }
+  },
+  {
+   "code": 201,
+   "typedtext_id": 435,
+   "text": {
+    "PL": "\\n31",
+    "EN": "\\n31",
+    "LT": "\\n31",
+    "SK": "\\n31",
+    "CZ": "\\n31",
+    "ES": "\\n31",
+    "RO": "\\n31",
+    "EST": "\\n31"
+   },
+   "raise_sites": [
+    "0x8062B56"
+   ],
+   "clear_sites": [
+    "0x8062B5E"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 202,
+   "typedtext_id": 354,
+   "text": {
+    "PL": "Uszkodzenie czujnika kolektora solarnego",
+    "EN": "Solar sensor damage",
+    "LT": "Pažeistas saulės kolektorių daviklis",
+    "SK": "Poškodenie čidla solárneho panelu",
+    "CZ": "Poškození čidla solárního panelu",
+    "ES": "Sonda Solar dañada",
+    "RO": "Senzor solar deteriorat",
+    "EST": "Päiksekütte T1 anduri viga"
+   }
+  },
+  {
+   "code": 203,
+   "typedtext_id": 420,
+   "text": {
+    "PL": "Kalibracja czujnika zew. [°C]",
+    "EN": "Outside sensor calib. [°C]",
+    "LT": "Outside sensor calib. [°C]",
+    "SK": "Outside sensor calib. [°C]",
+    "CZ": "Outside sensor calib. [°C]",
+    "ES": "Outside sensor calib. [°C]",
+    "RO": "Calibrare senzor exterior [°C]",
+    "EST": "Outside sensor calib. [°C]"
+   },
+   "raise_sites": [
+    "0x8062E1E"
+   ],
+   "clear_sites": [
+    "0x8062E2C"
+   ],
+   "condition": "OPEN: site identified; exact predicate OPEN"
+  },
+  {
+   "code": 204,
+   "typedtext_id": 380,
+   "text": {
+    "PL": "Kaskada master",
+    "EN": "Cascade master",
+    "LT": "Kaskada - pagrindinias",
+    "SK": "Kaskáda master",
+    "CZ": "Kaskáda master",
+    "ES": "Maestro en cascada",
+    "RO": "Cascadă master",
+    "EST": "Kaskaad master"
+   }
+  },
+  {
+   "code": 205,
+   "typedtext_id": 381,
+   "text": {
+    "PL": "Czujnik ciśnienia",
+    "EN": "Pressure sensor",
+    "LT": "Spaudimo daviklis",
+    "SK": "Pressure sensor",
+    "CZ": "Senzor tlaku",
+    "ES": "Sensor de presión",
+    "RO": "Senzor presiune",
+    "EST": "Rõhu andur"
+   }
+  },
+  {
+   "code": 206,
+   "typedtext_id": 383,
+   "text": {
+    "PL": "Moc nominalna [kW]",
+    "EN": "Nominal power [kW]",
+    "LT": "Nominali galia",
+    "SK": "Výkon nominálny [kw]",
+    "CZ": "Výkon hořáku [kW]",
+    "ES": "Výkon nominálny [kw]",
+    "RO": "Putere nominală [kW]",
+    "EST": "Nominaal võimsus [kW]"
+   }
+  },
+  {
+   "code": 250,
+   "typedtext_id": 388,
+   "text": {
+    "PL": "Podtrzymanie dmuchawa (drewno)",
+    "EN": "Blower in hold/pause",
+    "LT": "Vent. palaikymo metu (malkos)",
+    "SK": "Útlm ventilátora (drevo)",
+    "CZ": "Útlum ventilátoru (drěvo)",
+    "ES": "Útlum ventilátoru (drěvo)",
+    "RO": "Ventilator la menținere (lemne)",
+    "EST": "Vent.  ootel/paus"
+   },
+   "raise_sites": [],
+   "clear_sites": [
+    "0x8028742"
+   ],
+   "condition": "OPEN: no raise site recovered"
+  },
+  {
+   "code": 251,
+   "typedtext_id": 384,
+   "text": {
+    "PL": "Pod. palnika [% pod. zasobnika]",
+    "EN": "Burner feed. [% storage feed.]",
+    "LT": "Degiklio pad.",
+    "SK": "Podávač horáka [% podávač zásobníka]",
+    "CZ": "Podavač hořáku [% pod.zásobníku]",
+    "ES": "Podavač hořáku [% podavač zásobníku]",
+    "RO": "Snec arzător. [% snec rezervor.]",
+    "EST": "Söötja [% transportöörist]"
+   }
+  },
+  {
+   "code": 252,
+   "typedtext_id": 385,
+   "text": {
+    "PL": "Rozpalanie dmuchawa (drewno)",
+    "EN": "Fireup blower on wood",
+    "LT": "Vent. uždegimo metu (malkos)",
+    "SK": "Ventilátor rozhorenie (drevo)",
+    "CZ": "Ventilátor zapálení (drěvo)",
+    "ES": "Ventilátor rozhoření (drěvo)",
+    "RO": "Ventilator la aprindere (lemne)",
+    "EST": "Süütab halupuuga"
+   }
+  },
+  {
+   "code": 253,
+   "typedtext_id": 386,
+   "text": {
+    "PL": "Rozżarzanie dmuchawa (drewno)",
+    "EN": "Incandescing blower on wood",
+    "LT": "Vent. pakaitinimo metu (malkos)",
+    "SK": "Korekcia ventiátora (drevo)",
+    "CZ": "Ventilátor rozhoření (drěvo)",
+    "ES": "Korekce ventiátoru (drěvo)",
+    "RO": "Ventilator la incandescență (lemne)",
+    "EST": "Stabiliseerib halupuuga"
+   }
+  },
+  {
+   "code": 254,
+   "typedtext_id": 387,
+   "text": {
+    "PL": "Modulacja dmuchawa (drewno)",
+    "EN": "Blower on wood",
+    "LT": "Vent. moduliacijos metu (malkos)",
+    "SK": "Modulácia ventilátora (drevo)",
+    "CZ": "Modulace ventilátoru (dřevo)",
+    "ES": "Soplador sobre madera",
+    "RO": "Ventilator la modulație (lemne)",
+    "EST": "Vent halupuuga"
+   }
+  }
+ ],
+ "codes_total": 68,
+ "open": [
+  "warunki wyzwolenia per alarm (clear-only: 7,43,53,115,250; raise-only: 131,139,140,150,160,161 - asymetria katalogu PASS 110)"
+ ]
+}

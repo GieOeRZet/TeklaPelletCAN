@@ -86,7 +86,7 @@
    "kind": "screen",
    "level_min": 0,
    "evidence": "MEASURED (vtable w pass63_view_classes.json)",
-   "note": "dane z rejestrow alarmow, nie z PID-ow GUI (PID-diff nie dotyczy)"
+   "note": "dane z rejestrow alarmow 0x4010..0x404D (nie z PID-ow GUI); szczegoly: ui_model/alarms.json"
   },
   {
    "id": "INFO",
