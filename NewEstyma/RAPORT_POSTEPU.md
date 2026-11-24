@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) PROGRAM: przewijanie dni (Pn-Cz <-> Cz-Nd)
+Zrobilem: drugi ekran PROGRAM (zrzut z emulatora po przewinieciu), przewijanie kolkiem myszy/przeciagnieciem w karcie; test Playwright OK. Stan E7: 18 ekranow + PROGRAM x2, 5 okien HOME, dialog liczbowy, dialogi PROGRAM (dzien/Kopiuj), etykiety PL, tryb API (odczyt), karta Lovelace. Pozostalo: edycja segmentow PROGRAM i dialog radio dla enum tekstowych (OPEN: brak pelnych etykiet), listy Statystyki/Siec (przewijanie), test w prawdziwym HA, nawigacja pokrycia (18 komorek).
+
 ### E3 (2026-11-24) ponowny pelny przebieg po wszystkich poprawkach renderera: 606 komorek, mediana 0.2%, 99.7% < 3%
 Zrobilem: pelny przebieg 3 poziomy x 12 konfiguracji (4 procesy) + powtorka 14 zadan po poprawce stukania w ogon menu (najpierw zszyty obraz, potem przewijanie przyrostowe). ALARMY L0 wylaczone z oceny (artefakt emulatora potwierdzony zdjeciem wlasciciela). Wynik: **606 komorek, mediana 0.2%, 99.7% < 3%, 0 komorek > 8%**. Nierozstrzygniete 18 komorek (nie zmierzone, nie bledy renderera): 16 x stukniecie w Test wyjsc/Statystyki/Siec/Internet w konfiguracjach DEFAULT/2105=0/2105=2 (L1) i DEFAULT (L3) - wiersze istnieja w menu (potwierdzone zrzutem dla 2105=2), ale przewijanie nie dociera; 2 x KONFIGURACJA przy kaskadzie+magazynie (stukniecie trafia w inny wiersz). Pozostalo: ta nawigacja (BACKLOG), przewijanie PROGRAM w karcie, wlaczenie zdjec prawdziwego panelu do porownan (wlasciciel moze dostarczac zdjecia ekranow).
 

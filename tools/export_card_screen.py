@@ -25,6 +25,7 @@ else:
 if settings: s.tap(400, 245, settle=800); s.wait(500)
 for tp in filter(None, os.environ.get("EXTRA_TAPS", "").split(";")):      # np. EXTRA_TAPS="414,130" (kolejne stukniecia po wejsciu w ekran)
     x_, y_ = [int(v) for v in tp.split(",")]; s.tap(x_, y_, settle=900); s.wait(int(os.environ.get("EXTRA_WAIT", "400")))
+if os.environ.get("EXTRA_SCROLL"): s.drag_until_change(240, 220, 240, 60, attempts=6, ticks=240, pause_end=160); s.wait(500)      # przewiniecie listy (np. PROGRAM: Pt, Sb, Nd)
 ws = C.widget_table(s, t); ex = X.extract(s, ws); ref = s.shot()
 dyn = []; static = []
 for w in ws:
