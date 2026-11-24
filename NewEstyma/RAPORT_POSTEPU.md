@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) ROZBUDOWA: ekran Kociol w karcie wyglada jak panel
+Zrobilem: `tools/export_card_screen.py` (tlo PNG z danych firmware bez pol dynamicznych + JSON pol dynamicznych: pozycja, czcionka, kolor, wyrownanie, szablon, binding PID), `web/estyma_prototype/screens/KOCIOL.{png,json}`, widok SCR w prototypie: tlo + zywe pola (demo, odswiezane co 1 s), klik w naglowek = wstecz, klik w kafel nastaw (prawy dol) = lista nastaw, klik wstecz -> MENU. Test Playwright: 0 bledow, nawigacja MENU->Kociol->Nastawy->Kociol->MENU OK; zrzut zgodny z panelem. Bindingi PID pol (duza temperatura, zadana) - dane z `data_binding.py` jeszcze licza sie w tle (~25% z 655 PID); do tego czasu pola pokazuja wartosci przykladowe. Pozostalo: bindingi PID -> /api/v1/states, eksport pozostalych ekranow (Palnik, Ogrzewanie, CWU, Solary, Bufor), HOME, test na prawdziwym API (po zgodzie wlasciciela; tylko odczyt).
+
 ### E5 (2026-11-24) DOMKNIETY: freeze + porzadek, `analiza` -> `analiza_archiwum`
 Zrobilem: `git mv analiza analiza_archiwum` (1013 plikow, historia zachowana), poprawa odwolan w 104 plikach (narzedzia, dokumentacja, CLAUDE.md), `tools/paths.py` jako jedyne zrodlo sciezek, mapa `NewEstyma/MAPA_PRZENIESIEN.md`, smoke_test PASS przed i po, walidator ui_model PASS (16 plikow, 0 bledow), dialogi PIN/czas renderuja sie identycznie. Znane: pytest `tests/` wymaga pakietu pytest_homeassistant_custom_component (poza zakresem). Pozostalo: E7 rozbudowa prototypu karty (ekran Kociol z kafelkami, zywe wartosci), brakujace: ALARMY L0 (OPEN#2), online-bez-alarmow (BACKLOG), szlif Kopiuj/INTERNET. Uwaga dla nowych czatow: katalog zrodlowy to `analiza_archiwum/`.
 

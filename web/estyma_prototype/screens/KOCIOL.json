@@ -1,0 +1,40 @@
+{
+ "name": "KOCIOL",
+ "size": [
+  480,
+  272
+ ],
+ "dynamic": [
+  {
+   "widget": "0x200169b4",
+   "rect": [
+    180,
+    65,
+    157,
+    104
+   ],
+   "font": 5,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "0.0",
+   "sample": "0.0",
+   "bind": []
+  },
+  {
+   "widget": "0x200169ec",
+   "rect": [
+    358,
+    53,
+    36,
+    44
+   ],
+   "font": 3,
+   "align": 1,
+   "color": "#ffffff",
+   "template": "7",
+   "sample": "7",
+   "bind": []
+  }
+ ],
+ "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+}
