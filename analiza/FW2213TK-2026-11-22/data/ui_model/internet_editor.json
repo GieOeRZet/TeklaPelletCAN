@@ -1,0 +1,65 @@
+{
+ "evidence": "MEASURED (PASS 70, tools/sii_editor_probe.py, firmware w emulatorze; zrzuty: sii_acceptance/editor/editor_seq.png)",
+ "screen": "INTERNET (0x808f9ac)",
+ "open_editor": "tap w pole SSID (180,62) otwiera klawiature 'rolkowa' w prawym dolnym rogu; widok pozostaje INTERNET (overlay w tym samym widoku)",
+ "keyboard": {
+  "char_label": "litera/znak aktualnie wybrany, nad przyciskami (x~285,y~142 w ciele)",
+  "buttons": {
+   "up (^)": "nastepny znak w zestawie (A->B->C)",
+   "down (v)": "poprzedni znak (C->B)",
+   "OK": "dopisuje wybrany znak do pola i zapisuje (patrz serializacja); edytor zostaje otwarty",
+   "<": "kasowanie (niezmierzone)",
+   "ABC": "zestaw wielkich liter, pierwszy znak A",
+   "abc": "zestaw malych liter, pierwszy znak a",
+   "123.0": "cyfry, pierwszy znak 0",
+   "?!&": "symbole; wybor startuje od pustego znaku, pierwszy ^ daje '!'"
+  },
+  "positions_body_xy": {
+   "up": [
+    287,
+    170
+   ],
+   "down": [
+    336,
+    170
+   ],
+   "OK": [
+    386,
+    170
+   ],
+   "back": [
+    436,
+    170
+   ],
+   "ABC": [
+    285,
+    209
+   ],
+   "abc": [
+    336,
+    209
+   ],
+   "num": [
+    386,
+    209
+   ],
+   "sym": [
+    436,
+    209
+   ]
+  }
+ },
+ "serialization": "OK z '!' zapisalo PID 0x3730 ramka 0x584: 42 30 37 01 00 00 00 21 (u32 LE = 0x21000000: znak w najstarszym bajcie -> ciag znakow w u32 big-endian, jak zakladal ChatGPT dla 'Home'=0x486f6d65). Zapis natychmiast po OK (jedna ramka na dopisanie znaku), pole SSID pokazuje '!'",
+ "other_fields": "PASSWORD/SERIAL/PIN nie zbadane",
+ "open": [
+  "przycisk '<' (kasowanie) i kursor",
+  "dopisywanie drugiego znaku: do ktorego bajtu/chunka (0x3730..0x3735) i ile znakow (24/25)",
+  "zestaw symboli i cyfr: pelna lista znakow",
+  "cancel (poza OK)",
+  "trwalosc po wyjsciu z ekranu",
+  "PASSWORD (0x3736..?), 0x5B"
+ ],
+ "measured_negative": [
+  "wstrzykniecie 0x373E/0x3741/0x373D oraz 0x3730..35 PID-em przez inject_param NIE zmienia ciala ekranu INTERNET (stored zgodne, widok bez zmian po 300 tikach) - przelaczniki WiFi i Zmiany zdalne nie sa powiazane z tymi PID przez ten kanal; INFO: 0x3664/0x3665/0x2170 nie zmienia tekstow (0x2170 stored=0 - zapis odrzucony)"
+ ]
+}

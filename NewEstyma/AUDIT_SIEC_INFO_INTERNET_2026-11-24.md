@@ -38,3 +38,9 @@ Raport ChatGPT sam mówi: wstrzyknięcie 0x373E bez różnicy po 50 tikach (to z
 - SIEĆ ok. 75%, INFO ok. 25%, INTERNET ok. 20%.
 - Najważniejsze ryzyka: fałszywe negatywy 0x57 i 0x5B wpisane jako OPEN; wnioski bez dowodów w repo; założona serializacja SSID.
 - Do wykonania: poprawić harness wg punktów 3-5; INFO i INTERNET z punktów kontrolnych; edytor tekstowy INTERNET (tap w SSID: widok i vtable), zapis do PID, trwałość; SIEC: SW z PDO1, 3+ moduły.
+
+## Aktualizacja: poprawiony harness (tools/sii_acceptance.py) i wyniki
+Poprawki wg punktow 3-5 wdrozone; uruchomione na firmware, wyniki w `data/ui_model/sii_acceptance/*/RUN_SUMMARY.json` + PNG.
+- SIEC: 8 przypadkow, kontrola bez akcji = 0 px, wszystkie przypadki z modulem 'changed' (zgodnie z tabela powyzej).
+- INFO i INTERNET: wstrzykiwanie PID (`stored` sprawdzone) nie zmienia ciala ekranu; rzeczywista akcja UI (tap w SSID) otwiera edytor klawiaturowy - opis i zapis w `data/ui_model/internet_editor.json` (`tools/sii_editor_probe.py`).
+- Nowe zamkniecie: SIEC ~75%, INFO ~40% (teksty statyczne zmierzone; zrodla niewstrzykiwalne), INTERNET ~50% (edytor: wybor znaku, klasy znakow, OK->PID 0x3730 zmierzone; brak: kasowanie, wiele znakow, PASSWORD, trwalosc).
