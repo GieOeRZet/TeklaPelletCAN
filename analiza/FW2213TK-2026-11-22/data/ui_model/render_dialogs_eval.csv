@@ -1,0 +1,12 @@
+dialog,status,mae,pct_diff,reference,missing
+paliwo,BRAK_DANYCH,,,dialog_shots/home_dlg_paliwo.png,"execution not available in connector environment"
+zasilanie,BRAK_DANYCH,,,dialog_shots/home_dlg_zasilanie.png,"execution not available in connector environment"
+auto,BRAK_DANYCH,,,dialog_shots/home_dlg_auto.png,"execution not available in connector environment"
+czas,BRAK_DANYCH,,,dialog_shots/home_dlg_czas.png,"execution not available in connector environment"
+data,BRAK_DANYCH,,,dialog_shots/home_dlg_data.png,"execution not available in connector environment"
+number,BRAK_DANYCH,,,dialog_shots/edit_number_enum_sheet.png,"full widget inventory/assets missing"
+enum,BRAK_DANYCH,,,dialog_shots/edit_number_enum_sheet.png,"full widget inventory/assets missing"
+pin,BRAK_DANYCH,,,dialog_shots/pin_dialog_sheet.png,"full widget inventory/assets missing"
+internet,BRAK_DANYCH,,,dialog_shots/home_control.png,"full keyboard overlay inventory/assets missing"
+program_day,BRAK_DANYCH,,,dialog_shots/program_day_dialog.png,"full widget inventory/assets missing"
+program_copy,BRAK_DANYCH,,,dialog_shots/program_copy_sequence.png,"full widget inventory/assets missing"
