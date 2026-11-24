@@ -5,5 +5,5 @@
   272
  ],
  "dynamic": [],
- "source": "emulator render z danych (STRONG); bindingi PID: data_binding.py gdzie dostepne"
+ "source": "tlo = zrzut z emulatora (ref) - render z danych dawal artefakty (ikona, brak segmentu); pola dynamiczne brak (pasek harmonogramu to dane z PID dni)"
 }
