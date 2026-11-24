@@ -1,0 +1,6 @@
+pid,format,scale,unit,special_5678,confidence,evidence
+0x2001,%d.%d,0.1,C,no,FACT,PASS58
+0x22F5,%d,1,C,yes,FACT,PASS49
+0x2016,%d.%d,0.1,C,not closed,STRONG,resolver_t1
+0x4000,%d.%d,0.1,C,not closed,STRONG,resolver_t2
+0x3747,%d.%d,0.1,C,not closed,STRONG,configuration mapping

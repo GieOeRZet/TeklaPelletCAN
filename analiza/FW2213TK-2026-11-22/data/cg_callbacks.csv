@@ -1,0 +1,4 @@
+view_context,widget_offset,handler,confidence,evidence
+menu_row_registry,0x3B4+i*0x274,FUN_0807EB00,FACT,PASS41
+menu_row_registry,0x3B4+i*0x274,FUN_0807EB36,FACT,PASS41
+view_button_callbacks,?, ?,OPEN,setupScreen-specific pairs not closed

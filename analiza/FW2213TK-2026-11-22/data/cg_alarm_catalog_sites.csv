@@ -1,0 +1,33 @@
+code,text_pl,raise_sites,clear_sites,condition_status
+1,Uszkodzenie czujnika kotla,0x806902C,0x8069010,site identified; exact predicate OPEN
+2,Przegrzanie kotła,0x8068E58,0x8068E6A,site identified; exact predicate OPEN
+3,Uszkodzenie czujnika powrotu do kotla,0x8069064,0x8069048;0x806906E,site identified; exact predicate OPEN
+4,Uszkodzenie czujnika palnika/podajnika,0x8062EBE,0x8062EA6;0x8062F0C,site identified; exact predicate OPEN
+5,STB,0x806909C,0x80690A4,site identified; exact predicate OPEN
+6,Przegrzanie palnika/podajnika,0x8062EDC,0x8062F04,site identified; exact predicate OPEN
+7,Przerwanie obwodu bezpieczeństwa palnika,,0x8062F18,no raise site recovered
+30,Uszkodzenie czujnika ciepłej wody,0x8071E1C,0x8071DFC;0x8071E28,site identified; exact predicate OPEN
+31,Uszkodzenie czujnika buffora góra,0x802677E,0x8026760;0x80267B4,site identified; exact predicate OPEN
+32,Uszkodzenie czujnika buffora dół,0x80267AC,0x802678A;0x80267C0,site identified; exact predicate OPEN
+36,Uszkodzenie czujnika temp. zewnętrznej,0x8028714;0x8028734,0x80286D2,site identified; exact predicate OPEN
+40,Uszkodzenie czujnika kolektora solarnego,0x8073912,0x80738F6;0x8073974,site identified; exact predicate OPEN
+41,Uszkodzenie czujnika zbiornika solarnego,0x8073938,0x807391C;0x807397C,site identified; exact predicate OPEN
+42,Uszkodzenie czujnika powrotu solarów,0x807396C,0x8073946;0x8073984,site identified; exact predicate OPEN
+43,Uszkodzenie czujnika solar T4,,0x8073990,no raise site recovered
+50,Rezerwa paliwa,0x8064186,0x806418E,site identified; exact predicate OPEN
+51,Brak paliwa,0x806419E,0x80641A8,site identified; exact predicate OPEN
+52,Zalecany coroczny przegląd kotła,0x80287B6,0x80287C0,site identified; exact predicate OPEN
+53,Ciśnienie kotła,,0x8068ECE;0x8068ED8,no raise site recovered
+110,Komunikacja z modułem BIG,0x801E9D0,0x801EA42,site identified; exact predicate OPEN
+115,Komunikacja z modułem Lambda,,0x8073D4E;0x8073D70,no raise site recovered
+123,Komunikacja z modułem Mini 7,0x801DEF4,0x801DF5E,site identified; exact predicate OPEN
+131,Błąd wygaszania,0x80637FC,,clear site not recovered
+139,Nieudane rozpalanie,0x80632E4,,clear site not recovered
+140,Brak ognia/opału,0x801F77E;0x80630C8;0x8063ACE,,clear site not recovered
+150,Magazyn paliwa brak paliwa/czujnik max,0x80742CE,,clear site not recovered
+151,Rezerwa paliwa,0x8074344,0x807434C;0x807436C,site identified; exact predicate OPEN
+160,Wyczyść wymiennik,0x8068B66,,clear site not recovered
+161,Wyczyść palnik,0x8068B38,,clear site not recovered
+201,Uszkodzenie dmuchawy palnika,0x8062B56,0x8062B5E,site identified; exact predicate OPEN
+203,Poziom tlenu bardzo niski,0x8062E1E,0x8062E2C,site identified; exact predicate OPEN
+250,Słaba bateria w czujniku zewnętrznym,,0x8028742,no raise site recovered

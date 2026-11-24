@@ -1,0 +1,22 @@
+row,selector,typed_text_id,bitmap_id,root_label,build_condition,observed_runtime_class,first_level_handler,click_effect,destination_status,pid_can_status,evidence
+0,0,60,83,Kocioł,access>=0,0,0x08038008,none,hard,hard,root table + runtime dispatch + click matrix
+1,10,61,85,Palnik,access>=0,10,0x080382A6,ctx12B 0->10,hard,strong,root table + click matrix + T2
+2,1,62,86,Palnik/CO1 family,access>=0,1,0x08038130,runtime ctx12B=1 ctx12C=1,hard,hard,root table + class1..4 closure + T1
+3,2,63,86,CO2,access>=0,2,0x08038130,runtime ctx12B=2 ctx12C=2,hard,hard,root table + class1..4 closure + T1
+4,3,64,86,CO3,access>=0,3,0x08038130,runtime ctx12B=3 ctx12C=3,hard,hard,root table + class1..4 closure + T1
+5,4,65,86,CO4,access>=0,4,0x08038130,runtime ctx12B=4 ctx12C=4,hard,hard,hard,root table + class1..4 closure + T1
+6,5,66,88,Ciepła woda użytkowa,access>=0,5,0x080381E4,none,hard,hard,root table + T2
+7,6,71,87,Solary,access>=0,6,0x0803809C,none,hard,hard,root table + T2
+8,7,67,84,Bufor,access>=0,7,0x080383B0,none,hard,hard,root table + T2 + buffer pass
+9,8,70,82,Kaskada,access>=0,8,0x08038278,none,hard,strong,root table + T2
+10,9,69,99,Dodatkowy magazyn paliwa,access>=0,9,0x080382CA,none,hard,strong,root table + T2
+11,11,72,78,Historia alarmów,access>=0,11,0x080384B0,none,hard,hard,root table + alarm closure
+12,13,74,89,Informacje o programie,access>=0,13,0x0803850C,none,hard,open,root table + dispatch
+13,17,77,159,Konfiguracja,access>=0,17,0x08038568,ctx12B=0x11,hard,hard,root table + click matrix + config PID evidence
+14,15,76,96,Poziom menu (PIN),access>=0,15,0x08042318,terminal ERR in observed emulation,hard,hard,root table + PIN + dispatch
+15,0,12,73,Modulacja,access>0,12,0x080373BA/0x080373E6,key3 Language 0->1,hard,hard,root table + click matrix + class12
+16,90,14,75,Podtrzymanie,access>0,14,return,none/no-op,hard,open,root table + class14
+17,97,18,78,Praca,access>0,18,0x08038574,none,hard,open,root table + class18
+18,100,16,79,Alarm,access>0,16,0x0803856C,ctx12B=0x11,hard,open,root table + class16
+19,98,19,80,Przepłukiwanie,access>0,19,0x08038638,ctx12B 17->19 observed,hard,open,root table + class19
+20,95,20,81,Zamarzanie,access>0,20,0x080382EE,ctx12B 17->19 observed on prior row path,hard,open,root table + class20

@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "task": "ETAP3-C",
+  "evidence_policy": "CONSERVATIVE",
+  "items": [
+    {
+      "topic": "SIEĆ SW format",
+      "status": "FACT-DYNAMIC",
+      "result": "v52.18",
+      "basis": "10-round stabilization; PDO1 bytes 6/7 = 0x34,0x12 interpreted decimal"
+    },
+    {
+      "topic": "SIEĆ 0x57 missing SW",
+      "status": "FACT-DYNAMIC",
+      "result": "SW field absent under tested heartbeat+identity scenario",
+      "scope": "tested scenario only"
+    },
+    {
+      "topic": "SIEĆ offline timeout",
+      "status": "OPEN",
+      "result": "row still present at 10000 ticks; exact timeout >10000 not established"
+    },
+    {
+      "topic": "INFO 0x3665",
+      "status": "FACT-STATIC",
+      "result": "named runtime parameter 'igneTouch boiler short name'; runtime wildcard producer not proven"
+    },
+    {
+      "topic": "INFO 0x3664",
+      "status": "FACT-DYNAMIC",
+      "result": "software version source; 0x0214 -> v2.213 TE and 0x9999 (39321) -> v39.321 TE when set before entering INFO",
+      "basis": "local CHATGPT-SII-STAGE2 runtime evidence"
+    },
+    {
+      "topic": "INFO 0x2170",
+      "status": "FACT-STATIC",
+      "result": "runtime parameter 'VideRoom PIN'; current injection path rejects/does not alter INFO; true wildcard producer not proven"
+    },
+    {
+      "topic": "INTERNET SERIAL",
+      "status": "FACT-DYNAMIC",
+      "result": "widget -> PID 0x373F"
+    },
+    {
+      "topic": "INTERNET PIN",
+      "status": "FACT-DYNAMIC",
+      "result": "widget -> PID 0x3740"
+    },
+    {
+      "topic": "INTERNET / 0x5B",
+      "status": "NEGATIVE_UNDER_TEST",
+      "result": "0x5B heartbeat+identity test and PDO variant produced no pixel difference in saved local evidence; this does not prove universal independence"
+    }
+  ]
+}

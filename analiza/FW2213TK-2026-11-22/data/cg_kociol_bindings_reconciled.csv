@@ -1,0 +1,8 @@
+pid,name,widget_addr,widget_type,rule,bitmap_or_effect,evidence,confidence
+0x370A,Boiler image selector,0x20016894,image,1/2/3 selects model image,1->bmp11;2->bmp12;3->bmp13,PASS63 pilot + static presenter map,HARD
+0x350D,Pressure sensor,0x20016A94,text,0->hidden;1->visible,Ciśnienie= label,PASS63 pilot + PASS89,HARD
+0x350A,Return sensor,0x20016A24,text,0->hidden;1->visible,T. powrotu= label,PASS63 pilot + PASS89,HARD
+0x2005,Boiler on/off,0x20016918,image,0/1 selects state icon,0->bmp120;1->bmp122,PASS63 pilot,HARD
+0x2277,Boiler pump state,0x200162F8,image,live state drives pump animation,frames 138→142; exact PID→widget binding inferred by live-screen role but not isolated by 0x584 diff,PASS63 pilot,STRONG
+
+0x22A1,Room temp sensor type,0x200162F8,image,5->hidden; 0/1/2->visible,bitmap 138 baseline,PASS63 pilot,HARD

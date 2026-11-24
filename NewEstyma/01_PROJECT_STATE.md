@@ -21,13 +21,23 @@ Full universal reconstruction of Estyma firmware behavior, eventually targeting 
 - Scheduler registration leading to FUN_08010FCE.
 
 ## Main OPENs
-- Provider vtable 0x080A31F0: slots 0/1 HARD (GET/SET); remaining interface OPEN.
+- Provider vtable 0x080A31F0: slot0/slot1 HARD as GET/SET backend; slot4 +0x10 HARD resolves to runtime 0x080617FE (Thumb pointer 0x080617FF), a 38-byte initialization/reset-like routine; exact object/business semantics OPEN.
 - Full 260-row cross-layer matrix.
 - Descriptor/record ownership and multi-instance mapping.
 - Local parameter write -> outbound CAN publication bridge (machine-level HARD; timing/shadow semantics OPEN).
 - Complete UI semantic graph and visibility mapping.
-- Sidecar class 1/2/3 exact semantics.
+- Sidecar class 1/2/3 machine behavior CLOSED: class1 guarded-write only, class2 sync-only, class3 guarded-write+sync; exact business semantics/dynamic registration coverage OPEN.
 - Complete response/publication graph.
+
+
+
+## AUTONOMOUS PASS 129–134 — 2026-11-23
+
+- 260 catalog -> runtime matrix v1 created: `data/catalog260_runtime_matrix.csv` and cross-layer v1 `data/catalog260_crosslayer_matrix_v1.csv`.
+- 252/260 catalog rows have runtime records; 8/260 have hard `in_runtime=0`.
+- Provider slot +0x10 corrected by direct BIN inspection: Thumb pointer `0x080617FF` normalizes to function start `0x080617FE`, size 38 B. It is not an interior entry of `FUN_080617DC`.
+- Slot4 body calls `FUN_08061E78` on object+0x24; `0x08062674` is an interior +0x3C sub-entry of `FUN_08062638` and begins with `BX LR`.
+- Sidecar class machine matrix is closed for guarded write/provider sync; business semantics remain open.
 
 ## Current parameter-manager architecture
 Constructor: 0x0800DDC0
@@ -591,3 +601,95 @@ Szczegóły i ocena narzędzi: `NewEstyma/UI_MODEL_LESSONS.md`.
 
 ## PASS 63 (Claude, 2026-11-23) — pilot PID-diff Kocioł
 Patrz `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-63-PID-DIFF-PILOT-KOCIOL-2026-11-23.md`. K1/K2/K4/K5 spełnione, K3 częściowo (live PID nie wstrzykiwalne przez 0x584: EstymaTask 0x08068FE4 czyści je ze źródła modułowego). Narzędzie `tools/pid_diff.py`.
+
+## PASS 79 — timestamp TX exclusion boundary (2026-11-23)
+- Standard parameter publisher `0x0802117C` excludes PID `0x2165` before constructing `0x0584/0x42`.
+- Special publisher `0x080212A6` independently excludes PID `0x2165`.
+- Therefore `0x2165` is not a normal panel publication parameter. Combined with PASS 78 RX proof, the strongest static model is external CAN producer -> `0x584` write -> storage `0x20008D28` -> RTC auto-sync.
+- Concrete external node / ACK / any alternate time TX remains dynamic OPEN.
+
+
+## PASS 83 — B3 OCHRONA KOTŁA / BUFFER CORRECTION — 2026-11-23
+
+HARD:
+- Ogrzewanie helper PROJECT 0x08054848 / RAW 0x44848 receives PID 0x22A1 (Room temp sensor type) and PID 0x2301 (CH thermostat state).
+- If 0x22A1 != 4: view flags +0xA69=0, +0xA95=1.
+- If 0x22A1 == 4: +0xA95=0 and +0xA69=1 only when 0x2301==1.
+- Therefore the previous direct-CH-status hypothesis using 0x22FD is rejected for this path.
+- Buffer L1 visibility is hard-gated by model+0x158 != 0; 0% is PID 0x3174 via UI key 0xFB.
+- Buffer UI key 0xF5 resolves to PID 0x2280, a distinct live/read-only parameter; do not alias it to setting PID 0x2114 merely by name.
+
+CORRECTION:
+- PASS 81's claim that 0x20008D84 is the 23-record source array is rejected. 0x20008D84 is the parameter manager. FUN_080143DE/416/43E receive the actual 20-byte-record base as an argument. The 23-entry catalog at 0x20008C50 contains pointers to those record arrays.
+
+OPEN:
+- exact widget association of +0xA69/+0xA95 with TypedText 87;
+- exact widget/PID for the Buffer 7°C field;
+- actual 23-record source-array base and record #23 +0x0C value;
+- screen semantics of the four L>=3 wrappers;
+- provider vtable functional semantics beyond GET/SET.
+
+
+## PASS 84 — PROVIDER FLASH BACKEND — 2026-11-23
+
+HARD:
+- Provider 0x080A31F0 is the parameter manager's nonvolatile persistence layer.
+- Slot0 RAW 0xDB30 performs GET through FUN_08014BBA and persistent flash regions around 0x08008000 / 0x0800C000.
+- Slot1 RAW 0xDB78 performs typed SET and reaches FUN_08014C14/FUN_08014CC0 with flash validation/commit logic.
+- Constructor RAW 0xDB08 initializes the provider and flash-state helpers.
+- Slot4 RAW 0x517FE changes provider/object state and initializes subobjects; exact semantic name OPEN.
+
+
+## PASS 85 — CAN TIMESTAMP ROLE — 2026-11-23
+
+HARD:
+- RAW 0x62AE4 constructs fixed remote request StdId 0x604, command 0x40, PID LE, subindex 1.
+- RAW 0x62A90 accepts StdId 0x584 and dispatches generic parameter writes.
+- PID 0x2165 uses this generic write path and storage 0x20008D28.
+- Standard panel publishers exclude 0x2165.
+
+STRONG:
+- timestamp source is boiler-side/remote traffic using the fixed 0x584 parameter envelope.
+
+OPEN:
+- exact emission trigger, response/ACK semantics, and whether timestamp delivery is solicited or unsolicited.
+
+
+## AUTONOMOUS PASS 96 — MENU DISPATCH CLOSURE — 2026-11-23
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-96-MENU-DISPATCH-CLOSURE-2026-11-23.md`; data: `data/cg_menu_dispatch_closure.csv`; tool/test: `tools/cg_menu_dispatch_closure.py`, `tools/test_cg_menu_dispatch_closure.py`.
+HARD: rows 11..20 closed at row→class→first-level handler boundary using the already recovered 21-class TBB graph. Row 11 class 11 -> 0x080384B0; row 12 class 13 -> 0x0803850C; row 13 class 17 -> 0x0803850C; row 14 class 15 -> 0x08042318 path; row 15 class 12 -> 0x080373BA/0x080373E6; row 16 class 14 -> no-op; row 17 class 18 -> 0x08038574; row 18 class 16 -> 0x0803856C; row 19 class 19 -> 0x08038638; row 20 class 20 -> 0x080382EE.
+OPEN: final handler→page constructor/resource/widget chains remain separate.
+
+## AUTONOMOUS PASS 97 — ALARM MANAGER CLOSURE — 2026-11-23
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-97-ALARM-CLOSURE-2026-11-23.md`; data: `data/cg_alarm_closure.csv`; tool/test: `tools/cg_alarm_closure.py`, `tools/test_cg_alarm_closure.py`.
+HARD: generic alarm state machine closed: raise `0x08025198`; bit17 unack `0x08025134`; bit16 active `0x0802516C`; clear-by-code helper `0x08025104`; ACK writes alarm register and confirmation timestamp; reset memory PID `0x404E`. ACK is independent from ACTIVE and does not itself clear bit16.
+OPEN: individual business conditions for the many per-code clear sites.
+
+
+## AUTONOMOUS PASS 98 — KOCIOŁ BINDING RECONCILIATION — 2026-11-23
+Report: `analiza/FW2213TK-2026-11-22/AUTONOMOUS-PASS-98-KOCIOL-BINDING-RECONCILIATION-2026-11-23.md`; data/tool/test: `cg_kociol_bindings_reconciled.*`.
+CORRECTED HARD: 0x370A→0x20016894 (bitmap 11/12/13), 0x350D→0x20016A94 (Ciśnienie= visibility), 0x350A→0x20016A24 (T. powrotu= visibility), 0x2005→0x20016918 (bmp120/122). REJECTED: 0x2277→bitmap138. PASS 63 shows 0x200162F8 as live pump animation (frames 138→142); explicit bitmap138 binding is PID 0x22A1, where value 5 hides the widget and 0/1/2 show it.
+
+
+## AUTONOMOUS PASS 99–103 — 2026-11-23
+- PASS 99: dual menu callbacks closed: 0x0807EB00→0x0803C064 and 0x0807EB36→0x0803EC18 using common row registry.
+- PASS 100: 31-code alarm catalog/site inventory normalized; per-site predicates remain OPEN.
+- PASS 101: 372 valid T2 internal UI-key→PID mappings exported.
+- PASS 102: 137 unique presenter setters fully indexed from existing presenter_map widget-offset evidence.
+- PASS 103: Kocioł visual binding matrix closed from PASS63 pilot evidence.
+- **CORRECTION:** prior PASS98 attribution `0x2277→bitmap138` is REJECTED. Bitmap138 is explicitly tied to `0x22A1` in pilot data; `0x200162F8` is also the live pump-animation widget (frames 138→142), while `0x2277` remains a live pump-state source whose 0x584 value injection is blocked by the sensor refresh path.
+
+
+## AUTONOMOUS PASS 107–109 — 2026-11-23
+- PASS 107: pełny source-grounded resolver T1 — 49 rekordów, `PID=value+inst-1`; eksport + test.
+- PASS 108: drugi callback `FUN_0807EB36` zamknięty ze źródłowego raw snippet: ten sam rejestr `this+0x3B4+i*0x274`, count `+0x3B8`, dispatch `FUN_0803EC18`. Nie nadano nieudowodnionej semantyki końcowego ekranu.
+- PASS 109: T1/T2 reconciliation — T1=49, T2=372, **0 wspólnych ui_key**; T1 rule `PID=value+inst-1`, T2 rule `PID=value`.
+
+## AUTONOMOUS PASS 110 — 2026-11-23
+- Audyt katalogu alarmów wykazał kody clear-only (7,43,53,115,250) i raise-only (131,139,140,150,160,161). Nie traktować asymetrii jako dowodu brakującego wywołania; wymagany jest trace caller/context.
+
+
+## AUTONOMOUS PASS 112–113 — UI binding audit — 2026-11-23
+- PASS 112: przeprowadzono statyczny audyt modelu UI Home/Kocioł/Bufor. `view_off` jest użytecznym lokalizatorem, ale repo ma również dynamiczny audyt wskazujący, że samo view_off/presenter_trace bywa wieloznaczne; dlatego nie promowano takich dopasowań do faktów semantycznych.
+- PASS 113: twardo zlokalizowano widget „Ochrona kotła”: OGRZEWANIE 1, this 0x200177ec, view_off 6068, text_id 30; sąsiedni bitmap widget this 0x20017820, view_off 6120, bitmap 130. Warunek wejściowy A69/A95 jest zamknięty przez PID 0x22A1 + 0x2301, ale przypisanie A69/A95 do tych konkretnych widgetów nadal OPEN.
+- PASS 113: T2 potwierdza UI key 0xF3→PID 0x2114, 0xF4→0x2115, 0xF5→0x2280. 0x2114/0x2115 mają min 7°C. W presenter_map obecnie brak wiersza 0xF3→0x2114, więc pole 7°C nadal OPEN na poziomie widget→setter.

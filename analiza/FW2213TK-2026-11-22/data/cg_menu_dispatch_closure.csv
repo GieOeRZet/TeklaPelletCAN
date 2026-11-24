@@ -1,0 +1,11 @@
+row,class,semantic,first_level_handler,confidence,source
+11,11,Historia alarmów,0x080384B0,HARD,PASS28+MENUTREE-FULL-CLOSURE
+12,13,Informacje o programie,0x0803850C,HARD,PASS28+MENUTREE-FULL-CLOSURE
+13,17,Konfiguracja,0x0803850C,HARD,PASS28+MENUTREE-FULL-CLOSURE
+14,15,Poziom menu PIN,0x08042318,HARD,PASS28+PASS41
+15,12,Język,0x080373BA/0x080373E6,HARD,PASS39+PASS41
+16,14,no-op,return,HARD,PASS28
+17,18,service/level-gated class,0x08038574,HARD,PASS28
+18,16,service/level-gated class,0x0803856C,HARD,PASS28
+19,19,service/level-gated class,0x08038638,HARD,PASS28
+20,20,service/level-gated class,0x080382EE,HARD,PASS28

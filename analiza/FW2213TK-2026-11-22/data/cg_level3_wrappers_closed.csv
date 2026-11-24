@@ -1,0 +1,5 @@
+wrapper,gate,child_offset,init_offset,exit,confidence
+0x0805A9EC,model+0x158>=3,0x23C,0x210,vtable slot0 common tail,HARD
+0x0805B1D4,model+0x158>=3,0x23C,0x210,vtable slot0 common tail,HARD
+0x0805F400,model+0x158>=3,0x23C,0x210,vtable slot0 common tail,HARD
+0x0805FE9C,model+0x158>=3,0x23C,0x210,vtable slot0 common tail,HARD

@@ -1,0 +1,34 @@
+alarm_code,raise_sites,clear_sites,status,text_pl
+0,1,1,unlabeled-generic,
+1,1,1,paired,Uszkodzenie czujnika kotla
+2,1,1,paired,Przegrzanie kotła
+3,1,2,paired,Uszkodzenie czujnika powrotu do kotla
+4,1,2,paired,Uszkodzenie czujnika palnika/podajnika
+5,1,1,paired,STB
+6,1,1,paired,Przegrzanie palnika/podajnika
+7,0,1,clear-only,Przerwanie obwodu bezpieczeństwa palnika
+30,1,2,paired,Uszkodzenie czujnika ciepłej wody
+31,1,2,paired,Uszkodzenie czujnika buffora góra
+32,1,2,paired,Uszkodzenie czujnika buffora dół
+36,2,1,paired,Uszkodzenie czujnika temp. zewnętrznej
+40,1,2,paired,Uszkodzenie czujnika kolektora solarnego
+41,1,2,paired,Uszkodzenie czujnika zbiornika solarnego
+42,1,2,paired,Uszkodzenie czujnika powrotu solarów
+43,0,2,clear-only,Uszkodzenie czujnika solar T4
+50,1,1,paired,Rezerwa paliwa
+51,1,1,paired,Brak paliwa
+52,1,1,paired,Zalecany coroczny przegląd kotła
+53,0,2,clear-only,Ciśnienie kotła
+110,1,1,paired,Komunikacja z modułem BIG
+115,0,2,clear-only,Komunikacja z modułem Lambda
+123,1,1,paired,Komunikacja z modułem Mini 7
+131,1,0,raise-only,Błąd wygaszania
+139,1,0,raise-only,Nieudane rozpalanie
+140,3,0,raise-only,Brak ognia/opału
+150,1,0,raise-only,Magazyn paliwa brak paliwa/czujnik max
+151,1,2,paired,Rezerwa paliwa
+160,1,0,raise-only,Wyczyść wymiennik
+161,1,0,raise-only,Wyczyść palnik
+201,1,1,paired,Uszkodzenie dmuchawy palnika
+203,1,1,paired,Poziom tlenu bardzo niski
+250,0,1,clear-only,Słaba bateria w czujniku zewnętrznym

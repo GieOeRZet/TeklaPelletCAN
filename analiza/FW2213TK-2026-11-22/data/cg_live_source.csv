@@ -1,0 +1,6 @@
+pid,role,static_evidence,confidence
+0x2001,live boiler temperature,SDO 0x2001:01 is polled from nodes 5/6/7; local PID is Boiler temp[dC],STRONG
+0x2277,live boiler pump state,PID catalog names it Boiler pump state; runtime task collects pump bits including 0x2277,STRONG
+0x3333,live boiler pressure,PID catalog identifies Boiler pressure[mbar]; value path is live and UI value binding remains dependent on module source,STRONG
+0x4000,live return temperature,PID catalog identifies Boiler return temp[dC]; runtime task source refresh is live,STRONG
+0x3628,live total energy counter,PID catalog identifies Statistics - total energy produced [kWh]; live source path is runtime/module dependent,STRONG
