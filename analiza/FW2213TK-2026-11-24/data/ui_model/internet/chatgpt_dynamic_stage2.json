@@ -1,0 +1,94 @@
+{
+  "topic": "INTERNET",
+  "view": "0x808f9ac",
+  "checkpoint": "node18_screen",
+  "results": [
+    {
+      "id": "ssid_chunks",
+      "status": "STRONG",
+      "pid_range": "0x3730..0x3735",
+      "result": "4 characters per u32 chunk; big-endian within each u32; 5th starts 0x3731"
+    },
+    {
+      "id": "ssid_examples",
+      "status": "STRONG",
+      "examples": {
+        "A": "4230370100000041",
+        "AB": "4230370100004241",
+        "ABC": "4230370100434241",
+        "ABCD": "4230370144434241",
+        "ABCDE": "4231370100000045"
+      }
+    },
+    {
+      "id": "ssid_backspace",
+      "status": "STRONG",
+      "result": "after ABC, < writes 0x3730 as 4230370100004241, leaving AB"
+    },
+    {
+      "id": "ssid_limit",
+      "status": "STRONG",
+      "result": "24 accepted (6 chunks); 25th/26th generate no 0x584 write"
+    },
+    {
+      "id": "char_sets",
+      "status": "STRONG",
+      "sets": {
+        "ABC": "A-Z (26)",
+        "abc": "a-z (26)",
+        "123.0": "0-9 (10)",
+        "?!&": "ASCII 0x21..0x7E excluding space (33 symbols)"
+      }
+    },
+    {
+      "id": "cancel",
+      "status": "STRONG",
+      "result": "< on empty, tap outside keyboard, and top-left MENU after uncommitted character produced no 0x584 write"
+    },
+    {
+      "id": "password",
+      "status": "STRONG",
+      "pid": "0x3736",
+      "result": "tap opens editor; committing A emitted 4236370100000041"
+    },
+    {
+      "id": "serial",
+      "status": "STRONG",
+      "result": "SERIAL tap did not open editor; no write"
+    },
+    {
+      "id": "pin",
+      "status": "STRONG",
+      "result": "PIN tap did not open editor; no write tested"
+    },
+    {
+      "id": "wifi_toggle",
+      "status": "STRONG",
+      "pid": "0x373E",
+      "result": "right/on-side writes 1; left/off-side writes 0"
+    },
+    {
+      "id": "remote_toggle",
+      "status": "STRONG",
+      "pid": "0x3741",
+      "result": "right/on-side writes 1; left/off-side writes 0"
+    },
+    {
+      "id": "persistence",
+      "status": "STRONG",
+      "result": "SSID A survived exit to MENU and re-entry to INTERNET"
+    },
+    {
+      "id": "5b",
+      "status": "OPEN",
+      "node": "0x5B",
+      "result": "heartbeat+SDO identity did not alter INTERNET body; exact correlation OPEN"
+    }
+  ],
+  "open": [
+    "full PASSWORD multi-chunk/limit matrix",
+    "SERIAL/PIN non-editable rationale",
+    "0x5B correlation",
+    "header status icon source"
+  ]
+}
