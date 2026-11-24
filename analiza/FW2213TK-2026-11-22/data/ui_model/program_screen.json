@@ -191,9 +191,49 @@
  "copy_dialog": {
   "trigger": "przycisk Kopiuj w dialogu dnia",
   "title": "Kopiuj na inne dni",
-  "controls": "pola wyboru Pn Wt Sr Cz Pt Sb Nd (biezacy dzien zaznaczony i zablokowany) + OK",
-  "evidence": "MEASURED (zrzut program_scroll_and_copy_sheet.png)",
-  "write": "OPEN: zapis PID-ow dni docelowych przy OK nie zmierzony"
+  "controls": {
+   "title": "Kopiuj na inne dni",
+   "checkboxes": {
+    "Pn": [
+     170,
+     92
+    ],
+    "Wt": [
+     170,
+     136
+    ],
+    "Sr": [
+     170,
+     182
+    ],
+    "Cz": [
+     170,
+     226
+    ],
+    "Pt": [
+     320,
+     92
+    ],
+    "Sb": [
+     320,
+     136
+    ],
+    "Nd": [
+     320,
+     182
+    ]
+   },
+   "current_day": "zaznaczony i zablokowany (nazwa na niebiesko)",
+   "ok": [
+    415,
+    232
+   ],
+   "size_px_checkbox": "ok. 30x30"
+  },
+  "evidence": "MEASURED (PASS 70, emulator, Kociol/Sroda -> Pn+Nd oraz -> Wt+Pt+Sb+Cz; zrzut dialog_shots/program_copy_sequence.png)",
+  "write": "OK w oknie Kopiuj zapisuje NATYCHMIAST (bez drugiego OK) wartosc maski biezacego dnia do PID kazdego zaznaczonego dnia, ale TYLKO gdy wartosc sie rozni; jedna ramka 0x584 na dzien (np. Sroda 131071 -> Pn: 42 09 22 01 ff ff 01 00; -> Wt: 42 0a 22 01 ff ff 01 00); dni o tej samej wartosci (Pt, Sb, Cz, Nd w stanie domyslnym) bez ramki",
+  "after_ok": "oba okna (Kopiuj i dnia) sie zamykaja, widok wraca do listy PROGRAM, pasek dnia docelowego odswiezony (Pn zmienil sie na 0..17)",
+  "day_pids": "Pn 0x2209, Wt 0x220A (kolejne PID dla kolejnych dni; Sr..Nd = 0x220B..0x220F - potwierdzone dla Pn i Wt)"
  },
  "shots": [
   "dialog_shots/program_list.png",
@@ -202,8 +242,9 @@
   "dialog_shots/program_scroll_and_copy_sheet.png"
  ],
  "open": [
-  "Kopiuj: zapis do dni docelowych, wybor dni (pozycje pol wyboru)",
   "dokladna pozycja OK i zakres uchwytu (x=58..~420)",
-  "PROGRAM dla Wody ma tez harmonogram cyrkulacji? (nie zmierzone)"
+  "PROGRAM dla Wody ma tez harmonogram cyrkulacji? (nie zmierzone)",
+  "Sr..Nd: PID 0x220B..0x220F do potwierdzenia ramka (wzorzec 0x2209+i)",
+  "PROGRAM dla CWU i CO: PID dni inne (do sprawdzenia tym samym tapem)"
  ]
 }
