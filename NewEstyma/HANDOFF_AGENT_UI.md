@@ -59,3 +59,7 @@ Patrz `NewEstyma/PLAN_PRACY_AGENT_UI.md` (etapy E2-E7) i raportuj do `NewEstyma/
 4. Nowe narzedzia: sciezki przez `tools/paths.py`; E6/E7 gotowe (API_KONTRAKT.md, web/estyma_prototype/).
 
 5. (E5 zrobione) Katalog `analiza/` ma teraz nazwe `analiza_archiwum/`; sciezki przez `tools/paths.py`; etapy E1-E6 DONE, E7 szkielet; wyniki: RAPORT_POSTEPU.md.
+
+## 9. Stan na 2026-11-24 (koniec czatu 2) - czytaj RAPORT_POSTEPU.md (gora)
+Gotowe: E1-E6; E7 w toku. Karta: `web/estyma_prototype/` (README), karta Lovelace `web/estyma-panel-card.js` (iframe+postMessage, tylko odczyt), narzedzia: `export_card_screen.py`, `bind_screen.py`, `merge_bindings.py`, `list_labels.py`, `export_dialog_static.py`, `build_proto_model.py`, `coverage_gen.py|agg`, `run_coverage_par.sh`, `run_dialogs_par.sh`, `smoke_test.py`, `paths.py`. Otwarte: ALARMY L0 (OPEN#2), stan online, PROGRAM render z danych (artefakty), etykiety PL Konfiguracja/Statystyki, dialog radio dla enum tekstowych, edycja PROGRAM, test w prawdziwym HA.
+Pulapki: heredoc + `pkill` w jednym poleceniu bywa blokowany przez sandbox (uruchamiaj osobno); ListNav.build bywa niepelny (uzyj tap_incremental z coverage_gen.py).
