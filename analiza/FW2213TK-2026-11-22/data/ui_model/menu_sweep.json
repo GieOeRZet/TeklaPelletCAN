@@ -1,4 +1,6 @@
 {
+ "schema_version": "1.0",
+ "evidence": "MEASURED (PASS 65, emulator: przeglad menu)",
  "FULL|L0": {
   "level": 0,
   "config": {

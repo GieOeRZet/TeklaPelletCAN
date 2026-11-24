@@ -1,4 +1,6 @@
 {
+ "schema_version": "1.0",
+ "evidence": "MEASURED (PASS 65, emulator: drzewo menu i warunki)",
  "meta": {
   "title": "Drzewo menu igneoTouch FW2213TK (szkielet)",
   "generated_by": "tools/menu_tree_build.py (PASS 65)",

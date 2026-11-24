@@ -1,4 +1,5 @@
 {
+ "schema_version": "1.0",
  "evidence": "MEASURED (PASS 66, emulator: wpisywanie kodow przez przyciski + OK, odczyt poziomu dostepu model+0x158, PID-ow i ramek 0x584)",
  "pin_dialog": {
   "how_to_open": "MENU: wiersz 'Poziom menu (PIN)' (poziom 0: wiersz 12; poziomy >0: wiersz 14 w liscie), stuknij wiersz (240,60 po przewinieciu)",
@@ -71,10 +72,11 @@
    "OK zapisuje PID i zamyka dialog; wczesniej brak ramki CAN"
   ],
   "write_example": {
-   "pid": "0x2003 Boiler set manual temp",
+   "pid": "0x2003",
    "old": 65,
    "new": 66,
-   "can": "0x584: 42 03 20 01 42 00 00 00"
+   "can": "0x584: 42 03 20 01 42 00 00 00",
+   "pid_name": "Boiler set manual temp"
   },
   "open": [
    "krok i skala dla wierszy z wartoscia dziesietna (0.1)",
@@ -96,10 +98,11 @@
    ]
   },
   "write_example": {
-   "pid": "0x2142 CH mode",
+   "pid": "0x2142",
    "old": 0,
    "new": 1,
-   "can": "0x584: 42 42 21 01 01 00 00 00"
+   "can": "0x584: 42 42 21 01 01 00 00 00",
+   "pid_name": "CH mode"
   },
   "behaviour": [
    "wybor opcji + OK zapisuje PID (wartosc = indeks opcji)"

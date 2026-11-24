@@ -1,4 +1,6 @@
 {
+ "schema_version": "1.0",
+ "evidence": "STRONG (PASS 66: z panel_lists_by_level.csv + pid_matrix_655.csv; rodzaj wiersza INFERENCE z zakresu, skale zmierzone w list_scales.json)",
  "meta": {
   "title": "Modele list parametrow (NASTAWY/Konfiguracja/Statystyki)",
   "generated_by": "tools/lists_build.py (PASS 66)",

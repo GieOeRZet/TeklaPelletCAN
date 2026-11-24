@@ -1,4 +1,5 @@
 {
+ "schema_version": "1.0",
  "evidence": "MEASURED (PASS 67, emulator, konfiguracja domyslna 0x2105=4,0x2106..8=1; ramki PDO wstrzykiwane pojedynczo)",
  "transport": {
   "frames": "CAN RX: 0x180+node PDO1, 0x280+node PDO2, 0x380+node PDO3, 0x480+node PDO4; PDO2-4 = 4 x u16 LE; kanal n = slot (PDO2: 0-3, PDO3: 4-7, PDO4: 8-11)",

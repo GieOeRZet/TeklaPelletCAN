@@ -1,4 +1,6 @@
 {
+ "schema_version": "1.0",
+ "evidence": "MEASURED (PASS 69, emulator: zmiany nakladek HOME)",
  "paliwo": {
   "tap": [
    103,

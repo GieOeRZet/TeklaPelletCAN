@@ -1,4 +1,5 @@
 {
+ "schema_version": "1.0",
  "screen": "PROGRAM (harmonogram tygodniowy)",
  "vtable": "0x808f910",
  "evidence": "MEASURED (PASS 66: emulator, wstrzykiwanie PID, odczyt rect widzetow, zrzuty, sekwencja edycji, ramka CAN)",

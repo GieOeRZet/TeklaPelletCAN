@@ -1,4 +1,5 @@
 {
+ "schema_version": "1.0",
  "evidence": "MEASURED (PASS 70, tools/sii_editor_probe.py, firmware w emulatorze; zrzuty: sii_acceptance/editor/editor_seq.png)",
  "screen": "INTERNET (0x808f9ac)",
  "open_editor": "tap w pole SSID (180,62) otwiera klawiature 'rolkowa' w prawym dolnym rogu; widok pozostaje INTERNET (overlay w tym samym widoku)",

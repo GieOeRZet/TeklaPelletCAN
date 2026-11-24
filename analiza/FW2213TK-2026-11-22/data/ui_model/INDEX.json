@@ -1,447 +1,580 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-24",
-  "generated_by": "tools/build_ui_model_index.py",
-  "root": "analiza/FW2213TK-2026-11-22/data/ui_model/",
+  "generated_at": "2026-11-24T11:07:04.777803+00:00",
+  "root": "analiza/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
       "file": "alarms.json",
       "schema": "schema/alarms.schema.json",
-      "schema_version": null,
+      "schema_version": "1.0",
       "records": 68,
-      "date": null,
+      "date": "2026-11-24T11:07:00.860535+00:00",
       "evidence_paths": []
     },
     {
       "file": "dialogs_edit_pin.json",
       "schema": "schema/dialogs_edit_pin.schema.json",
-      "schema_version": null,
-      "records": 6,
-      "date": null,
+      "schema_version": "1.0",
+      "records": 7,
+      "date": "2026-11-24T11:07:00.856725+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/H_home.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 280,
+      "date": "2026-11-24T00:22:45.344820+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_0_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 54,
+      "date": "2026-11-24T00:22:31.222052+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_0_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 496,
+      "date": "2026-11-24T00:22:32.627807+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_10_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 19,
+      "date": "2026-11-24T00:22:53.704821+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_10_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 0,
+      "date": "2026-11-24T00:22:54.370836+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_11_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 506,
+      "date": "2026-11-24T00:22:56.216156+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_11_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 8,
+      "date": "2026-11-24T00:23:00.664777+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_1_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 81,
+      "date": "2026-11-24T00:22:33.377033+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_1_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 509,
+      "date": "2026-11-24T00:22:35.215506+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_2_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 157,
+      "date": "2026-11-24T00:22:35.957059+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_2_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 541,
+      "date": "2026-11-24T00:22:37.774286+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_3_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 157,
+      "date": "2026-11-24T00:22:38.496819+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_3_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 541,
+      "date": "2026-11-24T00:22:40.411615+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_4_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 158,
+      "date": "2026-11-24T00:22:41.184170+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_4_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 541,
+      "date": "2026-11-24T00:22:42.854817+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_5_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 158,
+      "date": "2026-11-24T00:22:43.537022+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_5_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 541,
+      "date": "2026-11-24T00:22:45.236820+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_6_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 138,
+      "date": "2026-11-24T00:22:45.895267+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_6_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 521,
+      "date": "2026-11-24T00:22:47.796820+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_7_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 51,
+      "date": "2026-11-24T00:22:48.426658+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_7_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 496,
+      "date": "2026-11-24T00:22:49.947312+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_8_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 54,
+      "date": "2026-11-24T00:22:50.604434+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_8_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 491,
+      "date": "2026-11-24T00:22:51.851697+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_9_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 324,
+      "date": "2026-11-24T00:22:52.452821+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L0_9_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 0,
+      "date": "2026-11-24T00:22:53.057599+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L1_12_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 5,
+      "date": "2026-11-24T00:22:31.292135+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L1_13_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 314,
+      "date": "2026-11-24T00:22:32.007853+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L1_14_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 3,
+      "date": "2026-11-24T00:22:32.711078+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L1_15_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 349,
+      "date": "2026-11-24T00:22:33.402931+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L1_15_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 2,
+      "date": "2026-11-24T00:22:34.125859+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L1_16_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 546,
+      "date": "2026-11-24T00:22:36.143454+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L1_16_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 2,
+      "date": "2026-11-24T00:22:37.835569+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L1_17_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 136,
+      "date": "2026-11-24T00:22:38.576002+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/L1_18_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 77,
+      "date": "2026-11-24T00:22:39.314996+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/LC_10_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 50,
+      "date": "2026-11-24T00:22:42.746750+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/LC_10_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 503,
+      "date": "2026-11-24T00:22:44.437399+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/LC_9_screen.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 75,
+      "date": "2026-11-24T00:22:40.252788+00:00",
       "evidence_paths": []
     },
     {
       "file": "extras/LC_9_settings.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 526,
+      "date": "2026-11-24T00:22:42.091618+00:00",
       "evidence_paths": []
     },
     {
       "file": "home_dialogs.json",
       "schema": "schema/home_dialogs.schema.json",
-      "schema_version": null,
-      "records": 4,
-      "date": null,
+      "schema_version": "1.0",
+      "records": 5,
+      "date": "2026-11-24T11:07:00.870139+00:00",
       "evidence_paths": []
     },
     {
       "file": "home_dialogs_widgets.json",
       "schema": "schema/home_dialogs_widgets.schema.json",
-      "schema_version": null,
-      "records": 5,
-      "date": null,
+      "schema_version": "1.0",
+      "records": 7,
+      "date": "2026-11-24T11:07:00.863756+00:00",
       "evidence_paths": []
     },
     {
       "file": "home_overlays_changed.json",
       "schema": "schema/home_overlays_changed.schema.json",
-      "schema_version": null,
-      "records": 5,
-      "date": null,
+      "schema_version": "1.0",
+      "records": 7,
+      "date": "2026-11-24T11:07:00.857708+00:00",
       "evidence_paths": []
     },
     {
       "file": "internet_editor.json",
       "schema": "schema/internet_editor.schema.json",
-      "schema_version": null,
-      "records": 8,
-      "date": null,
+      "schema_version": "1.0",
+      "records": 9,
+      "date": "2026-11-24T11:07:00.862666+00:00",
+      "evidence_paths": [
+        "MEASURED (PASS 70, tools/sii_editor_probe.py, firmware w emulatorze; zrzuty: sii_acceptance/editor/editor_seq.png)"
+      ]
+    },
+    {
+      "file": "list_scales.json",
+      "schema": null,
+      "schema_version": "1.0",
+      "records": 5,
+      "date": "2026-11-24T11:07:00.886261+00:00",
       "evidence_paths": []
     },
     {
       "file": "lists.json",
       "schema": "schema/lists.schema.json",
-      "schema_version": null,
-      "records": 2,
-      "date": null,
+      "schema_version": "1.0",
+      "records": 4,
+      "date": "2026-11-24T11:07:00.867692+00:00",
       "evidence_paths": []
     },
     {
       "file": "live_sources.json",
       "schema": "schema/live_sources.schema.json",
-      "schema_version": null,
-      "records": 9,
-      "date": null,
+      "schema_version": "1.0",
+      "records": 10,
+      "date": "2026-11-24T11:07:00.866662+00:00",
       "evidence_paths": []
     },
     {
       "file": "menu_sweep.json",
       "schema": "schema/menu_sweep.schema.json",
-      "schema_version": null,
-      "records": 30,
-      "date": null,
+      "schema_version": "1.0",
+      "records": 32,
+      "date": "2026-11-24T11:07:00.861721+00:00",
       "evidence_paths": []
     },
     {
       "file": "menu_tree.json",
       "schema": "schema/menu_tree.schema.json",
-      "schema_version": null,
+      "schema_version": "1.0",
       "records": 30,
-      "date": null,
-      "evidence_paths": []
+      "date": "2026-11-24T11:07:00.892671+00:00",
+      "evidence_paths": [
+        "MEASURED (zrzut dialog_shots/home_dlg_paliwo.png; nakladka na HOME, wyzwalacz kafel 103,234)",
+        "MEASURED (zrzut home_dlg_auto.png; wyzwalacz kafel 415,76)",
+        "MEASURED (zrzut home_dlg_czas.png; nakladka na HOME, wyzwalacz zegar 42,19)",
+        "MEASURED (zrzut home_dlg_data.png; nakladka na HOME, wyzwalacz 240,19)",
+        "MEASURED (zrzut home_dlg_zasilanie.png; wyzwalacz kafel 448,234)"
+      ]
     },
     {
       "file": "outputs_test.json",
       "schema": "schema/outputs_test.schema.json",
-      "schema_version": null,
+      "schema_version": "1.0",
       "records": 22,
-      "date": null,
+      "date": "2026-11-24T11:07:00.862405+00:00",
       "evidence_paths": []
     },
     {
       "file": "program_bit_to_rect_kociol_monday.json",
       "schema": "schema/program_bit_to_rect_kociol_monday.schema.json",
-      "schema_version": null,
-      "records": 25,
-      "date": null,
+      "schema_version": "1.0",
+      "records": 27,
+      "date": "2026-11-24T11:07:00.856251+00:00",
       "evidence_paths": []
     },
     {
       "file": "program_screen.json",
       "schema": "schema/program_screen.schema.json",
+      "schema_version": "1.0",
+      "records": 13,
+      "date": "2026-11-24T11:07:00.869565+00:00",
+      "evidence_paths": [
+        "MEASURED (zrzut program_scroll_and_copy_sheet.png)",
+        "dialog_shots/program_day_dialog.png",
+        "dialog_shots/program_edit_sequence_sheet.png",
+        "dialog_shots/program_list.png",
+        "dialog_shots/program_scroll_and_copy_sheet.png"
+      ]
+    },
+    {
+      "file": "schema/alarms.schema.json",
+      "schema": null,
       "schema_version": null,
-      "records": 12,
-      "date": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/common.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 6,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/dialogs_edit_pin.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/home_dialogs.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/home_dialogs_widgets.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/home_overlays_changed.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/internet_editor.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/lists.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/live_sources.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/menu_sweep.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/menu_tree.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/outputs_test.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/program_bit_to_rect_kociol_monday.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/program_screen.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-24T11:06:48.898968+00:00",
       "evidence_paths": []
     },
     {
       "file": "sii_acceptance/editor/editor_seq.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 10,
+      "date": "2026-11-24T08:39:05.165714+00:00",
       "evidence_paths": []
     },
     {
       "file": "sii_acceptance/info/RUN_SUMMARY.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 1,
+      "date": "2026-11-24T08:38:30.369798+00:00",
       "evidence_paths": []
     },
     {
       "file": "sii_acceptance/internet/RUN_SUMMARY.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 1,
+      "date": "2026-11-24T08:35:10.223111+00:00",
       "evidence_paths": []
     },
     {
       "file": "sii_acceptance/siec/RUN_SUMMARY.json",
       "schema": null,
       "schema_version": null,
-      "records": null,
-      "date": null,
+      "records": 1,
+      "date": "2026-11-24T08:35:12.358763+00:00",
       "evidence_paths": []
     }
   ]

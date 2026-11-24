@@ -1,4 +1,5 @@
 {
+ "schema_version": "1.0",
  "evidence": "MEASURED (PASS 69, emulator: efektywna widocznosc sceny z RAM, stukniecia, sekwencje z OK, odczyt PID i ramek 0x584)",
  "general": "okna sa nakladkami w widoku HOME (vtable 0x808f708, ukryte kontenery); przycisk OK ~ (415,228); zapis PID dopiero przy OK (z wyjatkiem przycisku podajnika w oknie Paliwo)",
  "dialogs": {
