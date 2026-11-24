@@ -1,12 +1,12 @@
 # Pokrycie wizualne (agent UI, E3)
 
-Zmierzone komorki: 606, niewidoczne w emulatorze mimo visible_in: 0, bledy: 16; mediana 0.2%; <3%: 99.7%; <8%: 99.7%.
+Zmierzone komorki: 634, niewidoczne w emulatorze mimo visible_in: 0, bledy: 0; mediana 0.2%; <3%: 99.7%; <8%: 99.7%.
 
 | wezel | rodzaj | n | min | mediana | max |
 |---|---|---|---|---|---|
 | KONFIGURACJA | screen | 27 | 0.2 | 0.2 | 98.8 |
-| TEST_WYJSC | screen | 11 | 0.2 | 0.2 | 2.3 |
-| TEST_WYJSC | settings | 3 | 2.3 | 2.3 | 2.3 |
+| TEST_WYJSC | screen | 15 | 0.2 | 0.2 | 2.3 |
+| TEST_WYJSC | settings | 7 | 2.2 | 2.3 | 2.3 |
 | OGRZEWANIE | settings | 79 | 0.7 | 0.7 | 0.8 |
 | ALARMY | screen | 15 | 0.2 | 0.6 | 0.6 |
 | ALARMY | settings | 15 | 0.2 | 0.6 | 0.6 |
@@ -28,9 +28,9 @@ Zmierzone komorki: 606, niewidoczne w emulatorze mimo visible_in: 0, bledy: 16; 
 | CWU | screen | 22 | 0.2 | 0.2 | 0.2 |
 | KASKADA | screen | 5 | 0.2 | 0.2 | 0.2 |
 | MAGAZYN | screen | 5 | 0.2 | 0.2 | 0.2 |
-| STATYSTYKI | screen | 11 | 0.2 | 0.2 | 0.2 |
+| STATYSTYKI | screen | 15 | 0.2 | 0.2 | 0.2 |
 | STATYSTYKI | settings | 6 | 0.2 | 0.2 | 0.2 |
-| SIEC | screen | 11 | 0.2 | 0.2 | 0.2 |
-| SIEC | settings | 11 | 0.2 | 0.2 | 0.2 |
-| INTERNET | screen | 11 | 0.2 | 0.2 | 0.2 |
-| INTERNET | settings | 11 | 0.2 | 0.2 | 0.2 |
+| SIEC | screen | 15 | 0.2 | 0.2 | 0.2 |
+| SIEC | settings | 15 | 0.2 | 0.2 | 0.2 |
+| INTERNET | screen | 15 | 0.2 | 0.2 | 0.2 |
+| INTERNET | settings | 15 | 0.2 | 0.2 | 0.2 |

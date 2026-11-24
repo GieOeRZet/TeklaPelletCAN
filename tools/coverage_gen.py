@@ -62,6 +62,18 @@ for i, er in enumerate(exp):
         s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), None); s.wait(120)
         nav = U.ListNav(s); nav.tall = Image.open(os.path.join(out, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
         ok = tap_incremental(s, nav, i)
+    if ok:
+        s.wait(300)
+        if hex(s.b.rd(s.b.rd(0x20024818))) == "0x808f66c": ok = False
+    if not ok:      # ogon menu: przewin do konca (dragi 200->80 do braku zmiany) i stuknij od dolu (ostatni wiersz y=227, pitch 50)
+        s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), None); s.wait(120)
+        nav = U.ListNav(s); nav.tall = Image.open(os.path.join(out, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
+        for _ in range(40):
+            if not s.drag_until_change(240, 200, 240, 80, attempts=6, ticks=240, pause_end=160): break
+        s.wait(900); y = 227 - 50 * (len(exp) - 1 - i)
+        if 60 <= y <= 250:
+            s.tap(240, y, settle=800); s.wait(300); ok = hex(s.b.rd(s.b.rd(0x20024818))) != "0x808f66c"
+        else: ok = False
     if not ok: res["cells"].append(dict(row=er["row"], index=i, node=tgt, kind="screen", status="TAP_FAILED")); continue
     s.wait(700)
     cell = {}

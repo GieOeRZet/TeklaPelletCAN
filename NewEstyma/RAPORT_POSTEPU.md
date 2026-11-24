@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### 1:1 (2026-11-24) nawigacja do ogona MENU naprawiona: 634 komorki, 0 nierozstrzygnietych poza 2
+Zrobilem: fallback przewijania do konca menu i stukania od dolu (`coverage_gen.py`) - 16 komorek (Test wyjsc, Statystyki, Siec, Internet w konfiguracjach DEFAULT, 2105=0, 2105=2, L3 DEFAULT) zmierzone: **0.2-2.3%** (wiersze istnieja w kazdej konfiguracji, wiec `visible_in` bylo poprawne; 'prawdopodobnie niedostepne' bylo bledem). Wynik calosci: **634 komorki, mediana 0.2%, 99.7% < 3%, 0 > 8%**. Zostaly 2 komorki: KONFIGURACJA przy kaskadzie+magazynie (L1, L3) - stukniecie trafia o jeden wiersz dalej (okno 'Wpisz PIN'), blad przewijania przyrostowego. Pozostalo: etykiety enum tekstowych, Statystyki/Siec etykiety, stan 'online', krok dialogu wszystkich wierszy, Kopiuj/INTERNET.
+
 ### FINISZ PRZEBIEGU KONTROLNEGO (2026-11-24): po poprawce renderera 606 komorek, mediana 0.2%, 99.7% < 3%, 0 > 8%
 Zrobilem: pelny przebieg pokrycia (36 zadan, 4 procesy) po poprawce Box/role=image i wszystkich zmianach renderera - brak regresji. Stan rewersu 1:1: dialogi 16/16 < 6%, HOME 0.0%, PROGRAM 0.5%, ekrany menu mediana 0.2%. Pozostalo (wg BACKLOG): 18 komorek bez pomiaru (nawigacja do ogona MENU), etykiety opcji enum tekstowych, Statystyki/Siec etykiety, stan 'online bez alarmow', Kopiuj 5.8% / edytor INTERNET 5.0% (kosmetyka). Wszystko wypchniete na ccr-be8a1bcb-5t76j0.
 

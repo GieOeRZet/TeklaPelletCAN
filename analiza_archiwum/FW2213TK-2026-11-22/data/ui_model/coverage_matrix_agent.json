@@ -4,9 +4,9 @@
  "method": "tools/coverage_gen.py + run_coverage_par.sh (poziomy 0,1,3; L2 pominiety - zalozenie L1=L2, do weryfikacji)",
  "summary": {
   "jobs": 27,
-  "cells_measured": 606,
+  "cells_measured": 634,
   "not_visible_in_emulator": 0,
-  "errors": 16,
+  "errors": 0,
   "median_pct": 0.2,
   "share_lt3": 99.7,
   "share_lt8": 99.7,
@@ -4833,7 +4833,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.43,
+   "mae": 0.44,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -4909,8 +4909,25 @@
    "row": 17,
    "index": 11,
    "node": "TEST_WYJSC",
+   "title": "Test wyjsc",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 1.51,
+   "pct_diff": 2.3,
+   "view": "0x808f80c",
+   "widgets": 349
+  },
+  {
+   "level": 1,
+   "config": "2105=0",
+   "row": 17,
+   "index": 11,
+   "node": "TEST_WYJSC",
+   "title": "Test wyjsc",
+   "kind": "settings",
+   "mae": 1.51,
+   "pct_diff": 2.3,
+   "view": "0x808f80c",
+   "widgets": 349
   },
   {
    "level": 1,
@@ -4918,8 +4935,12 @@
    "row": 18,
    "index": 12,
    "node": "STATYSTYKI",
+   "title": "Statystyki",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.34,
+   "pct_diff": 0.2,
+   "view": "0x808f944",
+   "widgets": 546
   },
   {
    "level": 1,
@@ -4927,8 +4948,25 @@
    "row": 19,
    "index": 13,
    "node": "SIEC",
+   "title": "Siec",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.19,
+   "pct_diff": 0.2,
+   "view": "0x808f770",
+   "widgets": 136
+  },
+  {
+   "level": 1,
+   "config": "2105=0",
+   "row": 19,
+   "index": 13,
+   "node": "SIEC",
+   "title": "Siec",
+   "kind": "settings",
+   "mae": 0.19,
+   "pct_diff": 0.2,
+   "view": "0x808f770",
+   "widgets": 136
   },
   {
    "level": 1,
@@ -4936,8 +4974,25 @@
    "row": 20,
    "index": 14,
    "node": "INTERNET",
+   "title": "Internet",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.3,
+   "pct_diff": 0.2,
+   "view": "0x808f9ac",
+   "widgets": 77
+  },
+  {
+   "level": 1,
+   "config": "2105=0",
+   "row": 20,
+   "index": 14,
+   "node": "INTERNET",
+   "title": "Internet",
+   "kind": "settings",
+   "mae": 0.3,
+   "pct_diff": 0.2,
+   "view": "0x808f9ac",
+   "widgets": 77
   },
   {
    "level": 1,
@@ -5285,8 +5340,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.55,
-   "pct_diff": 0.4,
+   "mae": 0.31,
+   "pct_diff": 0.2,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -5311,7 +5366,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.25,
+   "mae": 0.24,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -5428,7 +5483,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.43,
+   "mae": 0.44,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551
@@ -5504,8 +5559,25 @@
    "row": 17,
    "index": 13,
    "node": "TEST_WYJSC",
+   "title": "Test wyjsc",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 1.51,
+   "pct_diff": 2.3,
+   "view": "0x808f80c",
+   "widgets": 349
+  },
+  {
+   "level": 1,
+   "config": "2105=2",
+   "row": 17,
+   "index": 13,
+   "node": "TEST_WYJSC",
+   "title": "Test wyjsc",
+   "kind": "settings",
+   "mae": 1.51,
+   "pct_diff": 2.3,
+   "view": "0x808f80c",
+   "widgets": 349
   },
   {
    "level": 1,
@@ -5513,8 +5585,12 @@
    "row": 18,
    "index": 14,
    "node": "STATYSTYKI",
+   "title": "Statystyki",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.34,
+   "pct_diff": 0.2,
+   "view": "0x808f944",
+   "widgets": 546
   },
   {
    "level": 1,
@@ -5522,8 +5598,25 @@
    "row": 19,
    "index": 15,
    "node": "SIEC",
+   "title": "Siec",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.19,
+   "pct_diff": 0.2,
+   "view": "0x808f770",
+   "widgets": 136
+  },
+  {
+   "level": 1,
+   "config": "2105=2",
+   "row": 19,
+   "index": 15,
+   "node": "SIEC",
+   "title": "Siec",
+   "kind": "settings",
+   "mae": 0.19,
+   "pct_diff": 0.2,
+   "view": "0x808f770",
+   "widgets": 136
   },
   {
    "level": 1,
@@ -5531,8 +5624,25 @@
    "row": 20,
    "index": 16,
    "node": "INTERNET",
+   "title": "Internet",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.3,
+   "pct_diff": 0.2,
+   "view": "0x808f9ac",
+   "widgets": 77
+  },
+  {
+   "level": 1,
+   "config": "2105=2",
+   "row": 20,
+   "index": 16,
+   "node": "INTERNET",
+   "title": "Internet",
+   "kind": "settings",
+   "mae": 0.3,
+   "pct_diff": 0.2,
+   "view": "0x808f9ac",
+   "widgets": 77
   },
   {
    "level": 1,
@@ -7219,7 +7329,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.25,
+   "mae": 0.24,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -7308,8 +7418,25 @@
    "row": 17,
    "index": 9,
    "node": "TEST_WYJSC",
+   "title": "Test wyjsc",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 1.48,
+   "pct_diff": 2.2,
+   "view": "0x808f80c",
+   "widgets": 349
+  },
+  {
+   "level": 1,
+   "config": "DEFAULT",
+   "row": 17,
+   "index": 9,
+   "node": "TEST_WYJSC",
+   "title": "Test wyjsc",
+   "kind": "settings",
+   "mae": 1.48,
+   "pct_diff": 2.2,
+   "view": "0x808f80c",
+   "widgets": 349
   },
   {
    "level": 1,
@@ -7317,8 +7444,12 @@
    "row": 18,
    "index": 10,
    "node": "STATYSTYKI",
+   "title": "Statystyki",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.34,
+   "pct_diff": 0.2,
+   "view": "0x808f944",
+   "widgets": 546
   },
   {
    "level": 1,
@@ -7326,8 +7457,25 @@
    "row": 19,
    "index": 11,
    "node": "SIEC",
+   "title": "Siec",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.19,
+   "pct_diff": 0.2,
+   "view": "0x808f770",
+   "widgets": 136
+  },
+  {
+   "level": 1,
+   "config": "DEFAULT",
+   "row": 19,
+   "index": 11,
+   "node": "SIEC",
+   "title": "Siec",
+   "kind": "settings",
+   "mae": 0.19,
+   "pct_diff": 0.2,
+   "view": "0x808f770",
+   "widgets": 136
   },
   {
    "level": 1,
@@ -7335,8 +7483,25 @@
    "row": 20,
    "index": 12,
    "node": "INTERNET",
+   "title": "Internet",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.3,
+   "pct_diff": 0.2,
+   "view": "0x808f9ac",
+   "widgets": 77
+  },
+  {
+   "level": 1,
+   "config": "DEFAULT",
+   "row": 20,
+   "index": 12,
+   "node": "INTERNET",
+   "title": "Internet",
+   "kind": "settings",
+   "mae": 0.3,
+   "pct_diff": 0.2,
+   "view": "0x808f9ac",
+   "widgets": 77
   },
   {
    "level": 1,
@@ -8332,8 +8497,25 @@
    "row": 17,
    "index": 9,
    "node": "TEST_WYJSC",
+   "title": "Test wyjsc",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 1.49,
+   "pct_diff": 2.2,
+   "view": "0x808f80c",
+   "widgets": 349
+  },
+  {
+   "level": 3,
+   "config": "DEFAULT",
+   "row": 17,
+   "index": 9,
+   "node": "TEST_WYJSC",
+   "title": "Test wyjsc",
+   "kind": "settings",
+   "mae": 1.49,
+   "pct_diff": 2.2,
+   "view": "0x808f80c",
+   "widgets": 349
   },
   {
    "level": 3,
@@ -8341,8 +8523,12 @@
    "row": 18,
    "index": 10,
    "node": "STATYSTYKI",
+   "title": "Statystyki",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.34,
+   "pct_diff": 0.2,
+   "view": "0x808f944",
+   "widgets": 546
   },
   {
    "level": 3,
@@ -8350,8 +8536,25 @@
    "row": 19,
    "index": 11,
    "node": "SIEC",
+   "title": "Siec",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.19,
+   "pct_diff": 0.2,
+   "view": "0x808f770",
+   "widgets": 136
+  },
+  {
+   "level": 3,
+   "config": "DEFAULT",
+   "row": 19,
+   "index": 11,
+   "node": "SIEC",
+   "title": "Siec",
+   "kind": "settings",
+   "mae": 0.19,
+   "pct_diff": 0.2,
+   "view": "0x808f770",
+   "widgets": 136
   },
   {
    "level": 3,
@@ -8359,8 +8562,25 @@
    "row": 20,
    "index": 12,
    "node": "INTERNET",
+   "title": "Internet",
    "kind": "screen",
-   "status": "TAP_FAILED"
+   "mae": 0.3,
+   "pct_diff": 0.2,
+   "view": "0x808f9ac",
+   "widgets": 77
+  },
+  {
+   "level": 3,
+   "config": "DEFAULT",
+   "row": 20,
+   "index": 12,
+   "node": "INTERNET",
+   "title": "Internet",
+   "kind": "settings",
+   "mae": 0.3,
+   "pct_diff": 0.2,
+   "view": "0x808f9ac",
+   "widgets": 77
   },
   {
    "level": 3,
