@@ -1,0 +1,53 @@
+sha256,liczba,pliki
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,3,analiza/FW2213TK-2026-11-20/RAPORT-DLA-AGENTA-CI-GITHUB-ETAP3.md | android/.gitkeep | tests/__init__.py
+637a70eb8944d20f9908f79898e0a0e8a60e4788f59ed813a7c72c43d306afc2,5,analiza/FW2213TK-2026-11-22/data/atlas/home.png | analiza/FW2213TK-2026-11-22/data/atlas/home_z_konfiguracja.png | analiza/FW2213TK-2026-11-22/data/screen_home_emulated.png | analiza/FW2213TK-2026-11-22/data/ui_model/atlas/H_home.png | analiza/FW2213TK-2026-11-22/screens/render_HOME_L1_480x272.png
+75adb41080eb30f3f471983b030100516fd16d4ce1f34f06a3d0cc7dff44446f,2,analiza/FW2213TK-2026-11-22/data/atlas/konfiguracja.png | analiza/FW2213TK-2026-11-22/data/ui_model/atlas/L0_11_screen.png
+8ff3b3db10ebb083db93193b1145099cab1c823ed31d47a14d04467dc7e26742,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/003.png | web/img/panel/003.png
+d43fa0d7ccfc31d535cf7748773b85f1b6a85b300e95225dea7ea037ef7ce661,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/004.png | web/img/panel/004.png
+2a634997da21d5f021393b4e1f22fc4eaf9c1f75ed8c38ed57240266f834f1d4,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/005.png | web/img/panel/005.png
+0db27886593bcee77fe89013f4dca883230bf5dbbfe2b636d49b2257b73885c4,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/018.png | web/img/panel/018.png
+b4acdbc843deea86e14b0f3fa76cc8818dc4bccaa078b239759c720cfd5da262,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/039.png | web/img/panel/039.png
+439c198eb21638823200d61b775a5b3ce60a3acd00fa57d003e3da0c0bcc0e74,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/063.png | web/img/panel/063.png
+98551154465c47248c6dcf8f50f89bc9586475d22bbf3277e80f4749d8282430,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/064.png | web/img/panel/064.png
+d0e52b6afe8bfd29399c0c3936c7c186fb892e3b33f1a34c3004e1ec0f58784e,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/098.png | web/img/panel/098.png
+4b0e2d895502ddff41e7221a87391e18adb3eee3c1f32832ada6bae30df27680,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/120.png | web/img/panel/120.png
+a383e8b67d701eba9814e53db95d486a636048421bfa181c131717627798d32c,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/121.png | web/img/panel/121.png
+c8c9ae84d43adee4811e057cd22ffc657b880aac39bb19b23428ee5300dc7ad5,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/122.png | web/img/panel/122.png
+97f336f15bde01f18bd97bd36a1d2415d15a0bdf8b1f62c40185a1522995428f,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/123.png | web/img/panel/123.png
+c70588af716c397a365b73e2fd033ecc6efcd8cf7ff65ff36c8661075c5d4a24,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/128.png | web/img/panel/128.png
+29f37b566af30e9aaa175268b96b98286980c0fd001f66c0c4fe45fc73ad3ce3,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/129.png | web/img/panel/129.png
+18210999e2b4f8c2dbcbc9943483fbdc78d01b652c40199011a672531f62ea59,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/132.png | web/img/panel/132.png
+bfdfb1edf26ea8140f192f69f7e0f19d22298b60962e329a4cbb2a17e792a9b6,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/133.png | web/img/panel/133.png
+b217e1a2b429eb1e2ab106f53554c108fb0100c55be5da8606aa08b8622431cd,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/134.png | web/img/panel/134.png
+27c29e5c1e56b84f839df7c27bf46630bf6fbe3a403874033bcd5813074d6c7a,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/135.png | web/img/panel/135.png
+f5c87990af656ab82cef1d9e4edffa580a441c8dc03ecfd12165998420e69256,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/136.png | web/img/panel/136.png
+989a4bb0d9e5d33b8460f6e5b04938fa844e59b061e6792e17915e7228e3a84e,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/137.png | web/img/panel/137.png
+984f9ce5aff9d40172ab03da879e021001a8bbcaa03bebb6756b695cc315e7a1,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/138.png | web/img/panel/138.png
+16975b1922f659416906d03c30444be036c8751a765da3c3abd9e0123df27afd,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/139.png | web/img/panel/139.png
+cfd1cea0022efd47e0ee7659c60b87e2dd5a9d5591b1ccd25d522b00de8e6be6,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/140.png | web/img/panel/140.png
+bf1674c9fad2184ab46018fcc50a97e0ddb06c2046d9fa04eb85e9862877adc7,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/141.png | web/img/panel/141.png
+e5d21a9ada9bdc10b9d2eb6f7819ae62d2ffa21ade045fd90c25eba06ee18bb9,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/142.png | web/img/panel/142.png
+4ebaffc89261b88e9cfa4f2d083fd62986c7c7c6086972849e17301ef0b5f7b9,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/143.png | web/img/panel/143.png
+6befb3d801c1bf5336237a471f753c75e8b78c67e773be9e34e4ed757d39d773,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/153.png | web/img/panel/153.png
+cc60ca4e01a32bccd00cfbd826740b3049dc56a8256999b4bdbcdf8058214aaf,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/154.png | web/img/panel/154.png
+b0ad4b3353f8ea0d9d693d3b4e490ba16407a402b5dba797e3903afcf3265da5,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/155.png | web/img/panel/155.png
+c6545713b6ff43433ba8425caf69e86526bec810929208944c4216444612f0e6,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/156.png | web/img/panel/156.png
+2043ccc5c823cb2456debdcb19b85ff2ef28d13067bc927634d6ceddfee6bf87,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/157.png | web/img/panel/157.png
+22b981d16b148ec325ac35ecb0c8a65b84c09bd50f57f6720aa24866ae3de466,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/158.png | web/img/panel/158.png
+c3b08271195c5342ea49c40e60d0b4ef42910b2000057532394630f030f02c8e,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/173.png | web/img/panel/173.png
+7f7f354203ea79846911f67d294bb95c2845fb050f4d8f7a40844af0c003cd42,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/180.png | web/img/panel/180.png
+825553401e77083a1ff205cf7751beca38f21c61204a5d6387617690bd82606a,2,analiza/FW2213TK-2026-11-22/data/bitmaps/png/181.png | web/img/panel/181.png
+6a6ee62526c4c1e506ce691aa991665c042c9a469ea420022c262d6cb50845d0,2,analiza/FW2213TK-2026-11-22/data/ui_model/atlas/L0_10_screen.png | analiza/FW2213TK-2026-11-22/data/ui_model/atlas/L0_10_settings.png
+0b8a3ad987cf0c0f0cd0c127fe91316f4b605b58ffc8755ed920906b8c4d0eaf,2,analiza/FW2213TK-2026-11-22/data/ui_model/atlas/L0_9_screen.png | analiza/FW2213TK-2026-11-22/data/ui_model/atlas/L0_9_settings.png
+e0814f115adf4966456717fabce581f2a8f81df342cadc8dfa0eaf88d43637f0,2,analiza/FW2213TK-2026-11-22/data/ui_model/atlas/L1_16_screen.png | analiza/FW2213TK-2026-11-22/data/ui_model/atlas/L1_16_settings.png
+d36c6b4c6a8606c8842c9768f97e199fe4f934adc68b8dcbd8fa476badac1bfd,2,analiza/FW2213TK-2026-11-22/data/ui_model/atlas/auto.png | analiza/FW2213TK-2026-11-22/data/ui_model/dialog_shots/home_dlg_auto.png
+4fead463148bc689d5cd09ae3e8c98c1a7593b7d27eaa7f9032b55b77b2cd03f,2,analiza/FW2213TK-2026-11-22/data/ui_model/atlas/czas.png | analiza/FW2213TK-2026-11-22/data/ui_model/dialog_shots/home_dlg_czas.png
+62eecc80ef45f92bdcb5e9ba5cd7f79948ab3f546368be0b0dff578368183e29,2,analiza/FW2213TK-2026-11-22/data/ui_model/atlas/data.png | analiza/FW2213TK-2026-11-22/data/ui_model/dialog_shots/home_dlg_data.png
+444c51451e61d5ba14d20836632e7ce8eb0eccdac07174cf22d27bbe9ec8c502,2,analiza/FW2213TK-2026-11-22/data/ui_model/atlas/paliwo.png | analiza/FW2213TK-2026-11-22/data/ui_model/dialog_shots/home_dlg_paliwo.png
+3c987079537d79e296814f7d2677b4c30a014e44116eb61b5269fad8439f2ea6,2,analiza/FW2213TK-2026-11-22/data/ui_model/atlas/prog_kociol.png | analiza/FW2213TK-2026-11-22/data/ui_model/dialog_shots/program_list.png
+7b92ee1005071273d836983fa80ea29e07ce4310524ea490296017e92cea8759,2,analiza/FW2213TK-2026-11-22/data/ui_model/atlas/zasilanie.png | analiza/FW2213TK-2026-11-22/data/ui_model/dialog_shots/home_dlg_zasilanie.png
+44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a,2,analiza/FW2213TK-2026-11-22/data/ui_model/extras/L0_10_settings.json | analiza/FW2213TK-2026-11-22/data/ui_model/extras/L0_9_settings.json
+3a324fa39ee7dbde6ff96af87f6380120d63616f671a4a23b6e5d6c38d06da2f,7,analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/info/info_2170_0.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/info/info_2170_1.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/info/info_2170_5678.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/info/info_2170_65535.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/info/info_3664_532.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/info/info_3664_533.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/info/info_3665_1.png
+58f2c044c5f3c71468d45ab8ef7fa52bf7fa3bb8d255ad4ecde3d585c50f0e69,7,analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/internet/int_373D_0.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/internet/int_373D_2.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/internet/int_373E_0.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/internet/int_373E_1.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/internet/int_3741_0.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/internet/int_3741_1.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/internet/int_ssid_chunks.png
+781b91914662e4adfd2e1534b3eef3e5e67000f53e78053f0049682360459f3b,2,analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/siec/siec_n56_57.png | analiza/FW2213TK-2026-11-22/data/ui_model/sii_acceptance/siec/siec_n57_56.png
+736052c41ad0c61e1d78c34a1dac13d8b22ecdd6561f06d29bdd3baae3e8c3c6,2,analiza/FW2213TK-2026-11-22/data/widgets_inv_pass65_L1.json | analiza/FW2213TK-2026-11-22/data/widgets_inv_pass65_L1_all.json
