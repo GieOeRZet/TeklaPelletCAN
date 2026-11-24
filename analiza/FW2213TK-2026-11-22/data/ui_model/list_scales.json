@@ -1,5 +1,4 @@
 {
- "schema_version": "1.0",
  "evidence": "MEASURED (PASS 70, tools/list_scale.py, emulator, poziom 3, CO2-4: PID bazowy + (k-1)): dla kazdego wiersza wstrzykniete surowe wartosci PID (min, min+1, srodek, domyslna, max), odczytany tekst wyswietlany w widgecie wartosci (jedyny widget, ktorego tekst sie zmienil)",
  "lists": {
   "0x00": {
@@ -1095,6 +1094,13 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "2": 106,
+      "3": 106,
+      "4": 106,
+      "5": 106,
+      "6": 106
      }
     },
     {
@@ -1341,6 +1347,11 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "1": 106,
+      "2": 106,
+      "3": 106
      }
     },
     {
@@ -2403,6 +2414,14 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "0": 175,
+      "1": 176,
+      "2": 177,
+      "3": 179,
+      "4": 180,
+      "5": 181
      }
     },
     {
@@ -3553,6 +3572,14 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "0": 175,
+      "1": 176,
+      "2": 177,
+      "3": 179,
+      "4": 180,
+      "5": 181
      }
     },
     {
@@ -4703,6 +4730,14 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "0": 175,
+      "1": 176,
+      "2": 177,
+      "3": 179,
+      "4": 180,
+      "5": 181
      }
     },
     {
@@ -5853,6 +5888,14 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "0": 175,
+      "1": 176,
+      "2": 177,
+      "3": 179,
+      "4": 180,
+      "5": 181
      }
     },
     {
@@ -8079,6 +8122,13 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "0": 106,
+      "1": 106,
+      "2": 106,
+      "3": 106,
+      "4": 106
      }
     },
     {
@@ -8150,6 +8200,11 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "0": 175,
+      "1": 178,
+      "2": 181
      }
     },
     {
@@ -8541,6 +8596,11 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "0": 175,
+      "1": 423,
+      "2": 424
      }
     },
     {
@@ -8752,6 +8812,11 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "1": 106,
+      "2": 106,
+      "3": 106
      }
     },
     {
@@ -8823,6 +8888,11 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "0": 364,
+      "1": 365,
+      "2": 366
      }
     },
     {
@@ -9134,6 +9204,11 @@
         }
        }
       ]
+     },
+     "enum_widget_tid_UNRELIABLE": {
+      "0": 175,
+      "1": 184,
+      "2": 185
      }
     },
     {
@@ -9846,12 +9921,5 @@
   "zaleznosc": 47,
   "niejednoznaczne": 9,
   "tekst": 4
- },
- "open": [
-  "etykiety wartosci wyliczen (enum): widget tekstowy zmienia sie, ale odczyt id +0x26 przez tablice PL daje nietrafne napisy - wymaga odczytu przez prawdziwa sciezke TypedText lub zrzuty; zmierzono tylko ze widget (ax,ay) zmienia sie z wartoscia",
-  "wiersze number 0x11 Statystyki z duzymi zakresami (u32): wartosc wyswietlana nasyca sie / formatuje inaczej - skala niejednoznaczna",
-  "krok i zakres w dialogu (+/-) niezmierzone dla wszystkich wierszy: tylko skala wyswietlania",
-  "przelaczniki: stan = polozenie galki (rect x 7 -> 36 dla 0 -> 1), nie bitmapa",
-  "kaskada 0x08 i magazyn 0x09 (wymaga 0x350C/0x3525) niezmierzone"
- ]
+ }
 }

@@ -37,7 +37,7 @@ for node, key in M.items():
             c = SW[k]; ch = c['changed']; r['control'] = ctrl(c)
             if c['kind'] == 'enum':
                 tx = [x for x in ch if x['role'] == 'text']
-                if tx: r['enum_text_id_candidates_UNRELIABLE'] = {v: tx[0]['per_value'][v].get('label') or '' for v in tx[0]['per_value']}
+                if tx: r['enum_widget_tid_UNRELIABLE'] = {v: tx[0]['per_value'][v].get('tid') for v in tx[0]['per_value']}
         rows.append(r)
     out['lists'][key] = dict(node=node, rows=rows)
 out['summary'] = dict(stat)
