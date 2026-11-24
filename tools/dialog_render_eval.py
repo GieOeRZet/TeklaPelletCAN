@@ -19,6 +19,9 @@ SC = {   # nazwa: (katalog, [kroki]) ; krok = ("row", idx) | ("tap", x, y, settl
  "home_auto": ("HOME", [("tap", 415, 76, 900)]),
  "home_czas": ("HOME", [("tap", 42, 19, 900)]),
  "home_data": ("HOME", [("tap", 240, 19, 900)]),
+ "enum_dialog": (os.environ.get("ESTYMA_LC3", "/tmp/w/LC3"), [("row", 9), ("tap", 400, 245, 900), ("tap", 375, 76, 900)]),
+ "enum_radio": (L3, [("row", 11), ("scroll",), ("scroll",), ("scroll",), ("tap", 430, 200, 900)]),
+ "enum_text": (L3, [("row", 11), ("scroll",), ("scroll",), ("scroll",), ("tap", 440, 100, 900)]),
  "number_dialog": (L3, [("row", 0), ("tap", 400, 245, 900), ("tap", 375, 76, 900)]),
 }
 res = {}
@@ -33,6 +36,7 @@ for name, (d, steps) in SC.items():
         nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
     for st in steps:
         if st[0] == "clear": t.log.clear(); continue
+        if st[0] == "scroll": s.drag_until_change(240, 230, 240, 80, attempts=4, ticks=240, pause_end=160); s.wait(300); continue
         if st[0] == "row": nav.tap_row_from_top(st[1]); s.wait(700)
         else: s.tap(st[1], st[2], settle=st[3]); s.wait(300)
     s.wait(500); ws = C.widget_table(s, t); ex = X.extract(s, ws); ref = s.shot()

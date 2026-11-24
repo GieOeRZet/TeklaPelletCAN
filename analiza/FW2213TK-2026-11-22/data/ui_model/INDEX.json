@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-24T14:00:56.278167+00:00",
+  "generated_at": "2026-11-24T14:10:55.554868+00:00",
   "root": "analiza/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -23,8 +23,32 @@
       "file": "dialog_render/RUN_SUMMARY.json",
       "schema": null,
       "schema_version": null,
-      "records": 10,
-      "date": "2026-11-24T14:00:56.038452+00:00",
+      "records": 13,
+      "date": "2026-11-24T14:10:55.462765+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "dialog_render/enum_dialog_data.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 2,
+      "date": "2026-11-24T14:10:55.440175+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "dialog_render/enum_radio_data.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 2,
+      "date": "2026-11-24T14:10:55.442243+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "dialog_render/enum_text_data.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 2,
+      "date": "2026-11-24T14:10:55.443654+00:00",
       "evidence_paths": []
     },
     {

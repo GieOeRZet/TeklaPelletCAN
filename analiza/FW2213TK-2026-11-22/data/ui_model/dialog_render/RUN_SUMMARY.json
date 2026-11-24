@@ -58,5 +58,23 @@
   "mae": 0.8,
   "pct_diff": 0.4,
   "view": "0x808f910"
+ },
+ "enum_radio": {
+  "widgets": 616,
+  "mae": 0.71,
+  "pct_diff": 0.1,
+  "view": "0x808f944"
+ },
+ "enum_text": {
+  "widgets": 621,
+  "mae": 0.78,
+  "pct_diff": 0.4,
+  "view": "0x808f944"
+ },
+ "enum_dialog": {
+  "widgets": 579,
+  "mae": 0.77,
+  "pct_diff": 0.2,
+  "view": "0x808f944"
  }
 }

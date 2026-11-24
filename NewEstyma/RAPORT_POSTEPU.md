@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E2b (2026-11-24) dialog enum: DONE, 13 z 13 dialogow wyrenderowanych
+Zrobilem: 3 dialogi wyboru z listy KONFIGURACJA/KASKADA: enum liczbowy (np. Ilosc obwodow 0..4, Liczba kotlow slave 1..3) otwiera TEN SAM dialog z suwakiem i +/- co liczbowy (**FACT-DYNAMIC**: render 0.1-0.2%), enum tekstowy (Glowny modul IO: BIG/STD) otwiera dialog radio (**0.4%**; roznica = stan zaznaczenia radio - rysowany pierwszy kandydat bitmapy). Dane dialogow (teksty opcji z firmware) w `ui_model/dialog_render/enum_*_data.json`. Pozostalo z E2: tor suwaka, Kopiuj 5.8 -> <5 (kosmetyka, odkladam do E4). Teraz: E3 (automat pokrycia).
+
 ### E2a+ (2026-11-24) KRYTERIUM E2 SPELNIONE: 10 z 10 dialogow < 8%, 8 z 10 < 1.2%
 Zrobilem: poprawka kolejnosci rysowania (z-order) w `ui_extras.py` (glowa listy rodzenstwa po wskazniku next - prev bywa nieaktualny; to naprawia tez warstwy nakladek w calym renderze), literalne `\\n` w tekstach, wielolinijkowe teksty. Wyniki: paliwo 0.0, czas 0.0, zasilanie 0.0, liczbowy 0.2, PIN 0.3, dzien 0.4, data **1.1** (bylo 20.4), auto **4.0** (bylo 9.6), INTERNET 5.2, Kopiuj 5.8. Pozostalo z E2: dialog enum (E2b), Kopiuj <5%. Dalej: E2b, potem E3.
 
