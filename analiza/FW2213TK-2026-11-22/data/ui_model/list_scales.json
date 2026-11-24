@@ -1,4 +1,5 @@
 {
+ "schema_version": "1.0",
  "evidence": "MEASURED (PASS 70, tools/list_scale.py, emulator, poziom 3, CO2-4: PID bazowy + (k-1)): dla kazdego wiersza wstrzykniete surowe wartosci PID (min, min+1, srodek, domyslna, max), odczytany tekst wyswietlany w widgecie wartosci (jedyny widget, ktorego tekst sie zmienil)",
  "lists": {
   "0x00": {
@@ -9921,5 +9922,91 @@
   "zaleznosc": 47,
   "niejednoznaczne": 9,
   "tekst": 4
- }
+ },
+ "enum_dialog_probe": {
+  "evidence": "MEASURED czesciowo (PASS 70, tools/list_enum_dialog.py): stukniecie wiersza enum -> ID tekstow czytanych przez firmware przy rysowaniu dialogu minus linia bazowa",
+  "rows": {
+   "14": {
+    "name_en": "Input IN17 config",
+    "pid": "0x3606",
+    "row_y": 148,
+    "new_text_ids": [
+     96,
+     110,
+     124,
+     184,
+     221,
+     254,
+     257,
+     480,
+     481,
+     493
+    ],
+    "pl": {
+     "96": "MENU",
+     "110": "KONFIGURACJA",
+     "124": "Bufor",
+     "184": "Konfiguracja IN17",
+     "221": "Czujnik powrotu do kotła",
+     "254": "Pojemność zbiornika paliwa [kg]",
+     "257": "Moduł Lambda",
+     "480": "czujnik rezerwy paliwa",
+     "481": "czujnik temp. spalin",
+     "493": "<"
+    },
+    "en": {
+     "96": "MENU",
+     "110": "CONFIGURATION",
+     "124": "Buffer",
+     "184": "IN17 configuration",
+     "221": "Return to boiler sensor",
+     "254": "Fuel tank capacity [kg]",
+     "257": "Lambda module",
+     "480": "fuel reserve sensor",
+     "481": "exhaust gas temp. sensor",
+     "493": "<"
+    }
+   },
+   "22": {
+    "name_en": "Energy meter type",
+    "pid": "0x3629",
+    "row_y": 149,
+    "new_text_ids": [
+     110,
+     125,
+     126,
+     430,
+     438,
+     466,
+     493
+    ],
+    "pl": {
+     "110": "KONFIGURACJA",
+     "125": "Pomiar energii",
+     "126": "Dodatkowy magazyn paliwa",
+     "430": "Dmuchawa z HALL",
+     "438": "Czujnik ciśnienia",
+     "466": "Kopiuj nastawy z innego sterownika",
+     "493": "<"
+    },
+    "en": {
+     "110": "CONFIGURATION",
+     "125": "Energy measure",
+     "126": "Additional fuel storage",
+     "430": "Blower with HALL",
+     "438": "Pressure sensor",
+     "466": "Copy settings from other controller",
+     "493": "<"
+    }
+   }
+  },
+  "note": "szum: w wyniku sa tez teksty przewijanej listy; opcje dialogu do wyluskania recznie (IN17: 184 = tytul \"Konfiguracja IN17\", opcje m.in. 480 \"czujnik rezerwy paliwa\", 481 \"czujnik temp. spalin\"). Odczyt id +0x26 widgetu wartosci wiersza jest NIEWIARYGODNY (wartosc 0 zawsze daje id 175) - nie uzywac."
+ },
+ "open": [
+  "etykiety wartosci wyliczen (enum): dialog radio da sie zmierzyc (list_enum_dialog.py), wynik czesciowy (IN17, Energy meter type); pozostale wiersze enum do uruchomienia z filtrem szumu",
+  "wiersze number 0x11 Statystyki z duzymi zakresami (u32): wyswietlana wartosc nasyca sie / formatuje inaczej - skala niejednoznaczna",
+  "krok i zakres w dialogu (+/-) niezmierzone dla wszystkich wierszy: tylko skala wyswietlania",
+  "przelaczniki: stan = polozenie galki (rect x 7 -> 36 dla 0 -> 1), nie bitmapa",
+  "kaskada 0x08 i magazyn 0x09 (wymaga 0x350C/0x3525) niezmierzone - zadanie ChatGPT etap 3 B"
+ ]
 }

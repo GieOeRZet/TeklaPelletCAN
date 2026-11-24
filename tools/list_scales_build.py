@@ -41,4 +41,12 @@ for node, key in M.items():
         rows.append(r)
     out['lists'][key] = dict(node=node, rows=rows)
 out['summary'] = dict(stat)
+out = {'schema_version': '1.0', **out}
+ep = os.path.join(SRC, 'e_11.json')
+if os.path.exists(ep):
+    out['enum_dialog_probe'] = dict(evidence='MEASURED czesciowo (PASS 70, tools/list_enum_dialog.py): stukniecie wiersza enum -> ID tekstow czytanych przez firmware przy rysowaniu dialogu minus linia bazowa', rows=json.load(open(ep)),
+        note='szum: w wyniku sa tez teksty przewijanej listy; opcje dialogu do wyluskania recznie (IN17: 184 = tytul "Konfiguracja IN17", opcje m.in. 480 "czujnik rezerwy paliwa", 481 "czujnik temp. spalin"). Odczyt id +0x26 widgetu wartosci wiersza jest NIEWIARYGODNY (wartosc 0 zawsze daje id 175) - nie uzywac.')
+out['open'] = ['etykiety wartosci wyliczen (enum): dialog radio da sie zmierzyc (list_enum_dialog.py), wynik czesciowy (IN17, Energy meter type); pozostale wiersze enum do uruchomienia z filtrem szumu',
+    'wiersze number 0x11 Statystyki z duzymi zakresami (u32): wyswietlana wartosc nasyca sie / formatuje inaczej - skala niejednoznaczna', 'krok i zakres w dialogu (+/-) niezmierzone dla wszystkich wierszy: tylko skala wyswietlania',
+    'przelaczniki: stan = polozenie galki (rect x 7 -> 36 dla 0 -> 1), nie bitmapa', 'kaskada 0x08 i magazyn 0x09 (wymaga 0x350C/0x3525) niezmierzone - zadanie ChatGPT etap 3 B']
 json.dump(out, open('analiza/FW2213TK-2026-11-22/data/ui_model/list_scales.json', 'w'), ensure_ascii=False, indent=1); print(dict(stat))
