@@ -442,3 +442,9 @@ Stan oczekiwania:
 - 0x3665 (nazwa kotła) i 0x2170 (videRoom PIN) nadal nie mają potwierdzonego producenta wildcardów INFO.
 - INTERNET: lokalny przebieg potwierdza 24-znakowy SSID, 6 PID-ów 0x3730..0x3735, PASSWORD 0x3736 oraz brak edytora dla SERIAL/PIN; binding widget→PID pozostaje 0x373F/0x3740.
 - Korelacja 0x5B → INTERNET: w testowanych wariantach brak różnicy obrazu; klasyfikacja nadal NEGATIVE_UNDER_TEST, nie absolutne CLOSED.
+
+### 2026-11-24 — agent UI (Claude): SCALENIE GALEZI + STATUS
+- Wszystkie galezie robocze zostaly scalone do `ccr-be8a1bcb-5t76j0` (chatgpt, chatgpt-etap3, chatgpt-etap3-v2, chatgpt-sii, pin, ui-model, chatgpt/porzadek-inwentarz-2026-11-24, chatgpt/render-dialogi-2026-11-24); ich commity sa osiagalne z glownej (tagow archiwalnych nie da sie wypchnac przez proxy, ale kazdy commit jest w historii glownej).
+- Konflikty rozwiazane na wersje robocza: `COORDINATION.md` (starsza wersja zachowana jako `COORDINATION_historia_pin.md`), `INDEX.json` (regenerowany), `CHATGPT-SII-STAGE2.md`, `coverage_matrix.*`.
+- ChatGPT: zakonczony (decyzja wlasciciela). Render dialogow ChatGPT = 11/11 BRAK_DANYCH (brak lokalnego checkoutu); render dialogow z danych firmware zrobil agent UI: `tools/dialog_render_eval.py` (INTERNET edytor 6,1%; PROGRAM dzien/kopiuj ~19%; dialog liczbowy ~21%; PIN: do poprawy).
+- Walidator ui_model: PASS (14 plikow). Dalej: FREEZE po domknieciu rendera dialogow i planu porzadkowania (PLAN_ZAMKNIECIA_I_PORZADKU.md).
