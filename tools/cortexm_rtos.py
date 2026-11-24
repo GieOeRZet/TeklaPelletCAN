@@ -30,6 +30,7 @@ class Board:
         if patch_rcc: E.install_stub(mu, E.RCC_GETFLAG, 1)
         self.vt = struct.unpack_from("<%dI" % 128, self.raw, 0)
         self.tick = tick; self.boot_budget = 200_000_000
+        self.idle_fast = False; self.idle_budget = 3000   # PASS 70: gdy biezace zadanie = IDLE, porcja skrocona (zdarzenia czasu wchodza tylko na granicy slice'a); domyslnie wylaczone
         self.switches = []         # nazwy zadan po kazdym PendSV (przelaczenie kontekstu)
         self.pend = set()          # oczekujace wyjatki (numery: 11 SVC, 14 PendSV, 15 SysTick, 16+ IRQ)
         self.stack = []            # aktywne wyjatki: (excno, lr_ret)
@@ -212,6 +213,7 @@ class Board:
         for sl in range(slices):
             budget = self.tick if self.counters["svc"] > 0 else self.boot_budget   # przed startem schedulera: duze porcje (petle opoznien)
             while budget > 0:
+                if self.idle_fast and self.counters["svc"] > 0 and not self.stack and self.task_name() == "IDLE": budget = min(budget, self.idle_budget)
                 why = self._burst(budget)
                 budget = max(0, budget - 1) if why != "count" else 0
                 if why == "svc": self.pend.add(11); budget = min(budget, self.tick)

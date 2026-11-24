@@ -9,10 +9,10 @@ class LiveSim:
     def __init__(self, session, src=None):
         self.s = session; self.src = json.load(open(src or os.path.join(D, "live_sources.json")))
         self.curve = sorted((int(k), (v - 65536 if v > 32767 else v)) for k, v in self.src["ntc_curve"]["points_raw_to_dC"].items())      # raw -> dC (malejaca)
-        self.raw = {n: [1000] * 12 for n in (0x56, 0x45, 0x40, 0x46, 0x78)}
+        self.raw = {n: [1000] * 12 for n in (0x56, 0x45, 0x40, 0x46, 0x78, 0x50)}
         self.where = {}
         for node, m in self.src["modules"].items():
-            for slot, info in m["slots"].items():
+            for slot, info in m.get("slots", {}).items():
                 for pid in info["pids_primary"]: self.where[int(pid, 16)] = (int(node, 16), int(slot))
     def temp_to_raw(self, dC):
         xs = [v for _, v in self.curve]; rs = [r for r, _ in self.curve]; best = min(range(len(xs)), key=lambda i: abs(xs[i] - dC))
