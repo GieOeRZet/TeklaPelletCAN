@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E3 (2026-11-24) DOMKNIETY: automat pokrycia, 27 z 27 zadan (poziom x konfiguracja)
+Zrobilem: `tools/coverage_gen.py` + `run_coverage_par.sh` (4 procesy) + `coverage_agg.py`; wynik `ui_model/coverage_matrix_agent.json|md`: **621 komorek zmierzonych** (ekran+nastawy, poziomy 0/1/3, 9 konfiguracji wg visible_in), **mediana 0.2%, 92.6% komorek < 3%, 96.5% < 8%**. Poza progiem: ALARMY 3.8-12.6% (uklad L0 +80 px i przycisk POTWIERDZ, OPEN#2), TEST_WYJSC 2.3. Dane do poprawy: 19 komorek (L1 DEFAULT/2105=0/2105=2: Test wyjsc, Statystyki, SIEC, INTERNET, ...) wg `visible_in` powinny byc w MENU, a emulator ich nie pokazuje (dlugosc menu < oczekiwanej; 4 zadania maja rows_match=false) - wymagany przeglad menu_tree.visible_in. L3 istnieje tylko dla 3 konfiguracji w danych. Stany alarm/offline: emulator bez modulow sam podnosi alarmy 100/105/110, wiec zmierzone komorki = stan 'offline+alarm'; stan 'online bez alarmow' (LiveSim) -> BACKLOG. Pozostalo: E4 (ALARMY, HOME, INTERNET/SIEC/STATYSTYKI), E5 zamrozenie+porzadek.
+
 ### E3 w toku (2026-11-24): 9 z 36 zadan (poziom x konfiguracja) gotowe
 Zrobilem: 254 komorek (ekran/nastawy) zmierzonych, **mediana 0.2%, 93.7% komorek < 3%, 100% < 8%**; 15 komorek oczekiwanych wg visible_in nie istnieje w MENU emulatora. Pozostalo: 27 zadan (~35 min), potem stany alarm/offline (E3c) i raport koncowy E3 z tabela w `ui_model/coverage_matrix_agent.json|md`.
 
