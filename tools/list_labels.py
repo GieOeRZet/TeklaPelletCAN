@@ -5,27 +5,36 @@ Uzycie: ESTYMA_IDLE_FAST=1 python3 -I tools/list_labels.py L3DIR LC3DIR OUT.json
 import json, os, pickle, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import paths
-import ui_session as U, ctor_trace as C, ui_extras as X
+import ui_session as U, ctor_trace as C, ui_extras as X, ui_nav
 from PIL import Image
 l3, lc3, out = sys.argv[1:4]
 sc = json.load(open(paths.UI_MODEL / "list_scales.json"))["lists"]; res = json.load(open(out)) if os.path.exists(out) else {}
 for key, lst in sc.items():
-    if key in res: continue
+    if key in res and res[key]["labels_found"] > 0 and key not in os.environ.get("REDO", "").split(","): continue
     node = lst["node"]; idx, kind = node.split("_", 1); idx = int(idx); d = lc3 if idx in (9, 10) else l3
     s = U.UiSession.from_checkpoint(str(paths.FIRMWARE), os.path.join(d, "menu.state"), None); s.wait(120)
     nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = pickle.load(open(os.path.join(d, "rows.pkl"), "rb")); t = C.Tracer(s); t.log.clear()
-    if not nav.tap_row_from_top(idx): print(key, "TAP_FAILED", flush=True); continue
+    if not ui_nav.tap_incremental(s, nav, idx): print(key, "TAP_FAILED", flush=True); continue
     s.wait(700)
     if kind == "settings": s.tap(400, 245, settle=800); s.wait(500)
     ws = C.widget_table(s, t); ex = X.extract(s, ws); lab = {}
     for w in ws:
         e = ex.get(w["this"], {})
         if e.get("cls") == "text" and not e.get("hidden") and w["ax"] < 100 and w["ay"] >= 40 and w["w"] > 60 and e.get("text"): lab.setdefault(w["ay"], e["text"])
-    ays = sorted(lab); base = ays[0] if ays else None; rows = {}
-    for r in lst["rows"]:
-        sl = r.get("slot")
-        if base is None or sl is None or (sl == 0 and r["idx"] != 0): continue
+    ays = sorted(lab); base = ays[0] if ays else None; rows = {}; R_ = lst["rows"]
+    known = {r["idx"]: r["slot"] for r in R_ if r.get("slot") is not None and not (r["slot"] == 0 and r["idx"] != 0)}      # zmierzone sloty (slot 0 przy idx>0 = brak danych)
+    def slot_of(r):
+        if r["idx"] in known: return known[r["idx"]], "zmierzony"
+        lo = [i for i in known if i < r["idx"]]; hi = [i for i in known if i > r["idx"]]
+        if lo and hi:
+            a, b = max(lo), min(hi)
+            if known[a] - a == known[b] - b: return r["idx"] + known[a] - a, "wnioskowany (kotwice o tym samym przesunieciu)"
+        return None, None
+    for r in R_:
+        if base is None: continue
+        sl, how = slot_of(r)
+        if sl is None or not r.get("pid"): continue
         t_ = lab.get(base + 50 * sl)
-        if t_: rows[str(r["idx"])] = dict(slot=sl, label_pl=t_, pid=r.get("pid"))
+        if t_: rows[str(r["idx"])] = dict(slot=sl, label_pl=t_, pid=r.get("pid"), how=how)
     res[key] = dict(node=node, base_ay=base, labels_found=len(lab), rows=rows); json.dump(res, open(out, "w"), ensure_ascii=False, indent=1)
     print(key, node, "etykiet:", len(lab), "przypisano:", len(rows), "z", len(lst["rows"]), flush=True)

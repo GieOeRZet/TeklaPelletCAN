@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0",
- "evidence": "MEASURED (teksty widgetow etykiet z RAM emulatora, poziom 3; przypisanie do wiersza po slocie z list_scales.json)",
+ "evidence": "MEASURED (teksty widgetow etykiet z RAM emulatora, poziom 3); przypisanie do wiersza: slot zmierzony (list_scales) albo wnioskowany miedzy kotwicami o tym samym przesunieciu (pole how)",
  "lists": {
   "0x00": {
    "node": "0_settings",
@@ -10,62 +10,74 @@
     "0": {
      "slot": 0,
      "label_pl": "Temperatura zadana  [°C]",
-     "pid": "0x2003"
+     "pid": "0x2003",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Histereza załączenia [°C]",
-     "pid": "0x2208"
+     "pid": "0x2208",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 2,
      "label_pl": "Histereza wyłączenia [°C]",
-     "pid": "0x2291"
+     "pid": "0x2291",
+     "how": "zmierzony"
     },
     "4": {
      "slot": 5,
      "label_pl": "Minimalna temp. pomp [°C]",
-     "pid": "0x2207"
+     "pid": "0x2207",
+     "how": "zmierzony"
     },
     "5": {
      "slot": 6,
      "label_pl": "Wybieg pompy [min]",
-     "pid": "0x3708"
+     "pid": "0x3708",
+     "how": "zmierzony"
     },
     "6": {
      "slot": 7,
      "label_pl": "Cisza nocna od",
-     "pid": "0x3508"
+     "pid": "0x3508",
+     "how": "zmierzony"
     },
     "7": {
      "slot": 8,
      "label_pl": "Cisza nocna do",
-     "pid": "0x3509"
+     "pid": "0x3509",
+     "how": "zmierzony"
     },
     "8": {
      "slot": 9,
      "label_pl": "Minimalna temp. powrotu [°C]",
-     "pid": "0x216C"
+     "pid": "0x216C",
+     "how": "zmierzony"
     },
     "9": {
      "slot": 10,
      "label_pl": "Czas mieszacza [s]",
-     "pid": "0x216E"
+     "pid": "0x216E",
+     "how": "zmierzony"
     },
     "10": {
      "slot": 11,
      "label_pl": "Rezerwa paliwa stop [kg]",
-     "pid": "0x3604"
+     "pid": "0x3604",
+     "how": "zmierzony"
     },
     "11": {
      "slot": 12,
      "label_pl": "Ciśnienie min. [bar]",
-     "pid": "0x3129"
+     "pid": "0x3129",
+     "how": "zmierzony"
     },
     "12": {
      "slot": 13,
      "label_pl": "Ciśnienie max. [bar]",
-     "pid": "0x312A"
+     "pid": "0x312A",
+     "how": "zmierzony"
     }
    }
   },
@@ -77,132 +89,164 @@
     "0": {
      "slot": 0,
      "label_pl": "Korekta powietrza [%]",
-     "pid": "0x2273"
+     "pid": "0x2273",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Moc min [%]",
-     "pid": "0x2270"
+     "pid": "0x2270",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 2,
      "label_pl": "Moc max [%]",
-     "pid": "0x2271"
+     "pid": "0x2271",
+     "how": "zmierzony"
     },
     "3": {
      "slot": 3,
      "label_pl": "Wartość opałowa [kWh/kg]",
-     "pid": "0x2292"
+     "pid": "0x2292",
+     "how": "zmierzony"
     },
     "4": {
      "slot": 4,
      "label_pl": "Ilość paliwa test [kg/h]",
-     "pid": "0x2272"
+     "pid": "0x2272",
+     "how": "zmierzony"
     },
     "6": {
      "slot": 7,
      "label_pl": "Podawanie max [s]",
-     "pid": "0x2257"
+     "pid": "0x2257",
+     "how": "zmierzony"
     },
     "7": {
      "slot": 8,
      "label_pl": "Wstępna dawka paliwa [s]",
-     "pid": "0x2256"
+     "pid": "0x2256",
+     "how": "zmierzony"
     },
     "8": {
      "slot": 9,
      "label_pl": "Próg foto",
-     "pid": "0x226A"
+     "pid": "0x226A",
+     "how": "zmierzony"
     },
     "9": {
      "slot": 10,
      "label_pl": "Moc dmuchawy rozpalanie [%]",
-     "pid": "0x2289"
+     "pid": "0x2289",
+     "how": "zmierzony"
     },
     "10": {
      "slot": 11,
      "label_pl": "Moc dmuchawy rozżarzanie [%]",
-     "pid": "0x3704"
+     "pid": "0x3704",
+     "how": "zmierzony"
     },
     "11": {
      "slot": 12,
      "label_pl": "Moc dmuchawy wygaszanie [%]",
-     "pid": "0x300C"
+     "pid": "0x300C",
+     "how": "zmierzony"
     },
     "12": {
      "slot": 13,
      "label_pl": "Czas rozżarzania [min]",
-     "pid": "0x2290"
+     "pid": "0x2290",
+     "how": "zmierzony"
     },
     "13": {
      "slot": 14,
      "label_pl": "Rozżarzanie paliwo [%]",
-     "pid": "0x299A"
+     "pid": "0x299A",
+     "how": "zmierzony"
     },
     "14": {
      "slot": 15,
      "label_pl": "Czas wygaszania [min]",
-     "pid": "0x226B"
+     "pid": "0x226B",
+     "how": "zmierzony"
+    },
+    "15": {
+     "slot": 16,
+     "label_pl": "Sterowanie Lambda",
+     "pid": "0x3605",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "16": {
      "slot": 17,
      "label_pl": "Tlen dla mocy 30%",
-     "pid": "0x214E"
+     "pid": "0x214E",
+     "how": "zmierzony"
     },
     "17": {
      "slot": 18,
      "label_pl": "Tlen dla mocy 100%",
-     "pid": "0x2152"
+     "pid": "0x2152",
+     "how": "zmierzony"
     },
     "18": {
      "slot": 19,
      "label_pl": "Liczba czyszczeń rusztu",
-     "pid": "0x2258"
+     "pid": "0x2258",
+     "how": "zmierzony"
     },
     "19": {
      "slot": 20,
      "label_pl": "Odstęp czyszczenia [h]",
-     "pid": "0x2999"
+     "pid": "0x2999",
+     "how": "zmierzony"
     },
     "20": {
      "slot": 21,
      "label_pl": "Czas pauzy [min]",
-     "pid": "0x3715"
+     "pid": "0x3715",
+     "how": "zmierzony"
     },
     "21": {
      "slot": 22,
      "label_pl": "Moc w pauzie [%]",
-     "pid": "0x3716"
+     "pid": "0x3716",
+     "how": "zmierzony"
     },
     "22": {
      "slot": 23,
      "label_pl": "Dmuchawa w pauzie [%]",
-     "pid": "0x3717"
+     "pid": "0x3717",
+     "how": "zmierzony"
     },
     "23": {
      "slot": 24,
      "label_pl": "Szybkość modulacji mocy",
-     "pid": "0x225A"
+     "pid": "0x225A",
+     "how": "zmierzony"
     },
     "24": {
      "slot": 26,
      "label_pl": "Bezwładność palnika [min]",
-     "pid": "0x2153"
+     "pid": "0x2153",
+     "how": "zmierzony"
     },
     "25": {
      "slot": 27,
      "label_pl": "Czas ruchu rusztu [s]",
-     "pid": "0x3003"
+     "pid": "0x3003",
+     "how": "zmierzony"
     },
     "26": {
      "slot": 28,
      "label_pl": "Pod. palnika [% pod. zasobnika]",
-     "pid": "0x370B"
+     "pid": "0x370B",
+     "how": "zmierzony"
     },
     "27": {
      "slot": 29,
      "label_pl": "Okres podajnika zasobnika [s]",
-     "pid": "0x3700"
+     "pid": "0x3700",
+     "how": "zmierzony"
     }
    }
   },
@@ -214,82 +258,122 @@
     "0": {
      "slot": 0,
      "label_pl": "Temperatura komfortowa [°C]  ",
-     "pid": "0x2032"
+     "pid": "0x2032",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Temperatura ekonomiczna [°C] ",
-     "pid": "0x2048"
+     "pid": "0x2048",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 2,
      "label_pl": "Histereza [°C]",
-     "pid": "0x22BD"
+     "pid": "0x22BD",
+     "how": "zmierzony"
     },
     "3": {
      "slot": 3,
      "label_pl": "Kalibracja czujnika pok. [°C]",
-     "pid": "0x22C1"
+     "pid": "0x22C1",
+     "how": "zmierzony"
+    },
+    "4": {
+     "slot": 4,
+     "label_pl": "Tryb pracy  ",
+     "pid": "0x2142",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "5": {
      "slot": 5,
      "label_pl": "Temperatura CO zadana ręcznie [°C]",
-     "pid": "0x2146"
+     "pid": "0x2146",
+     "how": "zmierzony"
     },
     "6": {
      "slot": 6,
      "label_pl": "Temperatura CO dla -20°C [°C]",
-     "pid": "0x22C5"
+     "pid": "0x22C5",
+     "how": "zmierzony"
     },
     "7": {
      "slot": 7,
      "label_pl": "Temperatura CO dla -10°C [°C]",
-     "pid": "0x400C"
+     "pid": "0x400C",
+     "how": "zmierzony"
     },
     "8": {
      "slot": 8,
      "label_pl": "Temperatura CO dla  0°C [°C]",
-     "pid": "0x22C9"
+     "pid": "0x22C9",
+     "how": "zmierzony"
     },
     "9": {
      "slot": 9,
      "label_pl": "Temperatura CO dla 10°C [°C]",
-     "pid": "0x22CD"
+     "pid": "0x22CD",
+     "how": "zmierzony"
+    },
+    "10": {
+     "slot": 10,
+     "label_pl": "Automatyczny tryb lato",
+     "pid": "0x2315",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "11": {
      "slot": 11,
      "label_pl": "Nazwa",
-     "pid": "0x2321"
+     "pid": "0x2321",
+     "how": "zmierzony"
     },
     "13": {
      "slot": 14,
      "label_pl": "Zwiększenie temperatury źródła [°C]",
-     "pid": "0x22B1"
+     "pid": "0x22B1",
+     "how": "zmierzony"
+    },
+    "14": {
+     "slot": 15,
+     "label_pl": "Czujnik pokojowy",
+     "pid": "0x22A1",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "15": {
      "slot": 16,
      "label_pl": "Temp. maksymalna [°C]",
-     "pid": "0x22D5"
+     "pid": "0x22D5",
+     "how": "zmierzony"
+    },
+    "16": {
+     "slot": 17,
+     "label_pl": "Czujnik CO",
+     "pid": "0x22A5",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "17": {
      "slot": 18,
      "label_pl": "Wsp. korekcji t. CO [°C/°C]",
-     "pid": "0x22D9"
+     "pid": "0x22D9",
+     "how": "zmierzony"
     },
     "18": {
      "slot": 19,
      "label_pl": "Obniżenie temperatury CO [°C]",
-     "pid": "0x22E5"
+     "pid": "0x22E5",
+     "how": "zmierzony"
     },
     "19": {
      "slot": 20,
      "label_pl": "MIN temperatura CO pomp [°C]",
-     "pid": "0x22E9"
+     "pid": "0x22E9",
+     "how": "zmierzony"
     },
     "20": {
      "slot": 21,
      "label_pl": "Czas mieszacza [s]",
-     "pid": "0x22B5"
+     "pid": "0x22B5",
+     "how": "zmierzony"
     }
    }
   },
@@ -301,82 +385,122 @@
     "0": {
      "slot": 0,
      "label_pl": "Temperatura komfortowa [°C]  ",
-     "pid": "0x2033"
+     "pid": "0x2033",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Temperatura ekonomiczna [°C] ",
-     "pid": "0x2049"
+     "pid": "0x2049",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 2,
      "label_pl": "Histereza [°C]",
-     "pid": "0x22BE"
+     "pid": "0x22BE",
+     "how": "zmierzony"
     },
     "3": {
      "slot": 3,
      "label_pl": "Kalibracja czujnika pok. [°C]",
-     "pid": "0x22C2"
+     "pid": "0x22C2",
+     "how": "zmierzony"
+    },
+    "4": {
+     "slot": 4,
+     "label_pl": "Tryb pracy  ",
+     "pid": "0x2143",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "5": {
      "slot": 5,
      "label_pl": "Temperatura CO zadana ręcznie [°C]",
-     "pid": "0x2147"
+     "pid": "0x2147",
+     "how": "zmierzony"
     },
     "6": {
      "slot": 6,
      "label_pl": "Temperatura CO dla -20°C [°C]",
-     "pid": "0x22C6"
+     "pid": "0x22C6",
+     "how": "zmierzony"
     },
     "7": {
      "slot": 7,
      "label_pl": "Temperatura CO dla -10°C [°C]",
-     "pid": "0x400D"
+     "pid": "0x400D",
+     "how": "zmierzony"
     },
     "8": {
      "slot": 8,
      "label_pl": "Temperatura CO dla  0°C [°C]",
-     "pid": "0x22CA"
+     "pid": "0x22CA",
+     "how": "zmierzony"
     },
     "9": {
      "slot": 9,
      "label_pl": "Temperatura CO dla 10°C [°C]",
-     "pid": "0x22CE"
+     "pid": "0x22CE",
+     "how": "zmierzony"
+    },
+    "10": {
+     "slot": 10,
+     "label_pl": "Automatyczny tryb lato",
+     "pid": "0x2316",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "11": {
      "slot": 11,
      "label_pl": "Nazwa",
-     "pid": "0x2322"
+     "pid": "0x2322",
+     "how": "zmierzony"
     },
     "13": {
      "slot": 14,
      "label_pl": "Zwiększenie temperatury źródła [°C]",
-     "pid": "0x22B2"
+     "pid": "0x22B2",
+     "how": "zmierzony"
+    },
+    "14": {
+     "slot": 15,
+     "label_pl": "Czujnik pokojowy",
+     "pid": "0x22A2",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "15": {
      "slot": 16,
      "label_pl": "Temp. maksymalna [°C]",
-     "pid": "0x22D6"
+     "pid": "0x22D6",
+     "how": "zmierzony"
+    },
+    "16": {
+     "slot": 17,
+     "label_pl": "Czujnik CO",
+     "pid": "0x22A6",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "17": {
      "slot": 18,
      "label_pl": "Wsp. korekcji t. CO [°C/°C]",
-     "pid": "0x22DA"
+     "pid": "0x22DA",
+     "how": "zmierzony"
     },
     "18": {
      "slot": 19,
      "label_pl": "Obniżenie temperatury CO [°C]",
-     "pid": "0x22E6"
+     "pid": "0x22E6",
+     "how": "zmierzony"
     },
     "19": {
      "slot": 20,
      "label_pl": "MIN temperatura CO pomp [°C]",
-     "pid": "0x22EA"
+     "pid": "0x22EA",
+     "how": "zmierzony"
     },
     "20": {
      "slot": 21,
      "label_pl": "Czas mieszacza [s]",
-     "pid": "0x22B6"
+     "pid": "0x22B6",
+     "how": "zmierzony"
     }
    }
   },
@@ -388,82 +512,122 @@
     "0": {
      "slot": 0,
      "label_pl": "Temperatura komfortowa [°C]  ",
-     "pid": "0x2034"
+     "pid": "0x2034",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Temperatura ekonomiczna [°C] ",
-     "pid": "0x204A"
+     "pid": "0x204A",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 2,
      "label_pl": "Histereza [°C]",
-     "pid": "0x22BF"
+     "pid": "0x22BF",
+     "how": "zmierzony"
     },
     "3": {
      "slot": 3,
      "label_pl": "Kalibracja czujnika pok. [°C]",
-     "pid": "0x22C3"
+     "pid": "0x22C3",
+     "how": "zmierzony"
+    },
+    "4": {
+     "slot": 4,
+     "label_pl": "Tryb pracy  ",
+     "pid": "0x2144",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "5": {
      "slot": 5,
      "label_pl": "Temperatura CO zadana ręcznie [°C]",
-     "pid": "0x2148"
+     "pid": "0x2148",
+     "how": "zmierzony"
     },
     "6": {
      "slot": 6,
      "label_pl": "Temperatura CO dla -20°C [°C]",
-     "pid": "0x22C7"
+     "pid": "0x22C7",
+     "how": "zmierzony"
     },
     "7": {
      "slot": 7,
      "label_pl": "Temperatura CO dla -10°C [°C]",
-     "pid": "0x400E"
+     "pid": "0x400E",
+     "how": "zmierzony"
     },
     "8": {
      "slot": 8,
      "label_pl": "Temperatura CO dla  0°C [°C]",
-     "pid": "0x22CB"
+     "pid": "0x22CB",
+     "how": "zmierzony"
     },
     "9": {
      "slot": 9,
      "label_pl": "Temperatura CO dla 10°C [°C]",
-     "pid": "0x22CF"
+     "pid": "0x22CF",
+     "how": "zmierzony"
+    },
+    "10": {
+     "slot": 10,
+     "label_pl": "Automatyczny tryb lato",
+     "pid": "0x2317",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "11": {
      "slot": 11,
      "label_pl": "Nazwa",
-     "pid": "0x2323"
+     "pid": "0x2323",
+     "how": "zmierzony"
     },
     "13": {
      "slot": 14,
      "label_pl": "Zwiększenie temperatury źródła [°C]",
-     "pid": "0x22B3"
+     "pid": "0x22B3",
+     "how": "zmierzony"
+    },
+    "14": {
+     "slot": 15,
+     "label_pl": "Czujnik pokojowy",
+     "pid": "0x22A3",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "15": {
      "slot": 16,
      "label_pl": "Temp. maksymalna [°C]",
-     "pid": "0x22D7"
+     "pid": "0x22D7",
+     "how": "zmierzony"
+    },
+    "16": {
+     "slot": 17,
+     "label_pl": "Czujnik CO",
+     "pid": "0x22A7",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "17": {
      "slot": 18,
      "label_pl": "Wsp. korekcji t. CO [°C/°C]",
-     "pid": "0x22DB"
+     "pid": "0x22DB",
+     "how": "zmierzony"
     },
     "18": {
      "slot": 19,
      "label_pl": "Obniżenie temperatury CO [°C]",
-     "pid": "0x22E7"
+     "pid": "0x22E7",
+     "how": "zmierzony"
     },
     "19": {
      "slot": 20,
      "label_pl": "MIN temperatura CO pomp [°C]",
-     "pid": "0x22EB"
+     "pid": "0x22EB",
+     "how": "zmierzony"
     },
     "20": {
      "slot": 21,
      "label_pl": "Czas mieszacza [s]",
-     "pid": "0x22B7"
+     "pid": "0x22B7",
+     "how": "zmierzony"
     }
    }
   },
@@ -475,82 +639,122 @@
     "0": {
      "slot": 0,
      "label_pl": "Temperatura komfortowa [°C]  ",
-     "pid": "0x2035"
+     "pid": "0x2035",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Temperatura ekonomiczna [°C] ",
-     "pid": "0x204B"
+     "pid": "0x204B",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 2,
      "label_pl": "Histereza [°C]",
-     "pid": "0x22C0"
+     "pid": "0x22C0",
+     "how": "zmierzony"
     },
     "3": {
      "slot": 3,
      "label_pl": "Kalibracja czujnika pok. [°C]",
-     "pid": "0x22C4"
+     "pid": "0x22C4",
+     "how": "zmierzony"
+    },
+    "4": {
+     "slot": 4,
+     "label_pl": "Tryb pracy  ",
+     "pid": "0x2145",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "5": {
      "slot": 5,
      "label_pl": "Temperatura CO zadana ręcznie [°C]",
-     "pid": "0x2149"
+     "pid": "0x2149",
+     "how": "zmierzony"
     },
     "6": {
      "slot": 6,
      "label_pl": "Temperatura CO dla -20°C [°C]",
-     "pid": "0x22C8"
+     "pid": "0x22C8",
+     "how": "zmierzony"
     },
     "7": {
      "slot": 7,
      "label_pl": "Temperatura CO dla -10°C [°C]",
-     "pid": "0x400F"
+     "pid": "0x400F",
+     "how": "zmierzony"
     },
     "8": {
      "slot": 8,
      "label_pl": "Temperatura CO dla  0°C [°C]",
-     "pid": "0x22CC"
+     "pid": "0x22CC",
+     "how": "zmierzony"
     },
     "9": {
      "slot": 9,
      "label_pl": "Temperatura CO dla 10°C [°C]",
-     "pid": "0x22D0"
+     "pid": "0x22D0",
+     "how": "zmierzony"
+    },
+    "10": {
+     "slot": 10,
+     "label_pl": "Automatyczny tryb lato",
+     "pid": "0x2318",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "11": {
      "slot": 11,
      "label_pl": "Nazwa",
-     "pid": "0x2324"
+     "pid": "0x2324",
+     "how": "zmierzony"
     },
     "13": {
      "slot": 14,
      "label_pl": "Zwiększenie temperatury źródła [°C]",
-     "pid": "0x22B4"
+     "pid": "0x22B4",
+     "how": "zmierzony"
+    },
+    "14": {
+     "slot": 15,
+     "label_pl": "Czujnik pokojowy",
+     "pid": "0x22A4",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "15": {
      "slot": 16,
      "label_pl": "Temp. maksymalna [°C]",
-     "pid": "0x22D8"
+     "pid": "0x22D8",
+     "how": "zmierzony"
+    },
+    "16": {
+     "slot": 17,
+     "label_pl": "Czujnik CO",
+     "pid": "0x22A8",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "17": {
      "slot": 18,
      "label_pl": "Wsp. korekcji t. CO [°C/°C]",
-     "pid": "0x22DC"
+     "pid": "0x22DC",
+     "how": "zmierzony"
     },
     "18": {
      "slot": 19,
      "label_pl": "Obniżenie temperatury CO [°C]",
-     "pid": "0x22E8"
+     "pid": "0x22E8",
+     "how": "zmierzony"
     },
     "19": {
      "slot": 20,
      "label_pl": "MIN temperatura CO pomp [°C]",
-     "pid": "0x22EC"
+     "pid": "0x22EC",
+     "how": "zmierzony"
     },
     "20": {
      "slot": 21,
      "label_pl": "Czas mieszacza [s]",
-     "pid": "0x22B8"
+     "pid": "0x22B8",
+     "how": "zmierzony"
     }
    }
   },
@@ -562,42 +766,68 @@
     "0": {
      "slot": 0,
      "label_pl": "Temperatura komfortowa [°C]  ",
-     "pid": "0x2010"
+     "pid": "0x2010",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Temperatura ekonomiczna [°C] ",
-     "pid": "0x2012"
+     "pid": "0x2012",
+     "how": "zmierzony"
+    },
+    "2": {
+     "slot": 2,
+     "label_pl": "Zagrzej teraz",
+     "pid": "0x2210",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "3": {
      "slot": 3,
      "label_pl": "Histereza [°C]",
-     "pid": "0x2212"
+     "pid": "0x2212",
+     "how": "zmierzony"
+    },
+    "4": {
+     "slot": 4,
+     "label_pl": "Antylegionella",
+     "pid": "0x2297",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
+    },
+    "5": {
+     "slot": 5,
+     "label_pl": "Priorytet CWU   ",
+     "pid": "0x300D",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "6": {
      "slot": 6,
      "label_pl": "Cyrkulacja praca [min]",
-     "pid": "0x374B"
+     "pid": "0x374B",
+     "how": "zmierzony"
     },
     "7": {
      "slot": 7,
      "label_pl": "Cyrkulacja pauza [min]",
-     "pid": "0x374C"
+     "pid": "0x374C",
+     "how": "zmierzony"
     },
     "9": {
      "slot": 10,
      "label_pl": "Zwiększenie temperatury źródła [°C]",
-     "pid": "0x2216"
+     "pid": "0x2216",
+     "how": "zmierzony"
     },
     "10": {
      "slot": 11,
      "label_pl": "Delta załączenia pompy [°C]",
-     "pid": "0x2218"
+     "pid": "0x2218",
+     "how": "zmierzony"
     },
     "11": {
      "slot": 12,
      "label_pl": "Temp. maksymalna [°C]",
-     "pid": "0x201C"
+     "pid": "0x201C",
+     "how": "zmierzony"
     }
    }
   },
@@ -609,37 +839,44 @@
     "0": {
      "slot": 0,
      "label_pl": "Przepływ [l/min]",
-     "pid": "0x2116"
+     "pid": "0x2116",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Delta załączenia [°C]",
-     "pid": "0x3116"
+     "pid": "0x3116",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 2,
      "label_pl": "Delta wyłączenia  [°C]",
-     "pid": "0x3117"
+     "pid": "0x3117",
+     "how": "zmierzony"
     },
     "3": {
      "slot": 4,
      "label_pl": "Ciepło właściwe [kJ/(kg*K)]",
-     "pid": "0x3118"
+     "pid": "0x3118",
+     "how": "zmierzony"
     },
     "4": {
      "slot": 5,
      "label_pl": "Temperatura maksymalna wody  [°C]",
-     "pid": "0x3119"
+     "pid": "0x3119",
+     "how": "zmierzony"
     },
     "5": {
      "slot": 6,
      "label_pl": "Max temp kolektora (alarmowa) [°C]",
-     "pid": "0x311A"
+     "pid": "0x311A",
+     "how": "zmierzony"
     },
     "6": {
      "slot": 7,
      "label_pl": "Min temp kolektora (alarmowa)  [°C]",
-     "pid": "0x311B"
+     "pid": "0x311B",
+     "how": "zmierzony"
     }
    }
   },
@@ -651,27 +888,38 @@
     "0": {
      "slot": 0,
      "label_pl": "Temp. minimalna (góra) [°C]",
-     "pid": "0x2114"
+     "pid": "0x2114",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Temp. maksymalna (dół) [°C]  ",
-     "pid": "0x2115"
+     "pid": "0x2115",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 3,
      "label_pl": "Minimalna temp. pomp [°C]",
-     "pid": "0x2281"
+     "pid": "0x2281",
+     "how": "zmierzony"
+    },
+    "3": {
+     "slot": 4,
+     "label_pl": "Automatyczna temp. góra [°C]",
+     "pid": "0x2282",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "4": {
      "slot": 5,
      "label_pl": "Zwiększenie temperatury źródła [°C]",
-     "pid": "0x299B"
+     "pid": "0x299B",
+     "how": "zmierzony"
     },
     "5": {
      "slot": 6,
      "label_pl": "Delta załączenia pompy [°C]",
-     "pid": "0x3170"
+     "pid": "0x3170",
+     "how": "zmierzony"
     }
    }
   },
@@ -683,47 +931,56 @@
     "0": {
      "slot": 0,
      "label_pl": "Liczba kotłów slave",
-     "pid": "0x351A"
+     "pid": "0x351A",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Master stopień mocy",
-     "pid": "0x3511"
+     "pid": "0x3511",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 2,
      "label_pl": "Slave 1 stopień mocy",
-     "pid": "0x3512"
+     "pid": "0x3512",
+     "how": "zmierzony"
     },
     "3": {
      "slot": 3,
      "label_pl": "Slave 2 stopień mocy",
-     "pid": "0x3513"
+     "pid": "0x3513",
+     "how": "zmierzony"
     },
     "4": {
      "slot": 4,
      "label_pl": "Slave 3 stopień mocy",
-     "pid": "0x3514"
+     "pid": "0x3514",
+     "how": "zmierzony"
     },
     "5": {
      "slot": 5,
      "label_pl": "Próg zwiększania stopnia mocy [%]",
-     "pid": "0x3515"
+     "pid": "0x3515",
+     "how": "zmierzony"
     },
     "6": {
      "slot": 6,
      "label_pl": "Próg zmniejszania stopnia mocy [%]",
-     "pid": "0x3516"
+     "pid": "0x3516",
+     "how": "zmierzony"
     },
     "7": {
      "slot": 7,
      "label_pl": "Opóźn. zwiększ. stopnia mocy [min]",
-     "pid": "0x3517"
+     "pid": "0x3517",
+     "how": "zmierzony"
     },
     "8": {
      "slot": 8,
      "label_pl": "Opóźn. zmniejsz. stopnia mocy [min]",
-     "pid": "0x3518"
+     "pid": "0x3518",
+     "how": "zmierzony"
     }
    }
   },
@@ -735,32 +992,38 @@
     "0": {
      "slot": 0,
      "label_pl": "Praca silnika transportującego (1) [s]",
-     "pid": "0x3520"
+     "pid": "0x3520",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Pauza silnika transportującego (1) [s]",
-     "pid": "0x3521"
+     "pid": "0x3521",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 2,
      "label_pl": "Praca silnika podajnika (2) [s]",
-     "pid": "0x3527"
+     "pid": "0x3527",
+     "how": "zmierzony"
     },
     "3": {
      "slot": 3,
      "label_pl": "Pauza silnika podajnika (2) [s]",
-     "pid": "0x3528"
+     "pid": "0x3528",
+     "how": "zmierzony"
     },
     "5": {
      "slot": 6,
      "label_pl": "Maksymalna liczba cykli",
-     "pid": "0x352B"
+     "pid": "0x352B",
+     "how": "zmierzony"
     },
     "6": {
      "slot": 7,
      "label_pl": "Wybieg silnika transportującego (1) [s]",
-     "pid": "0x3526"
+     "pid": "0x3526",
+     "how": "zmierzony"
     }
    }
   },
@@ -772,37 +1035,86 @@
     "0": {
      "slot": 0,
      "label_pl": "Uśrednianie temp. zewnętrznej [h]",
-     "pid": "0x3720"
+     "pid": "0x3720",
+     "how": "zmierzony"
     },
     "1": {
      "slot": 1,
      "label_pl": "Temperatura przełączenia na lato [C]",
-     "pid": "0x372A"
+     "pid": "0x372A",
+     "how": "zmierzony"
     },
     "2": {
      "slot": 2,
      "label_pl": "Kalibracja czujnika zew. [°C]",
-     "pid": "0x3747"
+     "pid": "0x3747",
+     "how": "zmierzony"
     },
     "3": {
      "slot": 3,
      "label_pl": "Rezerwa zbiornika paliwa [kg]",
-     "pid": "0x3603"
+     "pid": "0x3603",
+     "how": "zmierzony"
     },
     "8": {
      "slot": 9,
      "label_pl": "Ilość obwodów grzewczych",
-     "pid": "0x2105"
+     "pid": "0x2105",
+     "how": "zmierzony"
+    },
+    "9": {
+     "slot": 10,
+     "label_pl": "Czujnik temperatury zewnętrznej",
+     "pid": "0x3505",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
+    },
+    "10": {
+     "slot": 11,
+     "label_pl": "Ciepła woda użytkowa",
+     "pid": "0x2106",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
+    },
+    "11": {
+     "slot": 12,
+     "label_pl": "Solary",
+     "pid": "0x2108",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
+    },
+    "12": {
+     "slot": 13,
+     "label_pl": "Bufor",
+     "pid": "0x2107",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
+    },
+    "13": {
+     "slot": 14,
+     "label_pl": "Moduł Lambda",
+     "pid": "0x2123",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
+    },
+    "14": {
+     "slot": 15,
+     "label_pl": "Konfiguracja IN17",
+     "pid": "0x3606",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "15": {
      "slot": 16,
      "label_pl": "Pojemność zbiornika paliwa [kg]",
-     "pid": "0x3600"
+     "pid": "0x3600",
+     "how": "zmierzony"
+    },
+    "16": {
+     "slot": 17,
+     "label_pl": "Czujnik powrotu do kotła",
+     "pid": "0x350A",
+     "how": "wnioskowany (kotwice o tym samym przesunieciu)"
     },
     "17": {
      "slot": 18,
      "label_pl": "Numer profilu",
-     "pid": "0x350B"
+     "pid": "0x350B",
+     "how": "zmierzony"
     }
    }
   },

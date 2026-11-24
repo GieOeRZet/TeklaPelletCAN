@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) etykiety PL list: 173 z ~190 wierszy (bylo 144)
+Zrobilem: wnioskowanie slotow miedzy zmierzonymi kotwicami (`tools/list_labels.py`, pole `how`), wspolna nawigacja `tools/ui_nav.py` (tap_incremental). Konfiguracja 14 z 26, reszta list 91-100%. Pozostalo: Statystyki (nie da sie wejsc z L3 w tej metodzie), skrajne wiersze bez kotwic. PROGRAM: ikona w kolku, ktora zaznaczyles, to artefakt MOJEGO renderu z danych (nie ma jej w panelu) - tlo PROGRAM w karcie to teraz zrzut z emulatora, bug renderu w BACKLOG.
+
 ### E7 (2026-11-24) dialog liczbowy jak w panelu, PROGRAM klikalny, etykiety PL list
 Zrobilem: (1) uwaga wlasciciela - suwak mial niebieska galke przegladarki: dialog liczbowy odbudowany z bitmap i pozycji firmware (tor, wypelnienie, srebrna galka 46x46, przyciski -/+, OK; przeciaganie), tlo `dialogs/number_bg.png` z danych (`tools/export_dialog_static.py`); (2) PROGRAM: klik w dzien -> dialog dnia, Kopiuj -> dialog kopiowania, OK zamyka (obrazy z danych; edycja segmentow OPEN); (3) `tools/list_labels.py` + `ui_model/list_labels_pl.json`: 144 etykiety PL wierszy list (MEASURED) - karta pokazuje polskie nazwy zamiast angielskich nazw rejestrow (Konfiguracja 7 z 26, Statystyki 0 - inny uklad ekranu, do dopracowania). Ikona w lewym gornym rogu PROGRAM (zaznaczona w uwagach): nie ma jeszcze funkcji w karcie - sprawdze w firmware co robi.
 
