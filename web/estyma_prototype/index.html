@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estyma igneoTouch - prototyp karty</title>
+<style>
+:root{--bg:#0f1218;--panel:#1a1f2a;--tx:#e8ecf4;--mut:#8b93a7;--acc:#e8703a}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px system-ui,sans-serif}
+#bar{display:flex;flex-wrap:wrap;gap:8px 16px;padding:10px 16px;background:var(--panel);font-size:13px;color:var(--mut)}
+#bar label{display:flex;gap:4px;align-items:center}#bar select{background:var(--bg);color:var(--tx);border:1px solid #333;border-radius:4px}
+#scr{max-width:480px;margin:16px auto;background:var(--panel);border-radius:10px;overflow:hidden;min-height:272px}
+.hd{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #2a3040;font-weight:600}
+.hd button{background:none;border:0;color:var(--acc);font-size:20px;cursor:pointer}
+.row{display:flex;justify-content:space-between;gap:8px;padding:12px 14px;border-bottom:1px solid #232938;cursor:pointer}
+.row:hover{background:#222a38}.row .v{color:var(--acc);white-space:nowrap}.mut{color:var(--mut);padding:14px}
+</style></head><body>
+<div id="bar">
+ <label>Poziom PIN <select id="lvl"><option>0</option><option>1</option><option>2</option><option>3</option></select></label>
+ <label>Obiegi CO (0x2105) <select id="c2105"><option>0</option><option selected>2</option><option>3</option><option>4</option></select></label>
+ <label>CWU (0x2106) <select id="c2106"><option>0</option><option selected>1</option></select></label>
+ <label>Bufor (0x2107) <select id="c2107"><option selected>0</option><option>1</option></select></label>
+ <label>Solar (0x2108) <select id="c2108"><option selected>0</option><option>1</option></select></label>
+ <label>Kaskada (0x350C) <select id="c350C"><option selected>0</option><option>1</option></select></label>
+ <label>Magazyn (0x3525) <select id="c3525"><option selected>0</option><option>1</option></select></label>
+</div>
+<div id="scr"></div>
+<script src="app.js"></script></body></html>

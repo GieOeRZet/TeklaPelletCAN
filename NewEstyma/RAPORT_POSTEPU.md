@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) SZKIELET DZIALA: prototyp karty z ui_model (`web/estyma_prototype/`)
+Zrobilem: `tools/build_proto_model.py` -> `model.json` (58 KB), `index.html`+`app.js` (vanilla, nie dotyka istniejacych kart): MENU z filtrem poziomu PIN i warunkow konfiguracji (0x2105-0x3525), klik Kociol -> lista nastaw z wartosciami domyslnymi z firmware i formatem ze skal, przycisk wstecz. Test Playwright: L0 = 9 wierszy menu, L3 = 15, Kociol 3 wiersze na L0, 0 bledow konsoli. Dane przykladowe, brak lacznosci z urzadzeniem (zero zapisow). Pozostalo: ekran Kociol z kafelkami (renderer), zywe wartosci przez /api/v1/states + pid_to_point.json, pozostale ekrany, wyglad 1:1 (po E3/E4).
+
 ### E6 (2026-11-24) DOMKNIETY (statycznie): kontrakt API <-> ui_model
 Zrobilem: `ui_model/API_KONTRAKT.md` (podzial: struktura z ui_model, wartosci z `/api/v1/states`, zapis `/api/v1/call|write`, reguly renderowania), generator `tools/build_api_contract.py` -> `ui_model/pid_to_point.json` (+ schemat), walidator PASS, smoke PASS. Wynik: z 144 PID w listach panelu 68 ma punkt w `rejestry/odczyty.csv|punkty.csv`, **76 bez punktu w urzadzeniu** (lista w API_KONTRAKT.md - kandydaci do dodania, decyzja wlasciciela; nie zmienialem katalogu urzadzenia). Zrodla live: 6 z 23 PID ma punkt odczytu. Pozostalo: decyzja o dodaniu brakujacych punktow; etykiety enum (OPEN).
 
