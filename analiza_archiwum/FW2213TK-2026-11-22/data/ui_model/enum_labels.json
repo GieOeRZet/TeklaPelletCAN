@@ -1,0 +1,627 @@
+{
+ "schema_version": "1.0",
+ "evidence": "MEASURED (wstrzykniecie wartosci PID w emulatorze i odczyt tekstu wiersza listy z RAM, poziom 3); CO2-4: INFERENCE",
+ "lists": {
+  "0x08": {
+   "0": {
+    "pid": "0x351A",
+    "name": "Liczba kotłów slave",
+    "options": {
+     "1": {
+      "text": "1",
+      "stored": 1
+     },
+     "2": {
+      "text": "2",
+      "stored": 2
+     },
+     "3": {
+      "text": "3",
+      "stored": 3
+     }
+    }
+   },
+   "1": {
+    "pid": "0x3511",
+    "name": "Master stopień mocy",
+    "options": {
+     "1": {
+      "text": "1",
+      "stored": 1
+     },
+     "2": {
+      "text": "2",
+      "stored": 2
+     },
+     "3": {
+      "text": "3",
+      "stored": 3
+     },
+     "4": {
+      "text": "4",
+      "stored": 4
+     }
+    }
+   },
+   "2": {
+    "pid": "0x3512",
+    "name": "Slave 1 stopień mocy",
+    "options": {
+     "1": {
+      "text": "1",
+      "stored": 1
+     },
+     "2": {
+      "text": "2",
+      "stored": 2
+     },
+     "3": {
+      "text": "3",
+      "stored": 3
+     },
+     "4": {
+      "text": "4",
+      "stored": 4
+     }
+    }
+   },
+   "3": {
+    "pid": "0x3513",
+    "name": "Slave 2 stopień mocy",
+    "options": {
+     "1": {
+      "text": "1",
+      "stored": 1
+     },
+     "2": {
+      "text": "2",
+      "stored": 2
+     },
+     "3": {
+      "text": "3",
+      "stored": 3
+     },
+     "4": {
+      "text": "4",
+      "stored": 4
+     }
+    }
+   },
+   "4": {
+    "pid": "0x3514",
+    "name": "Slave 3 stopień mocy",
+    "options": {
+     "1": {
+      "text": "1",
+      "stored": 1
+     },
+     "2": {
+      "text": "2",
+      "stored": 2
+     },
+     "3": {
+      "text": "3",
+      "stored": 3
+     },
+     "4": {
+      "text": "4",
+      "stored": 4
+     }
+    }
+   }
+  },
+  "0x10": {
+   "8": {
+    "pid": "0x2105",
+    "name": "Ilość obwodów grzewczych",
+    "options": {
+     "0": {
+      "text": "0",
+      "stored": 0
+     },
+     "1": {
+      "text": "1",
+      "stored": 1
+     },
+     "2": {
+      "text": "2",
+      "stored": 2
+     },
+     "3": {
+      "text": "3",
+      "stored": 3
+     },
+     "4": {
+      "text": "4",
+      "stored": 4
+     }
+    }
+   },
+   "9": {
+    "pid": "0x3505",
+    "name": "Czujnik temperatury zewnętrznej",
+    "options": {
+     "0": {
+      "text": "brak",
+      "stored": 0
+     },
+     "1": {
+      "text": "CTZ1",
+      "stored": 1
+     },
+     "2": {
+      "text": "CAN",
+      "stored": 2
+     }
+    }
+   },
+   "14": {
+    "pid": "0x3606",
+    "name": "Konfiguracja IN17",
+    "options": {
+     "0": {
+      "text": "brak",
+      "stored": 0
+     },
+     "1": {
+      "text": "czujnik rezerwy paliwa",
+      "stored": 1
+     },
+     "2": {
+      "text": "czujnik temp. spalin",
+      "stored": 2
+     }
+    }
+   },
+   "17": {
+    "pid": "0x350B",
+    "name": "Numer profilu",
+    "options": {
+     "1": {
+      "text": "1",
+      "stored": 1
+     },
+     "2": {
+      "text": "2",
+      "stored": 2
+     },
+     "3": {
+      "text": "3",
+      "stored": 3
+     }
+    }
+   },
+   "18": {
+    "pid": "0x299E",
+    "name": "Pompa kotłowa",
+    "options": {
+     "0": {
+      "text": "ładująca",
+      "stored": 0
+     },
+     "1": {
+      "text": "ochrony powrotu",
+      "stored": 1
+     },
+     "2": {
+      "text": "buforowa",
+      "stored": 2
+     }
+    }
+   },
+   "22": {
+    "pid": "0x3629",
+    "name": "Pomiar energii",
+    "options": {
+     "0": {
+      "text": "brak",
+      "stored": 0
+     },
+     "1": {
+      "text": "ciepłomierz",
+      "stored": 1
+     },
+     "2": {
+      "text": "przepływomierz",
+      "stored": 2
+     }
+    }
+   },
+   "4": {
+    "pid": "0x372F",
+    "name": "Auto synchronizacja zegara",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   },
+   "5": {
+    "pid": "0x3501",
+    "name": "Autokonfiguracja",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   },
+   "6": {
+    "pid": "0x3500",
+    "name": "Główny moduł IO",
+    "options": {
+     "0": {
+      "text": "BIG",
+      "stored": 0
+     },
+     "1": {
+      "text": "STD",
+      "stored": 1
+     }
+    }
+   },
+   "7": {
+    "pid": "0x3502",
+    "name": "Moduł rozrzerzający obwody CO",
+    "options": {
+     "0": {
+      "text": "STD",
+      "stored": 0
+     },
+     "1": {
+      "text": "MINI",
+      "stored": 1
+     }
+    }
+   },
+   "10": {
+    "pid": "0x2106",
+    "name": "Ciepła woda użytkowa",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   },
+   "11": {
+    "pid": "0x2108",
+    "name": "Solary",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   },
+   "12": {
+    "pid": "0x2107",
+    "name": "Bufor",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   },
+   "13": {
+    "pid": "0x2123",
+    "name": "Moduł Lambda",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   },
+   "16": {
+    "pid": "0x350A",
+    "name": "Czujnik powrotu do kotła",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   },
+   "19": {
+    "pid": "0x350C",
+    "name": "Kaskada master",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   },
+   "20": {
+    "pid": "0x350D",
+    "name": "Czujnik ciśnienia",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   },
+   "21": {
+    "pid": "0x3525",
+    "name": "Dodatkowy magazyn paliwa",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   },
+   "23": {
+    "pid": "0x3722",
+    "name": "Kopiuj nastawy z innego sterownika",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 0
+     }
+    }
+   },
+   "25": {
+    "pid": "0x404E",
+    "name": "Dmuchawa z HALL",
+    "options": {
+     "0": {
+      "text": null,
+      "stored": 0
+     },
+     "1": {
+      "text": null,
+      "stored": 1
+     }
+    }
+   }
+  },
+  "0x01": {
+   "14": {
+    "pid": "0x22A1",
+    "name": "Czujnik pokojowy",
+    "options": {
+     "0": {
+      "text": "brak",
+      "stored": 0
+     },
+     "1": {
+      "text": "CTP1",
+      "stored": 1
+     },
+     "2": {
+      "text": "CTP2",
+      "stored": 2
+     },
+     "3": {
+      "text": "videROOM",
+      "stored": 3
+     },
+     "4": {
+      "text": "termostat",
+      "stored": 4
+     },
+     "5": {
+      "text": "CAN",
+      "stored": 5
+     }
+    }
+   }
+  },
+  "0x0A": {
+   "14": {
+    "pid": "0x226B",
+    "name": "Czas wygaszania [min]",
+    "options": {
+     "2": {
+      "text": "2",
+      "stored": 2
+     },
+     "3": {
+      "text": "3",
+      "stored": 3
+     },
+     "4": {
+      "text": "4",
+      "stored": 4
+     },
+     "5": {
+      "text": "5",
+      "stored": 5
+     },
+     "6": {
+      "text": "6",
+      "stored": 6
+     }
+    }
+   },
+   "18": {
+    "pid": "0x2258",
+    "name": "Liczba czyszczeń rusztu",
+    "options": {
+     "1": {
+      "text": "1",
+      "stored": 1
+     },
+     "2": {
+      "text": "2",
+      "stored": 2
+     },
+     "3": {
+      "text": "3",
+      "stored": 3
+     }
+    }
+   }
+  },
+  "0x02": {
+   "14": {
+    "pid": "0x22A1",
+    "name": "Czujnik pokojowy",
+    "options": {
+     "0": {
+      "text": "brak",
+      "stored": 0
+     },
+     "1": {
+      "text": "CTP1",
+      "stored": 1
+     },
+     "2": {
+      "text": "CTP2",
+      "stored": 2
+     },
+     "3": {
+      "text": "videROOM",
+      "stored": 3
+     },
+     "4": {
+      "text": "termostat",
+      "stored": 4
+     },
+     "5": {
+      "text": "CAN",
+      "stored": 5
+     }
+    },
+    "note": "INFERENCE: opcje jak CO1 (ta sama lista; PID instancji = baza+inst-1); pomiar dla CO1"
+   }
+  },
+  "0x03": {
+   "14": {
+    "pid": "0x22A1",
+    "name": "Czujnik pokojowy",
+    "options": {
+     "0": {
+      "text": "brak",
+      "stored": 0
+     },
+     "1": {
+      "text": "CTP1",
+      "stored": 1
+     },
+     "2": {
+      "text": "CTP2",
+      "stored": 2
+     },
+     "3": {
+      "text": "videROOM",
+      "stored": 3
+     },
+     "4": {
+      "text": "termostat",
+      "stored": 4
+     },
+     "5": {
+      "text": "CAN",
+      "stored": 5
+     }
+    },
+    "note": "INFERENCE: opcje jak CO1 (ta sama lista; PID instancji = baza+inst-1); pomiar dla CO1"
+   }
+  },
+  "0x04": {
+   "14": {
+    "pid": "0x22A1",
+    "name": "Czujnik pokojowy",
+    "options": {
+     "0": {
+      "text": "brak",
+      "stored": 0
+     },
+     "1": {
+      "text": "CTP1",
+      "stored": 1
+     },
+     "2": {
+      "text": "CTP2",
+      "stored": 2
+     },
+     "3": {
+      "text": "videROOM",
+      "stored": 3
+     },
+     "4": {
+      "text": "termostat",
+      "stored": 4
+     },
+     "5": {
+      "text": "CAN",
+      "stored": 5
+     }
+    },
+    "note": "INFERENCE: opcje jak CO1 (ta sama lista; PID instancji = baza+inst-1); pomiar dla CO1"
+   }
+  }
+ },
+ "text_enums": {
+  "0x10": [
+   "9",
+   "14",
+   "18",
+   "22",
+   "6",
+   "7"
+  ],
+  "0x01": [
+   "14"
+  ],
+  "0x02": [
+   "14"
+  ],
+  "0x03": [
+   "14"
+  ],
+  "0x04": [
+   "14"
+  ]
+ }
+}

@@ -37,14 +37,24 @@ for key, lst in sc.items():
         if lo and not hi: a = max(lo); return r["idx"] + known[a] - a, "ekstrapolowany (ostatnia kotwica)"
         if hi and not lo: b = min(hi); return r["idx"] + known[b] - b, "ekstrapolowany (pierwsza kotwica)"
         return None, None
-    used = set()
-    for r in R_:
+    used = set(); assigned = {}
+    for r in R_:      # przebieg 1: sloty zmierzone / wnioskowane / ekstrapolowane
         if base is None: continue
         sl, how = slot_of(r)
         if sl is None or not r.get("pid"): continue
-        t_ = lab.get(base + 50 * sl)
-        if t_ and (sl in used): t_ = None
-        if t_: used.add(sl)
-        if t_: rows[str(r["idx"])] = dict(slot=sl, label_pl=t_, pid=r.get("pid"), how=how)
+        if sl in used or (base + 50 * sl) not in lab: continue
+        used.add(sl); assigned[r["idx"]] = (sl, how)
+    lab_slots = sorted((a_ - base) // 50 for a_ in lab if (a_ - base) % 50 == 0)
+    for r in R_:      # przebieg 2: wiersze miedzy kotwicami o roznym przesunieciu (separatory bez tekstu) - kolejne nieuzyte sloty z tekstem, w kolejnosci wierszy
+        if base is None or r["idx"] in assigned or not r.get("pid"): continue
+        prev = max([v[0] for i2, v in assigned.items() if i2 < r["idx"]] or [-1]); nxt = min([v[0] for i2, v in assigned.items() if i2 > r["idx"]] or [10**6])
+        free = [x for x in lab_slots if prev < x < nxt and x not in used]
+        gap_rows = [q["idx"] for q in R_ if q["idx"] not in assigned and q.get("pid") and (max([v[0] for i2, v in assigned.items() if i2 < q["idx"]] or [-1]) == prev)]
+        if free and len(free) >= len(gap_rows) and r["idx"] == gap_rows[0]:
+            for q_idx, x in zip(gap_rows, free): assigned[q_idx] = (x, "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"); used.add(x)
+    rows = {}
+    for r in R_:
+        if r["idx"] in assigned:
+            sl, how = assigned[r["idx"]]; rows[str(r["idx"])] = dict(slot=sl, label_pl=lab[base + 50 * sl], pid=r.get("pid"), how=how)
     res[key] = dict(node=node, base_ay=base, labels_found=len(lab), rows=rows); json.dump(res, open(out, "w"), ensure_ascii=False, indent=1)
     print(key, node, "etykiet:", len(lab), "przypisano:", len(rows), "z", len(lst["rows"]), flush=True)

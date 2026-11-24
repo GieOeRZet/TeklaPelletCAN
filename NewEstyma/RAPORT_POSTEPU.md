@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### 1:1 (2026-11-24) ETYKIETY OPCJI ENUM: FACT-DYNAMIC; etykiety PL wierszy 212 z 213
+Zrobilem: `tools/enum_labels.py` - bez dialogu: wstrzykniecie kazdej wartosci PID (emulator) i odczyt tekstu wiersza listy z RAM. Wynik `ui_model/enum_labels.json`: Czujnik pokojowy CO (brak/CTP1/CTP2/videROOM/termostat/CAN), Czujnik temp. zewnetrznej (brak/CTZ1/CAN), Konfiguracja IN17 (brak/czujnik rezerwy paliwa/czujnik temp. spalin), Pompa kotlowa (ladujaca/ochrony powrotu/buforowa), Pomiar energii (brak/ciepłomierz/przeplywomierz), Glowny modul IO (BIG/STD), Modul rozszerzajacy CO (STD/MINI); enumy liczbowe (obiegi, stopnie mocy kaskady, profil, czyszczenia rusztu) pokazuja liczby; przelaczniki = galka. CO2-4 dziedzicza opcje CO1 (INFERENCE). Etykiety PL list: **212 z 213 wierszy z PID** (kolejne wolne sloty miedzy kotwicami rozwiazaly separatory), Statystyki 13/13. Wiersz bez etykiety: 1 (wykres). Pozostalo: stan 'online', krok dialogu wszystkich wierszy (zakladany 1 raw), 2 komorki Konfiguracja przy kaskadzie, Kopiuj/INTERNET.
+
 ### 1:1 (2026-11-24) etykiety PL list: wszystkie wiersze z PID w 13 listach (Statystyki 13/13)
 Zrobilem: nawigacja do Statystyk (ogon MENU L3), ekstrapolacja slotow z kotwic na krancach; etykiety PL (MEASURED z RAM) dla praktycznie wszystkich wierszy z PID, w tym Statystyki i Konfiguracja 21/26 (reszta bez PID). Dane: `ui_model/list_labels_pl.json`. Pozostalo: etykiety opcji enum tekstowych, stan online, krok dialogu wszystkich wierszy, Kopiuj/INTERNET, 2 komorki Konfiguracja przy kaskadzie.
 

@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0",
- "evidence": "MEASURED (teksty widgetow etykiet z RAM emulatora, poziom 3); przypisanie do wiersza: slot zmierzony (list_scales), wnioskowany miedzy kotwicami albo ekstrapolowany (pole how); wiersze bez PID (wykresy/separatory) pominiete",
+ "evidence": "MEASURED (teksty widgetow etykiet z RAM emulatora, poziom 3); przypisanie do wiersza: slot zmierzony, wnioskowany/ekstrapolowany lub kolejne wolne sloty z tekstem miedzy kotwicami (pole how); wiersze bez PID pominiete",
  "lists": {
   "0x00": {
    "node": "0_settings",
@@ -115,6 +115,12 @@
      "label_pl": "Ilość paliwa test [kg/h]",
      "pid": "0x2272",
      "how": "zmierzony"
+    },
+    "5": {
+     "slot": 6,
+     "label_pl": "Moc dmuchawy modulacja [%]",
+     "pid": "0x2254",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
     },
     "6": {
      "slot": 7,
@@ -327,6 +333,12 @@
      "pid": "0x2321",
      "how": "zmierzony"
     },
+    "12": {
+     "slot": 13,
+     "label_pl": "Źródło",
+     "pid": "0x22D1",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
+    },
     "13": {
      "slot": 14,
      "label_pl": "Zwiększenie temperatury źródła [°C]",
@@ -465,6 +477,12 @@
      "label_pl": "Nazwa",
      "pid": "0x2322",
      "how": "zmierzony"
+    },
+    "12": {
+     "slot": 13,
+     "label_pl": "Źródło",
+     "pid": "0x22D2",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
     },
     "13": {
      "slot": 14,
@@ -605,6 +623,12 @@
      "pid": "0x2323",
      "how": "zmierzony"
     },
+    "12": {
+     "slot": 13,
+     "label_pl": "Źródło",
+     "pid": "0x22D3",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
+    },
     "13": {
      "slot": 14,
      "label_pl": "Zwiększenie temperatury źródła [°C]",
@@ -744,6 +768,12 @@
      "pid": "0x2324",
      "how": "zmierzony"
     },
+    "12": {
+     "slot": 13,
+     "label_pl": "Źródło",
+     "pid": "0x22D4",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
+    },
     "13": {
      "slot": 14,
      "label_pl": "Zwiększenie temperatury źródła [°C]",
@@ -858,6 +888,12 @@
      "label_pl": "Cyrkulacja pauza [min]",
      "pid": "0x374C",
      "how": "zmierzony"
+    },
+    "8": {
+     "slot": 9,
+     "label_pl": "Źródło",
+     "pid": "0x2214",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
     },
     "9": {
      "slot": 10,
@@ -1067,6 +1103,12 @@
      "pid": "0x3528",
      "how": "zmierzony"
     },
+    "4": {
+     "slot": 5,
+     "label_pl": "Czujnik rezerwy paliwa",
+     "pid": "0x3529",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
+    },
     "5": {
      "slot": 6,
      "label_pl": "Maksymalna liczba cykli",
@@ -1109,6 +1151,30 @@
      "label_pl": "Rezerwa zbiornika paliwa [kg]",
      "pid": "0x3603",
      "how": "zmierzony"
+    },
+    "4": {
+     "slot": 4,
+     "label_pl": "Auto synchronizacja zegara",
+     "pid": "0x372F",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
+    },
+    "5": {
+     "slot": 6,
+     "label_pl": "Autokonfiguracja",
+     "pid": "0x3501",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
+    },
+    "6": {
+     "slot": 7,
+     "label_pl": "Główny moduł IO",
+     "pid": "0x3500",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
+    },
+    "7": {
+     "slot": 8,
+     "label_pl": "Moduł rozrzerzający obwody CO",
+     "pid": "0x3502",
+     "how": "kolejne wolne sloty z tekstem miedzy kotwicami (separatory bez tekstu)"
     },
     "8": {
      "slot": 9,

@@ -26,20 +26,31 @@ for key in keys:
     s.wait(700)
     if kind == "settings": s.tap(400, 245, settle=800); s.wait(500)
     tmp = "/tmp/ld_%s.state" % key.replace("0x", ""); s.checkpoint(tmp); base = lab[key]["base_ay"]; res.setdefault(key, {})
+    lists_rows = {str(r["idx"]): r for k2, v2 in json.load(open(paths.UI_MODEL / "lists.json"))["lists"].items() if k2.split("|")[0] == key for r in v2}
+    rd = s.b.rd
+    def abs_y(a):
+        y = 0
+        for _ in range(12):
+            if not (0x20000000 <= a < 0x20030000): break
+            v = rd(a + 6, 2); y += v - 65536 if v > 32767 else v; a = rd(a + 0x14)
+        return y
     for i, r in lab[key]["rows"].items():
         if i in res[key]: continue
-        ay_abs = base + 50 * r["slot"] + 12; s.b.load_state(tmp); s.wait(150); off = 0; prev = s.shot(); ok = False
+        if os.environ.get("LD_KIND") and lists_rows.get(i, {}).get("kind") != os.environ["LD_KIND"]: continue
+        s.b.load_state(tmp); s.wait(150); ok = False; y = None
+        ws0 = C.widget_table(s, t); ex0 = X.extract(s, ws0)
+        cand = [w for w in ws0 if ex0.get(w["this"], {}).get("cls") == "text" and ex0[w["this"]].get("text") == r["label_pl"] and w["ax"] < 100]
+        if not cand: res[key][i] = dict(status="BRAK_WIDGETU_ETYKIETY"); continue
+        la = int(cand[0]["this"], 16)
         for _ in range(40):
-            y = ay_abs - off
+            y = abs_y(la) + 12      # polozenie srodka wiersza z RAM (uwzglednia przesuniecie przewijania)
             if 100 <= y <= 200: ok = True; break
-            if not s.drag_until_change(240, 235, 240, 175, attempts=4, ticks=240, pause_end=160): break
-            cur = s.shot(); e_, d_ = nav._shift(prev, cur)
-            if d_ == 0: break
-            off += d_; prev = cur
-        if not ok: res[key][i] = dict(status="NIE_DOSZEDL"); continue
+            if not s.drag_until_change(240, 235, 240, 175, attempts=4, ticks=240, pause_end=160) if y > 200 else not s.drag_until_change(240, 100, 240, 160, attempts=4, ticks=240, pause_end=160): break
         s.wait(900)      # wygaszenie przewijania (listy recyklingowane)
-        before = vis_texts(s, C.widget_table(s, t)); s.tap(400, y, settle=900); s.wait(400)
-        ws = C.widget_table(s, t); tx = texts(s, ws, before)
+        before = vis_texts(s, C.widget_table(s, t))
+        for _try in range(3):      # pierwsze stukniecie po przewinieciu bywa polykane (zatrzymanie inercji) - powtorz do 3 razy
+            s.tap(400, y, settle=900); s.wait(400); ws = C.widget_table(s, t); tx = texts(s, ws, before)
+            if any(x[3] == r["label_pl"] for x in tx): break
         rec = dict(label=r["label_pl"], pid=r["pid"], texts=[x[3] for x in tx], fonts=[x[2] for x in tx])
         big = [x for x in tx if x[2] >= 4 and x[3].strip().lstrip("-").replace(".", "").replace(" ", "").isdigit()]
         if big:                                         # dialog z suwakiem: duza wartosc
