@@ -35,9 +35,9 @@ def extract(s, widgets):
         hidden = not evis(rd, a, root)
         if v in TEXTA: tid, col, bp = rd(a + 0x26, 2), rd(a + 0x2C, 2), rd(a + 0x34)
         elif v in LABEL: tid, col, bp = rd(a + 0x34, 2), rd(a + 0x38, 2), 0
+        elif v in BOX: ex[w["this"]] = dict(cls="box", box=rd(a + 0x28, 2), alpha=rd(a + 0x26, 1), hidden=hidden); continue      # Box przed role=image (Box bywa sklasyfikowany jako image bez bitmapy)
         elif w["role"] == "image":
             ex[w["this"]] = dict(cls="image", hidden=hidden); continue
-        elif v in BOX: ex[w["this"]] = dict(cls="box", box=rd(a + 0x28, 2), alpha=rd(a + 0x26, 1), hidden=hidden); continue
         else:
             cand = _BM.get((w["w"], w["h"]))                       # widget-przycisk/panel oparty na bitmapie: pole z id bitmapy (pierwszy kandydat = stan nienaciśniety)
             if cand and w["role"] == "other" and w["w"] > 20 and w["h"] > 20:

@@ -31,8 +31,8 @@
  },
  "pin": {
   "widgets": 316,
-  "mae": 0.78,
-  "pct_diff": 0.3,
+  "mae": 0.73,
+  "pct_diff": 0.2,
   "view": "0x808f66c"
  },
  "program_copy": {
@@ -49,8 +49,8 @@
  },
  "internet_editor": {
   "widgets": 77,
-  "mae": 2.67,
-  "pct_diff": 5.2,
+  "mae": 2.6,
+  "pct_diff": 5.0,
   "view": "0x808f9ac"
  },
  "program_day": {
@@ -61,20 +61,38 @@
  },
  "enum_radio": {
   "widgets": 616,
-  "mae": 0.71,
+  "mae": 0.7,
   "pct_diff": 0.1,
   "view": "0x808f944"
  },
  "enum_text": {
   "widgets": 621,
-  "mae": 0.78,
+  "mae": 0.77,
   "pct_diff": 0.4,
   "view": "0x808f944"
  },
  "enum_dialog": {
   "widgets": 579,
-  "mae": 0.77,
+  "mae": 0.76,
   "pct_diff": 0.2,
   "view": "0x808f944"
+ },
+ "home_base": {
+  "widgets": 280,
+  "mae": 0.33,
+  "pct_diff": 0.0,
+  "view": "0x808f708"
+ },
+ "program_view": {
+  "widgets": 323,
+  "mae": 0.66,
+  "pct_diff": 0.5,
+  "view": "0x808f910"
+ },
+ "program_view2": {
+  "widgets": 323,
+  "mae": 0.66,
+  "pct_diff": 0.5,
+  "view": "0x808f910"
  }
 }

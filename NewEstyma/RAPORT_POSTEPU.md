@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### 1:1 (2026-11-24) BLAD RENDERERA ZNALEZIONY: Box z role=image byl pomijany; PROGRAM 0.5%
+Zrobilem: przyczyna artefaktow PROGRAM (brak segmentu, ikona): `ui_extras.py` klasyfikowal widget Box (vptr 0x807f24c) bez bitmapy jako 'image' i go nie rysowal; poprawione (Box sprawdzany przed role=image). Wynik: PROGRAM (oba widoki, Pn-Cz i Cz-Nd) **0.5%**, HOME 0.0%; 16 dialogow bez regresji (suma: 16 dialogow/ekranow, najwyzsze Kopiuj 5.8, INTERNET 5.0). To poprawia tez wszystkie ekrany z takimi boxami - pelny przebieg pokrycia do powtorzenia przy najblizszej okazji. Kasuje wpis BACKLOG o artefaktach PROGRAM.
+
 ### 1:1 (2026-11-24) po Twojej uwadze wrocilem do domykania rewersu: HOME 0.0%, krok dialogu liczbowego
 Zrobilem: pelny render HOME ze stanem bazowym = **0.0%** roznicy (z danych firmware); Kopiuj 5.8% i edytor INTERNET 5.0% - roznica to 1 px przesuniecie/alfa bitmap checkboxow i przyciemnienie naglowka (zmierzone, nie blokuje); `tools/list_dialogs.py` (dialog edycji wiersza listy: rodzaj, tytul PL, min/max, krok +/-): FACT-DYNAMIC dla wierszy Kociola 0,1,2,4: suwak, **krok = 1 jednostka surowa** (+1 daje 66/11/1/46), zakresy zgodne z lists.json (60-80, 0-20, 0-20, 20-70). Przewijanie do dalszych wierszy dalej zawodne (offset po drag) - narzedzie eksperymentalne, reszta wierszy w BACKLOG. Wniosek: krok dialogu = 1 raw dla wszystkich dotychczas zmierzonych; dla pozostalych wierszy przyjmuje sie 1 (INFERENCE).
 Pozostale luki 1:1 (po kolei): etykiety opcji enum tekstowych (poza IN17/Energy meter/Glowny modul IO), Statystyki/Siec etykiety, render PROGRAM z danych, stan online, 18 komorek pokrycia.

@@ -14,6 +14,8 @@ SC = {   # nazwa: (katalog, [kroki]) ; krok = ("row", idx) | ("tap", x, y, settl
  "program_day": (L0, [("row", 0), ("tap", 414, 130, 900), ("tap", 235, 175, 900)]),
  "program_copy": (L0, [("row", 0), ("tap", 414, 130, 900), ("tap", 235, 175, 900), ("tap", 235, 200, 900)]),
  "internet_editor": (L1, [("row", 18), ("tap", 180, 62, 900)]),
+ "program_view": (L1, [("row", 0), ("tap", 414, 130, 900), ("wait", 2500)]),
+ "program_view2": (L1, [("row", 0), ("tap", 414, 130, 900), ("wait", 2500), ("scroll",)]),
  "home_base": ("HOME", []),
  "home_paliwo": ("HOME", [("tap", 103, 234, 900)]),
  "home_zasilanie": ("HOME", [("tap", 448, 234, 900)]),
@@ -37,6 +39,7 @@ for name, (d, steps) in SC.items():
         nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
     for st in steps:
         if st[0] == "clear": t.log.clear(); continue
+        if st[0] == "wait": s.wait(st[1]); continue
         if st[0] == "scroll": s.drag_until_change(240, 230, 240, 80, attempts=4, ticks=240, pause_end=160); s.wait(300); continue
         if st[0] == "row": nav.tap_row_from_top(st[1]); s.wait(700)
         else: s.tap(st[1], st[2], settle=st[3]); s.wait(300)
