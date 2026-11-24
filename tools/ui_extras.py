@@ -56,7 +56,7 @@ def extract(s, widgets):
     addrs = {int(w["this"], 16) for w in widgets}; kids = collections.defaultdict(list)
     for w in widgets: kids[rd(int(w["this"], 16) + 0x14)].append(int(w["this"], 16))
     def chain(group):
-        gs = set(group); heads = [x for x in group if rd(x + 0x1C) not in gs]; out = []; seen = set()
+        gs = set(group); nxt = {rd(x + 0x18) for x in group}; heads = [x for x in group if x not in nxt]; out = []; seen = set()      # glowa = nikt nie wskazuje jej jako nastepnej (wskazniki prev bywaja nieaktualne)
         for h in (heads or group[:1]):
             c = h
             while c in gs and c not in seen: seen.add(c); out.append(c); c = rd(c + 0x18)

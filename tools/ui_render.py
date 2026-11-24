@@ -46,7 +46,7 @@ def clip_rect(w, W):                          # przeciecie prostokatow wszystkic
         a = W.get(a["parent"]); n += 1
     return (cx0, cy0, cx1, cy1), (x0 < cx0 or y0 < cy0 or x1 > cx1 or y1 > cy1)
 def draw_text_ml(img, i, s, x, y, w, align, color):          # wiele linii: krok = wysokosc czcionki + piksele pod linia bazowa
-    step = font(i)[2] + font(i)[3]
+    s = s.replace("\\n", "\n"); step = font(i)[2] + font(i)[3]      # typedtext zawiera tez literalne \\n
     for k, ln in enumerate(s.split("\n")):
         if ln: draw_text(img, i, ln, x, y + k * step, w, align, color)
 def render(widgets, extras=None, size=(480, 272), dim=None):          # dim=(alfa, z_progu): przed pierwszym widgetem o z>=z_progu rysowana jest czarna nakladka o danej alfie (okno modalne)

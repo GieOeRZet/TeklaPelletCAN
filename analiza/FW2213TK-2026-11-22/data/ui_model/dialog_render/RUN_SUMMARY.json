@@ -1,15 +1,39 @@
 {
+ "home_data": {
+  "widgets": 280,
+  "mae": 2.12,
+  "pct_diff": 1.1,
+  "view": "0x808f708"
+ },
+ "home_zasilanie": {
+  "widgets": 280,
+  "mae": 0.51,
+  "pct_diff": 0.0,
+  "view": "0x808f708"
+ },
+ "home_auto": {
+  "widgets": 286,
+  "mae": 2.55,
+  "pct_diff": 4.0,
+  "view": "0x808f708"
+ },
+ "number_dialog": {
+  "widgets": 583,
+  "mae": 0.81,
+  "pct_diff": 0.2,
+  "view": "0x808f944"
+ },
+ "home_czas": {
+  "widgets": 280,
+  "mae": 0.26,
+  "pct_diff": 0.0,
+  "view": "0x808f708"
+ },
  "pin": {
   "widgets": 316,
   "mae": 0.78,
   "pct_diff": 0.3,
   "view": "0x808f66c"
- },
- "program_day": {
-  "widgets": 323,
-  "mae": 0.84,
-  "pct_diff": 0.4,
-  "view": "0x808f910"
  },
  "program_copy": {
   "widgets": 323,
@@ -17,16 +41,22 @@
   "pct_diff": 5.8,
   "view": "0x808f910"
  },
+ "home_paliwo": {
+  "widgets": 280,
+  "mae": 0.27,
+  "pct_diff": 0.0,
+  "view": "0x808f708"
+ },
  "internet_editor": {
   "widgets": 77,
-  "mae": 3.13,
-  "pct_diff": 6.0,
+  "mae": 2.67,
+  "pct_diff": 5.2,
   "view": "0x808f9ac"
  },
- "number_dialog": {
-  "widgets": 583,
-  "mae": 2.58,
-  "pct_diff": 2.5,
-  "view": "0x808f944"
+ "program_day": {
+  "widgets": 323,
+  "mae": 0.8,
+  "pct_diff": 0.4,
+  "view": "0x808f910"
  }
 }
