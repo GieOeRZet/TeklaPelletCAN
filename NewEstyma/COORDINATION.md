@@ -242,3 +242,13 @@ Odpowiedz ChatGPT: brak DNS/sieci do PyPI (`pip install unicorn capstone` -> „
 - Zrodlo LIVE zmierzone: moduly CAN IO, PDO `0x180/0x280/0x380/0x480 + node` (PDO2-4 = 4 x u16 = kanaly 0-11; kanal n w obiekcie modulu `+0x1E+12n`, id kanalu = indeks n), krzywa NTC raw->dC, mapa kanal->PID (0x56: 0x2001/0x215F/0x2110/0x226C; 0x45: bufor 0x3171/0x2112/0x2113/0x3172/0x3173, solar 0x2109/0x2102/0x2103/0x2104). Pelne dane: `analiza/.../data/ui_model/live_sources.json`, raport PASS 67. **Zadanie S10 nie jest juz potrzebne** (tabela kanalow, obiekty czujnikow, konwersja — zmierzone). Zachowanie sterownika (zadana kotla, stan palnika/pomp w funkcji temperatur) nadal OPEN.
 - Errata: zdanie w PASS 63 „PID live nie wstrzykiwalne” i mapa z PASS 64 (modmap) byly bledne (ramki wstrzykiwane po kilka naraz, odbiornik przyjmuje jedna naraz). Poprawne w PASS 67.
 - Przypomnienie korekty PIN: poziom 3 = 7153 (nie 6154).
+
+### 2026-11-24 — ChatGPT PASS 136 — SIEĆ + INFORMACJE
+- Roman przekazał ChatGPT wykonanie punktu 2 z kolejki Claude'a: Sieć i Info.
+- SIEĆ FACT: vtable 0x808f770, dostęp L1+, menu row 17, węzeł pomiarowy 17_screen, 133 widgety. Ekran jest listą modułów/urządzeń CAN, a nie klasycznym ekranem PID-value.
+- SIEĆ FACT: źródłem nazw jest analiza/FW2213TK-2026-11-22/data/can_node_names.csv. Zamknięte nazwy: 0x05..07 SLAVE 1..3; 0x08 RADIO GATEWAY; 0x40..47 CAN IO 0..7; 0x50 MODUL LAMBDA; 0x51 IO BOARD PRO; 0x54/55 FLOWMETER 1/2; 0x56 CAN IO BIG; 0x5A VIDE GSM; 0x5B VIDE NET WIFI; 0x5C VIDE NET; 0x64..67 VIDE ROOM 1..4; 0x6E..75 CAN GATEWAY 0..7; 0x78..7F CAN IO MINI 0..7.
+- SIEĆ STRONG: dokumentacja drzewa menu podaje, że przy braku partnerów w emulatorze lista pokazuje puste linie. PASS 64 potwierdza, że obiekty CAN IO mają node ID i watchdog/offline state. Dokładne widget→status-field pozostaje OPEN; nie zgaduję PID-u.
+- INFO FACT: vtable 0x808f638, menu row 12 / selector 13, 2 warianty. Widgety renderują: INFO (TypedText 52), igneoTouch v2.213 TE (TypedText 82, wildcard 2.213 TE), Bio Compact 10kW (TypedText 492), videRoom PIN 0 (TypedText 492), Controller by Estyma (www.estyma.pl) (TypedText 83).
+- INFO OPEN: źródło wildcardów oraz ewentualna akcja dotyku nie są dowiedzione; ekran należy modelować jako dane informacyjne, bez sztucznego PID bindingu.
+- Artefakty ChatGPT branch ccr-be8a1bcb-5t76j0-chatgpt: analiza/FW2213TK-2026-11-22/data/cg_network_info.csv oraz AUTONOMOUS-PASS-136-UI-NETWORK-INFO-2026-11-24.md.
+- Commity: CSV 50e1b11d30abb3219653601fdcc6695a90cf6215, raport 43f3c1db08821e00189a4c985c81b526dc1d7a50. Roman scala gałęzie.
