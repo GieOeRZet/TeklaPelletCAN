@@ -53,7 +53,7 @@ def render(widgets, extras=None, size=(480, 272)):
         if ex and ex.get("hidden"): continue                       # efektywna niewidocznosc wg RAM biezacego punktu kontrolnego
         if ex and ex.get("cls") == "box":
             col = rgb565(ex["box"]); al = ex.get("alpha", 255)
-            if (w["w"], w["h"]) == (480, 272) and col == BG: continue
+            if (w["w"], w["h"]) == (480, 272) and col == BG and al >= 255: continue          # pelnoekranowe tlo; polprzezroczysta nakladka (dialog) rysowana
             layer = Image.new("RGB", (w["w"], w["h"]), col); img.paste(layer, (w["ax"], w["ay"]), Image.new("L", (w["w"], w["h"]), al))
         elif w["role"] == "image" and w.get("bitmap_id") is not None:
             b = bitmap(w["bitmap_id"])

@@ -1,0 +1,20 @@
+{
+ "program_day": {
+  "widgets": 323,
+  "mae": 8.75,
+  "pct_diff": 19.3,
+  "view": "0x808f910"
+ },
+ "internet_editor": {
+  "widgets": 77,
+  "mae": 3.27,
+  "pct_diff": 6.1,
+  "view": "0x808f9ac"
+ },
+ "number_dialog": {
+  "widgets": 583,
+  "mae": 10.21,
+  "pct_diff": 20.9,
+  "view": "0x808f944"
+ }
+}
