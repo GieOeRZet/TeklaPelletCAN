@@ -12,10 +12,10 @@ Zmierzone komorki: 606, niewidoczne w emulatorze mimo visible_in: 0, bledy: 16; 
 | ALARMY | settings | 15 | 0.2 | 0.6 | 0.6 |
 | KASKADA | settings | 5 | 0.5 | 0.5 | 0.5 |
 | MAGAZYN | settings | 5 | 0.5 | 0.5 | 0.5 |
-| KOCIOL | settings | 27 | 0.3 | 0.3 | 0.4 |
-| PALNIK | screen | 27 | 0.2 | 0.2 | 0.4 |
+| PALNIK | screen | 27 | 0.2 | 0.4 | 0.4 |
 | SOLARY | settings | 22 | 0.4 | 0.4 | 0.4 |
 | KONFIGURACJA | settings | 2 | 0.4 | 0.4 | 0.4 |
+| KOCIOL | settings | 27 | 0.3 | 0.3 | 0.3 |
 | PALNIK | settings | 27 | 0.3 | 0.3 | 0.3 |
 | BUFOR | screen | 22 | 0.2 | 0.2 | 0.3 |
 | BUFOR | settings | 22 | 0.3 | 0.3 | 0.3 |

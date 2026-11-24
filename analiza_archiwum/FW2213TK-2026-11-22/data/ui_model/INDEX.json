@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-24T19:17:27.341954+00:00",
+  "generated_at": "2026-11-24T20:17:58.713191+00:00",
   "root": "analiza_archiwum/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -224,7 +224,7 @@
       "schema": "schema/coverage_matrix_agent.schema.json",
       "schema_version": "1.0",
       "records": 6,
-      "date": "2026-11-24T18:29:05.956771+00:00",
+      "date": "2026-11-24T20:17:52.533159+00:00",
       "evidence_paths": []
     },
     {

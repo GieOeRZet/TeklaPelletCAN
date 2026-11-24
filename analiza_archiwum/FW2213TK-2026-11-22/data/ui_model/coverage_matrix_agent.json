@@ -415,8 +415,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -428,8 +428,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -493,7 +493,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 2",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -519,7 +519,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 3",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -545,7 +545,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 669
@@ -690,8 +690,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -703,8 +703,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -768,7 +768,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 2",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -794,7 +794,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 3",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -820,7 +820,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 669
@@ -965,8 +965,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -978,8 +978,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -1043,7 +1043,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 2",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -1069,7 +1069,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 3",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -1095,7 +1095,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 669
@@ -1240,8 +1240,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -1437,8 +1437,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -1554,7 +1554,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "screen",
-   "mae": 0.3,
+   "mae": 0.29,
    "pct_diff": 0.3,
    "view": "0x808edb0",
    "widgets": 54
@@ -1660,8 +1660,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -1673,8 +1673,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -1738,7 +1738,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 2",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -1909,8 +1909,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -1922,8 +1922,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -1987,7 +1987,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 2",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -2013,7 +2013,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 3",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -2184,8 +2184,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -2197,8 +2197,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -2262,7 +2262,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 2",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -2288,7 +2288,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 3",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -2314,7 +2314,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 669
@@ -2511,8 +2511,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -2524,8 +2524,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -2589,7 +2589,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 2",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -2615,7 +2615,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 3",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -2641,7 +2641,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 669
@@ -2864,8 +2864,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -2877,8 +2877,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -2942,7 +2942,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 2",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -2968,7 +2968,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 3",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -2994,7 +2994,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 669
@@ -3191,8 +3191,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -3336,8 +3336,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.42,
-   "pct_diff": 0.4,
+   "mae": 0.41,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 530
   },
@@ -3349,8 +3349,8 @@
    "node": "PALNIK",
    "title": "Palnik",
    "kind": "screen",
-   "mae": 0.3,
-   "pct_diff": 0.2,
+   "mae": 0.55,
+   "pct_diff": 0.4,
    "view": "0x808ede4",
    "widgets": 81
   },
@@ -3414,7 +3414,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 2",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -3440,7 +3440,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 3",
    "kind": "settings",
-   "mae": 0.76,
+   "mae": 0.75,
    "pct_diff": 0.8,
    "view": "0x808f944",
    "widgets": 669
@@ -3466,7 +3466,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 4",
    "kind": "settings",
-   "mae": 0.74,
+   "mae": 0.73,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 669
@@ -4960,8 +4960,8 @@
    "node": "KOCIOL",
    "title": "Kociol",
    "kind": "settings",
-   "mae": 0.43,
-   "pct_diff": 0.4,
+   "mae": 0.42,
+   "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 582
   },
@@ -4999,7 +4999,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "screen",
-   "mae": 0.24,
+   "mae": 0.25,
    "pct_diff": 0.2,
    "view": "0x808f5d0",
    "widgets": 157
@@ -5012,7 +5012,7 @@
    "node": "OGRZEWANIE",
    "title": "Ogrzewanie 1",
    "kind": "settings",
-   "mae": 0.72,
+   "mae": 0.71,
    "pct_diff": 0.7,
    "view": "0x808f944",
    "widgets": 726
@@ -5090,7 +5090,7 @@
    "node": "BUFOR",
    "title": "Bufor",
    "kind": "settings",
-   "mae": 0.44,
+   "mae": 0.43,
    "pct_diff": 0.3,
    "view": "0x808f944",
    "widgets": 551

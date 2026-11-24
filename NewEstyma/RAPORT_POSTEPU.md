@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### FINISZ PRZEBIEGU KONTROLNEGO (2026-11-24): po poprawce renderera 606 komorek, mediana 0.2%, 99.7% < 3%, 0 > 8%
+Zrobilem: pelny przebieg pokrycia (36 zadan, 4 procesy) po poprawce Box/role=image i wszystkich zmianach renderera - brak regresji. Stan rewersu 1:1: dialogi 16/16 < 6%, HOME 0.0%, PROGRAM 0.5%, ekrany menu mediana 0.2%. Pozostalo (wg BACKLOG): 18 komorek bez pomiaru (nawigacja do ogona MENU), etykiety opcji enum tekstowych, Statystyki/Siec etykiety, stan 'online bez alarmow', Kopiuj 5.8% / edytor INTERNET 5.0% (kosmetyka). Wszystko wypchniete na ccr-be8a1bcb-5t76j0.
+
 ### 1:1 (2026-11-24) BLAD RENDERERA ZNALEZIONY: Box z role=image byl pomijany; PROGRAM 0.5%
 Zrobilem: przyczyna artefaktow PROGRAM (brak segmentu, ikona): `ui_extras.py` klasyfikowal widget Box (vptr 0x807f24c) bez bitmapy jako 'image' i go nie rysowal; poprawione (Box sprawdzany przed role=image). Wynik: PROGRAM (oba widoki, Pn-Cz i Cz-Nd) **0.5%**, HOME 0.0%; 16 dialogow bez regresji (suma: 16 dialogow/ekranow, najwyzsze Kopiuj 5.8, INTERNET 5.0). To poprawia tez wszystkie ekrany z takimi boxami - pelny przebieg pokrycia do powtorzenia przy najblizszej okazji. Kasuje wpis BACKLOG o artefaktach PROGRAM.
 
