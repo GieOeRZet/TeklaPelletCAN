@@ -24,8 +24,10 @@ const FONT_PX = [12, 20, 26, 36, 64, 92], DEMO = {"0x2001": 653, "0x2110": 480, 
 const SCREENS = {}, SCREEN_BY_ROW = {0:"KOCIOL",1:"PALNIK",2:"OGRZEWANIE1",3:"OGRZEWANIE2",4:"OGRZEWANIE3",5:"OGRZEWANIE4",6:"CWU",7:"SOLARY",8:"BUFOR",9:"KASKADA",10:"MAGAZYN",11:"ALARMY",12:"INFO",17:"TEST_WYJSC",18:"STATYSTYKI",19:"SIEC",20:"INTERNET"}; let tick = 0;
 const API = new URLSearchParams(location.search).get("api"), LIVE = {};      // ?api=http://host - tryb ODCZYTU z /api/v1/states (GET, bez autoryzacji, zero zapisow); id punktu = koncowka id encji
 function pollApi(){ fetch(API.replace(/\/$/, "") + "/api/v1/states").then(r => r.json()).then(j => { (j.states || []).forEach(x => { const n = parseFloat(x.state); if (!isNaN(n)) LIVE[x.id] = n; }); }).catch(() => {}); }
+let BRIDGE = false;     // karta HA (estyma-panel-card.js) przekazuje stany przez postMessage {type:"estyma-states", states:{id: wartosc}}
+window.addEventListener("message", ev => { const m = ev.data; if (m && m.type === "estyma-states" && m.states) { BRIDGE = true; Object.keys(m.states).forEach(k => { const n = parseFloat(m.states[k]); if (!isNaN(n)) LIVE[k] = n; }); } });
 if (API) { pollApi(); setInterval(pollApi, 2000); }
-function liveVal(b){ if (!API) return DEMO[b.pid] === undefined ? undefined : (DEMO[b.pid] + (b.pid === "0x2001" ? 8 * Math.sin(tick / 5) : 0)) * b.scale;
+function liveVal(b){ if (!API && !BRIDGE) return DEMO[b.pid] === undefined ? undefined : (DEMO[b.pid] + (b.pid === "0x2001" ? 8 * Math.sin(tick / 5) : 0)) * b.scale;
   const k = Object.keys(LIVE).find(k => k === b.id || k.endsWith("_" + b.id)); return k === undefined ? undefined : LIVE[k]; }
 function liveText(f){ const b = (f.bind || []).find(x => x.scale && liveVal(x) !== undefined); if (!b) return f.template.replace("{}", ""); const m = /(\d+\.(\d+))/.exec(f.sample || ""), dec = m ? m[2].length : 0; return (f.sample || "").replace(/-?\d+(\.\d+)?/, liveVal(b).toFixed(dec)); }
 function listKey(target, row){ const ks = Object.keys(M.lists).filter(k => k.split("|")[1] === target).sort(); return ks[target === "OGRZEWANIE" ? Math.min(Math.max(row - 2, 0), ks.length - 1) : 0]; }

@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### E7 (2026-11-24) karta Lovelace `estyma-panel-card` dziala na atrapie HA
+Zrobilem: `web/estyma-panel-card.js` (custom element: iframe z prototypem + most postMessage; stany z `hass.states`, mapowanie `entities:` albo domyslnie sensor.*_<id>), strona testowa `estyma_prototype/test_card.html`; test Playwright: temperatura Kotla 77.7 z atrapy hass pojawia sie na ekranie karty, 0 bledow. TYLKO ODCZYT (zero uslug HA). Instalacja opisana w naglowku pliku (kopiowanie do /config/www). Nie testowane w prawdziwym Home Assistant (brak dostepu). Pozostalo: etykiety PL list, PROGRAM edycja, dialog radio, ALARMY L0, stan online, porzadek HANDOFF/PLAN.
+
 ### E7 (2026-11-24) edycja wartosci + tryb odczytu z urzadzenia
 Zrobilem: dialog liczbowy w liscie nastaw (suwak, -/+, OK; wartosci domyslne z firmware, edycja tylko w pamieci strony), tryb `?api=http://host` - odczyt `GET /api/v1/states` co 2 s i podstawienie wartosci pol (binding po id punktu); test na atrapie serwera: karta pokazuje 81.7 z API. Prawdziwego urzadzenia nie dotykalem. Pozostalo: etykiety PL w listach (dane `settings_labels` do zweryfikowania dialogami), PROGRAM edycja, dialog radio dla enum tekstowych, ALARMY L0, stan online; porzadek dokumentacji (HANDOFF/PLAN) na koniec.
 

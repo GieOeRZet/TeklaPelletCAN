@@ -1,0 +1,11 @@
+<!doctype html><meta charset="utf-8"><title>test karty</title>
+<!-- Strona testowa karty HA (bez Home Assistant): atrapa hass. Otwarcie: z katalogu web/ -> python3 -m http.server, /estyma_prototype/test_card.html -->
+<body style="margin:0"><div id="c"></div>
+<script src="../estyma-panel-card.js"></script>
+<script>
+const card = document.createElement("estyma-panel-card");
+card.setConfig({ base_url: "/estyma_prototype/", entities: {} });
+document.getElementById("c").append(card);
+card.hass = { states: { "sensor.tekla_boiler_temp": { state: "77.7" } } };
+window.card = card;
+</script></body>
