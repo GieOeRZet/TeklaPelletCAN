@@ -435,3 +435,10 @@ Stan oczekiwania:
 - **B:** istniejące PASS 52 potwierdza wyrenderowane ekrany KASKADA/MAGAZYN po ustawieniu `0x350C=1`, `0x3525=1`, `0x351A=2`. Nie jest to jednak pomiar `list_scale.py/list_switch.py`. Zgodnie z zasadą NO-FABRICATION zapisano osobny artefakt `analiza/FW2213TK-2026-11-24/data/ui_model/chatgpt/list_scales_kaskada_magazyn.json` ze statycznym katalogiem 13 PID-ów i jawnym `OPEN_RUNTIME_REQUIRED` dla skali/enum/switch.
 - **C:** SERIAL/PIN w INTERNET są już FACT-DYNAMIC (`0x373F` / `0x3740`). Dla korelacji `0x5B` istnieje zapisany test negatywny: obecność `0x5B` nie zmieniła obrazu INTERNET w przetestowanym scenariuszu heartbeat+identity/PDO; klasyfikacja pozostaje `NEGATIVE_UNDER_TEST`, nie uniwersalne CLOSED. `v52.18` zostaje wynikiem po stabilizacji. Timeout SIEĆ pozostaje OPEN >10000 tików.
 - Raport artefaktów: `analiza/FW2213TK-2026-11-24/data/ui_model/chatgpt/etap3_c_status.json`.
+
+
+### ETAP 3 — korekta C po odczycie lokalnego raportu dynamicznego — 2026-11-24
+- Korekta wcześniejszego wpisu: INFO 0x3664 jest FACT-DYNAMIC, nie OPEN. Lokalny przebieg runtime potwierdził, że ustawienie 0x3664=0x0214 przed wejściem do INFO daje v2.213 TE, a 0x3664=39321 daje v39.321 TE.
+- 0x3665 (nazwa kotła) i 0x2170 (videRoom PIN) nadal nie mają potwierdzonego producenta wildcardów INFO.
+- INTERNET: lokalny przebieg potwierdza 24-znakowy SSID, 6 PID-ów 0x3730..0x3735, PASSWORD 0x3736 oraz brak edytora dla SERIAL/PIN; binding widget→PID pozostaje 0x373F/0x3740.
+- Korelacja 0x5B → INTERNET: w testowanych wariantach brak różnicy obrazu; klasyfikacja nadal NEGATIVE_UNDER_TEST, nie absolutne CLOSED.
