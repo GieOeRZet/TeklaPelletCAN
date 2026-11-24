@@ -37,9 +37,9 @@ res = dict(level=level, config=config, pids={hex(k): v for k, v in pids.items()}
 def metrics(ws, ex, ref):
     a = R.render(ws, ex); dd = np.abs(np.asarray(a).astype(int) - np.asarray(ref.convert("RGB")).astype(int)).sum(axis=2)
     return a, round(float(dd.mean() / 3), 2), round(float((dd > 40).mean() * 100), 1)
-def tap_incremental(s, nav, i):
+def tap_incremental(s, nav, i, dy=0):
     """stuknij wiersz i menu (cy = 29 + 50 i) przewijajac po 60 px i sumujac przesuniecia miedzy kolejnymi zrzutami (bez zszytego obrazu - ten bywa niepelny)"""
-    cy = 29 + 50 * i; off = 0; prev = s.shot()
+    cy = 29 + 50 * i + dy; off = 0; prev = s.shot()
     for _ in range(40):
         y = nav.BODY0 + cy - off
         if 70 <= y <= 250: s.tap(240, y, settle=800); return True
@@ -65,6 +65,12 @@ for i, er in enumerate(exp):
     if ok:
         s.wait(300)
         if hex(s.b.rd(s.b.rd(0x20024818))) == "0x808f66c": ok = False
+    EXPECT = {"KONFIGURACJA": "0x808f944"}      # widok oczekiwany po wejsciu (korekta bledu przewijania przyrostowego o +-1 wiersz)
+    if tgt in EXPECT and hex(s.b.rd(s.b.rd(0x20024818))) != EXPECT[tgt]:
+        for dy in (-50, 50):
+            s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), None); s.wait(120)
+            nav = U.ListNav(s); nav.tall = Image.open(os.path.join(out, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
+            if tap_incremental(s, nav, i, dy) and hex(s.b.rd(s.b.rd(0x20024818))) == EXPECT[tgt]: ok = True; break
     if not ok:      # ogon menu: przewin do konca (dragi 200->80 do braku zmiany) i stuknij od dolu (ostatni wiersz y=227, pitch 50)
         s = U.UiSession.from_checkpoint(fw, os.path.join(out, "menu.state"), None); s.wait(120)
         nav = U.ListNav(s); nav.tall = Image.open(os.path.join(out, "menu_tall.png")); nav.rows = rows; t = C.Tracer(s); t.log.clear()
