@@ -1,6 +1,11 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Ikona paliwa: seria 80/60/30/15/5 kg (zdjecia, zapis licznika co ok. 10 s), druga linia temp. = srednia
+### 2026-11-25 - Stan 2 'Rozzarzanie': dioda palnika zolta; ekran PALNIK z prawdziwego panelu
+- Kod stanu 2 (panel: 'Rozżarzanie', HA: 'Zarzenie'): dioda palnika na kafelku zolta, fizyczna bursztynowa. Dioda zolta w stanach 1, 2 i 7 (STRONG); stan 0 - brak diody.
+- Ekran PALNIK (Rozpalanie): 'spalanie[kg/h]=0.0', 'jasność=100', 'T. palnika=32' (zgodne z HA: spalanie 0.0, jasnosc plomienia 100, temperatura palnika 32); '46' w rogu - zrodlo OPEN; dolny wiersz: wentylator, wskazniki, zapalarka, kolo zebate.
+- Zegar panelu ok. 2 min do tylu wzgledem realnego czasu.
+
+## 2026-11-25 - Ikona paliwa: seria 80/60/30/15/5 kg (zdjecia, zapis licznika co ok. 10 s), druga linia temp. = srednia
 - Kropki zasobnika (orientacyjnie): 80 kg ~3 rzedy (~12), 60 kg ~2 rzedy (~6-7), 40 kg 3-4, 30 kg ~3, 21/15/10 kg 2, 5/2/0 kg 0. Hipoteza: siatka kropek (bitmapa 52) odslaniana od dolu proporcjonalnie do paliwa na tle obrysu (51); pojemnosc odniesienia (135 kg?) i dokladne progi do dopasowania. Licznik przywrocony do 21 kg.
 - Wlasciciel: druga linia temperatury zewnetrznej w rogu = srednia. Fizyczne diody od gory: zasilanie, palnik, alarm (nieaktywny).
 

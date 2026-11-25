@@ -69,7 +69,7 @@
   "tiles": {
    "palnik_x138_widget_0x20016504": {
     "default": "ukryty, bitmapa 31 (zolty)",
-    "measured_trigger": "STRONG: dioda palnika ZOLTA (bitmapa 31) w stanach palnika 1 = ROZPALANIE i 7 = CZYSZCZENIE (obserwacje wlasciciela na prawdziwym panelu 2026-11-25; HA: kod 1/7, dmuchawa on; w Rozpalaniu zapalarka 1 i podajnik palnika on). W stanie 0 (Wylaczony) tylko ciemny pasek. Zgodne z emulatorem (0x2007=7). OPEN: zarzenie (2), modulacja (5), wygaszanie (6), pauza (8)."
+    "measured_trigger": "STRONG: dioda palnika ZOLTA (bitmapa 31) w stanach palnika 1 ROZPALANIE, 2 ROZZARZANIE, 7 CZYSZCZENIE (obserwacje wlasciciela, prawdziwy panel, 2026-11-25; zgodnie z HA: kody 1/2/7); w stanie 0 WYLACZONY tylko ciemny pasek. Fizyczna dioda palnika: pulsuje w Rozpalaniu, swieci stale w Czyszczeniu. Zgodne z emulatorem (0x2007=7). OPEN: modulacja (5), wygaszanie (6), pauza (8), stop (9), alarm (10)."
    },
    "co1_x207_widget_0x20016530": {
     "default": "ukryty, bitmapa 32 (bialy)",
@@ -162,5 +162,30 @@
   ],
   "weather_icon": "ikona pogody (chmura/slonce) w rogu to ta sama ikona, ktora wczesniej opisalem jako 'chmurke' (bitmapa 181) - NIE wskaznik internetu; zrodlo/zmiany OPEN",
   "second_outdoor_line": "druga liczba pod temperatura zewnetrzna = SREDNIA (potwierdzenie wlasciciela; zrodlo: 'Usrednianie temp. zewnetrznej [h]' 0x3720)"
+ },
+ "panel_status_texts": {
+  "evidence": "MEASURED (zdjecia wlasciciela + HA kod stanu)",
+  "0": "Wyłączony",
+  "1": "Rozpalanie",
+  "2": "Rozżarzanie",
+  "7": "Czyszczenie",
+  "note": "napis stanu pod temperatura kotla na pulpicie; HA 'palnik_stan' ma te same stany bez polskich znakow (np. 'Zarzenie'); pozostale kody (5,6,8,9,10) - do zebrania"
+ },
+ "palnik_screen_real_panel": {
+  "evidence": "MEASURED (zdjecie wlasciciela 19:50:57 w Rozpalaniu + HA)",
+  "header": "EKRAN GŁ. | PALNIK | klucz poziomu '2' | dom",
+  "left": "duzy napis stanu ('Rozpalanie') + grafika palnika + liczba '46' w lewym dolnym rogu (OPEN: kandydat obroty/moc dmuchawy %)",
+  "right_texts": [
+   "spalanie[kg/h]=0.0",
+   "jasność=100",
+   "T. palnika=32"
+  ],
+  "ha_match": {
+   "jasnosc": 100,
+   "temperatura_palnika": 32,
+   "spalanie": 0.0
+  },
+  "bottom_row": "ikona wentylatora (lewa), wiersz przyciskow-wskaznikow, ikona zapalarki (rozzarzona w Rozpalaniu), duzy przycisk z kolem zebatym (ustawienia)",
+  "panel_clock_note": "zegar panelu 19:49 gdy realny czas 19:51 - panel ~2 min do tylu (RTC niezsynchronizowany; temat wlasciciela)"
  }
 }
