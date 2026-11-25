@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-25T05:14:05.265564+00:00",
+  "generated_at": "2026-11-25T05:17:13.956043+00:00",
   "root": "analiza_archiwum/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -774,6 +774,14 @@
       "evidence_paths": []
     },
     {
+      "file": "menu_rules_check.json",
+      "schema": "schema/menu_rules_check.schema.json",
+      "schema_version": "1.0",
+      "records": 4,
+      "date": "2026-11-25T05:17:13.870713+00:00",
+      "evidence_paths": []
+    },
+    {
       "file": "menu_sweep.json",
       "schema": "schema/menu_sweep.schema.json",
       "schema_version": "1.0",
@@ -959,6 +967,14 @@
       "schema_version": null,
       "records": 3,
       "date": "2026-11-24T13:31:05.558154+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/menu_rules_check.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-25T05:17:13.875239+00:00",
       "evidence_paths": []
     },
     {

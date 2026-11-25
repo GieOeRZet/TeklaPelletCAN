@@ -1,5 +1,9 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### 1:1 (2026-11-25) CO SIE POJAWIA PRZY JAKIEJ KONFIGURACJI: reguly zweryfikowane w emulatorze (36/36)
+Zrobilem: `tools/menu_rows_probe.py` - napisy wierszy MENU czytane z RAM (bez przewijania i zrzutow, ~20 s na kombinacje) dla 36 kombinacji (poziomy 0,1,2,3 x 9 konfiguracji: obwody CO 0-4, CWU, bufor, solar, kaskada, magazyn); porownanie z regulami `menu_tree` (config_cond, level_min): **zgodne 36 z 36** (`ui_model/menu_rules_check.json`), w tym poziom 2 (bylo zalozone, teraz zmierzone). Razem z `home_config.json` (HOME: Ogrzewanie 1 <=> 0x2105>=1, Ogrzewanie 2 <=> >=2, CWU <=> 0x2106!=0; bufor/solar/obwody 3-4 nie zmieniaja HOME): kompletna wiedza 'co przy jakiej konfiguracji i poziomie'. Alarmy widoczne od poziomu 0 w kazdej konfiguracji (potwierdzone w teście). Wiersze menu: Kociol, Palnik, Alarmy, Info, Konfiguracja, PIN zawsze; Ogrzewanie n <=> 0x2105>=n; CWU <=> 0x2106!=0; Solary <=> 0x2108!=0; Bufor <=> 0x2107!=0; Kaskada <=> 0x350C!=0; Magazyn <=> 0x3525!=0; Jezyk, Alarm dzwiekowy, Test wyjsc, Statystyki, Siec, Internet od poziomu 1.
+Wznawiam pomiar dialogow list (3 procesy).
+
 ### 1:1 (2026-11-25) HOME zalezny od konfiguracji: ZMIERZONE (40 kombinacji, 3 procesy)
 Zrobilem: `tools/home_config.py`: widocznosc elementow HOME z RAM przy kazdej kombinacji 0x2105 (0..4) x 0x2106/0x2107/0x2108 (0/1). Reguly (`ui_model/home_config.json`): kafel **Ogrzewanie 1 <=> 0x2105>=1**, **Ogrzewanie 2 <=> 0x2105>=2**, **CWU <=> 0x2106!=0** (inaczej pusty kafel, bitmapa 73); bufor (0x2107), solar (0x2108) i obwody 3-4 NIE zmieniaja HOME; reszta HOME stala. Pozostalo: tani test regul wierszy menu (liczba wierszy: przewidziana vs faktyczna na probce kombinacji), pomiar dialogow list (wstrzymany na czas limitu 3 procesow).
 
