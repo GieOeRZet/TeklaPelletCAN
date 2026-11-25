@@ -1,6 +1,12 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Etap E3: ekran INTERNET - pola i PID-y zmierzone
+### 2026-11-25 - Odczyt na zywym kotle przez integracje HA (TYLKO ODCZYT, zgoda wlasciciela)
+- Uzyte: `teklapelletcan.tekla_sdo_read` (2 odczyty docelowe + 1 omylkowy 0x3865 - blad przeliczenia hex->dec, odczyt, bez skutkow) i stany encji `*_tekla_*` (ha_search/ha_get_state). ZADNYCH zapisow (sdo_write/set_*), skan zakresu nie uruchamiany. Kod serwisow sprawdzony w `firmware/components/core/engine.cpp` (sdo_read/sdo_scan = tylko zlecenia odczytu SDO; skan wstrzymuje odczyt cykliczny na czas trwania).
+- MEASURED (zywy kociol): 0x3664 = 2118 (wersja programu sterownika -> wg reguly INFO 'v2.118'; regula >=2100 -> '%d.%03d' ma sens), 0x3665 = 0x54450000 = 'TE' (znaki big-endian jak SSID; krotka nazwa kotla).
+- Migawka stanu (z encji): kociol wlaczony, CAN OK, palnik kod stanu 0 (Wylaczony), pompa CO ON, pompa CWU OFF, regulator pokojowy zgoda ON, zakaz rozpalenia OFF, paliwo rezerwa OFF, zbiornik 7 kg z 135 (5%), alarm aktywny OFF (ostatni: kod 140 Brak ognia/opalu). Do porownania z diodami na prawdziwym panelu (CO ON, CWU OFF, zasilanie ON, palnik OFF?).
+- Encje HA daja gotowe zrodla stanow pomp/palnika/zakazu rozpalania (binary_sensor *_co_pompa, *_cwu_pompa, *_zakaz_rozpalenia, *_dmuchawa_pracuje, *_podajnik_palnika_pracuje) - kandydaci na PID-y do diod HOME (OPEN: ktory rejestr stoi za kazdym).
+
+## 2026-11-25 - Etap E3: ekran INTERNET - pola i PID-y zmierzone
 - `tools/internet_probe.py` -> `UI/internet_screen.json`. Teksty wypelniane przy wejsciu (set_local PRZED wejsciem).
 - SSID = 0x3730..0x3735 (6 x u32 big-endian, 24 znaki, koniec na pustym chunku); PASSWORD = 0x3736..0x373B (jawnie); SERIAL = 0x373F (u32 dziesietnie); PIN = 0x3740 (obciety do 6 znakow); WiFi = 0x373E, Zmiany zdalne = 0x3741 (przelaczniki, !=0 -> ON); ikona przy SSID = 0x373D (widocznosc !=0, znaczenie OPEN). 0x3742..0x3745 i 0x2170 nie sa zrodlami ekranu.
 - OPEN: pelna lista znakow edytora, kasowanie, trwalosc, 0x5B <-> INTERNET.
