@@ -205,13 +205,19 @@
      "rule": "STRONG (kod 0x0803c550): 0 = ukryty; 1 = bitmapa 106 (15x4 strzalka) przy offsecie 0; 2 = bitmapa 107 (15x4, druga strzalka) przesunieta w osi y; dwa stany = dwa kierunki/polozenia, w obu pokazywany jest ten sam widget",
      "widget": "klasa 0x8079de0 34x30",
      "states": {
-      "0": "ukryty",
-      "1": "bitmapa 106",
-      "2": "bitmapa 107"
+      "0": "ukryty (A/auto, bez ruchu)",
+      "1": "bitmapa 106 = CLOSE (zamykanie)",
+      "2": "bitmapa 107 = OPEN (otwieranie)"
      },
      "owner_note": "wlasciciel: mieszacz ma dwa stany, na zdjeciu widac jeden",
-     "open": "ktora strzalka = otwieranie, a ktora = zamykanie (106 vs 107, stan 1 vs 2) - INFERENCE; do potwierdzenia zdjeciem + odczytem 0x216F",
-     "owner_note_2": "wlasciciel: dwa stany mieszacza (otwieranie/zamykanie) to strzalki; zgodne z bitmapami 106 i 107 (15x4)"
+     "owner_note_2": "wlasciciel: dwa stany mieszacza (otwieranie/zamykanie) to strzalki; zgodne z bitmapami 106 i 107 (15x4)",
+     "evidence_direction": "INFERENCE (silna): ekran TEST WYJSC (outputs_test.json, MEASURED PASS 69) koduje wszystkie mieszacze jako A/CLOSE/OPEN = 0/1/2; stan 0x216F/0x22B9 ma ten sam zakres u8 0..2, wiec 1=zamykanie, 2=otwieranie. Do potwierdzenia: zdjecie strzalki + odczyt rejestru",
+     "test_pids": {
+      "mieszacz CO1": "0x214A",
+      "CO2": "0x214B",
+      "CO3": "0x214C",
+      "powrotu (kociol)": "0x216D (Boiler return mixer test, u8 0..2)"
+     }
     }
    ]
   },
