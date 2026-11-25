@@ -43,7 +43,7 @@
   "tiles": {
    "palnik_x138_widget_0x20016504": {
     "default": "ukryty, bitmapa 31 (zolty)",
-    "measured_trigger": "brak w teście wstrzykniec PID (0x2007 itd.) - OPEN"
+    "measured_trigger": "hipoteza wlasciciela: swieci w rozpalaniu/modulacji/pracy. Test (0x2007=0..10, 0x4005=0/60, 0x2002=0/2, 0x2005=1): LED pojawil sie TYLKO przejsciowo (~1000 tikow) i niepowtarzalnie (0x2007=7 w jednym przebiegu, 0x2007=6+moc 60 w innym) - wyglada na zaleznosc od czasu/historii, nie od samego kodu stanu; hipoteza NIEPOTWIERDZONA (OPEN)"
    },
    "co1_x207_widget_0x20016530": {
     "default": "ukryty, bitmapa 32 (bialy)",
