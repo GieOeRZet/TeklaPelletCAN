@@ -212,5 +212,61 @@
   },
   "bottom_row": "ikona wentylatora (lewa), wiersz przyciskow-wskaznikow, ikona zapalarki (rozzarzona w Rozpalaniu), duzy przycisk z kolem zebatym (ustawienia)",
   "panel_clock_note": "zegar panelu 19:49 gdy realny czas 19:51 - panel ~2 min do tylu (RTC niezsynchronizowany; temat wlasciciela)"
+ },
+ "home_presenter_code_2026_11_25": {
+  "evidence": "STRONG (presenter HOME 0x08031ccc + settery 0x0802d2c0..0x0802db54 w decompiled.c; bitmapy rozpoznane z wygladu)",
+  "temperatura_zewnetrzna": {
+   "setter": "0x0802d572",
+   "widocznosc": "0x3505 (konfiguracja czujnika temp. zewn.) != 0",
+   "linia_1": "0x215F Outside temperature [dC] -> format '%d.%d' (z minusem)",
+   "linia_2": "0x3721 Outside temperature averaged [dC] -> '%d.%d' (to jest 'druga linia = srednia' widoczna na panelu)"
+  },
+  "pora_roku_0x3729": {
+   "setter": "0x0802db2e",
+   "wartosc_1": "bitmapa 180 (slonce, lato)",
+   "inaczej": "bitmapa 181 (platek sniegu, zima)",
+   "uwaga": "ikona lato/zima; 0x3729 'Is summer time'"
+  },
+  "wifi_0x373D_0x373C": {
+   "setter": "0x0802db54",
+   "0": "ukryte",
+   "1": "miganie/laczenie: bitmapy 153 (pelny) <-> 155 (jedna kreska)",
+   "2": "polaczono: sila z 0x373C: <33 -> 155, <66 -> 154, inaczej 153",
+   "bitmapy": {
+    "153": "WiFi pelny",
+    "154": "WiFi 2 kreski",
+    "155": "WiFi 1 kreska"
+   }
+  },
+  "reset_wymagany_0x3728": {
+   "setter": "0x0802d2c0",
+   "regula": "0x3728 != 0 -> widoczny element (ikona/komunikat 'reset wymagany'); inaczej ukryty"
+  },
+  "tankowanie": {
+   "0x2266": "Refueling need request: ==1 -> przycisk 'Podaj paliwo' podswietlony (kolor 0xFF, pary bitmap 168/169 zamienione), inaczej kolor 0x96",
+   "0x2267": "Burner storage feeder left time during refuling [s] -> odliczanie (setter 0x0802d7e8)",
+   "0x3601/0x3600/0x3602": "licznik, pojemnosc, 'Is fuel reserve' -> ikona paliwa i kropki (setter 0x0802da54)",
+   "0x3607": "Reserve sensor state: != 0 -> widoczny element (setter 0x0802db04)"
+  },
+  "ustawienia_odzyskane": {
+   "0x3722": "Start settings recovery",
+   "0x3723": "Settings recovered count (setter 0x0802d4a4)"
+  },
+  "czujnik_radiowy_zewn": {
+   "setter": "0x0802d18c",
+   "pids": [
+    "0x3724 bateria mV",
+    "0x3725 sygnal %",
+    "0x3726 czas od ostatniego odbioru",
+    "0x372B/0x372C wersja przed/po kropce"
+   ],
+   "uwaga": "okno szczegolow czujnika radiowego temp. zewnetrznej (otwierane z HOME?) - zawartosc do potwierdzenia na prawdziwym panelu; wymaga 0x3505 = radiowy"
+  },
+  "kafelki_programow": {
+   "CO1 0x2064/0x2105": "setter 0x0802d3bc",
+   "CO2 0x2065 (0x10e>1)": "setter 0x0802d3ce",
+   "CWU 0x2014/0x2106": "setter 0x0802d3e0",
+   "uwaga": "kafelki ukryte gdy 0xad5 (stan trybu) != 0; kazdy ma ikone programu z FUN_08033070"
+  }
  }
 }
