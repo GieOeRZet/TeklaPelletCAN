@@ -1,18 +1,21 @@
 {
  "schema_version": "1.0",
- "evidence": "MEASURED (emulator, poziom 3: dialog edycji wiersza listy; krok z +/- raz; kind: slider/radio/nie_otwarto=przelacznik lub licznik tylko do odczytu/NIE_DOSZEDL=brak pomiaru)",
+ "evidence": "MEASURED (emulator, poziom 3: dialog edycji wiersza listy, krok z +/- raz); CO3/CO4 = INFERENCE jak CO1",
  "summary": {
-  "NIE_DOSZEDL": 41,
-  "slider": 52,
-  "nie_otwarto": 38,
-  "radio": 10,
-  "step_note": "52 suwaki: krok = 1 jednostka surowa (wyswietlane 1 lub 0.1 wg skali) - FACT-DYNAMIC; reszta wierszy zakladana 1 (INFERENCE)"
+  "BRAK": 33,
+  "slider": 92,
+  "nie_otwarto": 52,
+  "NIE_DOSZEDL": 13,
+  "radio": 22,
+  "steps": {
+   "1.0": 53,
+   "0.1": 10,
+   "0.0": 3
+  },
+  "step_note": "krok = 1 jednostka surowa (wyswietlane 1 lub 0.1 wg skali); 0.0 = granica zakresu"
  },
  "lists": {
   "0x10": {
-   "0": {
-    "status": "NIE_DOSZEDL"
-   },
    "1": {
     "label": "Temperatura przełączenia na lato [C]",
     "pid": "0x372A",
@@ -294,9 +297,6 @@
    }
   },
   "0x01": {
-   "0": {
-    "status": "NIE_DOSZEDL"
-   },
    "1": {
     "label": "Temperatura ekonomiczna [°C] ",
     "pid": "0x2048",
@@ -659,14 +659,11 @@
     "fonts": [],
     "kind": "nie_otwarto"
    },
-   "22": {
+   "0": {
     "status": "NIE_DOSZEDL"
    }
   },
   "0x05": {
-   "0": {
-    "status": "NIE_DOSZEDL"
-   },
    "1": {
     "label": "Temperatura ekonomiczna [°C] ",
     "pid": "0x2012",
@@ -845,9 +842,6 @@
    }
   },
   "0x07": {
-   "0": {
-    "status": "NIE_DOSZEDL"
-   },
    "1": {
     "label": "Temp. maksymalna (dół) [°C]  ",
     "pid": "0x2115",
@@ -944,9 +938,6 @@
    }
   },
   "0x00": {
-   "0": {
-    "status": "NIE_DOSZEDL"
-   },
    "1": {
     "label": "Histereza załączenia [°C]",
     "pid": "0x2208",
@@ -1015,21 +1006,13 @@
     "kind": "nie_otwarto"
    },
    "6": {
-    "status": "NIE_DOSZEDL"
-   },
-   "7": {
-    "status": "NIE_DOSZEDL"
-   },
-   "8": {
-    "status": "NIE_DOSZEDL"
+    "label": "Cisza nocna od",
+    "pid": "0x3508",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
    },
    "9": {
-    "status": "NIE_DOSZEDL"
-   },
-   "10": {
-    "status": "NIE_DOSZEDL"
-   },
-   "11": {
     "status": "NIE_DOSZEDL"
    },
    "12": {
@@ -1037,9 +1020,6 @@
    }
   },
   "0x08": {
-   "0": {
-    "status": "NIE_DOSZEDL"
-   },
    "1": {
     "label": "Master stopień mocy",
     "pid": "0x3511",
@@ -1202,9 +1182,6 @@
    }
   },
   "0x09": {
-   "0": {
-    "status": "NIE_DOSZEDL"
-   },
    "1": {
     "label": "Pauza silnika transportującego (1) [s]",
     "pid": "0x3521",
@@ -1314,9 +1291,6 @@
    }
   },
   "0x11": {
-   "0": {
-    "status": "NIE_DOSZEDL"
-   },
    "1": {
     "label": "Średni czas rozpalania [s]",
     "pid": "0x3609",
@@ -1403,9 +1377,6 @@
    }
   },
   "0x0A": {
-   "0": {
-    "status": "NIE_DOSZEDL"
-   },
    "1": {
     "label": "Moc min [%]",
     "pid": "0x2270",
@@ -1487,79 +1458,35 @@
     "value0": "13.0"
    },
    "5": {
-    "status": "NIE_DOSZEDL"
-   },
-   "6": {
-    "status": "NIE_DOSZEDL"
+    "label": "Moc dmuchawy modulacja [%]",
+    "pid": "0x2254",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
    },
    "7": {
-    "status": "NIE_DOSZEDL"
-   },
-   "8": {
-    "status": "NIE_DOSZEDL"
-   },
-   "9": {
     "status": "NIE_DOSZEDL"
    },
    "10": {
     "status": "NIE_DOSZEDL"
    },
-   "11": {
-    "status": "NIE_DOSZEDL"
-   },
-   "12": {
-    "status": "NIE_DOSZEDL"
-   },
    "13": {
-    "status": "NIE_DOSZEDL"
-   },
-   "14": {
-    "status": "NIE_DOSZEDL"
-   },
-   "15": {
     "status": "NIE_DOSZEDL"
    },
    "16": {
     "status": "NIE_DOSZEDL"
    },
-   "17": {
-    "status": "NIE_DOSZEDL"
-   },
-   "18": {
-    "status": "NIE_DOSZEDL"
-   },
    "19": {
-    "status": "NIE_DOSZEDL"
-   },
-   "20": {
-    "status": "NIE_DOSZEDL"
-   },
-   "21": {
     "status": "NIE_DOSZEDL"
    },
    "22": {
     "status": "NIE_DOSZEDL"
    },
-   "23": {
-    "status": "NIE_DOSZEDL"
-   },
-   "24": {
-    "status": "NIE_DOSZEDL"
-   },
    "25": {
-    "status": "NIE_DOSZEDL"
-   },
-   "26": {
-    "status": "NIE_DOSZEDL"
-   },
-   "27": {
     "status": "NIE_DOSZEDL"
    }
   },
   "0x06": {
-   "0": {
-    "status": "NIE_DOSZEDL"
-   },
    "1": {
     "label": "Delta załączenia [°C]",
     "pid": "0x3116",
@@ -1626,6 +1553,1171 @@
     "texts": [],
     "fonts": [],
     "kind": "nie_otwarto"
+   },
+   "5": {
+    "label": "Max temp kolektora (alarmowa) [°C]",
+    "pid": "0x311A",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   }
+  },
+  "0x02": {
+   "1": {
+    "label": "Temperatura ekonomiczna [°C] ",
+    "pid": "0x2049",
+    "texts": [
+     "Temperatura ekonomiczna [°C] ",
+     "18.0",
+     "10",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "18.1",
+    "minus": "18.0",
+    "value0": "18.0"
+   },
+   "2": {
+    "label": "Histereza [°C]",
+    "pid": "0x22BE",
+    "texts": [
+     "Histereza [°C]",
+     "0.5",
+     "0",
+     "5"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.6",
+    "minus": "0.5",
+    "value0": "0.5"
+   },
+   "3": {
+    "label": "Kalibracja czujnika pok. [°C]",
+    "pid": "0x22C2",
+    "texts": [
+     "Kalibracja czujnika pok. [°C]",
+     "0.0",
+     "-3",
+     "3"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.1",
+    "minus": "0.0",
+    "value0": "0.0"
+   },
+   "4": {
+    "label": "Tryb pracy  ",
+    "pid": "0x2143",
+    "texts": [
+     "Tryb pracy  ",
+     "ręczny",
+     "pogodowy"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "5": {
+    "label": "Temperatura CO zadana ręcznie [°C]",
+    "pid": "0x2147",
+    "texts": [
+     "Temperatura CO zadana ręcznie [°C]",
+     "50",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50"
+   },
+   "6": {
+    "label": "Temperatura CO dla -20°C [°C]",
+    "pid": "0x22C6",
+    "texts": [
+     "Temperatura CO dla -20°C [°C]",
+     "55",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "56",
+    "minus": "55",
+    "value0": "55"
+   },
+   "7": {
+    "label": "Temperatura CO dla -10°C [°C]",
+    "pid": "0x400D",
+    "texts": [
+     "Temperatura CO dla -10°C [°C]",
+     "50",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50"
+   },
+   "8": {
+    "label": "Temperatura CO dla  0°C [°C]",
+    "pid": "0x22CA",
+    "texts": [
+     "Temperatura CO dla  0°C [°C]",
+     "45",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "46",
+    "minus": "45",
+    "value0": "45"
+   },
+   "9": {
+    "label": "Temperatura CO dla 10°C [°C]",
+    "pid": "0x22CE",
+    "texts": [
+     "Temperatura CO dla 10°C [°C]",
+     "30",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "31",
+    "minus": "30",
+    "value0": "30"
+   },
+   "10": {
+    "label": "Automatyczny tryb lato",
+    "pid": "0x2316",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "11": {
+    "label": "Nazwa",
+    "pid": "0x2322",
+    "texts": [
+     "Nazwa",
+     "A",
+     "ABC",
+     "abc",
+     "123.0",
+     "?!&"
+    ],
+    "fonts": [
+     2,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "kind": "radio"
+   },
+   "12": {
+    "label": "Źródło",
+    "pid": "0x22D2",
+    "texts": [
+     "Źródło",
+     "Kocioł",
+     "Bufor"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "13": {
+    "label": "Zwiększenie temperatury źródła [°C]",
+    "pid": "0x22B2",
+    "texts": [
+     "Zwiększenie temperatury źródła [°C]",
+     "10",
+     "0",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "11",
+    "minus": "10",
+    "value0": "10"
+   },
+   "14": {
+    "label": "Czujnik pokojowy",
+    "pid": "0x22A2",
+    "texts": [
+     "Czujnik pokojowy",
+     "brak",
+     "CTP1",
+     "CTP2",
+     "videROOM",
+     "termostat",
+     "CAN"
+    ],
+    "fonts": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "15": {
+    "label": "Temp. maksymalna [°C]",
+    "pid": "0x22D6",
+    "texts": [
+     "Temp. maksymalna [°C]",
+     "70",
+     "30",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "71",
+    "minus": "70",
+    "value0": "70"
+   },
+   "16": {
+    "label": "Czujnik CO",
+    "pid": "0x22A6",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "17": {
+    "label": "Wsp. korekcji t. CO [°C/°C]",
+    "pid": "0x22DA",
+    "texts": [
+     "Wsp. korekcji t. CO [°C/°C]",
+     "6",
+     "0",
+     "20"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "7",
+    "minus": "6",
+    "value0": "6"
+   },
+   "18": {
+    "label": "Obniżenie temperatury CO [°C]",
+    "pid": "0x22E6",
+    "texts": [
+     "Obniżenie temperatury CO [°C]",
+     "5",
+     "0",
+     "40"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "6",
+    "minus": "5",
+    "value0": "5"
+   },
+   "19": {
+    "label": "MIN temperatura CO pomp [°C]",
+    "pid": "0x22EA",
+    "texts": [
+     "MIN temperatura CO pomp [°C]",
+     "20",
+     "20",
+     "60"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "21",
+    "minus": "20",
+    "value0": "20"
+   },
+   "20": {
+    "label": "Czas mieszacza [s]",
+    "pid": "0x22B6",
+    "texts": [
+     "Czas mieszacza [s]",
+     "180",
+     "60",
+     "360"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "181",
+    "minus": "180",
+    "value0": "180"
+   },
+   "21": {
+    "label": "Stała pompa",
+    "pid": "0x22F2",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "22": {
+    "status": "NIE_DOSZEDL"
+   }
+  },
+  "0x03": {
+   "1": {
+    "label": "Temperatura ekonomiczna [°C] ",
+    "pid": "0x2048",
+    "texts": [
+     "Temperatura ekonomiczna [°C] ",
+     "18.0",
+     "10",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "18.1",
+    "minus": "18.0",
+    "value0": "18.0",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "2": {
+    "label": "Histereza [°C]",
+    "pid": "0x22BD",
+    "texts": [
+     "Histereza [°C]",
+     "0.5",
+     "0",
+     "5"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.6",
+    "minus": "0.5",
+    "value0": "0.5",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "3": {
+    "label": "Kalibracja czujnika pok. [°C]",
+    "pid": "0x22C1",
+    "texts": [
+     "Kalibracja czujnika pok. [°C]",
+     "0.0",
+     "-3",
+     "3"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.1",
+    "minus": "0.0",
+    "value0": "0.0",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "4": {
+    "label": "Tryb pracy  ",
+    "pid": "0x2142",
+    "texts": [
+     "Tryb pracy  ",
+     "ręczny",
+     "pogodowy"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "5": {
+    "label": "Temperatura CO zadana ręcznie [°C]",
+    "pid": "0x2146",
+    "texts": [
+     "Temperatura CO zadana ręcznie [°C]",
+     "50",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "6": {
+    "label": "Temperatura CO dla -20°C [°C]",
+    "pid": "0x22C5",
+    "texts": [
+     "Temperatura CO dla -20°C [°C]",
+     "55",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "56",
+    "minus": "55",
+    "value0": "55",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "7": {
+    "label": "Temperatura CO dla -10°C [°C]",
+    "pid": "0x400C",
+    "texts": [
+     "Temperatura CO dla -10°C [°C]",
+     "50",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "8": {
+    "label": "Temperatura CO dla  0°C [°C]",
+    "pid": "0x22C9",
+    "texts": [
+     "Temperatura CO dla  0°C [°C]",
+     "45",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "46",
+    "minus": "45",
+    "value0": "45",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "9": {
+    "label": "Temperatura CO dla 10°C [°C]",
+    "pid": "0x22CD",
+    "texts": [
+     "Temperatura CO dla 10°C [°C]",
+     "30",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "31",
+    "minus": "30",
+    "value0": "30",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "10": {
+    "label": "Automatyczny tryb lato",
+    "pid": "0x2315",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "11": {
+    "label": "Nazwa",
+    "pid": "0x2321",
+    "texts": [
+     "Nazwa",
+     "A",
+     "ABC",
+     "abc",
+     "123.0",
+     "?!&"
+    ],
+    "fonts": [
+     2,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "kind": "radio",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "12": {
+    "label": "Źródło",
+    "pid": "0x22D1",
+    "texts": [
+     "Źródło",
+     "Kocioł",
+     "Bufor"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "13": {
+    "label": "Zwiększenie temperatury źródła [°C]",
+    "pid": "0x22B1",
+    "texts": [
+     "Zwiększenie temperatury źródła [°C]",
+     "10",
+     "0",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "11",
+    "minus": "10",
+    "value0": "10",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "14": {
+    "label": "Czujnik pokojowy",
+    "pid": "0x22A1",
+    "texts": [
+     "Czujnik pokojowy",
+     "brak",
+     "CTP1",
+     "CTP2",
+     "videROOM",
+     "termostat",
+     "CAN"
+    ],
+    "fonts": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "kind": "radio",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "15": {
+    "label": "Temp. maksymalna [°C]",
+    "pid": "0x22D5",
+    "texts": [
+     "Temp. maksymalna [°C]",
+     "70",
+     "30",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "71",
+    "minus": "70",
+    "value0": "70",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "16": {
+    "label": "Czujnik CO",
+    "pid": "0x22A5",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "17": {
+    "label": "Wsp. korekcji t. CO [°C/°C]",
+    "pid": "0x22D9",
+    "texts": [
+     "Wsp. korekcji t. CO [°C/°C]",
+     "6",
+     "0",
+     "20"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "7",
+    "minus": "6",
+    "value0": "6",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "18": {
+    "label": "Obniżenie temperatury CO [°C]",
+    "pid": "0x22E5",
+    "texts": [
+     "Obniżenie temperatury CO [°C]",
+     "5",
+     "0",
+     "40"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "6",
+    "minus": "5",
+    "value0": "5",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "19": {
+    "label": "MIN temperatura CO pomp [°C]",
+    "pid": "0x22E9",
+    "texts": [
+     "MIN temperatura CO pomp [°C]",
+     "20",
+     "20",
+     "60"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "21",
+    "minus": "20",
+    "value0": "20",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "20": {
+    "label": "Czas mieszacza [s]",
+    "pid": "0x22B5",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "21": {
+    "label": "Stała pompa",
+    "pid": "0x22F1",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "0": {
+    "status": "NIE_DOSZEDL",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   }
+  },
+  "0x04": {
+   "1": {
+    "label": "Temperatura ekonomiczna [°C] ",
+    "pid": "0x2048",
+    "texts": [
+     "Temperatura ekonomiczna [°C] ",
+     "18.0",
+     "10",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "18.1",
+    "minus": "18.0",
+    "value0": "18.0",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "2": {
+    "label": "Histereza [°C]",
+    "pid": "0x22BD",
+    "texts": [
+     "Histereza [°C]",
+     "0.5",
+     "0",
+     "5"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.6",
+    "minus": "0.5",
+    "value0": "0.5",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "3": {
+    "label": "Kalibracja czujnika pok. [°C]",
+    "pid": "0x22C1",
+    "texts": [
+     "Kalibracja czujnika pok. [°C]",
+     "0.0",
+     "-3",
+     "3"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.1",
+    "minus": "0.0",
+    "value0": "0.0",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "4": {
+    "label": "Tryb pracy  ",
+    "pid": "0x2142",
+    "texts": [
+     "Tryb pracy  ",
+     "ręczny",
+     "pogodowy"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "5": {
+    "label": "Temperatura CO zadana ręcznie [°C]",
+    "pid": "0x2146",
+    "texts": [
+     "Temperatura CO zadana ręcznie [°C]",
+     "50",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "6": {
+    "label": "Temperatura CO dla -20°C [°C]",
+    "pid": "0x22C5",
+    "texts": [
+     "Temperatura CO dla -20°C [°C]",
+     "55",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "56",
+    "minus": "55",
+    "value0": "55",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "7": {
+    "label": "Temperatura CO dla -10°C [°C]",
+    "pid": "0x400C",
+    "texts": [
+     "Temperatura CO dla -10°C [°C]",
+     "50",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "8": {
+    "label": "Temperatura CO dla  0°C [°C]",
+    "pid": "0x22C9",
+    "texts": [
+     "Temperatura CO dla  0°C [°C]",
+     "45",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "46",
+    "minus": "45",
+    "value0": "45",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "9": {
+    "label": "Temperatura CO dla 10°C [°C]",
+    "pid": "0x22CD",
+    "texts": [
+     "Temperatura CO dla 10°C [°C]",
+     "30",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "31",
+    "minus": "30",
+    "value0": "30",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "10": {
+    "label": "Automatyczny tryb lato",
+    "pid": "0x2315",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "11": {
+    "label": "Nazwa",
+    "pid": "0x2321",
+    "texts": [
+     "Nazwa",
+     "A",
+     "ABC",
+     "abc",
+     "123.0",
+     "?!&"
+    ],
+    "fonts": [
+     2,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "kind": "radio",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "12": {
+    "label": "Źródło",
+    "pid": "0x22D1",
+    "texts": [
+     "Źródło",
+     "Kocioł",
+     "Bufor"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "13": {
+    "label": "Zwiększenie temperatury źródła [°C]",
+    "pid": "0x22B1",
+    "texts": [
+     "Zwiększenie temperatury źródła [°C]",
+     "10",
+     "0",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "11",
+    "minus": "10",
+    "value0": "10",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "14": {
+    "label": "Czujnik pokojowy",
+    "pid": "0x22A1",
+    "texts": [
+     "Czujnik pokojowy",
+     "brak",
+     "CTP1",
+     "CTP2",
+     "videROOM",
+     "termostat",
+     "CAN"
+    ],
+    "fonts": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "kind": "radio",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "15": {
+    "label": "Temp. maksymalna [°C]",
+    "pid": "0x22D5",
+    "texts": [
+     "Temp. maksymalna [°C]",
+     "70",
+     "30",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "71",
+    "minus": "70",
+    "value0": "70",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "16": {
+    "label": "Czujnik CO",
+    "pid": "0x22A5",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "17": {
+    "label": "Wsp. korekcji t. CO [°C/°C]",
+    "pid": "0x22D9",
+    "texts": [
+     "Wsp. korekcji t. CO [°C/°C]",
+     "6",
+     "0",
+     "20"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "7",
+    "minus": "6",
+    "value0": "6",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "18": {
+    "label": "Obniżenie temperatury CO [°C]",
+    "pid": "0x22E5",
+    "texts": [
+     "Obniżenie temperatury CO [°C]",
+     "5",
+     "0",
+     "40"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "6",
+    "minus": "5",
+    "value0": "5",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "19": {
+    "label": "MIN temperatura CO pomp [°C]",
+    "pid": "0x22E9",
+    "texts": [
+     "MIN temperatura CO pomp [°C]",
+     "20",
+     "20",
+     "60"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "21",
+    "minus": "20",
+    "value0": "20",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "20": {
+    "label": "Czas mieszacza [s]",
+    "pid": "0x22B5",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "21": {
+    "label": "Stała pompa",
+    "pid": "0x22F1",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto",
+    "note": "INFERENCE: jak CO1 (0x01)"
+   },
+   "0": {
+    "status": "NIE_DOSZEDL",
+    "note": "INFERENCE: jak CO1 (0x01)"
    }
   }
  }

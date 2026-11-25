@@ -40,7 +40,7 @@ for key in keys:
         if os.environ.get("LD_ONLY") and i not in json.load(open(os.environ["LD_ONLY"])).get(key, []): continue
         if os.environ.get("LD_KIND") and lists_rows.get(i, {}).get("kind") != os.environ["LD_KIND"]: continue
         s, nav, t = open_node(d, idx, kind)
-        if s is None: res[key][i] = dict(status="NIE_WESZLO_W_WEZEL"); continue
+        if s is None: res[key][i] = dict(status="NIE_WESZLO_W_WEZEL"); json.dump(res, open(out, "w"), ensure_ascii=False, indent=1); print(key, i, "NIE_WESZLO_W_WEZEL", flush=True); continue
         rd = s.b.rd
         def abs_y(a):
             y = 0
@@ -50,15 +50,15 @@ for key in keys:
             return y
         ws0 = C.widget_table(s, t); ex0 = X.extract(s, ws0)
         cand = [w for w in ws0 if ex0.get(w["this"], {}).get("cls") == "text" and ex0[w["this"]].get("text") == r["label_pl"] and w["ax"] < 100]
-        if not cand: res[key][i] = dict(status="BRAK_WIDGETU_ETYKIETY"); continue
+        if not cand: res[key][i] = dict(status="BRAK_WIDGETU_ETYKIETY"); json.dump(res, open(out, "w"), ensure_ascii=False, indent=1); print(key, i, "BRAK_WIDGETU_ETYKIETY", flush=True); continue
         la = int(cand[0]["this"], 16); ok = False
         for _ in range(40):
             y = abs_y(la) + 12
-            if 75 <= y <= 255: ok = True; break
+            if 55 <= y <= 255: ok = True; break
             if y > 200:
                 if not s.drag_until_change(240, 235, 240, 175, attempts=4, ticks=240, pause_end=160): break
             elif not s.drag_until_change(240, 100, 240, 160, attempts=4, ticks=240, pause_end=160): break
-        if not ok: res[key][i] = dict(status="NIE_DOSZEDL"); continue
+        if not ok: res[key][i] = dict(status="NIE_DOSZEDL"); json.dump(res, open(out, "w"), ensure_ascii=False, indent=1); print(key, i, "NIE_DOSZEDL", flush=True); continue
         s.wait(3000)
         before = vis_texts(s, C.widget_table(s, t))
         for _try in range(2):
