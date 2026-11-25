@@ -1,6 +1,11 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Etap E1 ZAMKNIETY: ekran SIEC - pelna tabela Node ID -> modul
+### 2026-11-25 - Etap E2: ekran INFO - zrodlo wersji zmierzone
+- `tools/info_probe.py`, `tools/info_probe2.py` -> `UI/info_screen.json`. Wniosek metodyczny: teksty INFO wypelniane sa PRZY WEJSCIU na ekran (wstrzykniecie po wejsciu nic nie zmienia) - storage trzeba ustawic przed wejsciem.
+- MEASURED: linia 1 `igneoTouch v<wersja>` z PID 0x3664: v>=2100 -> `%d.%03d` (v//1000, v%1000), v<2100 -> `%d.%02d` (v//100, v%100); 2213 -> v2.213, 65535 -> v65.535.
+- OPEN: 'Bio Compact 10kW' (0x3665 nie zmienia tekstu), 'videRoom PIN 0' (0x2170 nie zmienia), liczba 0 w prawym dolnym rogu. Linia 'Controller by Estyma (www.estyma.pl)' stala.
+
+## 2026-11-25 - Etap E1 ZAMKNIETY: ekran SIEC - pelna tabela Node ID -> modul
 - `tools/siec_probe.py` -> `UI/siec_modules.json`: skan Node ID 1..127 (MEASURED, emulator, po jednym module). Klasy: SLAVE 1-3 (0x05-07), RADIO GATEWAY 0x08, CAN IO 0-7 (0x40-47, kolumna 4 T=temp), MODUL LAMBDA 0x50, IO BOARD PRO 0x51, FLOWMETER 1/2 (0x54/55), CAN IO BIG 0x56/57, VIDE GSM 0x5A, VIDE NET WIFI 0x5B, VIDE NET 0x5C, VIDE ROOM 1-4 (0x64-67), CAN GATEWAY 0-7 (0x6E-75), CAN IO MINI 0-7 (0x78-7F), reszta = UNKNOWN. Format wiersza: nazwa | Node ID=<dec> | SW v<ver> (tylko czesc klas) | T=<temp> (CAN IO / MINI 0). Kolejnosc wg Node ID.
 - OPEN: SW v0.0 widoczne tylko dla czesci klas przy samej identyfikacji; prawdziwa wersja z PDO1; 3+ modulow naraz / >8 wpisow.
 - `device_model.json` -> `modules.network_table`. Poprawka: 0x57 i 0x5B (raport ChatGPT 24.11 mylnie "pusty/negatywny") - widoczne.
