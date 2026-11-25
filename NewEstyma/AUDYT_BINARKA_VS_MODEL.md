@@ -28,3 +28,17 @@ Narzedzia: `tools/audit_bin_vs_model.py` (przekroj pokrycia; wynik `NewEstyma/au
 4. 187 PID-ow nie czytanych przez UI: kopie instancji CO2-CO4 (0x2017-0x2019, 0x22AF..., czujniki radiowe, 0x2302-0x2304), rejestry/znaczniki alarmow 0x4011-0x404B (opisane w `alarms.json`), wersje modulow CAN IO/VideRoom, ustawienia bez ekranu (Kp/Ki/Kd 0x227B-0x228A, drewno 0x3001/0x3005/0x3007, powietrze wtorne 0x3008/0x3009, 0x3123/0x3124/0x3713/0x3714/0x3125/0x3126/0x3743 bez nazw) - wymagaja ekranow poziomu 3 (listy przestaja sie przewijac po ~3 wierszach, BACKLOG).
 5. KOREKTA wczesniejszej listy 'nieprzejrzanych funkcji HOME': `0x0802df80`, `0x0802e716`, `0x0802ea1e`, `0x0802eade`, `0x0802ed08`, `0x0802ef32`, `0x0802e484` to KONSTRUKTORY klas widgetow (np. klawiatura tekstowa 'A'..'Z'), a nie settery HOME; do przejrzenia zostaje `0x0802dbf4` i `0x0802da54` (ikona paliwa, juz opisana).
 6. Teksty/bitmapy bez opisu: listy w `audyt_binarka_vs_model.json` (`texts_unseen_and_undocumented`, `bitmaps_never_seen_undocumented`); w wiekszosci parametry glebokich list, teksty alarmow, klawiatury edytora.
+
+## Aktualizacja koncowa (2026-11-25, po serii autonomicznej)
+
+| Przekroj | Start | Teraz |
+|---|---|---|
+| PID-y czytane przez UI bez opisu | 27 | **0** |
+| PID-y bez wzmianki (nie czytane przez UI) | 214 | 160 |
+| Teksty niewidziane i nieopisane | 78 | 44 (dni tygodnia, zestawy znakow klawiatury, formaty, alternatywne teksty alarmow) |
+| Bitmapy niewidziane i nieopisane | 39 | 39 (role rozpoznane w `real_panel_screens.json` -> `bitmap_roles_2026_11_25`) |
+| Wiersze list NASTAW zmierzone (suwak/radio) | 126 | 163 (140 suwakow + 23 radio) |
+
+Dodatkowo zamkniete: tabela deskryptorow wierszy z binarki (186 rekordow, `firmware_row_table.json`), builder list NASTAW odtworzony i zgodny z emulatorem dla 13 list, typy wierszy potwierdzone pomiarem (139/139 suwaki, 19/19 radio, 30/30 przelaczniki), status obwodu CO, generator tablic ESP (`teklapelletcanv2/tools/gen_esp_tables.py`).
+
+Nadal OPEN: 42 wiersze tabeli poza listami panelu (drewno, spaliny, napiecia rusztu, przeplywomierz...) - gdzie/czy panel je pokazuje; widgety PALNIK/KASKADA nieobecne w inwentarzu emulatora; ekran INTERNET w emulatorze; zrodlo ikony pogody nie wystepuje (to pora roku).

@@ -4,7 +4,7 @@
  "method": "PID 'wzmianki' = liczba wystapien heksa w ui_model/*.json (bez device_model/bind_raw/atlas/extras); presentery = funkcje wolajace FUN_08036ff2 >=3 razy",
  "totals": {
   "pids": 655,
-  "pids_unmentioned": 185,
+  "pids_unmentioned": 160,
   "pids_read_by_code": 154,
   "pids_read_by_code_unmentioned": 0,
   "presenters": 13,
@@ -13,7 +13,7 @@
   "text_seen_emulator": 301,
   "text_static_not_seen": 0,
   "text_unseen_total": 195,
-  "texts_unseen_and_undocumented": 74,
+  "texts_unseen_and_undocumented": 44,
   "bitmaps": 188,
   "bitmaps_seen": 120,
   "bitmaps_documented": 113,
@@ -86,20 +86,6 @@
    "in_catalog": true
   },
   {
-   "pid": "0x2151",
-   "name": "Grate silence mode",
-   "mode": "setting",
-   "ui_keys": "T2:0x0088",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x215b",
-   "name": "Airflow speed for 100% of power [m/s]",
-   "mode": "setting",
-   "ui_keys": "T2:0x0072",
-   "in_catalog": true
-  },
-  {
    "pid": "0x2162",
    "name": "Weather forecast 1",
    "mode": "command",
@@ -132,20 +118,6 @@
    "name": "CH res [dC]",
    "mode": "command",
    "ui_keys": "T1:0x00AB/inst4",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x216b",
-   "name": "Exchanger silence mode",
-   "mode": "setting",
-   "ui_keys": "T2:0x0024",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x218a",
-   "name": "Is grate cleaning on",
-   "mode": "setting",
-   "ui_keys": "T2:0x0094",
    "in_catalog": true
   },
   {
@@ -457,45 +429,10 @@
    "in_catalog": false
   },
   {
-   "pid": "0x299f",
-   "name": "Burning type",
-   "mode": "setting",
-   "ui_keys": "T2:0x005E",
-   "in_catalog": true
-  },
-  {
    "pid": "0x3001",
    "name": "Start burning wood",
    "mode": "command",
    "ui_keys": "T2:0x0067",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3005",
-   "name": "Fireup blower power on wood [%]",
-   "mode": "setting",
-   "ui_keys": "T2:0x0061",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3007",
-   "name": "Pause blower power on wood [%]",
-   "mode": "setting",
-   "ui_keys": "T2:0x0064",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3008",
-   "name": "Sec. air modulation MIN [%]",
-   "mode": "setting",
-   "ui_keys": "T2:0x009E",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3009",
-   "name": "Sec. air modulation MAX [%]",
-   "mode": "setting",
-   "ui_keys": "T2:0x009F",
    "in_catalog": true
   },
   {
@@ -506,45 +443,10 @@
    "in_catalog": true
   },
   {
-   "pid": "0x3010",
-   "name": "Grate move interval in modulation [kg]",
-   "mode": "setting",
-   "ui_keys": "T2:0x007A",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3012",
-   "name": "Grate move interval in modulation [min]",
-   "mode": "setting",
-   "ui_keys": "T2:0x007B",
-   "in_catalog": true
-  },
-  {
    "pid": "0x3013",
    "name": "Burner blower max RPM",
    "mode": "setting",
    "ui_keys": "",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3121",
-   "name": "Exchanger cleaning duration [s]",
-   "mode": "setting",
-   "ui_keys": "T2:0x0025",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3123",
-   "name": "",
-   "mode": "setting",
-   "ui_keys": "T2:0x002D",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3124",
-   "name": "",
-   "mode": "setting",
-   "ui_keys": "T2:0x0030",
    "in_catalog": true
   },
   {
@@ -573,13 +475,6 @@
    "name": "Clean exchanger monit period [kg]",
    "mode": "live",
    "ui_keys": "",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3617",
-   "name": "Statistics - Grate cleaning count",
-   "mode": "live",
-   "ui_keys": "T2:0x01A4",
    "in_catalog": true
   },
   {
@@ -629,13 +524,6 @@
    "name": "Inside temp [C] CAN IO 0",
    "mode": "live",
    "ui_keys": "T2:0x016B",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x362c",
-   "name": "Total grate unblock try count",
-   "mode": "live",
-   "ui_keys": "T2:0x01A8",
    "in_catalog": true
   },
   {
@@ -814,52 +702,10 @@
    "in_catalog": true
   },
   {
-   "pid": "0x3702",
-   "name": "Nominal exhaust gas temp. [C]",
-   "mode": "setting",
-   "ui_keys": "T2:0x008E",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3705",
-   "name": "Blower power in hold/pause [%]",
-   "mode": "setting",
-   "ui_keys": "T2:0x0066",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x370c",
-   "name": "Min fire up time [min]",
-   "mode": "setting",
-   "ui_keys": "T2:0x0097",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x370f",
-   "name": "Burning off burner feeder work time [s]",
-   "mode": "setting",
-   "ui_keys": "T2:0x007D",
-   "in_catalog": true
-  },
-  {
    "pid": "0x3712",
    "name": "Blower type",
    "mode": "mirror",
    "ui_keys": "",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3713",
-   "name": "",
-   "mode": "setting",
-   "ui_keys": "T2:0x0099",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3714",
-   "name": "",
-   "mode": "setting",
-   "ui_keys": "T2:0x009A",
    "in_catalog": true
   },
   {
@@ -891,13 +737,6 @@
    "in_catalog": true
   },
   {
-   "pid": "0x3727",
-   "name": "Burner feeder absolut work time [s]",
-   "mode": "setting",
-   "ui_keys": "T2:0x0093",
-   "in_catalog": true
-  },
-  {
    "pid": "0x372d",
    "name": "",
    "mode": "live",
@@ -919,24 +758,10 @@
    "in_catalog": true
   },
   {
-   "pid": "0x3748",
-   "name": "Storage feeder pause in predose[s]",
-   "mode": "setting",
-   "ui_keys": "T2:0x0092",
-   "in_catalog": true
-  },
-  {
    "pid": "0x374d",
    "name": "Burner plug disc. possible",
    "mode": "setting",
    "ui_keys": "",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3750",
-   "name": "Sweep mode",
-   "mode": "command",
-   "ui_keys": "T2:0x0013",
    "in_catalog": true
   },
   {
@@ -2407,20 +2232,12 @@
    "pl": "Chłodzenie"
   },
   {
-   "id": 29,
-   "pl": "Oczekiwanie"
-  },
-  {
    "id": 34,
    "pl": "Źródło blokuje"
   },
   {
    "id": 84,
    "pl": "Następny serwis \u0002"
-  },
-  {
-   "id": 86,
-   "pl": "Typ paliwa"
   },
   {
    "id": 87,
@@ -2431,92 +2248,8 @@
    "pl": "Powietrze MIN (moc 100%)"
   },
   {
-   "id": 133,
-   "pl": "Aktywuj alarm wyczyść wymiennik"
-  },
-  {
-   "id": 134,
-   "pl": "Aktywuj alarm wyczyść palnik"
-  },
-  {
-   "id": 136,
-   "pl": "Czas czyszczenia wymiennika [s]"
-  },
-  {
-   "id": 137,
-   "pl": "Podajnik palnika w wygaszaniu [s]"
-  },
-  {
-   "id": 146,
-   "pl": "Wstępna dawka paliwa [g]"
-  },
-  {
-   "id": 158,
-   "pl": "Tryb cichy rusztu"
-  },
-  {
-   "id": 159,
-   "pl": "Tryb cichy wymiennika"
-  },
-  {
-   "id": 160,
-   "pl": "Minimalna temp. spalin [°C]"
-  },
-  {
-   "id": 161,
-   "pl": "Maksymalna temp. spalin [°C]"
-  },
-  {
-   "id": 162,
-   "pl": "Nominalna temp. spalin [°C]"
-  },
-  {
-   "id": 166,
-   "pl": "Typ czujnika spalin"
-  },
-  {
-   "id": 168,
-   "pl": "Minimalny czas rozpalania [min]"
-  },
-  {
-   "id": 174,
-   "pl": "Tryb kominiarz"
-  },
-  {
    "id": 181,
    "pl": "CAN"
-  },
-  {
-   "id": 182,
-   "pl": "KTY84-130"
-  },
-  {
-   "id": 183,
-   "pl": "PT1000"
-  },
-  {
-   "id": 204,
-   "pl": "Napięcie gdy ruszt schowany [V]"
-  },
-  {
-   "id": 205,
-   "pl": "Napięcie gdy ruszt wysunięty [V]"
-  },
-  {
-   "id": 206,
-   "pl": "Pozycja rusztu (moc minimalna) [%]"
-  },
-  {
-   "id": 207,
-   "pl": "Praca rusztu"
-  },
-  {
-   "id": 210,
-   "pl": "F(30%) [m/s]"
-  },
-  {
-   "id": 211,
-   "pl": "F(100%) [m/s]"
   },
   {
    "id": 214,
@@ -2541,18 +2274,6 @@
   {
    "id": 245,
    "pl": "Powietrze wtórne"
-  },
-  {
-   "id": 246,
-   "pl": "Wtórne modulacja MIN [%]"
-  },
-  {
-   "id": 247,
-   "pl": "Wtórne modulacja MAX [%]"
-  },
-  {
-   "id": 259,
-   "pl": "Liczba prób odblokowania rusztu"
   },
   {
    "id": 271,
@@ -2601,22 +2322,6 @@
   {
    "id": 360,
    "pl": "STB"
-  },
-  {
-   "id": 390,
-   "pl": "Minimalne obroty dmuchawy [*100]"
-  },
-  {
-   "id": 391,
-   "pl": "Interwał czyszcz. wymiennika [min]"
-  },
-  {
-   "id": 400,
-   "pl": "Interwał przedmuchu modulacja [min]"
-  },
-  {
-   "id": 401,
-   "pl": "Czas przedmuchu modulacja [min]"
   },
   {
    "id": 442,
