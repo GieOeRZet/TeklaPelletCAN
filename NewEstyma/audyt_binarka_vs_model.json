@@ -4,264 +4,29 @@
  "method": "PID 'wzmianki' = liczba wystapien heksa w ui_model/*.json (bez device_model/bind_raw/atlas/extras); presentery = funkcje wolajace FUN_08036ff2 >=3 razy",
  "totals": {
   "pids": 655,
-  "pids_unmentioned": 211,
+  "pids_unmentioned": 187,
   "pids_read_by_code": 154,
-  "pids_read_by_code_unmentioned": 24,
+  "pids_read_by_code_unmentioned": 0,
   "presenters": 13,
   "text_ids": 496,
   "text_static": 13,
   "text_seen_emulator": 301,
   "text_static_not_seen": 0,
   "text_unseen_total": 195,
-  "texts_unseen_and_undocumented": 75,
+  "texts_unseen_and_undocumented": 74,
   "bitmaps": 188,
   "bitmaps_seen": 119,
-  "bitmaps_documented": 108,
+  "bitmaps_documented": 113,
   "bitmaps_static_not_seen": 31,
   "bitmaps_unseen_and_undocumented": 39
  },
- "pids_read_by_code_but_unmentioned": [
-  {
-   "pid": "0x200d",
-   "name": "Remote boiler 1 requested temp[C]",
-   "mode": "live",
-   "presenters": [
-    "0803e45c"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x200e",
-   "name": "Remote boiler 2 requested temp[C]",
-   "mode": "live",
-   "presenters": [
-    "0803e45c"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x2119",
-   "name": "Exhaust gas temperature (2) [C]",
-   "mode": "live",
-   "presenters": [
-    "0803cf54"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x2309",
-   "name": "Room temp. radio sensor batt. volt [mV]",
-   "mode": "live",
-   "presenters": [
-    "0803d37c"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x230d",
-   "name": "Room temp. radio sensor signal [%]",
-   "mode": "live",
-   "presenters": [
-    "0803d37c"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x2311",
-   "name": "Room temp. radio sensor time since lasr rec.",
-   "mode": "live",
-   "presenters": [
-    "0803d37c"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x2319",
-   "name": "Room temp. radio sensor soft. ver. before dot",
-   "mode": "live",
-   "presenters": [
-    "0803d37c"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x231d",
-   "name": "Room temp. radio sensor soft. ver. after dot",
-   "mode": "live",
-   "presenters": [
-    "0803d37c"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x2325",
-   "name": "CH circuit name part2",
-   "mode": "setting",
-   "presenters": [
-    "0803d37c",
-    "0803eb4a",
-    "0803ec18"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x2329",
-   "name": "CH circuit name part3",
-   "mode": "setting",
-   "presenters": [
-    "0803d37c",
-    "0803eb4a",
-    "0803ec18"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x300a",
-   "name": "Sec. air mixer position [%]",
-   "mode": "live",
-   "presenters": [
-    "0803cf54"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x300b",
-   "name": "Stop burning wood",
-   "mode": "command",
-   "presenters": [
-    "0803cf54"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x351b",
-   "name": "Cascade timer to inc power lvel [s]",
-   "mode": "live",
-   "presenters": [
-    "0803e45c"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3602",
-   "name": "Is fuel reserve",
-   "mode": "live",
-   "presenters": [
-    "08031ccc"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3721",
-   "name": "Outside temperature averaged",
-   "mode": "live",
-   "presenters": [
-    "08031ccc"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3723",
-   "name": "Settings recovered count",
-   "mode": "command",
-   "presenters": [
-    "08031ccc"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3724",
-   "name": "Out temp. radio sensor batt. volt [mV]",
-   "mode": "live",
-   "presenters": [
-    "08031ccc"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3725",
-   "name": "Out temp. radio sensor signal [%]",
-   "mode": "live",
-   "presenters": [
-    "08031ccc"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3726",
-   "name": "Out temp. radio sensor time since lasr rec.",
-   "mode": "live",
-   "presenters": [
-    "08031ccc"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3728",
-   "name": "Is reset required",
-   "mode": "live",
-   "presenters": [
-    "08031ccc"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3729",
-   "name": "Is summer time",
-   "mode": "live",
-   "presenters": [
-    "08031ccc"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x372b",
-   "name": "Out temp. radio sensor sw. ver. before dot",
-   "mode": "live",
-   "presenters": [
-    "08031ccc"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x372c",
-   "name": "Out temp. radio sensor sw. ver. after dot",
-   "mode": "live",
-   "presenters": [
-    "08031ccc"
-   ],
-   "in_catalog": true
-  },
-  {
-   "pid": "0x400a",
-   "name": "Virt. energy consumer set temp [C]",
-   "mode": "command",
-   "presenters": [
-    "0803e45c"
-   ],
-   "in_catalog": true
-  }
- ],
+ "pids_read_by_code_but_unmentioned": [],
  "pids_unmentioned_all": [
   {
    "pid": "0x0004",
    "name": "Parameters set Number",
    "mode": "setting",
    "ui_keys": "",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x200d",
-   "name": "Remote boiler 1 requested temp[C]",
-   "mode": "live",
-   "ui_keys": "T2:0x0034",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x200e",
-   "name": "Remote boiler 2 requested temp[C]",
-   "mode": "live",
-   "ui_keys": "T2:0x0035",
    "in_catalog": true
   },
   {
@@ -297,13 +62,6 @@
    "name": "CH program",
    "mode": "setting",
    "ui_keys": "T1:0x00AC/inst4",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x2119",
-   "name": "Exhaust gas temperature (2) [C]",
-   "mode": "live",
-   "ui_keys": "T2:0x003F",
    "in_catalog": true
   },
   {
@@ -566,13 +324,6 @@
    "in_catalog": true
   },
   {
-   "pid": "0x2309",
-   "name": "Room temp. radio sensor batt. volt [mV]",
-   "mode": "live",
-   "ui_keys": "T1:0x00CF/inst1",
-   "in_catalog": true
-  },
-  {
    "pid": "0x230a",
    "name": "Room temp. radio sensor batt. volt [mV]",
    "mode": "live",
@@ -591,13 +342,6 @@
    "name": "Room temp. radio sensor batt. volt [mV]",
    "mode": "live",
    "ui_keys": "T1:0x00CF/inst4",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x230d",
-   "name": "Room temp. radio sensor signal [%]",
-   "mode": "live",
-   "ui_keys": "T1:0x00CE/inst1",
    "in_catalog": true
   },
   {
@@ -622,13 +366,6 @@
    "in_catalog": true
   },
   {
-   "pid": "0x2311",
-   "name": "Room temp. radio sensor time since lasr rec.",
-   "mode": "live",
-   "ui_keys": "T1:0x00D0/inst1",
-   "in_catalog": true
-  },
-  {
    "pid": "0x2312",
    "name": "Room temp. radio sensor time since lasr rec.",
    "mode": "live",
@@ -647,13 +384,6 @@
    "name": "Room temp. radio sensor time since lasr rec.",
    "mode": "live",
    "ui_keys": "T1:0x00D0/inst4",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x2319",
-   "name": "Room temp. radio sensor soft. ver. before dot",
-   "mode": "live",
-   "ui_keys": "T1:0x00D1/inst1",
    "in_catalog": true
   },
   {
@@ -678,13 +408,6 @@
    "in_catalog": false
   },
   {
-   "pid": "0x231d",
-   "name": "Room temp. radio sensor soft. ver. after dot",
-   "mode": "live",
-   "ui_keys": "T1:0x00D2/inst1",
-   "in_catalog": true
-  },
-  {
    "pid": "0x231e",
    "name": "Room temp. radio sensor soft. ver. after dot",
    "mode": "live",
@@ -706,13 +429,6 @@
    "in_catalog": false
   },
   {
-   "pid": "0x2325",
-   "name": "CH circuit name part2",
-   "mode": "setting",
-   "ui_keys": "T1:0x00D5/inst1",
-   "in_catalog": true
-  },
-  {
    "pid": "0x2326",
    "name": "CH circuit name part2",
    "mode": "setting",
@@ -732,13 +448,6 @@
    "mode": "setting",
    "ui_keys": "T1:0x00D5/inst4",
    "in_catalog": false
-  },
-  {
-   "pid": "0x2329",
-   "name": "CH circuit name part3",
-   "mode": "setting",
-   "ui_keys": "T1:0x00D6/inst1",
-   "in_catalog": true
   },
   {
    "pid": "0x232a",
@@ -801,20 +510,6 @@
    "name": "Sec. air modulation MAX [%]",
    "mode": "setting",
    "ui_keys": "T2:0x009F",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x300a",
-   "name": "Sec. air mixer position [%]",
-   "mode": "live",
-   "ui_keys": "T2:0x00A0",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x300b",
-   "name": "Stop burning wood",
-   "mode": "command",
-   "ui_keys": "T2:0x0068",
    "in_catalog": true
   },
   {
@@ -892,20 +587,6 @@
    "name": "Clean exchanger monit period [kg]",
    "mode": "live",
    "ui_keys": "",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x351b",
-   "name": "Cascade timer to inc power lvel [s]",
-   "mode": "live",
-   "ui_keys": "T2:0x0155",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3602",
-   "name": "Is fuel reserve",
-   "mode": "live",
-   "ui_keys": "T2:0x014A",
    "in_catalog": true
   },
   {
@@ -1224,73 +905,10 @@
    "in_catalog": true
   },
   {
-   "pid": "0x3721",
-   "name": "Outside temperature averaged",
-   "mode": "live",
-   "ui_keys": "T2:0x0001",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3723",
-   "name": "Settings recovered count",
-   "mode": "command",
-   "ui_keys": "T2:0x0134",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3724",
-   "name": "Out temp. radio sensor batt. volt [mV]",
-   "mode": "live",
-   "ui_keys": "T2:0x0003",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3725",
-   "name": "Out temp. radio sensor signal [%]",
-   "mode": "live",
-   "ui_keys": "T2:0x0004",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3726",
-   "name": "Out temp. radio sensor time since lasr rec.",
-   "mode": "live",
-   "ui_keys": "T2:0x0005",
-   "in_catalog": true
-  },
-  {
    "pid": "0x3727",
    "name": "Burner feeder absolut work time [s]",
    "mode": "setting",
    "ui_keys": "T2:0x0093",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3728",
-   "name": "Is reset required",
-   "mode": "live",
-   "ui_keys": "T2:0x0135",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x3729",
-   "name": "Is summer time",
-   "mode": "live",
-   "ui_keys": "T2:0x0007",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x372b",
-   "name": "Out temp. radio sensor sw. ver. before dot",
-   "mode": "live",
-   "ui_keys": "T2:0x0009",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x372c",
-   "name": "Out temp. radio sensor sw. ver. after dot",
-   "mode": "live",
-   "ui_keys": "T2:0x000A",
    "in_catalog": true
   },
   {
@@ -1347,13 +965,6 @@
    "name": "CH temp measured",
    "mode": "live",
    "ui_keys": "T1:0x00C7/inst4",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x400a",
-   "name": "Virt. energy consumer set temp [C]",
-   "mode": "command",
-   "ui_keys": "T2:0x0037",
    "in_catalog": true
   },
   {
@@ -1762,7 +1373,7 @@
     "0x373D"
    ],
    "pids_total": 33,
-   "mentioned": 23
+   "mentioned": 33
   },
   {
    "func": "0x803cf54",
@@ -1799,7 +1410,7 @@
     "0x4009"
    ],
    "pids_total": 28,
-   "mentioned": 24
+   "mentioned": 27
   },
   {
    "func": "0x803d37c",
@@ -1829,7 +1440,7 @@
     "0x4001"
    ],
    "pids_total": 21,
-   "mentioned": 14
+   "mentioned": 21
   },
   {
    "func": "0x803e45c",
@@ -1857,7 +1468,7 @@
     "0x400A"
    ],
    "pids_total": 19,
-   "mentioned": 15
+   "mentioned": 19
   },
   {
    "func": "0x803cb2c",
@@ -1902,7 +1513,7 @@
     "0x2329"
    ],
    "pids_total": 13,
-   "mentioned": 11
+   "mentioned": 13
   },
   {
    "func": "0x803df78",
@@ -2006,7 +1617,7 @@
     "0x2329"
    ],
    "pids_total": 3,
-   "mentioned": 1
+   "mentioned": 3
   }
  ],
  "texts_static_not_seen": [],
@@ -2820,10 +2431,6 @@
   {
    "id": 84,
    "pl": "Następny serwis \u0002"
-  },
-  {
-   "id": 85,
-   "pl": "Podaj paliwo"
   },
   {
    "id": 86,
