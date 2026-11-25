@@ -69,3 +69,9 @@ Pulapki: heredoc + `pkill` w jednym poleceniu bywa blokowany przez sandbox (uruc
 - Stukniecie po przewinieciu: odczekaj >= 3000 tikow; polozenie wiersza bierz z RAM (suma pola y widgetu etykiety po rodzicach, +12 do srodka), nie z korelacji obrazow.
 - MENU: `ListNav.build` bywa niepelny; uzyj `tools/ui_nav.py` (`tap_incremental`, `tap_tail`).
 - Dane gotowe w `ui_model/`: `list_labels_pl.json` (212/213 wierszy), `enum_labels.json` (opcje tekstowe), `list_dialogs.json` (rodzaj/krok dialogu), `coverage_matrix_agent.json` (634 komorki), `coverage_matrix_online.json`, `pid_to_point.json`, `card_bindings/`.
+
+## 11. ZAMKNIECIE PROJEKTU (2026-11-25, decyzja wlasciciela) i TODO
+Projekt rewersu 1:1 + prototyp karty ZAMKNIETY na dzis; rozbudowa wstrzymana. Stan: ~93% wiedzy o wygladzie+zachowaniu, wyglad (render z danych) praktycznie domkniety (mediana 0.2%).
+**TODO (decyzja wlasciciela, jeszcze nieopracowane):** soft ESPHome ma wykrywac konfiguracje kotla (obwody CO, CWU, bufor, solar, kaskada, magazyn - PID 0x2105-0x2108, 0x350C, 0x3525) i na tej podstawie udostepniac odpowiednie widoki/ekrany. Podstawa wiedzy: `ui_model/menu_rules_check.json` (reguly wierszy MENU, 36/36), `ui_model/home_config.json` (HOME per konfiguracja), `ui_model/menu_tree.json` (config_cond), wyniki `tools/screens_config.py` (ekrany/listy per konfiguracja - jesli ukonczone).
+**Jednorazowy podglad SVG/CSS** (`web/podglad_svg/podglad.html`): tylko pomysl na lekka grafike (wektory + male PNG zlozonych grafik); NIE jest podstawa dalszych prac.
+Niedokonczone, wstrzymane: pomiar dialogow list (`tools/list_dialogs.py`, 116 z 212 wierszy; krok = 1 raw wszedzie dotad), 2 komorki Konfiguracji przy kaskadzie, Kopiuj 5.8% / INTERNET 5.0% (kosmetyka).
