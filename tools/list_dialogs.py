@@ -21,6 +21,7 @@ def open_node(d, idx, kind):
     """swiezy rozruch z menu.state + wejscie w wezel (BEZ wczytywania punktu kontrolnego w srodku sesji - po load_state przewiniecie+stukniecie nie otwiera dialogu)"""
     s = U.UiSession.from_checkpoint(str(paths.FIRMWARE), os.path.join(d, "menu.state"), None); s.wait(120)
     nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = pickle.load(open(os.path.join(d, "rows.pkl"), "rb")); t = C.Tracer(s); t.log.clear()
+    for kv in filter(None, os.environ.get("LD_SET", "").split(",")): s.set_local(int(kv.split("=")[0], 16), int(kv.split("=")[1]))   # konfiguracja wlaczajaca wiersze warunkowe (przed wejsciem w wezel)
     ok = ui_nav.tap_incremental(s, nav, idx) and hex(s.b.rd(s.b.rd(0x20024818))) != "0x808f66c"
     if not ok and idx >= 13:
         s = U.UiSession.from_checkpoint(str(paths.FIRMWARE), os.path.join(d, "menu.state"), None); s.wait(120)
@@ -54,7 +55,8 @@ for key in keys:
         la = int(cand[0]["this"], 16); ok = False
         for _ in range(40):
             y = abs_y(la) + 12
-            if 55 <= y <= 255: ok = True; break
+            if os.environ.get("LD_DEBUG"): print("  dbg", key, i, r["label_pl"], "y=", y, flush=True)
+            if 55 <= y <= int(os.environ.get("LD_YMAX", "255")): ok = True; break
             if y > 200:
                 if not s.drag_until_change(240, 235, 240, 175, attempts=4, ticks=240, pause_end=160): break
             elif not s.drag_until_change(240, 100, 240, 160, attempts=4, ticks=240, pause_end=160): break
