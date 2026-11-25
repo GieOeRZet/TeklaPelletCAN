@@ -135,7 +135,8 @@
       "x": 145,
       "pid": "0x3711",
       "fmt": "h:mm",
-      "note": "czas do czyszczenia rusztu [min]; pokazywany gdy stan 0x2007==5 i typ spalania 0x4008==0 (to jest '3:00')"
+      "note": "czas do czyszczenia rusztu [min]; pokazywany gdy stan 0x2007==5 i typ spalania 0x4008==0 (to jest '3:00')",
+      "owner_note": "wlasciciel: liczba to odliczanie licznika (czas do czyszczenia/ruchu rusztu); zgodne z 0x3711 'Time to grate cleaning [min]'"
      }
     },
     {
@@ -152,7 +153,9 @@
      ],
      "pid": "0x2276",
      "name": "Grate move indicator",
-     "states": "0=brak strzalek, 1 i 2 = dwa kierunki (bitmapy 108/109)"
+     "states": "0=brak strzalek, 1 i 2 = dwa kierunki (bitmapy 108/109)",
+     "rule": "ikona rusztu pojawia sie TYLKO podczas ruchu rusztu (0x2276 != 0; 1 i 2 = dwa kierunki, strzalki 108/109); w emulatorze widoczna w stanie bazowym to artefakt wartosci domyslnych przed pierwszym odswiezeniem",
+     "owner_note": "wlasciciel: ruch rusztu wynika z ustawien (cykl/licznik), pojawia sie przy czyszczeniu/ruchu, gdy licznik odliczy do zera"
     }
    ],
    "texts_right": {
@@ -166,7 +169,8 @@
     "tlen[%]": "0x2120 (gdy 0x2123!=0)",
     "stan (Wylaczony/Rozpalanie...)": "0x2007",
     "uwaga": "0x4005/0x4008/0x4009 to PID-y 0x4xxx (wyliczane przez panel, nie czytane SDO) - stad moc[%]=30 na panelu mimo 0 w rejestrze"
-   }
+   },
+   "expected_when_off": "wszystkie 5 komorek ukryte, brak liczb nad ikonami; prawa strona: Wylaczony, spalanie 0.0, moc 0, T. palnika"
   },
   "KOCIOL": {
    "presenter": "0x0803cb2c",
