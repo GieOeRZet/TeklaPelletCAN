@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-25T18:55:47.170039+00:00",
+  "generated_at": "2026-11-25T19:09:57.111604+00:00",
   "root": "analiza_archiwum/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -17,6 +17,14 @@
       "schema_version": "1.0",
       "records": 68,
       "date": "2026-11-25T07:56:07.607450+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/CWU_all.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T19:09:56.932970+00:00",
       "evidence_paths": []
     },
     {
@@ -49,6 +57,70 @@
       "schema_version": null,
       "records": 4,
       "date": "2026-11-25T10:42:05.628604+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/KOCIOL_all.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T19:09:56.932883+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/OGRZEWANIE1_all.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T19:09:56.932945+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/PAL_0.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T19:09:56.932801+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/PAL_1.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T19:09:56.932836+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/PAL_2.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T19:09:56.932851+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/PAL_3.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T19:09:56.932866+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/fuel_dots_reserve0.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 5,
+      "date": "2026-11-25T19:09:56.935820+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/fuel_dots_reserve40.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 5,
+      "date": "2026-11-25T19:09:56.934452+00:00",
       "evidence_paths": []
     },
     {
@@ -328,7 +400,7 @@
       "schema": "schema/device_model.schema.json",
       "schema_version": "1.0",
       "records": 16,
-      "date": "2026-11-25T18:55:47.029151+00:00",
+      "date": "2026-11-25T19:09:56.995145+00:00",
       "evidence_paths": [
         "MEASURED (zrzut dialog_shots/home_dlg_paliwo.png; nakladka na HOME, wyzwalacz kafel 103,234)",
         "MEASURED (zrzut home_dlg_auto.png; wyzwalacz kafel 415,76)",
@@ -822,7 +894,7 @@
       "schema": "schema/home_indicators.schema.json",
       "schema_version": "1.0",
       "records": 10,
-      "date": "2026-11-25T18:52:09.901409+00:00",
+      "date": "2026-11-25T19:09:56.955245+00:00",
       "evidence_paths": []
     },
     {
@@ -979,8 +1051,8 @@
       "file": "real_panel_screens.json",
       "schema": "schema/real_panel_screens.schema.json",
       "schema_version": "1.0",
-      "records": 3,
-      "date": "2026-11-25T18:55:46.937476+00:00",
+      "records": 4,
+      "date": "2026-11-25T19:09:56.955616+00:00",
       "evidence_paths": []
     },
     {

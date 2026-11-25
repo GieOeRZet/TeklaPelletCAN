@@ -1,6 +1,11 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Stan 2 'Rozzarzanie': dioda palnika zolta; ekran PALNIK z prawdziwego panelu
+### 2026-11-25 - Kropki zasobnika: regula w procentach pojemnosci (emulator + kod); mapa powiazan dolnych belek
+- Kod (Ghidra): FUN_080540de liczy udzial w promilach (A*1000/(A+B)); FUN_08054104/FUN_08054162 porownuja z dwoma progami i pokazuja/chowaja elementy ikony; FUN_080541ac - animacja/miganie. Wniosek: ikona zalezy od PROCENTU pojemnosci (0x3600) i rezerwy (0x3603), nie od kg.
+- Skan emulatora (pojemnosc 135, rezerwa 0 jak u wlasciciela): 0-10 kg obrys; 11-33: 2 kropki; 34-51: 5; 52-76: 9; 77-99: 14; 100-117: 19; >=118: 24. Rezerwa domyslna 40: miganie dla 2-39 kg. Zgodne ze zdjeciami co do struktury (10 kg: roznica 1 kg).
+- Dolne belki: animowane ikony wyjsc nie sa wiazane parametrami (stany wyjsc); wyniki sond: `UI/bind_raw/*`.
+
+## 2026-11-25 - Stan 2 'Rozzarzanie': dioda palnika zolta; ekran PALNIK z prawdziwego panelu
 - Kod stanu 2 (panel: 'Rozżarzanie', HA: 'Zarzenie'): dioda palnika na kafelku zolta, fizyczna bursztynowa. Dioda zolta w stanach 1, 2 i 7 (STRONG); stan 0 - brak diody.
 - Ekran PALNIK (Rozpalanie): 'spalanie[kg/h]=0.0', 'jasność=100', 'T. palnika=32' (zgodne z HA: spalanie 0.0, jasnosc plomienia 100, temperatura palnika 32); '46' w rogu - zrodlo OPEN; dolny wiersz: wentylator, wskazniki, zapalarka, kolo zebate.
 - Zegar panelu ok. 2 min do tylu wzgledem realnego czasu.

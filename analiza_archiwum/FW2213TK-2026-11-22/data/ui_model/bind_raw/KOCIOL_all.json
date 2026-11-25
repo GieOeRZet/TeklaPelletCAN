@@ -1,0 +1,7712 @@
+{
+ "name": "KOCIOL",
+ "bindings": [
+  {
+   "pid": "0x0003",
+   "id": "pid_Language",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x0005",
+   "id": "pid_Default settings request",
+   "widget": "0x20016248",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2001",
+   "id": "boiler_temp",
+   "widget": "0x20016248",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x2002",
+   "id": "boiler_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2006",
+   "id": "in_zakaz",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2007",
+   "id": "burner_state",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 0
+  },
+  {
+   "pid": "0x200C",
+   "id": "pid_Remote boiler 3 temp[dC]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x2017",
+   "id": "pid_Room measured temp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x2018",
+   "id": "pid_Room measured temp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 473,
+   "stored": 473
+  },
+  {
+   "pid": "0x2019",
+   "id": "pid_Room measured temp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x201C",
+   "id": "cwu_tmax",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x2032",
+   "id": "co_set_comfort",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 157,
+   "stored": 157
+  },
+  {
+   "pid": "0x2064",
+   "id": "co_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2065",
+   "id": "co2_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2065",
+   "id": "co2_mode",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2066",
+   "id": "pid_CH program",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2101",
+   "id": "pid_Solar power [W]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3340,
+   "stored": 0
+  },
+  {
+   "pid": "0x2102",
+   "id": "pid_Solar temperature 2 [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x2120",
+   "id": "pid_Lambda oxygen [%]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x2122",
+   "id": "pid_Compatibility igneo solar pump",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x2125",
+   "id": "pid_Device type",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x2128",
+   "id": "pid_CH schedule monday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2129",
+   "id": "pid_CH schedule monday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x212D",
+   "id": "pid_CH schedule tuesday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2132",
+   "id": "pid_CH schedule thursday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2135",
+   "id": "pid_CH schedule thursday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x213A",
+   "id": "pid_CH schedule saturday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x213D",
+   "id": "pid_CH schedule saturday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2142",
+   "id": "co1_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2146",
+   "id": "ch1_set_manual",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x214A",
+   "id": "co1_mixer_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2155",
+   "id": "pid_Hot water 1 schedule tuesday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2156",
+   "id": "pid_Hot water 1 schedule wednesday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2157",
+   "id": "pid_Hot water 1 schedule thursday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x215A",
+   "id": "pid_Airflow speed for 30% of power",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 175,
+   "stored": 175
+  },
+  {
+   "pid": "0x2164",
+   "id": "pid_Weather validity left time [mi",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x2165",
+   "id": "pid_Compatibility timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x2169",
+   "id": "pid_CH res [dC]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x216E",
+   "id": "boiler_mixer_time",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 132,
+   "stored": 132
+  },
+  {
+   "pid": "0x2170",
+   "id": "pid_VideRoom PIN",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x220B",
+   "id": "pid_Boiler schedule wednesday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x220E",
+   "id": "pid_Boiler schedule saturday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2212",
+   "id": "cwu_hyst",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 18,
+   "stored": 18
+  },
+  {
+   "pid": "0x2214",
+   "id": "cwu_src",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2251",
+   "id": "pid_Burner storage feeder",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2263",
+   "id": "fan_mod_3",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2264",
+   "id": "fan_mod_4",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2265",
+   "id": "fan_mod_5",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2266",
+   "id": "pid_Refueling need request",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2271",
+   "id": "power_max",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 50,
+   "stored": 50
+  },
+  {
+   "pid": "0x2272",
+   "id": "fuel_test",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 357,
+   "stored": 357
+  },
+  {
+   "pid": "0x2277",
+   "id": "pid_Boiler pump state",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x227C",
+   "id": "pid_Pwr reg. Ki",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 673,
+   "stored": 673
+  },
+  {
+   "pid": "0x227D",
+   "id": "pid_Pwr reg. Kd",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3340,
+   "stored": 3340
+  },
+  {
+   "pid": "0x227E",
+   "id": "pid_Pwr reg. Ki 2",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 673,
+   "stored": 673
+  },
+  {
+   "pid": "0x2286",
+   "id": "boiler_pump_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2288",
+   "id": "blower_test_pct",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x228C",
+   "id": "k_exh_pct",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 0
+  },
+  {
+   "pid": "0x2294",
+   "id": "pid_User fuel counter[kg]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x2297",
+   "id": "cwu_legion",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2298",
+   "id": "exh_fan_pct",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22A0",
+   "id": "co4_pump_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x22AD",
+   "id": "ch1_set_result",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 70
+  },
+  {
+   "pid": "0x22AE",
+   "id": "ch2_set_result",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22B0",
+   "id": "pid_CH temp calc",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 70
+  },
+  {
+   "pid": "0x22B2",
+   "id": "pid_CH delta source [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x22B8",
+   "id": "pid_CH mixer opening time [s]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 147,
+   "stored": 147
+  },
+  {
+   "pid": "0x22BB",
+   "id": "pid_CH mixer state",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x22BC",
+   "id": "pid_CH mixer state",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x22BD",
+   "id": "co1_hyst",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 23,
+   "stored": 23
+  },
+  {
+   "pid": "0x22BF",
+   "id": "pid_Room temp hysteresis [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 23,
+   "stored": 23
+  },
+  {
+   "pid": "0x22C2",
+   "id": "pid_Room sensor cal [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 7,
+   "stored": 7
+  },
+  {
+   "pid": "0x22C5",
+   "id": "co1_curve_m20",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22C6",
+   "id": "pid_CH temp for -20C [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22CA",
+   "id": "pid_CH temp for 0C [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22D2",
+   "id": "pid_CH source",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22D3",
+   "id": "pid_CH source",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22D6",
+   "id": "pid_CH max temp [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x22D8",
+   "id": "pid_CH max temp [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x22EC",
+   "id": "pid_Min CH temp for pump [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 33,
+   "stored": 33
+  },
+  {
+   "pid": "0x22F3",
+   "id": "pid_Permament pump",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22F8",
+   "id": "pid_CH needed temp. [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 57,
+   "stored": 7
+  },
+  {
+   "pid": "0x22FB",
+   "id": "pid_Tch lowering for energ. consum",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22FD",
+   "id": "pid_CH status",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x22FF",
+   "id": "pid_CH status",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 5
+  },
+  {
+   "pid": "0x2300",
+   "id": "pid_CH status",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x2305",
+   "id": "pid_CH room set temp. adjustment [",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": -17,
+   "stored": 65519
+  },
+  {
+   "pid": "0x2308",
+   "id": "pid_CH room set temp. adjustment [",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": -17,
+   "stored": 65519
+  },
+  {
+   "pid": "0x2309",
+   "id": "pid_Room temp. radio sensor batt. ",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x230D",
+   "id": "pid_Room temp. radio sensor signal",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x2315",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2319",
+   "id": "pid_Room temp. radio sensor soft. ",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x231B",
+   "id": "pid_Room temp. radio sensor soft. ",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x231D",
+   "id": "pid_Room temp. radio sensor soft. ",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x2326",
+   "id": "pid_CH circuit name part2",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x2327",
+   "id": "pid_CH circuit name part2",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x232A",
+   "id": "pid_CH circuit name part3",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x299B",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 18,
+   "stored": 18
+  },
+  {
+   "pid": "0x299E",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x299F",
+   "id": "pid_Burning type",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3000",
+   "id": "pid_Modulation blower power on woo",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x3003",
+   "id": "p_grate_time",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 73,
+   "stored": 73
+  },
+  {
+   "pid": "0x3004",
+   "id": "pid_Virt. energy consumer requeste",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 59,
+   "stored": 59
+  },
+  {
+   "pid": "0x3005",
+   "id": "pid_Fireup blower power on wood [%",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 42,
+   "stored": 42
+  },
+  {
+   "pid": "0x3006",
+   "id": "pid_Incandescing blower power on w",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3007",
+   "id": "pid_Pause blower power on wood [%]",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 23,
+   "stored": 23
+  },
+  {
+   "pid": "0x3008",
+   "id": "pid_Sec. air modulation MIN [%]",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3009",
+   "id": "pid_Sec. air modulation MAX [%]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3009",
+   "id": "pid_Sec. air modulation MAX [%]",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x300A",
+   "id": "pid_Sec. air mixer position [%]",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x300B",
+   "id": "pid_Stop burning wood",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x300C",
+   "id": "p_blow_stop",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 48,
+   "stored": 48
+  },
+  {
+   "pid": "0x300C",
+   "id": "p_blow_stop",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 48,
+   "stored": 48
+  },
+  {
+   "pid": "0x300D",
+   "id": "cwu_prio",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x300D",
+   "id": "cwu_prio",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x300E",
+   "id": "p_min_rpm",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x300F",
+   "id": "pid_Virt. consumer maximal power",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3010",
+   "id": "pid_Grate move interval in modulat",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 14,
+   "stored": 14
+  },
+  {
+   "pid": "0x3011",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3011",
+   "id": "list",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3012",
+   "id": "pid_Grate move interval in modulat",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 247,
+   "stored": 247
+  },
+  {
+   "pid": "0x3013",
+   "id": "pid_Burner blower max RPM",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 1840,
+   "stored": 1840
+  },
+  {
+   "pid": "0x3116",
+   "id": "list",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x3117",
+   "id": "list",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 10,
+   "stored": 10
+  },
+  {
+   "pid": "0x3118",
+   "id": "list",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 32,
+   "stored": 32
+  },
+  {
+   "pid": "0x3119",
+   "id": "list",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 70,
+   "stored": 70
+  },
+  {
+   "pid": "0x311A",
+   "id": "list",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 90,
+   "stored": 90
+  },
+  {
+   "pid": "0x311B",
+   "id": "list",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": -7,
+   "stored": 65529
+  },
+  {
+   "pid": "0x311C",
+   "id": "pid_Solar pump state",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x311F",
+   "id": "solar_pump_mode",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3120",
+   "id": "pid_Solar status",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3121",
+   "id": "pid_Exchanger cleaning duration [s",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x3121",
+   "id": "pid_Exchanger cleaning duration [s",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x3122",
+   "id": "k_exch_int",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 210,
+   "stored": 210
+  },
+  {
+   "pid": "0x3123",
+   "id": "pid_",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3123",
+   "id": "pid_",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3124",
+   "id": "pid_",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3125",
+   "id": "pid_",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3126",
+   "id": "pid_",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3127",
+   "id": "pid_Clean burner monit period [kg]",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3128",
+   "id": "pid_Clean exchanger monit period [",
+   "widget": "0x200169ec",
+   "before": "7",
+   "after": "60",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3173",
+   "id": "pid_Buffer T3 measured temperature",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 407,
+   "stored": 407
+  },
+  {
+   "pid": "0x3174",
+   "id": "pid_Buffer internal energy [%]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 0
+  },
+  {
+   "pid": "0x3506",
+   "id": "alarm_snd",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3507",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3509",
+   "id": "alarm_sil_to",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 15,
+   "stored": 15
+  },
+  {
+   "pid": "0x350A",
+   "id": "list",
+   "widget": "0x20016a24",
+   "before": "#text hidden",
+   "after": "T. powrotu=0.0",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x350B",
+   "id": "list",
+   "widget": "0x20016a24",
+   "before": "#text hidden",
+   "after": "T. powrotu=0.0",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x350D",
+   "id": "list",
+   "widget": "0x20016a94",
+   "before": "#text hidden",
+   "after": "Ciśnienie=0.0",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3514",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x3519",
+   "id": "pid_Cascade current power lvel",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x351A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x351E",
+   "id": "fuel_transporter_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x351F",
+   "id": "fuel_storage_feeder_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3526",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x3602",
+   "id": "pid_Is fuel reserve",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3602",
+   "id": "pid_Is fuel reserve",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3602",
+   "id": "pid_Is fuel reserve",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3603",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3603",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3603",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3603",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3604",
+   "id": "boil_fuel_reserve",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3604",
+   "id": "boil_fuel_reserve",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3604",
+   "id": "boil_fuel_reserve",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3605",
+   "id": "p_lambda",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3605",
+   "id": "p_lambda",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3605",
+   "id": "p_lambda",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3606",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3606",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3606",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3606",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3607",
+   "id": "pid_Reserve sensor state",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3607",
+   "id": "pid_Reserve sensor state",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3607",
+   "id": "pid_Reserve sensor state",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3607",
+   "id": "pid_Reserve sensor state",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3608",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3608",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3608",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3609",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3609",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3609",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x360A",
+   "id": "pid_State on closing actuator out ",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x360A",
+   "id": "pid_State on closing actuator out ",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x360A",
+   "id": "pid_State on closing actuator out ",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3610",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3610",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3610",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3611",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3611",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3611",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3612",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3612",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3612",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3613",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3613",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3613",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3614",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3614",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3614",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3614",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3615",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3615",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3615",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3615",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3616",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3616",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3616",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3617",
+   "id": "pid_Statistics - Grate cleaning co",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3617",
+   "id": "pid_Statistics - Grate cleaning co",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3617",
+   "id": "pid_Statistics - Grate cleaning co",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3618",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3618",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3618",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3618",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3619",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3619",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3619",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3619",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3620",
+   "id": "pid_Inside temp [C] CAN IO 5",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3620",
+   "id": "pid_Inside temp [C] CAN IO 5",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3620",
+   "id": "pid_Inside temp [C] CAN IO 5",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3621",
+   "id": "pid_Inside temp [C] CAN IO 6",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3621",
+   "id": "pid_Inside temp [C] CAN IO 6",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3621",
+   "id": "pid_Inside temp [C] CAN IO 6",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3622",
+   "id": "pid_Inside temp [C] CAN IO 7",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3622",
+   "id": "pid_Inside temp [C] CAN IO 7",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3622",
+   "id": "pid_Inside temp [C] CAN IO 7",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3623",
+   "id": "pid_Inside temp [C] CAN IO 4",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3623",
+   "id": "pid_Inside temp [C] CAN IO 4",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3623",
+   "id": "pid_Inside temp [C] CAN IO 4",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3624",
+   "id": "pid_Inside temp [C] CAN IO 3",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3624",
+   "id": "pid_Inside temp [C] CAN IO 3",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3624",
+   "id": "pid_Inside temp [C] CAN IO 3",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3625",
+   "id": "pid_Inside temp [C] CAN IO 2",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3625",
+   "id": "pid_Inside temp [C] CAN IO 2",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3625",
+   "id": "pid_Inside temp [C] CAN IO 2",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3626",
+   "id": "pid_Inside temp [C] CAN IO 1",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3626",
+   "id": "pid_Inside temp [C] CAN IO 1",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3626",
+   "id": "pid_Inside temp [C] CAN IO 1",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3627",
+   "id": "pid_Inside temp [C] CAN IO 0",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3627",
+   "id": "pid_Inside temp [C] CAN IO 0",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3627",
+   "id": "pid_Inside temp [C] CAN IO 0",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3628",
+   "id": "pid_Statistics - total energy prod",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3628",
+   "id": "pid_Statistics - total energy prod",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3628",
+   "id": "pid_Statistics - total energy prod",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3628",
+   "id": "pid_Statistics - total energy prod",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3629",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3629",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3629",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x362A",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x362A",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x362A",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x362B",
+   "id": "pid_Airflow meter",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x362B",
+   "id": "pid_Airflow meter",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x362B",
+   "id": "pid_Airflow meter",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x362C",
+   "id": "pid_Total grate unblock try count",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x362C",
+   "id": "pid_Total grate unblock try count",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x362C",
+   "id": "pid_Total grate unblock try count",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3630",
+   "id": "pid_CAN IO 0 sw. ver. before dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3630",
+   "id": "pid_CAN IO 0 sw. ver. before dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3630",
+   "id": "pid_CAN IO 0 sw. ver. before dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3631",
+   "id": "pid_CAN IO 1 sw. ver. before dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3631",
+   "id": "pid_CAN IO 1 sw. ver. before dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3631",
+   "id": "pid_CAN IO 1 sw. ver. before dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3632",
+   "id": "pid_CAN IO 2 sw. ver. before dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3632",
+   "id": "pid_CAN IO 2 sw. ver. before dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3632",
+   "id": "pid_CAN IO 2 sw. ver. before dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3633",
+   "id": "pid_CAN IO 3 sw. ver. before dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3633",
+   "id": "pid_CAN IO 3 sw. ver. before dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3633",
+   "id": "pid_CAN IO 3 sw. ver. before dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3634",
+   "id": "pid_CAN IO 4 sw. ver. before dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3634",
+   "id": "pid_CAN IO 4 sw. ver. before dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3634",
+   "id": "pid_CAN IO 4 sw. ver. before dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3635",
+   "id": "pid_CAN IO 5 sw. ver. before dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3635",
+   "id": "pid_CAN IO 5 sw. ver. before dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3635",
+   "id": "pid_CAN IO 5 sw. ver. before dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3635",
+   "id": "pid_CAN IO 5 sw. ver. before dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3636",
+   "id": "pid_CAN IO 6 sw. ver. before dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3636",
+   "id": "pid_CAN IO 6 sw. ver. before dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3636",
+   "id": "pid_CAN IO 6 sw. ver. before dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3636",
+   "id": "pid_CAN IO 6 sw. ver. before dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3637",
+   "id": "pid_CAN IO 7 sw. ver. before dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3637",
+   "id": "pid_CAN IO 7 sw. ver. before dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3637",
+   "id": "pid_CAN IO 7 sw. ver. before dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3638",
+   "id": "pid_CAN IO 0 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3638",
+   "id": "pid_CAN IO 0 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3638",
+   "id": "pid_CAN IO 0 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3639",
+   "id": "pid_CAN IO 1 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3639",
+   "id": "pid_CAN IO 1 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3639",
+   "id": "pid_CAN IO 1 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363A",
+   "id": "pid_CAN IO 2 sw. ver. after dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363A",
+   "id": "pid_CAN IO 2 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363A",
+   "id": "pid_CAN IO 2 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363A",
+   "id": "pid_CAN IO 2 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363B",
+   "id": "pid_CAN IO 3 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363B",
+   "id": "pid_CAN IO 3 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363B",
+   "id": "pid_CAN IO 3 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363C",
+   "id": "pid_CAN IO 4 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363C",
+   "id": "pid_CAN IO 4 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363C",
+   "id": "pid_CAN IO 4 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363D",
+   "id": "pid_CAN IO 5 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363D",
+   "id": "pid_CAN IO 5 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363D",
+   "id": "pid_CAN IO 5 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363E",
+   "id": "pid_CAN IO 6 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363E",
+   "id": "pid_CAN IO 6 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363E",
+   "id": "pid_CAN IO 6 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363F",
+   "id": "pid_CAN IO 7 sw. ver. after dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363F",
+   "id": "pid_CAN IO 7 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363F",
+   "id": "pid_CAN IO 7 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363F",
+   "id": "pid_CAN IO 7 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3640",
+   "id": "pid_Inside temp [C] CAN IO Mini 0",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3640",
+   "id": "pid_Inside temp [C] CAN IO Mini 0",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3640",
+   "id": "pid_Inside temp [C] CAN IO Mini 0",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3648",
+   "id": "pid_CAN IO Mini 0 sw. ver. before ",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3648",
+   "id": "pid_CAN IO Mini 0 sw. ver. before ",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3648",
+   "id": "pid_CAN IO Mini 0 sw. ver. before ",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3650",
+   "id": "pid_CAN IO Mini 0 sw. ver. after d",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3650",
+   "id": "pid_CAN IO Mini 0 sw. ver. after d",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3650",
+   "id": "pid_CAN IO Mini 0 sw. ver. after d",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3658",
+   "id": "pid_CAN IO Big sw. ver. before dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3658",
+   "id": "pid_CAN IO Big sw. ver. before dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3658",
+   "id": "pid_CAN IO Big sw. ver. before dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3659",
+   "id": "pid_CAN IO Big sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3659",
+   "id": "pid_CAN IO Big sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3659",
+   "id": "pid_CAN IO Big sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365A",
+   "id": "pid_Lambda module sw. ver. before ",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365A",
+   "id": "pid_Lambda module sw. ver. before ",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365A",
+   "id": "pid_Lambda module sw. ver. before ",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365B",
+   "id": "pid_Lambda module sw. ver. after d",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365B",
+   "id": "pid_Lambda module sw. ver. after d",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365B",
+   "id": "pid_Lambda module sw. ver. after d",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365C",
+   "id": "pid_Vide room 1 sw. ver. before do",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365C",
+   "id": "pid_Vide room 1 sw. ver. before do",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365C",
+   "id": "pid_Vide room 1 sw. ver. before do",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365D",
+   "id": "pid_Vide room 2 sw. ver. before do",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365D",
+   "id": "pid_Vide room 2 sw. ver. before do",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365D",
+   "id": "pid_Vide room 2 sw. ver. before do",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365E",
+   "id": "pid_Vide room 3 sw. ver. before do",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365E",
+   "id": "pid_Vide room 3 sw. ver. before do",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365E",
+   "id": "pid_Vide room 3 sw. ver. before do",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365F",
+   "id": "pid_Vide room 4 sw. ver. before do",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365F",
+   "id": "pid_Vide room 4 sw. ver. before do",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365F",
+   "id": "pid_Vide room 4 sw. ver. before do",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3660",
+   "id": "pid_Vide room 1 sw. ver. after dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3660",
+   "id": "pid_Vide room 1 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3660",
+   "id": "pid_Vide room 1 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3660",
+   "id": "pid_Vide room 1 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3661",
+   "id": "pid_Vide room 2 sw. ver. after dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3661",
+   "id": "pid_Vide room 2 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3661",
+   "id": "pid_Vide room 2 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3661",
+   "id": "pid_Vide room 2 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3662",
+   "id": "pid_Vide room 3 sw. ver. after dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3662",
+   "id": "pid_Vide room 3 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3662",
+   "id": "pid_Vide room 3 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3662",
+   "id": "pid_Vide room 3 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3663",
+   "id": "pid_Vide room 4 sw. ver. after dot",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3663",
+   "id": "pid_Vide room 4 sw. ver. after dot",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3663",
+   "id": "pid_Vide room 4 sw. ver. after dot",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3664",
+   "id": "pid_soft. version",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3664",
+   "id": "pid_soft. version",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3664",
+   "id": "pid_soft. version",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3665",
+   "id": "pid_igneTouch boiler short name",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3665",
+   "id": "pid_igneTouch boiler short name",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3665",
+   "id": "pid_igneTouch boiler short name",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3666",
+   "id": "pid_Airflowmeter 1 sw. ver. before",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3666",
+   "id": "pid_Airflowmeter 1 sw. ver. before",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3666",
+   "id": "pid_Airflowmeter 1 sw. ver. before",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3667",
+   "id": "pid_Airflowmeter 1 sw. ver. after ",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3667",
+   "id": "pid_Airflowmeter 1 sw. ver. after ",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3667",
+   "id": "pid_Airflowmeter 1 sw. ver. after ",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x366A",
+   "id": "pid_RadioGateway sw. ver. before d",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x366A",
+   "id": "pid_RadioGateway sw. ver. before d",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x366A",
+   "id": "pid_RadioGateway sw. ver. before d",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x366B",
+   "id": "pid_RadioGateway sw. ver. after do",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x366B",
+   "id": "pid_RadioGateway sw. ver. after do",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x366B",
+   "id": "pid_RadioGateway sw. ver. after do",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x366B",
+   "id": "pid_RadioGateway sw. ver. after do",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3700",
+   "id": "p_feeder_period",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 68,
+   "stored": 68
+  },
+  {
+   "pid": "0x3700",
+   "id": "p_feeder_period",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 68,
+   "stored": 68
+  },
+  {
+   "pid": "0x3700",
+   "id": "p_feeder_period",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 68,
+   "stored": 68
+  },
+  {
+   "pid": "0x3700",
+   "id": "p_feeder_period",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 68,
+   "stored": 68
+  },
+  {
+   "pid": "0x3701",
+   "id": "k_egt_min",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 70,
+   "stored": 70
+  },
+  {
+   "pid": "0x3701",
+   "id": "k_egt_min",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 70,
+   "stored": 70
+  },
+  {
+   "pid": "0x3701",
+   "id": "k_egt_min",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 70,
+   "stored": 70
+  },
+  {
+   "pid": "0x3702",
+   "id": "pid_Nominal exhaust gas temp. [C]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 117,
+   "stored": 117
+  },
+  {
+   "pid": "0x3702",
+   "id": "pid_Nominal exhaust gas temp. [C]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 117,
+   "stored": 117
+  },
+  {
+   "pid": "0x3702",
+   "id": "pid_Nominal exhaust gas temp. [C]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 117,
+   "stored": 117
+  },
+  {
+   "pid": "0x3703",
+   "id": "k_egt_max",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 180,
+   "stored": 180
+  },
+  {
+   "pid": "0x3703",
+   "id": "k_egt_max",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 180,
+   "stored": 180
+  },
+  {
+   "pid": "0x3703",
+   "id": "k_egt_max",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 180,
+   "stored": 180
+  },
+  {
+   "pid": "0x3704",
+   "id": "p_blow_glow",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 50,
+   "stored": 50
+  },
+  {
+   "pid": "0x3704",
+   "id": "p_blow_glow",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 50,
+   "stored": 50
+  },
+  {
+   "pid": "0x3704",
+   "id": "p_blow_glow",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 50,
+   "stored": 50
+  },
+  {
+   "pid": "0x3704",
+   "id": "p_blow_glow",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 50,
+   "stored": 50
+  },
+  {
+   "pid": "0x3705",
+   "id": "pid_Blower power in hold/pause [%]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x3705",
+   "id": "pid_Blower power in hold/pause [%]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x3705",
+   "id": "pid_Blower power in hold/pause [%]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x3706",
+   "id": "k_pwr",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x3706",
+   "id": "k_pwr",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x3706",
+   "id": "k_pwr",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x3707",
+   "id": "pid_EGT sensor type",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3707",
+   "id": "pid_EGT sensor type",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3707",
+   "id": "pid_EGT sensor type",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3707",
+   "id": "pid_EGT sensor type",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3708",
+   "id": "boil_pump_run",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x3708",
+   "id": "boil_pump_run",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x3708",
+   "id": "boil_pump_run",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x3709",
+   "id": "k_nominal",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 75,
+   "stored": 75
+  },
+  {
+   "pid": "0x3709",
+   "id": "k_nominal",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 75,
+   "stored": 75
+  },
+  {
+   "pid": "0x3709",
+   "id": "k_nominal",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 75,
+   "stored": 75
+  },
+  {
+   "pid": "0x370A",
+   "id": "pid_Boiler image selector",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x370A",
+   "id": "pid_Boiler image selector",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x370A",
+   "id": "pid_Boiler image selector",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x370A",
+   "id": "pid_Boiler image selector",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x370B",
+   "id": "p_burner_feed",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 190,
+   "stored": 190
+  },
+  {
+   "pid": "0x370B",
+   "id": "p_burner_feed",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 190,
+   "stored": 190
+  },
+  {
+   "pid": "0x370B",
+   "id": "p_burner_feed",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 190,
+   "stored": 190
+  },
+  {
+   "pid": "0x370C",
+   "id": "pid_Min fire up time [min]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x370C",
+   "id": "pid_Min fire up time [min]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x370C",
+   "id": "pid_Min fire up time [min]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x370D",
+   "id": "feed_manual_run",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 107,
+   "stored": 107
+  },
+  {
+   "pid": "0x370D",
+   "id": "feed_manual_run",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 107,
+   "stored": 107
+  },
+  {
+   "pid": "0x370D",
+   "id": "feed_manual_run",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 107,
+   "stored": 107
+  },
+  {
+   "pid": "0x370D",
+   "id": "feed_manual_run",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 107,
+   "stored": 107
+  },
+  {
+   "pid": "0x370E",
+   "id": "k_predose_g",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x370E",
+   "id": "k_predose_g",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x370E",
+   "id": "k_predose_g",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x370F",
+   "id": "pid_Burning off burner feeder work",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 67,
+   "stored": 67
+  },
+  {
+   "pid": "0x370F",
+   "id": "pid_Burning off burner feeder work",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 67,
+   "stored": 67
+  },
+  {
+   "pid": "0x370F",
+   "id": "pid_Burning off burner feeder work",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 67,
+   "stored": 67
+  },
+  {
+   "pid": "0x370F",
+   "id": "pid_Burning off burner feeder work",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 67,
+   "stored": 67
+  },
+  {
+   "pid": "0x3710",
+   "id": "k_cons",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x3710",
+   "id": "k_cons",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x3710",
+   "id": "k_cons",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x3711",
+   "id": "k_grate_t",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 180
+  },
+  {
+   "pid": "0x3711",
+   "id": "k_grate_t",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 180
+  },
+  {
+   "pid": "0x3711",
+   "id": "k_grate_t",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 180
+  },
+  {
+   "pid": "0x3712",
+   "id": "pid_Blower type",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3712",
+   "id": "pid_Blower type",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3712",
+   "id": "pid_Blower type",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3713",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 97,
+   "stored": 60
+  },
+  {
+   "pid": "0x3713",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 97,
+   "stored": 60
+  },
+  {
+   "pid": "0x3713",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 97,
+   "stored": 60
+  },
+  {
+   "pid": "0x3714",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 17,
+   "stored": 5
+  },
+  {
+   "pid": "0x3714",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 17,
+   "stored": 5
+  },
+  {
+   "pid": "0x3714",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 17,
+   "stored": 5
+  },
+  {
+   "pid": "0x3715",
+   "id": "p_pause_time",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 47,
+   "stored": 0
+  },
+  {
+   "pid": "0x3715",
+   "id": "p_pause_time",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 47,
+   "stored": 0
+  },
+  {
+   "pid": "0x3715",
+   "id": "p_pause_time",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 47,
+   "stored": 0
+  },
+  {
+   "pid": "0x3716",
+   "id": "p_pause_power",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 17,
+   "stored": 10
+  },
+  {
+   "pid": "0x3716",
+   "id": "p_pause_power",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 17,
+   "stored": 10
+  },
+  {
+   "pid": "0x3716",
+   "id": "p_pause_power",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 17,
+   "stored": 10
+  },
+  {
+   "pid": "0x3717",
+   "id": "p_pause_blow",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 23,
+   "stored": 20
+  },
+  {
+   "pid": "0x3717",
+   "id": "p_pause_blow",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 23,
+   "stored": 20
+  },
+  {
+   "pid": "0x3717",
+   "id": "p_pause_blow",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 23,
+   "stored": 20
+  },
+  {
+   "pid": "0x3718",
+   "id": "pid_Next service date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3718",
+   "id": "pid_Next service date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3718",
+   "id": "pid_Next service date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3719",
+   "id": "pid_Confirm. service date timestam",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3719",
+   "id": "pid_Confirm. service date timestam",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3719",
+   "id": "pid_Confirm. service date timestam",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x371A",
+   "id": "pid_Airflowmeter 1 flow",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x371A",
+   "id": "pid_Airflowmeter 1 flow",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x371A",
+   "id": "pid_Airflowmeter 1 flow",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x371B",
+   "id": "pid_Min airflow (blower 100%) [dm/",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 343,
+   "stored": 20
+  },
+  {
+   "pid": "0x371B",
+   "id": "pid_Min airflow (blower 100%) [dm/",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 343,
+   "stored": 20
+  },
+  {
+   "pid": "0x371B",
+   "id": "pid_Min airflow (blower 100%) [dm/",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 343,
+   "stored": 20
+  },
+  {
+   "pid": "0x371C",
+   "id": "pid_Boiler efficiency [d%]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x371C",
+   "id": "pid_Boiler efficiency [d%]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x371C",
+   "id": "pid_Boiler efficiency [d%]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x371D",
+   "id": "pid_Oxygen target [0.1%]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 0
+  },
+  {
+   "pid": "0x371D",
+   "id": "pid_Oxygen target [0.1%]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 0
+  },
+  {
+   "pid": "0x371D",
+   "id": "pid_Oxygen target [0.1%]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 0
+  },
+  {
+   "pid": "0x371E",
+   "id": "pid_Airflowmeter 2 flow",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x371E",
+   "id": "pid_Airflowmeter 2 flow",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x371E",
+   "id": "pid_Airflowmeter 2 flow",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x371F",
+   "id": "pid_Lambda oxygen averaged [%]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 6,
+   "stored": 0
+  },
+  {
+   "pid": "0x371F",
+   "id": "pid_Lambda oxygen averaged [%]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 0
+  },
+  {
+   "pid": "0x371F",
+   "id": "pid_Lambda oxygen averaged [%]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 6,
+   "stored": 0
+  },
+  {
+   "pid": "0x3720",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 23,
+   "stored": 12
+  },
+  {
+   "pid": "0x3720",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 23,
+   "stored": 12
+  },
+  {
+   "pid": "0x3720",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 23,
+   "stored": 12
+  },
+  {
+   "pid": "0x3721",
+   "id": "pid_Outside temperature averaged",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 173,
+   "stored": 0
+  },
+  {
+   "pid": "0x3721",
+   "id": "pid_Outside temperature averaged",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 173,
+   "stored": 0
+  },
+  {
+   "pid": "0x3721",
+   "id": "pid_Outside temperature averaged",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 173,
+   "stored": 0
+  },
+  {
+   "pid": "0x3722",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3722",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3722",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3723",
+   "id": "pid_Settings recovered count",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 2
+  },
+  {
+   "pid": "0x3723",
+   "id": "pid_Settings recovered count",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 2
+  },
+  {
+   "pid": "0x3723",
+   "id": "pid_Settings recovered count",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 2
+  },
+  {
+   "pid": "0x3724",
+   "id": "pid_Out temp. radio sensor batt. v",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 5678
+  },
+  {
+   "pid": "0x3724",
+   "id": "pid_Out temp. radio sensor batt. v",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 5678
+  },
+  {
+   "pid": "0x3724",
+   "id": "pid_Out temp. radio sensor batt. v",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 5678
+  },
+  {
+   "pid": "0x3725",
+   "id": "pid_Out temp. radio sensor signal ",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3725",
+   "id": "pid_Out temp. radio sensor signal ",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3725",
+   "id": "pid_Out temp. radio sensor signal ",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3726",
+   "id": "pid_Out temp. radio sensor time si",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 6180
+  },
+  {
+   "pid": "0x3726",
+   "id": "pid_Out temp. radio sensor time si",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 6180
+  },
+  {
+   "pid": "0x3726",
+   "id": "pid_Out temp. radio sensor time si",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 6180
+  },
+  {
+   "pid": "0x3727",
+   "id": "pid_Burner feeder absolut work tim",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 27,
+   "stored": 10
+  },
+  {
+   "pid": "0x3727",
+   "id": "pid_Burner feeder absolut work tim",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 27,
+   "stored": 10
+  },
+  {
+   "pid": "0x3727",
+   "id": "pid_Burner feeder absolut work tim",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 27,
+   "stored": 10
+  },
+  {
+   "pid": "0x3728",
+   "id": "pid_Is reset required",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3728",
+   "id": "pid_Is reset required",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3728",
+   "id": "pid_Is reset required",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3729",
+   "id": "pid_Is summer time",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3729",
+   "id": "pid_Is summer time",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3729",
+   "id": "pid_Is summer time",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x372A",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 17,
+   "stored": 18
+  },
+  {
+   "pid": "0x372A",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 17,
+   "stored": 18
+  },
+  {
+   "pid": "0x372A",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 17,
+   "stored": 18
+  },
+  {
+   "pid": "0x372B",
+   "id": "pid_Out temp. radio sensor sw. ver",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x372B",
+   "id": "pid_Out temp. radio sensor sw. ver",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x372B",
+   "id": "pid_Out temp. radio sensor sw. ver",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x372C",
+   "id": "pid_Out temp. radio sensor sw. ver",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x372C",
+   "id": "pid_Out temp. radio sensor sw. ver",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x372C",
+   "id": "pid_Out temp. radio sensor sw. ver",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x372D",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x372D",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x372D",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x372E",
+   "id": "pid_[m%]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 70000,
+   "stored": 100000
+  },
+  {
+   "pid": "0x372E",
+   "id": "pid_[m%]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 70000,
+   "stored": 100000
+  },
+  {
+   "pid": "0x372E",
+   "id": "pid_[m%]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 70000,
+   "stored": 100000
+  },
+  {
+   "pid": "0x372F",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x372F",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x372F",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3730",
+   "id": "pid_SSID part 1",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3730",
+   "id": "pid_SSID part 1",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3730",
+   "id": "pid_SSID part 1",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3731",
+   "id": "pid_SSID part 2",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3731",
+   "id": "pid_SSID part 2",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3731",
+   "id": "pid_SSID part 2",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3732",
+   "id": "pid_SSID part 3",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3732",
+   "id": "pid_SSID part 3",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3732",
+   "id": "pid_SSID part 3",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3733",
+   "id": "pid_SSID part 4",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3733",
+   "id": "pid_SSID part 4",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3733",
+   "id": "pid_SSID part 4",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3734",
+   "id": "pid_SSID part 5",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3734",
+   "id": "pid_SSID part 5",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3734",
+   "id": "pid_SSID part 5",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3735",
+   "id": "pid_SSID part 6",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3735",
+   "id": "pid_SSID part 6",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3735",
+   "id": "pid_SSID part 6",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3736",
+   "id": "pid_KEY part 1",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3736",
+   "id": "pid_KEY part 1",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3736",
+   "id": "pid_KEY part 1",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3737",
+   "id": "pid_KEY part 2",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3737",
+   "id": "pid_KEY part 2",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3737",
+   "id": "pid_KEY part 2",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3738",
+   "id": "pid_KEY part 3",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3738",
+   "id": "pid_KEY part 3",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3738",
+   "id": "pid_KEY part 3",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3739",
+   "id": "pid_KEY part 4",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3739",
+   "id": "pid_KEY part 4",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3739",
+   "id": "pid_KEY part 4",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x373A",
+   "id": "pid_KEY part 5",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x373A",
+   "id": "pid_KEY part 5",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x373A",
+   "id": "pid_KEY part 5",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x373B",
+   "id": "pid_KEY part 6",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x373B",
+   "id": "pid_KEY part 6",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x373B",
+   "id": "pid_KEY part 6",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x373C",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x373C",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x373C",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x373D",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x373D",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x373D",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x373E",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x373E",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x373E",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x373F",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x373F",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x373F",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3740",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3740",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3740",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x3741",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3741",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3741",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3742",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3742",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3742",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3743",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3743",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3743",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3744",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3744",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3744",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3745",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3745",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3745",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3746",
+   "id": "pid_",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3746",
+   "id": "pid_",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3746",
+   "id": "pid_",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3747",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 7,
+   "stored": 0
+  },
+  {
+   "pid": "0x3747",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 7,
+   "stored": 0
+  },
+  {
+   "pid": "0x3747",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 7,
+   "stored": 0
+  },
+  {
+   "pid": "0x3748",
+   "id": "pid_Storage feeder pause in predos",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 8,
+   "stored": 2
+  },
+  {
+   "pid": "0x3748",
+   "id": "pid_Storage feeder pause in predos",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 8,
+   "stored": 2
+  },
+  {
+   "pid": "0x3748",
+   "id": "pid_Storage feeder pause in predos",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 8,
+   "stored": 2
+  },
+  {
+   "pid": "0x3749",
+   "id": "pid_Hot water circular pump state",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3749",
+   "id": "pid_Hot water circular pump state",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3749",
+   "id": "pid_Hot water circular pump state",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x374A",
+   "id": "pid_HW1 circular pump test",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 2,
+   "stored": 0
+  },
+  {
+   "pid": "0x374A",
+   "id": "pid_HW1 circular pump test",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 2,
+   "stored": 0
+  },
+  {
+   "pid": "0x374A",
+   "id": "pid_HW1 circular pump test",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 2,
+   "stored": 0
+  },
+  {
+   "pid": "0x374B",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 10,
+   "stored": 2
+  },
+  {
+   "pid": "0x374B",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 10,
+   "stored": 2
+  },
+  {
+   "pid": "0x374B",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 10,
+   "stored": 2
+  },
+  {
+   "pid": "0x374C",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 27,
+   "stored": 10
+  },
+  {
+   "pid": "0x374C",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 27,
+   "stored": 10
+  },
+  {
+   "pid": "0x374C",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 27,
+   "stored": 10
+  },
+  {
+   "pid": "0x374D",
+   "id": "pid_Burner plug disc. possible",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x374D",
+   "id": "pid_Burner plug disc. possible",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x374D",
+   "id": "pid_Burner plug disc. possible",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3750",
+   "id": "pid_Sweep mode",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3750",
+   "id": "pid_Sweep mode",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x3750",
+   "id": "pid_Sweep mode",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x4000",
+   "id": "ret_temp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 507,
+   "stored": 0
+  },
+  {
+   "pid": "0x4000",
+   "id": "ret_temp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 507,
+   "stored": 0
+  },
+  {
+   "pid": "0x4000",
+   "id": "ret_temp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 507,
+   "stored": 0
+  },
+  {
+   "pid": "0x4001",
+   "id": "ch1_temp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4001",
+   "id": "ch1_temp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4001",
+   "id": "ch1_temp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4002",
+   "id": "ch2_temp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4002",
+   "id": "ch2_temp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4002",
+   "id": "ch2_temp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4003",
+   "id": "pid_CH temp measured",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4003",
+   "id": "pid_CH temp measured",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4003",
+   "id": "pid_CH temp measured",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4004",
+   "id": "pid_CH temp measured",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4004",
+   "id": "pid_CH temp measured",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4004",
+   "id": "pid_CH temp measured",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x4005",
+   "id": "burner_power",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 40,
+   "stored": 0
+  },
+  {
+   "pid": "0x4005",
+   "id": "burner_power",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 0
+  },
+  {
+   "pid": "0x4005",
+   "id": "burner_power",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 0
+  },
+  {
+   "pid": "0x4006",
+   "id": "pid_Power regulator [%]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x4006",
+   "id": "pid_Power regulator [%]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x4006",
+   "id": "pid_Power regulator [%]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x4007",
+   "id": "pid_Blower power [%]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x4007",
+   "id": "pid_Blower power [%]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x4007",
+   "id": "pid_Blower power [%]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x4008",
+   "id": "pid_Burning type active",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 2,
+   "stored": 0
+  },
+  {
+   "pid": "0x4008",
+   "id": "pid_Burning type active",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 2,
+   "stored": 0
+  },
+  {
+   "pid": "0x4008",
+   "id": "pid_Burning type active",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 2,
+   "stored": 0
+  },
+  {
+   "pid": "0x4009",
+   "id": "pid_Exhaust gas temperature (2) [C",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 107,
+   "stored": 0
+  },
+  {
+   "pid": "0x4009",
+   "id": "pid_Exhaust gas temperature (2) [C",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 107,
+   "stored": 0
+  },
+  {
+   "pid": "0x4009",
+   "id": "pid_Exhaust gas temperature (2) [C",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 107,
+   "stored": 0
+  },
+  {
+   "pid": "0x400A",
+   "id": "pid_Virt. energy consumer set temp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 59,
+   "stored": 7
+  },
+  {
+   "pid": "0x400A",
+   "id": "pid_Virt. energy consumer set temp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 59,
+   "stored": 7
+  },
+  {
+   "pid": "0x400A",
+   "id": "pid_Virt. energy consumer set temp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 59,
+   "stored": 7
+  },
+  {
+   "pid": "0x400C",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400C",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400C",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400D",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400D",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400D",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400E",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400E",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400E",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400F",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400F",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x400F",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 50
+  },
+  {
+   "pid": "0x4010",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4010",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4010",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4011",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 196708
+  },
+  {
+   "pid": "0x4011",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 196708
+  },
+  {
+   "pid": "0x4011",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 196708
+  },
+  {
+   "pid": "0x4012",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 196713
+  },
+  {
+   "pid": "0x4012",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 196713
+  },
+  {
+   "pid": "0x4012",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 196713
+  },
+  {
+   "pid": "0x4013",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 131182
+  },
+  {
+   "pid": "0x4013",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131182
+  },
+  {
+   "pid": "0x4013",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131182
+  },
+  {
+   "pid": "0x4014",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 131187
+  },
+  {
+   "pid": "0x4014",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131187
+  },
+  {
+   "pid": "0x4014",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131187
+  },
+  {
+   "pid": "0x4015",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 131092
+  },
+  {
+   "pid": "0x4015",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131092
+  },
+  {
+   "pid": "0x4015",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131092
+  },
+  {
+   "pid": "0x4016",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 131093
+  },
+  {
+   "pid": "0x4016",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131093
+  },
+  {
+   "pid": "0x4016",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131093
+  },
+  {
+   "pid": "0x4017",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 131094
+  },
+  {
+   "pid": "0x4017",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131094
+  },
+  {
+   "pid": "0x4017",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131094
+  },
+  {
+   "pid": "0x4018",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 131095
+  },
+  {
+   "pid": "0x4018",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131095
+  },
+  {
+   "pid": "0x4018",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131095
+  },
+  {
+   "pid": "0x4019",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 131178
+  },
+  {
+   "pid": "0x4019",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131178
+  },
+  {
+   "pid": "0x4019",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131178
+  },
+  {
+   "pid": "0x401A",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 196718
+  },
+  {
+   "pid": "0x401A",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 196718
+  },
+  {
+   "pid": "0x401A",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 196718
+  },
+  {
+   "pid": "0x401B",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 131195
+  },
+  {
+   "pid": "0x401B",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131195
+  },
+  {
+   "pid": "0x401B",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 131195
+  },
+  {
+   "pid": "0x401C",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401C",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401C",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401D",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401D",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401D",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401E",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401E",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401E",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401F",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401F",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x401F",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4020",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4020",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4020",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4021",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4021",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4021",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4022",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4022",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4022",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4023",
+   "id": "pid_Alarm register",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4023",
+   "id": "pid_Alarm register",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4023",
+   "id": "pid_Alarm register",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4024",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4024",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4024",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4025",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4025",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4025",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4026",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4026",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4026",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4027",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4027",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4027",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4028",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4028",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4028",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4029",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4029",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4029",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402A",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402A",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402A",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402B",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402B",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402B",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402C",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402C",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402C",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402D",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402D",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402D",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402E",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402E",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402E",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402F",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402F",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402F",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x4030",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4030",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4030",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4031",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4031",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4031",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4032",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4032",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4032",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4033",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4033",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4033",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4034",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4034",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4034",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4035",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4035",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4035",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4036",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4036",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4036",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4037",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4037",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4037",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4038",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4038",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4038",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4039",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4039",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4039",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403A",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403A",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403A",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403B",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403B",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403B",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403C",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403C",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403C",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403D",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403D",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403D",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403E",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403E",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403E",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403F",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403F",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x403F",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4040",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4040",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4040",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4041",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4041",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4041",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4042",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4042",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4042",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4043",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4043",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4043",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 0
+  },
+  {
+   "pid": "0x4044",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4044",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4044",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4045",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4045",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4045",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4046",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4046",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4046",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4047",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4047",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4047",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4048",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4048",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4048",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4049",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4049",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x4049",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x404A",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x404A",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x404A",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x404B",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x404B",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x404B",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1431655772,
+   "stored": 5678
+  },
+  {
+   "pid": "0x404C",
+   "id": "pid_Alarm next index",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 13,
+   "stored": 12
+  },
+  {
+   "pid": "0x404C",
+   "id": "pid_Alarm next index",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 13,
+   "stored": 12
+  },
+  {
+   "pid": "0x404C",
+   "id": "pid_Alarm next index",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 13,
+   "stored": 12
+  },
+  {
+   "pid": "0x404D",
+   "id": "pid_Number of alarms",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 13,
+   "stored": 11
+  },
+  {
+   "pid": "0x404D",
+   "id": "pid_Number of alarms",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 13,
+   "stored": 11
+  },
+  {
+   "pid": "0x404D",
+   "id": "pid_Number of alarms",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 13,
+   "stored": 11
+  },
+  {
+   "pid": "0x404E",
+   "id": "list",
+   "widget": "0x20016acc",
+   "before": "#other hidden=True",
+   "after": "#other hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x404E",
+   "id": "list",
+   "widget": "0x20016af8",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x404E",
+   "id": "list",
+   "widget": "0x20016b24",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 0
+  },
+  {
+   "pid": "0x2001",
+   "id": "boiler_temp",
+   "widget": "0x200169b4",
+   "before": "69.1",
+   "after": "55.2",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  }
+ ],
+ "done": 658,
+ "total": 658
+}

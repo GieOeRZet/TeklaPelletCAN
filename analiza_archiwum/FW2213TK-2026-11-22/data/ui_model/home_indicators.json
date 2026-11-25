@@ -50,6 +50,24 @@
    "restored": "licznik przywrocony do 21 kg",
    "series_2026_11_25_19_49": "zdjecia w kolejnosci 80,60,30,15,5 kg (zapis co ok. 10 s); stan palnika Rozpalanie; liczby kropek orientacyjne z fotografii (rozmycie)",
    "model": "HIPOTEZA (STRONG): obrys (bitmapa 51) + siatka kropek (bitmapa 52) odslaniana OD DOLU proporcjonalnie do ilosci paliwa (kropki dochodza rzedami: 100 kg ~pelna, 80 kg ~3 rzedy, 60 kg ~2 rzedy, 40 kg 3-4 kropki, 30 kg ~3, 21 kg 2, 15 kg 2, 10 kg 2, 5/2/0 kg 0); dokladne progi i pojemnosc odniesienia (135 kg?) do dopasowania"
+  },
+  "dots_rule": {
+   "evidence": "MEASURED (emulator, skan 0..140 kg, pojemnosc 135, licznik wstrzykiwany; liczba skladowych jasnych pikseli w ikonie) + STRONG (analiza kodu: FUN_080540de liczy udzial w promilach, FUN_08054104/FUN_08054162 porownuja z dwoma progami i pokazuja/chowaja elementy ikony)",
+   "principle": "ikona zalezy od PROCENTU NAPELNIENIA (paliwo / pojemnosc 0x3600), nie od kilogramow; siatka kropek odslaniana od dolu rzedami; rezerwa paliwa 0x3603 wyznacza obszar migania ikony",
+   "capacity_135_reserve_0": {
+    "0-10 kg": "sam obrys, 0 kropek",
+    "11-33 kg": "2 kropki",
+    "34-51 kg": "5 kropek",
+    "52-76 kg": "9 kropek",
+    "77-99 kg": "14 kropek",
+    "100-117 kg": "19 kropek",
+    "118+ kg": "24 kropki (pelna siatka)"
+   },
+   "thresholds_percent_of_capacity": "ok. 8, 25, 38, 57, 74, 87 % (granice miedzy 7.4-8.1, 24.4-25.2, 37.8-38.5, 56.3-57.0, 73.3-74.1, 86.7-87.4 %)",
+   "reserve_40_default": "przy domyslnej rezerwie 40 kg ikona migajaca (obrys + 3 kropki) dla 2-39 kg, od 40 kg stale",
+   "owner_real_boiler": "rezerwa 0x3603 = 0 (odczyt HA), pojemnosc 135 - brak migania",
+   "photo_agreement": "zdjecia: 0/2/5 kg 0 kropek zgodnie; 15/21 kg 2 kropki zgodnie; 10 kg na zdjeciu 2 kropki (emulator 0 - roznica 1 kg, mozliwy wplyw animacji poziomu FUN_080541ac); liczba kropek na zdjeciach zanizona przez rozmycie (40 kg: 3-4 vs 5; 80 kg: ~12 vs 14)",
+   "open": "dokladne progi w promilach (potrzebny odczyt stalych z kodu), animacja wypelniania, miganie przy rezerwie > 0"
   }
  },
  "other_measured": [

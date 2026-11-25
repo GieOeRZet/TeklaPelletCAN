@@ -41,5 +41,10 @@
    "path": "EKRAN GLOWNY -> MENU -> Kociol"
   },
   "general": "na dolnych belkach ekranow sa animowane ikony wyjsc/stanow (wentylator, podajniki, zapalarka, pompa, zawor); dane o tym, ktora ikona i kiedy: sonda emulatora bind_screen (BIND_STATE) w toku"
+ },
+ "bottom_row_icon_bindings_emulator": {
+  "evidence": "MEASURED (sonda bind_screen: 658 PID, tryb STATE/REVERT)",
+  "finding": "animowane ikony dolnych belek (wentylator, zapalarka, pompa, zawor) NIE reaguja na wstrzykniecie parametrow (ramki 0x584) - pochodza ze stanow wyjsc; powiazane parametrem sa m.in.: KOCIOL: 'T. powrotu' pojawia sie gdy 0x350A (czujnik powrotu) != 0, 'Cisnienie' gdy 0x350D != 0; OGRZEWANIE: mieszacz (ikony) wg 0x214B, napisy czujnika wg 0x22A1/0x22A2/0x22A5; CWU: temperatura 0x2110, zadana 0x201A; PALNIK: 'jasnosc' 0x2250, 'T. palnika' 0x226C, 'spaliny[C]' pojawia sie wg 0x3606/0x360A, 'tlen[%]' wg 0x2123",
+  "raw": "bind_raw/PAL_*.json, KOCIOL_all.json, OGRZEWANIE1_all.json, CWU_all.json"
  }
 }

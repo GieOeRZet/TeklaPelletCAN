@@ -1,0 +1,1832 @@
+{
+ "name": "CWU",
+ "bindings": [
+  {
+   "pid": "0x0005",
+   "id": "pid_Default settings request",
+   "widget": "0x20016248",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2001",
+   "id": "boiler_temp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 507,
+   "stored": 0
+  },
+  {
+   "pid": "0x2001",
+   "id": "boiler_temp",
+   "widget": "0x20016248",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 507,
+   "stored": 0
+  },
+  {
+   "pid": "0x2002",
+   "id": "boiler_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2005",
+   "id": "boiler_on",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2006",
+   "id": "in_zakaz",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x200C",
+   "id": "pid_Remote boiler 3 temp[dC]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x2017",
+   "id": "pid_Room measured temp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 473,
+   "stored": 473
+  },
+  {
+   "pid": "0x201A",
+   "id": "hw_set_result",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x201A",
+   "id": "hw_set_result",
+   "widget": "0x2001743c",
+   "before": "0",
+   "after": "173",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x201C",
+   "id": "cwu_tmax",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x204B",
+   "id": "pid_CH eco temp set [dC]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 140,
+   "stored": 140
+  },
+  {
+   "pid": "0x2064",
+   "id": "co_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2065",
+   "id": "co2_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2066",
+   "id": "pid_CH program",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2109",
+   "id": "pid_Solar temperature 1 [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x2110",
+   "id": "hw_temp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 473,
+   "stored": 0
+  },
+  {
+   "pid": "0x2127",
+   "id": "pid_CH schedule monday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x212A",
+   "id": "pid_CH schedule tuesday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x212C",
+   "id": "pid_CH schedule tuesday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x212D",
+   "id": "pid_CH schedule tuesday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2137",
+   "id": "pid_CH schedule friday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x213A",
+   "id": "pid_CH schedule saturday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x213D",
+   "id": "pid_CH schedule saturday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2140",
+   "id": "pid_CH schedule sunday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2146",
+   "id": "ch1_set_manual",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x214A",
+   "id": "co1_mixer_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x214C",
+   "id": "co3_mixer_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x214E",
+   "id": "p_o2_30",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 77,
+   "stored": 77
+  },
+  {
+   "pid": "0x2155",
+   "id": "pid_Hot water 1 schedule tuesday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2158",
+   "id": "pid_Hot water 1 schedule friday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2159",
+   "id": "pid_Hot water 1 schedule saturday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x215A",
+   "id": "pid_Airflow speed for 30% of power",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 175,
+   "stored": 175
+  },
+  {
+   "pid": "0x2160",
+   "id": "pid_Hot water 1 schedule sunday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2163",
+   "id": "pid_Weather forecast 2",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x2164",
+   "id": "pid_Weather validity left time [mi",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x2168",
+   "id": "pid_CH res [dC]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x216D",
+   "id": "ret_mixer_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2170",
+   "id": "pid_VideRoom PIN",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x218A",
+   "id": "pid_Is grate cleaning on",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 7,
+   "stored": 1
+  },
+  {
+   "pid": "0x2208",
+   "id": "boiler_hyst_on",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x220B",
+   "id": "pid_Boiler schedule wednesday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x220E",
+   "id": "pid_Boiler schedule saturday",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2211",
+   "id": "pid_",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 57,
+   "stored": 57
+  },
+  {
+   "pid": "0x2212",
+   "id": "cwu_hyst",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 18,
+   "stored": 18
+  },
+  {
+   "pid": "0x2251",
+   "id": "pid_Burner storage feeder",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 0
+  },
+  {
+   "pid": "0x2256",
+   "id": "p_prefeed",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 77,
+   "stored": 77
+  },
+  {
+   "pid": "0x2257",
+   "id": "p_feed_max",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 60,
+   "stored": 60
+  },
+  {
+   "pid": "0x2258",
+   "id": "p_cleans",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x225A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x2264",
+   "id": "fan_mod_4",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2267",
+   "id": "feed_manual_off",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1207,
+   "stored": 1207
+  },
+  {
+   "pid": "0x2268",
+   "id": "exh_c1",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x226A",
+   "id": "p_photo",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 42,
+   "stored": 42
+  },
+  {
+   "pid": "0x2273",
+   "id": "air_corr",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x227B",
+   "id": "pid_Pwr reg. Kp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 673,
+   "stored": 673
+  },
+  {
+   "pid": "0x227D",
+   "id": "pid_Pwr reg. Kd",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3340,
+   "stored": 3340
+  },
+  {
+   "pid": "0x227E",
+   "id": "pid_Pwr reg. Ki 2",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 673,
+   "stored": 673
+  },
+  {
+   "pid": "0x227F",
+   "id": "pid_Pwr reg. Kd 2",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3340,
+   "stored": 3340
+  },
+  {
+   "pid": "0x2288",
+   "id": "blower_test_pct",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2289",
+   "id": "p_blow_ign",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x228B",
+   "id": "pid_Grate full move time [s]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 174,
+   "stored": 174
+  },
+  {
+   "pid": "0x228C",
+   "id": "k_exh_pct",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 0
+  },
+  {
+   "pid": "0x2294",
+   "id": "pid_User fuel counter[kg]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x2298",
+   "id": "exh_fan_pct",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2299",
+   "id": "ch1_pump",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x229A",
+   "id": "ch2_pump",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x229C",
+   "id": "pid_CH pump state",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22A8",
+   "id": "pid_CH sensor use",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22B0",
+   "id": "pid_CH temp calc",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22B1",
+   "id": "co1_src_inc",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x22B4",
+   "id": "pid_CH delta source [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x22BA",
+   "id": "pid_CH mixer state",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x22BC",
+   "id": "pid_CH mixer state",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x22BD",
+   "id": "co1_hyst",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 23,
+   "stored": 5
+  },
+  {
+   "pid": "0x22BE",
+   "id": "pid_Room temp hysteresis [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 23,
+   "stored": 23
+  },
+  {
+   "pid": "0x22C1",
+   "id": "co1_calib",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 7,
+   "stored": 7
+  },
+  {
+   "pid": "0x22C9",
+   "id": "co1_curve_0",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22CE",
+   "id": "pid_CH temp for -20C [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22D1",
+   "id": "co1_source",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22D6",
+   "id": "pid_CH max temp [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x22E6",
+   "id": "pid_CH temp lowering [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 20,
+   "stored": 20
+  },
+  {
+   "pid": "0x22EB",
+   "id": "pid_Min CH temp for pump [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 33,
+   "stored": 33
+  },
+  {
+   "pid": "0x22F3",
+   "id": "pid_Permament pump",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22F4",
+   "id": "pid_Permament pump",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22F7",
+   "id": "pid_CH needed temp. [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 57,
+   "stored": 7
+  },
+  {
+   "pid": "0x22FF",
+   "id": "pid_CH status",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x2300",
+   "id": "pid_CH status",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 5
+  },
+  {
+   "pid": "0x2301",
+   "id": "in_regulator",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2304",
+   "id": "pid_CH thermostat state",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2308",
+   "id": "pid_CH room set temp. adjustment [",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": -17,
+   "stored": 65519
+  },
+  {
+   "pid": "0x2311",
+   "id": "pid_Room temp. radio sensor time s",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x2313",
+   "id": "pid_Room temp. radio sensor time s",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x2314",
+   "id": "pid_Room temp. radio sensor time s",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x2315",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x2319",
+   "id": "pid_Room temp. radio sensor soft. ",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x231D",
+   "id": "pid_Room temp. radio sensor soft. ",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x231E",
+   "id": "pid_Room temp. radio sensor soft. ",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x2321",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x2326",
+   "id": "pid_CH circuit name part2",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x232A",
+   "id": "pid_CH circuit name part3",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x299A",
+   "id": "p_glow_fuel",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 30,
+   "stored": 30
+  },
+  {
+   "pid": "0x299E",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3000",
+   "id": "pid_Modulation blower power on woo",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x3003",
+   "id": "p_grate_time",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 73,
+   "stored": 73
+  },
+  {
+   "pid": "0x3004",
+   "id": "pid_Virt. energy consumer requeste",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 59,
+   "stored": 7
+  },
+  {
+   "pid": "0x3005",
+   "id": "pid_Fireup blower power on wood [%",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 42,
+   "stored": 42
+  },
+  {
+   "pid": "0x300D",
+   "id": "cwu_prio",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x300E",
+   "id": "p_min_rpm",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x3010",
+   "id": "pid_Grate move interval in modulat",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 14,
+   "stored": 14
+  },
+  {
+   "pid": "0x3011",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3117",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 10,
+   "stored": 10
+  },
+  {
+   "pid": "0x3119",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 70,
+   "stored": 70
+  },
+  {
+   "pid": "0x311A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 90,
+   "stored": 90
+  },
+  {
+   "pid": "0x311B",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": -7,
+   "stored": 65529
+  },
+  {
+   "pid": "0x3121",
+   "id": "pid_Exchanger cleaning duration [s",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x3125",
+   "id": "pid_",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3126",
+   "id": "pid_",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3129",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 12,
+   "stored": 12
+  },
+  {
+   "pid": "0x3173",
+   "id": "pid_Buffer T3 measured temperature",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 407,
+   "stored": 19990
+  },
+  {
+   "pid": "0x3501",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3507",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x350B",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x3512",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x3513",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x3514",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x351C",
+   "id": "pid_Cascade timer to dec power lve",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x351E",
+   "id": "fuel_transporter_mode",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3520",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 28,
+   "stored": 28
+  },
+  {
+   "pid": "0x3521",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x3526",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x3601",
+   "id": "tank_kg",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3605",
+   "id": "p_lambda",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3606",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3609",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3613",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3617",
+   "id": "pid_Statistics - Grate cleaning co",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3621",
+   "id": "pid_Inside temp [C] CAN IO 6",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3629",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x362A",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x362B",
+   "id": "pid_Airflow meter",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3631",
+   "id": "pid_CAN IO 1 sw. ver. before dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3639",
+   "id": "pid_CAN IO 1 sw. ver. after dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3658",
+   "id": "pid_CAN IO Big sw. ver. before dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3659",
+   "id": "pid_CAN IO Big sw. ver. after dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365A",
+   "id": "pid_Lambda module sw. ver. before ",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3660",
+   "id": "pid_Vide room 1 sw. ver. after dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3663",
+   "id": "pid_Vide room 4 sw. ver. after dot",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x366A",
+   "id": "pid_RadioGateway sw. ver. before d",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3702",
+   "id": "pid_Nominal exhaust gas temp. [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 117,
+   "stored": 117
+  },
+  {
+   "pid": "0x3706",
+   "id": "k_pwr",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 0
+  },
+  {
+   "pid": "0x370A",
+   "id": "pid_Boiler image selector",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x370E",
+   "id": "k_predose_g",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 173,
+   "stored": 173
+  },
+  {
+   "pid": "0x370F",
+   "id": "pid_Burning off burner feeder work",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 67,
+   "stored": 67
+  },
+  {
+   "pid": "0x3710",
+   "id": "k_cons",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3713",
+   "id": "pid_",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 97,
+   "stored": 97
+  },
+  {
+   "pid": "0x3718",
+   "id": "pid_Next service date timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3719",
+   "id": "pid_Confirm. service date timestam",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x371B",
+   "id": "pid_Min airflow (blower 100%) [dm/",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 343,
+   "stored": 343
+  },
+  {
+   "pid": "0x3725",
+   "id": "pid_Out temp. radio sensor signal ",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3726",
+   "id": "pid_Out temp. radio sensor time si",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3728",
+   "id": "pid_Is reset required",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3734",
+   "id": "pid_SSID part 5",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3735",
+   "id": "pid_SSID part 6",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3739",
+   "id": "pid_KEY part 4",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x373D",
+   "id": "pid_",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3741",
+   "id": "pid_",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3745",
+   "id": "pid_",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3746",
+   "id": "pid_",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 92,
+   "stored": 0
+  },
+  {
+   "pid": "0x3747",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 7,
+   "stored": 7
+  },
+  {
+   "pid": "0x374A",
+   "id": "pid_HW1 circular pump test",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x4001",
+   "id": "ch1_temp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 473,
+   "stored": 473
+  },
+  {
+   "pid": "0x4003",
+   "id": "pid_CH temp measured",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 473,
+   "stored": 473
+  },
+  {
+   "pid": "0x4004",
+   "id": "pid_CH temp measured",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 473,
+   "stored": 473
+  },
+  {
+   "pid": "0x400C",
+   "id": "list",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x400E",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x400F",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x4017",
+   "id": "pid_Alarm register",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431393628
+  },
+  {
+   "pid": "0x401A",
+   "id": "pid_Alarm register",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431393628
+  },
+  {
+   "pid": "0x401B",
+   "id": "pid_Alarm register",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431393628
+  },
+  {
+   "pid": "0x401C",
+   "id": "pid_Alarm register",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431393628
+  },
+  {
+   "pid": "0x4025",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 975542400
+  },
+  {
+   "pid": "0x402C",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x402E",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x402F",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x4030",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x4032",
+   "id": "pid_Alarm date timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x4038",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x403B",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x403C",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x4041",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x4045",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x4046",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x4047",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x4049",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x2103",
+   "id": "pid_Solar temperature 3 [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  },
+  {
+   "pid": "0x2104",
+   "id": "pid_Solar temperature 4 [C]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  },
+  {
+   "pid": "0x2110",
+   "id": "hw_temp",
+   "widget": "0x20017404",
+   "before": "69.1",
+   "after": "55.2",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  },
+  {
+   "pid": "0x2113",
+   "id": "pid_Buffer bottom measured tempera",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  },
+  {
+   "pid": "0x2120",
+   "id": "pid_Lambda oxygen [%]",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  },
+  {
+   "pid": "0x3172",
+   "id": "pid_Buffer T2 measured temperature",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  },
+  {
+   "pid": "0x3173",
+   "id": "pid_Buffer T3 measured temperature",
+   "widget": "0x20016274",
+   "before": "98%",
+   "after": "99%",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  }
+ ],
+ "done": 658,
+ "total": 658
+}
