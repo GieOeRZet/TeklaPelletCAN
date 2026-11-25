@@ -1,6 +1,11 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - INFO i SIEC z prawdziwego panelu, diody fizyczne
+### 2026-11-25 - Rozpalanie: dioda palnika zolta; KOREKTA ukladu pulpitu (zadana vs zewnetrzna)
+- Rozpalanie (kod 1): dioda palnika zolta (jak w czyszczeniu); HA: zapalarka 1, podajnik palnika on, dmuchawa on. STRONG dla stanow 1 i 7.
+- KOREKTA: kapsula z AUTO pokazuje ZADANA WYNIKOWA kotla (60), nie temperature zewnetrzna. Temperatura zewnetrzna jest w prawym gornym rogu z ikona pogody ('-3.5' w dwoch liniach; druga linia OPEN). Nasze makiety karty (prototyp/karta_v2) opisaly kapsule blednie - poprawic w nastepnych renderach.
+- `home_indicators.json` uzupelniony (home_layout_real_panel).
+
+## 2026-11-25 - INFO i SIEC z prawdziwego panelu, diody fizyczne
 - INFO (zdjecie): 'igneoTouch v2.118 TE' / 'Draco Bio Compact FBII 18kW' / 'Controller by Estyma (www.estyma.pl)' / '1'. Odczyt HA: 0x3664=2118, 0x3665='TE', 0x350B=258. Wersja w linii 1 to wersja sterownika (2118), nie binarki (2.213 to domyslna emulatora). Nazwa kotla jest daną z kotla - w emulatorze nie zalezy od 0x350B ani 0x3665; zrodlo OPEN.
 - SIEC (zdjecie): CAN IO BIG Node 86 SW v4.0; UNKNOWN Node 87 (= ESP wlasciciela, bez SW). Wniosek: prawdziwy SW modulu to v4.0 (emulator pokazuje v0.0); ESP o Node ID 87 jest klasyfikowany jako UNKNOWN. Ryzyko kolizji Node ID 87 z drugim CAN IO BIG - decyzja dla ESP v2.
 - Diody fizyczne (Czyszczenie): zasilanie zielona, palnik bursztynowa, alarm zgaszona. Paliwo 21 kg: obrys + 2 kropki.

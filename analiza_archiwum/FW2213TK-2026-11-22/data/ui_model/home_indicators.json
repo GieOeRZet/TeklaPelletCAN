@@ -62,7 +62,7 @@
   "tiles": {
    "palnik_x138_widget_0x20016504": {
     "default": "ukryty, bitmapa 31 (zolty)",
-    "measured_trigger": "STRONG: dioda palnika ZOLTA (bitmapa 31) w stanie palnika 7 = CZYSZCZENIE (obserwacja wlasciciela na prawdziwym panelu 2026-11-25 19:39, HA: palnik_kod_stanu=7 'Czyszczenie', dmuchawa on, podajnik palnika off, moc 0, alarm off); zgodne z emulatorem (0x2007=7 pokazalo diode palnika). W stanie 0 (Wylaczony) ciemny pasek (brak diody). Inne stany (rozpalanie 1, zarzenie 2, modulacja 5, wygaszanie 6, pauza 8) - OPEN, do obserwacji przy ich wystapieniu."
+    "measured_trigger": "STRONG: dioda palnika ZOLTA (bitmapa 31) w stanach palnika 1 = ROZPALANIE i 7 = CZYSZCZENIE (obserwacje wlasciciela na prawdziwym panelu 2026-11-25; HA: kod 1/7, dmuchawa on; w Rozpalaniu zapalarka 1 i podajnik palnika on). W stanie 0 (Wylaczony) tylko ciemny pasek. Zgodne z emulatorem (0x2007=7). OPEN: zarzenie (2), modulacja (5), wygaszanie (6), pauza (8)."
    },
    "co1_x207_widget_0x20016530": {
     "default": "ukryty, bitmapa 32 (bialy)",
@@ -121,6 +121,29 @@
    "alarm": "zgaszona",
    "note": "trzy fizyczne diody obok ekranu zachowuja sie jak paski na ekranie: zasilanie zielona, palnik w czyszczeniu bursztynowa/zolta, alarm zgaszony przy braku alarmu"
   },
-  "home_cleaning_text": "napis stanu na pulpicie: 'Czyszczenie' (tak jak palnik_stan z HA)"
+  "home_cleaning_text": "napis stanu na pulpicie: 'Czyszczenie' (tak jak palnik_stan z HA)",
+  "burner_rozpalanie": {
+   "date": "2026-11-25 19:44",
+   "state": "Rozpalanie (kod 1)",
+   "led_tile": "zolta",
+   "physical_burner_led": "widoczna (blada, zolto-bursztynowa)",
+   "ha": {
+    "zapalarka": 1.0,
+    "podajnik_palnika": "on",
+    "dmuchawa": "on",
+    "moc": 0.0,
+    "alarm": "off"
+   },
+   "evidence": "MEASURED"
+  }
+ },
+ "home_layout_real_panel": {
+  "evidence": "MEASURED (zdjecie z prawdziwego panelu 19:44 + odczyt HA)",
+  "corrections": [
+   "kapsula po prawej (duza liczba + AUTO) = ZADANA WYNIKOWA kotla (zdjecie: 60; HA kociol_zadana_wynikowa=60), NIE temperatura zewnetrzna (wczesniejsze zalozenie bledne)",
+   "prawy gorny rog: ikona pogody (chmura/slonce) + temperatura zewnetrzna w dwoch liniach '-3.5' i '-3.5' (HA temperatura_zewnetrzna=-3.5); druga linia - OPEN (srednia z 0x3720 'Usrednianie temp. zewnetrznej'?)",
+   "duzy napis stanu na pulpicie: Wylaczony / Czyszczenie / Rozpalanie (zgodne z kodem stanu palnika)",
+   "kafelek CWU (kran) widoczny ze biala dioda; kafelek CO2 pusty"
+  ]
  }
 }
