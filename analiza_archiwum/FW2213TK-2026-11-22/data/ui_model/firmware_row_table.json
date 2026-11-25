@@ -2756,5 +2756,14 @@
    "typ": 0,
    "pid": "0x362C"
   }
- ]
+ ],
+ "flag_validation_2026_11_25": {
+  "evidence": "MEASURED (porownanie z list_dialogs.json, emulator)",
+  "zgodnosc": {
+   "typ 0/5/256 = suwak liczbowy": "139 z 139 wierszy zmierzonych jako suwak",
+   "typ 3 = radio": "19 z 19 zmierzonych jako radio (4 radio o typach '2/4' = programy/inne)",
+   "typ 1/257 = przelacznik": "30 z 30 wierszy 'nie otwarto' to przelaczniki (stukniecie nie otwiera dialogu)"
+  },
+  "wyjatki": "14 wierszy typ 'liczba' bez dialogu = liczniki tylko do odczytu (lista STATYSTYKI)"
+ }
 }

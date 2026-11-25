@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0",
- "evidence": "MEASURED (emulator, poziom 3: dialog edycji wiersza listy; krok z +/- raz); CO3/CO4 = INFERENCE jak CO1 | 2026-11-25: przewijanie listy przez zapis y kontenera zawartosci (vptr 0x807c6f0) w RAM - zmierzono 37 wczesniej niedostepnych wierszy; pozostale 'nie_otwarto' (44) to przelaczniki/liczniki (stuknieciem sie nie otwieraja) - INFERENCE; 'NIE_DOSZEDL' (5) bez etykiety widgetu",
+ "evidence": "MEASURED (emulator, poziom 3: dialog edycji wiersza listy; krok z +/- raz); CO3/CO4 = INFERENCE jak CO1 | 2026-11-25: przewijanie listy przez zapis y kontenera zawartosci (vptr 0x807c6f0) w RAM - zmierzono 37 wczesniej niedostepnych wierszy; pozostale 'nie_otwarto' (44) to przelaczniki/liczniki (stuknieciem sie nie otwieraja) - INFERENCE; 'NIE_DOSZEDL' (5) bez etykiety widgetu | firmware_type = typ wiersza z tabeli deskryptorow w binarce (firmware_row_table.json); kind_inferred dla 'nie_otwarto'",
  "summary": {
   "slider": 76,
   "nie_otwarto": 45,
@@ -34,7 +34,8 @@
     "kind": "slider",
     "plus": "19",
     "minus": "18",
-    "value0": "18"
+    "value0": "18",
+    "firmware_type": 0
    },
    "2": {
     "label": "Kalibracja czujnika zew. [°C]",
@@ -54,7 +55,8 @@
     "kind": "slider",
     "plus": "0.1",
     "minus": "0.0",
-    "value0": "0.0"
+    "value0": "0.0",
+    "firmware_type": 256
    },
    "3": {
     "label": "Rezerwa zbiornika paliwa [kg]",
@@ -74,21 +76,26 @@
     "kind": "slider",
     "plus": "41",
     "minus": "40",
-    "value0": "40"
+    "value0": "40",
+    "firmware_type": 0
    },
    "4": {
     "label": "Auto synchronizacja zegara",
     "pid": "0x372F",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "5": {
     "label": "Autokonfiguracja",
     "pid": "0x3501",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "6": {
     "label": "Główny moduł IO",
@@ -103,7 +110,8 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "7": {
     "label": "Moduł rozrzerzający obwody CO",
@@ -118,7 +126,8 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "8": {
     "label": "Ilość obwodów grzewczych",
@@ -138,7 +147,8 @@
     "kind": "slider",
     "plus": "4",
     "minus": "3",
-    "value0": "4"
+    "value0": "4",
+    "firmware_type": 0
    },
    "9": {
     "label": "Czujnik temperatury zewnętrznej",
@@ -155,35 +165,44 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "10": {
     "label": "Ciepła woda użytkowa",
     "pid": "0x2106",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "11": {
     "label": "Solary",
     "pid": "0x2108",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "12": {
     "label": "Bufor",
     "pid": "0x2107",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "13": {
     "label": "Moduł Lambda",
     "pid": "0x2123",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "14": {
     "label": "Konfiguracja IN17",
@@ -200,7 +219,8 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "15": {
     "label": "Pojemność zbiornika paliwa [kg]",
@@ -220,14 +240,17 @@
     "kind": "slider",
     "plus": "136",
     "minus": "135",
-    "value0": "135"
+    "value0": "135",
+    "firmware_type": 0
    },
    "16": {
     "label": "Czujnik powrotu do kotła",
     "pid": "0x350A",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "17": {
     "label": "Numer profilu",
@@ -247,7 +270,8 @@
     "kind": "slider",
     "plus": "3",
     "minus": "2",
-    "value0": "2"
+    "value0": "2",
+    "firmware_type": 0
    },
    "18": {
     "label": "Pompa kotłowa",
@@ -264,28 +288,35 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "19": {
     "label": "Kaskada master",
     "pid": "0x350C",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "20": {
     "label": "Czujnik ciśnienia",
     "pid": "0x350D",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "21": {
     "label": "Dodatkowy magazyn paliwa",
     "pid": "0x3525",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "22": {
     "label": "Pomiar energii",
@@ -302,21 +333,26 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "23": {
     "label": "Kopiuj nastawy z innego sterownika",
     "pid": "0x3722",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "25": {
     "label": "Dmuchawa z HALL",
     "pid": "0x404E",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "0": {
     "label": "Uśrednianie temp. zewnętrznej [h]",
@@ -336,7 +372,8 @@
     "kind": "slider",
     "plus": "13",
     "minus": "12",
-    "value0": "12"
+    "value0": "12",
+    "firmware_type": 0
    }
   },
   "0x01": {
@@ -358,7 +395,8 @@
     "kind": "slider",
     "plus": "18.1",
     "minus": "18.0",
-    "value0": "18.0"
+    "value0": "18.0",
+    "firmware_type": 256
    },
    "2": {
     "label": "Histereza [°C]",
@@ -378,7 +416,8 @@
     "kind": "slider",
     "plus": "0.6",
     "minus": "0.5",
-    "value0": "0.5"
+    "value0": "0.5",
+    "firmware_type": 256
    },
    "3": {
     "label": "Kalibracja czujnika pok. [°C]",
@@ -398,7 +437,8 @@
     "kind": "slider",
     "plus": "0.1",
     "minus": "0.0",
-    "value0": "0.0"
+    "value0": "0.0",
+    "firmware_type": 256
    },
    "4": {
     "label": "Tryb pracy  ",
@@ -413,7 +453,8 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "5": {
     "label": "Temperatura CO zadana ręcznie [°C]",
@@ -433,7 +474,8 @@
     "kind": "slider",
     "plus": "51",
     "minus": "50",
-    "value0": "50"
+    "value0": "50",
+    "firmware_type": 0
    },
    "6": {
     "label": "Temperatura CO dla -20°C [°C]",
@@ -453,7 +495,8 @@
     "kind": "slider",
     "plus": "56",
     "minus": "55",
-    "value0": "55"
+    "value0": "55",
+    "firmware_type": 0
    },
    "7": {
     "label": "Temperatura CO dla -10°C [°C]",
@@ -473,7 +516,8 @@
     "kind": "slider",
     "plus": "51",
     "minus": "50",
-    "value0": "50"
+    "value0": "50",
+    "firmware_type": 0
    },
    "8": {
     "label": "Temperatura CO dla  0°C [°C]",
@@ -493,7 +537,8 @@
     "kind": "slider",
     "plus": "46",
     "minus": "45",
-    "value0": "45"
+    "value0": "45",
+    "firmware_type": 0
    },
    "9": {
     "label": "Temperatura CO dla 10°C [°C]",
@@ -513,14 +558,17 @@
     "kind": "slider",
     "plus": "31",
     "minus": "30",
-    "value0": "30"
+    "value0": "30",
+    "firmware_type": 0
    },
    "10": {
     "label": "Automatyczny tryb lato",
     "pid": "0x2315",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "11": {
     "label": "Nazwa",
@@ -541,7 +589,8 @@
      1,
      1
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 4
    },
    "12": {
     "label": "Źródło",
@@ -556,7 +605,8 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "13": {
     "label": "Zwiększenie temperatury źródła [°C]",
@@ -576,7 +626,8 @@
     "kind": "slider",
     "plus": "11",
     "minus": "10",
-    "value0": "10"
+    "value0": "10",
+    "firmware_type": 0
    },
    "14": {
     "label": "Czujnik pokojowy",
@@ -599,7 +650,8 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "15": {
     "label": "Temp. maksymalna [°C]",
@@ -619,14 +671,17 @@
     "kind": "slider",
     "plus": "71",
     "minus": "70",
-    "value0": "70"
+    "value0": "70",
+    "firmware_type": 0
    },
    "16": {
     "label": "Czujnik CO",
     "pid": "0x22A5",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "17": {
     "label": "Wsp. korekcji t. CO [°C/°C]",
@@ -646,7 +701,8 @@
     "kind": "slider",
     "plus": "7",
     "minus": "6",
-    "value0": "6"
+    "value0": "6",
+    "firmware_type": 0
    },
    "18": {
     "label": "Obniżenie temperatury CO [°C]",
@@ -666,7 +722,8 @@
     "kind": "slider",
     "plus": "6",
     "minus": "5",
-    "value0": "5"
+    "value0": "5",
+    "firmware_type": 0
    },
    "19": {
     "label": "MIN temperatura CO pomp [°C]",
@@ -686,7 +743,8 @@
     "kind": "slider",
     "plus": "21",
     "minus": "20",
-    "value0": "20"
+    "value0": "20",
+    "firmware_type": 0
    },
    "20": {
     "label": "Czas mieszacza [s]",
@@ -706,14 +764,17 @@
     "kind": "slider",
     "plus": "181",
     "minus": "180",
-    "value0": "180"
+    "value0": "180",
+    "firmware_type": 0
    },
    "21": {
     "label": "Stała pompa",
     "pid": "0x22F1",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "22": {
     "status": "NIE_DOSZEDL"
@@ -736,7 +797,8 @@
     "kind": "slider",
     "plus": "21.1",
     "minus": "21.0",
-    "value0": "21.0"
+    "value0": "21.0",
+    "firmware_type": 256
    }
   },
   "0x05": {
@@ -758,14 +820,17 @@
     "kind": "slider",
     "plus": "31",
     "minus": "30",
-    "value0": "30"
+    "value0": "30",
+    "firmware_type": 0
    },
    "2": {
     "label": "Zagrzej teraz",
     "pid": "0x2210",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "3": {
     "label": "Histereza [°C]",
@@ -785,21 +850,26 @@
     "kind": "slider",
     "plus": "6",
     "minus": "5",
-    "value0": "5"
+    "value0": "5",
+    "firmware_type": 0
    },
    "4": {
     "label": "Antylegionella",
     "pid": "0x2297",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "5": {
     "label": "Priorytet CWU   ",
     "pid": "0x300D",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "6": {
     "label": "Cyrkulacja praca [min]",
@@ -819,7 +889,8 @@
     "kind": "slider",
     "plus": "3",
     "minus": "2",
-    "value0": "2"
+    "value0": "2",
+    "firmware_type": 0
    },
    "7": {
     "label": "Cyrkulacja pauza [min]",
@@ -839,7 +910,8 @@
     "kind": "slider",
     "plus": "11",
     "minus": "10",
-    "value0": "10"
+    "value0": "10",
+    "firmware_type": 0
    },
    "8": {
     "label": "Źródło",
@@ -854,7 +926,8 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "9": {
     "label": "Zwiększenie temperatury źródła [°C]",
@@ -874,7 +947,8 @@
     "kind": "slider",
     "plus": "6",
     "minus": "5",
-    "value0": "5"
+    "value0": "5",
+    "firmware_type": 0
    },
    "10": {
     "label": "Delta załączenia pompy [°C]",
@@ -894,7 +968,8 @@
     "kind": "slider",
     "plus": "6",
     "minus": "5",
-    "value0": "5"
+    "value0": "5",
+    "firmware_type": 0
    },
    "11": {
     "label": "Temp. maksymalna [°C]",
@@ -914,7 +989,8 @@
     "kind": "slider",
     "plus": "71",
     "minus": "70",
-    "value0": "70"
+    "value0": "70",
+    "firmware_type": 0
    },
    "0": {
     "label": "Temperatura komfortowa [°C]  ",
@@ -934,7 +1010,8 @@
     "kind": "slider",
     "plus": "46",
     "minus": "45",
-    "value0": "45"
+    "value0": "45",
+    "firmware_type": 0
    }
   },
   "0x07": {
@@ -956,7 +1033,8 @@
     "kind": "slider",
     "plus": "66",
     "minus": "65",
-    "value0": "65"
+    "value0": "65",
+    "firmware_type": 0
    },
    "2": {
     "label": "Minimalna temp. pomp [°C]",
@@ -976,14 +1054,17 @@
     "kind": "slider",
     "plus": "26",
     "minus": "25",
-    "value0": "25"
+    "value0": "25",
+    "firmware_type": 0
    },
    "3": {
     "label": "Automatyczna temp. góra [°C]",
     "pid": "0x2282",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "4": {
     "label": "Zwiększenie temperatury źródła [°C]",
@@ -1003,7 +1084,8 @@
     "kind": "slider",
     "plus": "21",
     "minus": "20",
-    "value0": "20"
+    "value0": "20",
+    "firmware_type": 0
    },
    "5": {
     "label": "Delta załączenia pompy [°C]",
@@ -1023,14 +1105,17 @@
     "kind": "slider",
     "plus": "6",
     "minus": "5",
-    "value0": "5"
+    "value0": "5",
+    "firmware_type": 0
    },
    "6": {
     "label": "Stopniowa redukcja mocy",
     "pid": "0x3011",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "0": {
     "label": "Temp. minimalna (góra) [°C]",
@@ -1050,7 +1135,8 @@
     "kind": "slider",
     "plus": "46",
     "minus": "45",
-    "value0": "45"
+    "value0": "45",
+    "firmware_type": 0
    }
   },
   "0x00": {
@@ -1072,7 +1158,8 @@
     "kind": "slider",
     "plus": "11",
     "minus": "10",
-    "value0": "10"
+    "value0": "10",
+    "firmware_type": 0
    },
    "2": {
     "label": "Histereza wyłączenia [°C]",
@@ -1092,7 +1179,8 @@
     "kind": "slider",
     "plus": "1",
     "minus": "0",
-    "value0": "0"
+    "value0": "0",
+    "firmware_type": 0
    },
    "4": {
     "label": "Minimalna temp. pomp [°C]",
@@ -1112,7 +1200,8 @@
     "kind": "slider",
     "plus": "46",
     "minus": "45",
-    "value0": "45"
+    "value0": "45",
+    "firmware_type": 0
    },
    "5": {
     "label": "Wybieg pompy [min]",
@@ -1132,7 +1221,8 @@
     "kind": "slider",
     "plus": "1",
     "minus": "0",
-    "value0": "0"
+    "value0": "0",
+    "firmware_type": 0
    },
    "6": {
     "label": "Cisza nocna od",
@@ -1152,7 +1242,8 @@
     "kind": "slider",
     "plus": "23",
     "minus": "22",
-    "value0": "22"
+    "value0": "22",
+    "firmware_type": 0
    },
    "0": {
     "label": "Temperatura zadana  [°C]",
@@ -1192,7 +1283,8 @@
     "kind": "slider",
     "plus": "7",
     "minus": "6",
-    "value0": "6"
+    "value0": "6",
+    "firmware_type": 0
    },
    "10": {
     "label": "Rezerwa paliwa stop [kg]",
@@ -1212,7 +1304,8 @@
     "kind": "slider",
     "plus": "1",
     "minus": "0",
-    "value0": "0"
+    "value0": "0",
+    "firmware_type": 0
    },
    "8": {
     "label": "Minimalna temp. powrotu [°C]",
@@ -1232,7 +1325,8 @@
     "kind": "slider",
     "plus": "51",
     "minus": "50",
-    "value0": "50"
+    "value0": "50",
+    "firmware_type": 0
    },
    "11": {
     "label": "Ciśnienie min. [bar]",
@@ -1252,7 +1346,8 @@
     "kind": "slider",
     "plus": "0.2",
     "minus": "0.1",
-    "value0": "0.1"
+    "value0": "0.1",
+    "firmware_type": 256
    },
    "9": {
     "label": "Czas mieszacza [s]",
@@ -1272,7 +1367,8 @@
     "kind": "slider",
     "plus": "181",
     "minus": "180",
-    "value0": "180"
+    "value0": "180",
+    "firmware_type": 0
    },
    "12": {
     "label": "Ciśnienie max. [bar]",
@@ -1292,7 +1388,8 @@
     "kind": "slider",
     "plus": "2.1",
     "minus": "2.0",
-    "value0": "2.0"
+    "value0": "2.0",
+    "firmware_type": 256
    }
   },
   "0x08": {
@@ -1314,7 +1411,8 @@
     "kind": "slider",
     "plus": "2",
     "minus": "1",
-    "value0": "1"
+    "value0": "1",
+    "firmware_type": 0
    },
    "2": {
     "label": "Slave 1 stopień mocy",
@@ -1334,7 +1432,8 @@
     "kind": "slider",
     "plus": "3",
     "minus": "2",
-    "value0": "2"
+    "value0": "2",
+    "firmware_type": 0
    },
    "3": {
     "label": "Slave 2 stopień mocy",
@@ -1354,7 +1453,8 @@
     "kind": "slider",
     "plus": "4",
     "minus": "3",
-    "value0": "3"
+    "value0": "3",
+    "firmware_type": 0
    },
    "4": {
     "label": "Slave 3 stopień mocy",
@@ -1374,7 +1474,8 @@
     "kind": "slider",
     "plus": "4",
     "minus": "3",
-    "value0": "4"
+    "value0": "4",
+    "firmware_type": 0
    },
    "5": {
     "label": "Próg zwiększania stopnia mocy [%]",
@@ -1394,7 +1495,8 @@
     "kind": "slider",
     "plus": "51",
     "minus": "50",
-    "value0": "50"
+    "value0": "50",
+    "firmware_type": 0
    },
    "6": {
     "label": "Próg zmniejszania stopnia mocy [%]",
@@ -1414,7 +1516,8 @@
     "kind": "slider",
     "plus": "81",
     "minus": "80",
-    "value0": "80"
+    "value0": "80",
+    "firmware_type": 0
    },
    "7": {
     "label": "Opóźn. zwiększ. stopnia mocy [min]",
@@ -1434,7 +1537,8 @@
     "kind": "slider",
     "plus": "31",
     "minus": "30",
-    "value0": "30"
+    "value0": "30",
+    "firmware_type": 0
    },
    "8": {
     "label": "Opóźn. zmniejsz. stopnia mocy [min]",
@@ -1454,7 +1558,8 @@
     "kind": "slider",
     "plus": "31",
     "minus": "30",
-    "value0": "30"
+    "value0": "30",
+    "firmware_type": 0
    },
    "0": {
     "label": "Liczba kotłów slave",
@@ -1474,7 +1579,8 @@
     "kind": "slider",
     "plus": "3",
     "minus": "2",
-    "value0": "2"
+    "value0": "2",
+    "firmware_type": 0
    }
   },
   "0x09": {
@@ -1496,7 +1602,8 @@
     "kind": "slider",
     "plus": "16",
     "minus": "15",
-    "value0": "15"
+    "value0": "15",
+    "firmware_type": 0
    },
    "2": {
     "label": "Praca silnika podajnika (2) [s]",
@@ -1516,7 +1623,8 @@
     "kind": "slider",
     "plus": "11",
     "minus": "10",
-    "value0": "10"
+    "value0": "10",
+    "firmware_type": 0
    },
    "3": {
     "label": "Pauza silnika podajnika (2) [s]",
@@ -1536,14 +1644,17 @@
     "kind": "slider",
     "plus": "11",
     "minus": "10",
-    "value0": "10"
+    "value0": "10",
+    "firmware_type": 0
    },
    "4": {
     "label": "Czujnik rezerwy paliwa",
     "pid": "0x3529",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 257,
+    "kind_inferred": "przelacznik"
    },
    "5": {
     "label": "Maksymalna liczba cykli",
@@ -1563,7 +1674,8 @@
     "kind": "slider",
     "plus": "16",
     "minus": "15",
-    "value0": "15"
+    "value0": "15",
+    "firmware_type": 0
    },
    "6": {
     "label": "Wybieg silnika transportującego (1) [s]",
@@ -1583,7 +1695,8 @@
     "kind": "slider",
     "plus": "6",
     "minus": "5",
-    "value0": "5"
+    "value0": "5",
+    "firmware_type": 0
    },
    "0": {
     "label": "Praca silnika transportującego (1) [s]",
@@ -1603,7 +1716,8 @@
     "kind": "slider",
     "plus": "31",
     "minus": "30",
-    "value0": "30"
+    "value0": "30",
+    "firmware_type": 0
    }
   },
   "0x11": {
@@ -1612,91 +1726,117 @@
     "pid": "0x3609",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 0,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "2": {
     "label": "Średnia moc palnika z 50 godzin [%]",
     "pid": "0x3610",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 0,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "3": {
     "label": "Czas pracy podajnika 1 [h]",
     "pid": "0x3611",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 0,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "4": {
     "label": "Czas pracy podajnika 2 [h]",
     "pid": "0x3612",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 0,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "5": {
     "label": "Całkowite zużycie paliwa [kg]",
     "pid": "0x3507",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 0,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "6": {
     "label": "Średni tlen dla mocy 30% [%]",
     "pid": "0x3613",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 256,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "7": {
     "label": "Średni tlen dla mocy 50% [%]",
     "pid": "0x3614",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 256,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "8": {
     "label": "Średni tlen dla mocy 70% [%]",
     "pid": "0x3615",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 256,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "9": {
     "label": "Średni tlen dla mocy 90% [%]",
     "pid": "0x3616",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 256,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "10": {
     "label": "Liczba czyszczeń wymiennika",
     "pid": "0x3618",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 0,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "11": {
     "label": "Liczba przegrzań kotła",
     "pid": "0x3619",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 0,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "12": {
     "label": "Liczba zaników zasilania",
     "pid": "0x362A",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 0,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "0": {
     "label": "Licznik rozpaleń",
     "pid": "0x3608",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 0,
+    "kind_inferred": "odczyt_lub_przelacznik"
    }
   },
   "0x0A": {
@@ -1718,7 +1858,8 @@
     "kind": "slider",
     "plus": "51",
     "minus": "50",
-    "value0": "50"
+    "value0": "50",
+    "firmware_type": 0
    },
    "2": {
     "label": "Moc max [%]",
@@ -1738,7 +1879,8 @@
     "kind": "slider",
     "plus": "100",
     "minus": "99",
-    "value0": "100"
+    "value0": "100",
+    "firmware_type": 0
    },
    "3": {
     "label": "Wartość opałowa [kWh/kg]",
@@ -1758,7 +1900,8 @@
     "kind": "slider",
     "plus": "5.1",
     "minus": "5.0",
-    "value0": "5.0"
+    "value0": "5.0",
+    "firmware_type": 256
    },
    "4": {
     "label": "Ilość paliwa test [kg/h]",
@@ -1778,14 +1921,17 @@
     "kind": "slider",
     "plus": "13.1",
     "minus": "13.0",
-    "value0": "13.0"
+    "value0": "13.0",
+    "firmware_type": 256
    },
    "5": {
     "label": "Moc dmuchawy modulacja [%]",
     "pid": "0x2254",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 5,
+    "kind_inferred": "odczyt_lub_przelacznik"
    },
    "0": {
     "label": "Korekta powietrza [%]",
@@ -1805,7 +1951,8 @@
     "kind": "slider",
     "plus": "1",
     "minus": "0",
-    "value0": "0"
+    "value0": "0",
+    "firmware_type": 0
    },
    "8": {
     "label": "Próg foto",
@@ -1825,7 +1972,8 @@
     "kind": "slider",
     "plus": "21",
     "minus": "20",
-    "value0": "20"
+    "value0": "20",
+    "firmware_type": 0
    },
    "11": {
     "label": "Moc dmuchawy wygaszanie [%]",
@@ -1845,7 +1993,8 @@
     "kind": "slider",
     "plus": "51",
     "minus": "50",
-    "value0": "50"
+    "value0": "50",
+    "firmware_type": 0
    },
    "14": {
     "label": "Czas wygaszania [min]",
@@ -1865,7 +2014,8 @@
     "kind": "slider",
     "plus": "4",
     "minus": "3",
-    "value0": "3"
+    "value0": "3",
+    "firmware_type": 0
    },
    "17": {
     "label": "Tlen dla mocy 100%",
@@ -1885,7 +2035,8 @@
     "kind": "slider",
     "plus": "8.1",
     "minus": "8.0",
-    "value0": "8.0"
+    "value0": "8.0",
+    "firmware_type": 256
    },
    "20": {
     "label": "Czas pauzy [min]",
@@ -1905,7 +2056,8 @@
     "kind": "slider",
     "plus": "1",
     "minus": "0",
-    "value0": "0"
+    "value0": "0",
+    "firmware_type": 0
    },
    "23": {
     "label": "Szybkość modulacji mocy",
@@ -1925,7 +2077,8 @@
     "kind": "slider",
     "plus": "11",
     "minus": "10",
-    "value0": "10"
+    "value0": "10",
+    "firmware_type": 0
    },
    "26": {
     "label": "Pod. palnika [% pod. zasobnika]",
@@ -1945,7 +2098,8 @@
     "kind": "slider",
     "plus": "401",
     "minus": "400",
-    "value0": "400"
+    "value0": "400",
+    "firmware_type": 0
    },
    "6": {
     "label": "Podawanie max [s]",
@@ -1965,7 +2119,8 @@
     "kind": "slider",
     "plus": "3.1",
     "minus": "3.0",
-    "value0": "3.0"
+    "value0": "3.0",
+    "firmware_type": 256
    },
    "9": {
     "label": "Moc dmuchawy rozpalanie [%]",
@@ -1985,7 +2140,8 @@
     "kind": "slider",
     "plus": "31",
     "minus": "30",
-    "value0": "30"
+    "value0": "30",
+    "firmware_type": 0
    },
    "12": {
     "label": "Czas rozżarzania [min]",
@@ -2005,7 +2161,8 @@
     "kind": "slider",
     "plus": "2",
     "minus": "1",
-    "value0": "1"
+    "value0": "1",
+    "firmware_type": 0
    },
    "15": {
     "status": "NIE_DOSZEDL"
@@ -2028,7 +2185,8 @@
     "kind": "slider",
     "plus": "2",
     "minus": "1",
-    "value0": "1"
+    "value0": "1",
+    "firmware_type": 0
    },
    "21": {
     "label": "Moc w pauzie [%]",
@@ -2048,7 +2206,8 @@
     "kind": "slider",
     "plus": "11",
     "minus": "10",
-    "value0": "10"
+    "value0": "10",
+    "firmware_type": 0
    },
    "24": {
     "label": "Bezwładność palnika [min]",
@@ -2068,7 +2227,8 @@
     "kind": "slider",
     "plus": "6",
     "minus": "5",
-    "value0": "5"
+    "value0": "5",
+    "firmware_type": 0
    },
    "27": {
     "label": "Okres podajnika zasobnika [s]",
@@ -2088,7 +2248,8 @@
     "kind": "slider",
     "plus": "21",
     "minus": "20",
-    "value0": "20"
+    "value0": "20",
+    "firmware_type": 0
    },
    "7": {
     "label": "Wstępna dawka paliwa [s]",
@@ -2108,7 +2269,8 @@
     "kind": "slider",
     "plus": "16",
     "minus": "15",
-    "value0": "15"
+    "value0": "15",
+    "firmware_type": 0
    },
    "10": {
     "label": "Moc dmuchawy rozżarzanie [%]",
@@ -2128,7 +2290,8 @@
     "kind": "slider",
     "plus": "41",
     "minus": "40",
-    "value0": "40"
+    "value0": "40",
+    "firmware_type": 0
    },
    "13": {
     "label": "Rozżarzanie paliwo [%]",
@@ -2148,7 +2311,8 @@
     "kind": "slider",
     "plus": "21",
     "minus": "20",
-    "value0": "20"
+    "value0": "20",
+    "firmware_type": 0
    },
    "16": {
     "label": "Tlen dla mocy 30%",
@@ -2168,7 +2332,8 @@
     "kind": "slider",
     "plus": "12.1",
     "minus": "12.0",
-    "value0": "12.0"
+    "value0": "12.0",
+    "firmware_type": 256
    },
    "19": {
     "label": "Odstęp czyszczenia [h]",
@@ -2188,7 +2353,8 @@
     "kind": "slider",
     "plus": "4",
     "minus": "3",
-    "value0": "3"
+    "value0": "3",
+    "firmware_type": 0
    },
    "22": {
     "label": "Dmuchawa w pauzie [%]",
@@ -2208,7 +2374,8 @@
     "kind": "slider",
     "plus": "21",
     "minus": "20",
-    "value0": "20"
+    "value0": "20",
+    "firmware_type": 0
    },
    "25": {
     "label": "Czas ruchu rusztu [s]",
@@ -2228,7 +2395,8 @@
     "kind": "slider",
     "plus": "0.1",
     "minus": "0.0",
-    "value0": "0.0"
+    "value0": "0.0",
+    "firmware_type": 256
    }
   },
   "0x06": {
@@ -2250,7 +2418,8 @@
     "kind": "slider",
     "plus": "4",
     "minus": "3",
-    "value0": "3"
+    "value0": "3",
+    "firmware_type": 0
    },
    "2": {
     "label": "Delta wyłączenia  [°C]",
@@ -2270,7 +2439,8 @@
     "kind": "slider",
     "plus": "3",
     "minus": "2",
-    "value0": "2"
+    "value0": "2",
+    "firmware_type": 0
    },
    "3": {
     "label": "Ciepło właściwe [kJ/(kg*K)]",
@@ -2290,7 +2460,8 @@
     "kind": "slider",
     "plus": "2.6",
     "minus": "2.5",
-    "value0": "2.5"
+    "value0": "2.5",
+    "firmware_type": 256
    },
    "4": {
     "label": "Temperatura maksymalna wody  [°C]",
@@ -2310,7 +2481,8 @@
     "kind": "slider",
     "plus": "71",
     "minus": "70",
-    "value0": "70"
+    "value0": "70",
+    "firmware_type": 0
    },
    "5": {
     "label": "Max temp kolektora (alarmowa) [°C]",
@@ -2330,7 +2502,8 @@
     "kind": "slider",
     "plus": "91",
     "minus": "90",
-    "value0": "90"
+    "value0": "90",
+    "firmware_type": 0
    },
    "0": {
     "label": "Przepływ [l/min]",
@@ -2350,7 +2523,8 @@
     "kind": "slider",
     "plus": "4.1",
     "minus": "4.0",
-    "value0": "4.0"
+    "value0": "4.0",
+    "firmware_type": 256
    },
    "6": {
     "label": "Min temp kolektora (alarmowa)  [°C]",
@@ -2370,7 +2544,8 @@
     "kind": "slider",
     "plus": "-33",
     "minus": "-34",
-    "value0": "-34"
+    "value0": "-34",
+    "firmware_type": 0
    }
   },
   "0x02": {
@@ -2392,7 +2567,8 @@
     "kind": "slider",
     "plus": "18.1",
     "minus": "18.0",
-    "value0": "18.0"
+    "value0": "18.0",
+    "firmware_type": 256
    },
    "2": {
     "label": "Histereza [°C]",
@@ -2412,7 +2588,8 @@
     "kind": "slider",
     "plus": "0.6",
     "minus": "0.5",
-    "value0": "0.5"
+    "value0": "0.5",
+    "firmware_type": 256
    },
    "3": {
     "label": "Kalibracja czujnika pok. [°C]",
@@ -2432,7 +2609,8 @@
     "kind": "slider",
     "plus": "0.1",
     "minus": "0.0",
-    "value0": "0.0"
+    "value0": "0.0",
+    "firmware_type": 256
    },
    "4": {
     "label": "Tryb pracy  ",
@@ -2447,7 +2625,8 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "5": {
     "label": "Temperatura CO zadana ręcznie [°C]",
@@ -2467,7 +2646,8 @@
     "kind": "slider",
     "plus": "51",
     "minus": "50",
-    "value0": "50"
+    "value0": "50",
+    "firmware_type": 0
    },
    "6": {
     "label": "Temperatura CO dla -20°C [°C]",
@@ -2487,7 +2667,8 @@
     "kind": "slider",
     "plus": "56",
     "minus": "55",
-    "value0": "55"
+    "value0": "55",
+    "firmware_type": 0
    },
    "7": {
     "label": "Temperatura CO dla -10°C [°C]",
@@ -2507,7 +2688,8 @@
     "kind": "slider",
     "plus": "51",
     "minus": "50",
-    "value0": "50"
+    "value0": "50",
+    "firmware_type": 0
    },
    "8": {
     "label": "Temperatura CO dla  0°C [°C]",
@@ -2527,7 +2709,8 @@
     "kind": "slider",
     "plus": "46",
     "minus": "45",
-    "value0": "45"
+    "value0": "45",
+    "firmware_type": 0
    },
    "9": {
     "label": "Temperatura CO dla 10°C [°C]",
@@ -2547,14 +2730,17 @@
     "kind": "slider",
     "plus": "31",
     "minus": "30",
-    "value0": "30"
+    "value0": "30",
+    "firmware_type": 0
    },
    "10": {
     "label": "Automatyczny tryb lato",
     "pid": "0x2316",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "11": {
     "label": "Nazwa",
@@ -2575,7 +2761,8 @@
      1,
      1
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 4
    },
    "12": {
     "label": "Źródło",
@@ -2590,7 +2777,8 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "13": {
     "label": "Zwiększenie temperatury źródła [°C]",
@@ -2610,7 +2798,8 @@
     "kind": "slider",
     "plus": "11",
     "minus": "10",
-    "value0": "10"
+    "value0": "10",
+    "firmware_type": 0
    },
    "14": {
     "label": "Czujnik pokojowy",
@@ -2633,7 +2822,8 @@
      2,
      2
     ],
-    "kind": "radio"
+    "kind": "radio",
+    "firmware_type": 3
    },
    "15": {
     "label": "Temp. maksymalna [°C]",
@@ -2653,14 +2843,17 @@
     "kind": "slider",
     "plus": "71",
     "minus": "70",
-    "value0": "70"
+    "value0": "70",
+    "firmware_type": 0
    },
    "16": {
     "label": "Czujnik CO",
     "pid": "0x22A6",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "17": {
     "label": "Wsp. korekcji t. CO [°C/°C]",
@@ -2680,7 +2873,8 @@
     "kind": "slider",
     "plus": "7",
     "minus": "6",
-    "value0": "6"
+    "value0": "6",
+    "firmware_type": 0
    },
    "18": {
     "label": "Obniżenie temperatury CO [°C]",
@@ -2700,7 +2894,8 @@
     "kind": "slider",
     "plus": "6",
     "minus": "5",
-    "value0": "5"
+    "value0": "5",
+    "firmware_type": 0
    },
    "19": {
     "label": "MIN temperatura CO pomp [°C]",
@@ -2720,7 +2915,8 @@
     "kind": "slider",
     "plus": "21",
     "minus": "20",
-    "value0": "20"
+    "value0": "20",
+    "firmware_type": 0
    },
    "20": {
     "label": "Czas mieszacza [s]",
@@ -2740,14 +2936,17 @@
     "kind": "slider",
     "plus": "181",
     "minus": "180",
-    "value0": "180"
+    "value0": "180",
+    "firmware_type": 0
    },
    "21": {
     "label": "Stała pompa",
     "pid": "0x22F2",
     "texts": [],
     "fonts": [],
-    "kind": "nie_otwarto"
+    "kind": "nie_otwarto",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "0": {
     "label": "Temperatura komfortowa [°C]  ",
@@ -2767,7 +2966,8 @@
     "kind": "slider",
     "plus": "21.1",
     "minus": "21.0",
-    "value0": "21.0"
+    "value0": "21.0",
+    "firmware_type": 256
    },
    "22": {
     "status": "NIE_DOSZEDL"
@@ -2793,7 +2993,8 @@
     "plus": "18.1",
     "minus": "18.0",
     "value0": "18.0",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 256
    },
    "2": {
     "label": "Histereza [°C]",
@@ -2814,7 +3015,8 @@
     "plus": "0.6",
     "minus": "0.5",
     "value0": "0.5",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 256
    },
    "3": {
     "label": "Kalibracja czujnika pok. [°C]",
@@ -2835,7 +3037,8 @@
     "plus": "0.1",
     "minus": "0.0",
     "value0": "0.0",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 256
    },
    "4": {
     "label": "Tryb pracy  ",
@@ -2851,7 +3054,8 @@
      2
     ],
     "kind": "radio",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 3
    },
    "5": {
     "label": "Temperatura CO zadana ręcznie [°C]",
@@ -2872,7 +3076,8 @@
     "plus": "51",
     "minus": "50",
     "value0": "50",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "6": {
     "label": "Temperatura CO dla -20°C [°C]",
@@ -2893,7 +3098,8 @@
     "plus": "56",
     "minus": "55",
     "value0": "55",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "7": {
     "label": "Temperatura CO dla -10°C [°C]",
@@ -2914,7 +3120,8 @@
     "plus": "51",
     "minus": "50",
     "value0": "50",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "8": {
     "label": "Temperatura CO dla  0°C [°C]",
@@ -2935,7 +3142,8 @@
     "plus": "46",
     "minus": "45",
     "value0": "45",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "9": {
     "label": "Temperatura CO dla 10°C [°C]",
@@ -2956,7 +3164,8 @@
     "plus": "31",
     "minus": "30",
     "value0": "30",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "10": {
     "label": "Automatyczny tryb lato",
@@ -2964,7 +3173,9 @@
     "texts": [],
     "fonts": [],
     "kind": "nie_otwarto",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "11": {
     "label": "Nazwa",
@@ -2986,7 +3197,8 @@
      1
     ],
     "kind": "radio",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 4
    },
    "12": {
     "label": "Źródło",
@@ -3002,7 +3214,8 @@
      2
     ],
     "kind": "radio",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 3
    },
    "13": {
     "label": "Zwiększenie temperatury źródła [°C]",
@@ -3023,7 +3236,8 @@
     "plus": "11",
     "minus": "10",
     "value0": "10",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "14": {
     "label": "Czujnik pokojowy",
@@ -3047,7 +3261,8 @@
      2
     ],
     "kind": "radio",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 3
    },
    "15": {
     "label": "Temp. maksymalna [°C]",
@@ -3068,7 +3283,8 @@
     "plus": "71",
     "minus": "70",
     "value0": "70",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "16": {
     "label": "Czujnik CO",
@@ -3076,7 +3292,9 @@
     "texts": [],
     "fonts": [],
     "kind": "nie_otwarto",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "17": {
     "label": "Wsp. korekcji t. CO [°C/°C]",
@@ -3097,7 +3315,8 @@
     "plus": "7",
     "minus": "6",
     "value0": "6",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "18": {
     "label": "Obniżenie temperatury CO [°C]",
@@ -3118,7 +3337,8 @@
     "plus": "6",
     "minus": "5",
     "value0": "5",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "19": {
     "label": "MIN temperatura CO pomp [°C]",
@@ -3139,7 +3359,8 @@
     "plus": "21",
     "minus": "20",
     "value0": "20",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "20": {
     "label": "Czas mieszacza [s]",
@@ -3159,7 +3380,8 @@
     "kind": "slider",
     "plus": "181",
     "minus": "180",
-    "value0": "180"
+    "value0": "180",
+    "firmware_type": 0
    },
    "21": {
     "label": "Stała pompa",
@@ -3167,7 +3389,9 @@
     "texts": [],
     "fonts": [],
     "kind": "nie_otwarto",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "22": {
     "status": "NIE_DOSZEDL",
@@ -3192,7 +3416,8 @@
     "plus": "21.1",
     "minus": "21.0",
     "value0": "21.0",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 256
    }
   },
   "0x04": {
@@ -3215,7 +3440,8 @@
     "plus": "18.1",
     "minus": "18.0",
     "value0": "18.0",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 256
    },
    "2": {
     "label": "Histereza [°C]",
@@ -3236,7 +3462,8 @@
     "plus": "0.6",
     "minus": "0.5",
     "value0": "0.5",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 256
    },
    "3": {
     "label": "Kalibracja czujnika pok. [°C]",
@@ -3257,7 +3484,8 @@
     "plus": "0.1",
     "minus": "0.0",
     "value0": "0.0",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 256
    },
    "4": {
     "label": "Tryb pracy  ",
@@ -3273,7 +3501,8 @@
      2
     ],
     "kind": "radio",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 3
    },
    "5": {
     "label": "Temperatura CO zadana ręcznie [°C]",
@@ -3294,7 +3523,8 @@
     "plus": "51",
     "minus": "50",
     "value0": "50",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "6": {
     "label": "Temperatura CO dla -20°C [°C]",
@@ -3315,7 +3545,8 @@
     "plus": "56",
     "minus": "55",
     "value0": "55",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "7": {
     "label": "Temperatura CO dla -10°C [°C]",
@@ -3336,7 +3567,8 @@
     "plus": "51",
     "minus": "50",
     "value0": "50",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "8": {
     "label": "Temperatura CO dla  0°C [°C]",
@@ -3357,7 +3589,8 @@
     "plus": "46",
     "minus": "45",
     "value0": "45",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "9": {
     "label": "Temperatura CO dla 10°C [°C]",
@@ -3378,7 +3611,8 @@
     "plus": "31",
     "minus": "30",
     "value0": "30",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "10": {
     "label": "Automatyczny tryb lato",
@@ -3386,7 +3620,9 @@
     "texts": [],
     "fonts": [],
     "kind": "nie_otwarto",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "11": {
     "label": "Nazwa",
@@ -3408,7 +3644,8 @@
      1
     ],
     "kind": "radio",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 4
    },
    "12": {
     "label": "Źródło",
@@ -3424,7 +3661,8 @@
      2
     ],
     "kind": "radio",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 3
    },
    "13": {
     "label": "Zwiększenie temperatury źródła [°C]",
@@ -3445,7 +3683,8 @@
     "plus": "11",
     "minus": "10",
     "value0": "10",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "14": {
     "label": "Czujnik pokojowy",
@@ -3469,7 +3708,8 @@
      2
     ],
     "kind": "radio",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 3
    },
    "15": {
     "label": "Temp. maksymalna [°C]",
@@ -3490,7 +3730,8 @@
     "plus": "71",
     "minus": "70",
     "value0": "70",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "16": {
     "label": "Czujnik CO",
@@ -3498,7 +3739,9 @@
     "texts": [],
     "fonts": [],
     "kind": "nie_otwarto",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "17": {
     "label": "Wsp. korekcji t. CO [°C/°C]",
@@ -3519,7 +3762,8 @@
     "plus": "7",
     "minus": "6",
     "value0": "6",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "18": {
     "label": "Obniżenie temperatury CO [°C]",
@@ -3540,7 +3784,8 @@
     "plus": "6",
     "minus": "5",
     "value0": "5",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "19": {
     "label": "MIN temperatura CO pomp [°C]",
@@ -3561,7 +3806,8 @@
     "plus": "21",
     "minus": "20",
     "value0": "20",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 0
    },
    "20": {
     "label": "Czas mieszacza [s]",
@@ -3581,7 +3827,8 @@
     "kind": "slider",
     "plus": "181",
     "minus": "180",
-    "value0": "180"
+    "value0": "180",
+    "firmware_type": 0
    },
    "21": {
     "label": "Stała pompa",
@@ -3589,7 +3836,9 @@
     "texts": [],
     "fonts": [],
     "kind": "nie_otwarto",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 1,
+    "kind_inferred": "przelacznik"
    },
    "22": {
     "status": "NIE_DOSZEDL",
@@ -3614,7 +3863,8 @@
     "plus": "21.1",
     "minus": "21.0",
     "value0": "21.0",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "note": "INFERENCE: jak CO1 (0x01)",
+    "firmware_type": 256
    }
   }
  }
