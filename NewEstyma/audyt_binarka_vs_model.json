@@ -1,0 +1,3672 @@
+{
+ "schema_version": "1.0",
+ "evidence": "MEASURED (statyczna analiza decompiled.c + pliki modelu; porownanie liczbowe)",
+ "method": "PID 'wzmianki' = liczba wystapien heksa w ui_model/*.json (bez device_model/bind_raw/atlas/extras); presentery = funkcje wolajace FUN_08036ff2 >=3 razy",
+ "totals": {
+  "pids": 655,
+  "pids_unmentioned": 211,
+  "pids_read_by_code": 154,
+  "pids_read_by_code_unmentioned": 24,
+  "presenters": 13,
+  "text_ids": 496,
+  "text_static": 13,
+  "text_seen_emulator": 301,
+  "text_static_not_seen": 0,
+  "text_unseen_total": 195,
+  "texts_unseen_and_undocumented": 75,
+  "bitmaps": 188,
+  "bitmaps_seen": 119,
+  "bitmaps_documented": 108,
+  "bitmaps_static_not_seen": 31,
+  "bitmaps_unseen_and_undocumented": 39
+ },
+ "pids_read_by_code_but_unmentioned": [
+  {
+   "pid": "0x200d",
+   "name": "Remote boiler 1 requested temp[C]",
+   "mode": "live",
+   "presenters": [
+    "0803e45c"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x200e",
+   "name": "Remote boiler 2 requested temp[C]",
+   "mode": "live",
+   "presenters": [
+    "0803e45c"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2119",
+   "name": "Exhaust gas temperature (2) [C]",
+   "mode": "live",
+   "presenters": [
+    "0803cf54"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2309",
+   "name": "Room temp. radio sensor batt. volt [mV]",
+   "mode": "live",
+   "presenters": [
+    "0803d37c"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x230d",
+   "name": "Room temp. radio sensor signal [%]",
+   "mode": "live",
+   "presenters": [
+    "0803d37c"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2311",
+   "name": "Room temp. radio sensor time since lasr rec.",
+   "mode": "live",
+   "presenters": [
+    "0803d37c"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2319",
+   "name": "Room temp. radio sensor soft. ver. before dot",
+   "mode": "live",
+   "presenters": [
+    "0803d37c"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x231d",
+   "name": "Room temp. radio sensor soft. ver. after dot",
+   "mode": "live",
+   "presenters": [
+    "0803d37c"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2325",
+   "name": "CH circuit name part2",
+   "mode": "setting",
+   "presenters": [
+    "0803d37c",
+    "0803eb4a",
+    "0803ec18"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2329",
+   "name": "CH circuit name part3",
+   "mode": "setting",
+   "presenters": [
+    "0803d37c",
+    "0803eb4a",
+    "0803ec18"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x300a",
+   "name": "Sec. air mixer position [%]",
+   "mode": "live",
+   "presenters": [
+    "0803cf54"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x300b",
+   "name": "Stop burning wood",
+   "mode": "command",
+   "presenters": [
+    "0803cf54"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x351b",
+   "name": "Cascade timer to inc power lvel [s]",
+   "mode": "live",
+   "presenters": [
+    "0803e45c"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3602",
+   "name": "Is fuel reserve",
+   "mode": "live",
+   "presenters": [
+    "08031ccc"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3721",
+   "name": "Outside temperature averaged",
+   "mode": "live",
+   "presenters": [
+    "08031ccc"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3723",
+   "name": "Settings recovered count",
+   "mode": "command",
+   "presenters": [
+    "08031ccc"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3724",
+   "name": "Out temp. radio sensor batt. volt [mV]",
+   "mode": "live",
+   "presenters": [
+    "08031ccc"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3725",
+   "name": "Out temp. radio sensor signal [%]",
+   "mode": "live",
+   "presenters": [
+    "08031ccc"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3726",
+   "name": "Out temp. radio sensor time since lasr rec.",
+   "mode": "live",
+   "presenters": [
+    "08031ccc"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3728",
+   "name": "Is reset required",
+   "mode": "live",
+   "presenters": [
+    "08031ccc"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3729",
+   "name": "Is summer time",
+   "mode": "live",
+   "presenters": [
+    "08031ccc"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x372b",
+   "name": "Out temp. radio sensor sw. ver. before dot",
+   "mode": "live",
+   "presenters": [
+    "08031ccc"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x372c",
+   "name": "Out temp. radio sensor sw. ver. after dot",
+   "mode": "live",
+   "presenters": [
+    "08031ccc"
+   ],
+   "in_catalog": true
+  },
+  {
+   "pid": "0x400a",
+   "name": "Virt. energy consumer set temp [C]",
+   "mode": "command",
+   "presenters": [
+    "0803e45c"
+   ],
+   "in_catalog": true
+  }
+ ],
+ "pids_unmentioned_all": [
+  {
+   "pid": "0x0004",
+   "name": "Parameters set Number",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x200d",
+   "name": "Remote boiler 1 requested temp[C]",
+   "mode": "live",
+   "ui_keys": "T2:0x0034",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x200e",
+   "name": "Remote boiler 2 requested temp[C]",
+   "mode": "live",
+   "ui_keys": "T2:0x0035",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2017",
+   "name": "Room measured temp",
+   "mode": "live",
+   "ui_keys": "T1:0x00C6/inst2",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2018",
+   "name": "Room measured temp",
+   "mode": "live",
+   "ui_keys": "T1:0x00C6/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2019",
+   "name": "Room measured temp",
+   "mode": "live",
+   "ui_keys": "T1:0x00C6/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2066",
+   "name": "CH program",
+   "mode": "setting",
+   "ui_keys": "T1:0x00AC/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2067",
+   "name": "CH program",
+   "mode": "setting",
+   "ui_keys": "T1:0x00AC/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2119",
+   "name": "Exhaust gas temperature (2) [C]",
+   "mode": "live",
+   "ui_keys": "T2:0x003F",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2122",
+   "name": "Compatibility igneo solar pump state",
+   "mode": "live",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2124",
+   "name": "Total fuel counter[hg]",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2125",
+   "name": "Device type",
+   "mode": "live",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2151",
+   "name": "Grate silence mode",
+   "mode": "setting",
+   "ui_keys": "T2:0x0088",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x215b",
+   "name": "Airflow speed for 100% of power [m/s]",
+   "mode": "setting",
+   "ui_keys": "T2:0x0072",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2161",
+   "name": "Weather forecast 0",
+   "mode": "command",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2162",
+   "name": "Weather forecast 1",
+   "mode": "command",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2163",
+   "name": "Weather forecast 2",
+   "mode": "command",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2164",
+   "name": "Weather validity left time [min]",
+   "mode": "command",
+   "ui_keys": "T2:0x0006",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2167",
+   "name": "CH res [dC]",
+   "mode": "command",
+   "ui_keys": "T1:0x00AB/inst2",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2168",
+   "name": "CH res [dC]",
+   "mode": "command",
+   "ui_keys": "T1:0x00AB/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2169",
+   "name": "CH res [dC]",
+   "mode": "command",
+   "ui_keys": "T1:0x00AB/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x216b",
+   "name": "Exchanger silence mode",
+   "mode": "setting",
+   "ui_keys": "T2:0x0024",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x218a",
+   "name": "Is grate cleaning on",
+   "mode": "setting",
+   "ui_keys": "T2:0x0094",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x227b",
+   "name": "Pwr reg. Kp",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x227c",
+   "name": "Pwr reg. Ki",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x227d",
+   "name": "Pwr reg. Kd",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x227e",
+   "name": "Pwr reg. Ki 2",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x227f",
+   "name": "Pwr reg. Kd 2",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x228a",
+   "name": "Pwr reg. Kp 2",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x228b",
+   "name": "Grate full move time [s]",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2294",
+   "name": "User fuel counter[kg]",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x22af",
+   "name": "CH temp calc",
+   "mode": "live",
+   "ui_keys": "T1:0x00C8/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x22b0",
+   "name": "CH temp calc",
+   "mode": "live",
+   "ui_keys": "T1:0x00C8/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x22f6",
+   "name": "CH needed temp. [C]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CB/inst2",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x22f7",
+   "name": "CH needed temp. [C]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CB/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x22f8",
+   "name": "CH needed temp. [C]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CB/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x22fe",
+   "name": "CH status",
+   "mode": "live",
+   "ui_keys": "T1:0x00A8/inst2",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x22ff",
+   "name": "CH status",
+   "mode": "live",
+   "ui_keys": "T1:0x00A8/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2300",
+   "name": "CH status",
+   "mode": "live",
+   "ui_keys": "T1:0x00A8/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2302",
+   "name": "CH thermostat state",
+   "mode": "live",
+   "ui_keys": "T1:0x00CD/inst2",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2303",
+   "name": "CH thermostat state",
+   "mode": "live",
+   "ui_keys": "T1:0x00CD/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2304",
+   "name": "CH thermostat state",
+   "mode": "live",
+   "ui_keys": "T1:0x00CD/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2305",
+   "name": "CH room set temp. adjustment [dC]",
+   "mode": "command",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2306",
+   "name": "CH room set temp. adjustment [dC]",
+   "mode": "command",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2307",
+   "name": "CH room set temp. adjustment [dC]",
+   "mode": "command",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2308",
+   "name": "CH room set temp. adjustment [dC]",
+   "mode": "command",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2309",
+   "name": "Room temp. radio sensor batt. volt [mV]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CF/inst1",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x230a",
+   "name": "Room temp. radio sensor batt. volt [mV]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CF/inst2",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x230b",
+   "name": "Room temp. radio sensor batt. volt [mV]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CF/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x230c",
+   "name": "Room temp. radio sensor batt. volt [mV]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CF/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x230d",
+   "name": "Room temp. radio sensor signal [%]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CE/inst1",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x230e",
+   "name": "Room temp. radio sensor signal [%]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CE/inst2",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x230f",
+   "name": "Room temp. radio sensor signal [%]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CE/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2310",
+   "name": "Room temp. radio sensor signal [%]",
+   "mode": "live",
+   "ui_keys": "T1:0x00CE/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2311",
+   "name": "Room temp. radio sensor time since lasr rec.",
+   "mode": "live",
+   "ui_keys": "T1:0x00D0/inst1",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2312",
+   "name": "Room temp. radio sensor time since lasr rec.",
+   "mode": "live",
+   "ui_keys": "T1:0x00D0/inst2",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2313",
+   "name": "Room temp. radio sensor time since lasr rec.",
+   "mode": "live",
+   "ui_keys": "T1:0x00D0/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2314",
+   "name": "Room temp. radio sensor time since lasr rec.",
+   "mode": "live",
+   "ui_keys": "T1:0x00D0/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2319",
+   "name": "Room temp. radio sensor soft. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T1:0x00D1/inst1",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x231a",
+   "name": "Room temp. radio sensor soft. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T1:0x00D1/inst2",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x231b",
+   "name": "Room temp. radio sensor soft. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T1:0x00D1/inst3",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x231c",
+   "name": "Room temp. radio sensor soft. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T1:0x00D1/inst4",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x231d",
+   "name": "Room temp. radio sensor soft. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T1:0x00D2/inst1",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x231e",
+   "name": "Room temp. radio sensor soft. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T1:0x00D2/inst2",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x231f",
+   "name": "Room temp. radio sensor soft. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T1:0x00D2/inst3",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x2320",
+   "name": "Room temp. radio sensor soft. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T1:0x00D2/inst4",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x2325",
+   "name": "CH circuit name part2",
+   "mode": "setting",
+   "ui_keys": "T1:0x00D5/inst1",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x2326",
+   "name": "CH circuit name part2",
+   "mode": "setting",
+   "ui_keys": "T1:0x00D5/inst2",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x2327",
+   "name": "CH circuit name part2",
+   "mode": "setting",
+   "ui_keys": "T1:0x00D5/inst3",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x2328",
+   "name": "CH circuit name part2",
+   "mode": "setting",
+   "ui_keys": "T1:0x00D5/inst4",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x2329",
+   "name": "CH circuit name part3",
+   "mode": "setting",
+   "ui_keys": "T1:0x00D6/inst1",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x232a",
+   "name": "CH circuit name part3",
+   "mode": "setting",
+   "ui_keys": "T1:0x00D6/inst2",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x232b",
+   "name": "CH circuit name part3",
+   "mode": "setting",
+   "ui_keys": "T1:0x00D6/inst3",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x232c",
+   "name": "CH circuit name part3",
+   "mode": "setting",
+   "ui_keys": "T1:0x00D6/inst4",
+   "in_catalog": false
+  },
+  {
+   "pid": "0x299f",
+   "name": "Burning type",
+   "mode": "setting",
+   "ui_keys": "T2:0x005E",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3001",
+   "name": "Start burning wood",
+   "mode": "command",
+   "ui_keys": "T2:0x0067",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3005",
+   "name": "Fireup blower power on wood [%]",
+   "mode": "setting",
+   "ui_keys": "T2:0x0061",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3007",
+   "name": "Pause blower power on wood [%]",
+   "mode": "setting",
+   "ui_keys": "T2:0x0064",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3008",
+   "name": "Sec. air modulation MIN [%]",
+   "mode": "setting",
+   "ui_keys": "T2:0x009E",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3009",
+   "name": "Sec. air modulation MAX [%]",
+   "mode": "setting",
+   "ui_keys": "T2:0x009F",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x300a",
+   "name": "Sec. air mixer position [%]",
+   "mode": "live",
+   "ui_keys": "T2:0x00A0",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x300b",
+   "name": "Stop burning wood",
+   "mode": "command",
+   "ui_keys": "T2:0x0068",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x300f",
+   "name": "Virt. consumer maximal power",
+   "mode": "command",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3010",
+   "name": "Grate move interval in modulation [kg]",
+   "mode": "setting",
+   "ui_keys": "T2:0x007A",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3012",
+   "name": "Grate move interval in modulation [min]",
+   "mode": "setting",
+   "ui_keys": "T2:0x007B",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3013",
+   "name": "Burner blower max RPM",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3121",
+   "name": "Exchanger cleaning duration [s]",
+   "mode": "setting",
+   "ui_keys": "T2:0x0025",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3123",
+   "name": "",
+   "mode": "setting",
+   "ui_keys": "T2:0x002D",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3124",
+   "name": "",
+   "mode": "setting",
+   "ui_keys": "T2:0x0030",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3125",
+   "name": "",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3126",
+   "name": "",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3127",
+   "name": "Clean burner monit period [kg]",
+   "mode": "live",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3128",
+   "name": "Clean exchanger monit period [kg]",
+   "mode": "live",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x351b",
+   "name": "Cascade timer to inc power lvel [s]",
+   "mode": "live",
+   "ui_keys": "T2:0x0155",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3602",
+   "name": "Is fuel reserve",
+   "mode": "live",
+   "ui_keys": "T2:0x014A",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3617",
+   "name": "Statistics - Grate cleaning count",
+   "mode": "live",
+   "ui_keys": "T2:0x01A4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3621",
+   "name": "Inside temp [C] CAN IO 6",
+   "mode": "live",
+   "ui_keys": "T2:0x0171",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3622",
+   "name": "Inside temp [C] CAN IO 7",
+   "mode": "live",
+   "ui_keys": "T2:0x0172",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3623",
+   "name": "Inside temp [C] CAN IO 4",
+   "mode": "live",
+   "ui_keys": "T2:0x016F",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3624",
+   "name": "Inside temp [C] CAN IO 3",
+   "mode": "live",
+   "ui_keys": "T2:0x016E",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3625",
+   "name": "Inside temp [C] CAN IO 2",
+   "mode": "live",
+   "ui_keys": "T2:0x016D",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3626",
+   "name": "Inside temp [C] CAN IO 1",
+   "mode": "live",
+   "ui_keys": "T2:0x016C",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3627",
+   "name": "Inside temp [C] CAN IO 0",
+   "mode": "live",
+   "ui_keys": "T2:0x016B",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x362c",
+   "name": "Total grate unblock try count",
+   "mode": "live",
+   "ui_keys": "T2:0x01A8",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3631",
+   "name": "CAN IO 1 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0174",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3632",
+   "name": "CAN IO 2 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0175",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3633",
+   "name": "CAN IO 3 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0176",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3634",
+   "name": "CAN IO 4 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0177",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3636",
+   "name": "CAN IO 6 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0179",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3637",
+   "name": "CAN IO 7 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x017A",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3639",
+   "name": "CAN IO 1 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x017C",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x363a",
+   "name": "CAN IO 2 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x017D",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x363b",
+   "name": "CAN IO 3 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x017E",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x363c",
+   "name": "CAN IO 4 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x017F",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x363e",
+   "name": "CAN IO 6 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0181",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x363f",
+   "name": "CAN IO 7 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0182",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3640",
+   "name": "Inside temp [C] CAN IO Mini 0",
+   "mode": "live",
+   "ui_keys": "T2:0x0183",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3648",
+   "name": "CAN IO Mini 0 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0184",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3650",
+   "name": "CAN IO Mini 0 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0185",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x365c",
+   "name": "Vide room 1 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x018E",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x365d",
+   "name": "Vide room 2 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x018F",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x365e",
+   "name": "Vide room 3 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0190",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x365f",
+   "name": "Vide room 4 sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0191",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3660",
+   "name": "Vide room 1 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0192",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3661",
+   "name": "Vide room 2 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0193",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3662",
+   "name": "Vide room 3 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0194",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3663",
+   "name": "Vide room 4 sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0195",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x366a",
+   "name": "RadioGateway sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0196",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x366b",
+   "name": "RadioGateway sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0197",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3702",
+   "name": "Nominal exhaust gas temp. [C]",
+   "mode": "setting",
+   "ui_keys": "T2:0x008E",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3705",
+   "name": "Blower power in hold/pause [%]",
+   "mode": "setting",
+   "ui_keys": "T2:0x0066",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x370c",
+   "name": "Min fire up time [min]",
+   "mode": "setting",
+   "ui_keys": "T2:0x0097",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x370f",
+   "name": "Burning off burner feeder work time [s]",
+   "mode": "setting",
+   "ui_keys": "T2:0x007D",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3712",
+   "name": "Blower type",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3713",
+   "name": "",
+   "mode": "setting",
+   "ui_keys": "T2:0x0099",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3714",
+   "name": "",
+   "mode": "setting",
+   "ui_keys": "T2:0x009A",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3719",
+   "name": "Confirm. service date timestamp",
+   "mode": "setting",
+   "ui_keys": "T2:0x0124",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x371b",
+   "name": "Min airflow (blower 100%) [dm/s]",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x371c",
+   "name": "Boiler efficiency [d%]",
+   "mode": "live",
+   "ui_keys": "T2:0x006D",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x371d",
+   "name": "Oxygen target [0.1%]",
+   "mode": "live",
+   "ui_keys": "T2:0x00A4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3721",
+   "name": "Outside temperature averaged",
+   "mode": "live",
+   "ui_keys": "T2:0x0001",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3723",
+   "name": "Settings recovered count",
+   "mode": "command",
+   "ui_keys": "T2:0x0134",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3724",
+   "name": "Out temp. radio sensor batt. volt [mV]",
+   "mode": "live",
+   "ui_keys": "T2:0x0003",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3725",
+   "name": "Out temp. radio sensor signal [%]",
+   "mode": "live",
+   "ui_keys": "T2:0x0004",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3726",
+   "name": "Out temp. radio sensor time since lasr rec.",
+   "mode": "live",
+   "ui_keys": "T2:0x0005",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3727",
+   "name": "Burner feeder absolut work time [s]",
+   "mode": "setting",
+   "ui_keys": "T2:0x0093",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3728",
+   "name": "Is reset required",
+   "mode": "live",
+   "ui_keys": "T2:0x0135",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3729",
+   "name": "Is summer time",
+   "mode": "live",
+   "ui_keys": "T2:0x0007",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x372b",
+   "name": "Out temp. radio sensor sw. ver. before dot",
+   "mode": "live",
+   "ui_keys": "T2:0x0009",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x372c",
+   "name": "Out temp. radio sensor sw. ver. after dot",
+   "mode": "live",
+   "ui_keys": "T2:0x000A",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x372d",
+   "name": "",
+   "mode": "live",
+   "ui_keys": "T2:0x006E",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x372e",
+   "name": "[m%]",
+   "mode": "live",
+   "ui_keys": "T2:0x003D",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3743",
+   "name": "",
+   "mode": "command",
+   "ui_keys": "T2:0x013D",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3748",
+   "name": "Storage feeder pause in predose[s]",
+   "mode": "setting",
+   "ui_keys": "T2:0x0092",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x374d",
+   "name": "Burner plug disc. possible",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x3750",
+   "name": "Sweep mode",
+   "mode": "command",
+   "ui_keys": "T2:0x0013",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4003",
+   "name": "CH temp measured",
+   "mode": "live",
+   "ui_keys": "T1:0x00C7/inst3",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4004",
+   "name": "CH temp measured",
+   "mode": "live",
+   "ui_keys": "T1:0x00C7/inst4",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x400a",
+   "name": "Virt. energy consumer set temp [C]",
+   "mode": "command",
+   "ui_keys": "T2:0x0037",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4011",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4013",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4015",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4016",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4017",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4018",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4019",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x401a",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x401b",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x401c",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x401d",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x401e",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x401f",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4020",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4021",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4022",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4023",
+   "name": "Alarm register",
+   "mode": "setting",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4025",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4026",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4027",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4029",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x402a",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x402b",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x402c",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x402d",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x402e",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x402f",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4030",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4031",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4032",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4033",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4034",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4035",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4036",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4037",
+   "name": "Alarm date timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4039",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x403b",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x403d",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x403e",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x403f",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4040",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4041",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4042",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4043",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4044",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4045",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4046",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4047",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4048",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x4049",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x404a",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  },
+  {
+   "pid": "0x404b",
+   "name": "Alarm confirm timestamp",
+   "mode": "mirror",
+   "ui_keys": "",
+   "in_catalog": true
+  }
+ ],
+ "presenters": [
+  {
+   "func": "0x8031ccc",
+   "getter_calls": 47,
+   "keys": 33,
+   "pids": [
+    "0x2001",
+    "0x2002",
+    "0x2004",
+    "0x2005",
+    "0x2007",
+    "0x2014",
+    "0x2064",
+    "0x2065",
+    "0x2105",
+    "0x2106",
+    "0x2107",
+    "0x215F",
+    "0x2209",
+    "0x2266",
+    "0x2267",
+    "0x3505",
+    "0x3600",
+    "0x3601",
+    "0x3602",
+    "0x3607",
+    "0x370A",
+    "0x3721",
+    "0x3722",
+    "0x3723",
+    "0x3724",
+    "0x3725",
+    "0x3726",
+    "0x3728",
+    "0x3729",
+    "0x372B",
+    "0x372C",
+    "0x373C",
+    "0x373D"
+   ],
+   "pids_total": 33,
+   "mentioned": 23
+  },
+  {
+   "func": "0x803cf54",
+   "getter_calls": 33,
+   "keys": 28,
+   "pids": [
+    "0x2007",
+    "0x2119",
+    "0x2120",
+    "0x2123",
+    "0x218B",
+    "0x2250",
+    "0x2251",
+    "0x2252",
+    "0x2253",
+    "0x2254",
+    "0x226C",
+    "0x226D",
+    "0x2276",
+    "0x2283",
+    "0x228C",
+    "0x299C",
+    "0x299D",
+    "0x300A",
+    "0x300B",
+    "0x3606",
+    "0x362B",
+    "0x3706",
+    "0x3710",
+    "0x3711",
+    "0x371A",
+    "0x4005",
+    "0x4008",
+    "0x4009"
+   ],
+   "pids_total": 28,
+   "mentioned": 24
+  },
+  {
+   "func": "0x803d37c",
+   "getter_calls": 25,
+   "keys": 21,
+   "pids": [
+    "0x2016",
+    "0x2064",
+    "0x2126",
+    "0x2166",
+    "0x2299",
+    "0x22A1",
+    "0x22A5",
+    "0x22AD",
+    "0x22B9",
+    "0x22F5",
+    "0x22FD",
+    "0x2301",
+    "0x2309",
+    "0x230D",
+    "0x2311",
+    "0x2319",
+    "0x231D",
+    "0x2321",
+    "0x2325",
+    "0x2329",
+    "0x4001"
+   ],
+   "pids_total": 21,
+   "mentioned": 14
+  },
+  {
+   "func": "0x803e45c",
+   "getter_calls": 19,
+   "keys": 19,
+   "pids": [
+    "0x2001",
+    "0x200A",
+    "0x200B",
+    "0x200C",
+    "0x200D",
+    "0x200E",
+    "0x200F",
+    "0x350C",
+    "0x3511",
+    "0x3512",
+    "0x3513",
+    "0x3514",
+    "0x3517",
+    "0x3518",
+    "0x3519",
+    "0x351A",
+    "0x351B",
+    "0x351C",
+    "0x400A"
+   ],
+   "pids_total": 19,
+   "mentioned": 15
+  },
+  {
+   "func": "0x803cb2c",
+   "getter_calls": 14,
+   "keys": 14,
+   "pids": [
+    "0x2001",
+    "0x2002",
+    "0x2004",
+    "0x2005",
+    "0x216A",
+    "0x216F",
+    "0x2277",
+    "0x3333",
+    "0x350A",
+    "0x350D",
+    "0x3628",
+    "0x3629",
+    "0x370A",
+    "0x4000"
+   ],
+   "pids_total": 14,
+   "mentioned": 14
+  },
+  {
+   "func": "0x803ec18",
+   "getter_calls": 13,
+   "keys": 13,
+   "pids": [
+    "0x2261",
+    "0x2262",
+    "0x2263",
+    "0x2264",
+    "0x2265",
+    "0x2268",
+    "0x226E",
+    "0x226F",
+    "0x2275",
+    "0x227A",
+    "0x2321",
+    "0x2325",
+    "0x2329"
+   ],
+   "pids_total": 13,
+   "mentioned": 11
+  },
+  {
+   "func": "0x803df78",
+   "getter_calls": 10,
+   "keys": 10,
+   "pids": [
+    "0x2112",
+    "0x2113",
+    "0x2115",
+    "0x2211",
+    "0x2277",
+    "0x2280",
+    "0x3171",
+    "0x3172",
+    "0x3173",
+    "0x3174"
+   ],
+   "pids_total": 10,
+   "mentioned": 10
+  },
+  {
+   "func": "0x803d744",
+   "getter_calls": 7,
+   "keys": 7,
+   "pids": [
+    "0x2014",
+    "0x201A",
+    "0x2110",
+    "0x2111",
+    "0x2154",
+    "0x2278",
+    "0x3749"
+   ],
+   "pids_total": 7,
+   "mentioned": 7
+  },
+  {
+   "func": "0x803dcc6",
+   "getter_calls": 7,
+   "keys": 7,
+   "pids": [
+    "0x373C",
+    "0x373E",
+    "0x373F",
+    "0x3740",
+    "0x3744",
+    "0x3745",
+    "0x3746"
+   ],
+   "pids_total": 7,
+   "mentioned": 7
+  },
+  {
+   "func": "0x803e148",
+   "getter_calls": 6,
+   "keys": 6,
+   "pids": [
+    "0x2101",
+    "0x2102",
+    "0x2103",
+    "0x2109",
+    "0x311C",
+    "0x3120"
+   ],
+   "pids_total": 6,
+   "mentioned": 6
+  },
+  {
+   "func": "0x803e2e8",
+   "getter_calls": 5,
+   "keys": 5,
+   "pids": [
+    "0x3522",
+    "0x3523",
+    "0x3524",
+    "0x3529",
+    "0x352A"
+   ],
+   "pids_total": 5,
+   "mentioned": 5
+  },
+  {
+   "func": "0x803d516",
+   "getter_calls": 3,
+   "keys": 3,
+   "pids": [
+    "0x2032",
+    "0x2048",
+    "0x2064"
+   ],
+   "pids_total": 3,
+   "mentioned": 3
+  },
+  {
+   "func": "0x803eb4a",
+   "getter_calls": 3,
+   "keys": 3,
+   "pids": [
+    "0x2321",
+    "0x2325",
+    "0x2329"
+   ],
+   "pids_total": 3,
+   "mentioned": 1
+  }
+ ],
+ "texts_static_not_seen": [],
+ "texts_never_seen": [
+  {
+   "id": 3,
+   "pl": "Sterownik"
+  },
+  {
+   "id": 4,
+   "pl": "Palnik"
+  },
+  {
+   "id": 7,
+   "pl": "Czyszczenie"
+  },
+  {
+   "id": 8,
+   "pl": "Rozpalanie"
+  },
+  {
+   "id": 9,
+   "pl": "Rozżarzanie"
+  },
+  {
+   "id": 10,
+   "pl": "Moc 1"
+  },
+  {
+   "id": 11,
+   "pl": "Moc 2"
+  },
+  {
+   "id": 12,
+   "pl": "Modulacja"
+  },
+  {
+   "id": 13,
+   "pl": "Wygaszanie"
+  },
+  {
+   "id": 14,
+   "pl": "Podtrzymanie"
+  },
+  {
+   "id": 15,
+   "pl": "Postój"
+  },
+  {
+   "id": 16,
+   "pl": "Alarm"
+  },
+  {
+   "id": 18,
+   "pl": "Praca"
+  },
+  {
+   "id": 19,
+   "pl": "Przepłukiwanie"
+  },
+  {
+   "id": 20,
+   "pl": "Zamarzanie"
+  },
+  {
+   "id": 21,
+   "pl": "Przegrzanie"
+  },
+  {
+   "id": 22,
+   "pl": "Woda max"
+  },
+  {
+   "id": 23,
+   "pl": "Wyłączone"
+  },
+  {
+   "id": 24,
+   "pl": "Chłodzenie"
+  },
+  {
+   "id": 25,
+   "pl": "Test"
+  },
+  {
+   "id": 27,
+   "pl": "Grzanie"
+  },
+  {
+   "id": 28,
+   "pl": "Wybieg"
+  },
+  {
+   "id": 29,
+   "pl": "Oczekiwanie"
+  },
+  {
+   "id": 31,
+   "pl": "Alarm"
+  },
+  {
+   "id": 32,
+   "pl": "Stop"
+  },
+  {
+   "id": 33,
+   "pl": "Lato"
+  },
+  {
+   "id": 34,
+   "pl": "Źródło blokuje"
+  },
+  {
+   "id": 84,
+   "pl": "Następny serwis \u0002"
+  },
+  {
+   "id": 85,
+   "pl": "Podaj paliwo"
+  },
+  {
+   "id": 86,
+   "pl": "Typ paliwa"
+  },
+  {
+   "id": 87,
+   "pl": "Powietrze MIN (moc 20%)"
+  },
+  {
+   "id": 88,
+   "pl": "Powietrze MIN (moc 100%)"
+  },
+  {
+   "id": 91,
+   "pl": "pellets"
+  },
+  {
+   "id": 92,
+   "pl": "drewno"
+  },
+  {
+   "id": 95,
+   "pl": "Program"
+  },
+  {
+   "id": 104,
+   "pl": "Test pompy      "
+  },
+  {
+   "id": 120,
+   "pl": "Test pompy      "
+  },
+  {
+   "id": 121,
+   "pl": "Test mieszacza  "
+  },
+  {
+   "id": 133,
+   "pl": "Aktywuj alarm wyczyść wymiennik"
+  },
+  {
+   "id": 134,
+   "pl": "Aktywuj alarm wyczyść palnik"
+  },
+  {
+   "id": 136,
+   "pl": "Czas czyszczenia wymiennika [s]"
+  },
+  {
+   "id": 137,
+   "pl": "Podajnik palnika w wygaszaniu [s]"
+  },
+  {
+   "id": 146,
+   "pl": "Wstępna dawka paliwa [g]"
+  },
+  {
+   "id": 158,
+   "pl": "Tryb cichy rusztu"
+  },
+  {
+   "id": 159,
+   "pl": "Tryb cichy wymiennika"
+  },
+  {
+   "id": 160,
+   "pl": "Minimalna temp. spalin [°C]"
+  },
+  {
+   "id": 161,
+   "pl": "Maksymalna temp. spalin [°C]"
+  },
+  {
+   "id": 162,
+   "pl": "Nominalna temp. spalin [°C]"
+  },
+  {
+   "id": 166,
+   "pl": "Typ czujnika spalin"
+  },
+  {
+   "id": 168,
+   "pl": "Minimalny czas rozpalania [min]"
+  },
+  {
+   "id": 173,
+   "pl": "pogodowy"
+  },
+  {
+   "id": 174,
+   "pl": "Tryb kominiarz"
+  },
+  {
+   "id": 176,
+   "pl": "CTP1"
+  },
+  {
+   "id": 177,
+   "pl": "CTP2"
+  },
+  {
+   "id": 178,
+   "pl": "CTZ1"
+  },
+  {
+   "id": 179,
+   "pl": "videROOM"
+  },
+  {
+   "id": 180,
+   "pl": "termostat"
+  },
+  {
+   "id": 181,
+   "pl": "CAN"
+  },
+  {
+   "id": 182,
+   "pl": "KTY84-130"
+  },
+  {
+   "id": 183,
+   "pl": "PT1000"
+  },
+  {
+   "id": 184,
+   "pl": "ciepłomierz"
+  },
+  {
+   "id": 185,
+   "pl": "przepływomierz"
+  },
+  {
+   "id": 204,
+   "pl": "Napięcie gdy ruszt schowany [V]"
+  },
+  {
+   "id": 205,
+   "pl": "Napięcie gdy ruszt wysunięty [V]"
+  },
+  {
+   "id": 206,
+   "pl": "Pozycja rusztu (moc minimalna) [%]"
+  },
+  {
+   "id": 207,
+   "pl": "Praca rusztu"
+  },
+  {
+   "id": 210,
+   "pl": "F(30%) [m/s]"
+  },
+  {
+   "id": 211,
+   "pl": "F(100%) [m/s]"
+  },
+  {
+   "id": 214,
+   "pl": "Wtorek"
+  },
+  {
+   "id": 215,
+   "pl": "Środa"
+  },
+  {
+   "id": 216,
+   "pl": "Czwartek"
+  },
+  {
+   "id": 217,
+   "pl": "Piątek"
+  },
+  {
+   "id": 218,
+   "pl": "Sobota"
+  },
+  {
+   "id": 219,
+   "pl": "Niedziela"
+  },
+  {
+   "id": 245,
+   "pl": "Powietrze wtórne"
+  },
+  {
+   "id": 246,
+   "pl": "Wtórne modulacja MIN [%]"
+  },
+  {
+   "id": 247,
+   "pl": "Wtórne modulacja MAX [%]"
+  },
+  {
+   "id": 259,
+   "pl": "Liczba prób odblokowania rusztu"
+  },
+  {
+   "id": 271,
+   "pl": "Przegrzanie procesora"
+  },
+  {
+   "id": 272,
+   "pl": "Brak ognia/opału"
+  },
+  {
+   "id": 273,
+   "pl": "Nieudane rozpalanie"
+  },
+  {
+   "id": 274,
+   "pl": "Przegrzanie palnika"
+  },
+  {
+   "id": 275,
+   "pl": "Uszkodzenie czujnika kotla"
+  },
+  {
+   "id": 276,
+   "pl": "Przegrzanie kotła"
+  },
+  {
+   "id": 277,
+   "pl": "Reset procesora"
+  },
+  {
+   "id": 278,
+   "pl": "STB"
+  },
+  {
+   "id": 280,
+   "pl": "Komunikacja z modułem 1"
+  },
+  {
+   "id": 281,
+   "pl": "Komunikacja z modułem 2"
+  },
+  {
+   "id": 282,
+   "pl": "Komunikacja z modułem 3"
+  },
+  {
+   "id": 283,
+   "pl": "Komunikacja z modułem 4"
+  },
+  {
+   "id": 285,
+   "pl": "Komunikacja z modułem 6"
+  },
+  {
+   "id": 286,
+   "pl": "Komunikacja z modułem 7"
+  },
+  {
+   "id": 287,
+   "pl": "Zwarcie czujnika CWU"
+  },
+  {
+   "id": 288,
+   "pl": "Przerwa czujnika CWU"
+  },
+  {
+   "id": 289,
+   "pl": "Zwarcie czujnika pokojowego"
+  },
+  {
+   "id": 290,
+   "pl": "Przerwa czujnika pokojowego"
+  },
+  {
+   "id": 291,
+   "pl": "Błąd wygaszania"
+  },
+  {
+   "id": 292,
+   "pl": "Komunikacja z modułem Lambda"
+  },
+  {
+   "id": 293,
+   "pl": "Przegrzanie solarów"
+  },
+  {
+   "id": 294,
+   "pl": "Zamarzanie solarów"
+  },
+  {
+   "id": 295,
+   "pl": "Błąd czyszczenia rusztu"
+  },
+  {
+   "id": 296,
+   "pl": "Błąd czyszczenia"
+  },
+  {
+   "id": 297,
+   "pl": "Otwarte drzwi kotła"
+  },
+  {
+   "id": 299,
+   "pl": "Uszkodzenie czujnika pokojowego 1"
+  },
+  {
+   "id": 300,
+   "pl": "Uszkodzenie czujnika pokojowego 2"
+  },
+  {
+   "id": 301,
+   "pl": "Uszkodzenie czujnika pokojowego 3"
+  },
+  {
+   "id": 302,
+   "pl": "Uszkodzenie czujnika pokojowego 4"
+  },
+  {
+   "id": 303,
+   "pl": "Uszkodzenie czujnika temperatury CO1"
+  },
+  {
+   "id": 304,
+   "pl": "Uszkodzenie czujnika temperatury CO2"
+  },
+  {
+   "id": 305,
+   "pl": "Uszkodzenie czujnika temperatury CO3"
+  },
+  {
+   "id": 306,
+   "pl": "Uszkodzenie czujnika temperatury CO4"
+  },
+  {
+   "id": 307,
+   "pl": "Przekroczenie temp. maksymalnej CO1"
+  },
+  {
+   "id": 308,
+   "pl": "Przekroczenie temp. maksymalnej CO2"
+  },
+  {
+   "id": 309,
+   "pl": "Przekroczenie temp. maksymalnej CO3"
+  },
+  {
+   "id": 310,
+   "pl": "Przekroczenie temp. maksymalnej CO4"
+  },
+  {
+   "id": 311,
+   "pl": "Uszkodzenie czujnika palnika/podajnika"
+  },
+  {
+   "id": 312,
+   "pl": "Przegrzanie palnika/podajnika"
+  },
+  {
+   "id": 313,
+   "pl": "Komunikacja z modułem Lambda"
+  },
+  {
+   "id": 314,
+   "pl": "Magazyn paliwa brak paliwa/czujnik max"
+  },
+  {
+   "id": 316,
+   "pl": "Komunikacja z modułem Mini 4"
+  },
+  {
+   "id": 317,
+   "pl": "Komunikacja z modułem Mini 3"
+  },
+  {
+   "id": 318,
+   "pl": "Komunikacja z modułem Mini 2"
+  },
+  {
+   "id": 319,
+   "pl": "Komunikacja z modułem Mini 0"
+  },
+  {
+   "id": 320,
+   "pl": "Wyczyść wymiennik"
+  },
+  {
+   "id": 321,
+   "pl": "Wyczyść palnik"
+  },
+  {
+   "id": 322,
+   "pl": "Zalecany coroczny przegląd kotła"
+  },
+  {
+   "id": 323,
+   "pl": "Przepływ powietrza za niski"
+  },
+  {
+   "id": 324,
+   "pl": "Przepływomierz powietrza 1 nieskalibrowany"
+  },
+  {
+   "id": 325,
+   "pl": "Komunikacja z przepływomierzem 1"
+  },
+  {
+   "id": 326,
+   "pl": "Przepływomierz powietrza uszkodzony"
+  },
+  {
+   "id": 327,
+   "pl": "Słaba bateria w czujniku pokojowym 1"
+  },
+  {
+   "id": 328,
+   "pl": "Słaba bateria w czujniku pokojowym 2"
+  },
+  {
+   "id": 329,
+   "pl": "Słaba bateria w czujniku pokojowym 3"
+  },
+  {
+   "id": 330,
+   "pl": "Słaba bateria w czujniku pokojowym 4"
+  },
+  {
+   "id": 331,
+   "pl": "Słaba bateria w czujniku zewnętrznym"
+  },
+  {
+   "id": 332,
+   "pl": "Ciśnienie kotła"
+  },
+  {
+   "id": 346,
+   "pl": "AIR[m/s]=\u0002"
+  },
+  {
+   "id": 347,
+   "pl": "ETA[%]=\u0002"
+  },
+  {
+   "id": 351,
+   "pl": "Uszkodzenie czujnika ciepłej wody"
+  },
+  {
+   "id": 352,
+   "pl": "Uszkodzenie czujnika buffora góra"
+  },
+  {
+   "id": 353,
+   "pl": "Uszkodzenie czujnika buffora dół"
+  },
+  {
+   "id": 354,
+   "pl": "Uszkodzenie czujnika kolektora solarnego"
+  },
+  {
+   "id": 355,
+   "pl": "Uszkodzenie czujnika zbiornika solarnego"
+  },
+  {
+   "id": 356,
+   "pl": "Uszkodzenie czujnika powrotu solarów"
+  },
+  {
+   "id": 357,
+   "pl": "Uszkodzenie czujnika solar T4"
+  },
+  {
+   "id": 358,
+   "pl": "Rezerwa paliwa"
+  },
+  {
+   "id": 359,
+   "pl": "Brak paliwa"
+  },
+  {
+   "id": 360,
+   "pl": "STB"
+  },
+  {
+   "id": 361,
+   "pl": "Przerwanie obwodu bezpieczeństwa palnika"
+  },
+  {
+   "id": 362,
+   "pl": "Uszkodzenie czujnika powrotu do kotla"
+  },
+  {
+   "id": 363,
+   "pl": "Poziom tlenu bardzo niski"
+  },
+  {
+   "id": 365,
+   "pl": "ochrony powrotu"
+  },
+  {
+   "id": 366,
+   "pl": "buforowa"
+  },
+  {
+   "id": 367,
+   "pl": "pellet"
+  },
+  {
+   "id": 368,
+   "pl": "drewno"
+  },
+  {
+   "id": 369,
+   "pl": "drewno->pellet"
+  },
+  {
+   "id": 371,
+   "pl": "Moc dmuchawy podtrzymanie [%]"
+  },
+  {
+   "id": 376,
+   "pl": "Ruch rusztu [kg]"
+  },
+  {
+   "id": 377,
+   "pl": "Czas rozgrzewania zapalarki [s]"
+  },
+  {
+   "id": 378,
+   "pl": "Uszkodzenie dmuchawy palnika"
+  },
+  {
+   "id": 379,
+   "pl": "Uszkodzenie czujnika temp. zewnętrznej"
+  },
+  {
+   "id": 383,
+   "pl": "Moc nominalna [kW]"
+  },
+  {
+   "id": 385,
+   "pl": "Rozpalanie dmuchawa (drewno)"
+  },
+  {
+   "id": 386,
+   "pl": "Rozżarzanie dmuchawa (drewno)"
+  },
+  {
+   "id": 387,
+   "pl": "Modulacja dmuchawa (drewno)"
+  },
+  {
+   "id": 388,
+   "pl": "Podtrzymanie dmuchawa (drewno)"
+  },
+  {
+   "id": 390,
+   "pl": "Minimalne obroty dmuchawy [*100]"
+  },
+  {
+   "id": 391,
+   "pl": "Interwał czyszcz. wymiennika [min]"
+  },
+  {
+   "id": 400,
+   "pl": "Interwał przedmuchu modulacja [min]"
+  },
+  {
+   "id": 401,
+   "pl": "Czas przedmuchu modulacja [min]"
+  },
+  {
+   "id": 402,
+   "pl": "Uszkodzenie czujnika temperatury spalin"
+  },
+  {
+   "id": 410,
+   "pl": "Praca podajnika palnika [s]"
+  },
+  {
+   "id": 411,
+   "pl": "Ruch rusztu interwał [min]"
+  },
+  {
+   "id": 414,
+   "pl": "Przepływomierz powietrza"
+  },
+  {
+   "id": 419,
+   "pl": "PP - dawka wstępna [s]"
+  },
+  {
+   "id": 423,
+   "pl": "czujnik rezerwy paliwa"
+  },
+  {
+   "id": 424,
+   "pl": "czujnik temp. spalin"
+  },
+  {
+   "id": 442,
+   "pl": "\u0002s"
+  },
+  {
+   "id": 443,
+   "pl": "\u0002"
+  },
+  {
+   "id": 449,
+   "pl": "\u0002"
+  },
+  {
+   "id": 467,
+   "pl": "\u0002mA"
+  },
+  {
+   "id": 476,
+   "pl": "\u0002 = \u0002"
+  },
+  {
+   "id": 479,
+   "pl": "MINI"
+  },
+  {
+   "id": 481,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 482,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 483,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 484,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 485,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 486,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 487,
+   "pl": "abcdefghijklmnoprstuwxyz= "
+  },
+  {
+   "id": 488,
+   "pl": "ABCDEFGHIJKLMNOPRSTUWXYZV"
+  },
+  {
+   "id": 489,
+   "pl": " ;?@)(*'&#\"!\\]^_`{|}~"
+  },
+  {
+   "id": 490,
+   "pl": "abcdefghijklmnopqrstuwxyzv= °"
+  },
+  {
+   "id": 491,
+   "pl": "ABCDEFGHIJKLMNOPRSTUWXYZV"
+  },
+  {
+   "id": 495,
+   "pl": "Încălzire 1"
+  }
+ ],
+ "texts_unseen_and_undocumented": [
+  {
+   "id": 15,
+   "pl": "Postój"
+  },
+  {
+   "id": 19,
+   "pl": "Przepłukiwanie"
+  },
+  {
+   "id": 23,
+   "pl": "Wyłączone"
+  },
+  {
+   "id": 24,
+   "pl": "Chłodzenie"
+  },
+  {
+   "id": 29,
+   "pl": "Oczekiwanie"
+  },
+  {
+   "id": 34,
+   "pl": "Źródło blokuje"
+  },
+  {
+   "id": 84,
+   "pl": "Następny serwis \u0002"
+  },
+  {
+   "id": 85,
+   "pl": "Podaj paliwo"
+  },
+  {
+   "id": 86,
+   "pl": "Typ paliwa"
+  },
+  {
+   "id": 87,
+   "pl": "Powietrze MIN (moc 20%)"
+  },
+  {
+   "id": 88,
+   "pl": "Powietrze MIN (moc 100%)"
+  },
+  {
+   "id": 133,
+   "pl": "Aktywuj alarm wyczyść wymiennik"
+  },
+  {
+   "id": 134,
+   "pl": "Aktywuj alarm wyczyść palnik"
+  },
+  {
+   "id": 136,
+   "pl": "Czas czyszczenia wymiennika [s]"
+  },
+  {
+   "id": 137,
+   "pl": "Podajnik palnika w wygaszaniu [s]"
+  },
+  {
+   "id": 146,
+   "pl": "Wstępna dawka paliwa [g]"
+  },
+  {
+   "id": 158,
+   "pl": "Tryb cichy rusztu"
+  },
+  {
+   "id": 159,
+   "pl": "Tryb cichy wymiennika"
+  },
+  {
+   "id": 160,
+   "pl": "Minimalna temp. spalin [°C]"
+  },
+  {
+   "id": 161,
+   "pl": "Maksymalna temp. spalin [°C]"
+  },
+  {
+   "id": 162,
+   "pl": "Nominalna temp. spalin [°C]"
+  },
+  {
+   "id": 166,
+   "pl": "Typ czujnika spalin"
+  },
+  {
+   "id": 168,
+   "pl": "Minimalny czas rozpalania [min]"
+  },
+  {
+   "id": 174,
+   "pl": "Tryb kominiarz"
+  },
+  {
+   "id": 181,
+   "pl": "CAN"
+  },
+  {
+   "id": 182,
+   "pl": "KTY84-130"
+  },
+  {
+   "id": 183,
+   "pl": "PT1000"
+  },
+  {
+   "id": 204,
+   "pl": "Napięcie gdy ruszt schowany [V]"
+  },
+  {
+   "id": 205,
+   "pl": "Napięcie gdy ruszt wysunięty [V]"
+  },
+  {
+   "id": 206,
+   "pl": "Pozycja rusztu (moc minimalna) [%]"
+  },
+  {
+   "id": 207,
+   "pl": "Praca rusztu"
+  },
+  {
+   "id": 210,
+   "pl": "F(30%) [m/s]"
+  },
+  {
+   "id": 211,
+   "pl": "F(100%) [m/s]"
+  },
+  {
+   "id": 214,
+   "pl": "Wtorek"
+  },
+  {
+   "id": 215,
+   "pl": "Środa"
+  },
+  {
+   "id": 216,
+   "pl": "Czwartek"
+  },
+  {
+   "id": 217,
+   "pl": "Piątek"
+  },
+  {
+   "id": 218,
+   "pl": "Sobota"
+  },
+  {
+   "id": 245,
+   "pl": "Powietrze wtórne"
+  },
+  {
+   "id": 246,
+   "pl": "Wtórne modulacja MIN [%]"
+  },
+  {
+   "id": 247,
+   "pl": "Wtórne modulacja MAX [%]"
+  },
+  {
+   "id": 259,
+   "pl": "Liczba prób odblokowania rusztu"
+  },
+  {
+   "id": 271,
+   "pl": "Przegrzanie procesora"
+  },
+  {
+   "id": 277,
+   "pl": "Reset procesora"
+  },
+  {
+   "id": 278,
+   "pl": "STB"
+  },
+  {
+   "id": 287,
+   "pl": "Zwarcie czujnika CWU"
+  },
+  {
+   "id": 288,
+   "pl": "Przerwa czujnika CWU"
+  },
+  {
+   "id": 289,
+   "pl": "Zwarcie czujnika pokojowego"
+  },
+  {
+   "id": 290,
+   "pl": "Przerwa czujnika pokojowego"
+  },
+  {
+   "id": 293,
+   "pl": "Przegrzanie solarów"
+  },
+  {
+   "id": 294,
+   "pl": "Zamarzanie solarów"
+  },
+  {
+   "id": 346,
+   "pl": "AIR[m/s]=\u0002"
+  },
+  {
+   "id": 347,
+   "pl": "ETA[%]=\u0002"
+  },
+  {
+   "id": 360,
+   "pl": "STB"
+  },
+  {
+   "id": 390,
+   "pl": "Minimalne obroty dmuchawy [*100]"
+  },
+  {
+   "id": 391,
+   "pl": "Interwał czyszcz. wymiennika [min]"
+  },
+  {
+   "id": 400,
+   "pl": "Interwał przedmuchu modulacja [min]"
+  },
+  {
+   "id": 401,
+   "pl": "Czas przedmuchu modulacja [min]"
+  },
+  {
+   "id": 442,
+   "pl": "\u0002s"
+  },
+  {
+   "id": 443,
+   "pl": "\u0002"
+  },
+  {
+   "id": 449,
+   "pl": "\u0002"
+  },
+  {
+   "id": 467,
+   "pl": "\u0002mA"
+  },
+  {
+   "id": 476,
+   "pl": "\u0002 = \u0002"
+  },
+  {
+   "id": 481,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 482,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 483,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 484,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 485,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 486,
+   "pl": "1234567890:.,/ -+"
+  },
+  {
+   "id": 487,
+   "pl": "abcdefghijklmnoprstuwxyz= "
+  },
+  {
+   "id": 488,
+   "pl": "ABCDEFGHIJKLMNOPRSTUWXYZV"
+  },
+  {
+   "id": 489,
+   "pl": " ;?@)(*'&#\"!\\]^_`{|}~"
+  },
+  {
+   "id": 490,
+   "pl": "abcdefghijklmnopqrstuwxyzv= °"
+  },
+  {
+   "id": 491,
+   "pl": "ABCDEFGHIJKLMNOPRSTUWXYZV"
+  },
+  {
+   "id": 495,
+   "pl": "Încălzire 1"
+  }
+ ],
+ "bitmaps_never_seen_undocumented": [
+  {
+   "id": 12,
+   "size": "108x141"
+  },
+  {
+   "id": 16,
+   "size": "20x34"
+  },
+  {
+   "id": 18,
+   "size": "30x30"
+  },
+  {
+   "id": 19,
+   "size": "30x31"
+  },
+  {
+   "id": 20,
+   "size": "30x31"
+  },
+  {
+   "id": 26,
+   "size": "18x21"
+  },
+  {
+   "id": 27,
+   "size": "68x28"
+  },
+  {
+   "id": 33,
+   "size": "30x30"
+  },
+  {
+   "id": 43,
+   "size": "29x38"
+  },
+  {
+   "id": 45,
+   "size": "29x38"
+  },
+  {
+   "id": 57,
+   "size": "20x20"
+  },
+  {
+   "id": 102,
+   "size": "155x38"
+  },
+  {
+   "id": 103,
+   "size": "155x38"
+  },
+  {
+   "id": 111,
+   "size": "52x36"
+  },
+  {
+   "id": 115,
+   "size": "41x40"
+  },
+  {
+   "id": 116,
+   "size": "20x35"
+  },
+  {
+   "id": 117,
+   "size": "155x38"
+  },
+  {
+   "id": 118,
+   "size": "155x38"
+  },
+  {
+   "id": 119,
+   "size": "52x36"
+  },
+  {
+   "id": 120,
+   "size": "35x37"
+  },
+  {
+   "id": 121,
+   "size": "35x37"
+  },
+  {
+   "id": 125,
+   "size": "35x37"
+  },
+  {
+   "id": 136,
+   "size": "35x37"
+  },
+  {
+   "id": 137,
+   "size": "35x37"
+  },
+  {
+   "id": 140,
+   "size": "19x19"
+  },
+  {
+   "id": 142,
+   "size": "19x19"
+  },
+  {
+   "id": 144,
+   "size": "41x36"
+  },
+  {
+   "id": 146,
+   "size": "43x36"
+  },
+  {
+   "id": 147,
+   "size": "43x36"
+  },
+  {
+   "id": 151,
+   "size": "30x31"
+  },
+  {
+   "id": 152,
+   "size": "30x31"
+  },
+  {
+   "id": 160,
+   "size": "241x49"
+  },
+  {
+   "id": 164,
+   "size": "6x166"
+  },
+  {
+   "id": 166,
+   "size": "6x166"
+  },
+  {
+   "id": 173,
+   "size": "27x34"
+  },
+  {
+   "id": 174,
+   "size": "38x40"
+  },
+  {
+   "id": 176,
+   "size": "38x40"
+  },
+  {
+   "id": 182,
+   "size": "41x30"
+  },
+  {
+   "id": 183,
+   "size": "41x30"
+  }
+ ],
+ "bitmaps_never_seen": [
+  {
+   "id": 1,
+   "size": "34x27",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 2,
+   "size": "27x27",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 3,
+   "size": "18x12",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 4,
+   "size": "12x18",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 5,
+   "size": "18x12",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 6,
+   "size": "134x37",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 7,
+   "size": "134x37",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 10,
+   "size": "34x27",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 11,
+   "size": "105x126",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 12,
+   "size": "108x141",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 16,
+   "size": "20x34",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 18,
+   "size": "30x30",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 19,
+   "size": "30x31",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 20,
+   "size": "30x31",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 26,
+   "size": "18x21",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 27,
+   "size": "68x28",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 33,
+   "size": "30x30",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 39,
+   "size": "30x18",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 43,
+   "size": "29x38",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 44,
+   "size": "25x33",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 45,
+   "size": "29x38",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 53,
+   "size": "34x29",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 57,
+   "size": "20x20",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 60,
+   "size": "34x27",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 61,
+   "size": "34x27",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 64,
+   "size": "10x24",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 73,
+   "size": "68x75",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 74,
+   "size": "68x75",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 75,
+   "size": "68x75",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 76,
+   "size": "68x75",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 77,
+   "size": "30x26",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 81,
+   "size": "440x50",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 102,
+   "size": "155x38",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 103,
+   "size": "155x38",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 104,
+   "size": "52x36",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 106,
+   "size": "15x4",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 110,
+   "size": "52x36",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 111,
+   "size": "52x36",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 115,
+   "size": "41x40",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 116,
+   "size": "20x35",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 117,
+   "size": "155x38",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 118,
+   "size": "155x38",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 119,
+   "size": "52x36",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 120,
+   "size": "35x37",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 121,
+   "size": "35x37",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 125,
+   "size": "35x37",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 136,
+   "size": "35x37",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 137,
+   "size": "35x37",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 140,
+   "size": "19x19",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 142,
+   "size": "19x19",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 143,
+   "size": "19x19",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 144,
+   "size": "41x36",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 145,
+   "size": "41x36",
+   "static_ref": false,
+   "documented": true
+  },
+  {
+   "id": 146,
+   "size": "43x36",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 147,
+   "size": "43x36",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 151,
+   "size": "30x31",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 152,
+   "size": "30x31",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 160,
+   "size": "241x49",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 161,
+   "size": "241x49",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 164,
+   "size": "6x166",
+   "static_ref": true,
+   "documented": false
+  },
+  {
+   "id": 166,
+   "size": "6x166",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 168,
+   "size": "52x36",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 169,
+   "size": "52x36",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 173,
+   "size": "27x34",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 174,
+   "size": "38x40",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 176,
+   "size": "38x40",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 180,
+   "size": "38x21",
+   "static_ref": true,
+   "documented": true
+  },
+  {
+   "id": 182,
+   "size": "41x30",
+   "static_ref": false,
+   "documented": false
+  },
+  {
+   "id": 183,
+   "size": "41x30",
+   "static_ref": false,
+   "documented": false
+  }
+ ],
+ "widget_classes": {}
+}

@@ -87,5 +87,19 @@
   "przycisk kasowania i kursor",
   "trwalosc po wyjsciu z ekranu",
   "0x5B VIDE NET WIFI vs ekran INTERNET"
- ]
+ ],
+ "code_analysis_2026_11_25": {
+  "evidence": "STRONG (presenter 0x0803dcc6 + settery 0x08045792..0x08045870 w decompiled.c)",
+  "uwaga": "KOREKTA 'not_sources 0x3742..0x3745': 0x3744 i 0x3745 sa czytane przez presenter ekranu INTERNET, ale zmieniaja KOLOR elementu (nie tekst ani widocznosc), dlatego pomiar widocznosci ich nie wykryl",
+  "pids": {
+   "0x373D": "stan polaczenia (key 0x137): 0 = brak, 1 = (stan posredni), 2 = polaczono -> pokazuje ikone zasiegu",
+   "0x373C": "poziom sygnalu (key 0x136), uzywany przy stanie 2: < 33 -> bitmapa 155 (0x9b), < 66 -> bitmapa 154 (0x9a), wyzej -> bitmapa 153 (0x99)",
+   "0x3746": "widocznosc elementu przy wartosci > 1 (key 0x138, widget +0xca5)",
+   "0x3744": "kolor elementu: wartosc == 1 -> czarny, inaczej bialy (key 0x139, widget +0xc10)",
+   "0x3745": "kolor drugiego elementu: wartosc == 1 -> czarny, inaczej bialy (key 0x13a, widget +0xc48)",
+   "0x373E": "WiFi (przelacznik) + zdarzenie odswiezenia (setter 0x08045870)",
+   "0x373F": "SERIAL (format 'SERIAL: %u'), 0x3740 PIN ('PIN: %u')"
+  },
+  "open": "nazwy elementow koloru dla 0x3744/0x3745 (np. stan WiFi / chmury) - do zdjecia ekranu INTERNET przy polaczeniu"
+ }
 }

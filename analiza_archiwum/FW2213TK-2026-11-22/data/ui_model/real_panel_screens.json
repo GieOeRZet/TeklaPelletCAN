@@ -531,5 +531,77 @@
    },
    "uwaga_animacji": "klatki animacji to kolejne bitmapy; tempo zmiany klatek - OPEN (do zmierzenia z emulatora: tick)"
   }
+ },
+ "status_tables_from_binary_2026_11_25": {
+  "evidence": "MEASURED (odczyt tabel z FW2213TK.bin: HOME 0x0802dbbc, PALNIK 0x08043c2c, SOLARY 0x080464ec, ikony programu 0x0802dbe8)",
+  "stan_palnika_0x2007": {
+   "0": "Wylaczony",
+   "1": "Rozpalanie",
+   "2": "Rozzarzanie",
+   "3": "Moc 1",
+   "4": "Moc 2",
+   "5": "Modulacja",
+   "6": "Wygaszanie",
+   "7": "Czyszczenie",
+   "8": "Podtrzymanie",
+   "9": "Postoj",
+   "10": "Alarm",
+   "tekst_ids": {
+    "0": 6,
+    "1": 8,
+    "2": 9,
+    "3": 10,
+    "4": 11,
+    "5": 12,
+    "6": 13,
+    "7": 7,
+    "8": 14,
+    "9": 15,
+    "10": 16
+   },
+   "uwaga": "identyczna tabela na HOME i PALNIK; wartosci > 10 nie sa wyswietlane; dioda palnika widoczna dla 1-8"
+  },
+  "stan_solarow_0x3120": {
+   "0": "Stop",
+   "1": "Praca",
+   "2": "Przeplukiwanie",
+   "3": "Zamarzanie",
+   "4": "Przegrzanie",
+   "5": "Woda max",
+   "6": "Wylaczone",
+   "7": "Chlodzenie",
+   "8": "Test",
+   "9": "Alarm",
+   "tekst_ids": {
+    "0": 17,
+    "1": 18,
+    "2": 19,
+    "3": 20,
+    "4": 21,
+    "5": 22,
+    "6": 23,
+    "7": 24,
+    "8": 25,
+    "9": 16
+   }
+  },
+  "ikona_programu_kotla_0x2002": {
+   "evidence": "MEASURED (tabela u16) + wyglad bitmap",
+   "wartosc_i_bitmapa": {
+    "0": 133,
+    "1": 135,
+    "2": 122,
+    "3": 128,
+    "4": 120
+   },
+   "wyglad": {
+    "133": "zegar A (harmonogram auto)",
+    "135": "zegar M (harmonogram reczny)",
+    "122": "AUTO",
+    "128": "MAN",
+    "120": "platek sniegu (kociol wylaczony 0x2005=0 -> wartosc 4)"
+   },
+   "uwaga": "gdy 0x2005 == 0 panel uzywa wartosci 4 niezaleznie od 0x2002"
+  }
  }
 }
