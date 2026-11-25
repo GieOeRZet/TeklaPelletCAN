@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-25T20:02:22.751066+00:00",
+  "generated_at": "2026-11-25T20:04:11.851105+00:00",
   "root": "analiza_archiwum/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -432,7 +432,7 @@
       "schema": "schema/device_model.schema.json",
       "schema_version": "1.0",
       "records": 17,
-      "date": "2026-11-25T20:02:22.639908+00:00",
+      "date": "2026-11-25T20:04:11.731379+00:00",
       "evidence_paths": [
         "MEASURED (zrzut dialog_shots/home_dlg_paliwo.png; nakladka na HOME, wyzwalacz kafel 103,234)",
         "MEASURED (zrzut home_dlg_auto.png; wyzwalacz kafel 415,76)",
@@ -926,7 +926,7 @@
       "schema": "schema/home_indicators.schema.json",
       "schema_version": "1.0",
       "records": 11,
-      "date": "2026-11-25T19:57:55.858872+00:00",
+      "date": "2026-11-25T20:04:11.686774+00:00",
       "evidence_paths": []
     },
     {

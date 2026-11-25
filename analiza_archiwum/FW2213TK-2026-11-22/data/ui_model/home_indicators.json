@@ -219,7 +219,17 @@
    "setter": "0x0802d572",
    "widocznosc": "0x3505 (konfiguracja czujnika temp. zewn.) != 0",
    "linia_1": "0x215F Outside temperature [dC] -> format '%d.%d' (z minusem)",
-   "linia_2": "0x3721 Outside temperature averaged [dC] -> '%d.%d' (to jest 'druga linia = srednia' widoczna na panelu)"
+   "linia_2": "0x3721 Outside temperature averaged [dC] -> '%d.%d' (to jest 'druga linia = srednia' widoczna na panelu)",
+   "ikona_obok": {
+    "evidence": "STRONG (setter 0x0802d572 pokazuje razem 3 widgety; inwentarz HOME)",
+    "widget": "view_off 0x600, x=360 y=7 38x21, obraz",
+    "bitmapy": {
+     "180": "slonce (lato, 0x3729==1)",
+     "181": "platek sniegu (zima, inaczej)"
+    },
+    "linie_tekstu": "(403,6) i (403,28), 100x25",
+    "uwaga": "to jest 'ikona pogody' z prawego gornego rogu: w rzeczywistosci ikona pory roku (lato/zima wg 0x3729), nie prognoza; PID-y prognozy 0x2161-0x2164 nie sa czytane przez zaden presenter. Do potwierdzenia zdjeciem (zima: platek sniegu, ktory moze wygladac jak chmura)"
+   }
   },
   "pora_roku_0x3729": {
    "setter": "0x0802db2e",
