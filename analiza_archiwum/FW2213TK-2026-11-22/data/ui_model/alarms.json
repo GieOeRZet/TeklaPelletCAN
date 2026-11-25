@@ -1286,5 +1286,6 @@
  "codes_total": 68,
  "open": [
   "warunki wyzwolenia per alarm (logika sterownika, poza zakresem UI): clear-only 7,43,53,115,250; raise-only 131,139,140,150,160,161 (asymetria katalogu PASS 110); warunek STB (kod 5)"
- ]
+ ],
+ "codes_text_warning": "UWAGA 2026-11-25: przypisanie kod->tekst w polu codes[].text jest BLEDNE dla wiekszosci kodow (analiza statyczna). Poprawne: alarm_codes_verified.json (zmierzone z binarki w emulatorze) i vendor_sdo_scada.json."
 }
