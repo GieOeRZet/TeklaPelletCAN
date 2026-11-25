@@ -317,12 +317,21 @@
   },
   "ikony_bez_tekstu": "tak: KOCIOL/OGRZEWANIE/CWU maja same ikony; liczby nad ikonami tylko na PALNIK",
   "sdo_odczyt_2026_11_25_20_30": {
-   "evidence": "MEASURED (HA, tylko odczyt)",
+   "evidence": "MEASURED (HA, tylko odczyt, palnik wylaczony wg wlasciciela; wlasciciel widzi kontrolki dolne na KOCIOL, CO i CWU)",
    "0x2254": 316,
    "0x2252": 256,
    "uwaga": "to nie flagi 0/1; stan palnika w chwili odczytu nieznany - nie wiadomo jeszcze czy panel skaluje (316 vs liczba nad ikona np. 52)",
    "stan_palnika": "Wylaczony (wlasciciel)",
-   "wniosek": "przy wylaczonym palniku 0x2254=316, 0x2252=256 (nie 0) - SDO nie daje wartosci, ktora panel uzywa jako flage ikony (panel dostaje je innym kanalem lub inaczej interpretuje); OPEN"
+   "wniosek": "STRONG: rejestry stanow wyjsc sa jednobajtowe; odpowiedz SDO ma 4 B, MLODSZY bajt = stan (0/1 lub wartosc), starszy bajt = 0x01 (staly). 0x2277/0x2299/0x2278 = 0x0101 -> pompy wlaczone -> zgadza sie z widocznymi kontrolkami pomp na KOCIOL/CO/CWU; 0x2252 = 0x0100 -> podajnik palnika 0 -> ukryty; 0x22B9 = 0x0100 -> mieszacz 0. Zasada dla ESP: stan = (wartosc SDO & 0xFF)",
+   "wartosci": {
+    "0x2254": 316,
+    "0x2252": 256,
+    "0x2277": 257,
+    "0x2299": 257,
+    "0x2278": 257,
+    "0x22B9": 256
+   },
+   "open": "0x2254 = 0x013C -> mlodszy bajt 60 przy wylaczonym palniku: wentylator powinien byc widoczny z liczba 60 nad ikona (do potwierdzenia zdjeciem PALNIK)"
   }
  }
 }
