@@ -56,12 +56,12 @@ Patrz `NewEstyma/PLAN_PRACY_AGENT_UI.md` (etapy E2-E7) i raportuj do `NewEstyma/
 1. Przeczytaj ten plik, PLAN_PRACY_AGENT_UI.md (harmonogram na dole), RAPORT_POSTEPU.md (gora = stan).
 2. Firmware: jesli brak `FW2213TK_kopia.bin` - popros Romana o wgranie (jedna krotka prosba), w miedzyczasie pracuj nad rzeczami bez emulatora.
 3. `pip install unicorn capstone pillow numpy; bash tools/rebuild_env.sh` (~3 min), `python3 tools/smoke_test.py`.
-4. Nowe narzedzia: sciezki przez `tools/paths.py`; E6/E7 gotowe (API_KONTRAKT.md, web/estyma_prototype/).
+4. Nowe narzedzia: sciezki przez `tools/paths.py`; E6/E7 gotowe (API_KONTRAKT.md, prototyp/estyma_prototype/).
 
 5. (E5 zrobione) Katalog `analiza/` ma teraz nazwe `analiza_archiwum/`; sciezki przez `tools/paths.py`; etapy E1-E6 DONE, E7 szkielet; wyniki: RAPORT_POSTEPU.md.
 
 ## 9. Stan na 2026-11-24 (koniec czatu 2) - czytaj RAPORT_POSTEPU.md (gora)
-Gotowe: E1-E6; E7 w toku. Karta: `web/estyma_prototype/` (README), karta Lovelace `web/estyma-panel-card.js` (iframe+postMessage, tylko odczyt), narzedzia: `export_card_screen.py`, `bind_screen.py`, `merge_bindings.py`, `list_labels.py`, `export_dialog_static.py`, `build_proto_model.py`, `coverage_gen.py|agg`, `run_coverage_par.sh`, `run_dialogs_par.sh`, `smoke_test.py`, `paths.py`. Otwarte: ALARMY L0 (OPEN#2), stan online, PROGRAM render z danych (artefakty), etykiety PL Konfiguracja/Statystyki, dialog radio dla enum tekstowych, edycja PROGRAM, test w prawdziwym HA.
+Gotowe: E1-E6; E7 w toku. Karta: `prototyp/estyma_prototype/` (README), karta Lovelace `prototyp/estyma-panel-card.js` (iframe+postMessage, tylko odczyt), narzedzia: `export_card_screen.py`, `bind_screen.py`, `merge_bindings.py`, `list_labels.py`, `export_dialog_static.py`, `build_proto_model.py`, `coverage_gen.py|agg`, `run_coverage_par.sh`, `run_dialogs_par.sh`, `smoke_test.py`, `paths.py`. Otwarte: ALARMY L0 (OPEN#2), stan online, PROGRAM render z danych (artefakty), etykiety PL Konfiguracja/Statystyki, dialog radio dla enum tekstowych, edycja PROGRAM, test w prawdziwym HA.
 Pulapki: heredoc + `pkill` w jednym poleceniu bywa blokowany przez sandbox (uruchamiaj osobno); ListNav.build bywa niepelny (uzyj tap_incremental z coverage_gen.py).
 
 ## 10. Ustalenia metodyczne (2026-11-25) - WAZNE dla emulatora
@@ -73,7 +73,7 @@ Pulapki: heredoc + `pkill` w jednym poleceniu bywa blokowany przez sandbox (uruc
 ## 11. ZAMKNIECIE PROJEKTU (2026-11-25, decyzja wlasciciela) i TODO
 Projekt rewersu 1:1 + prototyp karty ZAMKNIETY na dzis; rozbudowa wstrzymana. Stan: ~93% wiedzy o wygladzie+zachowaniu, wyglad (render z danych) praktycznie domkniety (mediana 0.2%).
 **TODO (decyzja wlasciciela, jeszcze nieopracowane):** soft ESPHome ma wykrywac konfiguracje kotla (obwody CO, CWU, bufor, solar, kaskada, magazyn - PID 0x2105-0x2108, 0x350C, 0x3525) i na tej podstawie udostepniac odpowiednie widoki/ekrany. Podstawa wiedzy: `ui_model/menu_rules_check.json` (reguly wierszy MENU, 36/36), `ui_model/home_config.json` (HOME per konfiguracja), `ui_model/menu_tree.json` (config_cond), wyniki `tools/screens_config.py` (ekrany/listy per konfiguracja - jesli ukonczone).
-**Jednorazowy podglad SVG/CSS** (`web/podglad_svg/podglad.html`): tylko pomysl na lekka grafike (wektory + male PNG zlozonych grafik); NIE jest podstawa dalszych prac.
+**Jednorazowy podglad SVG/CSS** (`prototyp/podglad_svg/podglad.html`): tylko pomysl na lekka grafike (wektory + male PNG zlozonych grafik); NIE jest podstawa dalszych prac.
 Niedokonczone, wstrzymane: pomiar dialogow list (`tools/list_dialogs.py`, 116 z 212 wierszy; krok = 1 raw wszedzie dotad), 2 komorki Konfiguracji przy kaskadzie, Kopiuj 5.8% / INTERNET 5.0% (kosmetyka).
 
 ### Wynik `tools/screens_config.py` (11 kombinacji 0x2105..0x2108, poziom 3; `ui_model/screens_config.json`)

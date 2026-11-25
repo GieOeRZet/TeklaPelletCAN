@@ -1,5 +1,5 @@
 /* estyma-panel-card v0.1 (prototyp, E7): karta Lovelace pokazujaca panel Estyma igneoTouch (HOME, menu, ekrany, nastawy) z danych firmware.
-   Instalacja: skopiuj katalog web/estyma_prototype/ do /config/www/estyma/ i ten plik do /config/www/estyma-panel-card.js; zasob: /local/estyma-panel-card.js (modul).
+   Instalacja: skopiuj katalog prototyp/estyma_prototype/ do /config/www/estyma/ i ten plik do /config/www/estyma-panel-card.js; zasob: /local/estyma-panel-card.js (modul).
    Konfiguracja karty:  type: custom:estyma-panel-card
                         base_url: /local/estyma/            # gdzie lezy index.html prototypu
                         entities: { boiler_temp: sensor.tekla_boiler_temp, hw_temp: sensor.tekla_hw_temp }   # opcjonalnie; bez tego szukamy encji sensor.*_<id>

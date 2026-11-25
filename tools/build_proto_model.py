@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""E7: sklada web/estyma_prototype/model.json z ui_model (menu_tree, lists, list_scales) - maly pakiet dla prototypu karty."""
+"""E7: sklada prototyp/estyma_prototype/model.json z ui_model (menu_tree, lists, list_scales) - maly pakiet dla prototypu karty."""
 import json, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -21,6 +21,6 @@ model = {"source": "ui_model (STRONG/MEASURED wg plikow zrodlowych); dane wartos
          "nodes": {n["id"]: {"title": n["title_pl"], "kind": n["kind"], "level_min": n["level_min"]} for n in mt["nodes"]},
          "menu_rows": [{k: r.get(k) for k in ("row", "title_pl", "target", "level_min", "config_cond", "embedded_control")} for r in mt["menu_rows"]],
          "edges": [{k: e.get(k) for k in ("from", "to", "level_min", "effect")} for e in mt["edges"]], "lists": lists}
-out = Path(__file__).resolve().parents[1] / "web/estyma_prototype/model.json"
+out = Path(__file__).resolve().parents[1] / "prototyp/estyma_prototype/model.json"
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text(json.dumps(model, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"); print(out, out.stat().st_size)

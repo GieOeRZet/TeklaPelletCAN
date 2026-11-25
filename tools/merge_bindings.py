@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""E7: wlacza wyniki bind_screen.py (BINDDIR/<EKRAN>.json) do web/estyma_prototype/screens/<EKRAN>.json (pola dynamic[].bind: pid, id punktu, skala = wyswietlone/wstrzykniete).
+"""E7: wlacza wyniki bind_screen.py (BINDDIR/<EKRAN>.json) do prototyp/estyma_prototype/screens/<EKRAN>.json (pola dynamic[].bind: pid, id punktu, skala = wyswietlone/wstrzykniete).
 Instancje OGRZEWANIE2-4 dziedzicza bindingi OGRZEWANIE1 z przesunieciem PID wg regul instancji (UWAGA: INFERENCE, PID=base+inst-1 tylko tam, gdzie lista panelu ma kolejne PID-y - tu kopiujemy bez przesuniecia i oznaczamy inst)."""
 import json, os, re, sys
-bds = sys.argv[1:] or ["/tmp/w/bind", "/tmp/w/bindlive"]; sd = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "web", "estyma_prototype", "screens")
+bds = sys.argv[1:] or ["/tmp/w/bind", "/tmp/w/bindlive"]; sd = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "prototyp", "estyma_prototype", "screens")
 def num(s):
     m = re.findall(r"-?\d+(?:\.\d+)?", s or ""); return float(m[-1]) if m else None
 def load(src):
