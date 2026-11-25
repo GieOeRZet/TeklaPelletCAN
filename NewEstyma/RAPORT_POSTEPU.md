@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### 1:1 (2026-11-25) HOME zalezny od konfiguracji: ZMIERZONE (40 kombinacji, 3 procesy)
+Zrobilem: `tools/home_config.py`: widocznosc elementow HOME z RAM przy kazdej kombinacji 0x2105 (0..4) x 0x2106/0x2107/0x2108 (0/1). Reguly (`ui_model/home_config.json`): kafel **Ogrzewanie 1 <=> 0x2105>=1**, **Ogrzewanie 2 <=> 0x2105>=2**, **CWU <=> 0x2106!=0** (inaczej pusty kafel, bitmapa 73); bufor (0x2107), solar (0x2108) i obwody 3-4 NIE zmieniaja HOME; reszta HOME stala. Pozostalo: tani test regul wierszy menu (liczba wierszy: przewidziana vs faktyczna na probce kombinacji), pomiar dialogow list (wstrzymany na czas limitu 3 procesow).
+
 ### 1:1 (2026-11-25) KROK DIALOGU LICZBOWEGO: FACT-DYNAMIC dla 52 wierszy, krok = 1 jednostka surowa
 Zrobilem: znaleziona przyczyna zawodnosci dialogow list: **po wczytaniu punktu kontrolnego w srodku sesji (load_state) przewiniecie + stukniecie nie otwiera dialogu** (zmierzone: bez load_state 55.6% zmiany obrazu, z load_state 0.0%) - nowa metoda: swiezy rozruch na wiersz + polozenie wiersza z RAM (abs_y widgetu etykiety) + 3000 tikow po przewinieciu. `tools/list_dialogs.py`; wynik `ui_model/list_dialogs.json`: **52 suwaki zmierzone (krok +1 = 1 surowa; wyswietlane 1 lub 0.1 wg skali; 3 bez zmiany na granicy zakresu), 10 dialogow radio z etykietami opcji (np. Tryb pracy: reczny/pogodowy), 38 wierszy bez dialogu (przelaczniki, liczniki tylko do odczytu)**, 41 wierszy bez pomiaru (nie dotarlem przewijaniem). Wniosek: krok dialogu = 1 raw dla wszystkich zmierzonych (zakladane dla reszty, INFERENCE). Zamyka wpis BACKLOG o kroku dialogu (czesciowo).
 
