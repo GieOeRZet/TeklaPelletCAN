@@ -81,3 +81,19 @@ Niedokonczone, wstrzymane: pomiar dialogow list (`tools/list_dialogs.py`, 116 z 
 - **Ekrany (schematy):** Kociol - 2 elementy zaleza od 0x2105 (obwody CO), CWU - 3 elementy od 0x2105, Solary - 9 elementow od 0x2105 i 0x2106, Bufor - 12 elementow od 0x2105 i 0x2108 (schemat pokazuje obwody/CWU/solar zalezne od konfiguracji).
 - **Listy nastaw Solary i Bufor:** po 2 elementy zaleza od 0x2106 (CWU).
 - Uwaga: osie wnioskowane z malej liczby konfiguracji (Solary/Bufor tylko tam, gdzie wiersz istnieje) - moga byc czesciowo sprzezone (INFERENCE); dla ESPHome wystarczy: widoki wiersza Solary/Bufor istnieja tylko przy 0x2108/0x2107 != 0 (zmierzone 36/36), a ich zawartosc dodatkowo zalezy od obwodow CO i CWU.
+
+
+## 12. STAN KONCOWY ETAPOW A-E (2026-11-25) - czytaj po RAPORT_POSTEPU.md
+Pakiet: `analiza_archiwum/FW2213TK-2026-11-22/data/ui_model/device_model.json` (budowany `tools/build_device_model.py`; po zmianie danych: `build_device_model.py` -> `build_ui_model_index.py` -> `validate_ui_model.py` -> `smoke_test.py`).
+
+Zamkniete (MEASURED w emulatorze, zapis do prawdziwego kotla NIE testowany):
+- **A alarmy/statusy:** `alarm_codes_verified.json` (71 kodow, teksty z binarki), `vendor_sdo_scada.json` (dokumentacja producenta, najmocniejsze zrodlo alarmow/statusow).
+- **B kodowanie zapisu:** `write_frames.json` (135 wierszy list; ramka 0x584 `42 idx 01 u32LE`; plain / raw = wyswietlana/scale / indeks opcji radio / przelacznik 0/1; brak flagi+256). W `device_model` jako `pids[*].panel_write`. 35 wierszy bez ramki (13 statystyk 0x11 prawdopodobnie tylko odczyt).
+- **C HOME wskazniki:** `home_indicators.json` (paski LED 68x28, bitmapy 28 zielona/31 zolta/32 biala; kafelki x=0 MENU,69 paliwo,138 palnik,207 CO1,276 CO2,345 CWU,414 zasilanie; reakcje zasilanie/CWU na 0x2005, CO1/CO2 na 0x2064/0x2065=3; paliwo >=100 kg stale, <=30 kg miga).
+- **D program:** `program_pids.json` (42 PID: kociol 0x2209+dzien; CO_k 0x2126+4*dzien+k-1; CWU 0x2154.. niedziela 0x2160; maska u32 24 bity).
+- **E1 SIEC:** `siec_modules.json` (Node ID 1..127 -> modul; kolejnosc po Node ID; kolumna 4 T= dla CAN IO). **E2 INFO:** `info_screen.json` (0x3664 -> 'v%d.%03d' dla >=2100, 'v%d.%02d' ponizej). **E3 INTERNET:** `internet_screen.json` (SSID 0x3730-35, PASSWORD 0x3736-3B, SERIAL 0x373F, PIN 0x3740, WiFi 0x373E, Zmiany zdalne 0x3741, ikona 0x373D).
+
+OPEN (wymaga decyzji/zdjec wlasciciela lub dalszej analizy): dioda palnika HOME (hipoteza rozpalanie/modulacja niepotwierdzona; zrodlo stanu od sterownika); zmiana koloru LED (28/31/32); ikona 'E' (bitmapa 53) przy paliwie; zrodla 'Bio Compact 10kW'/'videRoom PIN' w INFO; 31 glebokich wierszy list (lista przestaje sie przewijac, patrz BACKLOG); prawdziwa wersja SW modulow (PDO1); 4. kolumna SIEC poza CAN IO; kodowanie edytora INTERNET (symbole, kasowanie).
+
+Metodyka (pulapki): teksty INFO/INTERNET wypelniane przy WEJSCIU na ekran - ustaw storage (set_local) PRZED wejsciem; HOME po load_state przestaje sie odswiezac (uzywaj cofania wartosci, nie load_state); przewijanie list: dzien/wiersz potwierdzaj tytulem dialogu; waitery tla wymagaja timeout=7200000; push tylko na koncu etapu (CI kosztowne), CI ostatnio zielone (runy 1419-1426).
+ESP/ESPHome, HA, Android, WWW: nadal ODLOZONE do decyzji wlasciciela (koncepcja ESP - patrz pkt 11).
