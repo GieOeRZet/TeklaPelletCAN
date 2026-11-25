@@ -37,6 +37,7 @@ for key in keys:
     lists_rows = {str(r["idx"]): r for k2, v2 in json.load(open(paths.UI_MODEL / "lists.json"))["lists"].items() if k2.split("|")[0] == key for r in v2}
     for i, r in lab[key]["rows"].items():
         if i in res[key] and res[key][i].get("kind") in ("slider", "radio"): continue
+        if os.environ.get("LD_ONLY") and i not in json.load(open(os.environ["LD_ONLY"])).get(key, []): continue
         if os.environ.get("LD_KIND") and lists_rows.get(i, {}).get("kind") != os.environ["LD_KIND"]: continue
         s, nav, t = open_node(d, idx, kind)
         if s is None: res[key][i] = dict(status="NIE_WESZLO_W_WEZEL"); continue
