@@ -845,5 +845,25 @@
   "dlaczego SW v0.0 widac tylko dla czesci klas (0x08,0x40-0x47,0x50,0x54-0x56,0x5B,0x64-0x67,0x78) - pozostale pokazuja tylko Node ID przy samej identyfikacji (brak innych danych: PDO1/rodzaj odpowiedzi)",
   "prawdziwa wersja SW (niezerowa) z PDO1 bajty 0-1 - nie zmierzona",
   "zachowanie przy pelnej tablicy (>8 modulow) i przy 3+ modulach jednoczesnie"
- ]
+ ],
+ "real_panel_2026_11_25": {
+  "evidence": "MEASURED (zdjecie wlasciciela z prawdziwego panelu)",
+  "rows": [
+   [
+    "CAN IO BIG",
+    "Node ID=86",
+    "SW v4.0"
+   ],
+   [
+    "UNKNOWN",
+    "Node ID=87"
+   ]
+  ],
+  "notes": [
+   "Node 86 (0x56) CAN IO BIG: SW v4.0 (prawdziwa wersja; emulator z zerowa identyfikacja pokazuje v0.0)",
+   "Node 87 (0x57) = ESP wlasciciela: panel pokazuje UNKNOWN (bez SW), choc w emulatorze Node 87 po samej identyfikacji bylo 'CAN IO BIG' - ESP nie odpowiada tak jak CAN IO BIG (OPEN: dokladna roznica; ESP po nowemu moze nadal zostac UNKNOWN)",
+   "kolejnosc wg Node ID, 8 wierszy (zgodne z modelem)"
+  ],
+  "risk": "Node ID 87 to drugi slot klasy CAN IO BIG - gdyby w kotle pojawil sie drugi prawdziwy CAN IO BIG, kolidowalby z ESP; wybor Node ID dla ESP v2 do decyzji (OPEN)"
+ }
 }

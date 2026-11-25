@@ -59,5 +59,24 @@
   "zrodlo 'Bio Compact 10kW' (0x3665?)",
   "zrodlo wartosci 'videRoom PIN'",
   "znaczenie liczby 0 w prawym dolnym rogu"
- ]
+ ],
+ "real_panel_2026_11_25": {
+  "evidence": "MEASURED (zdjecie wlasciciela z prawdziwego panelu + odczyt HA tylko odczyt)",
+  "lines": [
+   "igneoTouch v2.118 TE",
+   "Draco Bio Compact FBII 18kW",
+   "Controller by Estyma (www.estyma.pl)",
+   "1 (maly numer pod trzecia linia, po lewej)"
+  ],
+  "ha_reads": {
+   "0x3664": 2118,
+   "0x3665": "0x54450000 = 'TE'",
+   "0x350B": 258
+  },
+  "conclusions": [
+   "wersja w linii 1 to wersja STEROWNIKA (PID 0x3664 = 2118 odczytane z kotla -> 'v2.118'), a nie binarki panelu (FW2213TK = 2.213 domyslnie w emulatorze); regula formatu 0x3664 potwierdzona",
+   "linia 2 (nazwa kotla) na prawdziwym panelu = 'Draco Bio Compact FBII 18kW', w emulatorze domyslne 'Bio Compact 10kW': to dana z kotla/konfiguracji, nie stala binarki; NIE zalezy od 0x350B (258) ani 0x3665 w emulatorze - zrodlo OPEN (kandydat: rejestr tekstowy sterownika, np. 0x1008 - odczyt przez integracje bez odpowiedzi)",
+   "mala liczba: w emulatorze '0' po prawej, na panelu '1' po lewej pod linia 3 - zrodlo OPEN"
+  ]
+ }
 }

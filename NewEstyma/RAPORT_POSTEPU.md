@@ -1,6 +1,12 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Dioda palnika: ZOLTA w czyszczeniu (obserwacja wlasciciela + HA)
+### 2026-11-25 - INFO i SIEC z prawdziwego panelu, diody fizyczne
+- INFO (zdjecie): 'igneoTouch v2.118 TE' / 'Draco Bio Compact FBII 18kW' / 'Controller by Estyma (www.estyma.pl)' / '1'. Odczyt HA: 0x3664=2118, 0x3665='TE', 0x350B=258. Wersja w linii 1 to wersja sterownika (2118), nie binarki (2.213 to domyslna emulatora). Nazwa kotla jest daną z kotla - w emulatorze nie zalezy od 0x350B ani 0x3665; zrodlo OPEN.
+- SIEC (zdjecie): CAN IO BIG Node 86 SW v4.0; UNKNOWN Node 87 (= ESP wlasciciela, bez SW). Wniosek: prawdziwy SW modulu to v4.0 (emulator pokazuje v0.0); ESP o Node ID 87 jest klasyfikowany jako UNKNOWN. Ryzyko kolizji Node ID 87 z drugim CAN IO BIG - decyzja dla ESP v2.
+- Diody fizyczne (Czyszczenie): zasilanie zielona, palnik bursztynowa, alarm zgaszona. Paliwo 21 kg: obrys + 2 kropki.
+- Zaktualizowane: `info_screen.json`, `siec_modules.json`, `home_indicators.json`.
+
+## 2026-11-25 - Dioda palnika: ZOLTA w czyszczeniu (obserwacja wlasciciela + HA)
 - Kociol w czyszczeniu: dioda palnika zolta (bitmapa 31). HA (tylko odczyt): palnik_kod_stanu=7 'Czyszczenie', dmuchawa on, podajnik palnika off, moc 0%, alarm off, zakaz rozpalania off.
 - Zgodne z emulatorem: wstrzykniecie 0x2007=7 pokazalo diode palnika. STRONG dla stanu 7. OPEN: rozpalanie (1), zarzenie (2), modulacja (5), wygaszanie (6), pauza (8) - wlasciciel zglosi kolor przy wystapieniu; ja loguje stan z HA.
 

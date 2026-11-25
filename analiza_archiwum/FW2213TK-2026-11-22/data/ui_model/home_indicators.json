@@ -33,7 +33,8 @@
     "40 kg": "obrys + kilka kropek na dnie (ok. 3-4), tekst '40kg'",
     "10 kg": "obrys + 2 kropki na dnie, tekst '10kg'",
     "2 kg": "sam obrys, 0 kropek, tekst '2kg'",
-    "0 kg": "sam obrys, 0 kropek, tekst '0kg'; BRAK pomaranczowego 'E', brak alarmu/zakazu rozpalania w HA"
+    "0 kg": "sam obrys, 0 kropek, tekst '0kg'; BRAK pomaranczowego 'E', brak alarmu/zakazu rozpalania w HA",
+    "21 kg": "obrys + 2 kropki na dnie, tekst '21kg' (zdjecie przy stanie Czyszczenie)"
    },
    "notes": [
     "liczba kropek zasobnika maleje stopniowo wraz z paliwem (widget rysowany programowo 34x38, nie pojedyncza bitmapa)",
@@ -111,6 +112,15 @@
    "state": "Czyszczenie (kod 7)",
    "led": "zolta",
    "evidence": "MEASURED (obserwacja wlasciciela + odczyt HA tylko odczyt)"
-  }
+  },
+  "physical_leds": {
+   "evidence": "MEASURED (zdjecia wlasciciela)",
+   "state": "Czyszczenie (kod 7)",
+   "power": "zielona",
+   "burner": "bursztynowa/pomaranczowa",
+   "alarm": "zgaszona",
+   "note": "trzy fizyczne diody obok ekranu zachowuja sie jak paski na ekranie: zasilanie zielona, palnik w czyszczeniu bursztynowa/zolta, alarm zgaszony przy braku alarmu"
+  },
+  "home_cleaning_text": "napis stanu na pulpicie: 'Czyszczenie' (tak jak palnik_stan z HA)"
  }
 }
