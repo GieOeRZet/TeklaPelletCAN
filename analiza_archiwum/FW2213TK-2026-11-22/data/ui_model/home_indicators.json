@@ -24,7 +24,25 @@
    "<=30 kg": "ikona miga cyklicznie (MEASURED, probkowanie co 150 tikow; progi dokladne OPEN)"
   },
   "open": "progi miga/stale (miedzy 30 a 100 kg), warunek ikony 53 'E', zaleznosc od pojemnosci zasobnika; 0x3529/0x3525 nie zmienily widocznosci w tescie",
-  "correction": "wczesniejsza regula '51 ukryta <=1 kg, 52 ukryta <=40 kg' WYCOFANA - byl to pomiar pojedynczej chwili w stanie migania"
+  "correction": "wczesniejsza regula '51 ukryta <=1 kg, 52 ukryta <=40 kg' WYCOFANA - byl to pomiar pojedynczej chwili w stanie migania",
+  "owner_photos_real_panel": {
+   "date": "2026-11-25",
+   "evidence": "MEASURED (zdjecia wlasciciela z prawdziwego panelu; wartosc licznika 0x3601 ustawiana przez tekla_set_param key 47, odczyt zwrotny z HA)",
+   "levels": {
+    "100 kg": "obrys + pelny zestaw kropek (siatka), tekst '100kg'",
+    "40 kg": "obrys + kilka kropek na dnie (ok. 3-4), tekst '40kg'",
+    "10 kg": "obrys + 2 kropki na dnie, tekst '10kg'",
+    "2 kg": "sam obrys, 0 kropek, tekst '2kg'",
+    "0 kg": "sam obrys, 0 kropek, tekst '0kg'; BRAK pomaranczowego 'E', brak alarmu/zakazu rozpalania w HA"
+   },
+   "notes": [
+    "liczba kropek zasobnika maleje stopniowo wraz z paliwem (widget rysowany programowo 34x38, nie pojedyncza bitmapa)",
+    "bitmapa 053 (pomaranczowe 'E') NIE pojawila sie przy 0 kg - warunek inny (np. czujnik rezerwy paliwa 0x3529 / alarm); OPEN",
+    "ikona chmurki w prawym gornym rogu panelu (bitmapa 181, ukryta w emulatorze) - hipoteza: polaczenie z internetem (modul WiFi)",
+    "w emulatorze: obrys (51) ukryty przy <=1 kg, pelna ikona 52 od >=41 kg; na panelu obrys widoczny rowniez przy 0-2 kg - rozjazd (miganie nie do stwierdzenia na zdjeciu)"
+   ],
+   "restored": "licznik przywrocony do 21 kg"
+  }
  },
  "other_measured": [
   {

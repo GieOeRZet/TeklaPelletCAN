@@ -1,6 +1,12 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - PIERWSZY ZAPIS NA ZYWYM KOTLE (na wyrazne polecenie wlasciciela): ilosc paliwa w zasobniku
+### 2026-11-25 - Ikona paliwa: serie zdjec z prawdziwego panelu (zapis licznika 0x3601 przez integracje HA, za zgoda wlasciciela)
+- Zapisy licznika: 100, 40, 10, 2, 0 kg, na koncu przywrocone 21 kg (kazdy zapis zweryfikowany odczytem z HA; alarm/rezerwa/zakaz rozpalania bez zmian).
+- Panel: 100 kg pelna siatka kropek; 40 kg kilka kropek; 10 kg 2 kropki; 2 kg i 0 kg sam obrys (bez 'E'). Liczba kropek maleje stopniowo z poziomem paliwa. Pomaranczowe 'E' nie pojawilo sie nawet przy 0 kg - warunek inny (OPEN: czujnik rezerwy 0x3529, alarm).
+- Rozjazd z emulatorem: emulator ukrywa obrys przy <=1 kg; panel pokazuje go przy 0-2 kg. Ikona chmurki w rogu (bitmapa 181) - hipoteza: polaczenie z internetem.
+- `home_indicators.json` -> `fuel_tile.owner_photos_real_panel`.
+
+## 2026-11-25 - PIERWSZY ZAPIS NA ZYWYM KOTLE (na wyrazne polecenie wlasciciela): ilosc paliwa w zasobniku
 - Polecenie: zwiekszyc ilosc pelletu w zasobniku o 15 kg. Stan przed: 6.0 kg (HA, `sensor.*_zbiornik_paliwo`, pojemnosc 135, tryb mirror OFF, CAN OK).
 - Wykonane: JEDNO wywolanie `teklapelletcan.tekla_set_param {key: 47, value: 21}` (punkt 47 = 0x3601 'Zbiornik - ilosc paliwa [kg]', kodowanie Plain). Zadnego innego zapisu.
 - Weryfikacja: po ok. 5 s odczyt `zbiornik_paliwo` = 21.0 kg, zapelnienie 16%, alarm nieaktywny. MEASURED: zapis 0x3601 zwykla liczba kg przez integracje dziala na prawdziwym sterowniku (potwierdza kodowanie 'plain' dla tej nastawy).
