@@ -181,7 +181,27 @@
     "0x4000": "temp powrotu",
     "0x3628": "energia lacznie kWh",
     "0x2005/0x2002": "on/off, program"
-   }
+   },
+   "cells": [
+    {
+     "x": 9,
+     "icon": "pompa kotla (spinner 138-143)",
+     "pid": "0x2277"
+    },
+    {
+     "x": 40,
+     "icon": "czyszczenie wymiennika (bitmapy 34,35)",
+     "pid": "0x216A",
+     "widget": "0x807e43c 34x27"
+    },
+    {
+     "x": 81,
+     "icon": "mieszacz/zawor z czerwonym lukiem (bitmapa 107 przy stanie 2)",
+     "pid": "0x216F",
+     "rule": "0 lub 1 = ukryty, 2 = pokazany",
+     "widget": "klasa 0x8079de0 34x30"
+    }
+   ]
   },
   "OGRZEWANIE": {
    "presenter": "0x0803d37c",
@@ -198,7 +218,20 @@
     "0x2064": "CH program",
     "0x22A1": "typ czujnika pokojowego",
     "0x2016": "temp pokojowa"
-   }
+   },
+   "cells": [
+    {
+     "x": 9,
+     "icon": "pompa obwodu (spinner)",
+     "pid": "0x2299"
+    },
+    {
+     "x": 40,
+     "icon": "mieszacz obwodu",
+     "pid": "0x22B9",
+     "widget": "klasa 0x807b610 34x30"
+    }
+   ]
   },
   "CWU": {
    "presenter": "0x0803d744",
@@ -209,7 +242,19 @@
     "0x201A": "temp wynikowa",
     "0x2111": "temp potrzebna",
     "0x2014": "program"
-   }
+   },
+   "cells": [
+    {
+     "x": 9,
+     "icon": "pompa CWU (spinner)",
+     "pid": "0x2278"
+    },
+    {
+     "x": 48,
+     "icon": "pompa cyrkulacji (spinner)",
+     "pid": "0x3749"
+    }
+   ]
   },
   "BUFOR": {
    "presenter": "0x0803df78",
@@ -252,6 +297,18 @@
     "0x200A..0x200F": "temperatury i zadane slave"
    }
   },
-  "OPEN": "ktore bitmapy dolnej belki odpowiadaja komorkom na KOCIOL/OGRZEWANIE/CWU (numery klatek) - do wyciagniecia z konstruktorow tych widokow; wartosci wartosci PID (czy 0x2251..0x2254 sa odswiezane przez PDO czy SDO poll) - do pomiaru odczytem z HA"
+  "OPEN": "ktore bitmapy dolnej belki odpowiadaja komorkom na KOCIOL/OGRZEWANIE/CWU (numery klatek) - do wyciagniecia z konstruktorow tych widokow; wartosci wartosci PID (czy 0x2251..0x2254 sa odswiezane przez PDO czy SDO poll) - do pomiaru odczytem z HA",
+  "common_pump_widget": {
+   "evidence": "STRONG (konstruktory widokow w emulatorze + settery w kodzie)",
+   "widget": "klasa 0x0807e43c, 19x19, komorka x=9,y=239 (view_off 0x2c0), klatki 138..143 (spinner pompy), na KOCIOL/OGRZEWANIE/CWU; na PALNIK mala wersja x=7,y=250 (ukryta)",
+   "visible_when": "PID pompy != 0 (KOCIOL: 0x2277 przez setter 0x0804283c)"
+  },
+  "ikony_bez_tekstu": "tak: KOCIOL/OGRZEWANIE/CWU maja same ikony; liczby nad ikonami tylko na PALNIK",
+  "sdo_odczyt_2026_11_25_20_30": {
+   "evidence": "MEASURED (HA, tylko odczyt)",
+   "0x2254": 316,
+   "0x2252": 256,
+   "uwaga": "to nie flagi 0/1; stan palnika w chwili odczytu nieznany - nie wiadomo jeszcze czy panel skaluje (316 vs liczba nad ikona np. 52)"
+  }
  }
 }
