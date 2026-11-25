@@ -8,7 +8,7 @@ Narzedzia: `tools/audit_bin_vs_model.py` (przekroj pokrycia; wynik `NewEstyma/au
 |---|---|
 | PID-y w katalogu | 655 (nie czytane przez UI i bez wzmianki: 187) |
 | PID-y czytane przez kod UI | 154, **bez opisu w modelu: 0** (bylo 27) |
-| Presentery | 13; rozebrane do widgetow: HOME, KOCIOL, PALNIK, OGRZEWANIE, CWU, KASKADA, MAGAZYN (7); zostaja BUFOR, SOLARY, INTERNET (tabela setterow opisana recznie), edytor nazwy CO, charakterystyki dmuchawy |
+| Presentery | 13; rozebrane do widgetow: HOME, KOCIOL, PALNIK, OGRZEWANIE, CWU, KASKADA, MAGAZYN, SOLARY, BUFOR (9); zostaje INTERNET (opisany recznie, nawigacja do ekranu w emulatorze zawodzi), edytor nazwy CO, charakterystyki dmuchawy |
 | Teksty TypedText | 496; niewidziane i nieopisane 74 (bylo 78) |
 | Bitmapy | 188; niewidziane i nieopisane 39 (rozpoznane z wygladu: ikony trybow, przyciski) |
 

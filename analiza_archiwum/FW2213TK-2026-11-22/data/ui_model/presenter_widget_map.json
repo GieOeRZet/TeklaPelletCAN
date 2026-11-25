@@ -7893,6 +7893,700 @@
      ]
     }
    ]
+  },
+  "SOLARY": {
+   "presenter": "0x0803e148",
+   "widgetow_na_ekranie": 51,
+   "sterowane_przez_presenter": 5,
+   "settery": [
+    {
+     "setter": "0x08046416",
+     "args": "1,uVar3",
+     "pids": [
+      {
+       "key": "0xfe",
+       "pid": "0x2109",
+       "name": "Solar temperature 1 [C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x940",
+       "rola": "widget",
+       "view_off": "0x940",
+       "rect": [
+        0,
+        52,
+        90,
+        44
+       ],
+       "bitmap": null,
+       "text": 461,
+       "vptr": "0x807e15c"
+      },
+      {
+       "offset": "0x978",
+       "rola": "widget",
+       "view_off": "0x978",
+       "rect": [
+        0,
+        168,
+        150,
+        44
+       ],
+       "bitmap": null,
+       "text": 461,
+       "vptr": "0x807e15c"
+      },
+      {
+       "offset": "0x9b0",
+       "rola": "widget",
+       "view_off": "0x9b0",
+       "rect": [
+        256,
+        57,
+        480,
+        73
+       ],
+       "bitmap": null,
+       "text": 462,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2,
+      3,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x08046416",
+     "args": "2,uVar3",
+     "pids": [
+      {
+       "key": "0x100",
+       "pid": "0x2103",
+       "name": "Solar temperature 3 [C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x940",
+       "rola": "widget",
+       "view_off": "0x940",
+       "rect": [
+        0,
+        52,
+        90,
+        44
+       ],
+       "bitmap": null,
+       "text": 461,
+       "vptr": "0x807e15c"
+      },
+      {
+       "offset": "0x978",
+       "rola": "widget",
+       "view_off": "0x978",
+       "rect": [
+        0,
+        168,
+        150,
+        44
+       ],
+       "bitmap": null,
+       "text": 461,
+       "vptr": "0x807e15c"
+      },
+      {
+       "offset": "0x9b0",
+       "rola": "widget",
+       "view_off": "0x9b0",
+       "rect": [
+        256,
+        57,
+        480,
+        73
+       ],
+       "bitmap": null,
+       "text": 462,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2,
+      3,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x08046416",
+     "args": "3,uVar3",
+     "pids": [
+      {
+       "key": "0xff",
+       "pid": "0x2102",
+       "name": "Solar temperature 2 [C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x940",
+       "rola": "widget",
+       "view_off": "0x940",
+       "rect": [
+        0,
+        52,
+        90,
+        44
+       ],
+       "bitmap": null,
+       "text": 461,
+       "vptr": "0x807e15c"
+      },
+      {
+       "offset": "0x978",
+       "rola": "widget",
+       "view_off": "0x978",
+       "rect": [
+        0,
+        168,
+        150,
+        44
+       ],
+       "bitmap": null,
+       "text": 461,
+       "vptr": "0x807e15c"
+      },
+      {
+       "offset": "0x9b0",
+       "rola": "widget",
+       "view_off": "0x9b0",
+       "rect": [
+        256,
+        57,
+        480,
+        73
+       ],
+       "bitmap": null,
+       "text": 462,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2,
+      3,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x0804647c",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0x102",
+       "pid": "0x2101",
+       "name": "Solar power [W]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x9e8",
+       "rola": "widget",
+       "view_off": "0x9e8",
+       "rect": [
+        258,
+        154,
+        480,
+        44
+       ],
+       "bitmap": null,
+       "text": 463,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "tabele_u16": {
+      "0804649c": [
+       25637,
+       0,
+       18376,
+       8194,
+       26215,
+       26214,
+       46584,
+       17932,
+       11274,
+       53780,
+       61967,
+       1336
+      ]
+     }
+    },
+    {
+     "setter": "0x08046514",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x10a",
+       "pid": "0x311C",
+       "name": "Solar pump state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x2c0",
+       "rola": "widget",
+       "view_off": "0x2c0",
+       "rect": [
+        9,
+        239,
+        19,
+        19
+       ],
+       "bitmap": 138,
+       "text": null,
+       "vptr": "0x807e43c"
+      },
+      {
+       "offset": "0x2e5",
+       "rola": "widget.visible",
+       "view_off": "0x2c0",
+       "rect": [
+        9,
+        239,
+        19,
+        19
+       ],
+       "bitmap": 138,
+       "text": null,
+       "vptr": "0x807e43c"
+      }
+     ],
+     "porownania": [
+      0,
+      8
+     ]
+    }
+   ]
+  },
+  "BUFOR": {
+   "presenter": "0x0803df78",
+   "widgetow_na_ekranie": 54,
+   "sterowane_przez_presenter": 9,
+   "settery": [
+    {
+     "setter": "0x08045a44",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x1f",
+       "pid": "0x2277",
+       "name": "Boiler pump state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x2c0",
+       "rola": "widget",
+       "view_off": "0x2c0",
+       "rect": [
+        9,
+        239,
+        19,
+        19
+       ],
+       "bitmap": 143,
+       "text": null,
+       "vptr": "0x807e43c"
+      },
+      {
+       "offset": "0x2e5",
+       "rola": "widget.visible",
+       "view_off": "0x2c0",
+       "rect": [
+        9,
+        239,
+        19,
+        19
+       ],
+       "bitmap": 143,
+       "text": null,
+       "vptr": "0x807e43c"
+      }
+     ],
+     "porownania": [
+      0,
+      8
+     ]
+    },
+    {
+     "setter": "0x08045ede",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0xf1",
+       "pid": "0x2112",
+       "name": "Buffer top measured temperature"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x924",
+       "rola": "widget",
+       "view_off": "0x924",
+       "rect": [
+        0,
+        50,
+        300,
+        73
+       ],
+       "bitmap": null,
+       "text": 465,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x08045ff8",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0xf2",
+       "pid": "0x2113",
+       "name": "Buffer bottom measured temperature"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x8b4",
+       "rola": "widget",
+       "view_off": "0x8b4",
+       "rect": [
+        0,
+        135,
+        300,
+        73
+       ],
+       "bitmap": null,
+       "text": 465,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x08046028",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0xf5",
+       "pid": "0x2280",
+       "name": "Buffer top set temperature"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x95c",
+       "rola": "widget",
+       "view_off": "0x95c",
+       "rect": [
+        320,
+        58,
+        67,
+        44
+       ],
+       "bitmap": null,
+       "text": 464,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "tabele_u16": {
+      "08046058": [
+       25637,
+       0,
+       18376,
+       8194,
+       26215,
+       26214,
+       25637,
+       9518,
+       100,
+       0,
+       46392,
+       17924
+      ]
+     }
+    },
+    {
+     "setter": "0x08046040",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0xf4",
+       "pid": "0x2115",
+       "name": "Buffer bottom set temperature"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x8ec",
+       "rola": "widget",
+       "view_off": "0x8ec",
+       "rect": [
+        320,
+        143,
+        67,
+        44
+       ],
+       "bitmap": null,
+       "text": 464,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "tabele_u16": {
+      "08046058": [
+       25637,
+       0,
+       18376,
+       8194,
+       26215,
+       26214,
+       25637,
+       9518,
+       100,
+       0,
+       46392,
+       17924
+      ]
+     }
+    },
+    {
+     "setter": "0x08045ec6",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0x9b",
+       "pid": "0x2211",
+       "name": ""
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xa74",
+       "rola": "widget",
+       "view_off": "0xa74",
+       "rect": [
+        416,
+        195,
+        62,
+        32
+       ],
+       "bitmap": null,
+       "text": 451,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "tabele_u16": {
+      "08046058": [
+       25637,
+       0,
+       18376,
+       8194,
+       26215,
+       26214,
+       25637,
+       9518,
+       100,
+       0,
+       46392,
+       17924
+      ]
+     }
+    },
+    {
+     "setter": "0x08045f14",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0xf8",
+       "pid": "0x3171",
+       "name": "Buffer T1 measured temperature"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x994",
+       "rola": "widget",
+       "view_off": "0x994",
+       "rect": [
+        0,
+        80,
+        76,
+        32
+       ],
+       "bitmap": null,
+       "text": 451,
+       "vptr": "0x807e15c"
+      },
+      {
+       "offset": "0x9b9",
+       "rola": "widget.visible",
+       "view_off": "0x994",
+       "rect": [
+        0,
+        80,
+        76,
+        32
+       ],
+       "bitmap": null,
+       "text": 451,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32,
+      19990
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x08045f5a",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0xf9",
+       "pid": "0x3172",
+       "name": "Buffer T2 measured temperature"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x9cc",
+       "rola": "widget",
+       "view_off": "0x9cc",
+       "rect": [
+        0,
+        120,
+        76,
+        32
+       ],
+       "bitmap": null,
+       "text": 451,
+       "vptr": "0x807e15c"
+      },
+      {
+       "offset": "0x9f1",
+       "rola": "widget.visible",
+       "view_off": "0x9cc",
+       "rect": [
+        0,
+        120,
+        76,
+        32
+       ],
+       "bitmap": null,
+       "text": 451,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32,
+      19990
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x08045f9a",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0xfa",
+       "pid": "0x3173",
+       "name": "Buffer T3 measured temperature"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xa04",
+       "rola": "widget",
+       "view_off": "0xa04",
+       "rect": [
+        0,
+        160,
+        76,
+        32
+       ],
+       "bitmap": null,
+       "text": 451,
+       "vptr": "0x807e15c"
+      },
+      {
+       "offset": "0xa29",
+       "rola": "widget.visible",
+       "view_off": "0xa04",
+       "rect": [
+        0,
+        160,
+        76,
+        32
+       ],
+       "bitmap": null,
+       "text": 451,
+       "vptr": "0x807e15c"
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32,
+      19990
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    }
+   ]
   }
  }
 }

@@ -27,6 +27,8 @@ SCREENS = {
     "0803d744": ("widgets_inv_pass65_L1_all.json", "6_screen", "CWU"),
     "0803e45c": ("widgets_inv_pass65_cascade_fuelstore_L0.json", "9_screen", "KASKADA"),
     "0803e2e8": ("widgets_inv_pass65_cascade_fuelstore_L0.json", "10_screen", "MAGAZYN"),
+    "0803e148": ("widgets_inv_pass71_solary_bufor.json", "7_screen", "SOLARY"),
+    "0803df78": ("widgets_inv_pass71_solary_bufor.json", "8_screen", "BUFOR"),
 }
 
 
