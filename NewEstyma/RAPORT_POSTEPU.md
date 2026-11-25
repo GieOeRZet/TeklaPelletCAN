@@ -1,6 +1,11 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Etap E2: ekran INFO - zrodlo wersji zmierzone
+### 2026-11-25 - Etap E3: ekran INTERNET - pola i PID-y zmierzone
+- `tools/internet_probe.py` -> `UI/internet_screen.json`. Teksty wypelniane przy wejsciu (set_local PRZED wejsciem).
+- SSID = 0x3730..0x3735 (6 x u32 big-endian, 24 znaki, koniec na pustym chunku); PASSWORD = 0x3736..0x373B (jawnie); SERIAL = 0x373F (u32 dziesietnie); PIN = 0x3740 (obciety do 6 znakow); WiFi = 0x373E, Zmiany zdalne = 0x3741 (przelaczniki, !=0 -> ON); ikona przy SSID = 0x373D (widocznosc !=0, znaczenie OPEN). 0x3742..0x3745 i 0x2170 nie sa zrodlami ekranu.
+- OPEN: pelna lista znakow edytora, kasowanie, trwalosc, 0x5B <-> INTERNET.
+
+## 2026-11-25 - Etap E2: ekran INFO - zrodlo wersji zmierzone
 - `tools/info_probe.py`, `tools/info_probe2.py` -> `UI/info_screen.json`. Wniosek metodyczny: teksty INFO wypelniane sa PRZY WEJSCIU na ekran (wstrzykniecie po wejsciu nic nie zmienia) - storage trzeba ustawic przed wejsciem.
 - MEASURED: linia 1 `igneoTouch v<wersja>` z PID 0x3664: v>=2100 -> `%d.%03d` (v//1000, v%1000), v<2100 -> `%d.%02d` (v//100, v%100); 2213 -> v2.213, 65535 -> v65.535.
 - OPEN: 'Bio Compact 10kW' (0x3665 nie zmienia tekstu), 'videRoom PIN 0' (0x2170 nie zmienia), liczba 0 w prawym dolnym rogu. Linia 'Controller by Estyma (www.estyma.pl)' stala.

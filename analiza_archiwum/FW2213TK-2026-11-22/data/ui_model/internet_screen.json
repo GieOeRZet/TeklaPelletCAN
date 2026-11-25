@@ -1,0 +1,91 @@
+{
+ "schema_version": "1.0",
+ "evidence": "MEASURED (emulator, poziom 1, ekran INTERNET; storage ustawiany PRZED wejsciem (set_local), teksty/widgety z RAM; zapis z edytora tekstu: ramka 0x584 na 0x3730, patrz internet_editor.json)",
+ "fields": [
+  {
+   "label": "SSID:",
+   "pids": [
+    "0x3730",
+    "0x3731",
+    "0x3732",
+    "0x3733",
+    "0x3734",
+    "0x3735"
+   ],
+   "type": "tekst do 24 znakow = 6 x u32 big-endian (pierwszy znak = najstarszy bajt), 4 znaki na PID; ciag konczy sie na pierwszym pustym (0) chunku",
+   "text_xy": [
+    50,
+    85
+   ],
+   "evidence": "MEASURED (3 chunki 'ABCDEFGHIJKL', 6 chunkow 24 znaki; sam 0x3731 bez 0x3730 -> pole puste)"
+  },
+  {
+   "label": "PASSWORD:",
+   "pids": [
+    "0x3736",
+    "0x3737",
+    "0x3738",
+    "0x3739",
+    "0x373A",
+    "0x373B"
+   ],
+   "type": "tekst, jak SSID (pokazywany jawnie, bez maskowania)",
+   "text_xy": [
+    80,
+    137
+   ],
+   "evidence": "MEASURED dla 0x3736..0x3738; 0x3739..0x373B nie zmierzone osobno (wzorzec)"
+  },
+  {
+   "label": "SERIAL:",
+   "pids": [
+    "0x373F"
+   ],
+   "type": "liczba u32 dziesietnie: 'SERIAL: <n>'; 0 -> brak liczby",
+   "evidence": "MEASURED (1, 5, 1094861636)"
+  },
+  {
+   "label": "PIN:",
+   "pids": [
+    "0x3740"
+   ],
+   "type": "liczba dziesietnie, obcinana do 6 znakow ('PIN: 109486' dla 1094861636); 0 -> pusto",
+   "evidence": "MEASURED (1, 5, 1234, 1094861636)"
+  },
+  {
+   "label": "WiFi",
+   "pids": [
+    "0x373E"
+   ],
+   "type": "przelacznik: wartosc !=0 -> ON (galka przesunieta, ikona (168,155)->(168,184)), 0 -> OFF",
+   "evidence": "MEASURED (1, 5, 0x41424344 -> ON)"
+  },
+  {
+   "label": "Zmiany zdalne",
+   "pids": [
+    "0x3741"
+   ],
+   "type": "przelacznik jak WiFi (galka (198,155)->(198,184))",
+   "evidence": "MEASURED"
+  },
+  {
+   "label": "wskaznik przy SSID (ikona x=435,y=50)",
+   "pids": [
+    "0x373D"
+   ],
+   "type": "ikona pojawia sie dla wartosci !=0 (znaczenie: np. polaczono/status - niepotwierdzone)",
+   "evidence": "MEASURED (widocznosc), znaczenie OPEN"
+  }
+ ],
+ "not_sources": [
+  "0x3742..0x3745",
+  "0x2170 (PIN videRoom)"
+ ],
+ "open": [
+  "znaczenie ikony 0x373D",
+  "pelna lista znakow edytora (symbole/cyfry)",
+  "przycisk kasowania i kursor",
+  "trwalosc po wyjsciu z ekranu",
+  "0x5B VIDE NET WIFI vs ekran INTERNET"
+ ]
+}
