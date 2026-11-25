@@ -1,0 +1,215 @@
+{
+ "schema_version": "1.0",
+ "evidence": "STRONG (dokumentacja producenta SDO_SCADA.pdf, dostarczona przez wlasciciela 2026-11-25; zrodlo zewnetrzne, nie z binarki). W razie sprzecznosci z binarka wygrywa binarka (alarm_codes_verified.json, ui_model).",
+ "transport": {
+  "node_id": "0x04",
+  "sdo_request_cob_id": "0x600+node (igneoTouch: 0x604)",
+  "sdo_answer_cob_id": "0x580+node (igneoTouch: 0x584)",
+  "bitrate_kbit": 125,
+  "sub_index": {
+   "1": "wartosc",
+   "2": "typ parametru (2 bajty)",
+   "3": "minimum",
+   "4": "maksimum"
+  },
+  "type_codes": {
+   "UNSIGNED8": "0x05",
+   "UNSIGNED16": "0x06",
+   "INTEGER16": "0x03",
+   "INTEGER32": "0x04",
+   "UNSIGNED32": "0x07 (U32, NO_TYPE, UNKNOWN)"
+  }
+ },
+ "parameters": [
+  {
+   "name": "Boiler temperature measured [°C]",
+   "index": "0x2001",
+   "access": "RO"
+  },
+  {
+   "name": "Boiler temperature set manual [°C]",
+   "index": "0x2003",
+   "access": "RW"
+  },
+  {
+   "name": "Boiler temperature set result [°C]",
+   "index": "0x2004",
+   "access": "RO"
+  },
+  {
+   "name": "Heating Circuit 1 temp. measured [°C]",
+   "index": "0x4001",
+   "access": "RO"
+  },
+  {
+   "name": "Heating Circuit 1 temp. set manual [°C]",
+   "index": "0x2146",
+   "access": "RW"
+  },
+  {
+   "name": "Heating Circuit 1 temp. set result [°C]",
+   "index": "0x22AD",
+   "access": "RO"
+  },
+  {
+   "name": "Heating Circuit 1 pump state [0/1]",
+   "index": "0x2299",
+   "access": "RO"
+  },
+  {
+   "name": "Heating Circuit 2 temp. measured [°C]",
+   "index": "0x4002",
+   "access": "RO"
+  },
+  {
+   "name": "Heating Circuit 2 temp. set manual [°C]",
+   "index": "0x2147",
+   "access": "RW"
+  },
+  {
+   "name": "Heating Circuit 2 temp. set result [°C]",
+   "index": "0x22AE",
+   "access": "RO"
+  },
+  {
+   "name": "Heating Circuit 2 pump state [0/1]",
+   "index": "0x229A",
+   "access": "RO"
+  },
+  {
+   "name": "Hot water temp. measured [°C]",
+   "index": "0x2110",
+   "access": "RO"
+  },
+  {
+   "name": "Hot water temp. set comfort [°C]",
+   "index": "0x2010",
+   "access": "RW"
+  },
+  {
+   "name": "Hot water temp. set economic [°C]",
+   "index": "0x2012",
+   "access": "RW"
+  },
+  {
+   "name": "Hot water temp. set result [°C]",
+   "index": "0x201A",
+   "access": "RO"
+  },
+  {
+   "name": "Hot water pump state [0/1]",
+   "index": "0x2278",
+   "access": "RO"
+  },
+  {
+   "name": "Outside temperature [°C]",
+   "index": "0x215F",
+   "access": "RO"
+  },
+  {
+   "name": "Actual burner power [%]",
+   "index": "0x4005",
+   "access": "RO"
+  },
+  {
+   "name": "Burner state code",
+   "index": "0x2007",
+   "access": "RO"
+  },
+  {
+   "name": "Boiler work mode code",
+   "index": "0x2002",
+   "access": "RO"
+  }
+ ],
+ "burner_state_codes": {
+  "0": "OFF",
+  "1": "FIRE_UP",
+  "2": "INCANDESCING",
+  "5": "MODULATION",
+  "6": "BURNING_OFF",
+  "7": "CLEANING",
+  "8": "PAUSE",
+  "9": "STOP",
+  "10": "ALARM",
+  "note": "kody 3 i 4 nie wystepuja w dokumencie"
+ },
+ "boiler_work_mode_codes": {
+  "0": "TIME_AUTO",
+  "1": "TIME_MANUAL",
+  "2": "AUTO",
+  "3": "MANUAL"
+ },
+ "alarms": {
+  "ring_size": 20,
+  "registers": {
+   "next_alarm_position": "0x404C RO",
+   "number_of_saved_alarms": "0x404D RO",
+   "alarm_register": "0x4010+i RW (32 bit)",
+   "alarm_date_timestamp": "0x4024+i RO",
+   "alarm_confirmation_timestamp": "0x4038+i RO"
+  },
+  "alarm_register_bits": {
+   "0-15": "kod alarmu",
+   "16": "alarm aktywny",
+   "17": "alarm potwierdzony",
+   "18": "zadanie potwierdzenia alarmu (confirm request)"
+  },
+  "codes": {
+   "1": "ALARM_BOILER_SENSOR_ERR",
+   "2": "ALARM_BOILER_OVERHEATED",
+   "3": "ALARM_BOILER_RETURN_SENSOR_ERR",
+   "4": "ALARM_BURNER_FEEDER_TEMP_SENSOR_ERR",
+   "5": "ALARM_STB_ERR",
+   "6": "ALARM_BURNER_FEEDER_OVERHEATED_ERR",
+   "7": "ALARM_SAFETY_CHAIN_ERR",
+   "8": "ALARM_EGT_SENSOR_ERR",
+   "20": "ALARM_CH1_ROOM_TEMP_SENSOR_ERR",
+   "21": "ALARM_CH2_ROOM_TEMP_SENSOR_ERR",
+   "22": "ALARM_CH3_ROOM_TEMP_SENSOR_ERR",
+   "23": "ALARM_CH4_ROOM_TEMP_SENSOR_ERR",
+   "24": "ALARM_CH1_CH_TEMP_SENSOR_ERR",
+   "25": "ALARM_CH2_CH_TEMP_SENSOR_ERR",
+   "26": "ALARM_CH3_CH_TEMP_SENSOR_ERR",
+   "27": "ALARM_CH4_CH_TEMP_SENSOR_ERR",
+   "30": "ALARM_HW_TEMP_SENSOR_ERR",
+   "31": "ALARM_BUFFER_TEMP_TOP_SENSOR_ERR",
+   "32": "ALARM_BUFFER_TEMP_BOTTOM_SENSOR_ERR",
+   "40": "ALARM_SOLAR_TEMP_SENSOR1_ERR",
+   "41": "ALARM_SOLAR_TEMP_SENSOR2_ERR",
+   "42": "ALARM_SOLAR_TEMP_SENSOR3_ERR",
+   "43": "ALARM_SOLAR_TEMP_SENSOR4_ERR",
+   "50": "ALARM_FUEL_TANK_RESERVE",
+   "51": "ALARM_FUEL_TANK_EMPTY",
+   "100": "ALARM_NO_COMMUNICATION_WITH_MODULE_0",
+   "101": "ALARM_NO_COMMUNICATION_WITH_MODULE_1",
+   "102": "ALARM_NO_COMMUNICATION_WITH_MODULE_2",
+   "103": "ALARM_NO_COMMUNICATION_WITH_MODULE_3",
+   "104": "ALARM_NO_COMMUNICATION_WITH_MODULE_4",
+   "105": "ALARM_NO_COMMUNICATION_WITH_MODULE_5",
+   "106": "ALARM_NO_COMMUNICATION_WITH_MODULE_6",
+   "107": "ALARM_NO_COMMUNICATION_WITH_MODULE_7",
+   "110": "ALARM_NO_COMMUNICATION_WITH_MODULE_BIG",
+   "115": "ALARM_NO_COMMUNICATION_WITH_MODULE_LAMBDA",
+   "116": "ALARM_NO_COMMUNICATION_WITH_MODULE_MINI_0",
+   "117": "ALARM_NO_COMMUNICATION_WITH_MODULE_MINI_1",
+   "118": "ALARM_NO_COMMUNICATION_WITH_MODULE_MINI_2",
+   "119": "ALARM_NO_COMMUNICATION_WITH_MODULE_MINI_3",
+   "120": "ALARM_NO_COMMUNICATION_WITH_MODULE_MINI_4",
+   "121": "ALARM_NO_COMMUNICATION_WITH_MODULE_MINI_5",
+   "122": "ALARM_NO_COMMUNICATION_WITH_MODULE_MINI_6",
+   "123": "ALARM_NO_COMMUNICATION_WITH_MODULE_MINI_7",
+   "130": "ALARM_CLEANING_PHASE",
+   "131": "ALARM_BURNING_OFF_ERROR",
+   "140": "ALARM_NO_FIRE_NO_FUEL",
+   "150": "ALARM_ADDITIONAL_FUEL_STORAGE_NO_FUEL_OR_MAX_ERROR",
+   "151": "ALARM_ADDITIONAL_FUEL_STORAGE_RESERVE_ERROR",
+   "160": "ALARM_EXCHANGER_NEED_TO_BE_CLEAN",
+   "161": "ALARM_BURNER_NEED_TO_BE_CLEAN",
+   "200": "ALARM_GRATE",
+   "201": "ALARM_BURNER_BLOWER_MALFUNCTION",
+   "202": "ALARM_BOILER_DOOR_OPEN",
+   "203": "ALARM_OXYGEN_LEVEL_VERY_LOW"
+  }
+ }
+}
