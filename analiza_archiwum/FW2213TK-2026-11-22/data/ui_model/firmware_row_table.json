@@ -1,0 +1,2108 @@
+{
+ "schema_version": "1.0",
+ "evidence": "MEASURED (odczyt tabeli deskryptorow wierszy z FW2213TK.bin: rekordy 16 B {klucz UI, id tekstu, 0xFFFF, typ, wskaznik opcji, liczba opcji}; zakres 0x0003f028-0x0003fc20, kopia 0x48...; opcje radio = id tekstow z tabeli wskazanej wskaznikiem (adres pliku = wskaznik - 0x08010000)); znaczenie 'typ' = INFERENCE z wystepowania",
+ "flag_meaning_inference": {
+  "0": "liczba (suwak)",
+  "1": "przelacznik 0/1",
+  "2": "program (harmonogram)",
+  "3": "wybor (radio) z lista opcji",
+  "4": "?",
+  "5": "liczba z jednostka % (ekran ze statystykami?)",
+  "256": "liczba z skala 0.1 (np. [V], [m/s])",
+  "257": "przelacznik/komenda (np. kominiarz, alarmy, praca rusztu)"
+ },
+ "summary": {
+  "rows": 186,
+  "not_in_lists_json": 42,
+  "pid_poza_macierza_655": [
+   {
+    "pid_poza_macierza": "228E",
+    "label": "Napięcie gdy ruszt schowany [V]"
+   },
+   {
+    "pid_poza_macierza": "228F",
+    "label": "Napięcie gdy ruszt wysunięty [V]"
+   },
+   {
+    "pid_poza_macierza": "218C",
+    "label": "Pozycja rusztu (moc minimalna) [%]"
+   }
+  ]
+ },
+ "rows": [
+  {
+   "addr": "0x3f028",
+   "key": "0x11",
+   "tid": 140,
+   "label": "Minimalna temp. pomp [°C]",
+   "flag": 0,
+   "pid": "0x2207",
+   "name_en": "Boiler minimal pump temperature",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f038",
+   "key": "0x14",
+   "tid": 98,
+   "label": "Histereza załączenia [°C]",
+   "flag": 0,
+   "pid": "0x2208",
+   "name_en": "Boiler on histeresis",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f048",
+   "key": "0x15",
+   "tid": 99,
+   "label": "Histereza wyłączenia [°C]",
+   "flag": 0,
+   "pid": "0x2291",
+   "name_en": "Boiler off histeresis",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f058",
+   "key": "0x24",
+   "tid": 159,
+   "label": "Tryb cichy wymiennika",
+   "flag": 1,
+   "pid": "0x216B",
+   "name_en": "Exchanger silence mode",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f068",
+   "key": "0x26",
+   "tid": 163,
+   "label": "Minimalna temp. powrotu [°C]",
+   "flag": 0,
+   "pid": "0x216C",
+   "name_en": "Boiler minimal return temperature",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f078",
+   "key": "0x25",
+   "tid": 136,
+   "label": "Czas czyszczenia wymiennika [s]",
+   "flag": 0,
+   "pid": "0x3121",
+   "name_en": "Exchanger cleaning duration [s]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f088",
+   "key": "0x28",
+   "tid": 117,
+   "label": "Czas mieszacza [s]",
+   "flag": 0,
+   "pid": "0x216E",
+   "name_en": "Boiler mixer opening time [s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f098",
+   "key": "0x2e",
+   "tid": 415,
+   "label": "Ciśnienie min. [bar]",
+   "flag": 256,
+   "pid": "0x3129",
+   "name_en": "Boiler min hydraulic pressure [0.1bar]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f0a8",
+   "key": "0x2f",
+   "tid": 416,
+   "label": "Ciśnienie max. [bar]",
+   "flag": 256,
+   "pid": "0x312A",
+   "name_en": "Boiler max hydraulic pressure [0.1bar]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f0b8",
+   "key": "0x2b",
+   "tid": 391,
+   "label": "Interwał czyszcz. wymiennika [min]",
+   "flag": 0,
+   "pid": "0x3122",
+   "name_en": "Exchanger cleaning interval [min]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f0c8",
+   "key": "0x16",
+   "tid": 382,
+   "label": "Wybieg pompy [min]",
+   "flag": 0,
+   "pid": "0x3708",
+   "name_en": "Boiler pump overrun [min]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f0d8",
+   "key": "0x13",
+   "tid": 174,
+   "label": "Tryb kominiarz",
+   "flag": 257,
+   "pid": "0x3750",
+   "name_en": "Sweep mode",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f0e8",
+   "key": "0x2d",
+   "tid": 133,
+   "label": "Aktywuj alarm wyczyść wymiennik",
+   "flag": 257,
+   "pid": "0x3123",
+   "name_en": "",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f0f8",
+   "key": "0x30",
+   "tid": 134,
+   "label": "Aktywuj alarm wyczyść palnik",
+   "flag": 257,
+   "pid": "0x3124",
+   "name_en": "",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f108",
+   "key": "0x38",
+   "tid": 160,
+   "label": "Minimalna temp. spalin [°C]",
+   "flag": 0,
+   "pid": "0x3701",
+   "name_en": "Min EGT required [C]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f118",
+   "key": "0x47",
+   "tid": 142,
+   "label": "Moc dmuchawy modulacja [%]",
+   "flag": 5,
+   "pid": "0x2254",
+   "name_en": "Burner blower",
+   "options": [
+    {
+     "tid": 55,
+     "label": "STATYSTYKI"
+    }
+   ],
+   "options_count_field": 1,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f128",
+   "key": "0x48",
+   "tid": 126,
+   "label": "Wentylator wspomagający [%]",
+   "flag": 5,
+   "options": [
+    {
+     "tid": 55,
+     "label": "STATYSTYKI"
+    }
+   ],
+   "options_count_field": 1,
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f138",
+   "key": "0x54",
+   "tid": 143,
+   "label": "Korekta powietrza [%]",
+   "flag": 0,
+   "pid": "0x2273",
+   "name_en": "Burner blower corretion",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f148",
+   "key": "0x55",
+   "tid": 144,
+   "label": "Podawanie max [s]",
+   "flag": 256,
+   "pid": "0x2257",
+   "name_en": "Max Feeding [s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f158",
+   "key": "0x56",
+   "tid": 383,
+   "label": "Moc nominalna [kW]",
+   "flag": 0,
+   "pid": "0x3709",
+   "name_en": "Nominal power [kW]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f168",
+   "key": "0x57",
+   "tid": 145,
+   "label": "Wstępna dawka paliwa [s]",
+   "flag": 0,
+   "pid": "0x2256",
+   "name_en": "Pellet predose [s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f178",
+   "key": "0x58",
+   "tid": 146,
+   "label": "Wstępna dawka paliwa [g]",
+   "flag": 0,
+   "pid": "0x370E",
+   "name_en": "Pellet predose [g]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f188",
+   "key": "0x59",
+   "tid": 147,
+   "label": "Moc min [%]",
+   "flag": 0,
+   "pid": "0x2270",
+   "name_en": "Min power",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f198",
+   "key": "0x5a",
+   "tid": 148,
+   "label": "Moc max [%]",
+   "flag": 0,
+   "pid": "0x2271",
+   "name_en": "Max power",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f1a8",
+   "key": "0x5b",
+   "tid": 421,
+   "label": "Szybkość modulacji mocy",
+   "flag": 0,
+   "pid": "0x225A",
+   "name_en": "Pwr reg. speed",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f1b8",
+   "key": "0x5c",
+   "tid": 149,
+   "label": "Ilość paliwa test [kg/h]",
+   "flag": 256,
+   "pid": "0x2272",
+   "name_en": "Feeder rate [dkg/h]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f1c8",
+   "key": "0x5d",
+   "tid": 150,
+   "label": "Wartość opałowa [kWh/kg]",
+   "flag": 256,
+   "pid": "0x2292",
+   "name_en": "Fuel calorific [kWh/kg]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f1d8",
+   "key": "0x5e",
+   "tid": 86,
+   "label": "Typ paliwa",
+   "flag": 3,
+   "pid": "0x299F",
+   "name_en": "Burning type",
+   "options": [
+    {
+     "tid": 367,
+     "label": "pellet"
+    },
+    {
+     "tid": 368,
+     "label": "drewno"
+    }
+   ],
+   "options_count_field": 2,
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f1e8",
+   "key": "0x69",
+   "tid": 151,
+   "label": "Sterowanie Lambda",
+   "flag": 1,
+   "pid": "0x3605",
+   "name_en": "Lambda oxygen control",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f1f8",
+   "key": "0x6f",
+   "tid": 152,
+   "label": "Tlen dla mocy 30%",
+   "flag": 256,
+   "pid": "0x214E",
+   "name_en": "Oxygen for 30% of power [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f208",
+   "key": "0x70",
+   "tid": 153,
+   "label": "Tlen dla mocy 100%",
+   "flag": 256,
+   "pid": "0x2152",
+   "name_en": "Oxygen for 100% of power [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f218",
+   "key": "0x71",
+   "tid": 210,
+   "label": "F(30%) [m/s]",
+   "flag": 256,
+   "pid": "0x215A",
+   "name_en": "Airflow speed for 30% of power [m/s]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f228",
+   "key": "0x72",
+   "tid": 211,
+   "label": "F(100%) [m/s]",
+   "flag": 256,
+   "pid": "0x215B",
+   "name_en": "Airflow speed for 100% of power [m/s]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f238",
+   "key": "0x73",
+   "tid": 154,
+   "label": "Liczba czyszczeń rusztu",
+   "flag": 0,
+   "pid": "0x2258",
+   "name_en": "Grate cleaning number",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f248",
+   "key": "0x76",
+   "tid": 155,
+   "label": "Moc dmuchawy rozpalanie [%]",
+   "flag": 0,
+   "pid": "0x2289",
+   "name_en": "Blower power during fire up",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f258",
+   "key": "0x77",
+   "tid": 156,
+   "label": "Czas rozżarzania [min]",
+   "flag": 0,
+   "pid": "0x2290",
+   "name_en": "Incandescing time [min]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f268",
+   "key": "0x78",
+   "tid": 129,
+   "label": "Rozżarzanie paliwo [%]",
+   "flag": 0,
+   "pid": "0x299A",
+   "name_en": "Incandenscing fuel [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f278",
+   "key": "0x97",
+   "tid": 168,
+   "label": "Minimalny czas rozpalania [min]",
+   "flag": 0,
+   "pid": "0x370C",
+   "name_en": "Min fire up time [min]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f288",
+   "key": "0x79",
+   "tid": 375,
+   "label": "Czas ruchu rusztu [s]",
+   "flag": 256,
+   "pid": "0x3003",
+   "name_en": "Grate move in modulation [0.1s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f298",
+   "key": "0x7a",
+   "tid": 376,
+   "label": "Ruch rusztu [kg]",
+   "flag": 0,
+   "pid": "0x3010",
+   "name_en": "Grate move interval in modulation [kg]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f2a8",
+   "key": "0x7b",
+   "tid": 411,
+   "label": "Ruch rusztu interwał [min]",
+   "flag": 0,
+   "pid": "0x3012",
+   "name_en": "Grate move interval in modulation [min]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f2b8",
+   "key": "0x7c",
+   "tid": 377,
+   "label": "Czas rozgrzewania zapalarki [s]",
+   "flag": 0,
+   "pid": "0x370D",
+   "name_en": "Igniter preheat time [s]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f2c8",
+   "key": "0x7d",
+   "tid": 137,
+   "label": "Podajnik palnika w wygaszaniu [s]",
+   "flag": 0,
+   "pid": "0x370F",
+   "name_en": "Burning off burner feeder work time [s]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f2d8",
+   "key": "0xa5",
+   "tid": 404,
+   "label": "Czas pauzy [min]",
+   "flag": 0,
+   "pid": "0x3715",
+   "name_en": "Burner pause time [min]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f2e8",
+   "key": "0xa6",
+   "tid": 405,
+   "label": "Moc w pauzie [%]",
+   "flag": 0,
+   "pid": "0x3716",
+   "name_en": "Burner pause power [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f2f8",
+   "key": "0xa7",
+   "tid": 406,
+   "label": "Dmuchawa w pauzie [%]",
+   "flag": 0,
+   "pid": "0x3717",
+   "name_en": "Burner pause blower power [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f308",
+   "key": "0x87",
+   "tid": 157,
+   "label": "Bezwładność palnika [min]",
+   "flag": 0,
+   "pid": "0x2153",
+   "name_en": "Burner inertia [min]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f318",
+   "key": "0x90",
+   "tid": 373,
+   "label": "Dmuchawa z HALL",
+   "flag": 1,
+   "pid": "0x299D",
+   "name_en": "HALL Activated",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f328",
+   "key": "0x88",
+   "tid": 158,
+   "label": "Tryb cichy rusztu",
+   "flag": 1,
+   "pid": "0x2151",
+   "name_en": "Grate silence mode",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f338",
+   "key": "0x89",
+   "tid": 89,
+   "label": "Próg foto",
+   "flag": 0,
+   "pid": "0x226A",
+   "name_en": "Brightness threshold",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f348",
+   "key": "0x8a",
+   "tid": 90,
+   "label": "Czas wygaszania [min]",
+   "flag": 0,
+   "pid": "0x226B",
+   "name_en": "Burning off time [min]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f358",
+   "key": "0x8d",
+   "tid": 128,
+   "label": "Odstęp czyszczenia [h]",
+   "flag": 0,
+   "pid": "0x2999",
+   "name_en": "Burner max continuous work time [h]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f368",
+   "key": "0x8e",
+   "tid": 162,
+   "label": "Nominalna temp. spalin [°C]",
+   "flag": 0,
+   "pid": "0x3702",
+   "name_en": "Nominal exhaust gas temp. [C]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f378",
+   "key": "0x8f",
+   "tid": 161,
+   "label": "Maksymalna temp. spalin [°C]",
+   "flag": 0,
+   "pid": "0x3703",
+   "name_en": "Max exhaust gas temp. [C]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f388",
+   "key": "0x98",
+   "tid": 390,
+   "label": "Minimalne obroty dmuchawy [*100]",
+   "flag": 0,
+   "pid": "0x300E",
+   "name_en": "Burner blower minimal RPM [*100]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f398",
+   "key": "0x60",
+   "tid": 387,
+   "label": "Modulacja dmuchawa (drewno)",
+   "flag": 0,
+   "pid": "0x3000",
+   "name_en": "Modulation blower power on wood [%]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f3a8",
+   "key": "0x62",
+   "tid": 386,
+   "label": "Rozżarzanie dmuchawa (drewno)",
+   "flag": 0,
+   "pid": "0x3006",
+   "name_en": "Incandescing blower power on wood [%]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f3b8",
+   "key": "0x64",
+   "tid": 388,
+   "label": "Podtrzymanie dmuchawa (drewno)",
+   "flag": 0,
+   "pid": "0x3007",
+   "name_en": "Pause blower power on wood [%]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f3c8",
+   "key": "0x61",
+   "tid": 385,
+   "label": "Rozpalanie dmuchawa (drewno)",
+   "flag": 0,
+   "pid": "0x3005",
+   "name_en": "Fireup blower power on wood [%]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f3d8",
+   "key": "0x63",
+   "tid": 370,
+   "label": "Moc dmuchawy rozżarzanie [%]",
+   "flag": 0,
+   "pid": "0x3704",
+   "name_en": "Blower power in incandescing [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f3e8",
+   "key": "0x65",
+   "tid": 389,
+   "label": "Moc dmuchawy wygaszanie [%]",
+   "flag": 0,
+   "pid": "0x300C",
+   "name_en": "Blower power in burning off [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f3f8",
+   "key": "0x66",
+   "tid": 371,
+   "label": "Moc dmuchawy podtrzymanie [%]",
+   "flag": 0,
+   "pid": "0x3705",
+   "name_en": "Blower power in hold/pause [%]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f408",
+   "key": "0x91",
+   "tid": 384,
+   "label": "Pod. palnika [% pod. zasobnika]",
+   "flag": 0,
+   "pid": "0x370B",
+   "name_en": "Burner feeder % of stor. feeder",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f418",
+   "key": "0x93",
+   "tid": 410,
+   "label": "Praca podajnika palnika [s]",
+   "flag": 0,
+   "pid": "0x3727",
+   "name_en": "Burner feeder absolut work time [s]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f428",
+   "key": "0x92",
+   "tid": 419,
+   "label": "PP - dawka wstępna [s]",
+   "flag": 0,
+   "pid": "0x3748",
+   "name_en": "Storage feeder pause in predose[s]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f438",
+   "key": "0x9e",
+   "tid": 246,
+   "label": "Wtórne modulacja MIN [%]",
+   "flag": 0,
+   "pid": "0x3008",
+   "name_en": "Sec. air modulation MIN [%]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f448",
+   "key": "0x9f",
+   "tid": 247,
+   "label": "Wtórne modulacja MAX [%]",
+   "flag": 0,
+   "pid": "0x3009",
+   "name_en": "Sec. air modulation MAX [%]",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f458",
+   "key": "0xa1",
+   "tid": 167,
+   "label": "Okres podajnika zasobnika [s]",
+   "flag": 0,
+   "pid": "0x3700",
+   "name_en": "Storage feeder period [s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f468",
+   "key": "0x99",
+   "tid": 400,
+   "label": "Interwał przedmuchu modulacja [min]",
+   "flag": 0,
+   "pid": "0x3713",
+   "name_en": "",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f478",
+   "key": "0x9a",
+   "tid": 401,
+   "label": "Czas przedmuchu modulacja [min]",
+   "flag": 0,
+   "pid": "0x3714",
+   "name_en": "",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f488",
+   "key": "0x81",
+   "tid": 204,
+   "label": "Napięcie gdy ruszt schowany [V]",
+   "flag": 256,
+   "name_en": "",
+   "in_lists_json": false,
+   "pid_poza_macierza_655": "228E"
+  },
+  {
+   "addr": "0x3f498",
+   "key": "0x82",
+   "tid": 205,
+   "label": "Napięcie gdy ruszt wysunięty [V]",
+   "flag": 256,
+   "name_en": "",
+   "in_lists_json": false,
+   "pid_poza_macierza_655": "228F"
+  },
+  {
+   "addr": "0x3f4a8",
+   "key": "0x96",
+   "tid": 206,
+   "label": "Pozycja rusztu (moc minimalna) [%]",
+   "flag": 0,
+   "name_en": "",
+   "in_lists_json": false,
+   "pid_poza_macierza_655": "218C"
+  },
+  {
+   "addr": "0x3f4b8",
+   "key": "0x94",
+   "tid": 207,
+   "label": "Praca rusztu",
+   "flag": 257,
+   "pid": "0x218A",
+   "name_en": "Is grate cleaning on",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f4c8",
+   "key": "0xa9",
+   "tid": 93,
+   "label": "Temperatura komfortowa [°C]  ",
+   "flag": 256,
+   "pid": "0x2032",
+   "name_en": "CH comf temp set [dC]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f4d8",
+   "key": "0xaa",
+   "tid": 94,
+   "label": "Temperatura ekonomiczna [°C] ",
+   "flag": 256,
+   "pid": "0x2048",
+   "name_en": "CH eco temp set [dC]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f4e8",
+   "key": "0xac",
+   "tid": 95,
+   "label": "Program",
+   "flag": 2,
+   "pid": "0x2064",
+   "name_en": "CH program",
+   "options": [
+    {
+     "tid": 130,
+     "label": "Stopniowa redukcja mocy"
+    },
+    {
+     "tid": 126,
+     "label": "Wentylator wspomagający [%]"
+    },
+    {
+     "tid": 132,
+     "label": "Maksymalna liczba cykli"
+    },
+    {
+     "tid": 124,
+     "label": "Magazyn paliwa podajnik(2)"
+    }
+   ],
+   "options_count_field": 4,
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f4f8",
+   "key": "0xbe",
+   "tid": 97,
+   "label": "Histereza [°C]",
+   "flag": 256,
+   "pid": "0x22BD",
+   "name_en": "Room temp hysteresis [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f508",
+   "key": "0xad",
+   "tid": 100,
+   "label": "Źródło",
+   "flag": 3,
+   "pid": "0x22D1",
+   "name_en": "CH source",
+   "options": [
+    {
+     "tid": 60,
+     "label": "Kocioł"
+    },
+    {
+     "tid": 67,
+     "label": "Bufor"
+    }
+   ],
+   "options_count_field": 2,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f518",
+   "key": "0xaf",
+   "tid": 107,
+   "label": "Tryb pracy  ",
+   "flag": 3,
+   "pid": "0x2142",
+   "name_en": "CH mode",
+   "options": [
+    {
+     "tid": 172,
+     "label": "ręczny"
+    },
+    {
+     "tid": 173,
+     "label": "pogodowy"
+    }
+   ],
+   "options_count_field": 2,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f528",
+   "key": "0xb0",
+   "tid": 108,
+   "label": "Czujnik pokojowy",
+   "flag": 3,
+   "pid": "0x22A1",
+   "name_en": "Room temp sensor type",
+   "options": [
+    {
+     "tid": 175,
+     "label": "brak"
+    },
+    {
+     "tid": 176,
+     "label": "CTP1"
+    },
+    {
+     "tid": 177,
+     "label": "CTP2"
+    },
+    {
+     "tid": 179,
+     "label": "videROOM"
+    },
+    {
+     "tid": 180,
+     "label": "termostat"
+    },
+    {
+     "tid": 181,
+     "label": "CAN"
+    }
+   ],
+   "options_count_field": 6,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f538",
+   "key": "0xb1",
+   "tid": 109,
+   "label": "Kalibracja czujnika pok. [°C]",
+   "flag": 256,
+   "pid": "0x22C1",
+   "name_en": "Room sensor cal [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f548",
+   "key": "0xb2",
+   "tid": 110,
+   "label": "Czujnik CO",
+   "flag": 1,
+   "pid": "0x22A5",
+   "name_en": "CH sensor use",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f558",
+   "key": "0xb3",
+   "tid": 102,
+   "label": "Temp. maksymalna [°C]",
+   "flag": 0,
+   "pid": "0x22D5",
+   "name_en": "CH max temp [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f568",
+   "key": "0xb4",
+   "tid": 111,
+   "label": "Temperatura CO dla -20°C [°C]",
+   "flag": 0,
+   "pid": "0x22C5",
+   "name_en": "CH temp for -20C [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f578",
+   "key": "0xb5",
+   "tid": 112,
+   "label": "Temperatura CO dla -10°C [°C]",
+   "flag": 0,
+   "pid": "0x400C",
+   "name_en": "CH temp for -10C [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f588",
+   "key": "0xb6",
+   "tid": 113,
+   "label": "Temperatura CO dla  0°C [°C]",
+   "flag": 0,
+   "pid": "0x22C9",
+   "name_en": "CH temp for 0C [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f598",
+   "key": "0xb7",
+   "tid": 114,
+   "label": "Temperatura CO dla 10°C [°C]",
+   "flag": 0,
+   "pid": "0x22CD",
+   "name_en": "CH temp for -20C [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f5a8",
+   "key": "0xb8",
+   "tid": 115,
+   "label": "Wsp. korekcji t. CO [°C/°C]",
+   "flag": 0,
+   "pid": "0x22D9",
+   "name_en": "CH correction factor [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f5b8",
+   "key": "0xb9",
+   "tid": 116,
+   "label": "MIN temperatura CO pomp [°C]",
+   "flag": 0,
+   "pid": "0x22E9",
+   "name_en": "Min CH temp for pump [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f5c8",
+   "key": "0xbb",
+   "tid": 117,
+   "label": "Czas mieszacza [s]",
+   "flag": 0,
+   "pid": "0x22B5",
+   "name_en": "CH mixer opening time [s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f5d8",
+   "key": "0xbc",
+   "tid": 118,
+   "label": "Temperatura CO zadana ręcznie [°C]",
+   "flag": 0,
+   "pid": "0x2146",
+   "name_en": "Tch set manual [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f5e8",
+   "key": "0xbd",
+   "tid": 122,
+   "label": "Stała pompa",
+   "flag": 1,
+   "pid": "0x22F1",
+   "name_en": "Permament pump",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f5f8",
+   "key": "0xae",
+   "tid": 101,
+   "label": "Zwiększenie temperatury źródła [°C]",
+   "flag": 0,
+   "pid": "0x22B1",
+   "name_en": "CH delta source [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f608",
+   "key": "0xba",
+   "tid": 169,
+   "label": "Obniżenie temperatury CO [°C]",
+   "flag": 0,
+   "pid": "0x22E5",
+   "name_en": "CH temp lowering [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f618",
+   "key": "0xcc",
+   "tid": 203,
+   "label": "Obniżenie Tco dla ochrony powrotu",
+   "flag": 1,
+   "pid": "0x22F9",
+   "name_en": "Tch lowering for energ. consumption reduction",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f628",
+   "key": "0xd3",
+   "tid": 413,
+   "label": "Automatyczny tryb lato",
+   "flag": 1,
+   "pid": "0x2315",
+   "name_en": "Automatic summer recognition",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f638",
+   "key": "0xd4",
+   "tid": 262,
+   "label": "Nazwa",
+   "flag": 4,
+   "pid": "0x2321",
+   "name_en": "CH circuit name part1",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f648",
+   "key": "0xd9",
+   "tid": 93,
+   "label": "Temperatura komfortowa [°C]  ",
+   "flag": 0,
+   "pid": "0x2010",
+   "name_en": "Hot water 1 comfort temperature",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f658",
+   "key": "0xda",
+   "tid": 94,
+   "label": "Temperatura ekonomiczna [°C] ",
+   "flag": 0,
+   "pid": "0x2012",
+   "name_en": "Hot water 1 economical temperature",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f668",
+   "key": "0xdc",
+   "tid": 95,
+   "label": "Program",
+   "flag": 2,
+   "pid": "0x2014",
+   "name_en": "Hot water 1 program",
+   "options": [
+    {
+     "tid": 130,
+     "label": "Stopniowa redukcja mocy"
+    },
+    {
+     "tid": 126,
+     "label": "Wentylator wspomagający [%]"
+    },
+    {
+     "tid": 132,
+     "label": "Maksymalna liczba cykli"
+    },
+    {
+     "tid": 124,
+     "label": "Magazyn paliwa podajnik(2)"
+    }
+   ],
+   "options_count_field": 4,
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f678",
+   "key": "0xdd",
+   "tid": 96,
+   "label": "Zagrzej teraz",
+   "flag": 1,
+   "pid": "0x2210",
+   "name_en": "Hot water 1 heat now",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f688",
+   "key": "0xde",
+   "tid": 97,
+   "label": "Histereza [°C]",
+   "flag": 0,
+   "pid": "0x2212",
+   "name_en": "Hot water 1 histeresis",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f698",
+   "key": "0xdf",
+   "tid": 100,
+   "label": "Źródło",
+   "flag": 3,
+   "pid": "0x2214",
+   "name_en": "Hot water 1 source",
+   "options": [
+    {
+     "tid": 60,
+     "label": "Kocioł"
+    },
+    {
+     "tid": 67,
+     "label": "Bufor"
+    }
+   ],
+   "options_count_field": 2,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f6a8",
+   "key": "0xe0",
+   "tid": 101,
+   "label": "Zwiększenie temperatury źródła [°C]",
+   "flag": 0,
+   "pid": "0x2216",
+   "name_en": "Hot water 1 delta source",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f6b8",
+   "key": "0xe1",
+   "tid": 102,
+   "label": "Temp. maksymalna [°C]",
+   "flag": 0,
+   "pid": "0x201C",
+   "name_en": "Hot water 1 temperature max",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f6c8",
+   "key": "0xe2",
+   "tid": 103,
+   "label": "Delta załączenia pompy [°C]",
+   "flag": 0,
+   "pid": "0x2218",
+   "name_en": "Hot water 1 delta min temperature",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f6d8",
+   "key": "0xe3",
+   "tid": 105,
+   "label": "Antylegionella",
+   "flag": 1,
+   "pid": "0x2297",
+   "name_en": "HW1 anti legionella",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f6e8",
+   "key": "0xe5",
+   "tid": 240,
+   "label": "Cyrkulacja praca [min]",
+   "flag": 0,
+   "pid": "0x374B",
+   "name_en": "Hot water 1 circular pump fork time",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f6f8",
+   "key": "0xe6",
+   "tid": 241,
+   "label": "Cyrkulacja pauza [min]",
+   "flag": 0,
+   "pid": "0x374C",
+   "name_en": "Hot water 1 circular pump pause time",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f708",
+   "key": "0xe7",
+   "tid": 119,
+   "label": "Priorytet CWU   ",
+   "flag": 1,
+   "pid": "0x300D",
+   "name_en": "Hot water priority",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f718",
+   "key": "0xfc",
+   "tid": 130,
+   "label": "Stopniowa redukcja mocy",
+   "flag": 1,
+   "pid": "0x3011",
+   "name_en": "Burner pwr. depend of buf. energy level",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f728",
+   "key": "0xf3",
+   "tid": 138,
+   "label": "Temp. minimalna (góra) [°C]",
+   "flag": 0,
+   "pid": "0x2114",
+   "name_en": "Buffer top set temperature",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f738",
+   "key": "0xf4",
+   "tid": 139,
+   "label": "Temp. maksymalna (dół) [°C]  ",
+   "flag": 0,
+   "pid": "0x2115",
+   "name_en": "Buffer bottom set temperature",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f748",
+   "key": "0xf6",
+   "tid": 140,
+   "label": "Minimalna temp. pomp [°C]",
+   "flag": 0,
+   "pid": "0x2281",
+   "name_en": "Buffer minimal pump temperature",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f758",
+   "key": "0xf7",
+   "tid": 141,
+   "label": "Automatyczna temp. góra [°C]",
+   "flag": 1,
+   "pid": "0x2282",
+   "name_en": "Buffer is automatic top temperature",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f768",
+   "key": "0x9c",
+   "tid": 101,
+   "label": "Zwiększenie temperatury źródła [°C]",
+   "flag": 0,
+   "pid": "0x299B",
+   "name_en": "",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f778",
+   "key": "0x9d",
+   "tid": 103,
+   "label": "Delta załączenia pompy [°C]",
+   "flag": 0,
+   "pid": "0x3170",
+   "name_en": "Buffer pump delta min temperature",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f788",
+   "key": "0x103",
+   "tid": 190,
+   "label": "Przepływ [l/min]",
+   "flag": 256,
+   "pid": "0x2116",
+   "name_en": "Solar flow [l/min]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f798",
+   "key": "0x104",
+   "tid": 191,
+   "label": "Delta załączenia [°C]",
+   "flag": 0,
+   "pid": "0x3116",
+   "name_en": "Solar delta on [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f7a8",
+   "key": "0x105",
+   "tid": 192,
+   "label": "Delta wyłączenia  [°C]",
+   "flag": 0,
+   "pid": "0x3117",
+   "name_en": "Solar delta off [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f7b8",
+   "key": "0x106",
+   "tid": 193,
+   "label": "Ciepło właściwe [kJ/(kg*K)]",
+   "flag": 256,
+   "pid": "0x3118",
+   "name_en": "Solar liquid specific heat [kJ/(kg * C)]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f7c8",
+   "key": "0x107",
+   "tid": 194,
+   "label": "Temperatura maksymalna wody  [°C]",
+   "flag": 0,
+   "pid": "0x3119",
+   "name_en": "Solar temperature water max [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f7d8",
+   "key": "0x108",
+   "tid": 195,
+   "label": "Max temp kolektora (alarmowa) [°C]",
+   "flag": 0,
+   "pid": "0x311A",
+   "name_en": "Solar temperature alarm max[C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f7e8",
+   "key": "0x109",
+   "tid": 196,
+   "label": "Min temp kolektora (alarmowa)  [°C]",
+   "flag": 0,
+   "pid": "0x311B",
+   "name_en": "Solar temperature alarm min[C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f7f8",
+   "key": "0x12",
+   "tid": 372,
+   "label": "Pompa kotłowa",
+   "flag": 3,
+   "pid": "0x299E",
+   "name_en": "Boiler pump work mode",
+   "options": [
+    {
+     "tid": 364,
+     "label": "ładująca"
+    },
+    {
+     "tid": 365,
+     "label": "ochrony powrotu"
+    },
+    {
+     "tid": 366,
+     "label": "buforowa"
+    }
+   ],
+   "options_count_field": 3,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f808",
+   "key": "0x112",
+   "tid": 212,
+   "label": "Główny moduł IO",
+   "flag": 3,
+   "pid": "0x3500",
+   "name_en": "Main module type",
+   "options": [
+    {
+     "tid": 478,
+     "label": "BIG"
+    },
+    {
+     "tid": 480,
+     "label": "STD"
+    }
+   ],
+   "options_count_field": 2,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f818",
+   "key": "0x113",
+   "tid": 422,
+   "label": "Moduł rozrzerzający obwody CO",
+   "flag": 3,
+   "pid": "0x3502",
+   "name_en": "CH expansion module type",
+   "options": [
+    {
+     "tid": 480,
+     "label": "STD"
+    },
+    {
+     "tid": 479,
+     "label": "MINI"
+    }
+   ],
+   "options_count_field": 2,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f828",
+   "key": "0x10e",
+   "tid": 171,
+   "label": "Ilość obwodów grzewczych",
+   "flag": 0,
+   "pid": "0x2105",
+   "name_en": "Heating configuration",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f838",
+   "key": "0x10d",
+   "tid": 170,
+   "label": "Czujnik temperatury zewnętrznej",
+   "flag": 3,
+   "pid": "0x3505",
+   "name_en": "Outside temperature sensor configuration",
+   "options": [
+    {
+     "tid": 175,
+     "label": "brak"
+    },
+    {
+     "tid": 178,
+     "label": "CTZ1"
+    },
+    {
+     "tid": 181,
+     "label": "CAN"
+    }
+   ],
+   "options_count_field": 3,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f848",
+   "key": "0x125",
+   "tid": 407,
+   "label": "Uśrednianie temp. zewnętrznej [h]",
+   "flag": 0,
+   "pid": "0x3720",
+   "name_en": "Outside temp. averaging period [h]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f858",
+   "key": "0x133",
+   "tid": 409,
+   "label": "Kopiuj nastawy z innego sterownika",
+   "flag": 257,
+   "pid": "0x3722",
+   "name_en": "Start settings recovery",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f868",
+   "key": "0x10f",
+   "tid": 66,
+   "label": "Ciepła woda użytkowa",
+   "flag": 257,
+   "pid": "0x2106",
+   "name_en": "Hot water configuration",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f878",
+   "key": "0x110",
+   "tid": 71,
+   "label": "Solary",
+   "flag": 257,
+   "pid": "0x2108",
+   "name_en": "Solar configuration",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f888",
+   "key": "0x111",
+   "tid": 67,
+   "label": "Bufor",
+   "flag": 257,
+   "pid": "0x2107",
+   "name_en": "Buffer configuration",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f898",
+   "key": "0x114",
+   "tid": 229,
+   "label": "Autokonfiguracja",
+   "flag": 257,
+   "pid": "0x3501",
+   "name_en": "Autoconfig activation",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f8a8",
+   "key": "0x115",
+   "tid": 200,
+   "label": "Moduł Lambda",
+   "flag": 257,
+   "pid": "0x2123",
+   "name_en": "Lambda module presence",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f8b8",
+   "key": "0x116",
+   "tid": 127,
+   "label": "Konfiguracja IN17",
+   "flag": 3,
+   "pid": "0x3606",
+   "name_en": "Input IN17 config",
+   "options": [
+    {
+     "tid": 175,
+     "label": "brak"
+    },
+    {
+     "tid": 423,
+     "label": "czujnik rezerwy paliwa"
+    },
+    {
+     "tid": 424,
+     "label": "czujnik temp. spalin"
+    }
+   ],
+   "options_count_field": 3,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f8c8",
+   "key": "0x126",
+   "tid": 417,
+   "label": "Auto synchronizacja zegara",
+   "flag": 257,
+   "pid": "0x372F",
+   "name_en": "Is automatic time synchronization",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f8d8",
+   "key": "0x118",
+   "tid": 201,
+   "label": "Cisza nocna od",
+   "flag": 0,
+   "pid": "0x3508",
+   "name_en": "Silence hours from",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f8e8",
+   "key": "0x119",
+   "tid": 202,
+   "label": "Cisza nocna do",
+   "flag": 0,
+   "pid": "0x3509",
+   "name_en": "Silence hours to",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f8f8",
+   "key": "0x11a",
+   "tid": 164,
+   "label": "Czujnik powrotu do kotła",
+   "flag": 257,
+   "pid": "0x350A",
+   "name_en": "Return to boiler temperature sensor",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f908",
+   "key": "0x11c",
+   "tid": 380,
+   "label": "Kaskada master",
+   "flag": 257,
+   "pid": "0x350C",
+   "name_en": "Is this device cascade master",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f918",
+   "key": "0x11d",
+   "tid": 381,
+   "label": "Czujnik ciśnienia",
+   "flag": 257,
+   "pid": "0x350D",
+   "name_en": "Pressure sensor",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f928",
+   "key": "0x11f",
+   "tid": 68,
+   "label": "Pomiar energii",
+   "flag": 3,
+   "pid": "0x3629",
+   "name_en": "Energy meter type",
+   "options": [
+    {
+     "tid": 175,
+     "label": "brak"
+    },
+    {
+     "tid": 184,
+     "label": "ciepłomierz"
+    },
+    {
+     "tid": 185,
+     "label": "przepływomierz"
+    }
+   ],
+   "options_count_field": 3,
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f938",
+   "key": "0x120",
+   "tid": 414,
+   "label": "Przepływomierz powietrza",
+   "flag": 257,
+   "pid": "0x362B",
+   "name_en": "Airflow meter",
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f948",
+   "key": "0x11b",
+   "tid": 165,
+   "label": "Numer profilu",
+   "flag": 0,
+   "pid": "0x350B",
+   "name_en": "Profile number",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f958",
+   "key": "0x122",
+   "tid": 69,
+   "label": "Dodatkowy magazyn paliwa",
+   "flag": 257,
+   "pid": "0x3525",
+   "name_en": "Additional fuel storage",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f968",
+   "key": "0x11e",
+   "tid": 166,
+   "label": "Typ czujnika spalin",
+   "flag": 3,
+   "pid": "0x3707",
+   "name_en": "EGT sensor type",
+   "options": [
+    {
+     "tid": 182,
+     "label": "KTY84-130"
+    },
+    {
+     "tid": 183,
+     "label": "PT1000"
+    }
+   ],
+   "options_count_field": 2,
+   "in_lists_json": false
+  },
+  {
+   "addr": "0x3f978",
+   "key": "0x8",
+   "tid": 412,
+   "label": "Temperatura przełączenia na lato [C]",
+   "flag": 0,
+   "pid": "0x372A",
+   "name_en": "Summer time threshold temp. [C]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f988",
+   "key": "0x2",
+   "tid": 420,
+   "label": "Kalibracja czujnika zew. [°C]",
+   "flag": 256,
+   "pid": "0x3747",
+   "name_en": "Outside calibration [dC]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f998",
+   "key": "0x148",
+   "tid": 197,
+   "label": "Pojemność zbiornika paliwa [kg]",
+   "flag": 0,
+   "pid": "0x3600",
+   "name_en": "Tank capacity [kg]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f9a8",
+   "key": "0x149",
+   "tid": 198,
+   "label": "Rezerwa zbiornika paliwa [kg]",
+   "flag": 0,
+   "pid": "0x3603",
+   "name_en": "Fuel reserve [kg]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f9b8",
+   "key": "0x14b",
+   "tid": 199,
+   "label": "Rezerwa paliwa stop [kg]",
+   "flag": 0,
+   "pid": "0x3604",
+   "name_en": "Fuel reserve [kg]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f9c8",
+   "key": "0x15e",
+   "tid": 186,
+   "label": "Praca silnika transportującego (1) [s]",
+   "flag": 0,
+   "pid": "0x3520",
+   "name_en": "Ext. fuel storage motor 1 transport. time [s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f9d8",
+   "key": "0x15f",
+   "tid": 408,
+   "label": "Wybieg silnika transportującego (1) [s]",
+   "flag": 0,
+   "pid": "0x3526",
+   "name_en": "Ext. fuel storage motor 1 overrun time [s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f9e8",
+   "key": "0x160",
+   "tid": 187,
+   "label": "Pauza silnika transportującego (1) [s]",
+   "flag": 0,
+   "pid": "0x3521",
+   "name_en": "Ext. fuel storage time [s] to empty transport. hose",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3f9f8",
+   "key": "0x163",
+   "tid": 188,
+   "label": "Praca silnika podajnika (2) [s]",
+   "flag": 0,
+   "pid": "0x3527",
+   "name_en": "Ext. fuel storage feeder work time [s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fa08",
+   "key": "0x164",
+   "tid": 189,
+   "label": "Pauza silnika podajnika (2) [s]",
+   "flag": 0,
+   "pid": "0x3528",
+   "name_en": "Ext. fuel storage feeder pause time [s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fa18",
+   "key": "0x165",
+   "tid": 132,
+   "label": "Maksymalna liczba cykli",
+   "flag": 0,
+   "pid": "0x352B",
+   "name_en": "Ext. fuel storage max cycles no.",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fa28",
+   "key": "0x161",
+   "tid": 131,
+   "label": "Czujnik rezerwy paliwa",
+   "flag": 257,
+   "pid": "0x3529",
+   "name_en": "Ext. fuel storage reserve sensor",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fa38",
+   "key": "0x14d",
+   "tid": 392,
+   "label": "Master stopień mocy",
+   "flag": 0,
+   "pid": "0x3511",
+   "name_en": "Cascade master power level",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fa48",
+   "key": "0x14e",
+   "tid": 393,
+   "label": "Slave 1 stopień mocy",
+   "flag": 0,
+   "pid": "0x3512",
+   "name_en": "Cascade slave 1 power level",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fa58",
+   "key": "0x14f",
+   "tid": 394,
+   "label": "Slave 2 stopień mocy",
+   "flag": 0,
+   "pid": "0x3513",
+   "name_en": "Cascade slave 2 power level",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fa68",
+   "key": "0x150",
+   "tid": 395,
+   "label": "Slave 3 stopień mocy",
+   "flag": 0,
+   "pid": "0x3514",
+   "name_en": "Cascade slave 3 power level",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fa78",
+   "key": "0x151",
+   "tid": 396,
+   "label": "Próg zwiększania stopnia mocy [%]",
+   "flag": 0,
+   "pid": "0x3515",
+   "name_en": "Cascade minimal energy [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fa88",
+   "key": "0x152",
+   "tid": 397,
+   "label": "Próg zmniejszania stopnia mocy [%]",
+   "flag": 0,
+   "pid": "0x3516",
+   "name_en": "Cascade maximal energy [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fa98",
+   "key": "0x153",
+   "tid": 398,
+   "label": "Opóźn. zwiększ. stopnia mocy [min]",
+   "flag": 0,
+   "pid": "0x3517",
+   "name_en": "Cascade time to inc power lvel [min]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3faa8",
+   "key": "0x154",
+   "tid": 399,
+   "label": "Opóźn. zmniejsz. stopnia mocy [min]",
+   "flag": 0,
+   "pid": "0x3518",
+   "name_en": "Cascade time to dec power lvel [min]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fab8",
+   "key": "0x158",
+   "tid": 403,
+   "label": "Liczba kotłów slave",
+   "flag": 0,
+   "pid": "0x351A",
+   "name_en": "Cascade slaves number",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fac8",
+   "key": "0x16a",
+   "tid": 135,
+   "label": "Wyczyść alarmy",
+   "flag": 1,
+   "pid": "0x404E",
+   "name_en": "Request reset alarm memory",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fad8",
+   "key": "0x19a",
+   "tid": 248,
+   "label": "Licznik rozpaleń",
+   "flag": 0,
+   "pid": "0x3608",
+   "name_en": "Statistics - Ignition cnt",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fae8",
+   "key": "0x19b",
+   "tid": 249,
+   "label": "Średni czas rozpalania [s]",
+   "flag": 0,
+   "pid": "0x3609",
+   "name_en": "Statistics - Avg ignition time [s]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3faf8",
+   "key": "0x19c",
+   "tid": 250,
+   "label": "Średnia moc palnika z 50 godzin [%]",
+   "flag": 0,
+   "pid": "0x3610",
+   "name_en": "Statistics - Avg burner power [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fb08",
+   "key": "0x19d",
+   "tid": 251,
+   "label": "Czas pracy podajnika 1 [h]",
+   "flag": 0,
+   "pid": "0x3611",
+   "name_en": "Feeder 1 total work time [h]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fb18",
+   "key": "0x19e",
+   "tid": 260,
+   "label": "Czas pracy podajnika 2 [h]",
+   "flag": 0,
+   "pid": "0x3612",
+   "name_en": "Feeder 2 total work time [h]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fb28",
+   "key": "0x19f",
+   "tid": 261,
+   "label": "Całkowite zużycie paliwa [kg]",
+   "flag": 0,
+   "pid": "0x3507",
+   "name_en": "Total fuel counter[kg]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fb38",
+   "key": "0x1a0",
+   "tid": 252,
+   "label": "Średni tlen dla mocy 30% [%]",
+   "flag": 256,
+   "pid": "0x3613",
+   "name_en": "Average oxygen for 30% pwr [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fb48",
+   "key": "0x1a1",
+   "tid": 253,
+   "label": "Średni tlen dla mocy 50% [%]",
+   "flag": 256,
+   "pid": "0x3614",
+   "name_en": "Average oxygen for 50% pwr [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fb58",
+   "key": "0x1a2",
+   "tid": 254,
+   "label": "Średni tlen dla mocy 70% [%]",
+   "flag": 256,
+   "pid": "0x3615",
+   "name_en": "Average oxygen for 70% pwr [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fb68",
+   "key": "0x1a3",
+   "tid": 255,
+   "label": "Średni tlen dla mocy 90% [%]",
+   "flag": 256,
+   "pid": "0x3616",
+   "name_en": "Average oxygen for 90% pwr [%]",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fb78",
+   "key": "0x1a4",
+   "tid": 154,
+   "label": "Liczba czyszczeń rusztu",
+   "flag": 0,
+   "pid": "0x3617",
+   "name_en": "Statistics - Grate cleaning count",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fb88",
+   "key": "0x1a5",
+   "tid": 256,
+   "label": "Liczba czyszczeń wymiennika",
+   "flag": 0,
+   "pid": "0x3618",
+   "name_en": "Statistics - Exchanger cleaning count",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fb98",
+   "key": "0x1a6",
+   "tid": 257,
+   "label": "Liczba przegrzań kotła",
+   "flag": 0,
+   "pid": "0x3619",
+   "name_en": "Statistics - Boiler overheat count",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fba8",
+   "key": "0x1a7",
+   "tid": 258,
+   "label": "Liczba zaników zasilania",
+   "flag": 0,
+   "pid": "0x362A",
+   "name_en": "Statistics - reset count",
+   "in_lists_json": true
+  },
+  {
+   "addr": "0x3fbb8",
+   "key": "0x1a8",
+   "tid": 259,
+   "label": "Liczba prób odblokowania rusztu",
+   "flag": 0,
+   "pid": "0x362C",
+   "name_en": "Total grate unblock try count",
+   "in_lists_json": false
+  }
+ ]
+}
