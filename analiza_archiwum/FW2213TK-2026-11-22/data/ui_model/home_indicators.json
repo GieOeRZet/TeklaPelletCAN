@@ -93,7 +93,8 @@
   "tiles": {
    "palnik_x138_widget_0x20016504": {
     "default": "ukryty, bitmapa 31 (zolty)",
-    "measured_trigger": "STRONG: dioda palnika ZOLTA (bitmapa 31) w stanach palnika 1 ROZPALANIE, 2 ROZZARZANIE, 7 CZYSZCZENIE (obserwacje wlasciciela, prawdziwy panel, 2026-11-25; zgodnie z HA: kody 1/2/7); w stanie 0 WYLACZONY tylko ciemny pasek. Fizyczna dioda palnika: pulsuje w Rozpalaniu, swieci stale w Czyszczeniu. Zgodne z emulatorem (0x2007=7). OPEN: modulacja (5), wygaszanie (6), pauza (8), stop (9), alarm (10)."
+    "measured_trigger": "STRONG: dioda palnika ZOLTA (bitmapa 31) w stanach palnika 1 ROZPALANIE, 2 ROZZARZANIE, 7 CZYSZCZENIE (obserwacje wlasciciela, prawdziwy panel, 2026-11-25; zgodnie z HA: kody 1/2/7); w stanie 0 WYLACZONY tylko ciemny pasek. Fizyczna dioda palnika: pulsuje w Rozpalaniu, swieci stale w Czyszczeniu. Zgodne z emulatorem (0x2007=7). OPEN: modulacja (5), wygaszanie (6), pauza (8), stop (9), alarm (10). | KOREKTA: stany 6 i 8 = widoczna (kod), 9 i 10 = ukryta (kod); do potwierdzenia obserwacja wlasciciela dla 6/8/9/10",
+    "code_rule": "STRONG (kod: presenter HOME 0x08031ccc + setter 0x0802d344 komorka 0): dioda palnika WIDOCZNA gdy stan 0x2007 NIE jest 0, 9 ani 10, czyli stany 1-8 (rozpalanie, rozzarzanie, ..., modulacja 5, wygaszanie 6, czyszczenie 7, 8) = zolta (bitmapa 31); stany 0 (wylaczony), 9 i 10 = ukryta. Setter nie zmienia koloru (tylko widocznosc) - kolor inny niz zolty nie wystepuje w tym kodzie"
    },
    "co1_x207_widget_0x20016530": {
     "default": "ukryty, bitmapa 32 (bialy)",
