@@ -339,6 +339,196 @@
     "0x22B9": 256
    },
    "open": "0x2254 = 0x013C -> mlodszy bajt 60 przy wylaczonym palniku: wentylator powinien byc widoczny z liczba 60 nad ikona (do potwierdzenia zdjeciem PALNIK)"
+  },
+  "pary_test_stan": {
+   "evidence": "STRONG (nazwy PID w katalogu: 'X test' <-> 'X state'; kolejnosc wierszy TEST WYJSC z outputs_test.json MEASURED); NIE potwierdzone zapisem na kotle (zapis tylko na polecenie wlasciciela)",
+   "reguła_wartosci": "stan = (wartosc SDO & 0xFF); u8; pompy/podajniki 0/1, mieszacze i ruszt 0/1/2 (A/CLOSE/OPEN w tescie)",
+   "pary": [
+    {
+     "wyjscie": "Pompa kotlowa",
+     "pid_testowy": "0x2286",
+     "pid_stanu": "0x2277",
+     "ikona": "KOCIOL/BUFOR: spinner pompy x=9",
+     "nazwa_testu": "Boiler pump test",
+     "nazwa_stanu": "Boiler pump state"
+    },
+    {
+     "wyjscie": "Pompa CWU",
+     "pid_testowy": "0x2296",
+     "pid_stanu": "0x2278",
+     "ikona": "CWU: spinner pompy x=9",
+     "nazwa_testu": "HW1 pump test",
+     "nazwa_stanu": "Hot water pump state"
+    },
+    {
+     "wyjscie": "Pompa cyrkulacyjna CWU",
+     "pid_testowy": "0x374A",
+     "pid_stanu": "0x3749",
+     "ikona": "CWU: drugi spinner pompy x=48",
+     "nazwa_testu": "HW1 circular pump test",
+     "nazwa_stanu": "Hot water circular pump state"
+    },
+    {
+     "wyjscie": "Pompa solarna",
+     "pid_testowy": "0x311F",
+     "pid_stanu": "0x311C",
+     "ikona": "SOLARY: spinner pompy x=9",
+     "nazwa_testu": "Solar pump test",
+     "nazwa_stanu": "Solar pump state"
+    },
+    {
+     "wyjscie": "Podajnik zasobnika",
+     "pid_testowy": "0x2259",
+     "pid_stanu": "0x2251",
+     "ikona": "PALNIK: komorka x=40 (klatki 36-38) + liczba nad ikona 0x226D (czas podawania)",
+     "nazwa_testu": "Burner storage feeder test",
+     "nazwa_stanu": "Burner storage feeder"
+    },
+    {
+     "wyjscie": "Podajnik palnika",
+     "pid_testowy": "0x2295",
+     "pid_stanu": "0x2252",
+     "ikona": "PALNIK: komorka x=81 (klatki 40-42)",
+     "nazwa_testu": "Burner feeder test",
+     "nazwa_stanu": "Burner burner feeder"
+    },
+    {
+     "wyjscie": "Zapalarka",
+     "pid_testowy": "0x2284",
+     "pid_stanu": "0x2253",
+     "ikona": "PALNIK: komorka x=122 (klatki 65-67)",
+     "nazwa_testu": "Igniter test",
+     "nazwa_stanu": "Burner igniter"
+    },
+    {
+     "wyjscie": "Dmuchawa",
+     "pid_testowy": "0x2283",
+     "pid_stanu": "0x2254",
+     "ikona": "PALNIK: komorka x=1 (klatki 8-10) + liczba nad ikona = wartosc 0x2254; suwak mocy testu 0x2288",
+     "nazwa_testu": "Blower test",
+     "nazwa_stanu": "Burner blower"
+    },
+    {
+     "wyjscie": "Ruszt",
+     "pid_testowy": "0x2279",
+     "pid_stanu": "0x2276",
+     "ikona": "PALNIK: komorka x=161 (klatki 58-59) + strzalki 108 (stan 1) / 109 (stan 2); test A/CLOSE/OPEN",
+     "nazwa_testu": "Burner grate test",
+     "nazwa_stanu": "Grate move indicator"
+    },
+    {
+     "wyjscie": "Wymiennik (czyszczenie)",
+     "pid_testowy": "0x2285",
+     "pid_stanu": "0x216A",
+     "ikona": "KOCIOL: komorka x=40 (bitmapy 34,35)",
+     "nazwa_testu": "Exchanger cleaner test",
+     "nazwa_stanu": "Exchanger cleaning request"
+    },
+    {
+     "wyjscie": "Magazyn transport(1)",
+     "pid_testowy": "0x351E",
+     "pid_stanu": "0x3522",
+     "ikona": "MAGAZYN zewn.: stan silnika 1",
+     "nazwa_testu": "External fuel storage motor 1 test",
+     "nazwa_stanu": "External fuel storage motor 1 state"
+    },
+    {
+     "wyjscie": "Magazyn podajnik(2)",
+     "pid_testowy": "0x351F",
+     "pid_stanu": "0x3523",
+     "ikona": "MAGAZYN zewn.: stan silnika 2",
+     "nazwa_testu": "External fuel storage motor 2 test",
+     "nazwa_stanu": "External fuel storage motor 2 state"
+    },
+    {
+     "wyjscie": "Pompa CO1",
+     "pid_testowy": "0x229D",
+     "pid_stanu": "0x2299",
+     "ikona": "OGRZEWANIE 1: spinner x=9",
+     "nazwa_testu": "CH pump test",
+     "nazwa_stanu": "CH pump state"
+    },
+    {
+     "wyjscie": "Pompa CO2",
+     "pid_testowy": "0x229E",
+     "pid_stanu": "0x229A",
+     "ikona": "OGRZEWANIE 2: spinner x=9",
+     "nazwa_testu": "CH pump test",
+     "nazwa_stanu": "CH pump state"
+    },
+    {
+     "wyjscie": "Pompa CO3",
+     "pid_testowy": "0x229F",
+     "pid_stanu": "0x229B",
+     "ikona": "OGRZEWANIE 3: spinner x=9",
+     "nazwa_testu": "CH pump test",
+     "nazwa_stanu": "CH pump state"
+    },
+    {
+     "wyjscie": "Pompa CO4",
+     "pid_testowy": "0x22A0",
+     "pid_stanu": "0x229C",
+     "ikona": "OGRZEWANIE 4: spinner x=9",
+     "nazwa_testu": "CH pump test",
+     "nazwa_stanu": "CH pump state"
+    },
+    {
+     "wyjscie": "Mieszacz CO1",
+     "pid_testowy": "0x214A",
+     "pid_stanu": "0x22B9",
+     "ikona": "OGRZEWANIE 1: luk 106 (1, niebieski, zamykanie) / 107 (2, czerwony, otwieranie), x=40",
+     "nazwa_testu": "CH mixer test",
+     "nazwa_stanu": "CH mixer state"
+    },
+    {
+     "wyjscie": "Mieszacz CO2",
+     "pid_testowy": "0x214B",
+     "pid_stanu": "0x22BA",
+     "ikona": "OGRZEWANIE 2",
+     "nazwa_testu": "CH mixer test",
+     "nazwa_stanu": "CH mixer state"
+    },
+    {
+     "wyjscie": "Mieszacz CO3",
+     "pid_testowy": "0x214C",
+     "pid_stanu": "0x22BB",
+     "ikona": "OGRZEWANIE 3",
+     "nazwa_testu": "CH mixer test",
+     "nazwa_stanu": "CH mixer state"
+    },
+    {
+     "wyjscie": "Mieszacz CO4",
+     "pid_testowy": "0x214D",
+     "pid_stanu": "0x22BC",
+     "ikona": "OGRZEWANIE 4 (PID testowy wg kolejnosci; do potwierdzenia w outputs_test.json)",
+     "nazwa_testu": "CH mixer test",
+     "nazwa_stanu": "CH mixer state"
+    },
+    {
+     "wyjscie": "Mieszacz powrotu kotla",
+     "pid_testowy": "0x216D",
+     "pid_stanu": "0x216F",
+     "ikona": "KOCIOL: komorka x=81, luk 106/107",
+     "nazwa_testu": "Boiler return mixer test",
+     "nazwa_stanu": "CH mixer state"
+    }
+   ]
+  },
+  "mechanika_ikon": {
+   "evidence": "STRONG (setery 0x08044950, 0x08044ef4, 0x08044e78, 0x08046514, 0x08044774, 0x0803c550)",
+   "pompa": "wartosc != 0 -> widget klasy 0x807e43c (19x19, klatki 138-143) widoczny i animowany; 0 -> zatrzymany i ukryty; ten sam setter na KOCIOL, BUFOR, CO1-4, CWU (x2), SOLARY",
+   "mieszacz_CO": "setter 0x08044774: 0 ukryty, 1 luk 106, 2 luk 107 (x=40, klasa 0x807b610), identycznie jak KOCIOL",
+   "termostat_CO": "setter 0x08044848: tylko gdy typ czujnika pokojowego 0x22A1 == 4 (radiowy): 0x2301==1 -> jedna ikona, inaczej druga (widgety poza dolna belka)",
+   "ekrany_z_dolna_belka": {
+    "KOCIOL": "pompa x9, czyszczenie x40, mieszacz powrotu x81",
+    "PALNIK": "5 komorek x1/40/81/122/161",
+    "CO1-4": "pompa x9, mieszacz x40",
+    "CWU": "pompa x9, cyrkulacja x48",
+    "BUFOR": "pompa x9",
+    "SOLARY": "pompa x9",
+    "STATYSTYKI": "brak"
+   },
+   "uwaga_animacji": "klatki animacji to kolejne bitmapy; tempo zmiany klatek - OPEN (do zmierzenia z emulatora: tick)"
   }
  }
 }
