@@ -1,0 +1,67 @@
+{
+ "schema_version": "1.0",
+ "evidence": "MEASURED (emulator: ramka CAN 0x584 po zmianie godziny w dialogu dnia + OK; dzien potwierdzony tytulem dialogu)",
+ "pids": {
+  "KOCIOL": {
+   "Pn": "0x2209",
+   "Wt": "0x220A",
+   "Sr": "0x220B",
+   "Cz": "0x220C",
+   "Pt": "0x220D",
+   "Sb": "0x220E",
+   "Nd": "0x220F"
+  },
+  "OGRZEWANIE1": {
+   "Pn": "0x2126",
+   "Wt": "0x212A",
+   "Sr": "0x212E",
+   "Cz": "0x2132",
+   "Pt": "0x2136",
+   "Sb": "0x213A",
+   "Nd": "0x213E"
+  },
+  "OGRZEWANIE2": {
+   "Pn": "0x2127",
+   "Wt": "0x212B",
+   "Sr": "0x212F",
+   "Cz": "0x2133",
+   "Pt": "0x2137",
+   "Sb": "0x213B",
+   "Nd": "0x213F"
+  },
+  "OGRZEWANIE3": {
+   "Pn": "0x2128",
+   "Wt": "0x212C",
+   "Sr": "0x2130",
+   "Cz": "0x2134",
+   "Pt": "0x2138",
+   "Sb": "0x213C",
+   "Nd": "0x2140"
+  },
+  "OGRZEWANIE4": {
+   "Pn": "0x2129",
+   "Wt": "0x212D",
+   "Sr": "0x2131",
+   "Cz": "0x2135",
+   "Pt": "0x2139",
+   "Sb": "0x213D",
+   "Nd": "0x2141"
+  },
+  "CWU": {
+   "Pn": "0x2154",
+   "Wt": "0x2155",
+   "Sr": "0x2156",
+   "Cz": "0x2157",
+   "Pt": "0x2158",
+   "Sb": "0x2159",
+   "Nd": "0x2160"
+  }
+ },
+ "missing": [],
+ "formulas": {
+  "KOCIOL": "0x2209 + dzien (Pn=0..Nd=6)",
+  "OGRZEWANIE_k": "0x2126 + 4*dzien + (k-1), k=1..4",
+  "CWU": "0x2154 + dzien (Pn..Sb), niedziela = 0x2160"
+ },
+ "encoding": "u32 maska 24 bitow, bit h = godzina h (1 = komfort); zapis wartosci zmienionej przy OK; ramka 42 idx 01 u32LE"
+}

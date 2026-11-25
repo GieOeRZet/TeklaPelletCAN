@@ -1,6 +1,12 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Etap C: wskazniki HOME = paski LED (bitmapy 28/31/32), sonda 655 PID
+### 2026-11-25 - Etap D ZAMKNIETY: PID-y harmonogramu (PROGRAM) wszystkich dni i obwodow
+- `tools/program_write_probe.py` + `tools/build_program_pids.py` -> `UI/program_pids.json` (42 PID-y: Kociol, CO1-CO4, CWU x Pn..Nd). MEASURED: ramka zapisu panelu po zmianie godziny w dialogu dnia; dzien potwierdzony tytulem dialogu (pierwszy przebieg mylil dni po przewinieciu listy - wykryte i naprawione).
+- Kociol 0x2209+dzien; CO_k = 0x2126 + 4*dzien + (k-1); CWU 0x2154+dzien (Pn..Sb), niedziela 0x2160. Wzory potwierdzone na wszystkich 42 PID-ach, braki: 0.
+- Maska u32 (24 bity, bit h = godzina h, 1 = komfort); zapis przy OK tylko gdy wartosc sie zmienila.
+- `device_model.json` -> `program.pids_by_circuit` z tych danych.
+
+## 2026-11-25 - Etap C: wskazniki HOME = paski LED (bitmapy 28/31/32), sonda 655 PID
 - Wskazniki kafelkow belki to paski LED 68x28: bitmapa 28 zielona, 31 zolta, 32 biala (id bitmapy w widgecie +0x26). Mapa bitmap 45-55 (wlasciciel): 045 plomien, 046 slimak, 047 zielona dioda, 048/049 paski, 050 suwak, 051 obrys zasobnika, 052 zasobnik z peletem, 053 zasobnik z E (pusty).
 - MEASURED: LED zasilania (x414, zielony) i CWU (x345, bialy) widoczne domyslnie; 0x2005=0 chowa oba; LED CO1 (x207)/CO2 (x276) pojawiaja sie przy 0x2064/0x2065=3; LED palnika (x138) bez reakcji na PID. Zmiana KOLORU (28/31/32) nie zaobserwowana w zadnym tescie - OPEN (stany od sterownika).
 - Paliwo: >=100 kg ikony stale, <=30 kg miga; ikona 053 'E' - widget nie znaleziony (OPEN). Wczesniejsza regula progow 1/40 kg wycofana.
