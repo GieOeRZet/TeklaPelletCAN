@@ -5,6 +5,13 @@
 - Sonda PDO (0x184-0x484 od wezla 4): brak wlaczen diod/ikon (`tools/pdo_sweep.py`, `UI/bind_raw/pdo_*.json`). Emulator animuje ikony bez bodzca; 0x216D=2 zwieksza animacje mieszacza.
 - Dla ESP: nie trzeba odtwarzac mechanizmu panelu - ESP czyta rejestry sterownika (pompy 0x2299/0x229A/0x2278, mieszacze 0x22B9/0x216D, dmuchawa 0x2254, zapalarka 0x2253, jasnosc 0x2250 - z katalogu starego projektu) i rysuje wlasne ikony. Do zrobienia: mapa komorka->rejestr z korelacji zdjec/nagran panelu z odczytami HA.
 
+## 2026-11-25 - dolne belki: mapa komorka -> PID z KODU (PALNIK, KOCIOL, OGRZEWANIE, CWU, BUFOR, SOLARY, MAGAZYN, KASKADA)
+
+- WYKONANE: zamiast szukac stanow w CAN, odczytano presentery aktywacji ekranow w `decompiled.c` (adres decompiled = runtime - 0x10000). Widgety dolnej belki = klasa `0x0807e43c` (animowany obraz); widocznosc komorki = (wartosc PID != 0). PALNIK: wentylator 0x2254, podajnik zasobnika 0x2251, podajnik palnika 0x2252, zapalarka 0x2253, ruszt 0x2276; liczby nad ikonami: 0x2254 (np. 52), 0x226D (czas podawania, 2.1), 0x3711 (czas do czyszczenia, h:mm = "3:00", gdy stan 5 i typ spalania 0). Pozostale ekrany: patrz `real_panel_screens.json` -> `bottom_bar_static_2026_11_25`.
+- WERYFIKACJA: kod = STRONG; emulator: wstrzykniecie 0x2252 zapala komorke x=81 (MEASURED), pozostale pojedyncze wstrzykniecia nie odswiezyly widoku (do wyjasnienia). validate_ui_model PASS, smoke PASS.
+- OPEN: numery klatek bitmap komorek na ekranach innych niz PALNIK; czy 0x2251..0x2254 przychodza z kotla przez SDO poll (odczyt z HA).
+- Poprawka wczesniejszego wniosku: 0x4005/0x4008/0x4009 to PID-y 0x4xxx (wyliczane na panelu) - dlatego moc[%]=30 mimo 0 w rejestrze.
+
 ## 2026-11-25 - Ikona 'E' paliwa ZNALEZIONA (sugestia wlasciciela: rezerwa > 0)
 - Emulator, rezerwa 0x3603=10, pojemnosc 135: dla paliwa <= rezerwa kafelek pokazuje pomaranczowy zasobnik z 'E' (bitmapa 53) i pomaranczowy tekst ilosci; 0 kg - sam obrys; powyzej rezerwy kropki. Przy rezerwie 0 (kociol wlasciciela) 'E' sie nie pojawia.
 - Test na prawdziwym kotle wymaga zapisu konfiguracji 0x3603 - nie wykonany (zgoda wlasciciela + nieznany wplyw na sterownik).
