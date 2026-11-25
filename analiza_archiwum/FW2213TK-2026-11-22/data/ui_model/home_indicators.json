@@ -17,7 +17,7 @@
   "icons": {
    "bitmap_51_widget_0x200165e0": "obrys zasobnika",
    "bitmap_52_widget_0x2001660c": "zasobnik z peletem",
-   "bitmap_53": "zasobnik z pomaranczowym E (pusty) - widget NIE znaleziony w HOME wsrod obrazow; warunek OPEN"
+   "bitmap_53": "pomaranczowy zasobnik z 'E' (pusty/rezerwa) - POJAWIA SIE gdy paliwo <= rezerwa 0x3603 (rezerwa > 0); wtedy tekst 'Nkg' tez pomaranczowy (MEASURED w emulatorze: rezerwa 10, paliwo 9-10 kg; przy 0 kg sam bialy obrys; powyzej rezerwy normalne kropki/miganie). Na kotle wlasciciela rezerwa 0 - 'E' nie moze sie pojawic."
   },
   "states": {
    ">=100 kg": "ikony 51+52 swieca stale (MEASURED)",
@@ -68,6 +68,12 @@
    "owner_real_boiler": "rezerwa 0x3603 = 0 (odczyt HA), pojemnosc 135 - brak migania",
    "photo_agreement": "zdjecia: 0/2/5 kg 0 kropek zgodnie; 15/21 kg 2 kropki zgodnie; 10 kg na zdjeciu 2 kropki (emulator 0 - roznica 1 kg, mozliwy wplyw animacji poziomu FUN_080541ac); liczba kropek na zdjeciach zanizona przez rozmycie (40 kg: 3-4 vs 5; 80 kg: ~12 vs 14)",
    "open": "dokladne progi w promilach (potrzebny odczyt stalych z kodu), animacja wypelniania, miganie przy rezerwie > 0"
+  },
+  "reserve_rule": {
+   "evidence": "MEASURED (emulator, FUEL_RESERVE=10, skan 0..40 kg, zrzuty ikony; sugestia wlasciciela potwierdzona)",
+   "rule": "paliwo <= rezerwa (0x3603 > 0): ikona 'E' (bitmapa 53) i pomaranczowy tekst ilosci; 0 kg: sam obrys; powyzej rezerwy: kropki wg % pojemnosci, miganie gdy < rezerwy w innych konfiguracjach",
+   "owner_boiler": "rezerwa 0x3603 = 0 (HA odczyt) - 'E' nie pokazuje sie",
+   "real_test_pending": "test na prawdziwym kotle wymaga zapisu 0x3603 (konfiguracja sterownika) - tylko za zgoda wlasciciela; wplyw po stronie sterownika (alarm/blokada) nieznany"
   }
  },
  "other_measured": [

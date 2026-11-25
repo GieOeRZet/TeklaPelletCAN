@@ -50,7 +50,8 @@ for v in range(0, mx + 1):
     s.inject_param(0x3601, v, 3, 60); s.wait(700)
     img = s.shot(); sizes, area = dots(img)
     ex = X.extract(s, ws)
-    h = {k: ex.get(k, {}).get("hidden") for k in ("0x200165e0", "0x2001660c")}
+    h = {k: ex.get(k, {}).get("hidden") for k in ("0x200165e0", "0x2001660c", "0x2001ae70", "0x2001af64", "0x2001ac60", "0x2001af90", "0x2001b2fc")}
+    if os.environ.get("FUEL_SHOTS") and v in [int(x) for x in os.environ["FUEL_SHOTS"].split(",")]: img.crop((60, 190, 140, 272)).resize((320, 328)).save("/tmp/w/fuelshot_%d.png" % v)
     res["scan"][str(v)] = dict(components=len(sizes), area=area, sizes=sizes[:30], hidden=h)
     if v % 10 == 0: print(v, len(sizes), area, h, flush=True)
     res["readers"] = readers

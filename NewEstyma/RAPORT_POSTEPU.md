@@ -1,6 +1,10 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Kropki zasobnika: regula w procentach pojemnosci (emulator + kod); mapa powiazan dolnych belek
+### 2026-11-25 - Ikona 'E' paliwa ZNALEZIONA (sugestia wlasciciela: rezerwa > 0)
+- Emulator, rezerwa 0x3603=10, pojemnosc 135: dla paliwa <= rezerwa kafelek pokazuje pomaranczowy zasobnik z 'E' (bitmapa 53) i pomaranczowy tekst ilosci; 0 kg - sam obrys; powyzej rezerwy kropki. Przy rezerwie 0 (kociol wlasciciela) 'E' sie nie pojawia.
+- Test na prawdziwym kotle wymaga zapisu konfiguracji 0x3603 - nie wykonany (zgoda wlasciciela + nieznany wplyw na sterownik).
+
+## 2026-11-25 - Kropki zasobnika: regula w procentach pojemnosci (emulator + kod); mapa powiazan dolnych belek
 - Kod (Ghidra): FUN_080540de liczy udzial w promilach (A*1000/(A+B)); FUN_08054104/FUN_08054162 porownuja z dwoma progami i pokazuja/chowaja elementy ikony; FUN_080541ac - animacja/miganie. Wniosek: ikona zalezy od PROCENTU pojemnosci (0x3600) i rezerwy (0x3603), nie od kg.
 - Skan emulatora (pojemnosc 135, rezerwa 0 jak u wlasciciela): 0-10 kg obrys; 11-33: 2 kropki; 34-51: 5; 52-76: 9; 77-99: 14; 100-117: 19; >=118: 24. Rezerwa domyslna 40: miganie dla 2-39 kg. Zgodne ze zdjeciami co do struktury (10 kg: roznica 1 kg).
 - Dolne belki: animowane ikony wyjsc nie sa wiazane parametrami (stany wyjsc); wyniki sond: `UI/bind_raw/*`.

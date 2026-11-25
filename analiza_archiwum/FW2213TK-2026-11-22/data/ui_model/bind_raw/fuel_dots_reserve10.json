@@ -1,0 +1,788 @@
+{
+ "capacity_set": 135,
+ "storage": {
+  "fuel": "0x20022312",
+  "cap": "0x20022310"
+ },
+ "widget_0x20016998_vtable": "0x807c660",
+ "scan": {
+  "0": {
+   "components": 2,
+   "area": 114,
+   "sizes": [
+    57,
+    57
+   ],
+   "hidden": {
+    "0x200165e0": false,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "1": {
+   "components": 2,
+   "area": 114,
+   "sizes": [
+    57,
+    57
+   ],
+   "hidden": {
+    "0x200165e0": false,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "2": {
+   "components": 0,
+   "area": 0,
+   "sizes": [],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": true,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "3": {
+   "components": 0,
+   "area": 0,
+   "sizes": [],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": true,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "4": {
+   "components": 0,
+   "area": 0,
+   "sizes": [],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": true,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "5": {
+   "components": 0,
+   "area": 0,
+   "sizes": [],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": true,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "6": {
+   "components": 0,
+   "area": 0,
+   "sizes": [],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": true,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "7": {
+   "components": 5,
+   "area": 176,
+   "sizes": [
+    5,
+    5,
+    52,
+    52,
+    62
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": true,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "8": {
+   "components": 5,
+   "area": 176,
+   "sizes": [
+    5,
+    5,
+    52,
+    52,
+    62
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": true,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "9": {
+   "components": 5,
+   "area": 176,
+   "sizes": [
+    5,
+    5,
+    52,
+    52,
+    62
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": true,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "10": {
+   "components": 5,
+   "area": 176,
+   "sizes": [
+    5,
+    5,
+    52,
+    52,
+    62
+   ],
+   "hidden": {
+    "0x200165e0": false,
+    "0x2001660c": true,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "11": {
+   "components": 2,
+   "area": 4,
+   "sizes": [
+    2,
+    2
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "12": {
+   "components": 2,
+   "area": 4,
+   "sizes": [
+    2,
+    2
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "13": {
+   "components": 2,
+   "area": 4,
+   "sizes": [
+    2,
+    2
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "14": {
+   "components": 2,
+   "area": 4,
+   "sizes": [
+    2,
+    2
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "15": {
+   "components": 2,
+   "area": 4,
+   "sizes": [
+    2,
+    2
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "16": {
+   "components": 4,
+   "area": 14,
+   "sizes": [
+    2,
+    2,
+    5,
+    5
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "17": {
+   "components": 4,
+   "area": 14,
+   "sizes": [
+    2,
+    2,
+    5,
+    5
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "18": {
+   "components": 4,
+   "area": 14,
+   "sizes": [
+    2,
+    2,
+    5,
+    5
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "19": {
+   "components": 4,
+   "area": 14,
+   "sizes": [
+    2,
+    2,
+    5,
+    5
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "20": {
+   "components": 4,
+   "area": 25,
+   "sizes": [
+    5,
+    5,
+    7,
+    8
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "21": {
+   "components": 4,
+   "area": 25,
+   "sizes": [
+    5,
+    5,
+    7,
+    8
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "22": {
+   "components": 4,
+   "area": 25,
+   "sizes": [
+    5,
+    5,
+    7,
+    8
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "23": {
+   "components": 4,
+   "area": 25,
+   "sizes": [
+    5,
+    5,
+    7,
+    8
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "24": {
+   "components": 4,
+   "area": 25,
+   "sizes": [
+    5,
+    5,
+    7,
+    8
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "25": {
+   "components": 4,
+   "area": 29,
+   "sizes": [
+    7,
+    7,
+    7,
+    8
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "26": {
+   "components": 4,
+   "area": 29,
+   "sizes": [
+    7,
+    7,
+    7,
+    8
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "27": {
+   "components": 4,
+   "area": 29,
+   "sizes": [
+    7,
+    7,
+    7,
+    8
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "28": {
+   "components": 4,
+   "area": 29,
+   "sizes": [
+    7,
+    7,
+    7,
+    8
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "29": {
+   "components": 4,
+   "area": 35,
+   "sizes": [
+    7,
+    8,
+    10,
+    10
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "30": {
+   "components": 4,
+   "area": 35,
+   "sizes": [
+    7,
+    8,
+    10,
+    10
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "31": {
+   "components": 4,
+   "area": 35,
+   "sizes": [
+    7,
+    8,
+    10,
+    10
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "32": {
+   "components": 4,
+   "area": 35,
+   "sizes": [
+    7,
+    8,
+    10,
+    10
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "33": {
+   "components": 4,
+   "area": 35,
+   "sizes": [
+    7,
+    8,
+    10,
+    10
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "34": {
+   "components": 7,
+   "area": 49,
+   "sizes": [
+    2,
+    3,
+    3,
+    7,
+    8,
+    13,
+    13
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "35": {
+   "components": 7,
+   "area": 49,
+   "sizes": [
+    2,
+    3,
+    3,
+    7,
+    8,
+    13,
+    13
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "36": {
+   "components": 7,
+   "area": 49,
+   "sizes": [
+    2,
+    3,
+    3,
+    7,
+    8,
+    13,
+    13
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "37": {
+   "components": 7,
+   "area": 49,
+   "sizes": [
+    2,
+    3,
+    3,
+    7,
+    8,
+    13,
+    13
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "38": {
+   "components": 7,
+   "area": 63,
+   "sizes": [
+    4,
+    6,
+    6,
+    7,
+    8,
+    16,
+    16
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "39": {
+   "components": 7,
+   "area": 63,
+   "sizes": [
+    4,
+    6,
+    6,
+    7,
+    8,
+    16,
+    16
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  },
+  "40": {
+   "components": 7,
+   "area": 63,
+   "sizes": [
+    4,
+    6,
+    6,
+    7,
+    8,
+    16,
+    16
+   ],
+   "hidden": {
+    "0x200165e0": true,
+    "0x2001660c": false,
+    "0x2001ae70": true,
+    "0x2001af64": true,
+    "0x2001ac60": true,
+    "0x2001af90": true,
+    "0x2001b2fc": true
+   }
+  }
+ },
+ "readers": {
+  "fuel_0x3601": {
+   "0x8021664": "0x8024731",
+   "0x8068b40": "0x8068a8b",
+   "0x8068b6e": "0x8068a8b",
+   "0x8064168": "0x806412f",
+   "0x806413a": "0x806412f"
+  },
+  "cap_0x3600": {
+   "0x8021664": "0x8024731",
+   "0x8064168": "0x806412f"
+  }
+ }
+}
