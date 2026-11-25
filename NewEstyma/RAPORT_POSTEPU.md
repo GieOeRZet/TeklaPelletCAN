@@ -1,6 +1,10 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Ikona paliwa: serie zdjec z prawdziwego panelu (zapis licznika 0x3601 przez integracje HA, za zgoda wlasciciela)
+### 2026-11-25 - Dioda CWU w trybach (obserwacja wlasciciela, prawdziwy panel)
+- CWU: Eko = biala, Harmonogram = biala, Off = zgaszona (brak paska), Komfort = biala. Wlasciciel zmieniał tryb na panelu; ja tylko odczyt HA (CWU wrocilo na Komfort, CO bez zmian).
+- Wniosek (STRONG): dioda CO/CWU jest biala gdy program obwodu != Off i zgaszona dla Off; kolor nie zalezy od trybu (Eko/Harmonogram/Komfort) ani od stanu pompy. Zgodne z emulatorem. CO1 nie testowane (Off zatrzymalby ogrzewanie).
+
+## 2026-11-25 - Ikona paliwa: serie zdjec z prawdziwego panelu (zapis licznika 0x3601 przez integracje HA, za zgoda wlasciciela)
 - Zapisy licznika: 100, 40, 10, 2, 0 kg, na koncu przywrocone 21 kg (kazdy zapis zweryfikowany odczytem z HA; alarm/rezerwa/zakaz rozpalania bez zmian).
 - Panel: 100 kg pelna siatka kropek; 40 kg kilka kropek; 10 kg 2 kropki; 2 kg i 0 kg sam obrys (bez 'E'). Liczba kropek maleje stopniowo z poziomem paliwa. Pomaranczowe 'E' nie pojawilo sie nawet przy 0 kg - warunek inny (OPEN: czujnik rezerwy 0x3529, alarm).
 - Rozjazd z emulatorem: emulator ukrywa obrys przy <=1 kg; panel pokazuje go przy 0-2 kg. Ikona chmurki w rogu (bitmapa 181) - hipoteza: polaczenie z internetem.

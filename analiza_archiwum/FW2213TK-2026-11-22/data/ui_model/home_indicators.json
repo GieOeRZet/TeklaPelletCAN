@@ -95,6 +95,16 @@
    "kociol_wlaczony": "on",
    "palnik_kod_stanu": 0
   },
-  "conclusion": "STRONG: biala dioda CO/CWU oznacza 'obwod aktywny' = tryb/program obwodu rozny od Off (u wlasciciela oba Komfort) - NIE stan pompy (CWU ma biala przy wylaczonej pompie). Zgodne z pomiarem w emulatorze (widocznosc zalezy od 0x2064/0x2014 != 0). OPEN: czy kolor zmienia sie dla trybu Eko/Harmonogram lub gdy pompa/termostat - do sprawdzenia na panelu przy zmianie trybu (zmiany tylko przez wlasciciela)."
+  "conclusion": "STRONG: biala dioda CO/CWU oznacza 'obwod aktywny' = tryb/program obwodu rozny od Off (u wlasciciela oba Komfort) - NIE stan pompy (CWU ma biala przy wylaczonej pompie). Zgodne z pomiarem w emulatorze (widocznosc zalezy od 0x2064/0x2014 != 0). OPEN: czy kolor zmienia sie dla trybu Eko/Harmonogram lub gdy pompa/termostat - do sprawdzenia na panelu przy zmianie trybu (zmiany tylko przez wlasciciela).",
+  "cwu_modes_test": {
+   "date": "2026-11-25",
+   "evidence": "MEASURED (obserwacja wlasciciela na prawdziwym panelu przy zmianie trybu CWU na panelu; stan trybu potwierdzony odczytem HA)",
+   "Eko": "dioda biala",
+   "Off": "dioda zgaszona (brak paska)",
+   "Harmonogram": "dioda biala",
+   "Komfort": "dioda biala (wczesniej)",
+   "conclusion": "STRONG: dioda CWU jest biala w trybach Eko/Harmonogram/Komfort, zgaszona w Off - zgodne z emulatorem (widocznosc gdy program != 0), kolor nie zalezy od trybu ani od pompy. CWU wrocilo na Komfort (HA: cwu_tryb=Komfort).",
+   "co1_not_tested": "CO1 nie testowano w innych trybach (Off zatrzymalby ogrzewanie); przyjmujemy ten sam mechanizm (emulator: widocznosc dla 0x2064 != 0)."
+  }
  }
 }
