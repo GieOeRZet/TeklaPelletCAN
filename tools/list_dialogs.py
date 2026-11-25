@@ -53,6 +53,14 @@ for key in keys:
         cand = [w for w in ws0 if ex0.get(w["this"], {}).get("cls") == "text" and ex0[w["this"]].get("text") == r["label_pl"] and w["ax"] < 100]
         if not cand: res[key][i] = dict(status="BRAK_WIDGETU_ETYKIETY"); json.dump(res, open(out, "w"), ensure_ascii=False, indent=1); print(key, i, "BRAK_WIDGETU_ETYKIETY", flush=True); continue
         la = int(cand[0]["this"], 16); ok = False
+        if os.environ.get("LD_RAMSCROLL", "1") == "1":      # przewijanie przez RAM: kontener zawartosci listy (vptr 0x807c6f0, rodzic wierszy) - przesuniecie y tak, by etykieta byla na ~y=120 (drag zawodzil po ~3 wierszach)
+            c = rd(la + 0x14)
+            for _ in range(8):
+                if not (0x20000000 <= c < 0x20030000) or rd(c) == 0x807c6f0: break
+                c = rd(c + 0x14)
+            if 0x20000000 <= c < 0x20030000 and rd(c) == 0x807c6f0:
+                dy = 120 - (abs_y(la) + 12); cy = rd(c + 6, 2); cy = cy - 65536 if cy > 32767 else cy
+                s.b.wr(c + 6, (cy + dy) & 0xFFFF, 2); s.wait(700)
         for _ in range(40):
             y = abs_y(la) + 12
             if os.environ.get("LD_DEBUG"): print("  dbg", key, i, r["label_pl"], "y=", y, flush=True)

@@ -603,5 +603,68 @@
    },
    "uwaga": "gdy 0x2005 == 0 panel uzywa wartosci 4 niezaleznie od 0x2002"
   }
+ },
+ "bitmap_roles_2026_11_25": {
+  "evidence": "INFERENCE z wygladu bitmap + STRONG tam, gdzie id wystepuje w kodzie/tabelach (oznaczone 'kod')",
+  "tryby_i_programy": {
+   "120/121": "platek sniegu (kociol wylaczony / przeciwzamrozeniowy) [kod: tabela programu kotla 120]",
+   "122/123": "AUTO (spoczynek/wcisniety) [kod 122]",
+   "124": "slonce 'comf' (komfort)",
+   "126/127": "ksiezyc 'eco'",
+   "128/129": "MAN (spoczynek/wcisniety) [kod 128]",
+   "130/131": "zasilanie 'off'",
+   "132": "zegar",
+   "133": "zegar A (harmonogram auto) [kod]",
+   "135": "zegar M [kod]",
+   "136": "zegar M",
+   "137": "zegar",
+   "173": "kominiarz",
+   "174/176": "kran (CWU)"
+  },
+  "wyjscia_dolna_belka": {
+   "8-10": "wentylator (klatki)",
+   "34/35": "wymiennik/czyszczenie (2 stany)",
+   "36-38": "podajnik zasobnika (klatki)",
+   "39": "podajnik zasobnika wariant z '1'",
+   "40-42": "podajnik palnika (slimak, klatki)",
+   "58/59": "ruszt (ikona)",
+   "65-67": "zapalarka (klatki)",
+   "106": "luk NIEBIESKI mieszacz = zamykanie",
+   "107": "luk CZERWONY mieszacz = otwieranie",
+   "108/109": "strzalki rusztu lewo/prawo",
+   "138-143": "pompa (spinner 6 klatek)",
+   "29/30": "czujnik poziomu magazynu zewn. (wylaczony/wlaczony)"
+  },
+  "obrazy_kotla_0x370A": {
+   "11": "kociol wariant 1 (dwa zbiorniki)",
+   "12": "wariant 2 (duzy rysunek)",
+   "13": "wariant 3 (z podajnikiem)",
+   "14": "szafka/bufor",
+   "15": "zbiornik CWU/bufor (pionowy)"
+  },
+  "diody_i_pola": {
+   "28": "LED zielony (zasilanie)",
+   "31": "LED zolty (palnik)",
+   "32": "LED bialy (CO/CWU)",
+   "26/57/151/152": "kontrolki okragle",
+   "27": "pasek pomaranczowy",
+   "19/20": "pole wyboru puste/zaznaczone",
+   "102/103/117/118": "przyciski -/+ 155x38",
+   "111": "OK",
+   "115": "przycisk zasilania",
+   "116": "wyjscie/drzwi",
+   "119": "plus",
+   "140/142": "strzalki lewo/prawo",
+   "144/146/147": "grzejnik 1/2 (aktywny/nieaktywny)",
+   "153/154/155": "WiFi pelny/2 kreski/1 kreska",
+   "168/169": "przycisk (spoczynek/wcisniety)",
+   "180/181": "slonce/platek (pora roku)"
+  },
+  "paliwo_kafelek": {
+   "51": "kontur zasobnika",
+   "52": "kropki zasobnika (poziom)",
+   "53": "E (pusty)",
+   "54": "duzy czerwony pojemnik (animacja tankowania)"
+  }
  }
 }
