@@ -1,6 +1,13 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### ETAP A (2026-11-25) ALARMY I STATUSY: BLAD ZNALEZIONY I NAPRAWIONY, 71 kodow z binarki
+### 2026-11-25 - Etap B: kodowanie zapisu panelu (emulator)
+- `tools/write_probe.py` + `tools/build_write_frames.py` -> `UI/write_frames.json` (135 wierszy list nastaw, 4 procesy).
+- Ramka zapisu: CAN id 0x584 `42 idx_lo idx_hi 01 u32LE(raw)`. Kodowanie: plain (63), raw = wyswietlana/scale (13; np. 21.1 degC -> 211, histereza 0.6 -> 6), indeks opcji radio (12), przelacznik 0/1 (12). Kodowania "flaga+256" (stary projekt) NIE zaobserwowano. MEASURED (emulator); zapis do prawdziwego kotla NIE testowany.
+- OPEN: 35 wierszy bez ramki (13 statystyk listy 0x11 - prawdopodobnie tylko odczyt; pozostale to przelaczniki wymagajace potwierdzenia/zagniezdzone; CO3/CO4 tylko wnioskowane z CO1).
+- `device_model.json`: pole `panel_write` przy PID; sekcja `program` z PID-ami dni (kociol 0x2209-0x220F, CWU 0x2154-0x2160, CO 0x2126+4*dzien+obwod-1), dialogiem dnia.
+- Walidator 27 plikow/0 bledow, smoke PASS.
+
+## ETAP A (2026-11-25) ALARMY I STATUSY: BLAD ZNALEZIONY I NAPRAWIONY, 71 kodow z binarki
 Zrobilem: (1) `vendor_sdo_scada.json` - dane z PDF producenta (SDO_SCADA.pdf od wlasciciela): wezel 4, SDO 0x604/0x584, typy, **kody stanow palnika** (OFF=0, FIRE_UP=1, INCANDESCING=2, MODULATION=5, BURNING_OFF=6, CLEANING=7, PAUSE=8, STOP=9, ALARM=10) i **trybow kotla** (TIME_AUTO=0, TIME_MANUAL=1, AUTO=2, MANUAL=3), bity rejestru alarmu (16 aktywny, 17 potwierdzony, **18 zadanie potwierdzenia**), 54 kody alarmow, 20 parametrow z RO/RW; (2) `tools/alarm_texts.py` - wstrzykniecie kodu do pierscienia historii (po tym jak silnik skonczy wlasne wpisy) i odczyt tekstu z ekranu Historia alarmow: **71 kodow, pokazany kod = wstrzykniety 71/71**; (3) `alarm_codes_verified.json`: kod -> nazwa producenta + tekst panelu w 8 jezykach (z binarki). **BLAD: wszystkie 68 wpisow starego `alarms.json` (kod->tekst z analizy statycznej) mialy zly tekst** (np. 110 to 'Komunikacja z modulem BIG', nie 'czujnik zbiornika solarnego'; 140 'Brak ognia/opalu'); stary plik oznaczony ostrzezeniem, poprawne dane w nowym. Kody tylko z binarki (poza PDF): 36, 52, 53, 80-83, 124, 139, 204-206, 250-254; 117, 121, 122 maja w panelu 'Brak opisu'. (4) `tools/build_device_model.py` + `device_model.json` (pakiet modelu urzadzenia dla ESP/HA/karty/Androida/WWW). Nastepny etap B: kodowanie zapisu z panelu (ramki SDO po OK w dialogu).
 
 ### KONIEC POMIARU DIALOGOW LIST (2026-11-25): 135 z 166 wierszy zmierzone (81%), krok = 1 jednostka surowa

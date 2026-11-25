@@ -22,6 +22,11 @@ pids = {}
 for p, r in pm.items():
     pids[p] = dict(name_en=r["name"], type=r["type"], min=int(r["min"] or 0) if r["min"].lstrip("-").isdigit() else None, max=int(r["max"]) if r["max"].lstrip("-").isdigit() else None,
                    default=r["default"], mode=r["mode"], checked_write=r["checked_write"] == "1", synced=r["synced"] == "1", format=sc_by_pid.get(p))
+wf = J("write_frames")
+if wf:
+    for p_, w in wf["pids"].items():
+        if p_ in pids and w.get("status") == "ok":
+            pids[p_]["panel_write"] = {k: w[k] for k in ("encoding", "cmd", "raw", "frame_hex", "evidence")}
 cfg_regs = {}
 for row in mt["menu_rows"]:
     for c in row.get("config_cond", []): cfg_regs.setdefault(N(c["pid"]), set()).add(row["title_pl"])
@@ -48,5 +53,5 @@ model = {"schema_version": "1.0", "firmware_sha256": mt["meta"].get("firmware_sh
          "statuses": vendor and {"evidence": vendor["evidence"], "burner_state_codes": vendor["burner_state_codes"], "boiler_work_mode_codes": vendor["boiler_work_mode_codes"]},
          "alarms": {"evidence": (alv or {}).get("evidence", "STRONG (vendor_sdo_scada)"), "ring": vendor and vendor["alarms"]["registers"], "register_bits": vendor and vendor["alarms"]["alarm_register_bits"], "codes": (alv or {}).get("codes") or (vendor and vendor["alarms"]["codes"])},
          "modules": {"evidence": live["evidence"] if isinstance(live.get("evidence"), str) else "MEASURED", "transport": live["transport"], "items": live["modules"]},
-         "program": {"evidence": prog["evidence"], "encoding": prog["encoding"]}, "outputs_test": {"evidence": outs["evidence"], "rows": outs["rows"]}}
+         "program": {"evidence": prog["evidence"], "encoding": prog["encoding"], "pids_by_circuit": prog["pids_read_on_open"], "day_dialog": prog["day_dialog"], "opens_from": prog["opens_from"]}, "outputs_test": {"evidence": outs["evidence"], "rows": outs["rows"]}}
 out = paths.UI_MODEL / "device_model.json"; out.write_text(json.dumps(model, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"); print("OK", out.stat().st_size // 1024, "KB; PID:", len(pids), "wierszy list:", rows_total, "rejestry konfiguracji:", len(cfg_regs))
