@@ -47,21 +47,36 @@
    },
    "co1_x207_widget_0x20016530": {
     "default": "ukryty, bitmapa 32 (bialy)",
-    "measured_trigger": "0x2064 (program CO1)=3 -> widoczny"
+    "measured_trigger": "widoczny gdy program obwodu CO1 (0x2064) != 0 (Off); widoczny przy 1,2,3 (MEASURED, emulator). Bitmapa zawsze 32 (biala) - zmiany koloru nie zaobserwowano."
    },
    "co2_x276_widget_0x2001655c": {
     "default": "ukryty, bitmapa 32 (bialy)",
-    "measured_trigger": "0x2065 (program CO2)=3 -> widoczny"
+    "measured_trigger": "widoczny gdy program obwodu CO2 (0x2065) != 0 (MEASURED, emulator)"
    },
    "cwu_x345_widget_0x20016588": {
     "default": "widoczny, bitmapa 32 (bialy)",
-    "measured_trigger": "ukrywa sie przy 0x2005=0 (kociol wyl.), zmiana 0x2014 (program CWU) i 0x2106 (konfiguracja CWU)"
+    "measured_trigger": "widoczny gdy program CWU (0x2014) != 0; ukrywa sie przy 0x2005=0 (kociol wyl.) i 0x2106=0 (brak CWU) (MEASURED, emulator)"
    },
    "zasilanie_x414_widget_0x200165b4": {
     "default": "widoczny, bitmapa 28 (zielony)",
-    "measured_trigger": "0x2005 (kociol wl/wyl)=0 -> ukryty"
+    "measured_trigger": "widoczny gdy 0x2005 (kociol wl.) != 0; zielony (bitmapa 28) (MEASURED, emulator)"
    }
   },
   "evidence": "MEASURED (emulator, sonda tools/home_indicators_probe.py, 655 PID, wartosci probne 1,2,3,5,10,srodek,max; zmiana koloru bitmapy NIE zaobserwowana w zadnym tescie - OPEN, wymaga stanow od sterownika)"
+ },
+ "owner_observation_real_panel": {
+  "date": "2026-11-25",
+  "evidence": "MEASURED (obserwacja wlasciciela na prawdziwym panelu) + odczyt stanow z HA (tylko odczyt)",
+  "observed": "CO1: dioda BIALA - pompa pracuje, obwod zamkniety dla ogrzewania przez termostat; CWU: dioda BIALA - pompa CWU nie pracuje (temperatura CWU 53.4 przy zadanej 55.0, tryb Komfort).",
+  "ha_snapshot": {
+   "co_tryb": "Komfort",
+   "cwu_tryb": "Komfort",
+   "co_pompa": "on",
+   "cwu_pompa": "off",
+   "regulator_pokojowy_zgoda": "on",
+   "kociol_wlaczony": "on",
+   "palnik_kod_stanu": 0
+  },
+  "conclusion": "STRONG: biala dioda CO/CWU oznacza 'obwod aktywny' = tryb/program obwodu rozny od Off (u wlasciciela oba Komfort) - NIE stan pompy (CWU ma biala przy wylaczonej pompie). Zgodne z pomiarem w emulatorze (widocznosc zalezy od 0x2064/0x2014 != 0). OPEN: czy kolor zmienia sie dla trybu Eko/Harmonogram lub gdy pompa/termostat - do sprawdzenia na panelu przy zmianie trybu (zmiany tylko przez wlasciciela)."
  }
 }

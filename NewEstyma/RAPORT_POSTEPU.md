@@ -1,6 +1,12 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Pelny zestaw grafik: trasowanie do SVG (vtracer) - pomiar
+### 2026-11-25 - Diody HOME: obserwacja wlasciciela na prawdziwym panelu + emulator (zgodne)
+- Wlasciciel (prawdziwy panel): CO1 biala dioda (pompa dziala, obwod zamkniety termostatem), CWU biala dioda przy NIECZYNNEJ pompie. Odczyt HA (tylko odczyt): CO tryb Komfort, CWU tryb Komfort, pompa CO on, pompa CWU off, zgoda regulatora on, kociol wlaczony.
+- Emulator (sonda 655 PID): dioda CO1 widoczna gdy 0x2064 != 0, CO2 gdy 0x2065 != 0, CWU gdy 0x2014 != 0 (ukrywa sie przy 0x2005=0 i 0x2106=0), zasilanie gdy 0x2005 != 0; bitmapa stale 32 (biala), zasilanie 28 (zielona).
+- Wniosek (STRONG): biala dioda CO/CWU = obwod aktywny (program != Off), nie stan pompy. OPEN: zmiana koloru w innych trybach (Eko/Harmonogram) - do zobaczenia na panelu przy zmianie trybu (zmiany tylko przez wlasciciela).
+- `home_indicators.json` uzupelniony i wlaczony do `device_model.json`.
+
+## 2026-11-25 - Pelny zestaw grafik: trasowanie do SVG (vtracer) - pomiar
 - `tools/bitmap_trace.py` + `tools/render_svgs.js` -> `UI/bitmap_trace_fit.json` (3 presety x 188 bitmap, render Chromium 1x, porownanie pikseli). Pierwsza wersja renderu miala blad (obraz nie ladowal sie z about:blank -> wszystko RASTER, MAE identyczne dla presetow) - wykryty po identycznych wynikach, naprawiony (SVG otwierany bezposrednio).
 - Wynik (najlepszy preset na bitmape): WEKTOR 5, DOBRY (MAE<=6) 48, SLABY (<=12) 44, RASTER 91. Czyli 53 bitmapy dalo sie odtworzyc z bledem <=6, ale **SVG jest ok. 8x wieksze od PNG** (po gzip ok. 950 KB wobec 124 KB PNG) - oplacalne rozmiarowo tylko 14 (SVG gz <= 1.5x PNG: m.in. 65, 73-76, 96, 98, 114, 126, 132, 133, 135, 157, 166).
 - Razem z modelem parametrycznym (gradienty, 31 bitmap): ok. 38 bitmap mozna zastapic CSS/SVG przy akceptowalnym bledzie i rozmiarze; ikony i kotly (cieniowane, wiele kolorow) zostaja PNG - trasowanie daje duze SVG lub widoczna degradacje (SLABY).
