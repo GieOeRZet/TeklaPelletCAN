@@ -28,8 +28,8 @@
     "label": "Pozycja rusztu (moc minimalna) [%]"
    }
   ],
-  "rows_not_in_any_panel_list": 55,
-  "uwaga_ukryte": "55 wierszy tabeli deskryptorow (m.in. drewno, napiecia rusztu, spaliny, przeplywomierz, kominiarz, tryb cichy) nie wchodzi do zadnej listy NASTAW dostepnej z panelu przy poziomach 0-2 wg buildera 0x0803e714; to parametry serwisowe/wariantowe - zapis z ESP tylko po zgodzie wlasciciela (poza zakresem listy panelu)"
+  "rows_not_in_any_panel_list": 42,
+  "uwaga_ukryte": "42 wierszy tabeli deskryptorow nie wchodzi do zadnej listy NASTAW dostepnej z panelu (builder 0x0803e714, poziomy 0-2); zgodnosc odtworzonych list z emulatorem potwierdzona dla 13 list. To parametry serwisowe/wariantowe; zapis z ESP tylko po zgodzie wlasciciela"
  },
  "rows": [
   {
@@ -1295,7 +1295,7 @@
    ],
    "options_count_field": 2,
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f6a8",
@@ -1306,7 +1306,7 @@
    "pid": "0x2216",
    "name_en": "Hot water 1 delta source",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f6b8",
@@ -1317,7 +1317,7 @@
    "pid": "0x201C",
    "name_en": "Hot water 1 temperature max",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f6c8",
@@ -1328,7 +1328,7 @@
    "pid": "0x2218",
    "name_en": "Hot water 1 delta min temperature",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f6d8",
@@ -1350,7 +1350,7 @@
    "pid": "0x374B",
    "name_en": "Hot water 1 circular pump fork time",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f6f8",
@@ -1361,7 +1361,7 @@
    "pid": "0x374C",
    "name_en": "Hot water 1 circular pump pause time",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f708",
@@ -1383,7 +1383,7 @@
    "pid": "0x3011",
    "name_en": "Burner pwr. depend of buf. energy level",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f728",
@@ -1394,7 +1394,7 @@
    "pid": "0x2114",
    "name_en": "Buffer top set temperature",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f738",
@@ -1405,7 +1405,7 @@
    "pid": "0x2115",
    "name_en": "Buffer bottom set temperature",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f748",
@@ -1416,7 +1416,7 @@
    "pid": "0x2281",
    "name_en": "Buffer minimal pump temperature",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f758",
@@ -1427,7 +1427,7 @@
    "pid": "0x2282",
    "name_en": "Buffer is automatic top temperature",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f768",
@@ -1438,7 +1438,7 @@
    "pid": "0x299B",
    "name_en": "",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f778",
@@ -1449,7 +1449,7 @@
    "pid": "0x3170",
    "name_en": "Buffer pump delta min temperature",
    "in_lists_json": true,
-   "dostepny_z_list_panelu": false
+   "dostepny_z_list_panelu": true
   },
   {
    "addr": "0x3f788",
@@ -2294,7 +2294,7 @@
   }
  ],
  "node_lists_from_builder": {
-  "evidence": "STRONG (funkcja 0x0803e714 + tablice kluczy z RAM po starcie: slicing wg poziomu dostepu 0x158: 0 / >=1 / >=2); odtworzenie listy PALNIK = 28 wierszy zgodne z emulatorem; listy innych wezlow wg tego samego wzorca (KASKADA i STATYSTYKI przyblizone)",
+  "evidence": "STRONG (funkcja 0x0803e714 + tablice kluczy z RAM po starcie; slicing wg poziomu dostepu 0x158: 0 / >=1 / >=2); odtworzone listy ZGODNE z emulatorem dla wszystkich 13 list (KASKADA i STATYSTYKI wg tablic C i B)",
   "nodes": {
    "0 KOCIOL": {
     "acc0": [
@@ -2351,9 +2351,16 @@
      "0xdd",
      "0xde",
      "0xe3",
-     "0xe7"
+     "0xe7",
+     "0xe5",
+     "0xe6"
     ],
-    "acc1+": []
+    "acc1+": [
+     "0xdf",
+     "0xe0",
+     "0xe2",
+     "0xe1"
+    ]
    },
    "6 SOLARY": {
     "acc0": [
@@ -2369,8 +2376,17 @@
     ]
    },
    "7 BUFOR": {
-    "acc0": [],
-    "acc1+": []
+    "acc0": [
+     "0xf3",
+     "0xf4"
+    ],
+    "acc1+": [
+     "0xf6",
+     "0xf7",
+     "0x9c",
+     "0x9d",
+     "0xfc"
+    ]
    },
    "8 KASKADA": {
     "acc0": [
@@ -2491,194 +2507,194 @@
   {
    "key": "0x24",
    "label": "Tryb cichy wymiennika",
-   "pid": "0x216B",
-   "typ": 1
+   "typ": 1,
+   "pid": "0x216B"
   },
   {
    "key": "0x25",
    "label": "Czas czyszczenia wymiennika [s]",
-   "pid": "0x3121",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3121"
   },
   {
    "key": "0x2b",
    "label": "Interwał czyszcz. wymiennika [min]",
-   "pid": "0x3122",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3122"
   },
   {
    "key": "0x13",
    "label": "Tryb kominiarz",
-   "pid": "0x3750",
-   "typ": 257
+   "typ": 257,
+   "pid": "0x3750"
   },
   {
    "key": "0x2d",
    "label": "Aktywuj alarm wyczyść wymiennik",
-   "pid": "0x3123",
-   "typ": 257
+   "typ": 257,
+   "pid": "0x3123"
   },
   {
    "key": "0x30",
    "label": "Aktywuj alarm wyczyść palnik",
-   "pid": "0x3124",
-   "typ": 257
+   "typ": 257,
+   "pid": "0x3124"
   },
   {
    "key": "0x38",
    "label": "Minimalna temp. spalin [°C]",
-   "pid": "0x3701",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3701"
   },
   {
    "key": "0x56",
    "label": "Moc nominalna [kW]",
-   "pid": "0x3709",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3709"
   },
   {
    "key": "0x58",
    "label": "Wstępna dawka paliwa [g]",
-   "pid": "0x370E",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x370E"
   },
   {
    "key": "0x5e",
    "label": "Typ paliwa",
-   "pid": "0x299F",
-   "typ": 3
+   "typ": 3,
+   "pid": "0x299F"
   },
   {
    "key": "0x71",
    "label": "F(30%) [m/s]",
-   "pid": "0x215A",
-   "typ": 256
+   "typ": 256,
+   "pid": "0x215A"
   },
   {
    "key": "0x72",
    "label": "F(100%) [m/s]",
-   "pid": "0x215B",
-   "typ": 256
+   "typ": 256,
+   "pid": "0x215B"
   },
   {
    "key": "0x97",
    "label": "Minimalny czas rozpalania [min]",
-   "pid": "0x370C",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x370C"
   },
   {
    "key": "0x7a",
    "label": "Ruch rusztu [kg]",
-   "pid": "0x3010",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3010"
   },
   {
    "key": "0x7b",
    "label": "Ruch rusztu interwał [min]",
-   "pid": "0x3012",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3012"
   },
   {
    "key": "0x7c",
    "label": "Czas rozgrzewania zapalarki [s]",
-   "pid": "0x370D",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x370D"
   },
   {
    "key": "0x7d",
    "label": "Podajnik palnika w wygaszaniu [s]",
-   "pid": "0x370F",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x370F"
   },
   {
    "key": "0x88",
    "label": "Tryb cichy rusztu",
-   "pid": "0x2151",
-   "typ": 1
+   "typ": 1,
+   "pid": "0x2151"
   },
   {
    "key": "0x8e",
    "label": "Nominalna temp. spalin [°C]",
-   "pid": "0x3702",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3702"
   },
   {
    "key": "0x8f",
    "label": "Maksymalna temp. spalin [°C]",
-   "pid": "0x3703",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3703"
   },
   {
    "key": "0x98",
    "label": "Minimalne obroty dmuchawy [*100]",
-   "pid": "0x300E",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x300E"
   },
   {
    "key": "0x60",
    "label": "Modulacja dmuchawa (drewno)",
-   "pid": "0x3000",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3000"
   },
   {
    "key": "0x62",
    "label": "Rozżarzanie dmuchawa (drewno)",
-   "pid": "0x3006",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3006"
   },
   {
    "key": "0x64",
    "label": "Podtrzymanie dmuchawa (drewno)",
-   "pid": "0x3007",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3007"
   },
   {
    "key": "0x61",
    "label": "Rozpalanie dmuchawa (drewno)",
-   "pid": "0x3005",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3005"
   },
   {
    "key": "0x66",
    "label": "Moc dmuchawy podtrzymanie [%]",
-   "pid": "0x3705",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3705"
   },
   {
    "key": "0x93",
    "label": "Praca podajnika palnika [s]",
-   "pid": "0x3727",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3727"
   },
   {
    "key": "0x92",
    "label": "PP - dawka wstępna [s]",
-   "pid": "0x3748",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3748"
   },
   {
    "key": "0x9e",
    "label": "Wtórne modulacja MIN [%]",
-   "pid": "0x3008",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3008"
   },
   {
    "key": "0x9f",
    "label": "Wtórne modulacja MAX [%]",
-   "pid": "0x3009",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3009"
   },
   {
    "key": "0x99",
    "label": "Interwał przedmuchu modulacja [min]",
-   "pid": "0x3713",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3713"
   },
   {
    "key": "0x9a",
    "label": "Czas przedmuchu modulacja [min]",
-   "pid": "0x3714",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3714"
   },
   {
    "key": "0x81",
@@ -2701,122 +2717,44 @@
   {
    "key": "0x94",
    "label": "Praca rusztu",
-   "pid": "0x218A",
-   "typ": 257
+   "typ": 257,
+   "pid": "0x218A"
   },
   {
    "key": "0xac",
    "label": "Program",
-   "pid": "0x2064",
-   "typ": 2
+   "typ": 2,
+   "pid": "0x2064"
   },
   {
    "key": "0xdc",
    "label": "Program",
-   "pid": "0x2014",
-   "typ": 2
-  },
-  {
-   "key": "0xdf",
-   "label": "Źródło",
-   "pid": "0x2214",
-   "typ": 3
-  },
-  {
-   "key": "0xe0",
-   "label": "Zwiększenie temperatury źródła [°C]",
-   "pid": "0x2216",
-   "typ": 0
-  },
-  {
-   "key": "0xe1",
-   "label": "Temp. maksymalna [°C]",
-   "pid": "0x201C",
-   "typ": 0
-  },
-  {
-   "key": "0xe2",
-   "label": "Delta załączenia pompy [°C]",
-   "pid": "0x2218",
-   "typ": 0
-  },
-  {
-   "key": "0xe5",
-   "label": "Cyrkulacja praca [min]",
-   "pid": "0x374B",
-   "typ": 0
-  },
-  {
-   "key": "0xe6",
-   "label": "Cyrkulacja pauza [min]",
-   "pid": "0x374C",
-   "typ": 0
-  },
-  {
-   "key": "0xfc",
-   "label": "Stopniowa redukcja mocy",
-   "pid": "0x3011",
-   "typ": 1
-  },
-  {
-   "key": "0xf3",
-   "label": "Temp. minimalna (góra) [°C]",
-   "pid": "0x2114",
-   "typ": 0
-  },
-  {
-   "key": "0xf4",
-   "label": "Temp. maksymalna (dół) [°C]  ",
-   "pid": "0x2115",
-   "typ": 0
-  },
-  {
-   "key": "0xf6",
-   "label": "Minimalna temp. pomp [°C]",
-   "pid": "0x2281",
-   "typ": 0
-  },
-  {
-   "key": "0xf7",
-   "label": "Automatyczna temp. góra [°C]",
-   "pid": "0x2282",
-   "typ": 1
-  },
-  {
-   "key": "0x9c",
-   "label": "Zwiększenie temperatury źródła [°C]",
-   "pid": "0x299B",
-   "typ": 0
-  },
-  {
-   "key": "0x9d",
-   "label": "Delta załączenia pompy [°C]",
-   "pid": "0x3170",
-   "typ": 0
+   "typ": 2,
+   "pid": "0x2014"
   },
   {
    "key": "0x120",
    "label": "Przepływomierz powietrza",
-   "pid": "0x362B",
-   "typ": 257
+   "typ": 257,
+   "pid": "0x362B"
   },
   {
    "key": "0x11e",
    "label": "Typ czujnika spalin",
-   "pid": "0x3707",
-   "typ": 3
+   "typ": 3,
+   "pid": "0x3707"
   },
   {
    "key": "0x1a4",
    "label": "Liczba czyszczeń rusztu",
-   "pid": "0x3617",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x3617"
   },
   {
    "key": "0x1a8",
    "label": "Liczba prób odblokowania rusztu",
-   "pid": "0x362C",
-   "typ": 0
+   "typ": 0,
+   "pid": "0x362C"
   }
  ]
 }
