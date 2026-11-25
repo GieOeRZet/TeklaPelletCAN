@@ -34,7 +34,12 @@
     "10 kg": "obrys + 2 kropki na dnie, tekst '10kg'",
     "2 kg": "sam obrys, 0 kropek, tekst '2kg'",
     "0 kg": "sam obrys, 0 kropek, tekst '0kg'; BRAK pomaranczowego 'E', brak alarmu/zakazu rozpalania w HA",
-    "21 kg": "obrys + 2 kropki na dnie, tekst '21kg' (zdjecie przy stanie Czyszczenie)"
+    "21 kg": "obrys + 2 kropki na dnie, tekst '21kg' (zdjecie przy stanie Czyszczenie)",
+    "80 kg": "obrys + siatka kropek: ok. 3 rzedy (ok. 12 kropek)",
+    "60 kg": "obrys + siatka: ok. 2 rzedy (ok. 6-7 kropek)",
+    "30 kg": "obrys + ok. 3 kropki na dnie",
+    "15 kg": "obrys + 2 kropki",
+    "5 kg": "sam obrys, 0 kropek"
    },
    "notes": [
     "liczba kropek zasobnika maleje stopniowo wraz z paliwem (widget rysowany programowo 34x38, nie pojedyncza bitmapa)",
@@ -42,7 +47,9 @@
     "ikona chmurki w prawym gornym rogu panelu (bitmapa 181, ukryta w emulatorze) - hipoteza: polaczenie z internetem (modul WiFi)",
     "w emulatorze: obrys (51) ukryty przy <=1 kg, pelna ikona 52 od >=41 kg; na panelu obrys widoczny rowniez przy 0-2 kg - rozjazd (miganie nie do stwierdzenia na zdjeciu)"
    ],
-   "restored": "licznik przywrocony do 21 kg"
+   "restored": "licznik przywrocony do 21 kg",
+   "series_2026_11_25_19_49": "zdjecia w kolejnosci 80,60,30,15,5 kg (zapis co ok. 10 s); stan palnika Rozpalanie; liczby kropek orientacyjne z fotografii (rozmycie)",
+   "model": "HIPOTEZA (STRONG): obrys (bitmapa 51) + siatka kropek (bitmapa 52) odslaniana OD DOLU proporcjonalnie do ilosci paliwa (kropki dochodza rzedami: 100 kg ~pelna, 80 kg ~3 rzedy, 60 kg ~2 rzedy, 40 kg 3-4 kropki, 30 kg ~3, 21 kg 2, 15 kg 2, 10 kg 2, 5/2/0 kg 0); dokladne progi i pojemnosc odniesienia (135 kg?) do dopasowania"
   }
  },
  "other_measured": [
@@ -142,7 +149,8 @@
     "cwu": 53.0,
     "note": "HA w tym samym czasie: kociol 47.1-47.2, zewn. -3.5/-3.6, CO 30.8, CWU 52.6 (roznice rzedu 0.2-0.8 st.C wynikaja z odstepu czasu/odswiezania)"
    }
-  }
+  },
+  "physical_leds_layout": "trzy fizyczne diody od gory: zasilanie, palnik, alarm (nieaktywny)"
  },
  "home_layout_real_panel": {
   "evidence": "MEASURED (zdjecie z prawdziwego panelu 19:44 + odczyt HA)",
@@ -152,6 +160,7 @@
    "duzy napis stanu na pulpicie: Wylaczony / Czyszczenie / Rozpalanie (zgodne z kodem stanu palnika)",
    "kafelek CWU (kran) widoczny ze biala dioda; kafelek CO2 pusty"
   ],
-  "weather_icon": "ikona pogody (chmura/slonce) w rogu to ta sama ikona, ktora wczesniej opisalem jako 'chmurke' (bitmapa 181) - NIE wskaznik internetu; zrodlo/zmiany OPEN"
+  "weather_icon": "ikona pogody (chmura/slonce) w rogu to ta sama ikona, ktora wczesniej opisalem jako 'chmurke' (bitmapa 181) - NIE wskaznik internetu; zrodlo/zmiany OPEN",
+  "second_outdoor_line": "druga liczba pod temperatura zewnetrzna = SREDNIA (potwierdzenie wlasciciela; zrodlo: 'Usrednianie temp. zewnetrznej [h]' 0x3720)"
  }
 }

@@ -1,6 +1,10 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Rozpalanie: dioda fizyczna pulsuje; ikona pogody
+### 2026-11-25 - Ikona paliwa: seria 80/60/30/15/5 kg (zdjecia, zapis licznika co ok. 10 s), druga linia temp. = srednia
+- Kropki zasobnika (orientacyjnie): 80 kg ~3 rzedy (~12), 60 kg ~2 rzedy (~6-7), 40 kg 3-4, 30 kg ~3, 21/15/10 kg 2, 5/2/0 kg 0. Hipoteza: siatka kropek (bitmapa 52) odslaniana od dolu proporcjonalnie do paliwa na tle obrysu (51); pojemnosc odniesienia (135 kg?) i dokladne progi do dopasowania. Licznik przywrocony do 21 kg.
+- Wlasciciel: druga linia temperatury zewnetrznej w rogu = srednia. Fizyczne diody od gory: zasilanie, palnik, alarm (nieaktywny).
+
+## 2026-11-25 - Rozpalanie: dioda fizyczna pulsuje; ikona pogody
 - Fizyczna dioda palnika PULSUJE w Rozpalaniu (w Czyszczeniu swiecila stale). Wartosci z panelu (wlasciciel): kociol 47.9, zewn. -3.5, CO 30.6, CWU 53.0; HA chwile pozniej: 47.1 / -3.6 / 30.8 / 52.6 (rozne chwile odczytu).
 - Korekta hipotezy: 'chmurka' w rogu to ikona POGODY (chmura ze sloncem) przy temperaturze zewnetrznej, nie wskaznik internetu.
 
