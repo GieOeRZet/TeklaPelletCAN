@@ -1,0 +1,287 @@
+{
+ "name": "HOME",
+ "bindings": [
+  {
+   "pid": "0x2001",
+   "id": "boiler_temp",
+   "widget": "0x2001b360",
+   "before": "0.0",
+   "after": "50.7",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x200B",
+   "id": "pid_Remote boiler 2 temp[dC]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x204A",
+   "id": "pid_CH eco temp set [dC]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 140,
+   "stored": 140
+  },
+  {
+   "pid": "0x2066",
+   "id": "pid_CH program",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2103",
+   "id": "pid_Solar temperature 3 [C]",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 507,
+   "stored": 0
+  },
+  {
+   "pid": "0x2115",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 36,
+   "stored": 36
+  },
+  {
+   "pid": "0x2132",
+   "id": "pid_CH schedule thursday",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2146",
+   "id": "ch1_set_manual",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2208",
+   "id": "boiler_hyst_on",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x2271",
+   "id": "power_max",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 50,
+   "stored": 50
+  },
+  {
+   "pid": "0x2286",
+   "id": "boiler_pump_mode",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x22A2",
+   "id": "pid_Room temp sensor type",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A6",
+   "id": "pid_CH sensor use",
+   "widget": "0x2001b2d0",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22AE",
+   "id": "ch2_set_result",
+   "widget": "0x2001b2d0",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 70
+  },
+  {
+   "pid": "0x22B6",
+   "id": "pid_CH mixer opening time [s]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 147,
+   "stored": 147
+  },
+  {
+   "pid": "0x22CE",
+   "id": "pid_CH temp for -20C [C]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22EC",
+   "id": "pid_Min CH temp for pump [C]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 33,
+   "stored": 33
+  },
+  {
+   "pid": "0x2328",
+   "id": "pid_CH circuit name part2",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3506",
+   "id": "alarm_snd",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x351E",
+   "id": "fuel_transporter_mode",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3606",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3621",
+   "id": "pid_Inside temp [C] CAN IO 6",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3638",
+   "id": "pid_CAN IO 0 sw. ver. after dot",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365D",
+   "id": "pid_Vide room 2 sw. ver. before do",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x371B",
+   "id": "pid_Min airflow (blower 100%) [dm/",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 343,
+   "stored": 343
+  },
+  {
+   "pid": "0x372F",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3743",
+   "id": "pid_",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x400D",
+   "id": "pid_CH temp for -10C [C]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x401D",
+   "id": "pid_Alarm register",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x4045",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x2001",
+   "id": "boiler_temp",
+   "widget": "0x2001b360",
+   "before": "69.1",
+   "after": "55.2",
+   "injected": 553,
+   "stored": 553,
+   "source": "LiveSim 55.3 C"
+  }
+ ],
+ "done": 165,
+ "total": 165
+}

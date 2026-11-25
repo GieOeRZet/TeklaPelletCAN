@@ -1,0 +1,286 @@
+{
+ "name": "HOME",
+ "bindings": [
+  {
+   "pid": "0x2002",
+   "id": "boiler_mode",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "65",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x200C",
+   "id": "pid_Remote boiler 3 temp[dC]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x204B",
+   "id": "pid_CH eco temp set [dC]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 140,
+   "stored": 140
+  },
+  {
+   "pid": "0x2067",
+   "id": "pid_CH program",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2104",
+   "id": "pid_Solar temperature 4 [C]",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x2116",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 76,
+   "stored": 76
+  },
+  {
+   "pid": "0x2133",
+   "id": "pid_CH schedule thursday",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2147",
+   "id": "ch2_set_manual",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x2209",
+   "id": "pid_Boiler schedule monday",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2272",
+   "id": "fuel_test",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 357,
+   "stored": 357
+  },
+  {
+   "pid": "0x2288",
+   "id": "blower_test_pct",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22A3",
+   "id": "pid_Room temp sensor type",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A7",
+   "id": "pid_CH sensor use",
+   "widget": "0x2001b2d0",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22AF",
+   "id": "pid_CH temp calc",
+   "widget": "0x2001b2d0",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 70
+  },
+  {
+   "pid": "0x22B7",
+   "id": "pid_CH mixer opening time [s]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 147,
+   "stored": 147
+  },
+  {
+   "pid": "0x22CF",
+   "id": "pid_CH temp for -20C [C]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22E9",
+   "id": "co1_pump_min",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 33,
+   "stored": 33
+  },
+  {
+   "pid": "0x2325",
+   "id": "pid_CH circuit name part2",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3501",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3512",
+   "id": "list",
+   "widget": "0x2001b2d0",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x351A",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x3603",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3618",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3635",
+   "id": "pid_CAN IO 5 sw. ver. before dot",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365A",
+   "id": "pid_Lambda module sw. ver. before ",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3718",
+   "id": "pid_Next service date timestamp",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x372C",
+   "id": "pid_Out temp. radio sensor sw. ver",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3740",
+   "id": "pid_",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x4009",
+   "id": "pid_Exhaust gas temperature (2) [C",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 107,
+   "stored": 0
+  },
+  {
+   "pid": "0x401E",
+   "id": "pid_Alarm register",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431393628
+  },
+  {
+   "pid": "0x4042",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  }
+ ],
+ "done": 165,
+ "total": 165
+}

@@ -1,0 +1,511 @@
+{
+ "name": "HOME",
+ "bindings": [
+  {
+   "pid": "0x2014",
+   "id": "cwu_mode",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2102",
+   "id": "pid_Solar temperature 2 [C]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 507,
+   "stored": 507
+  },
+  {
+   "pid": "0x2125",
+   "id": "pid_Device type",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x2139",
+   "id": "pid_CH schedule friday",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x214D",
+   "id": "co4_mixer_mode",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x220F",
+   "id": "pid_Boiler schedule sunday",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2279",
+   "id": "grate_mode",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x2291",
+   "id": "boiler_hyst_off",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x22A1",
+   "id": "co1_room_sensor",
+   "widget": "0x2001b2d0",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A5",
+   "id": "co1_co_sensor",
+   "widget": "0x2001b2d0",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22AD",
+   "id": "ch1_set_result",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 70
+  },
+  {
+   "pid": "0x22B1",
+   "id": "co1_src_inc",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x22C1",
+   "id": "co1_calib",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 7,
+   "stored": 7
+  },
+  {
+   "pid": "0x22D5",
+   "id": "co1_tmax",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 43,
+   "stored": 43
+  },
+  {
+   "pid": "0x22F7",
+   "id": "pid_CH needed temp. [C]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 57,
+   "stored": 7
+  },
+  {
+   "pid": "0x299B",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 18,
+   "stored": 18
+  },
+  {
+   "pid": "0x3004",
+   "id": "pid_Virt. energy consumer requeste",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 59,
+   "stored": 7
+  },
+  {
+   "pid": "0x3008",
+   "id": "pid_Sec. air modulation MIN [%]",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x300C",
+   "id": "p_blow_stop",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 48,
+   "stored": 48
+  },
+  {
+   "pid": "0x3010",
+   "id": "pid_Grate move interval in modulat",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 14,
+   "stored": 14
+  },
+  {
+   "pid": "0x3116",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 13,
+   "stored": 13
+  },
+  {
+   "pid": "0x311A",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 90,
+   "stored": 90
+  },
+  {
+   "pid": "0x3120",
+   "id": "pid_Solar status",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3124",
+   "id": "pid_",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3128",
+   "id": "pid_Clean exchanger monit period [",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3171",
+   "id": "pid_Buffer T1 measured temperature",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 407,
+   "stored": 19990
+  },
+  {
+   "pid": "0x3333",
+   "id": "pid_Boiler pressure[mbar]",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3505",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 2,
+   "stored": 2
+  },
+  {
+   "pid": "0x3509",
+   "id": "alarm_sil_to",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 15,
+   "stored": 15
+  },
+  {
+   "pid": "0x350D",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x350D",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3514",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x3518",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 87,
+   "stored": 87
+  },
+  {
+   "pid": "0x351C",
+   "id": "pid_Cascade timer to dec power lve",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3521",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x3525",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3525",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3529",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3601",
+   "id": "tank_kg",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3601",
+   "id": "tank_kg",
+   "widget": "0x2001b398",
+   "before": "180kg",
+   "after": "21852kg",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3605",
+   "id": "p_lambda",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3605",
+   "id": "p_lambda",
+   "widget": "0x2001b398",
+   "before": "180kg",
+   "after": "21852kg",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3609",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3612",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3612",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3616",
+   "id": "list",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3620",
+   "id": "pid_Inside temp [C] CAN IO 5",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3624",
+   "id": "pid_Inside temp [C] CAN IO 3",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x3628",
+   "id": "pid_Statistics - total energy prod",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3628",
+   "id": "pid_Statistics - total energy prod",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x362C",
+   "id": "pid_Total grate unblock try count",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3633",
+   "id": "pid_CAN IO 3 sw. ver. before dot",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3637",
+   "id": "pid_CAN IO 7 sw. ver. before dot",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363B",
+   "id": "pid_CAN IO 3 sw. ver. after dot",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x363F",
+   "id": "pid_CAN IO 7 sw. ver. after dot",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3664",
+   "id": "pid_soft. version",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 21852,
+   "stored": 21852
+  }
+ ],
+ "done": 164,
+ "total": 164
+}

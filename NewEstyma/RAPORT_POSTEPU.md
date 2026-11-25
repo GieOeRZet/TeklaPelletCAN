@@ -1,6 +1,13 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Etap B: kodowanie zapisu panelu (emulator)
+### 2026-11-25 - Etap C (w toku): bindingi HOME - diagnoza "0 powiazan"
+- Wynik `HOME 0` (z 24.11) NIE byl regresja: (1) `bind_screen.py` porownywal tylko TEKSTY (diody/ikony = btn/image/box nie byly mierzone); (2) po `load_state` HOME przestaje sie odswiezac (wstrzykniecia nie dawaly zadnych zmian); (3) bledy TypeError = PID bez rekordu w tabeli (pomijane - OK).
+- Narzedzie: `bind_screen.py` dostal BIND_STATE=1 (stany btn/box/image), BIND_REVERT=1 (bez load_state, cofanie wartosci, filtr szumu), BIND_SHARD=i/n (rownolegle), BIND_ALLPIDS=1 (655 PID + parametry producenta). Surowe wyniki: `UI/bind_raw/HOMER_*.json`.
+- Zmierzone (MEASURED): 0x2001 (temp kotla, LiveSim) -> tekst 0x2001b360; 0x3601 (zapas paliwa kg) -> tekst 0x2001b398 ("180kg"); 0x22A1/0x22A5/0x22A6/0x22A7.. (czujniki CO/pokoj) -> ikona 0x2001b2d0; 0x2266/0x226B -> bitmapa przycisku 0x2001adf8 (168->169); 0x2064 (tryb CO) -> ikona 0x20016530.
+- OPEN: diody stanu palnika/pomp NIE reaguja na wstrzykniecie 0x2007/0x2299/0x2278/0x229A/0x4005 (ramki 0x584) - zrodlo stanu jest inne (statusowa sciezka CAN/PDO od sterownika). Widgety 0x2001b29c i 0x2001b328 zmieniaja sie same (szum/animacja) - wykluczone z bindingow.
+- Nastepny krok: sledzenie odczytow pamieci kodu odswiezajacego kafelki HOME (ktory adres RAM czyta dioda palnika) zamiast brute-force po PID.
+
+## 2026-11-25 - Etap B: kodowanie zapisu panelu (emulator)
 - `tools/write_probe.py` + `tools/build_write_frames.py` -> `UI/write_frames.json` (135 wierszy list nastaw, 4 procesy).
 - Ramka zapisu: CAN id 0x584 `42 idx_lo idx_hi 01 u32LE(raw)`. Kodowanie: plain (63), raw = wyswietlana/scale (13; np. 21.1 degC -> 211, histereza 0.6 -> 6), indeks opcji radio (12), przelacznik 0/1 (12). Kodowania "flaga+256" (stary projekt) NIE zaobserwowano. MEASURED (emulator); zapis do prawdziwego kotla NIE testowany.
 - OPEN: 35 wierszy bez ramki (13 statystyk listy 0x11 - prawdopodobnie tylko odczyt; pozostale to przelaczniki wymagajace potwierdzenia/zagniezdzone; CO3/CO4 tylko wnioskowane z CO1).

@@ -1,0 +1,295 @@
+{
+ "name": "HOME",
+ "bindings": [
+  {
+   "pid": "0x200D",
+   "id": "pid_Remote boiler 1 requested temp",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x2064",
+   "id": "co_mode",
+   "widget": "0x2001b328",
+   "before": "7",
+   "after": "60",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2064",
+   "id": "co_mode",
+   "widget": "0x20016530",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2064",
+   "id": "co_mode",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 3,
+   "stored": 3
+  },
+  {
+   "pid": "0x2119",
+   "id": "pid_Exhaust gas temperature (2) [C",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 107,
+   "stored": 107
+  },
+  {
+   "pid": "0x2134",
+   "id": "pid_CH schedule thursday",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2148",
+   "id": "pid_Tch set manual [C]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x220A",
+   "id": "pid_Boiler schedule tuesday",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 5592412,
+   "stored": 5592412
+  },
+  {
+   "pid": "0x2266",
+   "id": "pid_Refueling need request",
+   "widget": "0x2001adf8",
+   "before": "#btn bmp=168 hidden=True",
+   "after": "#btn bmp=169 hidden=True",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x226B",
+   "id": "p_stop_time",
+   "widget": "0x2001adf8",
+   "before": "#btn bmp=168 hidden=True",
+   "after": "#btn bmp=169 hidden=True",
+   "injected": 6,
+   "stored": 6
+  },
+  {
+   "pid": "0x2273",
+   "id": "air_corr",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 17,
+   "stored": 17
+  },
+  {
+   "pid": "0x2289",
+   "id": "p_blow_ign",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 47,
+   "stored": 47
+  },
+  {
+   "pid": "0x22A4",
+   "id": "pid_Room temp sensor type",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 5,
+   "stored": 5
+  },
+  {
+   "pid": "0x22A8",
+   "id": "pid_CH sensor use",
+   "widget": "0x2001b2d0",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x22B0",
+   "id": "pid_CH temp calc",
+   "widget": "0x2001b2d0",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 40,
+   "stored": 70
+  },
+  {
+   "pid": "0x22B8",
+   "id": "pid_CH mixer opening time [s]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 147,
+   "stored": 147
+  },
+  {
+   "pid": "0x22D0",
+   "id": "pid_CH temp for -20C [C]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x22EA",
+   "id": "pid_Min CH temp for pump [C]",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 33,
+   "stored": 33
+  },
+  {
+   "pid": "0x2326",
+   "id": "pid_CH circuit name part2",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x3502",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3513",
+   "id": "list",
+   "widget": "0x2001b2d0",
+   "before": "#image hidden=True",
+   "after": "#image hidden=False",
+   "injected": 4,
+   "stored": 4
+  },
+  {
+   "pid": "0x351B",
+   "id": "pid_Cascade timer to inc power lve",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3604",
+   "id": "boil_fuel_reserve",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 40,
+   "stored": 40
+  },
+  {
+   "pid": "0x3619",
+   "id": "list",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 21852,
+   "stored": 21852
+  },
+  {
+   "pid": "0x3636",
+   "id": "pid_CAN IO 6 sw. ver. before dot",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x365B",
+   "id": "pid_Lambda module sw. ver. after d",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x3719",
+   "id": "pid_Confirm. service date timestam",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  },
+  {
+   "pid": "0x372D",
+   "id": "pid_",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1,
+   "stored": 1
+  },
+  {
+   "pid": "0x3741",
+   "id": "pid_",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 92,
+   "stored": 92
+  },
+  {
+   "pid": "0x400A",
+   "id": "pid_Virt. energy consumer set temp",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 59,
+   "stored": 7
+  },
+  {
+   "pid": "0x401F",
+   "id": "pid_Alarm register",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431393628
+  },
+  {
+   "pid": "0x4043",
+   "id": "pid_Alarm confirm timestamp",
+   "widget": "0x2001b29c",
+   "before": "#btn bmp=2 hidden=False",
+   "after": "#btn bmp=2 hidden=True",
+   "injected": 1431655772,
+   "stored": 1431655772
+  }
+ ],
+ "done": 164,
+ "total": 164
+}

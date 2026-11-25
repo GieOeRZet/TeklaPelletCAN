@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-25T09:34:29.378456+00:00",
+  "generated_at": "2026-11-25T10:42:05.837554+00:00",
   "root": "analiza_archiwum/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -17,6 +17,38 @@
       "schema_version": "1.0",
       "records": 68,
       "date": "2026-11-25T07:56:07.607450+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/HOMER_0.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T10:42:05.628562+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/HOMER_1.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T10:42:05.628583+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/HOMER_2.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T10:42:05.628594+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/HOMER_3.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 4,
+      "date": "2026-11-25T10:42:05.628604+00:00",
       "evidence_paths": []
     },
     {
