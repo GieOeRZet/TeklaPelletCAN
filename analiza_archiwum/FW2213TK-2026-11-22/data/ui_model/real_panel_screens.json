@@ -46,5 +46,22 @@
   "evidence": "MEASURED (sonda bind_screen: 658 PID, tryb STATE/REVERT)",
   "finding": "animowane ikony dolnych belek (wentylator, zapalarka, pompa, zawor) NIE reaguja na wstrzykniecie parametrow (ramki 0x584) - pochodza ze stanow wyjsc; powiazane parametrem sa m.in.: KOCIOL: 'T. powrotu' pojawia sie gdy 0x350A (czujnik powrotu) != 0, 'Cisnienie' gdy 0x350D != 0; OGRZEWANIE: mieszacz (ikony) wg 0x214B, napisy czujnika wg 0x22A1/0x22A2/0x22A5; CWU: temperatura 0x2110, zadana 0x201A; PALNIK: 'jasnosc' 0x2250, 'T. palnika' 0x226C, 'spaliny[C]' pojawia sie wg 0x3606/0x360A, 'tlen[%]' wg 0x2123",
   "raw": "bind_raw/PAL_*.json, KOCIOL_all.json, OGRZEWANIE1_all.json, CWU_all.json"
+ },
+ "animated_icons_investigation_2026_11_25": {
+  "evidence": "MEASURED (emulator) + odczyty HA tylko odczyt",
+  "pdo_sweep": "ramki PDO 0x184/0x284/0x384/0x484 od wezla 4 (bajty 0xFF/0x01) NIE wlaczaja diod ani ikon dolnych belek - brak kanalu PDO od sterownika dla tych stanow (wyniki: bind_raw/pdo_*.json; zmiany to animacje niezalezne od ramek)",
+  "animation_in_emulator": "ikony dolnych belek animuja sie w emulatorze bez bodzca (KOCIOL: komorka 1 - 6 roznych klatek w 10 probkach); wstrzykniecie 0x216D (stan mieszacza powrotu)=2 zwieksza liczbe klatek (komorka mieszacza); 0x2299/0x2278/0x22B9/0x2254/0x229A bez wplywu na liczbe klatek",
+  "live_registers_known_from_old_project": {
+   "pompa_CO1": "0x2299 (FLAG_LOW)",
+   "pompa_CO2": "0x229A",
+   "pompa_CWU": "0x2278",
+   "mieszacz_CO1": "0x22B9",
+   "mieszacz_powrotu": "0x216D",
+   "dmuchawa_obroty_pct": "0x2254",
+   "zapalarka": "0x2253",
+   "jasnosc_plomienia": "0x2250",
+   "moc_palnika_pct_UWAGA": "0x4005 daje 0 przy panelowym moc[%]=30 - rejestr mocy z panelu inny (OPEN)"
+  },
+  "next": "zebrac mape komorka->rejestr z korelacji panel (zdjecia/nagrania z czasem) + odczyty HA w tym samym czasie; dla ESP wystarczy czytac rejestry sterownika i animowac wlasne ikony (nie trzeba odtwarzac mechanizmu panelu)"
  }
 }

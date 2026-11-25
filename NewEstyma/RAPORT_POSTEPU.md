@@ -1,6 +1,11 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Ikona 'E' paliwa ZNALEZIONA (sugestia wlasciciela: rezerwa > 0)
+### 2026-11-25 - Ikony animowane / napisy nad ikonami: luka i wynik pierwszych sond
+- Luka (przyznana): analiza objela strukture, dane i wskazniki przez wstrzykiwanie parametrow; animowane ikony dolnych belek, liczby nad nimi (PALNIK: 52, 2.1, 3:00) i kolor diody palnika w niektorych stanach nie sa sterowane parametrami - zrodlo stanu nieodtworzone.
+- Sonda PDO (0x184-0x484 od wezla 4): brak wlaczen diod/ikon (`tools/pdo_sweep.py`, `UI/bind_raw/pdo_*.json`). Emulator animuje ikony bez bodzca; 0x216D=2 zwieksza animacje mieszacza.
+- Dla ESP: nie trzeba odtwarzac mechanizmu panelu - ESP czyta rejestry sterownika (pompy 0x2299/0x229A/0x2278, mieszacze 0x22B9/0x216D, dmuchawa 0x2254, zapalarka 0x2253, jasnosc 0x2250 - z katalogu starego projektu) i rysuje wlasne ikony. Do zrobienia: mapa komorka->rejestr z korelacji zdjec/nagran panelu z odczytami HA.
+
+## 2026-11-25 - Ikona 'E' paliwa ZNALEZIONA (sugestia wlasciciela: rezerwa > 0)
 - Emulator, rezerwa 0x3603=10, pojemnosc 135: dla paliwa <= rezerwa kafelek pokazuje pomaranczowy zasobnik z 'E' (bitmapa 53) i pomaranczowy tekst ilosci; 0 kg - sam obrys; powyzej rezerwy kropki. Przy rezerwie 0 (kociol wlasciciela) 'E' sie nie pojawia.
 - Test na prawdziwym kotle wymaga zapisu konfiguracji 0x3603 - nie wykonany (zgoda wlasciciela + nieznany wplyw na sterownik).
 
