@@ -75,3 +75,9 @@ Projekt rewersu 1:1 + prototyp karty ZAMKNIETY na dzis; rozbudowa wstrzymana. St
 **TODO (decyzja wlasciciela, jeszcze nieopracowane):** soft ESPHome ma wykrywac konfiguracje kotla (obwody CO, CWU, bufor, solar, kaskada, magazyn - PID 0x2105-0x2108, 0x350C, 0x3525) i na tej podstawie udostepniac odpowiednie widoki/ekrany. Podstawa wiedzy: `ui_model/menu_rules_check.json` (reguly wierszy MENU, 36/36), `ui_model/home_config.json` (HOME per konfiguracja), `ui_model/menu_tree.json` (config_cond), wyniki `tools/screens_config.py` (ekrany/listy per konfiguracja - jesli ukonczone).
 **Jednorazowy podglad SVG/CSS** (`web/podglad_svg/podglad.html`): tylko pomysl na lekka grafike (wektory + male PNG zlozonych grafik); NIE jest podstawa dalszych prac.
 Niedokonczone, wstrzymane: pomiar dialogow list (`tools/list_dialogs.py`, 116 z 212 wierszy; krok = 1 raw wszedzie dotad), 2 komorki Konfiguracji przy kaskadzie, Kopiuj 5.8% / INTERNET 5.0% (kosmetyka).
+
+### Wynik `tools/screens_config.py` (11 kombinacji 0x2105..0x2108, poziom 3; `ui_model/screens_config.json`)
+- **Listy nastaw Kociol, Palnik, Ogrzewanie 1: bez zmian** przy zmianie konfiguracji (te same wiersze/pola).
+- **Ekrany (schematy):** Kociol - 2 elementy zaleza od 0x2105 (obwody CO), CWU - 3 elementy od 0x2105, Solary - 9 elementow od 0x2105 i 0x2106, Bufor - 12 elementow od 0x2105 i 0x2108 (schemat pokazuje obwody/CWU/solar zalezne od konfiguracji).
+- **Listy nastaw Solary i Bufor:** po 2 elementy zaleza od 0x2106 (CWU).
+- Uwaga: osie wnioskowane z malej liczby konfiguracji (Solary/Bufor tylko tam, gdzie wiersz istnieje) - moga byc czesciowo sprzezone (INFERENCE); dla ESPHome wystarczy: widoki wiersza Solary/Bufor istnieja tylko przy 0x2108/0x2107 != 0 (zmierzone 36/36), a ich zawartosc dodatkowo zalezy od obwodow CO i CWU.
