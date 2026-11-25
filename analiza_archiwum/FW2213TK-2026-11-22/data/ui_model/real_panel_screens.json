@@ -198,8 +198,15 @@
      "x": 81,
      "icon": "mieszacz/zawor z czerwonym lukiem (bitmapa 107 przy stanie 2)",
      "pid": "0x216F",
-     "rule": "0 lub 1 = ukryty, 2 = pokazany",
-     "widget": "klasa 0x8079de0 34x30"
+     "rule": "STRONG (kod 0x0803c550): 0 = ukryty; 1 = bitmapa 106 (15x4 strzalka) przy offsecie 0; 2 = bitmapa 107 (15x4, druga strzalka) przesunieta w osi y; dwa stany = dwa kierunki/polozenia, w obu pokazywany jest ten sam widget",
+     "widget": "klasa 0x8079de0 34x30",
+     "states": {
+      "0": "ukryty",
+      "1": "bitmapa 106",
+      "2": "bitmapa 107"
+     },
+     "owner_note": "wlasciciel: mieszacz ma dwa stany, na zdjeciu widac jeden",
+     "open": "ktory stan to otwieranie a ktory zamykanie - INFERENCE, do potwierdzenia zdjeciem"
     }
    ]
   },
@@ -229,7 +236,8 @@
      "x": 40,
      "icon": "mieszacz obwodu",
      "pid": "0x22B9",
-     "widget": "klasa 0x807b610 34x30"
+     "widget": "klasa 0x807b610 34x30",
+     "rule": "INFERENCE: ta sama logika 0/1/2 co mieszacz kotla (klasa 0x807b610), do potwierdzenia w kodzie"
     }
    ]
   },
@@ -308,7 +316,9 @@
    "evidence": "MEASURED (HA, tylko odczyt)",
    "0x2254": 316,
    "0x2252": 256,
-   "uwaga": "to nie flagi 0/1; stan palnika w chwili odczytu nieznany - nie wiadomo jeszcze czy panel skaluje (316 vs liczba nad ikona np. 52)"
+   "uwaga": "to nie flagi 0/1; stan palnika w chwili odczytu nieznany - nie wiadomo jeszcze czy panel skaluje (316 vs liczba nad ikona np. 52)",
+   "stan_palnika": "Wylaczony (wlasciciel)",
+   "wniosek": "przy wylaczonym palniku 0x2254=316, 0x2252=256 (nie 0) - SDO nie daje wartosci, ktora panel uzywa jako flage ikony (panel dostaje je innym kanalem lub inaczej interpretuje); OPEN"
   }
  }
 }
