@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-25T10:42:05.837554+00:00",
+  "generated_at": "2026-11-25T11:34:07.526755+00:00",
   "root": "analiza_archiwum/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -770,6 +770,14 @@
       "evidence_paths": []
     },
     {
+      "file": "home_indicators.json",
+      "schema": "schema/home_indicators.schema.json",
+      "schema_version": "1.0",
+      "records": 5,
+      "date": "2026-11-25T11:34:07.403816+00:00",
+      "evidence_paths": []
+    },
+    {
       "file": "home_overlays_changed.json",
       "schema": "schema/home_overlays_changed.schema.json",
       "schema_version": "1.0",
@@ -981,6 +989,14 @@
       "schema_version": null,
       "records": 3,
       "date": "2026-11-24T13:31:05.558154+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/home_indicators.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-25T11:26:23.800236+00:00",
       "evidence_paths": []
     },
     {

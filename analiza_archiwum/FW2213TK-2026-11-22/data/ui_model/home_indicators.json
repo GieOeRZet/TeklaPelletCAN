@@ -1,0 +1,41 @@
+{
+ "schema_version": "1.0",
+ "evidence": "MEASURED (emulator, HOME, wstrzykniecie PID przez ramke 0x584; tylko rekordy z tej listy; reszta wskaznikow OPEN)",
+ "tiles": {
+  "x0": "MENU (brak wskaznika)",
+  "x69": "Paliwo",
+  "x138": "Palnik",
+  "x207": "CO1",
+  "x276": "CO2",
+  "x345": "CWU",
+  "x414": "Zasilanie"
+ },
+ "fuel_tile": {
+  "pid": "0x3601",
+  "unit": "kg",
+  "text": "wartosc w kg + 'kg' (np. 180kg)",
+  "icons": {
+   "bitmap_51_widget_0x200165e0": "obrys zasobnika",
+   "bitmap_52_widget_0x2001660c": "zasobnik z peletem",
+   "bitmap_53": "zasobnik z pomaranczowym E (pusty) - widget NIE znaleziony w HOME wsrod obrazow; warunek OPEN"
+  },
+  "states": {
+   ">=100 kg": "ikony 51+52 swieca stale (MEASURED)",
+   "<=30 kg": "ikona miga cyklicznie (MEASURED, probkowanie co 150 tikow; progi dokladne OPEN)"
+  },
+  "open": "progi miga/stale (miedzy 30 a 100 kg), warunek ikony 53 'E', zaleznosc od pojemnosci zasobnika; 0x3529/0x3525 nie zmienily widocznosci w tescie",
+  "correction": "wczesniejsza regula '51 ukryta <=1 kg, 52 ukryta <=40 kg' WYCOFANA - byl to pomiar pojedynczej chwili w stanie migania"
+ },
+ "other_measured": [
+  {
+   "pid": "0x2064",
+   "effect": "wskaznik CO1 (x207, widget 0x20016530) pojawia sie przy wartosci 3",
+   "evidence": "MEASURED"
+  },
+  {
+   "pid": "0x2007",
+   "effect": "wartosc 10 (ALARM) przebudowuje belke kafelkow; kody 1,2,5,6,8 bez efektu",
+   "evidence": "MEASURED"
+  }
+ ]
+}
