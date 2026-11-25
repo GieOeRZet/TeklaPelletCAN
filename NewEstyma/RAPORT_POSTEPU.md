@@ -1,6 +1,12 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Etap C (w toku): bindingi HOME - diagnoza "0 powiazan"
+### 2026-11-25 - Etap C: HOME - dolna belka kafelkow i diody (spec od wlasciciela + pomiar)
+- SPEC (wlasciciel, do potwierdzenia na panelu/zdjeciach): diody sprzetowe (zasilanie, palnik, alarm) sterowane tym samym mechanizmem co wskazniki na ekranie. Wskazniki na kafelkach dolnej belki: zasilanie (prawy) = kociol ON/OFF; CWU = czy dziala pompa CWU; CO1/CO2 = pompa/ogrzewanie/zgoda termostatu; paliwo = tekst + dynamiczna ikona; palnik = stan palnika + ikona zakazu rozpalania. Kolor/animacja wskaznika niezmierzone (OPEN).
+- POMIAR (emulator, HOME): belka y=197, kafelki x=0(box/menu),69(paliwo, tekst "180kg" 0x2001b398),138,207,276,345,414; wskazniki = widgety "image" 0x20016504(138) 0x20016530(207) 0x2001655c(276) 0x20016588(345) 0x200165b4(414); ukryte domyslnie: 138/207/276, widoczne 345/414. Wskaznik 207 pojawia sie po 0x2064=3 (tryb CO), 276 zmienia przypisanie wraz z 0x2064.
+- 0x2007 (kod stanu palnika) = 10 (ALARM) przestawia ukad calej belki (kafelki zamieniaja bitmapy 0x6330/0x648c/0x6360..., box 0x20016330 zmienia kolor) - pozostale kody (1,2,5,6,8) bez efektu przez wstrzykniecie 0x584. Wniosek: wskazniki stanu nie biora danych z 0x2007/0x2299/0x2278 wprost; wymagana analiza kodu odswiezajacego (OPEN).
+- Narzedzie robocze: skrypt diff surowej pamieci widgetow belki po wstrzyknieciu (id bitmapy obrazu nie jest w ui_extras.extract; do dopisania).
+
+## 2026-11-25 - Etap C (w toku): bindingi HOME - diagnoza "0 powiazan"
 - Wynik `HOME 0` (z 24.11) NIE byl regresja: (1) `bind_screen.py` porownywal tylko TEKSTY (diody/ikony = btn/image/box nie byly mierzone); (2) po `load_state` HOME przestaje sie odswiezac (wstrzykniecia nie dawaly zadnych zmian); (3) bledy TypeError = PID bez rekordu w tabeli (pomijane - OK).
 - Narzedzie: `bind_screen.py` dostal BIND_STATE=1 (stany btn/box/image), BIND_REVERT=1 (bez load_state, cofanie wartosci, filtr szumu), BIND_SHARD=i/n (rownolegle), BIND_ALLPIDS=1 (655 PID + parametry producenta). Surowe wyniki: `UI/bind_raw/HOMER_*.json`.
 - Zmierzone (MEASURED): 0x2001 (temp kotla, LiveSim) -> tekst 0x2001b360; 0x3601 (zapas paliwa kg) -> tekst 0x2001b398 ("180kg"); 0x22A1/0x22A5/0x22A6/0x22A7.. (czujniki CO/pokoj) -> ikona 0x2001b2d0; 0x2266/0x226B -> bitmapa przycisku 0x2001adf8 (168->169); 0x2064 (tryb CO) -> ikona 0x20016530.
