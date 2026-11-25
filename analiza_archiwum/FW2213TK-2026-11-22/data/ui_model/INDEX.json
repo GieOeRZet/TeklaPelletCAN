@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-25T14:16:43.294807+00:00",
+  "generated_at": "2026-11-25T17:58:11.328164+00:00",
   "root": "analiza_archiwum/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -81,6 +81,14 @@
       "schema_version": null,
       "records": 3,
       "date": "2026-11-25T11:50:43.591501+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bitmap_vector_fit.json",
+      "schema": "schema/bitmap_vector_fit.schema.json",
+      "schema_version": "1.0",
+      "records": 5,
+      "date": "2026-11-25T17:58:09.964003+00:00",
       "evidence_paths": []
     },
     {
@@ -973,6 +981,14 @@
       "schema_version": null,
       "records": 3,
       "date": "2026-11-24T13:31:05.558154+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "schema/bitmap_vector_fit.schema.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-25T17:58:10.096646+00:00",
       "evidence_paths": []
     },
     {

@@ -1,6 +1,12 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Odczyt na zywym kotle przez integracje HA (TYLKO ODCZYT, zgoda wlasciciela)
+### 2026-11-25 - Bitmapy vs wektor (SVG/CSS): pomiar, co da sie odtworzyc
+- `tools/bitmap_vectorize.py` -> `UI/bitmap_vector_fit.json`, montaz `eksport_grafik/wektor_vs_bitmapa_montaz.png` (oryginal | odtworzenie | roznica x4). Modele: stala, gradient pionowy/poziomy, rozdzielny (profil Y+X), z zaokraglonymi rogami; blad liczony na pikselach (kompozyt na szarym i bialym tle).
+- Wynik na 188 bitmapach: WEKTOR 12 (MAE<=2.5, 30 KB PNG), PRZYBLIZONY 19 (MAE<=6, 48 KB), RASTER 157 (267 KB: ikony, kotly, grafiki). Czyli tla/gradienty/linie/przyciski/paski daja sie zastapic CSS/SVG (31 bitmap, ok. 78 KB PNG), reszta (ikony, schematy) zostaje PNG.
+- Przyblizone (kafle 73/74/75/76, przyciski 6/7, 102/103, listy 81): brak szumu/faktury i drobnych detali (np. ciemny slot LED w 74/75) - do dorysowania jako osobne elementy; wtedy blad spada.
+- Pamiec: bitmapy jako PNG razem ok. 345 KB (surowe RGB565 ok. 1 MB); zamiana 31 tel/gradientow na CSS oszczedza ok. 78 KB, glowny zysk to skalowalnosc i motywy.
+
+## 2026-11-25 - Odczyt na zywym kotle przez integracje HA (TYLKO ODCZYT, zgoda wlasciciela)
 - Uzyte: `teklapelletcan.tekla_sdo_read` (2 odczyty docelowe + 1 omylkowy 0x3865 - blad przeliczenia hex->dec, odczyt, bez skutkow) i stany encji `*_tekla_*` (ha_search/ha_get_state). ZADNYCH zapisow (sdo_write/set_*), skan zakresu nie uruchamiany. Kod serwisow sprawdzony w `firmware/components/core/engine.cpp` (sdo_read/sdo_scan = tylko zlecenia odczytu SDO; skan wstrzymuje odczyt cykliczny na czas trwania).
 - MEASURED (zywy kociol): 0x3664 = 2118 (wersja programu sterownika -> wg reguly INFO 'v2.118'; regula >=2100 -> '%d.%03d' ma sens), 0x3665 = 0x54450000 = 'TE' (znaki big-endian jak SSID; krotka nazwa kotla).
 - Migawka stanu (z encji): kociol wlaczony, CAN OK, palnik kod stanu 0 (Wylaczony), pompa CO ON, pompa CWU OFF, regulator pokojowy zgoda ON, zakaz rozpalenia OFF, paliwo rezerwa OFF, zbiornik 7 kg z 135 (5%), alarm aktywny OFF (ostatni: kod 140 Brak ognia/opalu). Do porownania z diodami na prawdziwym panelu (CO ON, CWU OFF, zasilanie ON, palnik OFF?).
