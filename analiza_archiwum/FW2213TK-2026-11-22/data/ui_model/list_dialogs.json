@@ -1,0 +1,1632 @@
+{
+ "schema_version": "1.0",
+ "evidence": "MEASURED (emulator, poziom 3: dialog edycji wiersza listy; krok z +/- raz; kind: slider/radio/nie_otwarto=przelacznik lub licznik tylko do odczytu/NIE_DOSZEDL=brak pomiaru)",
+ "summary": {
+  "NIE_DOSZEDL": 41,
+  "slider": 52,
+  "nie_otwarto": 38,
+  "radio": 10,
+  "step_note": "52 suwaki: krok = 1 jednostka surowa (wyswietlane 1 lub 0.1 wg skali) - FACT-DYNAMIC; reszta wierszy zakladana 1 (INFERENCE)"
+ },
+ "lists": {
+  "0x10": {
+   "0": {
+    "status": "NIE_DOSZEDL"
+   },
+   "1": {
+    "label": "Temperatura przełączenia na lato [C]",
+    "pid": "0x372A",
+    "texts": [
+     "Temperatura przełączenia na lato [C]",
+     "18",
+     "5",
+     "25"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "19",
+    "minus": "18",
+    "value0": "18"
+   },
+   "2": {
+    "label": "Kalibracja czujnika zew. [°C]",
+    "pid": "0x3747",
+    "texts": [
+     "Kalibracja czujnika zew. [°C]",
+     "0.0",
+     "-3",
+     "3"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.1",
+    "minus": "0.0",
+    "value0": "0.0"
+   },
+   "3": {
+    "label": "Rezerwa zbiornika paliwa [kg]",
+    "pid": "0x3603",
+    "texts": [
+     "Rezerwa zbiornika paliwa [kg]",
+     "40",
+     "0",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "41",
+    "minus": "40",
+    "value0": "40"
+   },
+   "4": {
+    "label": "Auto synchronizacja zegara",
+    "pid": "0x372F",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "5": {
+    "label": "Autokonfiguracja",
+    "pid": "0x3501",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "6": {
+    "label": "Główny moduł IO",
+    "pid": "0x3500",
+    "texts": [
+     "Główny moduł IO",
+     "BIG",
+     "STD"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "7": {
+    "label": "Moduł rozrzerzający obwody CO",
+    "pid": "0x3502",
+    "texts": [
+     "Moduł rozrzerzający obwody CO",
+     "STD",
+     "MINI"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "8": {
+    "label": "Ilość obwodów grzewczych",
+    "pid": "0x2105",
+    "texts": [
+     "Ilość obwodów grzewczych",
+     "4",
+     "0",
+     "4"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "4",
+    "minus": "3",
+    "value0": "4"
+   },
+   "9": {
+    "label": "Czujnik temperatury zewnętrznej",
+    "pid": "0x3505",
+    "texts": [
+     "Czujnik temperatury zewnętrznej",
+     "brak",
+     "CTZ1",
+     "CAN"
+    ],
+    "fonts": [
+     2,
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "10": {
+    "label": "Ciepła woda użytkowa",
+    "pid": "0x2106",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "11": {
+    "label": "Solary",
+    "pid": "0x2108",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "12": {
+    "label": "Bufor",
+    "pid": "0x2107",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "13": {
+    "label": "Moduł Lambda",
+    "pid": "0x2123",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "14": {
+    "label": "Konfiguracja IN17",
+    "pid": "0x3606",
+    "texts": [
+     "Konfiguracja IN17",
+     "brak",
+     "czujnik rezerwy paliwa",
+     "czujnik temp. spalin"
+    ],
+    "fonts": [
+     2,
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "15": {
+    "label": "Pojemność zbiornika paliwa [kg]",
+    "pid": "0x3600",
+    "texts": [
+     "Pojemność zbiornika paliwa [kg]",
+     "135",
+     "10",
+     "1500"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "136",
+    "minus": "135",
+    "value0": "135"
+   },
+   "16": {
+    "label": "Czujnik powrotu do kotła",
+    "pid": "0x350A",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "17": {
+    "label": "Numer profilu",
+    "pid": "0x350B",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "18": {
+    "label": "Pompa kotłowa",
+    "pid": "0x299E",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "19": {
+    "label": "Kaskada master",
+    "pid": "0x350C",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "20": {
+    "label": "Czujnik ciśnienia",
+    "pid": "0x350D",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "21": {
+    "label": "Dodatkowy magazyn paliwa",
+    "pid": "0x3525",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "22": {
+    "label": "Pomiar energii",
+    "pid": "0x3629",
+    "texts": [
+     "Pomiar energii",
+     "brak",
+     "ciepłomierz",
+     "przepływomierz"
+    ],
+    "fonts": [
+     2,
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "23": {
+    "label": "Kopiuj nastawy z innego sterownika",
+    "pid": "0x3722",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "25": {
+    "label": "Dmuchawa z HALL",
+    "pid": "0x404E",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   }
+  },
+  "0x01": {
+   "0": {
+    "status": "NIE_DOSZEDL"
+   },
+   "1": {
+    "label": "Temperatura ekonomiczna [°C] ",
+    "pid": "0x2048",
+    "texts": [
+     "Temperatura ekonomiczna [°C] ",
+     "18.0",
+     "10",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "18.1",
+    "minus": "18.0",
+    "value0": "18.0"
+   },
+   "2": {
+    "label": "Histereza [°C]",
+    "pid": "0x22BD",
+    "texts": [
+     "Histereza [°C]",
+     "0.5",
+     "0",
+     "5"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.6",
+    "minus": "0.5",
+    "value0": "0.5"
+   },
+   "3": {
+    "label": "Kalibracja czujnika pok. [°C]",
+    "pid": "0x22C1",
+    "texts": [
+     "Kalibracja czujnika pok. [°C]",
+     "0.0",
+     "-3",
+     "3"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.1",
+    "minus": "0.0",
+    "value0": "0.0"
+   },
+   "4": {
+    "label": "Tryb pracy  ",
+    "pid": "0x2142",
+    "texts": [
+     "Tryb pracy  ",
+     "ręczny",
+     "pogodowy"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "5": {
+    "label": "Temperatura CO zadana ręcznie [°C]",
+    "pid": "0x2146",
+    "texts": [
+     "Temperatura CO zadana ręcznie [°C]",
+     "50",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50"
+   },
+   "6": {
+    "label": "Temperatura CO dla -20°C [°C]",
+    "pid": "0x22C5",
+    "texts": [
+     "Temperatura CO dla -20°C [°C]",
+     "55",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "56",
+    "minus": "55",
+    "value0": "55"
+   },
+   "7": {
+    "label": "Temperatura CO dla -10°C [°C]",
+    "pid": "0x400C",
+    "texts": [
+     "Temperatura CO dla -10°C [°C]",
+     "50",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50"
+   },
+   "8": {
+    "label": "Temperatura CO dla  0°C [°C]",
+    "pid": "0x22C9",
+    "texts": [
+     "Temperatura CO dla  0°C [°C]",
+     "45",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "46",
+    "minus": "45",
+    "value0": "45"
+   },
+   "9": {
+    "label": "Temperatura CO dla 10°C [°C]",
+    "pid": "0x22CD",
+    "texts": [
+     "Temperatura CO dla 10°C [°C]",
+     "30",
+     "20",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "31",
+    "minus": "30",
+    "value0": "30"
+   },
+   "10": {
+    "label": "Automatyczny tryb lato",
+    "pid": "0x2315",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "11": {
+    "label": "Nazwa",
+    "pid": "0x2321",
+    "texts": [
+     "Nazwa",
+     "A",
+     "ABC",
+     "abc",
+     "123.0",
+     "?!&"
+    ],
+    "fonts": [
+     2,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "kind": "radio"
+   },
+   "12": {
+    "label": "Źródło",
+    "pid": "0x22D1",
+    "texts": [
+     "Źródło",
+     "Kocioł",
+     "Bufor"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "13": {
+    "label": "Zwiększenie temperatury źródła [°C]",
+    "pid": "0x22B1",
+    "texts": [
+     "Zwiększenie temperatury źródła [°C]",
+     "10",
+     "0",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "11",
+    "minus": "10",
+    "value0": "10"
+   },
+   "14": {
+    "label": "Czujnik pokojowy",
+    "pid": "0x22A1",
+    "texts": [
+     "Czujnik pokojowy",
+     "brak",
+     "CTP1",
+     "CTP2",
+     "videROOM",
+     "termostat",
+     "CAN"
+    ],
+    "fonts": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "15": {
+    "label": "Temp. maksymalna [°C]",
+    "pid": "0x22D5",
+    "texts": [
+     "Temp. maksymalna [°C]",
+     "70",
+     "30",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "71",
+    "minus": "70",
+    "value0": "70"
+   },
+   "16": {
+    "label": "Czujnik CO",
+    "pid": "0x22A5",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "17": {
+    "label": "Wsp. korekcji t. CO [°C/°C]",
+    "pid": "0x22D9",
+    "texts": [
+     "Wsp. korekcji t. CO [°C/°C]",
+     "6",
+     "0",
+     "20"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "7",
+    "minus": "6",
+    "value0": "6"
+   },
+   "18": {
+    "label": "Obniżenie temperatury CO [°C]",
+    "pid": "0x22E5",
+    "texts": [
+     "Obniżenie temperatury CO [°C]",
+     "5",
+     "0",
+     "40"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "6",
+    "minus": "5",
+    "value0": "5"
+   },
+   "19": {
+    "label": "MIN temperatura CO pomp [°C]",
+    "pid": "0x22E9",
+    "texts": [
+     "MIN temperatura CO pomp [°C]",
+     "20",
+     "20",
+     "60"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "21",
+    "minus": "20",
+    "value0": "20"
+   },
+   "20": {
+    "label": "Czas mieszacza [s]",
+    "pid": "0x22B5",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "21": {
+    "label": "Stała pompa",
+    "pid": "0x22F1",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "22": {
+    "status": "NIE_DOSZEDL"
+   }
+  },
+  "0x05": {
+   "0": {
+    "status": "NIE_DOSZEDL"
+   },
+   "1": {
+    "label": "Temperatura ekonomiczna [°C] ",
+    "pid": "0x2012",
+    "texts": [
+     "Temperatura ekonomiczna [°C] ",
+     "30",
+     "20",
+     "70"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "31",
+    "minus": "30",
+    "value0": "30"
+   },
+   "2": {
+    "label": "Zagrzej teraz",
+    "pid": "0x2210",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "3": {
+    "label": "Histereza [°C]",
+    "pid": "0x2212",
+    "texts": [
+     "Histereza [°C]",
+     "5",
+     "5",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "6",
+    "minus": "5",
+    "value0": "5"
+   },
+   "4": {
+    "label": "Antylegionella",
+    "pid": "0x2297",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "5": {
+    "label": "Priorytet CWU   ",
+    "pid": "0x300D",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "6": {
+    "label": "Cyrkulacja praca [min]",
+    "pid": "0x374B",
+    "texts": [
+     "Cyrkulacja praca [min]",
+     "2",
+     "0",
+     "10"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "3",
+    "minus": "2",
+    "value0": "2"
+   },
+   "7": {
+    "label": "Cyrkulacja pauza [min]",
+    "pid": "0x374C",
+    "texts": [
+     "Cyrkulacja pauza [min]",
+     "10",
+     "0",
+     "60"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "11",
+    "minus": "10",
+    "value0": "10"
+   },
+   "8": {
+    "label": "Źródło",
+    "pid": "0x2214",
+    "texts": [
+     "Źródło",
+     "Kocioł",
+     "Bufor"
+    ],
+    "fonts": [
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
+   },
+   "9": {
+    "label": "Zwiększenie temperatury źródła [°C]",
+    "pid": "0x2216",
+    "texts": [
+     "Zwiększenie temperatury źródła [°C]",
+     "5",
+     "2",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "6",
+    "minus": "5",
+    "value0": "5"
+   },
+   "10": {
+    "label": "Delta załączenia pompy [°C]",
+    "pid": "0x2218",
+    "texts": [
+     "Delta załączenia pompy [°C]",
+     "5",
+     "2",
+     "20"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "6",
+    "minus": "5",
+    "value0": "5"
+   },
+   "11": {
+    "label": "Temp. maksymalna [°C]",
+    "pid": "0x201C",
+    "texts": [
+     "Temp. maksymalna [°C]",
+     "70",
+     "40",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "71",
+    "minus": "70",
+    "value0": "70"
+   }
+  },
+  "0x07": {
+   "0": {
+    "status": "NIE_DOSZEDL"
+   },
+   "1": {
+    "label": "Temp. maksymalna (dół) [°C]  ",
+    "pid": "0x2115",
+    "texts": [
+     "Temp. maksymalna (dół) [°C]  ",
+     "65",
+     "7",
+     "80"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "66",
+    "minus": "65",
+    "value0": "65"
+   },
+   "2": {
+    "label": "Minimalna temp. pomp [°C]",
+    "pid": "0x2281",
+    "texts": [
+     "Minimalna temp. pomp [°C]",
+     "25",
+     "15",
+     "60"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "26",
+    "minus": "25",
+    "value0": "25"
+   },
+   "3": {
+    "label": "Automatyczna temp. góra [°C]",
+    "pid": "0x2282",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "4": {
+    "label": "Zwiększenie temperatury źródła [°C]",
+    "pid": "0x299B",
+    "texts": [
+     "Zwiększenie temperatury źródła [°C]",
+     "20",
+     "3",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "21",
+    "minus": "20",
+    "value0": "20"
+   },
+   "5": {
+    "label": "Delta załączenia pompy [°C]",
+    "pid": "0x3170",
+    "texts": [
+     "Delta załączenia pompy [°C]",
+     "5",
+     "2",
+     "20"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "6",
+    "minus": "5",
+    "value0": "5"
+   },
+   "6": {
+    "label": "Stopniowa redukcja mocy",
+    "pid": "0x3011",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   }
+  },
+  "0x00": {
+   "0": {
+    "status": "NIE_DOSZEDL"
+   },
+   "1": {
+    "label": "Histereza załączenia [°C]",
+    "pid": "0x2208",
+    "texts": [
+     "Histereza załączenia [°C]",
+     "10",
+     "0",
+     "20"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "11",
+    "minus": "10",
+    "value0": "10"
+   },
+   "2": {
+    "label": "Histereza wyłączenia [°C]",
+    "pid": "0x2291",
+    "texts": [
+     "Histereza wyłączenia [°C]",
+     "0",
+     "0",
+     "20"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "1",
+    "minus": "0",
+    "value0": "0"
+   },
+   "4": {
+    "label": "Minimalna temp. pomp [°C]",
+    "pid": "0x2207",
+    "texts": [
+     "Minimalna temp. pomp [°C]",
+     "45",
+     "20",
+     "70"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "46",
+    "minus": "45",
+    "value0": "45"
+   },
+   "5": {
+    "label": "Wybieg pompy [min]",
+    "pid": "0x3708",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "6": {
+    "status": "NIE_DOSZEDL"
+   },
+   "7": {
+    "status": "NIE_DOSZEDL"
+   },
+   "8": {
+    "status": "NIE_DOSZEDL"
+   },
+   "9": {
+    "status": "NIE_DOSZEDL"
+   },
+   "10": {
+    "status": "NIE_DOSZEDL"
+   },
+   "11": {
+    "status": "NIE_DOSZEDL"
+   },
+   "12": {
+    "status": "NIE_DOSZEDL"
+   }
+  },
+  "0x08": {
+   "0": {
+    "status": "NIE_DOSZEDL"
+   },
+   "1": {
+    "label": "Master stopień mocy",
+    "pid": "0x3511",
+    "texts": [
+     "Master stopień mocy",
+     "1",
+     "1",
+     "4"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "2",
+    "minus": "1",
+    "value0": "1"
+   },
+   "2": {
+    "label": "Slave 1 stopień mocy",
+    "pid": "0x3512",
+    "texts": [
+     "Slave 1 stopień mocy",
+     "2",
+     "1",
+     "4"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "3",
+    "minus": "2",
+    "value0": "2"
+   },
+   "3": {
+    "label": "Slave 2 stopień mocy",
+    "pid": "0x3513",
+    "texts": [
+     "Slave 2 stopień mocy",
+     "3",
+     "1",
+     "4"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "4",
+    "minus": "3",
+    "value0": "3"
+   },
+   "4": {
+    "label": "Slave 3 stopień mocy",
+    "pid": "0x3514",
+    "texts": [
+     "Slave 3 stopień mocy",
+     "4",
+     "1",
+     "4"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "4",
+    "minus": "3",
+    "value0": "4"
+   },
+   "5": {
+    "label": "Próg zwiększania stopnia mocy [%]",
+    "pid": "0x3515",
+    "texts": [
+     "Próg zwiększania stopnia mocy [%]",
+     "50",
+     "0",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50"
+   },
+   "6": {
+    "label": "Próg zmniejszania stopnia mocy [%]",
+    "pid": "0x3516",
+    "texts": [
+     "Próg zmniejszania stopnia mocy [%]",
+     "80",
+     "0",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "81",
+    "minus": "80",
+    "value0": "80"
+   },
+   "7": {
+    "label": "Opóźn. zwiększ. stopnia mocy [min]",
+    "pid": "0x3517",
+    "texts": [
+     "Opóźn. zwiększ. stopnia mocy [min]",
+     "30",
+     "0",
+     "240"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "31",
+    "minus": "30",
+    "value0": "30"
+   },
+   "8": {
+    "label": "Opóźn. zmniejsz. stopnia mocy [min]",
+    "pid": "0x3518",
+    "texts": [
+     "Opóźn. zmniejsz. stopnia mocy [min]",
+     "30",
+     "0",
+     "240"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "31",
+    "minus": "30",
+    "value0": "30"
+   }
+  },
+  "0x09": {
+   "0": {
+    "status": "NIE_DOSZEDL"
+   },
+   "1": {
+    "label": "Pauza silnika transportującego (1) [s]",
+    "pid": "0x3521",
+    "texts": [
+     "Pauza silnika transportującego (1) [s]",
+     "15",
+     "0",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "16",
+    "minus": "15",
+    "value0": "15"
+   },
+   "2": {
+    "label": "Praca silnika podajnika (2) [s]",
+    "pid": "0x3527",
+    "texts": [
+     "Praca silnika podajnika (2) [s]",
+     "10",
+     "1",
+     "60"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "11",
+    "minus": "10",
+    "value0": "10"
+   },
+   "3": {
+    "label": "Pauza silnika podajnika (2) [s]",
+    "pid": "0x3528",
+    "texts": [
+     "Pauza silnika podajnika (2) [s]",
+     "10",
+     "0",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "11",
+    "minus": "10",
+    "value0": "10"
+   },
+   "4": {
+    "label": "Czujnik rezerwy paliwa",
+    "pid": "0x3529",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "5": {
+    "label": "Maksymalna liczba cykli",
+    "pid": "0x352B",
+    "texts": [
+     "Maksymalna liczba cykli",
+     "15",
+     "5",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "16",
+    "minus": "15",
+    "value0": "15"
+   },
+   "6": {
+    "label": "Wybieg silnika transportującego (1) [s]",
+    "pid": "0x3526",
+    "texts": [
+     "Wybieg silnika transportującego (1) [s]",
+     "5",
+     "3",
+     "15"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "6",
+    "minus": "5",
+    "value0": "5"
+   }
+  },
+  "0x11": {
+   "0": {
+    "status": "NIE_DOSZEDL"
+   },
+   "1": {
+    "label": "Średni czas rozpalania [s]",
+    "pid": "0x3609",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "2": {
+    "label": "Średnia moc palnika z 50 godzin [%]",
+    "pid": "0x3610",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "3": {
+    "label": "Czas pracy podajnika 1 [h]",
+    "pid": "0x3611",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "4": {
+    "label": "Czas pracy podajnika 2 [h]",
+    "pid": "0x3612",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "5": {
+    "label": "Całkowite zużycie paliwa [kg]",
+    "pid": "0x3507",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "6": {
+    "label": "Średni tlen dla mocy 30% [%]",
+    "pid": "0x3613",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "7": {
+    "label": "Średni tlen dla mocy 50% [%]",
+    "pid": "0x3614",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "8": {
+    "label": "Średni tlen dla mocy 70% [%]",
+    "pid": "0x3615",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "9": {
+    "label": "Średni tlen dla mocy 90% [%]",
+    "pid": "0x3616",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "10": {
+    "label": "Liczba czyszczeń wymiennika",
+    "pid": "0x3618",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "11": {
+    "label": "Liczba przegrzań kotła",
+    "pid": "0x3619",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   },
+   "12": {
+    "label": "Liczba zaników zasilania",
+    "pid": "0x362A",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   }
+  },
+  "0x0A": {
+   "0": {
+    "status": "NIE_DOSZEDL"
+   },
+   "1": {
+    "label": "Moc min [%]",
+    "pid": "0x2270",
+    "texts": [
+     "Moc min [%]",
+     "50",
+     "30",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50"
+   },
+   "2": {
+    "label": "Moc max [%]",
+    "pid": "0x2271",
+    "texts": [
+     "Moc max [%]",
+     "100",
+     "30",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "100",
+    "minus": "99",
+    "value0": "100"
+   },
+   "3": {
+    "label": "Wartość opałowa [kWh/kg]",
+    "pid": "0x2292",
+    "texts": [
+     "Wartość opałowa [kWh/kg]",
+     "5.0",
+     "2",
+     "10"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "5.1",
+    "minus": "5.0",
+    "value0": "5.0"
+   },
+   "4": {
+    "label": "Ilość paliwa test [kg/h]",
+    "pid": "0x2272",
+    "texts": [
+     "Ilość paliwa test [kg/h]",
+     "13.0",
+     "5",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "13.1",
+    "minus": "13.0",
+    "value0": "13.0"
+   },
+   "5": {
+    "status": "NIE_DOSZEDL"
+   },
+   "6": {
+    "status": "NIE_DOSZEDL"
+   },
+   "7": {
+    "status": "NIE_DOSZEDL"
+   },
+   "8": {
+    "status": "NIE_DOSZEDL"
+   },
+   "9": {
+    "status": "NIE_DOSZEDL"
+   },
+   "10": {
+    "status": "NIE_DOSZEDL"
+   },
+   "11": {
+    "status": "NIE_DOSZEDL"
+   },
+   "12": {
+    "status": "NIE_DOSZEDL"
+   },
+   "13": {
+    "status": "NIE_DOSZEDL"
+   },
+   "14": {
+    "status": "NIE_DOSZEDL"
+   },
+   "15": {
+    "status": "NIE_DOSZEDL"
+   },
+   "16": {
+    "status": "NIE_DOSZEDL"
+   },
+   "17": {
+    "status": "NIE_DOSZEDL"
+   },
+   "18": {
+    "status": "NIE_DOSZEDL"
+   },
+   "19": {
+    "status": "NIE_DOSZEDL"
+   },
+   "20": {
+    "status": "NIE_DOSZEDL"
+   },
+   "21": {
+    "status": "NIE_DOSZEDL"
+   },
+   "22": {
+    "status": "NIE_DOSZEDL"
+   },
+   "23": {
+    "status": "NIE_DOSZEDL"
+   },
+   "24": {
+    "status": "NIE_DOSZEDL"
+   },
+   "25": {
+    "status": "NIE_DOSZEDL"
+   },
+   "26": {
+    "status": "NIE_DOSZEDL"
+   },
+   "27": {
+    "status": "NIE_DOSZEDL"
+   }
+  },
+  "0x06": {
+   "0": {
+    "status": "NIE_DOSZEDL"
+   },
+   "1": {
+    "label": "Delta załączenia [°C]",
+    "pid": "0x3116",
+    "texts": [
+     "Delta załączenia [°C]",
+     "3",
+     "0",
+     "20"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "4",
+    "minus": "3",
+    "value0": "3"
+   },
+   "2": {
+    "label": "Delta wyłączenia  [°C]",
+    "pid": "0x3117",
+    "texts": [
+     "Delta wyłączenia  [°C]",
+     "2",
+     "0",
+     "10"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "3",
+    "minus": "2",
+    "value0": "2"
+   },
+   "3": {
+    "label": "Ciepło właściwe [kJ/(kg*K)]",
+    "pid": "0x3118",
+    "texts": [
+     "Ciepło właściwe [kJ/(kg*K)]",
+     "2.5",
+     "1.5",
+     "6.0"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "2.6",
+    "minus": "2.5",
+    "value0": "2.5"
+   },
+   "4": {
+    "label": "Temperatura maksymalna wody  [°C]",
+    "pid": "0x3119",
+    "texts": [],
+    "fonts": [],
+    "kind": "nie_otwarto"
+   }
+  }
+ }
+}
