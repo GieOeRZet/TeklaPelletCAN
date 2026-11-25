@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><title>Karta z oryginalu (SVG/CSS + bitmapa kotla)</title>
+<style>
+:root{--tile-top:#525152;--tile-bot:#313031;--ic:#e8e8ec;--led:#a5d710;--cond:"Inter Display","Inter","Carlito","DejaVu Sans",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}html,body{background:#000;height:100%}body{display:grid;place-items:center}
+#card{position:relative;width:480px;height:272px;background:#000;overflow:hidden;font-family:var(--cond);color:#fff}
+.t{position:absolute;white-space:nowrap;font-stretch:condensed}
+.time{left:20px;top:5px;font-size:18px;line-height:24px;font-weight:300}
+.day{left:0;width:480px;top:5px;text-align:center;font-size:19px;line-height:24px;font-weight:300}
+#boiler{position:absolute;left:35px;top:38px;width:82px;height:145px;image-rendering:auto}
+.big{left:150px;width:230px;top:30px;text-align:center;font-size:104px;line-height:110px;font-weight:200;letter-spacing:-2px;transform:scaleX(.9);transform-origin:center}
+.state{left:159px;width:200px;top:134px;text-align:center;font-size:35px;line-height:40px;font-weight:300;transform:scaleX(.92)}
+/* kapsula */
+.pill{position:absolute;left:349px;top:59px;width:131px;height:35px;border-radius:4px 0 0 4px;background:linear-gradient(180deg,#6d686d 0%,#5f5d5f 25%,#4d4d4d 60%,#424142 100%);box-shadow:inset 0 1px 0 #7d7a7d,0 0 0 1px #0b0b0b}
+.pill .n{position:absolute;left:15px;top:-6px;font-size:46px;line-height:52px;font-weight:200;transform:scaleX(.82);transform-origin:left}
+.pill .a{position:absolute;left:53px;top:8px;width:27px;height:11px;border-radius:2.5px;background:#fff;color:#000;font-size:10px;line-height:11px;font-weight:600;text-align:center;letter-spacing:-.2px;transform-origin:center;font-stretch:condensed}
+/* belka */
+.tile{position:absolute;top:197px;width:68px;height:75px;background:linear-gradient(180deg,#525152 0,#4e4b4e 18%,#454145 45%,#393839 75%,#313031 100%);box-shadow:inset 0 1px 0 #5e5d5e,inset -1px 0 0 #1a1a1a,inset 1px 0 0 #444}
+.tile .slot{position:absolute;left:11px;top:8px;width:46px;height:5px;border-radius:3px;background:#161616;box-shadow:0 1px 0 #5a595a}
+.tile .led{position:absolute;left:11px;top:7px;width:46px;height:6px;border-radius:3px;background:var(--led);box-shadow:0 0 9px 1px rgba(165,215,16,.7),inset 0 1px 0 #d4ff4a}
+.tile svg{position:absolute;overflow:visible}
+.ic{fill:var(--ic);stroke:none;filter:drop-shadow(0 1px 0 rgba(0,0,0,.55))}
+.ics{fill:none;stroke:var(--ic);stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 0 rgba(0,0,0,.55))}
+.bm{position:absolute;image-rendering:auto}
+.lbl{position:absolute;left:0;right:0;text-align:center;color:var(--ic);font-weight:300}
+</style></head>
+<body><div id="card" data-state="orig">
+ <div class="t time" id="time">0:00</div><div class="t day" id="day">Poniedziałek</div>
+ <img id="boiler" src="boiler_original.png" alt="">
+ <div class="t big" id="big">0.0</div><div class="t state" id="state">Wyłączony</div>
+ <div class="pill"><span class="n t" id="out">0</span></div><img class="bm" src="ic/122_35x37.png" style="left:398px;top:53px">
+
+ <!-- kafelki: tla CSS, ikony = oryginalne bitmapy (id w nazwie pliku) -->
+ <div class="tile" style="left:0"></div>
+ <div class="tile" style="left:69px"><div class="lbl" id="kg" style="top:3px;font-size:12px">180kg</div></div>
+ <div class="tile" style="left:138px"><i class="slot" id="slot-b"></i></div>
+ <div class="tile" style="left:207px"><i class="slot" id="slot-c"></i></div>
+ <div class="tile" style="left:276px"></div>
+ <div class="tile" style="left:345px"></div>
+ <div class="tile" style="left:414px"></div>
+ <img class="bm" src="ic/077_30x26.png" style="left:19px;top:226px">
+ <img class="bm" src="ic/051_34x29.png" style="left:86px;top:229px"><img class="bm" src="ic/052_34x29.png" id="hop" style="left:86px;top:229px">
+ <img class="bm" src="ic/043_29x38.png" style="left:158px;top:220px"><img class="bm" id="lock" src="ic/072_10x14.png" style="left:185px;top:220px">
+ <img class="bm" src="ic/144_41x36.png" style="left:221px;top:221px">
+ <img class="bm" id="co2" src="ic/146_43x36.png" style="left:289px;top:221px;display:none">
+ <img class="bm" id="cwu" src="ic/174_38x40.png" style="left:360px;top:219px;display:none">
+ <img class="bm" id="led-b" src="ic/031_68x28.png" style="left:138px;top:197px;display:none">
+ <img class="bm" id="led-c" src="ic/032_68x28.png" style="left:207px;top:197px;display:none">
+ <img class="bm" id="led-w" src="ic/032_68x28.png" style="left:345px;top:197px;display:none">
+ <img class="bm" src="ic/028_68x28.png" style="left:414px;top:197px">
+ <img class="bm" src="ic/115_41x40.png" style="left:428px;top:219px">
+</div>
+<script>
+const S={orig:{time:'0:00',day:'Poniedziałek',big:'0.0',state:'Wyłączony',out:'0',kg:'180kg',lock:1,b:0,c:0,w:0,cwu:0},
+ idle:{time:'14:32',day:'Środa',big:'66.9',state:'Wyłączony',out:'-2',kg:'7kg',lock:0,b:0,c:1,w:0,cwu:1},
+ work:{time:'14:32',day:'Środa',big:'72.4',state:'Modulacja',out:'-2',kg:'94kg',lock:0,b:1,c:1,w:1,cwu:1}};
+const s=S[(location.hash||'#orig').slice(1)]||S.orig;
+for(const k of ['time','day','big','state','out'])document.getElementById(k).textContent=s[k];
+document.getElementById('kg').textContent=s.kg;const d=(id,on)=>document.getElementById(id).style.display=on?'block':'none';
+d('lock',s.lock);d('led-b',s.b);d('led-c',s.c);d('led-w',s.w);d('cwu',s.cwu);
+document.getElementById('slot-b').style.display=s.b?'none':'block';document.getElementById('slot-c').style.display=s.c?'none':'block';
+</script></body></html>
