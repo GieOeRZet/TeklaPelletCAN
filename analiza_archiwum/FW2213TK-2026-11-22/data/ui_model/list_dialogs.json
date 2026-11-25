@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0",
- "evidence": "MEASURED (emulator, poziom 3: dialog edycji wiersza listy; krok z +/- raz); CO3/CO4 = INFERENCE jak CO1",
+ "evidence": "MEASURED (emulator, poziom 3: dialog edycji wiersza listy; krok z +/- raz); CO3/CO4 = INFERENCE jak CO1 | 2026-11-25: przewijanie listy przez zapis y kontenera zawartosci (vptr 0x807c6f0) w RAM - zmierzono 37 wczesniej niedostepnych wierszy; pozostale 'nie_otwarto' (44) to przelaczniki/liczniki (stuknieciem sie nie otwieraja) - INFERENCE; 'NIE_DOSZEDL' (5) bez etykiety widgetu",
  "summary": {
   "slider": 76,
   "nie_otwarto": 45,
@@ -232,16 +232,39 @@
    "17": {
     "label": "Numer profilu",
     "pid": "0x350B",
-    "texts": [],
-    "fonts": [],
-    "kind": "nie_otwarto"
+    "texts": [
+     "Numer profilu",
+     "2",
+     "1",
+     "3"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "3",
+    "minus": "2",
+    "value0": "2"
    },
    "18": {
     "label": "Pompa kotłowa",
     "pid": "0x299E",
-    "texts": [],
-    "fonts": [],
-    "kind": "nie_otwarto"
+    "texts": [
+     "Pompa kotłowa",
+     "ładująca",
+     "ochrony powrotu",
+     "buforowa"
+    ],
+    "fonts": [
+     2,
+     2,
+     2,
+     2
+    ],
+    "kind": "radio"
    },
    "19": {
     "label": "Kaskada master",
@@ -668,9 +691,22 @@
    "20": {
     "label": "Czas mieszacza [s]",
     "pid": "0x22B5",
-    "texts": [],
-    "fonts": [],
-    "kind": "nie_otwarto"
+    "texts": [
+     "Czas mieszacza [s]",
+     "180",
+     "60",
+     "360"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "181",
+    "minus": "180",
+    "value0": "180"
    },
    "21": {
     "label": "Stała pompa",
@@ -1081,16 +1117,42 @@
    "5": {
     "label": "Wybieg pompy [min]",
     "pid": "0x3708",
-    "texts": [],
-    "fonts": [],
-    "kind": "nie_otwarto"
+    "texts": [
+     "Wybieg pompy [min]",
+     "0",
+     "0",
+     "120"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "1",
+    "minus": "0",
+    "value0": "0"
    },
    "6": {
     "label": "Cisza nocna od",
     "pid": "0x3508",
-    "texts": [],
-    "fonts": [],
-    "kind": "nie_otwarto"
+    "texts": [
+     "Cisza nocna od",
+     "22",
+     "0",
+     "24"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "23",
+    "minus": "22",
+    "value0": "22"
    },
    "0": {
     "label": "Temperatura zadana  [°C]",
@@ -1113,22 +1175,124 @@
     "value0": "65"
    },
    "7": {
-    "status": "NIE_DOSZEDL"
+    "label": "Cisza nocna do",
+    "pid": "0x3509",
+    "texts": [
+     "Cisza nocna do",
+     "6",
+     "0",
+     "24"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "7",
+    "minus": "6",
+    "value0": "6"
    },
    "10": {
-    "status": "NIE_DOSZEDL"
+    "label": "Rezerwa paliwa stop [kg]",
+    "pid": "0x3604",
+    "texts": [
+     "Rezerwa paliwa stop [kg]",
+     "0",
+     "0",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "1",
+    "minus": "0",
+    "value0": "0"
    },
    "8": {
-    "status": "NIE_DOSZEDL"
+    "label": "Minimalna temp. powrotu [°C]",
+    "pid": "0x216C",
+    "texts": [
+     "Minimalna temp. powrotu [°C]",
+     "50",
+     "35",
+     "75"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50"
    },
    "11": {
-    "status": "NIE_DOSZEDL"
+    "label": "Ciśnienie min. [bar]",
+    "pid": "0x3129",
+    "texts": [
+     "Ciśnienie min. [bar]",
+     "0.1",
+     "0.1",
+     "1.5"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.2",
+    "minus": "0.1",
+    "value0": "0.1"
    },
    "9": {
-    "status": "NIE_DOSZEDL"
+    "label": "Czas mieszacza [s]",
+    "pid": "0x216E",
+    "texts": [
+     "Czas mieszacza [s]",
+     "180",
+     "15",
+     "360"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "181",
+    "minus": "180",
+    "value0": "180"
    },
    "12": {
-    "status": "NIE_DOSZEDL"
+    "label": "Ciśnienie max. [bar]",
+    "pid": "0x312A",
+    "texts": [
+     "Ciśnienie max. [bar]",
+     "2.0",
+     "0.4",
+     "2.5"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "2.1",
+    "minus": "2.0",
+    "value0": "2.0"
    }
   },
   "0x08": {
@@ -1644,70 +1808,427 @@
     "value0": "0"
    },
    "8": {
-    "status": "NIE_DOSZEDL"
+    "label": "Próg foto",
+    "pid": "0x226A",
+    "texts": [
+     "Próg foto",
+     "20",
+     "5",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "21",
+    "minus": "20",
+    "value0": "20"
    },
    "11": {
-    "status": "NIE_DOSZEDL"
+    "label": "Moc dmuchawy wygaszanie [%]",
+    "pid": "0x300C",
+    "texts": [
+     "Moc dmuchawy wygaszanie [%]",
+     "50",
+     "25",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "51",
+    "minus": "50",
+    "value0": "50"
    },
    "14": {
-    "status": "NIE_DOSZEDL"
+    "label": "Czas wygaszania [min]",
+    "pid": "0x226B",
+    "texts": [
+     "Czas wygaszania [min]",
+     "3",
+     "2",
+     "6"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "4",
+    "minus": "3",
+    "value0": "3"
    },
    "17": {
-    "status": "NIE_DOSZEDL"
+    "label": "Tlen dla mocy 100%",
+    "pid": "0x2152",
+    "texts": [
+     "Tlen dla mocy 100%",
+     "8.0",
+     "8",
+     "15"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "8.1",
+    "minus": "8.0",
+    "value0": "8.0"
    },
    "20": {
-    "status": "NIE_DOSZEDL"
+    "label": "Czas pauzy [min]",
+    "pid": "0x3715",
+    "texts": [
+     "Czas pauzy [min]",
+     "0",
+     "0",
+     "120"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "1",
+    "minus": "0",
+    "value0": "0"
    },
    "23": {
-    "status": "NIE_DOSZEDL"
+    "label": "Szybkość modulacji mocy",
+    "pid": "0x225A",
+    "texts": [
+     "Szybkość modulacji mocy",
+     "10",
+     "2",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "11",
+    "minus": "10",
+    "value0": "10"
    },
    "26": {
-    "status": "NIE_DOSZEDL"
+    "label": "Pod. palnika [% pod. zasobnika]",
+    "pid": "0x370B",
+    "texts": [
+     "Pod. palnika [% pod. zasobnika]",
+     "400",
+     "50",
+     "500"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "401",
+    "minus": "400",
+    "value0": "400"
    },
    "6": {
-    "status": "NIE_DOSZEDL"
+    "label": "Podawanie max [s]",
+    "pid": "0x2257",
+    "texts": [
+     "Podawanie max [s]",
+     "3.0",
+     "1",
+     "15"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "3.1",
+    "minus": "3.0",
+    "value0": "3.0"
    },
    "9": {
-    "status": "NIE_DOSZEDL"
+    "label": "Moc dmuchawy rozpalanie [%]",
+    "pid": "0x2289",
+    "texts": [
+     "Moc dmuchawy rozpalanie [%]",
+     "30",
+     "20",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "31",
+    "minus": "30",
+    "value0": "30"
    },
    "12": {
-    "status": "NIE_DOSZEDL"
+    "label": "Czas rozżarzania [min]",
+    "pid": "0x2290",
+    "texts": [
+     "Czas rozżarzania [min]",
+     "1",
+     "1",
+     "10"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "2",
+    "minus": "1",
+    "value0": "1"
    },
    "15": {
     "status": "NIE_DOSZEDL"
    },
    "18": {
-    "status": "NIE_DOSZEDL"
+    "label": "Liczba czyszczeń rusztu",
+    "pid": "0x2258",
+    "texts": [
+     "Liczba czyszczeń rusztu",
+     "1",
+     "1",
+     "3"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "2",
+    "minus": "1",
+    "value0": "1"
    },
    "21": {
-    "status": "NIE_DOSZEDL"
+    "label": "Moc w pauzie [%]",
+    "pid": "0x3716",
+    "texts": [
+     "Moc w pauzie [%]",
+     "10",
+     "0",
+     "30"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "11",
+    "minus": "10",
+    "value0": "10"
    },
    "24": {
-    "status": "NIE_DOSZEDL"
+    "label": "Bezwładność palnika [min]",
+    "pid": "0x2153",
+    "texts": [
+     "Bezwładność palnika [min]",
+     "5",
+     "1",
+     "60"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "6",
+    "minus": "5",
+    "value0": "5"
    },
    "27": {
-    "status": "NIE_DOSZEDL"
+    "label": "Okres podajnika zasobnika [s]",
+    "pid": "0x3700",
+    "texts": [
+     "Okres podajnika zasobnika [s]",
+     "20",
+     "5",
+     "180"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "21",
+    "minus": "20",
+    "value0": "20"
    },
    "7": {
-    "status": "NIE_DOSZEDL"
+    "label": "Wstępna dawka paliwa [s]",
+    "pid": "0x2256",
+    "texts": [
+     "Wstępna dawka paliwa [s]",
+     "15",
+     "10",
+     "200"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "16",
+    "minus": "15",
+    "value0": "15"
    },
    "10": {
-    "status": "NIE_DOSZEDL"
+    "label": "Moc dmuchawy rozżarzanie [%]",
+    "pid": "0x3704",
+    "texts": [
+     "Moc dmuchawy rozżarzanie [%]",
+     "40",
+     "30",
+     "100"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "41",
+    "minus": "40",
+    "value0": "40"
    },
    "13": {
-    "status": "NIE_DOSZEDL"
+    "label": "Rozżarzanie paliwo [%]",
+    "pid": "0x299A",
+    "texts": [
+     "Rozżarzanie paliwo [%]",
+     "20",
+     "20",
+     "50"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "21",
+    "minus": "20",
+    "value0": "20"
    },
    "16": {
-    "status": "NIE_DOSZEDL"
+    "label": "Tlen dla mocy 30%",
+    "pid": "0x214E",
+    "texts": [
+     "Tlen dla mocy 30%",
+     "12.0",
+     "6",
+     "15"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "12.1",
+    "minus": "12.0",
+    "value0": "12.0"
    },
    "19": {
-    "status": "NIE_DOSZEDL"
+    "label": "Odstęp czyszczenia [h]",
+    "pid": "0x2999",
+    "texts": [
+     "Odstęp czyszczenia [h]",
+     "3",
+     "1",
+     "12"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "4",
+    "minus": "3",
+    "value0": "3"
    },
    "22": {
-    "status": "NIE_DOSZEDL"
+    "label": "Dmuchawa w pauzie [%]",
+    "pid": "0x3717",
+    "texts": [
+     "Dmuchawa w pauzie [%]",
+     "20",
+     "0",
+     "50"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "21",
+    "minus": "20",
+    "value0": "20"
    },
    "25": {
-    "status": "NIE_DOSZEDL"
+    "label": "Czas ruchu rusztu [s]",
+    "pid": "0x3003",
+    "texts": [
+     "Czas ruchu rusztu [s]",
+     "0.0",
+     "0",
+     "20"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "0.1",
+    "minus": "0.0",
+    "value0": "0.0"
    }
   },
   "0x06": {
@@ -1774,16 +2295,42 @@
    "4": {
     "label": "Temperatura maksymalna wody  [°C]",
     "pid": "0x3119",
-    "texts": [],
-    "fonts": [],
-    "kind": "nie_otwarto"
+    "texts": [
+     "Temperatura maksymalna wody  [°C]",
+     "70",
+     "70",
+     "95"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "71",
+    "minus": "70",
+    "value0": "70"
    },
    "5": {
     "label": "Max temp kolektora (alarmowa) [°C]",
     "pid": "0x311A",
-    "texts": [],
-    "fonts": [],
-    "kind": "nie_otwarto"
+    "texts": [
+     "Max temp kolektora (alarmowa) [°C]",
+     "90",
+     "90",
+     "145"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "91",
+    "minus": "90",
+    "value0": "90"
    },
    "0": {
     "label": "Przepływ [l/min]",
@@ -1806,7 +2353,24 @@
     "value0": "4.0"
    },
    "6": {
-    "status": "NIE_DOSZEDL"
+    "label": "Min temp kolektora (alarmowa)  [°C]",
+    "pid": "0x311B",
+    "texts": [
+     "Min temp kolektora (alarmowa)  [°C]",
+     "-34",
+     "-40",
+     "0"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "-33",
+    "minus": "-34",
+    "value0": "-34"
    }
   },
   "0x02": {
@@ -2579,11 +3143,23 @@
    },
    "20": {
     "label": "Czas mieszacza [s]",
-    "pid": "0x22B5",
-    "texts": [],
-    "fonts": [],
-    "kind": "nie_otwarto",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "pid": "0x22B7",
+    "texts": [
+     "Czas mieszacza [s]",
+     "180",
+     "60",
+     "360"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "181",
+    "minus": "180",
+    "value0": "180"
    },
    "21": {
     "label": "Stała pompa",
@@ -2989,11 +3565,23 @@
    },
    "20": {
     "label": "Czas mieszacza [s]",
-    "pid": "0x22B5",
-    "texts": [],
-    "fonts": [],
-    "kind": "nie_otwarto",
-    "note": "INFERENCE: jak CO1 (0x01)"
+    "pid": "0x22B8",
+    "texts": [
+     "Czas mieszacza [s]",
+     "180",
+     "60",
+     "360"
+    ],
+    "fonts": [
+     2,
+     4,
+     2,
+     2
+    ],
+    "kind": "slider",
+    "plus": "181",
+    "minus": "180",
+    "value0": "180"
    },
    "21": {
     "label": "Stała pompa",

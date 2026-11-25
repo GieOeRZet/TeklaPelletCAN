@@ -5,6 +5,12 @@
 - Sonda PDO (0x184-0x484 od wezla 4): brak wlaczen diod/ikon (`tools/pdo_sweep.py`, `UI/bind_raw/pdo_*.json`). Emulator animuje ikony bez bodzca; 0x216D=2 zwieksza animacje mieszacza.
 - Dla ESP: nie trzeba odtwarzac mechanizmu panelu - ESP czyta rejestry sterownika (pompy 0x2299/0x229A/0x2278, mieszacze 0x22B9/0x216D, dmuchawa 0x2254, zapalarka 0x2253, jasnosc 0x2250 - z katalogu starego projektu) i rysuje wlasne ikony. Do zrobienia: mapa komorka->rejestr z korelacji zdjec/nagran panelu z odczytami HA.
 
+## 2026-11-25 - glebokie listy ustawien: przewijanie przez RAM
+
+- WYKONANE: wiersze list NASTAW sa tworzone w kontenerze zawartosci (klasa 0x807c6f0, 740 px, wiersze 0x807b730 co 50 px) wewnatrz kontenera przewijanego (0x8079b00, okno 237 px); drag w emulatorze przestawal dzialac, wiec `tools/list_dialogs.py` ustawia y kontenera zawartosci w RAM (LD_RAMSCROLL=1). Wynik: +37 zmierzonych wierszy (suwaki 140, radio 23 lacznie).
+- WERYFIKACJA: wiersze 0x00/5-6 (Wybieg pompy 0-120, Cisza nocna od 0-24), 0x0A/6-7, 0x01/20 (Czas mieszacza 60-360 s) zmierzone; validate PASS.
+- OPEN: 5 wierszy NIE_DOSZEDL (brak widgetu etykiety, konfiguracja warunkowa), 44 przelaczniki/liczniki bez dialogu (inferowane).
+
 ## 2026-11-25 - mapa wyjsc: PID testowy -> PID stanu -> ikona (wszystkie ekrany z dolna belka)
 
 - WYKONANE: z kodu (setery 0x08044950/08044ef4/08044e78/08046514/08044774/0803c550) i z ekranu TEST WYJSC: pompa = wspolny spinner 138-143 (wartosc != 0), mieszacz = luk 106 (1, niebieski, zamykanie) / 107 (2, czerwony, otwieranie), PALNIK 5 komorek + 3 liczby (tylko tam). 21 par test->stan w `real_panel_screens.json` -> `bottom_bar_static_2026_11_25.pary_test_stan`. Stan = (SDO & 0xFF) - zmierzone (pompy 0x0101 = wlaczone).

@@ -4,7 +4,7 @@
  "method": "PID 'wzmianki' = liczba wystapien heksa w ui_model/*.json (bez device_model/bind_raw/atlas/extras); presentery = funkcje wolajace FUN_08036ff2 >=3 razy",
  "totals": {
   "pids": 655,
-  "pids_unmentioned": 187,
+  "pids_unmentioned": 185,
   "pids_read_by_code": 154,
   "pids_read_by_code_unmentioned": 0,
   "presenters": 13,
@@ -15,7 +15,7 @@
   "text_unseen_total": 195,
   "texts_unseen_and_undocumented": 74,
   "bitmaps": 188,
-  "bitmaps_seen": 119,
+  "bitmaps_seen": 120,
   "bitmaps_documented": 113,
   "bitmaps_static_not_seen": 31,
   "bitmaps_unseen_and_undocumented": 39
@@ -100,13 +100,6 @@
    "in_catalog": true
   },
   {
-   "pid": "0x2161",
-   "name": "Weather forecast 0",
-   "mode": "command",
-   "ui_keys": "",
-   "in_catalog": true
-  },
-  {
    "pid": "0x2162",
    "name": "Weather forecast 1",
    "mode": "command",
@@ -118,13 +111,6 @@
    "name": "Weather forecast 2",
    "mode": "command",
    "ui_keys": "",
-   "in_catalog": true
-  },
-  {
-   "pid": "0x2164",
-   "name": "Weather validity left time [min]",
-   "mode": "command",
-   "ui_keys": "T2:0x0006",
    "in_catalog": true
   },
   {
@@ -3161,12 +3147,6 @@
    "documented": false
   },
   {
-   "id": 143,
-   "size": "19x19",
-   "static_ref": false,
-   "documented": true
-  },
-  {
    "id": 144,
    "size": "41x36",
    "static_ref": false,
@@ -3275,5 +3255,72 @@
    "documented": false
   }
  ],
- "widget_classes": {}
+ "widget_classes": {
+  "0x807c660": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807f24c": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807f1e0": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807e1d8": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807e7f8": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807f090": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807e15c": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807e43c": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807f200": [
+   "7_screen"
+  ],
+  "0x807e784": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0xa0f200": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0xaa0100": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807c150": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x80793ac": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807ddd8": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807f100": [
+   "7_screen",
+   "8_screen"
+  ],
+  "0x807f201": [
+   "8_screen"
+  ]
+ }
 }
