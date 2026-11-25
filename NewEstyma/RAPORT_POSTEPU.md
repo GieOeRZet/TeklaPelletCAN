@@ -5,6 +5,13 @@
 - Sonda PDO (0x184-0x484 od wezla 4): brak wlaczen diod/ikon (`tools/pdo_sweep.py`, `UI/bind_raw/pdo_*.json`). Emulator animuje ikony bez bodzca; 0x216D=2 zwieksza animacje mieszacza.
 - Dla ESP: nie trzeba odtwarzac mechanizmu panelu - ESP czyta rejestry sterownika (pompy 0x2299/0x229A/0x2278, mieszacze 0x22B9/0x216D, dmuchawa 0x2254, zapalarka 0x2253, jasnosc 0x2250 - z katalogu starego projektu) i rysuje wlasne ikony. Do zrobienia: mapa komorka->rejestr z korelacji zdjec/nagran panelu z odczytami HA.
 
+## 2026-11-25 - tabela wierszy list z binarki; zrodlo list NASTAW
+
+- WYKONANE: z binarki odczytano tabele deskryptorow wierszy (186 rekordow 16 B: klucz UI, id tekstu, typ, opcje radio) -> `ui_model/firmware_row_table.json`; typ: 0 liczba, 1 przelacznik, 3 radio (z etykietami opcji, np. Typ paliwa: pellet/drewno; IN17: brak/czujnik rezerwy/czujnik temp. spalin), 256 liczba x0.1, 257 przelacznik/komenda (INFERENCE). Odtworzono builder list NASTAW (`0x0803e714`): lista = wycinki tablicy kluczy zalezne od poziomu dostepu (0 / >=1 / >=2); lista PALNIK = 5+19+4 = 28 wierszy zgodnie z emulatorem.
+- WYNIK: 55 wierszy tabeli NIE wchodzi do zadnej listy panelu (poziomy 0-2): drewno (0x3000/0x3005-0x3007), napiecia i pozycja rusztu (0x228E/0x228F/0x218C - poza katalogiem 655), spaliny 0x3701-0x3703/0x3707, przeplywomierz 0x362B, kominiarz 0x3750, tryb cichy 0x2151/0x216B, wtorne powietrze 0x3008/0x3009, przedmuch modulacji 0x3713/0x3714, zrodlo/cyrkulacja CWU 0x2214/0x374B/0x374C i in. To parametry serwisowe/wariantowe; odsloniecie konfiguracja (16 wariantow) i poziomem dostepu 4-9 nie dalo nowych wierszy.
+- WERYFIKACJA: validate PASS, smoke PASS; narzedzia `tools/list_reveal.py` (warianty konfiguracji + LR_ACCESS).
+- OPEN: gdzie panel pokazuje te 55 wierszy (inny wariant urzadzenia / menu serwisowe z innym PIN-em) - do sprawdzenia w kodzie.
+
 ## 2026-11-25 - glebokie listy ustawien: przewijanie przez RAM
 
 - WYKONANE: wiersze list NASTAW sa tworzone w kontenerze zawartosci (klasa 0x807c6f0, 740 px, wiersze 0x807b730 co 50 px) wewnatrz kontenera przewijanego (0x8079b00, okno 237 px); drag w emulatorze przestawal dzialac, wiec `tools/list_dialogs.py` ustawia y kontenera zawartosci w RAM (LD_RAMSCROLL=1). Wynik: +37 zmierzonych wierszy (suwaki 140, radio 23 lacznie).

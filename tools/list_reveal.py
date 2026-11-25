@@ -12,6 +12,7 @@ for var in sys.argv[4:]:
     if var in res: continue
     s = U.UiSession.from_checkpoint(str(paths.FIRMWARE), os.path.join(d, "menu.state"), None); s.wait(120)
     nav = U.ListNav(s); nav.tall = Image.open(os.path.join(d, "menu_tall.png")); nav.rows = pickle.load(open(os.path.join(d, "rows.pkl"), "rb")); t = C.Tracer(s); t.log.clear()
+    if os.environ.get("LR_ACCESS"): s.set_access(int(os.environ["LR_ACCESS"])); s.wait(60)      # wymuszony poziom dostepu (np. 4-6 = serwis)
     if var != "base":
         for kv in var.split(","): s.set_local(int(kv.split("=")[0], 16), int(kv.split("=")[1]))
     if not ui_nav.tap_incremental(s, nav, idx): res[var] = "NIE_WESZLO"; json.dump(res, open(out, "w"), indent=1); continue
