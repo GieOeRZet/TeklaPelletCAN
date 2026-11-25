@@ -168,9 +168,10 @@
     "spaliny[C]": "0x4009 (gdy 0x3606==2)",
     "tlen[%]": "0x2120 (gdy 0x2123!=0)",
     "stan (Wylaczony/Rozpalanie...)": "0x2007",
-    "uwaga": "0x4005/0x4008/0x4009 to PID-y 0x4xxx (wyliczane przez panel, nie czytane SDO) - stad moc[%]=30 na panelu mimo 0 w rejestrze"
+    "uwaga": "KOREKTA 2026-11-25: 0x4005 (moc palnika %) JEST rejestrem kotla (katalog: POTWIERDZONY, panel 47 / sensor 46) - panel go nie liczy; moc[%]=0 przy wylaczonym palniku jest poprawne. 0x4008 (typ spalania) i 0x4009 (spaliny 2) wystepuja tylko w FW panela i kociol na nie nie odpowiada -> wartosc domyslna 0 (dlatego warunek 'typ==0' jest spelniony). 0x4006 Power regulator %, 0x4007 Blower power % (raw 308 = flaga 0x01 + 52) istnieja na kotle"
    },
-   "expected_when_off": "wszystkie 5 komorek ukryte, brak liczb nad ikonami; prawa strona: Wylaczony, spalanie 0.0, moc 0, T. palnika"
+   "expected_when_off": "wszystkie 5 komorek ukryte, brak liczb nad ikonami; prawa strona: Wylaczony, spalanie 0.0, moc 0, T. palnika",
+   "liczba_nad_wentylatorem": "wartosc 0x2254 (u8, mlodszy bajt); format rejestru: flaga 0x01 + bajt (np. raw 308 = 0x134 -> 52; raw 316 = 0x13C -> 60); ten sam sens ma 0x4007 Blower power [%]"
   },
   "KOCIOL": {
    "presenter": "0x0803cb2c",
