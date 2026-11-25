@@ -1,0 +1,7898 @@
+{
+ "schema_version": "1.0",
+ "evidence": "STRONG (statyczna analiza decompiled.c + inwentarze widgetow z emulatora; powiazanie setter->widget przez offset widoku)",
+ "ekrany": {
+  "HOME": {
+   "presenter": "0x08031ccc",
+   "widgetow_na_ekranie": 280,
+   "sterowane_przez_presenter": 47,
+   "settery": [
+    {
+     "setter": "0x0802d238",
+     "args": "local_28[0],local_29,local_2c",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x98c",
+       "rola": "widget",
+       "view_off": "0x98c",
+       "rect": [
+        0,
+        0,
+        360,
+        35
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xad5",
+       "rola": "widget.visible",
+       "view_off": "0xab0",
+       "rect": [
+        0,
+        0,
+        480,
+        272
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x3018",
+       "rola": "widget",
+       "view_off": "0x3018",
+       "rect": [
+        0,
+        0,
+        470,
+        280
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x3078",
+       "rola": "widget",
+       "view_off": "0x3078",
+       "rect": [
+        135,
+        45,
+        279,
+        156
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ]
+    },
+    {
+     "setter": "0x0802d2f4",
+     "args": "local_2a,local_2b,local_26[0]",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0xad5",
+       "rola": "widget.visible",
+       "view_off": "0xab0",
+       "rect": [
+        0,
+        0,
+        480,
+        272
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x1f9c",
+       "rola": "widget",
+       "view_off": "0x1f9c",
+       "rect": [
+        85,
+        45,
+        300,
+        180
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x26b0",
+       "rola": "widget",
+       "view_off": "0x26b0",
+       "rect": [
+        207,
+        11,
+        79,
+        156
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ]
+    },
+    {
+     "setter": "0x0802d29c",
+     "args": "iVar7 != 0",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x5264",
+       "rola": "widget",
+       "view_off": "0x5264",
+       "rect": [
+        433,
+        143,
+        27,
+        27
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5289",
+       "rola": "widget.visible",
+       "view_off": "0x5264",
+       "rect": [
+        433,
+        143,
+        27,
+        27
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      7,
+      24
+     ]
+    },
+    {
+     "setter": "0x0802d2e4",
+     "args": "iVar7 == 0",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x52c4",
+       "rola": "widget",
+       "view_off": "0x52c4",
+       "rect": [
+        185,
+        220,
+        10,
+        14
+       ],
+       "bitmap": 72,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x52e9",
+       "rola": "widget.visible",
+       "view_off": "0x52c4",
+       "rect": [
+        185,
+        220,
+        10,
+        14
+       ],
+       "bitmap": 72,
+       "text": null,
+       "vptr": null
+      }
+     ]
+    },
+    {
+     "setter": "0x0802d2c0",
+     "args": "~-(uint)(iVar7 == 0) >> 0x1f",
+     "pids": [
+      {
+       "key": "0x135",
+       "pid": "0x3728",
+       "name": "Is reset required"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x5298",
+       "rola": "widget",
+       "view_off": "0x5298",
+       "rect": [
+        400,
+        143,
+        27,
+        27
+       ],
+       "bitmap": 156,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x52bd",
+       "rola": "widget.visible",
+       "view_off": "0x5298",
+       "rect": [
+        400,
+        143,
+        27,
+        27
+       ],
+       "bitmap": 156,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      7,
+      24
+     ]
+    },
+    {
+     "setter": "0x0802d572",
+     "args": "uVar1,uVar9,uVar8",
+     "pids": [
+      {
+       "key": "0x10d",
+       "pid": "0x3505",
+       "name": "Outside temperature sensor configuration"
+      },
+      {
+       "key": "0x0",
+       "pid": "0x215F",
+       "name": "Outside temperature"
+      },
+      {
+       "key": "0x1",
+       "pid": "0x3721",
+       "name": "Outside temperature averaged"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x625",
+       "rola": "widget.visible",
+       "view_off": "0x600",
+       "rect": [
+        360,
+        7,
+        38,
+        21
+       ],
+       "bitmap": 181,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5188",
+       "rola": "widget",
+       "view_off": "0x5188",
+       "rect": [
+        403,
+        6,
+        100,
+        25
+       ],
+       "bitmap": null,
+       "text": 458,
+       "vptr": null
+      },
+      {
+       "offset": "0x51ad",
+       "rola": "widget.visible",
+       "view_off": "0x5188",
+       "rect": [
+        403,
+        6,
+        100,
+        25
+       ],
+       "bitmap": null,
+       "text": 458,
+       "vptr": null
+      },
+      {
+       "offset": "0x51c0",
+       "rola": "widget",
+       "view_off": "0x51c0",
+       "rect": [
+        403,
+        28,
+        100,
+        25
+       ],
+       "bitmap": null,
+       "text": 458,
+       "vptr": null
+      },
+      {
+       "offset": "0x51e5",
+       "rola": "widget.visible",
+       "view_off": "0x51c0",
+       "rect": [
+        403,
+        28,
+        100,
+        25
+       ],
+       "bitmap": null,
+       "text": 458,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      2,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d",
+      "-%d.%d"
+     ]
+    },
+    {
+     "setter": "0x0802d344",
+     "args": "4,0",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x4cc",
+       "rola": "widget",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f1",
+       "rola": "widget.visible",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f8",
+       "rola": "widget",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x524",
+       "rola": "widget",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x550",
+       "rola": "widget",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x57c",
+       "rola": "widget",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5a1",
+       "rola": "widget.visible",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d344",
+     "args": "0,0",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x4cc",
+       "rola": "widget",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f1",
+       "rola": "widget.visible",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f8",
+       "rola": "widget",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x524",
+       "rola": "widget",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x550",
+       "rola": "widget",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x57c",
+       "rola": "widget",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5a1",
+       "rola": "widget.visible",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d344",
+     "args": "1,0",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x4cc",
+       "rola": "widget",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f1",
+       "rola": "widget.visible",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f8",
+       "rola": "widget",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x524",
+       "rola": "widget",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x550",
+       "rola": "widget",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x57c",
+       "rola": "widget",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5a1",
+       "rola": "widget.visible",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d344",
+     "args": "2,0",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x4cc",
+       "rola": "widget",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f1",
+       "rola": "widget.visible",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f8",
+       "rola": "widget",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x524",
+       "rola": "widget",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x550",
+       "rola": "widget",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x57c",
+       "rola": "widget",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5a1",
+       "rola": "widget.visible",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d344",
+     "args": "3,0",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x4cc",
+       "rola": "widget",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f1",
+       "rola": "widget.visible",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f8",
+       "rola": "widget",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x524",
+       "rola": "widget",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x550",
+       "rola": "widget",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x57c",
+       "rola": "widget",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5a1",
+       "rola": "widget.visible",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d344",
+     "args": "4,1",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x4cc",
+       "rola": "widget",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f1",
+       "rola": "widget.visible",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f8",
+       "rola": "widget",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x524",
+       "rola": "widget",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x550",
+       "rola": "widget",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x57c",
+       "rola": "widget",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5a1",
+       "rola": "widget.visible",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d344",
+     "args": "1,iVar7 != 0",
+     "pids": [
+      {
+       "key": "0xac",
+       "pid": "0x2064",
+       "name": "CH program"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x4cc",
+       "rola": "widget",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f1",
+       "rola": "widget.visible",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f8",
+       "rola": "widget",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x524",
+       "rola": "widget",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x550",
+       "rola": "widget",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x57c",
+       "rola": "widget",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5a1",
+       "rola": "widget.visible",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d344",
+     "args": "2,iVar7 != 0",
+     "pids": [
+      {
+       "key": "0xd7",
+       "pid": "0x2065",
+       "name": "CH program"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x4cc",
+       "rola": "widget",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f1",
+       "rola": "widget.visible",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f8",
+       "rola": "widget",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x524",
+       "rola": "widget",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x550",
+       "rola": "widget",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x57c",
+       "rola": "widget",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5a1",
+       "rola": "widget.visible",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d344",
+     "args": "3,iVar7 != 0",
+     "pids": [
+      {
+       "key": "0xdc",
+       "pid": "0x2014",
+       "name": "Hot water 1 program"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x4cc",
+       "rola": "widget",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f1",
+       "rola": "widget.visible",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f8",
+       "rola": "widget",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x524",
+       "rola": "widget",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x550",
+       "rola": "widget",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x57c",
+       "rola": "widget",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5a1",
+       "rola": "widget.visible",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d344",
+     "args": "0,uVar8",
+     "pids": [
+      {
+       "key": "0x1",
+       "pid": "0x3721",
+       "name": "Outside temperature averaged"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x4cc",
+       "rola": "widget",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f1",
+       "rola": "widget.visible",
+       "view_off": "0x4cc",
+       "rect": [
+        138,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 31,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4f8",
+       "rola": "widget",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x524",
+       "rola": "widget",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x550",
+       "rola": "widget",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x57c",
+       "rola": "widget",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5a1",
+       "rola": "widget.visible",
+       "view_off": "0x57c",
+       "rect": [
+        414,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 28,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d398",
+     "args": "uVar8",
+     "pids": [
+      {
+       "key": "0xb",
+       "pid": "0x2005",
+       "name": "Boiler on/off"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xad5",
+       "rola": "widget.visible",
+       "view_off": "0xab0",
+       "rect": [
+        0,
+        0,
+        480,
+        272
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x152c",
+       "rola": "widget",
+       "view_off": "0x152c",
+       "rect": [
+        0,
+        0,
+        470,
+        280
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x1de8",
+       "rola": "widget",
+       "view_off": "0x1de8",
+       "rect": [
+        150,
+        24,
+        72,
+        50
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ]
+    },
+    {
+     "setter": "0x0802d3bc",
+     "args": "0 < iVar7,uVar8",
+     "pids": [
+      {
+       "key": "0x10e",
+       "pid": "0x2105",
+       "name": "Heating configuration"
+      },
+      {
+       "key": "0xac",
+       "pid": "0x2064",
+       "name": "CH program"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xad5",
+       "rola": "widget.visible",
+       "view_off": "0xab0",
+       "rect": [
+        0,
+        0,
+        480,
+        272
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x161d",
+       "rola": "widget.visible",
+       "view_off": "0x15f8",
+       "rect": [
+        30,
+        100,
+        300,
+        50
+       ],
+       "bitmap": null,
+       "text": 0,
+       "vptr": null
+      },
+      {
+       "offset": "0x1694",
+       "rola": "widget",
+       "view_off": "0x1694",
+       "rect": [
+        150,
+        80,
+        400,
+        200
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x16b9",
+       "rola": "widget.visible",
+       "view_off": "0x1694",
+       "rect": [
+        150,
+        80,
+        400,
+        200
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ]
+    },
+    {
+     "setter": "0x0802d3ce",
+     "args": "1 < iVar7,uVar8",
+     "pids": [
+      {
+       "key": "0x10e",
+       "pid": "0x2105",
+       "name": "Heating configuration"
+      },
+      {
+       "key": "0xd7",
+       "pid": "0x2065",
+       "name": "CH program"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xad5",
+       "rola": "widget.visible",
+       "view_off": "0xab0",
+       "rect": [
+        0,
+        0,
+        480,
+        272
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x1651",
+       "rola": "widget.visible",
+       "view_off": "0x162c",
+       "rect": [
+        30,
+        150,
+        300,
+        50
+       ],
+       "bitmap": null,
+       "text": 1,
+       "vptr": null
+      },
+      {
+       "offset": "0x1894",
+       "rola": "widget",
+       "view_off": "0x1894",
+       "rect": [
+        150,
+        130,
+        400,
+        200
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x18b9",
+       "rola": "widget.visible",
+       "view_off": "0x1894",
+       "rect": [
+        150,
+        130,
+        400,
+        200
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ]
+    },
+    {
+     "setter": "0x0802d3e0",
+     "args": "uVar1,uVar8",
+     "pids": [
+      {
+       "key": "0x10f",
+       "pid": "0x2106",
+       "name": "Hot water configuration"
+      },
+      {
+       "key": "0xdc",
+       "pid": "0x2014",
+       "name": "Hot water 1 program"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xad5",
+       "rola": "widget.visible",
+       "view_off": "0xab0",
+       "rect": [
+        0,
+        0,
+        480,
+        272
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x1685",
+       "rola": "widget.visible",
+       "view_off": "0x1660",
+       "rect": [
+        30,
+        200,
+        300,
+        50
+       ],
+       "bitmap": null,
+       "text": 2,
+       "vptr": null
+      },
+      {
+       "offset": "0x1a94",
+       "rola": "widget",
+       "view_off": "0x1a94",
+       "rect": [
+        150,
+        180,
+        400,
+        200
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x1ab9",
+       "rola": "widget.visible",
+       "view_off": "0x1a94",
+       "rect": [
+        150,
+        180,
+        400,
+        200
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ]
+    },
+    {
+     "setter": "0x0802d440",
+     "args": "uVar8",
+     "pids": [
+      {
+       "key": "0xc",
+       "pid": "0x2001",
+       "name": "Boiler temp[dC]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x5328",
+       "rola": "widget",
+       "view_off": "0x5328",
+       "rect": [
+        180,
+        35,
+        157,
+        104
+       ],
+       "bitmap": null,
+       "text": 459,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32,
+      1000
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x0802d48a",
+     "args": "uVar8",
+     "pids": [
+      {
+       "key": "0xe",
+       "pid": "0x2004",
+       "name": "Boiler set result temp[C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x52f0",
+       "rola": "widget",
+       "view_off": "0x52f0",
+       "rect": [
+        358,
+        53,
+        36,
+        44
+       ],
+       "bitmap": null,
+       "text": 447,
+       "vptr": null
+      }
+     ]
+    },
+    {
+     "setter": "0x0802d524",
+     "args": "uVar8",
+     "pids": [
+      {
+       "key": "0x10",
+       "pid": "0x2002",
+       "name": "Boiler program"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x5398",
+       "rola": "widget",
+       "view_off": "0x5398",
+       "rect": [
+        398,
+        53,
+        35,
+        37
+       ],
+       "bitmap": 122,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x542c",
+       "rola": "widget",
+       "view_off": "0x542c",
+       "rect": [
+        363,
+        110,
+        370,
+        24
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5451",
+       "rola": "widget.visible",
+       "view_off": "0x542c",
+       "rect": [
+        363,
+        110,
+        370,
+        24
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      5
+     ],
+     "tabele_u16": {
+      "0802dbe8": [
+       133,
+       135,
+       122,
+       128,
+       120,
+       0,
+       59693,
+       16880,
+       45186,
+       17924,
+       61445,
+       65262
+      ]
+     }
+    },
+    {
+     "setter": "0x0802d79a",
+     "args": "uVar8",
+     "pids": [
+      {
+       "key": "0x10",
+       "pid": "0x2002",
+       "name": "Boiler program"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x542c",
+       "rola": "widget",
+       "view_off": "0x542c",
+       "rect": [
+        363,
+        110,
+        370,
+        24
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ]
+    },
+    {
+     "setter": "0x0802d7a4",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x39",
+       "pid": "0x2007",
+       "name": "Burner state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x53f8",
+       "rola": "widget",
+       "view_off": "0x53f8",
+       "rect": [
+        159,
+        130,
+        200,
+        44
+       ],
+       "bitmap": null,
+       "text": 6,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ],
+     "tabele_u16": {
+      "0802dbbc": [
+       0,
+       6,
+       1,
+       8,
+       2,
+       9,
+       3,
+       10,
+       4,
+       11,
+       5,
+       12
+      ]
+     }
+    },
+    {
+     "setter": "0x0802d7e8",
+     "args": "uVar8",
+     "pids": [
+      {
+       "key": "0x43",
+       "pid": "0x2267",
+       "name": "Burner storage feeder left time during refuling [s]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x4d58",
+       "rola": "widget",
+       "view_off": "0x4d58",
+       "rect": [
+        0,
+        0,
+        470,
+        280
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ]
+    },
+    {
+     "setter": "0x0802d81e",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x42",
+       "pid": "0x2266",
+       "name": "Refueling need request"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x4dc0",
+       "rola": "widget",
+       "view_off": "0x4dc0",
+       "rect": [
+        210,
+        200,
+        52,
+        36
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x4e00",
+       "rola": "widget",
+       "view_off": "0x4e00",
+       "rect": [
+        269,
+        200,
+        50,
+        32
+       ],
+       "bitmap": null,
+       "text": 445,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ],
+     "bitmapy_w_kodzie": [
+      39,
+      150,
+      168,
+      169
+     ],
+     "kolor": "tak (FUN_08030268 rgb)"
+    },
+    {
+     "setter": "0x0802d7f4",
+     "args": "uVar8",
+     "pids": [
+      {
+       "key": "0x147",
+       "pid": "0x3601",
+       "name": "How much fuel left in tank [kg]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x5360",
+       "rola": "widget",
+       "view_off": "0x5360",
+       "rect": [
+        82,
+        202,
+        41,
+        15
+       ],
+       "bitmap": null,
+       "text": 453,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "0802d804": [
+       25637,
+       0,
+       8457,
+       17440,
+       61443,
+       64658,
+       62021,
+       12384,
+       17440,
+       59581,
+       16400,
+       61444
+      ]
+     }
+    },
+    {
+     "setter": "0x0802db04",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x14c",
+       "pid": "0x3607",
+       "name": "Reserve sensor state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x50e8",
+       "rola": "widget",
+       "view_off": "0x50e8",
+       "rect": [
+        0,
+        -1,
+        9,
+        21
+       ],
+       "bitmap": 47,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x510d",
+       "rola": "widget.visible",
+       "view_off": "0x50e8",
+       "rect": [
+        0,
+        -1,
+        9,
+        21
+       ],
+       "bitmap": 47,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      7,
+      24
+     ]
+    },
+    {
+     "setter": "0x0802d91c",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x10f",
+       "pid": "0x2106",
+       "name": "Hot water configuration"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x418",
+       "rola": "widget",
+       "view_off": "0x418",
+       "rect": [
+        345,
+        197,
+        68,
+        75
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x575",
+       "rola": "widget.visible",
+       "view_off": "0x550",
+       "rect": [
+        345,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ],
+     "bitmapy_w_kodzie": [
+      73,
+      74,
+      75,
+      76,
+      174
+     ]
+    },
+    {
+     "setter": "0x0802d996",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x111",
+       "pid": "0x2107",
+       "name": "Buffer configuration"
+      }
+     ],
+     "widgety": []
+    },
+    {
+     "setter": "0x0802db0e",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x121",
+       "pid": "0x370A",
+       "name": "Boiler image selector"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x5230",
+       "rola": "widget",
+       "view_off": "0x5230",
+       "rect": [
+        35,
+        38,
+        82,
+        145
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ]
+    },
+    {
+     "setter": "0x0802d998",
+     "args": "1,0",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x3a0",
+       "rola": "widget",
+       "view_off": "0x3a0",
+       "rect": [
+        207,
+        197,
+        68,
+        75
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x3dc",
+       "rola": "widget",
+       "view_off": "0x3dc",
+       "rect": [
+        276,
+        197,
+        68,
+        75
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2
+     ],
+     "bitmapy_w_kodzie": [
+      73,
+      74,
+      75,
+      76,
+      144,
+      146
+     ]
+    },
+    {
+     "setter": "0x0802d998",
+     "args": "1,1",
+     "pids": [],
+     "widgety": [
+      {
+       "offset": "0x3a0",
+       "rola": "widget",
+       "view_off": "0x3a0",
+       "rect": [
+        207,
+        197,
+        68,
+        75
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x3dc",
+       "rola": "widget",
+       "view_off": "0x3dc",
+       "rect": [
+        276,
+        197,
+        68,
+        75
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2
+     ],
+     "bitmapy_w_kodzie": [
+      73,
+      74,
+      75,
+      76,
+      144,
+      146
+     ]
+    },
+    {
+     "setter": "0x0802d998",
+     "args": "2,uVar8",
+     "pids": [
+      {
+       "key": "0x147",
+       "pid": "0x3601",
+       "name": "How much fuel left in tank [kg]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x3a0",
+       "rola": "widget",
+       "view_off": "0x3a0",
+       "rect": [
+        207,
+        197,
+        68,
+        75
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x3dc",
+       "rola": "widget",
+       "view_off": "0x3dc",
+       "rect": [
+        276,
+        197,
+        68,
+        75
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x51d",
+       "rola": "widget.visible",
+       "view_off": "0x4f8",
+       "rect": [
+        207,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x549",
+       "rola": "widget.visible",
+       "view_off": "0x524",
+       "rect": [
+        276,
+        197,
+        68,
+        28
+       ],
+       "bitmap": 32,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2
+     ],
+     "bitmapy_w_kodzie": [
+      73,
+      74,
+      75,
+      76,
+      144,
+      146
+     ]
+    },
+    {
+     "setter": "0x0802da54",
+     "args": "(iVar7 * 100) / iVar10,uVar1",
+     "pids": [
+      {
+       "key": "0x147",
+       "pid": "0x3601",
+       "name": "How much fuel left in tank [kg]"
+      },
+      {
+       "key": "0x148",
+       "pid": "0x3600",
+       "name": "Tank capacity [kg]"
+      },
+      {
+       "key": "0x14a",
+       "pid": "0x3602",
+       "name": "Is fuel reserve"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x5a8",
+       "rola": "widget",
+       "view_off": "0x5a8",
+       "rect": [
+        86,
+        229,
+        34,
+        29
+       ],
+       "bitmap": 51,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5d4",
+       "rola": "widget",
+       "view_off": "0x5d4",
+       "rect": [
+        0,
+        9,
+        34,
+        29
+       ],
+       "bitmap": 52,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5f9",
+       "rola": "widget.visible",
+       "view_off": "0x5d4",
+       "rect": [
+        0,
+        9,
+        34,
+        29
+       ],
+       "bitmap": 52,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5360",
+       "rola": "widget",
+       "view_off": "0x5360",
+       "rect": [
+        82,
+        202,
+        41,
+        15
+       ],
+       "bitmap": null,
+       "text": 453,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      16,
+      37,
+      63
+     ],
+     "kolor": "tak (FUN_08030268 rgb)"
+    },
+    {
+     "setter": "0x0802d4a4",
+     "args": "uVar5,uVar1",
+     "pids": [
+      {
+       "key": "0x134",
+       "pid": "0x3723",
+       "name": "Settings recovered count"
+      },
+      {
+       "key": "0x133",
+       "pid": "0x3722",
+       "name": "Start settings recovery"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x51f8",
+       "rola": "widget",
+       "view_off": "0x51f8",
+       "rect": [
+        115,
+        6,
+        80,
+        25
+       ],
+       "bitmap": null,
+       "text": 458,
+       "vptr": null
+      },
+      {
+       "offset": "0x521d",
+       "rola": "widget.visible",
+       "view_off": "0x51f8",
+       "rect": [
+        115,
+        6,
+        80,
+        25
+       ],
+       "bitmap": null,
+       "text": 458,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ]
+    },
+    {
+     "setter": "0x0802d18c",
+     "args": "uVar4,uVar3,uVar6,uVar5,uVar2,uVar1",
+     "pids": [
+      {
+       "key": "0x10d",
+       "pid": "0x3505",
+       "name": "Outside temperature sensor configuration"
+      },
+      {
+       "key": "0x4",
+       "pid": "0x3725",
+       "name": "Out temp. radio sensor signal [%]"
+      },
+      {
+       "key": "0x3",
+       "pid": "0x3724",
+       "name": "Out temp. radio sensor batt. volt [mV]"
+      },
+      {
+       "key": "0x5",
+       "pid": "0x3726",
+       "name": "Out temp. radio sensor time since lasr rec."
+      },
+      {
+       "key": "0x9",
+       "pid": "0x372B",
+       "name": "Out temp. radio sensor sw. ver. before dot"
+      },
+      {
+       "key": "0xa",
+       "pid": "0x372C",
+       "name": "Out temp. radio sensor sw. ver. after dot"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x58a0",
+       "rola": "widget",
+       "view_off": "0x58a0",
+       "rect": [
+        247,
+        33,
+        26,
+        15
+       ],
+       "bitmap": null,
+       "text": 454,
+       "vptr": null
+      },
+      {
+       "offset": "0x58c5",
+       "rola": "widget.visible",
+       "view_off": "0x58a0",
+       "rect": [
+        247,
+        33,
+        26,
+        15
+       ],
+       "bitmap": null,
+       "text": 454,
+       "vptr": null
+      },
+      {
+       "offset": "0x58e4",
+       "rola": "widget",
+       "view_off": "0x58e4",
+       "rect": [
+        277,
+        33,
+        40,
+        15
+       ],
+       "bitmap": null,
+       "text": 455,
+       "vptr": null
+      },
+      {
+       "offset": "0x5909",
+       "rola": "widget.visible",
+       "view_off": "0x58e4",
+       "rect": [
+        277,
+        33,
+        40,
+        15
+       ],
+       "bitmap": null,
+       "text": 455,
+       "vptr": null
+      },
+      {
+       "offset": "0x592c",
+       "rola": "widget",
+       "view_off": "0x592c",
+       "rect": [
+        322,
+        33,
+        29,
+        15
+       ],
+       "bitmap": null,
+       "text": 456,
+       "vptr": null
+      },
+      {
+       "offset": "0x5951",
+       "rola": "widget.visible",
+       "view_off": "0x592c",
+       "rect": [
+        322,
+        33,
+        29,
+        15
+       ],
+       "bitmap": null,
+       "text": 456,
+       "vptr": null
+      },
+      {
+       "offset": "0x5970",
+       "rola": "widget",
+       "view_off": "0x5970",
+       "rect": [
+        367,
+        33,
+        20,
+        15
+       ],
+       "bitmap": null,
+       "text": 457,
+       "vptr": null
+      },
+      {
+       "offset": "0x5995",
+       "rola": "widget.visible",
+       "view_off": "0x5970",
+       "rect": [
+        367,
+        33,
+        20,
+        15
+       ],
+       "bitmap": null,
+       "text": 457,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2
+     ],
+     "formaty": [
+      "v%d.%d"
+     ]
+    },
+    {
+     "setter": "0x0802db2e",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x7",
+       "pid": "0x3729",
+       "name": "Is summer time"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x600",
+       "rola": "widget",
+       "view_off": "0x600",
+       "rect": [
+        360,
+        7,
+        38,
+        21
+       ],
+       "bitmap": 181,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1
+     ],
+     "bitmapy_w_kodzie": [
+      180,
+      181
+     ]
+    },
+    {
+     "setter": "0x0802db54",
+     "args": "uVar2,uVar1",
+     "pids": [
+      {
+       "key": "0x136",
+       "pid": "0x373C",
+       "name": ""
+      },
+      {
+       "key": "0x137",
+       "pid": "0x373D",
+       "name": ""
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x5814",
+       "rola": "widget",
+       "view_off": "0x5814",
+       "rect": [
+        75,
+        4,
+        32,
+        23
+       ],
+       "bitmap": 154,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x5839",
+       "rola": "widget.visible",
+       "view_off": "0x5814",
+       "rect": [
+        75,
+        4,
+        32,
+        23
+       ],
+       "bitmap": 154,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2,
+      33,
+      66
+     ],
+     "bitmapy_w_kodzie": [
+      1,
+      153,
+      154,
+      155
+     ]
+    }
+   ]
+  },
+  "KOCIOL": {
+   "presenter": "0x0803cb2c",
+   "widgetow_na_ekranie": 54,
+   "sterowane_przez_presenter": 10,
+   "settery": [
+    {
+     "setter": "0x0804283c",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x1f",
+       "pid": "0x2277",
+       "name": "Boiler pump state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x2c0",
+       "rola": "widget",
+       "view_off": "0x2c0",
+       "rect": [
+        9,
+        239,
+        19,
+        19
+       ],
+       "bitmap": 138,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x2e5",
+       "rola": "widget.visible",
+       "view_off": "0x2c0",
+       "rect": [
+        9,
+        239,
+        19,
+        19
+       ],
+       "bitmap": 138,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      8
+     ]
+    },
+    {
+     "setter": "0x0803c8d2",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x23",
+       "pid": "0x216A",
+       "name": "Exchanger cleaning request"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x90c",
+       "rola": "widget",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 35,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x931",
+       "rola": "widget.visible",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 35,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ]
+    },
+    {
+     "setter": "0x0803c8e4",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0xc",
+       "pid": "0x2001",
+       "name": "Boiler temp[dC]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x97c",
+       "rola": "widget",
+       "view_off": "0x97c",
+       "rect": [
+        180,
+        65,
+        157,
+        104
+       ],
+       "bitmap": null,
+       "text": 459,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32,
+      1000
+     ],
+     "formaty": [
+      "%d.%d"
+     ],
+     "tabele_u16": {
+      "0803c9e8": [
+       25637,
+       0,
+       60744,
+       2056,
+       57684,
+       2055,
+       49965,
+       2052,
+       60796,
+       2056,
+       57560,
+       2055
+      ]
+     }
+    },
+    {
+     "setter": "0x0803c924",
+     "args": "uVar1,uVar2",
+     "pids": [
+      {
+       "key": "0x11d",
+       "pid": "0x350D",
+       "name": "Pressure sensor"
+      },
+      {
+       "key": "0xd",
+       "pid": "0x3333",
+       "name": "Boiler pressure[mbar]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xa5c",
+       "rola": "widget",
+       "view_off": "0xa5c",
+       "rect": [
+        80,
+        180,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 339,
+       "vptr": null
+      },
+      {
+       "offset": "0xa81",
+       "rola": "widget.visible",
+       "view_off": "0xa5c",
+       "rect": [
+        80,
+        180,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 339,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      5,
+      25,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x0803c9ce",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0xe",
+       "pid": "0x2004",
+       "name": "Boiler set result temp[C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x9b4",
+       "rola": "widget",
+       "view_off": "0x9b4",
+       "rect": [
+        358,
+        53,
+        36,
+        44
+       ],
+       "bitmap": null,
+       "text": 447,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "0803c9e8": [
+       25637,
+       0,
+       60744,
+       2056,
+       57684,
+       2055,
+       49965,
+       2052,
+       60796,
+       2056,
+       57560,
+       2055
+      ]
+     }
+    },
+    {
+     "setter": "0x0803ca14",
+     "args": "uVar1,uVar3",
+     "pids": [
+      {
+       "key": "0x11f",
+       "pid": "0x3629",
+       "name": "Energy meter type"
+      },
+      {
+       "key": "0x17",
+       "pid": "0x3628",
+       "name": "Statistics - total energy produced [kWh]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xa24",
+       "rola": "widget",
+       "view_off": "0xa24",
+       "rect": [
+        7,
+        43,
+        250,
+        70
+       ],
+       "bitmap": null,
+       "text": 340,
+       "vptr": null
+      },
+      {
+       "offset": "0xa49",
+       "rola": "widget.visible",
+       "view_off": "0xa24",
+       "rect": [
+        7,
+        43,
+        250,
+        70
+       ],
+       "bitmap": null,
+       "text": 340,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ],
+     "tabele_u16": {
+      "0803ca2c": [
+       25637,
+       0,
+       8192,
+       63620,
+       2633,
+       62980,
+       8228,
+       59581,
+       16400,
+       63477,
+       48234,
+       10501
+      ]
+     }
+    },
+    {
+     "setter": "0x0803c980",
+     "args": "uVar1,uVar3",
+     "pids": [
+      {
+       "key": "0x11a",
+       "pid": "0x350A",
+       "name": "Return to boiler temperature sensor"
+      },
+      {
+       "key": "0x2a",
+       "pid": "0x4000",
+       "name": "Boiler return temp [dC]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x9ec",
+       "rola": "widget",
+       "view_off": "0x9ec",
+       "rect": [
+        230,
+        180,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 341,
+       "vptr": null
+      },
+      {
+       "offset": "0xa11",
+       "rola": "widget.visible",
+       "view_off": "0x9ec",
+       "rect": [
+        230,
+        180,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 341,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      2,
+      31,
+      32,
+      1000
+     ],
+     "formaty": [
+      "%d.%d"
+     ],
+     "tabele_u16": {
+      "0803c9e8": [
+       25637,
+       0,
+       60744,
+       2056,
+       57684,
+       2055,
+       49965,
+       2052,
+       60796,
+       2056,
+       57560,
+       2055
+      ]
+     }
+    },
+    {
+     "setter": "0x0803ca6e",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x29",
+       "pid": "0x216F",
+       "name": "CH mixer state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xa94",
+       "rola": "widget",
+       "view_off": "0xa94",
+       "rect": [
+        81,
+        234,
+        34,
+        30
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xab9",
+       "rola": "widget.visible",
+       "view_off": "0xa94",
+       "rect": [
+        81,
+        234,
+        34,
+        30
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xaec",
+       "rola": "widget",
+       "view_off": "0xaec",
+       "rect": [
+        19,
+        0,
+        15,
+        4
+       ],
+       "bitmap": 107,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2
+     ],
+     "bitmapy_w_kodzie": [
+      107
+     ]
+    },
+    {
+     "setter": "0x0803cacc",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x121",
+       "pid": "0x370A",
+       "name": "Boiler image selector"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x85c",
+       "rola": "widget",
+       "view_off": "0x85c",
+       "rect": [
+        40,
+        70,
+        82,
+        145
+       ],
+       "bitmap": 13,
+       "text": null,
+       "vptr": null
+      }
+     ]
+    }
+   ]
+  },
+  "PALNIK": {
+   "presenter": "0x0803cf54",
+   "widgetow_na_ekranie": 81,
+   "sterowane_przez_presenter": 23,
+   "settery": [
+    {
+     "setter": "0x08043a74",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x39",
+       "pid": "0x2007",
+       "name": "Burner state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xae8",
+       "rola": "widget",
+       "view_off": "0xae8",
+       "rect": [
+        270,
+        100,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 344,
+       "vptr": null
+      },
+      {
+       "offset": "0xb0d",
+       "rola": "widget.visible",
+       "view_off": "0xae8",
+       "rect": [
+        270,
+        100,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 344,
+       "vptr": null
+      },
+      {
+       "offset": "0xb20",
+       "rola": "widget",
+       "view_off": "0xb20",
+       "rect": [
+        270,
+        75,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 343,
+       "vptr": null
+      },
+      {
+       "offset": "0xb45",
+       "rola": "widget.visible",
+       "view_off": "0xb20",
+       "rect": [
+        270,
+        75,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 343,
+       "vptr": null
+      },
+      {
+       "offset": "0xed8",
+       "rola": "widget",
+       "view_off": "0xed8",
+       "rect": [
+        -10,
+        45,
+        280,
+        44
+       ],
+       "bitmap": null,
+       "text": 6,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      12,
+      13
+     ],
+     "tabele_u16": {
+      "08043c2e": [
+       6,
+       1,
+       8,
+       2,
+       9,
+       3,
+       10,
+       4,
+       11,
+       5,
+       12,
+       6
+      ]
+     }
+    },
+    {
+     "setter": "0x0804368a",
+     "args": "uVar4,uVar1",
+     "pids": [
+      {
+       "key": "0x3a",
+       "pid": "0x4005",
+       "name": "Burner power [%]"
+      },
+      {
+       "key": "0x5f",
+       "pid": "0x4008",
+       "name": "Burning type active"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xae8",
+       "rola": "widget",
+       "view_off": "0xae8",
+       "rect": [
+        270,
+        100,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 344,
+       "vptr": null
+      },
+      {
+       "offset": "0xb0d",
+       "rola": "widget.visible",
+       "view_off": "0xae8",
+       "rect": [
+        270,
+        100,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 344,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ],
+     "tabele_u16": {
+      "08043904": [
+       25637,
+       0,
+       46352,
+       45186,
+       17924,
+       45521,
+       63052,
+       16589,
+       17232,
+       3266,
+       63052,
+       16845
+      ]
+     }
+    },
+    {
+     "setter": "0x080436b4",
+     "args": "uVar4,uVar1",
+     "pids": [
+      {
+       "key": "0x3b",
+       "pid": "0x3706",
+       "name": "Current burner power [dkW]"
+      },
+      {
+       "key": "0x5f",
+       "pid": "0x4008",
+       "name": "Burning type active"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xb20",
+       "rola": "widget",
+       "view_off": "0xb20",
+       "rect": [
+        270,
+        75,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 343,
+       "vptr": null
+      },
+      {
+       "offset": "0xb45",
+       "rola": "widget.visible",
+       "view_off": "0xb20",
+       "rect": [
+        270,
+        75,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 343,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      2,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x08043746",
+     "args": "uVar4",
+     "pids": [
+      {
+       "key": "0x3e",
+       "pid": "0x2250",
+       "name": "Burner brightness"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xb58",
+       "rola": "widget",
+       "view_off": "0xb58",
+       "rect": [
+        270,
+        125,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 336,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "08043904": [
+       25637,
+       0,
+       46352,
+       45186,
+       17924,
+       45521,
+       63052,
+       16589,
+       17232,
+       3266,
+       63052,
+       16845
+      ]
+     }
+    },
+    {
+     "setter": "0x08043760",
+     "args": "uVar4",
+     "pids": [
+      {
+       "key": "0x3f",
+       "pid": "0x2119",
+       "name": "Exhaust gas temperature (2) [C]"
+      }
+     ],
+     "widgety": [],
+     "tabele_u16": {
+      "08043904": [
+       25637,
+       0,
+       46352,
+       45186,
+       17924,
+       45521,
+       63052,
+       16589,
+       17232,
+       3266,
+       63052,
+       16845
+      ]
+     }
+    },
+    {
+     "setter": "0x0804377a",
+     "args": "uVar4,iVar5 == 2",
+     "pids": [
+      {
+       "key": "0x40",
+       "pid": "0x4009",
+       "name": "Exhaust gas temperature (2) [C]"
+      },
+      {
+       "key": "0x116",
+       "pid": "0x3606",
+       "name": "Input IN17 config"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xe68",
+       "rola": "widget",
+       "view_off": "0xe68",
+       "rect": [
+        160,
+        125,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 374,
+       "vptr": null
+      },
+      {
+       "offset": "0xe8d",
+       "rola": "widget.visible",
+       "view_off": "0xe68",
+       "rect": [
+        160,
+        125,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 374,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ],
+     "tabele_u16": {
+      "08043904": [
+       25637,
+       0,
+       46352,
+       45186,
+       17924,
+       45521,
+       63052,
+       16589,
+       17232,
+       3266,
+       63052,
+       16845
+      ]
+     }
+    },
+    {
+     "setter": "0x080437a0",
+     "args": "uVar4",
+     "pids": [
+      {
+       "key": "0x47",
+       "pid": "0x2254",
+       "name": "Burner blower"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xb90",
+       "rola": "widget",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      },
+      {
+       "offset": "0xbb5",
+       "rola": "widget.visible",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ],
+     "tabele_u16": {
+      "08043904": [
+       25637,
+       0,
+       46352,
+       45186,
+       17924,
+       45521,
+       63052,
+       16589,
+       17232,
+       3266,
+       63052,
+       16845
+      ]
+     }
+    },
+    {
+     "setter": "0x080437d2",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0x44",
+       "pid": "0x226D",
+       "name": "Burner storage feeding time [dS]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xc38",
+       "rola": "widget",
+       "view_off": "0xc38",
+       "rect": [
+        38,
+        200,
+        50,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      },
+      {
+       "offset": "0xc5d",
+       "rola": "widget.visible",
+       "view_off": "0xc38",
+       "rect": [
+        38,
+        200,
+        50,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      19
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x0804381a",
+     "args": "uVar4",
+     "pids": [
+      {
+       "key": "0x22",
+       "pid": "0x228C",
+       "name": "Exhaust fan power"
+      }
+     ],
+     "widgety": [],
+     "porownania": [
+      0
+     ],
+     "tabele_u16": {
+      "08043904": [
+       25637,
+       0,
+       46352,
+       45186,
+       17924,
+       45521,
+       63052,
+       16589,
+       17232,
+       3266,
+       63052,
+       16845
+      ]
+     }
+    },
+    {
+     "setter": "0x0804388e",
+     "args": "uVar4",
+     "pids": [
+      {
+       "key": "0x8b",
+       "pid": "0x226C",
+       "name": "Burner feeder temperature [dC]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xd88",
+       "rola": "widget",
+       "view_off": "0xd88",
+       "rect": [
+        270,
+        175,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 338,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32
+     ],
+     "tabele_u16": {
+      "08043904": [
+       25637,
+       0,
+       46352,
+       45186,
+       17924,
+       45521,
+       63052,
+       16589,
+       17232,
+       3266,
+       63052,
+       16845
+      ]
+     }
+    },
+    {
+     "setter": "0x08043844",
+     "args": "uVar1,uVar4",
+     "pids": [
+      {
+       "key": "0x90",
+       "pid": "0x299D",
+       "name": "HALL Activated"
+      },
+      {
+       "key": "0x8c",
+       "pid": "0x299C",
+       "name": "Burner blower RPM"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xdc0",
+       "rola": "widget",
+       "view_off": "0xdc0",
+       "rect": [
+        270,
+        200,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 337,
+       "vptr": null
+      },
+      {
+       "offset": "0xde5",
+       "rola": "widget.visible",
+       "view_off": "0xdc0",
+       "rect": [
+        270,
+        200,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 337,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ],
+     "tabele_u16": {
+      "08043904": [
+       25637,
+       0,
+       46352,
+       45186,
+       17924,
+       45521,
+       63052,
+       16589,
+       17232,
+       3266,
+       63052,
+       16845
+      ]
+     }
+    },
+    {
+     "setter": "0x080438b8",
+     "args": "uVar1,uVar4",
+     "pids": [
+      {
+       "key": "0x115",
+       "pid": "0x2123",
+       "name": "Lambda module presence"
+      },
+      {
+       "key": "0x6a",
+       "pid": "0x2120",
+       "name": "Lambda oxygen [%]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xce0",
+       "rola": "widget",
+       "view_off": "0xce0",
+       "rect": [
+        270,
+        150,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 342,
+       "vptr": null
+      },
+      {
+       "offset": "0xd05",
+       "rola": "widget.visible",
+       "view_off": "0xce0",
+       "rect": [
+        270,
+        150,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 342,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      2,
+      5,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x08043874",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0xa0",
+       "pid": "0x300A",
+       "name": "Sec. air mixer position [%]"
+      }
+     ],
+     "widgety": [],
+     "tabele_u16": {
+      "08043904": [
+       25637,
+       0,
+       46352,
+       45186,
+       17924,
+       45521,
+       63052,
+       16589,
+       17232,
+       3266,
+       63052,
+       16845
+      ]
+     }
+    },
+    {
+     "setter": "0x08043a36",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x68",
+       "pid": "0x300B",
+       "name": "Stop burning wood"
+      }
+     ],
+     "widgety": [],
+     "porownania": [
+      1
+     ],
+     "bitmapy_w_kodzie": [
+      168,
+      169,
+      182,
+      183
+     ]
+    },
+    {
+     "setter": "0x080436f8",
+     "args": "uVar3,uVar1",
+     "pids": [
+      {
+       "key": "0xa2",
+       "pid": "0x3710",
+       "name": "Fuel consumption [Dkg/h]"
+      },
+      {
+       "key": "0x5f",
+       "pid": "0x4008",
+       "name": "Burning type active"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xab0",
+       "rola": "widget",
+       "view_off": "0xab0",
+       "rect": [
+        270,
+        50,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 345,
+       "vptr": null
+      },
+      {
+       "offset": "0xad5",
+       "rola": "widget.visible",
+       "view_off": "0xab0",
+       "rect": [
+        270,
+        50,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 345,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      19
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x08043b44",
+     "args": "uVar3,uVar2,uVar1",
+     "pids": [
+      {
+       "key": "0xa3",
+       "pid": "0x3711",
+       "name": "Time to grate cleaning [min]"
+      },
+      {
+       "key": "0x39",
+       "pid": "0x2007",
+       "name": "Burner state"
+      },
+      {
+       "key": "0x5f",
+       "pid": "0x4008",
+       "name": "Burning type active"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xc70",
+       "rola": "widget",
+       "view_off": "0xc70",
+       "rect": [
+        145,
+        200,
+        60,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      },
+      {
+       "offset": "0xc95",
+       "rola": "widget.visible",
+       "view_off": "0xc70",
+       "rect": [
+        145,
+        200,
+        60,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      5,
+      10,
+      21
+     ],
+     "formaty": [
+      "%d:%d",
+      "%d:0%d"
+     ]
+    },
+    {
+     "setter": "0x08043b94",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0x95",
+       "pid_poza_macierza_655": "218B",
+       "name": ""
+      }
+     ],
+     "widgety": [],
+     "porownania": [
+      5,
+      25,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%dV"
+     ]
+    },
+    {
+     "setter": "0x08043908",
+     "args": "uVar1,uVar3",
+     "pids": [
+      {
+       "key": "0x120",
+       "pid": "0x362B",
+       "name": "Airflow meter"
+      },
+      {
+       "key": "0x6b",
+       "pid": "0x371A",
+       "name": "Airflowmeter 1 flow"
+      }
+     ],
+     "widgety": [],
+     "porownania": [
+      0,
+      19
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x08043954",
+     "args": "1,uVar1",
+     "pids": [
+      {
+       "key": "0x41",
+       "pid": "0x2251",
+       "name": "Burner storage feeder"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x888",
+       "rola": "widget",
+       "view_off": "0x888",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 109,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8ad",
+       "rola": "widget.visible",
+       "view_off": "0x888",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 109,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8b4",
+       "rola": "widget",
+       "view_off": "0x8b4",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 108,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8d9",
+       "rola": "widget.visible",
+       "view_off": "0x8b4",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 108,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x90c",
+       "rola": "widget",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 38,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x931",
+       "rola": "widget.visible",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 38,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x948",
+       "rola": "widget",
+       "view_off": "0x948",
+       "rect": [
+        81,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x96d",
+       "rola": "widget.visible",
+       "view_off": "0x948",
+       "rect": [
+        81,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x984",
+       "rola": "widget",
+       "view_off": "0x984",
+       "rect": [
+        122,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 67,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9a9",
+       "rola": "widget.visible",
+       "view_off": "0x984",
+       "rect": [
+        122,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 67,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9c0",
+       "rola": "widget",
+       "view_off": "0x9c0",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 8,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9e5",
+       "rola": "widget.visible",
+       "view_off": "0x9c0",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 8,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9fc",
+       "rola": "widget",
+       "view_off": "0x9fc",
+       "rect": [
+        161,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 59,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa21",
+       "rola": "widget.visible",
+       "view_off": "0x9fc",
+       "rect": [
+        161,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 59,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa38",
+       "rola": "widget",
+       "view_off": "0xa38",
+       "rect": [
+        221,
+        249,
+        0,
+        0
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa5d",
+       "rola": "widget.visible",
+       "view_off": "0xa38",
+       "rect": [
+        221,
+        249,
+        0,
+        0
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xb90",
+       "rola": "widget",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      },
+      {
+       "offset": "0xbb5",
+       "rola": "widget.visible",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2
+     ]
+    },
+    {
+     "setter": "0x08043954",
+     "args": "0,uVar1",
+     "pids": [
+      {
+       "key": "0x45",
+       "pid": "0x2252",
+       "name": "Burner burner feeder"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x888",
+       "rola": "widget",
+       "view_off": "0x888",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 109,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8ad",
+       "rola": "widget.visible",
+       "view_off": "0x888",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 109,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8b4",
+       "rola": "widget",
+       "view_off": "0x8b4",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 108,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8d9",
+       "rola": "widget.visible",
+       "view_off": "0x8b4",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 108,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x90c",
+       "rola": "widget",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 38,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x931",
+       "rola": "widget.visible",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 38,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x948",
+       "rola": "widget",
+       "view_off": "0x948",
+       "rect": [
+        81,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x96d",
+       "rola": "widget.visible",
+       "view_off": "0x948",
+       "rect": [
+        81,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x984",
+       "rola": "widget",
+       "view_off": "0x984",
+       "rect": [
+        122,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 67,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9a9",
+       "rola": "widget.visible",
+       "view_off": "0x984",
+       "rect": [
+        122,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 67,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9c0",
+       "rola": "widget",
+       "view_off": "0x9c0",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 8,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9e5",
+       "rola": "widget.visible",
+       "view_off": "0x9c0",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 8,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9fc",
+       "rola": "widget",
+       "view_off": "0x9fc",
+       "rect": [
+        161,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 59,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa21",
+       "rola": "widget.visible",
+       "view_off": "0x9fc",
+       "rect": [
+        161,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 59,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa38",
+       "rola": "widget",
+       "view_off": "0xa38",
+       "rect": [
+        221,
+        249,
+        0,
+        0
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa5d",
+       "rola": "widget.visible",
+       "view_off": "0xa38",
+       "rect": [
+        221,
+        249,
+        0,
+        0
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xb90",
+       "rola": "widget",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      },
+      {
+       "offset": "0xbb5",
+       "rola": "widget.visible",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2
+     ]
+    },
+    {
+     "setter": "0x08043954",
+     "args": "2,uVar1",
+     "pids": [
+      {
+       "key": "0x46",
+       "pid": "0x2253",
+       "name": "Burner igniter"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x888",
+       "rola": "widget",
+       "view_off": "0x888",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 109,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8ad",
+       "rola": "widget.visible",
+       "view_off": "0x888",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 109,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8b4",
+       "rola": "widget",
+       "view_off": "0x8b4",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 108,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8d9",
+       "rola": "widget.visible",
+       "view_off": "0x8b4",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 108,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x90c",
+       "rola": "widget",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 38,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x931",
+       "rola": "widget.visible",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 38,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x948",
+       "rola": "widget",
+       "view_off": "0x948",
+       "rect": [
+        81,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x96d",
+       "rola": "widget.visible",
+       "view_off": "0x948",
+       "rect": [
+        81,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x984",
+       "rola": "widget",
+       "view_off": "0x984",
+       "rect": [
+        122,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 67,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9a9",
+       "rola": "widget.visible",
+       "view_off": "0x984",
+       "rect": [
+        122,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 67,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9c0",
+       "rola": "widget",
+       "view_off": "0x9c0",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 8,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9e5",
+       "rola": "widget.visible",
+       "view_off": "0x9c0",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 8,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9fc",
+       "rola": "widget",
+       "view_off": "0x9fc",
+       "rect": [
+        161,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 59,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa21",
+       "rola": "widget.visible",
+       "view_off": "0x9fc",
+       "rect": [
+        161,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 59,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa38",
+       "rola": "widget",
+       "view_off": "0xa38",
+       "rect": [
+        221,
+        249,
+        0,
+        0
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa5d",
+       "rola": "widget.visible",
+       "view_off": "0xa38",
+       "rect": [
+        221,
+        249,
+        0,
+        0
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xb90",
+       "rola": "widget",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      },
+      {
+       "offset": "0xbb5",
+       "rola": "widget.visible",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2
+     ]
+    },
+    {
+     "setter": "0x08043954",
+     "args": "3,uVar1",
+     "pids": [
+      {
+       "key": "0x47",
+       "pid": "0x2254",
+       "name": "Burner blower"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x888",
+       "rola": "widget",
+       "view_off": "0x888",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 109,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8ad",
+       "rola": "widget.visible",
+       "view_off": "0x888",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 109,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8b4",
+       "rola": "widget",
+       "view_off": "0x8b4",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 108,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8d9",
+       "rola": "widget.visible",
+       "view_off": "0x8b4",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 108,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x90c",
+       "rola": "widget",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 38,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x931",
+       "rola": "widget.visible",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 38,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x948",
+       "rola": "widget",
+       "view_off": "0x948",
+       "rect": [
+        81,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x96d",
+       "rola": "widget.visible",
+       "view_off": "0x948",
+       "rect": [
+        81,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x984",
+       "rola": "widget",
+       "view_off": "0x984",
+       "rect": [
+        122,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 67,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9a9",
+       "rola": "widget.visible",
+       "view_off": "0x984",
+       "rect": [
+        122,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 67,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9c0",
+       "rola": "widget",
+       "view_off": "0x9c0",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 8,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9e5",
+       "rola": "widget.visible",
+       "view_off": "0x9c0",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 8,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9fc",
+       "rola": "widget",
+       "view_off": "0x9fc",
+       "rect": [
+        161,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 59,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa21",
+       "rola": "widget.visible",
+       "view_off": "0x9fc",
+       "rect": [
+        161,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 59,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa38",
+       "rola": "widget",
+       "view_off": "0xa38",
+       "rect": [
+        221,
+        249,
+        0,
+        0
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa5d",
+       "rola": "widget.visible",
+       "view_off": "0xa38",
+       "rect": [
+        221,
+        249,
+        0,
+        0
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xb90",
+       "rola": "widget",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      },
+      {
+       "offset": "0xbb5",
+       "rola": "widget.visible",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2
+     ]
+    },
+    {
+     "setter": "0x08043954",
+     "args": "4,uVar1",
+     "pids": [
+      {
+       "key": "0x75",
+       "pid": "0x2276",
+       "name": "Grate move indicator"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x888",
+       "rola": "widget",
+       "view_off": "0x888",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 109,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8ad",
+       "rola": "widget.visible",
+       "view_off": "0x888",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 109,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8b4",
+       "rola": "widget",
+       "view_off": "0x8b4",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 108,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8d9",
+       "rola": "widget.visible",
+       "view_off": "0x8b4",
+       "rect": [
+        167,
+        230,
+        20,
+        7
+       ],
+       "bitmap": 108,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x90c",
+       "rola": "widget",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 38,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x931",
+       "rola": "widget.visible",
+       "view_off": "0x90c",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 38,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x948",
+       "rola": "widget",
+       "view_off": "0x948",
+       "rect": [
+        81,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x96d",
+       "rola": "widget.visible",
+       "view_off": "0x948",
+       "rect": [
+        81,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x984",
+       "rola": "widget",
+       "view_off": "0x984",
+       "rect": [
+        122,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 67,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9a9",
+       "rola": "widget.visible",
+       "view_off": "0x984",
+       "rect": [
+        122,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 67,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9c0",
+       "rola": "widget",
+       "view_off": "0x9c0",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 8,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9e5",
+       "rola": "widget.visible",
+       "view_off": "0x9c0",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 8,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x9fc",
+       "rola": "widget",
+       "view_off": "0x9fc",
+       "rect": [
+        161,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 59,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa21",
+       "rola": "widget.visible",
+       "view_off": "0x9fc",
+       "rect": [
+        161,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 59,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa38",
+       "rola": "widget",
+       "view_off": "0xa38",
+       "rect": [
+        221,
+        249,
+        0,
+        0
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa5d",
+       "rola": "widget.visible",
+       "view_off": "0xa38",
+       "rect": [
+        221,
+        249,
+        0,
+        0
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xb90",
+       "rola": "widget",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      },
+      {
+       "offset": "0xbb5",
+       "rola": "widget.visible",
+       "view_off": "0xb90",
+       "rect": [
+        5,
+        200,
+        35,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2
+     ]
+    },
+    {
+     "setter": "0x08043b3a",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x85",
+       "pid": "0x2283",
+       "name": "Blower test"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x1040",
+       "rola": "widget",
+       "view_off": "0x1040",
+       "rect": [
+        300,
+        17,
+        30,
+        31
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x1080",
+       "rola": "widget",
+       "view_off": "0x1080",
+       "rect": [
+        340,
+        17,
+        30,
+        31
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x10c0",
+       "rola": "widget",
+       "view_off": "0x10c0",
+       "rect": [
+        380,
+        17,
+        30,
+        31
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      4
+     ]
+    }
+   ]
+  },
+  "OGRZEWANIE": {
+   "presenter": "0x0803d37c",
+   "widgetow_na_ekranie": 157,
+   "sterowane_przez_presenter": 16,
+   "settery": [
+    {
+     "setter": "0x0804480e",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0xa8",
+       "pid": "0x22FD",
+       "name": "CH status"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x17b4",
+       "rola": "widget",
+       "view_off": "0x17b4",
+       "rect": [
+        230,
+        170,
+        160,
+        32
+       ],
+       "bitmap": null,
+       "text": 30,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ],
+     "tabele_u16": {
+      "080448fc": [
+       0,
+       26,
+       1,
+       27,
+       2,
+       28,
+       3,
+       29,
+       4,
+       32,
+       5,
+       30
+      ]
+     }
+    },
+    {
+     "setter": "0x080445de",
+     "args": "~-(uint)(iVar7 == 0) >> 0x1f,uVar6",
+     "pids": [
+      {
+       "key": "0xb2",
+       "pid": "0x22A5",
+       "name": "CH sensor use"
+      },
+      {
+       "key": "0xc7",
+       "pid": "0x4001",
+       "name": "CH temp measured"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x15d4",
+       "rola": "widget",
+       "view_off": "0x15d4",
+       "rect": [
+        23,
+        80,
+        45,
+        44
+       ],
+       "bitmap": null,
+       "text": 447,
+       "vptr": null
+      },
+      {
+       "offset": "0x15f9",
+       "rola": "widget.visible",
+       "view_off": "0x15d4",
+       "rect": [
+        23,
+        80,
+        45,
+        44
+       ],
+       "bitmap": null,
+       "text": 447,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x0804462a",
+     "args": "uVar6",
+     "pids": [
+      {
+       "key": "0xc8",
+       "pid": "0x22AD",
+       "name": "CH temp calc"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x1618",
+       "rola": "widget",
+       "view_off": "0x1618",
+       "rect": [
+        71,
+        80,
+        26,
+        32
+       ],
+       "bitmap": null,
+       "text": 448,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "08044680": [
+       25637,
+       0,
+       50784,
+       2055,
+       46608,
+       2055,
+       26215,
+       26214,
+       46448,
+       17924,
+       60717,
+       35586
+      ]
+     }
+    },
+    {
+     "setter": "0x08044690",
+     "args": "uVar9,uVar6",
+     "pids": [
+      {
+       "key": "0xc6",
+       "pid": "0x2016",
+       "name": "Room measured temp"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x154c",
+       "rola": "widget",
+       "view_off": "0x154c",
+       "rect": [
+        357,
+        60,
+        45,
+        44
+       ],
+       "bitmap": null,
+       "text": 447,
+       "vptr": null
+      },
+      {
+       "offset": "0x1571",
+       "rola": "widget.visible",
+       "view_off": "0x154c",
+       "rect": [
+        357,
+        60,
+        45,
+        44
+       ],
+       "bitmap": null,
+       "text": 447,
+       "vptr": null
+      },
+      {
+       "offset": "0x1590",
+       "rola": "widget",
+       "view_off": "0x1590",
+       "rect": [
+        235,
+        52,
+        109,
+        73
+       ],
+       "bitmap": null,
+       "text": 446,
+       "vptr": null
+      },
+      {
+       "offset": "0x15b5",
+       "rola": "widget.visible",
+       "view_off": "0x1590",
+       "rect": [
+        235,
+        52,
+        109,
+        73
+       ],
+       "bitmap": null,
+       "text": 446,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      22
+     ],
+     "formaty": [
+      "%0.1f"
+     ]
+    },
+    {
+     "setter": "0x080446f8",
+     "args": "uVar6",
+     "pids": [
+      {
+       "key": "0xab",
+       "pid": "0x2166",
+       "name": "CH res [dC]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x154c",
+       "rola": "widget",
+       "view_off": "0x154c",
+       "rect": [
+        357,
+        60,
+        45,
+        44
+       ],
+       "bitmap": null,
+       "text": 447,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32
+     ],
+     "formaty": [
+      "%d.%d"
+     ]
+    },
+    {
+     "setter": "0x0804454e",
+     "args": "uVar6",
+     "pids": [
+      {
+       "key": "0xcb",
+       "pid": "0x22F5",
+       "name": "CH needed temp. [C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x165c",
+       "rola": "widget",
+       "view_off": "0x165c",
+       "rect": [
+        429,
+        195,
+        49,
+        32
+       ],
+       "bitmap": null,
+       "text": 451,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "08044680": [
+       25637,
+       0,
+       50784,
+       2055,
+       46608,
+       2055,
+       26215,
+       26214,
+       46448,
+       17924,
+       60717,
+       35586
+      ]
+     }
+    },
+    {
+     "setter": "0x0804474e",
+     "args": "uVar6",
+     "pids": [
+      {
+       "key": "0xac",
+       "pid": "0x2064",
+       "name": "CH program"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x17e8",
+       "rola": "widget",
+       "view_off": "0x17e8",
+       "rect": [
+        423,
+        62,
+        35,
+        37
+       ],
+       "bitmap": 130,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "08044920": [
+       130,
+       126,
+       132,
+       124,
+       63711,
+       49164,
+       63680,
+       49152,
+       24641,
+       59840,
+       8962,
+       18288
+      ]
+     }
+    },
+    {
+     "setter": "0x08044950",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0xc9",
+       "pid": "0x2299",
+       "name": "CH pump state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x2c0",
+       "rola": "widget",
+       "view_off": "0x2c0",
+       "rect": [
+        9,
+        239,
+        19,
+        19
+       ],
+       "bitmap": 138,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x2e5",
+       "rola": "widget.visible",
+       "view_off": "0x2c0",
+       "rect": [
+        9,
+        239,
+        19,
+        19
+       ],
+       "bitmap": 138,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      8
+     ]
+    },
+    {
+     "setter": "0x08044774",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0xca",
+       "pid": "0x22B9",
+       "name": "CH mixer state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x1814",
+       "rola": "widget",
+       "view_off": "0x1814",
+       "rect": [
+        40,
+        234,
+        34,
+        30
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x1839",
+       "rola": "widget.visible",
+       "view_off": "0x1814",
+       "rect": [
+        40,
+        234,
+        34,
+        30
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x186c",
+       "rola": "widget",
+       "view_off": "0x186c",
+       "rect": [
+        19,
+        0,
+        15,
+        4
+       ],
+       "bitmap": 107,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2
+     ],
+     "bitmapy_w_kodzie": [
+      106,
+      107
+     ]
+    },
+    {
+     "setter": "0x08044848",
+     "args": "uVar2,uVar1",
+     "pids": [
+      {
+       "key": "0xb0",
+       "pid": "0x22A1",
+       "name": "Room temp sensor type"
+      },
+      {
+       "key": "0xcd",
+       "pid": "0x2301",
+       "name": "CH thermostat state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xa69",
+       "rola": "widget.visible",
+       "view_off": "0xa44",
+       "rect": [
+        255,
+        70,
+        60,
+        22
+       ],
+       "bitmap": 177,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xa95",
+       "rola": "widget.visible",
+       "view_off": "0xa70",
+       "rect": [
+        255,
+        70,
+        60,
+        22
+       ],
+       "bitmap": 178,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      1,
+      4
+     ]
+    },
+    {
+     "setter": "0x080444d2",
+     "args": "uVar3,uVar5,uVar4,uVar2,uVar1",
+     "pids": [
+      {
+       "key": "0xce",
+       "pid": "0x230D",
+       "name": "Room temp. radio sensor signal [%]"
+      },
+      {
+       "key": "0xcf",
+       "pid": "0x2309",
+       "name": "Room temp. radio sensor batt. volt [mV]"
+      },
+      {
+       "key": "0xd0",
+       "pid": "0x2311",
+       "name": "Room temp. radio sensor time since lasr rec."
+      },
+      {
+       "key": "0xd1",
+       "pid": "0x2319",
+       "name": "Room temp. radio sensor soft. ver. before dot"
+      },
+      {
+       "key": "0xd2",
+       "pid": "0x231D",
+       "name": "Room temp. radio sensor soft. ver. after dot"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x16a0",
+       "rola": "widget",
+       "view_off": "0x16a0",
+       "rect": [
+        238,
+        45,
+        26,
+        15
+       ],
+       "bitmap": null,
+       "text": 454,
+       "vptr": null
+      },
+      {
+       "offset": "0x16e4",
+       "rola": "widget",
+       "view_off": "0x16e4",
+       "rect": [
+        268,
+        45,
+        40,
+        15
+       ],
+       "bitmap": null,
+       "text": 455,
+       "vptr": null
+      },
+      {
+       "offset": "0x172c",
+       "rola": "widget",
+       "view_off": "0x172c",
+       "rect": [
+        313,
+        45,
+        29,
+        15
+       ],
+       "bitmap": null,
+       "text": 456,
+       "vptr": null
+      }
+     ],
+     "formaty": [
+      "v%d.%d"
+     ],
+     "tabele_u16": {
+      "08044680": [
+       25637,
+       0,
+       50784,
+       2055,
+       46608,
+       2055,
+       26215,
+       26214,
+       46448,
+       17924,
+       60717,
+       35586
+      ]
+     }
+    },
+    {
+     "setter": "0x08044870",
+     "args": "uVar8,uVar9,uVar6",
+     "pids": [
+      {
+       "key": "0xd4",
+       "pid": "0x2321",
+       "name": "CH circuit name part1"
+      },
+      {
+       "key": "0xd5",
+       "pid": "0x2325",
+       "name": "CH circuit name part2"
+      },
+      {
+       "key": "0xd6",
+       "pid": "0x2329",
+       "name": "CH circuit name part3"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x2174",
+       "rola": "widget",
+       "view_off": "0x2174",
+       "rect": [
+        138,
+        45,
+        200,
+        25
+       ],
+       "bitmap": null,
+       "text": 468,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      8,
+      16,
+      24
+     ]
+    }
+   ]
+  },
+  "CWU": {
+   "presenter": "0x0803d744",
+   "widgetow_na_ekranie": 138,
+   "sterowane_przez_presenter": 6,
+   "settery": [
+    {
+     "setter": "0x08044e02",
+     "args": "uVar2",
+     "pids": [
+      {
+       "key": "0xd8",
+       "pid": "0x2110",
+       "name": "Hot water 1 measured temperature"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x13cc",
+       "rola": "widget",
+       "view_off": "0x13cc",
+       "rect": [
+        180,
+        50,
+        157,
+        104
+       ],
+       "bitmap": null,
+       "text": 459,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32,
+      1000
+     ],
+     "formaty": [
+      "%d.%d"
+     ],
+     "tabele_u16": {
+      "08044e70": [
+       25637,
+       0,
+       26215,
+       26214,
+       46392,
+       17925,
+       62981,
+       1116,
+       45465,
+       8193,
+       63621,
+       2177
+      ]
+     }
+    },
+    {
+     "setter": "0x08044dac",
+     "args": "uVar2",
+     "pids": [
+      {
+       "key": "0xdb",
+       "pid": "0x201A",
+       "name": "Hot water 1 result temperature"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x1404",
+       "rola": "widget",
+       "view_off": "0x1404",
+       "rect": [
+        352,
+        65,
+        63,
+        44
+       ],
+       "bitmap": null,
+       "text": 447,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "08044e70": [
+       25637,
+       0,
+       26215,
+       26214,
+       46392,
+       17925,
+       62981,
+       1116,
+       45465,
+       8193,
+       63621,
+       2177
+      ]
+     }
+    },
+    {
+     "setter": "0x08044e4c",
+     "args": "uVar2",
+     "pids": [
+      {
+       "key": "0xe4",
+       "pid": "0x2111",
+       "name": "Hot water 1 needed temp. [C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x143c",
+       "rola": "widget",
+       "view_off": "0x143c",
+       "rect": [
+        429,
+        195,
+        49,
+        32
+       ],
+       "bitmap": null,
+       "text": 451,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "08044e70": [
+       25637,
+       0,
+       26215,
+       26214,
+       46392,
+       17925,
+       62981,
+       1116,
+       45465,
+       8193,
+       63621,
+       2177
+      ]
+     }
+    },
+    {
+     "setter": "0x08044dd6",
+     "args": "uVar2",
+     "pids": [
+      {
+       "key": "0xdc",
+       "pid": "0x2014",
+       "name": "Hot water 1 program"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x1498",
+       "rola": "widget",
+       "view_off": "0x1498",
+       "rect": [
+        423,
+        67,
+        35,
+        37
+       ],
+       "bitmap": 126,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      4
+     ],
+     "tabele_u16": {
+      "08044eec": [
+       130,
+       126,
+       132,
+       124,
+       46392,
+       17925,
+       62543,
+       28720,
+       6188,
+       45465,
+       8193,
+       63621
+      ]
+     }
+    },
+    {
+     "setter": "0x08044ef4",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0xef",
+       "pid": "0x2278",
+       "name": "Hot water pump state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x2c0",
+       "rola": "widget",
+       "view_off": "0x2c0",
+       "rect": [
+        9,
+        239,
+        19,
+        19
+       ],
+       "bitmap": 138,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x2e5",
+       "rola": "widget.visible",
+       "view_off": "0x2c0",
+       "rect": [
+        9,
+        239,
+        19,
+        19
+       ],
+       "bitmap": 138,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      8
+     ]
+    },
+    {
+     "setter": "0x08044e78",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0xf0",
+       "pid": "0x3749",
+       "name": "Hot water circular pump state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x85c",
+       "rola": "widget",
+       "view_off": "0x85c",
+       "rect": [
+        48,
+        240,
+        19,
+        19
+       ],
+       "bitmap": 138,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x881",
+       "rola": "widget.visible",
+       "view_off": "0x85c",
+       "rect": [
+        48,
+        240,
+        19,
+        19
+       ],
+       "bitmap": 138,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      8
+     ]
+    }
+   ]
+  },
+  "KASKADA": {
+   "presenter": "0x0803e45c",
+   "widgetow_na_ekranie": 75,
+   "sterowane_przez_presenter": 16,
+   "settery": [
+    {
+     "setter": "0x08046f36",
+     "args": "uVar2,uVar1",
+     "pids": [
+      {
+       "key": "0x157",
+       "pid": "0x3519",
+       "name": "Cascade current power lvel"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x8b4",
+       "rola": "widget",
+       "view_off": "0x8b4",
+       "rect": [
+        205,
+        195,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 348,
+       "vptr": null
+      },
+      {
+       "offset": "0x8d9",
+       "rola": "widget.visible",
+       "view_off": "0x8b4",
+       "rect": [
+        205,
+        195,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 348,
+       "vptr": null
+      },
+      {
+       "offset": "0xb05",
+       "rola": "widget.visible",
+       "view_off": "0xae0",
+       "rect": [
+        150,
+        50,
+        70,
+        150
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ],
+     "tabele_u16": {
+      "08047030": [
+       25637,
+       0,
+       0,
+       0,
+       18376,
+       8194,
+       34953,
+       34952,
+       45498,
+       8705,
+       10497,
+       53507
+      ]
+     }
+    },
+    {
+     "setter": "0x08046f68",
+     "args": "uVar4,uVar3,uVar2,uVar1",
+     "pids": [
+      {
+       "key": "0x155",
+       "pid": "0x351B",
+       "name": "Cascade timer to inc power lvel [s]"
+      },
+      {
+       "key": "0x156",
+       "pid": "0x351C",
+       "name": "Cascade timer to dec power lvel [s]"
+      },
+      {
+       "key": "0x153",
+       "pid": "0x3517",
+       "name": "Cascade time to inc power lvel [min]"
+      },
+      {
+       "key": "0x154",
+       "pid": "0x3518",
+       "name": "Cascade time to dec power lvel [min]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x85c",
+       "rola": "widget",
+       "view_off": "0x85c",
+       "rect": [
+        460,
+        205,
+        10,
+        9
+       ],
+       "bitmap": 68,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x881",
+       "rola": "widget.visible",
+       "view_off": "0x85c",
+       "rect": [
+        460,
+        205,
+        10,
+        9
+       ],
+       "bitmap": 68,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x888",
+       "rola": "widget",
+       "view_off": "0x888",
+       "rect": [
+        460,
+        205,
+        10,
+        9
+       ],
+       "bitmap": 25,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8ad",
+       "rola": "widget.visible",
+       "view_off": "0x888",
+       "rect": [
+        460,
+        205,
+        10,
+        9
+       ],
+       "bitmap": 25,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8ec",
+       "rola": "widget",
+       "view_off": "0x8ec",
+       "rect": [
+        320,
+        195,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      },
+      {
+       "offset": "0x911",
+       "rola": "widget.visible",
+       "view_off": "0x8ec",
+       "rect": [
+        320,
+        195,
+        200,
+        70
+       ],
+       "bitmap": null,
+       "text": 460,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      5,
+      10,
+      31,
+      32
+     ],
+     "formaty": [
+      "0%d:%d:%d",
+      "0%d:%d:0%d",
+      "0%d:0%d:0%d"
+     ]
+    },
+    {
+     "setter": "0x08047040",
+     "args": "uVar2,uVar1",
+     "pids": [
+      {
+       "key": "0x158",
+       "pid": "0x351A",
+       "name": "Cascade slaves number"
+      },
+      {
+       "key": "0x11c",
+       "pid": "0x350C",
+       "name": "Is this device cascade master"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x969",
+       "rola": "widget.visible",
+       "view_off": "0x944",
+       "rect": [
+        50,
+        50,
+        70,
+        150
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xb05",
+       "rola": "widget.visible",
+       "view_off": "0xae0",
+       "rect": [
+        150,
+        50,
+        70,
+        150
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xca1",
+       "rola": "widget.visible",
+       "view_off": "0xc7c",
+       "rect": [
+        250,
+        50,
+        70,
+        150
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0xe3d",
+       "rola": "widget.visible",
+       "view_off": "0xe18",
+       "rect": [
+        350,
+        50,
+        70,
+        150
+       ],
+       "bitmap": null,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "setter": "0x08047086",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0xc",
+       "pid": "0x2001",
+       "name": "Boiler temp[dC]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x9d8",
+       "rola": "widget",
+       "view_off": "0x9d8",
+       "rect": [
+        0,
+        50,
+        70,
+        50
+       ],
+       "bitmap": null,
+       "text": 494,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32,
+      19990
+     ],
+     "tabele_u16": {
+      "08046cb4": [
+       11565,
+       45,
+       25637,
+       176,
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055
+      ]
+     },
+     "kolor": "tak (FUN_08030268 rgb)"
+    },
+    {
+     "setter": "0x08047090",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0x31",
+       "pid": "0x200A",
+       "name": "Remote boiler 1 temp[dC]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xb74",
+       "rola": "widget",
+       "view_off": "0xb74",
+       "rect": [
+        0,
+        50,
+        70,
+        50
+       ],
+       "bitmap": null,
+       "text": 494,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32,
+      19990
+     ],
+     "tabele_u16": {
+      "08046cb4": [
+       11565,
+       45,
+       25637,
+       176,
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055
+      ]
+     },
+     "kolor": "tak (FUN_08030268 rgb)"
+    },
+    {
+     "setter": "0x0804709c",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0x32",
+       "pid": "0x200B",
+       "name": "Remote boiler 2 temp[dC]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xd10",
+       "rola": "widget",
+       "view_off": "0xd10",
+       "rect": [
+        0,
+        50,
+        70,
+        50
+       ],
+       "bitmap": null,
+       "text": 494,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32,
+      19990
+     ],
+     "tabele_u16": {
+      "08046cb4": [
+       11565,
+       45,
+       25637,
+       176,
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055
+      ]
+     },
+     "kolor": "tak (FUN_08030268 rgb)"
+    },
+    {
+     "setter": "0x080470a6",
+     "args": "uVar3",
+     "pids": [
+      {
+       "key": "0x33",
+       "pid": "0x200C",
+       "name": "Remote boiler 3 temp[dC]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xeac",
+       "rola": "widget",
+       "view_off": "0xeac",
+       "rect": [
+        0,
+        50,
+        70,
+        50
+       ],
+       "bitmap": null,
+       "text": 494,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      2,
+      31,
+      32,
+      19990
+     ],
+     "tabele_u16": {
+      "08046cb4": [
+       11565,
+       45,
+       25637,
+       176,
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055
+      ]
+     },
+     "kolor": "tak (FUN_08030268 rgb)"
+    },
+    {
+     "setter": "0x080470b0",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x37",
+       "pid": "0x400A",
+       "name": "Virt. energy consumer set temp [C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xa10",
+       "rola": "widget",
+       "view_off": "0xa10",
+       "rect": [
+        25,
+        40,
+        45,
+        50
+       ],
+       "bitmap": null,
+       "text": 493,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "08046cb8": [
+       25637,
+       176,
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055,
+       26215,
+       26214
+      ]
+     }
+    },
+    {
+     "setter": "0x080470b8",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x34",
+       "pid": "0x200D",
+       "name": "Remote boiler 1 requested temp[C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xbac",
+       "rola": "widget",
+       "view_off": "0xbac",
+       "rect": [
+        25,
+        40,
+        45,
+        50
+       ],
+       "bitmap": null,
+       "text": 493,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "08046cb8": [
+       25637,
+       176,
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055,
+       26215,
+       26214
+      ]
+     }
+    },
+    {
+     "setter": "0x080470c2",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x35",
+       "pid": "0x200E",
+       "name": "Remote boiler 2 requested temp[C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xd48",
+       "rola": "widget",
+       "view_off": "0xd48",
+       "rect": [
+        25,
+        40,
+        45,
+        50
+       ],
+       "bitmap": null,
+       "text": 493,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "08046cb8": [
+       25637,
+       176,
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055,
+       26215,
+       26214
+      ]
+     }
+    },
+    {
+     "setter": "0x080470ca",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x36",
+       "pid": "0x200F",
+       "name": "Remote boiler 3 requested temp[C]"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0xee4",
+       "rola": "widget",
+       "view_off": "0xee4",
+       "rect": [
+        25,
+        40,
+        45,
+        50
+       ],
+       "bitmap": null,
+       "text": 493,
+       "vptr": null
+      }
+     ],
+     "tabele_u16": {
+      "08046cb8": [
+       25637,
+       176,
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055,
+       26215,
+       26214
+      ]
+     }
+    },
+    {
+     "setter": "0x080470d2",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x14d",
+       "pid": "0x3511",
+       "name": "Cascade master power level"
+      }
+     ],
+     "widgety": [],
+     "tabele_u16": {
+      "08046cbc": [
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055,
+       26215,
+       26214,
+       46104,
+       62543
+      ]
+     }
+    },
+    {
+     "setter": "0x080470da",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x14e",
+       "pid": "0x3512",
+       "name": "Cascade slave 1 power level"
+      }
+     ],
+     "widgety": [],
+     "tabele_u16": {
+      "08046cbc": [
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055,
+       26215,
+       26214,
+       46104,
+       62543
+      ]
+     }
+    },
+    {
+     "setter": "0x080470e4",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x14f",
+       "pid": "0x3513",
+       "name": "Cascade slave 2 power level"
+      }
+     ],
+     "widgety": [],
+     "tabele_u16": {
+      "08046cbc": [
+       25637,
+       0,
+       50784,
+       2055,
+       40704,
+       2055,
+       62028,
+       2055,
+       26215,
+       26214,
+       46104,
+       62543
+      ]
+     }
+    }
+   ]
+  },
+  "MAGAZYN": {
+   "presenter": "0x0803e2e8",
+   "widgetow_na_ekranie": 50,
+   "sterowane_przez_presenter": 4,
+   "settery": [
+    {
+     "setter": "0x0804684c",
+     "args": "0,uVar1",
+     "pids": [
+      {
+       "key": "0x15b",
+       "pid": "0x3522",
+       "name": "External fuel storage motor 1 state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x888",
+       "rola": "widget",
+       "view_off": "0x888",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8ad",
+       "rola": "widget.visible",
+       "view_off": "0x888",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8c4",
+       "rola": "widget",
+       "view_off": "0x8c4",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 36,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8e9",
+       "rola": "widget.visible",
+       "view_off": "0x8c4",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 36,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1
+     ]
+    },
+    {
+     "setter": "0x0804684c",
+     "args": "1,uVar1",
+     "pids": [
+      {
+       "key": "0x15c",
+       "pid": "0x3523",
+       "name": "External fuel storage motor 2 state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x888",
+       "rola": "widget",
+       "view_off": "0x888",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8ad",
+       "rola": "widget.visible",
+       "view_off": "0x888",
+       "rect": [
+        40,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 42,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8c4",
+       "rola": "widget",
+       "view_off": "0x8c4",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 36,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x8e9",
+       "rola": "widget.visible",
+       "view_off": "0x8c4",
+       "rect": [
+        1,
+        235,
+        34,
+        27
+       ],
+       "bitmap": 36,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0,
+      1
+     ]
+    },
+    {
+     "setter": "0x08046894",
+     "args": "uVar1",
+     "pids": [
+      {
+       "key": "0x15d",
+       "pid": "0x3524",
+       "name": "External fuel storage level sens. state"
+      }
+     ],
+     "widgety": [
+      {
+       "offset": "0x900",
+       "rola": "widget",
+       "view_off": "0x900",
+       "rect": [
+        170,
+        106,
+        11,
+        21
+       ],
+       "bitmap": 30,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x925",
+       "rola": "widget.visible",
+       "view_off": "0x900",
+       "rect": [
+        170,
+        106,
+        11,
+        21
+       ],
+       "bitmap": 30,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x92c",
+       "rola": "widget",
+       "view_off": "0x92c",
+       "rect": [
+        170,
+        106,
+        11,
+        21
+       ],
+       "bitmap": 29,
+       "text": null,
+       "vptr": null
+      },
+      {
+       "offset": "0x951",
+       "rola": "widget.visible",
+       "view_off": "0x92c",
+       "rect": [
+        170,
+        106,
+        11,
+        21
+       ],
+       "bitmap": 29,
+       "text": null,
+       "vptr": null
+      }
+     ],
+     "porownania": [
+      0
+     ]
+    }
+   ]
+  }
+ }
+}
