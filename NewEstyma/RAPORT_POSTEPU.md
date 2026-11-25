@@ -1,6 +1,12 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Etap C: HOME - dolna belka kafelkow i diody (spec od wlasciciela + pomiar)
+### 2026-11-25 - Etap C: wskazniki HOME = paski LED (bitmapy 28/31/32), sonda 655 PID
+- Wskazniki kafelkow belki to paski LED 68x28: bitmapa 28 zielona, 31 zolta, 32 biala (id bitmapy w widgecie +0x26). Mapa bitmap 45-55 (wlasciciel): 045 plomien, 046 slimak, 047 zielona dioda, 048/049 paski, 050 suwak, 051 obrys zasobnika, 052 zasobnik z peletem, 053 zasobnik z E (pusty).
+- MEASURED: LED zasilania (x414, zielony) i CWU (x345, bialy) widoczne domyslnie; 0x2005=0 chowa oba; LED CO1 (x207)/CO2 (x276) pojawiaja sie przy 0x2064/0x2065=3; LED palnika (x138) bez reakcji na PID. Zmiana KOLORU (28/31/32) nie zaobserwowana w zadnym tescie - OPEN (stany od sterownika).
+- Paliwo: >=100 kg ikony stale, <=30 kg miga; ikona 053 'E' - widget nie znaleziony (OPEN). Wczesniejsza regula progow 1/40 kg wycofana.
+- Pliki: `UI/home_indicators.json`, `UI/bind_raw/*`, narzedzie `tools/home_indicators_probe.py`.
+
+## 2026-11-25 - Etap C: HOME - dolna belka kafelkow i diody (spec od wlasciciela + pomiar)
 - SPEC (wlasciciel, do potwierdzenia na panelu/zdjeciach): diody sprzetowe (zasilanie, palnik, alarm) sterowane tym samym mechanizmem co wskazniki na ekranie. Wskazniki na kafelkach dolnej belki: zasilanie (prawy) = kociol ON/OFF; CWU = czy dziala pompa CWU; CO1/CO2 = pompa/ogrzewanie/zgoda termostatu; paliwo = tekst + dynamiczna ikona; palnik = stan palnika + ikona zakazu rozpalania. Kolor/animacja wskaznika niezmierzone (OPEN).
 - POMIAR (emulator, HOME): belka y=197, kafelki x=0(box/menu),69(paliwo, tekst "180kg" 0x2001b398),138,207,276,345,414; wskazniki = widgety "image" 0x20016504(138) 0x20016530(207) 0x2001655c(276) 0x20016588(345) 0x200165b4(414); ukryte domyslnie: 138/207/276, widoczne 345/414. Wskaznik 207 pojawia sie po 0x2064=3 (tryb CO), 276 zmienia przypisanie wraz z 0x2064.
 - 0x2007 (kod stanu palnika) = 10 (ALARM) przestawia ukad calej belki (kafelki zamieniaja bitmapy 0x6330/0x648c/0x6360..., box 0x20016330 zmienia kolor) - pozostale kody (1,2,5,6,8) bez efektu przez wstrzykniecie 0x584. Wniosek: wskazniki stanu nie biora danych z 0x2007/0x2299/0x2278 wprost; wymagana analiza kodu odswiezajacego (OPEN).

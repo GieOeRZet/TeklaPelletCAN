@@ -28,14 +28,40 @@
  },
  "other_measured": [
   {
-   "pid": "0x2064",
-   "effect": "wskaznik CO1 (x207, widget 0x20016530) pojawia sie przy wartosci 3",
-   "evidence": "MEASURED"
-  },
-  {
    "pid": "0x2007",
    "effect": "wartosc 10 (ALARM) przebudowuje belke kafelkow; kody 1,2,5,6,8 bez efektu",
    "evidence": "MEASURED"
   }
- ]
+ ],
+ "led_strips": {
+  "description": "Wskazniki kafelkow belki to paski LED 68x28 (widgety image); kolor = id bitmapy ustawiane w czasie dzialania (+0x26 widgetu)",
+  "bitmaps": {
+   "28": "zielony",
+   "31": "zolty",
+   "32": "bialy"
+  },
+  "tiles": {
+   "palnik_x138_widget_0x20016504": {
+    "default": "ukryty, bitmapa 31 (zolty)",
+    "measured_trigger": "brak w teście wstrzykniec PID (0x2007 itd.) - OPEN"
+   },
+   "co1_x207_widget_0x20016530": {
+    "default": "ukryty, bitmapa 32 (bialy)",
+    "measured_trigger": "0x2064 (program CO1)=3 -> widoczny"
+   },
+   "co2_x276_widget_0x2001655c": {
+    "default": "ukryty, bitmapa 32 (bialy)",
+    "measured_trigger": "0x2065 (program CO2)=3 -> widoczny"
+   },
+   "cwu_x345_widget_0x20016588": {
+    "default": "widoczny, bitmapa 32 (bialy)",
+    "measured_trigger": "ukrywa sie przy 0x2005=0 (kociol wyl.), zmiana 0x2014 (program CWU) i 0x2106 (konfiguracja CWU)"
+   },
+   "zasilanie_x414_widget_0x200165b4": {
+    "default": "widoczny, bitmapa 28 (zielony)",
+    "measured_trigger": "0x2005 (kociol wl/wyl)=0 -> ukryty"
+   }
+  },
+  "evidence": "MEASURED (emulator, sonda tools/home_indicators_probe.py, 655 PID, wartosci probne 1,2,3,5,10,srodek,max; zmiana koloru bitmapy NIE zaobserwowana w zadnym tescie - OPEN, wymaga stanow od sterownika)"
+ }
 }

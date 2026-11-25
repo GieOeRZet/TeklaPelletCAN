@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-25T11:34:07.526755+00:00",
+  "generated_at": "2026-11-25T11:50:43.715610+00:00",
   "root": "analiza_archiwum/FW2213TK-2026-11-22/data/ui_model",
   "files": [
     {
@@ -49,6 +49,38 @@
       "schema_version": null,
       "records": 4,
       "date": "2026-11-25T10:42:05.628604+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/hi_0.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-25T11:50:43.591435+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/hi_1.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-25T11:50:43.591475+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/hi_2.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-25T11:50:43.591489+00:00",
+      "evidence_paths": []
+    },
+    {
+      "file": "bind_raw/hi_3.json",
+      "schema": null,
+      "schema_version": null,
+      "records": 3,
+      "date": "2026-11-25T11:50:43.591501+00:00",
       "evidence_paths": []
     },
     {
@@ -773,8 +805,8 @@
       "file": "home_indicators.json",
       "schema": "schema/home_indicators.schema.json",
       "schema_version": "1.0",
-      "records": 5,
-      "date": "2026-11-25T11:34:07.403816+00:00",
+      "records": 6,
+      "date": "2026-11-25T11:50:43.584372+00:00",
       "evidence_paths": []
     },
     {

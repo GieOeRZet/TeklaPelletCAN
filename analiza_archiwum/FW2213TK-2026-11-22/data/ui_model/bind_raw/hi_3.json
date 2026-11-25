@@ -1,0 +1,90 @@
+{
+ "noise": [],
+ "base": {
+  "palnik_138": [
+   true,
+   31
+  ],
+  "co1_207": [
+   true,
+   32
+  ],
+  "co2_276": [
+   true,
+   32
+  ],
+  "cwu_345": [
+   false,
+   32
+  ],
+  "zasilanie_414": [
+   false,
+   28
+  ],
+  "paliwo_51": [
+   false,
+   51
+  ],
+  "paliwo_52": [
+   false,
+   52
+  ],
+  "tile_x0": [
+   false,
+   73
+  ],
+  "tile_x138": [
+   false,
+   74
+  ],
+  "tile_x207": [
+   false,
+   74
+  ],
+  "tile_x276": [
+   false,
+   74
+  ],
+  "tile_x345": [
+   false,
+   74
+  ],
+  "tile_x69": [
+   false,
+   73
+  ],
+  "tile_x414": [
+   false,
+   74
+  ]
+ },
+ "effects": [
+  {
+   "pid": "0x2005",
+   "name": "Boiler on/off",
+   "value": 0,
+   "changed": {
+    "cwu_345": [
+     [
+      false,
+      32
+     ],
+     [
+      true,
+      32
+     ]
+    ],
+    "zasilanie_414": [
+     [
+      false,
+      28
+     ],
+     [
+      true,
+      28
+     ]
+    ]
+   }
+  }
+ ]
+}
