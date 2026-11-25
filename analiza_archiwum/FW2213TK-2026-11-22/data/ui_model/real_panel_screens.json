@@ -1,0 +1,45 @@
+{
+ "schema_version": "1.0",
+ "evidence": "MEASURED (zdjecia wlasciciela z prawdziwego panelu 2026-11-25 + odczyty HA tylko odczyt)",
+ "screens": {
+  "PALNIK": {
+   "states": {
+    "Rozpalanie": {
+     "code": 1,
+     "texts": [
+      "spalanie[kg/h]=0.0",
+      "jasność=100",
+      "T. palnika=32"
+     ],
+     "bottom_row": "wentylator (animowany) w komorce 1 + zarzaca sie zapalarka w komorce 4",
+     "corner": "46"
+    },
+    "Modulacja": {
+     "code": 5,
+     "texts": [
+      "spalanie[kg/h]=1.4",
+      "moc[kW]=5.2",
+      "moc[%]=30",
+      "jasność=100",
+      "T. palnika=31"
+     ],
+     "bottom_row": "wentylator (animowany) w komorce 1",
+     "corner": "52   2.1   3:00 (HA: dmuchawa_obroty=52, czas podawania paliwa=2.1; 3:00 - zrodlo OPEN)"
+    }
+   },
+   "note": "w dolnym rzedzie 6 malych komorek (kreski co ok. 40 px) + duzy przycisk z kolem zebatym; komorki pokazuja aktywne wyjscia (animacje); tylko na PALNIK nad ikonami sa wartosci liczbowe"
+  },
+  "KOCIOL": {
+   "header": "< MENU | KOCIOŁ | klucz poziomu 2 | dom",
+   "texts": [
+    "duza temperatura kotla (45.6)",
+    "kapsula '60 AUTO' = zadana wynikowa",
+    "pasek programu dobowego 0-6-12-18-24 z segmentami komfortu",
+    "T. powrotu=41.7"
+   ],
+   "bottom_row": "komorka 1: ikona pompy (kolo ze strzalka); komorka 3: zawor trojdrozny/mieszacz z czerwonym lukiem nad ikona (polozenie, animacja); reszta pusta; duzy przycisk z kolem zebatym",
+   "path": "EKRAN GLOWNY -> MENU -> Kociol"
+  },
+  "general": "na dolnych belkach ekranow sa animowane ikony wyjsc/stanow (wentylator, podajniki, zapalarka, pompa, zawor); dane o tym, ktora ikona i kiedy: sonda emulatora bind_screen (BIND_STATE) w toku"
+ }
+}

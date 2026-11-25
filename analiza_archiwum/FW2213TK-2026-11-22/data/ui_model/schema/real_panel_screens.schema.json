@@ -1,0 +1,5 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ui_model/real_panel_screens.json contract",
+  "$ref": "./common.schema.json"
+}
