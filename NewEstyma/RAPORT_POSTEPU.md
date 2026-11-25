@@ -1,6 +1,10 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Rozpalanie: dioda palnika zolta; KOREKTA ukladu pulpitu (zadana vs zewnetrzna)
+### 2026-11-25 - Rozpalanie: dioda fizyczna pulsuje; ikona pogody
+- Fizyczna dioda palnika PULSUJE w Rozpalaniu (w Czyszczeniu swiecila stale). Wartosci z panelu (wlasciciel): kociol 47.9, zewn. -3.5, CO 30.6, CWU 53.0; HA chwile pozniej: 47.1 / -3.6 / 30.8 / 52.6 (rozne chwile odczytu).
+- Korekta hipotezy: 'chmurka' w rogu to ikona POGODY (chmura ze sloncem) przy temperaturze zewnetrznej, nie wskaznik internetu.
+
+## 2026-11-25 - Rozpalanie: dioda palnika zolta; KOREKTA ukladu pulpitu (zadana vs zewnetrzna)
 - Rozpalanie (kod 1): dioda palnika zolta (jak w czyszczeniu); HA: zapalarka 1, podajnik palnika on, dmuchawa on. STRONG dla stanow 1 i 7.
 - KOREKTA: kapsula z AUTO pokazuje ZADANA WYNIKOWA kotla (60), nie temperature zewnetrzna. Temperatura zewnetrzna jest w prawym gornym rogu z ikona pogody ('-3.5' w dwoch liniach; druga linia OPEN). Nasze makiety karty (prototyp/karta_v2) opisaly kapsule blednie - poprawic w nastepnych renderach.
 - `home_indicators.json` uzupelniony (home_layout_real_panel).

@@ -126,7 +126,7 @@
    "date": "2026-11-25 19:44",
    "state": "Rozpalanie (kod 1)",
    "led_tile": "zolta",
-   "physical_burner_led": "widoczna (blada, zolto-bursztynowa)",
+   "physical_burner_led": "PULSUJE (bursztynowa) w Rozpalaniu - obserwacja wlasciciela; w Czyszczeniu swieci stale (zdjecie)",
    "ha": {
     "zapalarka": 1.0,
     "podajnik_palnika": "on",
@@ -134,7 +134,14 @@
     "moc": 0.0,
     "alarm": "off"
    },
-   "evidence": "MEASURED"
+   "evidence": "MEASURED",
+   "panel_values_reported_by_owner": {
+    "kociol": 47.9,
+    "zewnetrzna": -3.5,
+    "co": 30.6,
+    "cwu": 53.0,
+    "note": "HA w tym samym czasie: kociol 47.1-47.2, zewn. -3.5/-3.6, CO 30.8, CWU 52.6 (roznice rzedu 0.2-0.8 st.C wynikaja z odstepu czasu/odswiezania)"
+   }
   }
  },
  "home_layout_real_panel": {
@@ -144,6 +151,7 @@
    "prawy gorny rog: ikona pogody (chmura/slonce) + temperatura zewnetrzna w dwoch liniach '-3.5' i '-3.5' (HA temperatura_zewnetrzna=-3.5); druga linia - OPEN (srednia z 0x3720 'Usrednianie temp. zewnetrznej'?)",
    "duzy napis stanu na pulpicie: Wylaczony / Czyszczenie / Rozpalanie (zgodne z kodem stanu palnika)",
    "kafelek CWU (kran) widoczny ze biala dioda; kafelek CO2 pusty"
-  ]
+  ],
+  "weather_icon": "ikona pogody (chmura/slonce) w rogu to ta sama ikona, ktora wczesniej opisalem jako 'chmurke' (bitmapa 181) - NIE wskaznik internetu; zrodlo/zmiany OPEN"
  }
 }
