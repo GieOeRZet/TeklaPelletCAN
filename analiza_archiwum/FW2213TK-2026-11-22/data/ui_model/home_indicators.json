@@ -61,7 +61,7 @@
   "tiles": {
    "palnik_x138_widget_0x20016504": {
     "default": "ukryty, bitmapa 31 (zolty)",
-    "measured_trigger": "hipoteza wlasciciela: swieci w rozpalaniu/modulacji/pracy. Test (0x2007=0..10, 0x4005=0/60, 0x2002=0/2, 0x2005=1): LED pojawil sie TYLKO przejsciowo (~1000 tikow) i niepowtarzalnie (0x2007=7 w jednym przebiegu, 0x2007=6+moc 60 w innym) - wyglada na zaleznosc od czasu/historii, nie od samego kodu stanu; hipoteza NIEPOTWIERDZONA (OPEN)"
+    "measured_trigger": "STRONG: dioda palnika ZOLTA (bitmapa 31) w stanie palnika 7 = CZYSZCZENIE (obserwacja wlasciciela na prawdziwym panelu 2026-11-25 19:39, HA: palnik_kod_stanu=7 'Czyszczenie', dmuchawa on, podajnik palnika off, moc 0, alarm off); zgodne z emulatorem (0x2007=7 pokazalo diode palnika). W stanie 0 (Wylaczony) ciemny pasek (brak diody). Inne stany (rozpalanie 1, zarzenie 2, modulacja 5, wygaszanie 6, pauza 8) - OPEN, do obserwacji przy ich wystapieniu."
    },
    "co1_x207_widget_0x20016530": {
     "default": "ukryty, bitmapa 32 (bialy)",
@@ -105,6 +105,12 @@
    "Komfort": "dioda biala (wczesniej)",
    "conclusion": "STRONG: dioda CWU jest biala w trybach Eko/Harmonogram/Komfort, zgaszona w Off - zgodne z emulatorem (widocznosc gdy program != 0), kolor nie zalezy od trybu ani od pompy. CWU wrocilo na Komfort (HA: cwu_tryb=Komfort).",
    "co1_not_tested": "CO1 nie testowano w innych trybach (Off zatrzymalby ogrzewanie); przyjmujemy ten sam mechanizm (emulator: widocznosc dla 0x2064 != 0)."
+  },
+  "burner_cleaning": {
+   "date": "2026-11-25",
+   "state": "Czyszczenie (kod 7)",
+   "led": "zolta",
+   "evidence": "MEASURED (obserwacja wlasciciela + odczyt HA tylko odczyt)"
   }
  }
 }

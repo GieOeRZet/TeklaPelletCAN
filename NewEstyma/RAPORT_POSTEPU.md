@@ -1,6 +1,10 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Dioda CWU w trybach (obserwacja wlasciciela, prawdziwy panel)
+### 2026-11-25 - Dioda palnika: ZOLTA w czyszczeniu (obserwacja wlasciciela + HA)
+- Kociol w czyszczeniu: dioda palnika zolta (bitmapa 31). HA (tylko odczyt): palnik_kod_stanu=7 'Czyszczenie', dmuchawa on, podajnik palnika off, moc 0%, alarm off, zakaz rozpalania off.
+- Zgodne z emulatorem: wstrzykniecie 0x2007=7 pokazalo diode palnika. STRONG dla stanu 7. OPEN: rozpalanie (1), zarzenie (2), modulacja (5), wygaszanie (6), pauza (8) - wlasciciel zglosi kolor przy wystapieniu; ja loguje stan z HA.
+
+## 2026-11-25 - Dioda CWU w trybach (obserwacja wlasciciela, prawdziwy panel)
 - CWU: Eko = biala, Harmonogram = biala, Off = zgaszona (brak paska), Komfort = biala. Wlasciciel zmieniał tryb na panelu; ja tylko odczyt HA (CWU wrocilo na Komfort, CO bez zmian).
 - Wniosek (STRONG): dioda CO/CWU jest biala gdy program obwodu != Off i zgaszona dla Off; kolor nie zalezy od trybu (Eko/Harmonogram/Komfort) ani od stanu pompy. Zgodne z emulatorem. CO1 nie testowane (Off zatrzymalby ogrzewanie).
 
