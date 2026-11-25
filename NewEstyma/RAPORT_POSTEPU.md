@@ -1,6 +1,11 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Etap D ZAMKNIETY: PID-y harmonogramu (PROGRAM) wszystkich dni i obwodow
+### 2026-11-25 - Etap E1 ZAMKNIETY: ekran SIEC - pelna tabela Node ID -> modul
+- `tools/siec_probe.py` -> `UI/siec_modules.json`: skan Node ID 1..127 (MEASURED, emulator, po jednym module). Klasy: SLAVE 1-3 (0x05-07), RADIO GATEWAY 0x08, CAN IO 0-7 (0x40-47, kolumna 4 T=temp), MODUL LAMBDA 0x50, IO BOARD PRO 0x51, FLOWMETER 1/2 (0x54/55), CAN IO BIG 0x56/57, VIDE GSM 0x5A, VIDE NET WIFI 0x5B, VIDE NET 0x5C, VIDE ROOM 1-4 (0x64-67), CAN GATEWAY 0-7 (0x6E-75), CAN IO MINI 0-7 (0x78-7F), reszta = UNKNOWN. Format wiersza: nazwa | Node ID=<dec> | SW v<ver> (tylko czesc klas) | T=<temp> (CAN IO / MINI 0). Kolejnosc wg Node ID.
+- OPEN: SW v0.0 widoczne tylko dla czesci klas przy samej identyfikacji; prawdziwa wersja z PDO1; 3+ modulow naraz / >8 wpisow.
+- `device_model.json` -> `modules.network_table`. Poprawka: 0x57 i 0x5B (raport ChatGPT 24.11 mylnie "pusty/negatywny") - widoczne.
+
+## 2026-11-25 - Etap D ZAMKNIETY: PID-y harmonogramu (PROGRAM) wszystkich dni i obwodow
 - `tools/program_write_probe.py` + `tools/build_program_pids.py` -> `UI/program_pids.json` (42 PID-y: Kociol, CO1-CO4, CWU x Pn..Nd). MEASURED: ramka zapisu panelu po zmianie godziny w dialogu dnia; dzien potwierdzony tytulem dialogu (pierwszy przebieg mylil dni po przewinieciu listy - wykryte i naprawione).
 - Kociol 0x2209+dzien; CO_k = 0x2126 + 4*dzien + (k-1); CWU 0x2154+dzien (Pn..Sb), niedziela 0x2160. Wzory potwierdzone na wszystkich 42 PID-ach, braki: 0.
 - Maska u32 (24 bity, bit h = godzina h, 1 = komfort); zapis przy OK tylko gdy wartosc sie zmienila.

@@ -1,0 +1,849 @@
+{
+ "schema_version": "1.0",
+ "evidence": "MEASURED (emulator, ekran SIEC poziom 1, skan Node ID 1..127: heartbeat 0x700+n(05) + Identity 0x580+n (43 18 10 02 00000000), po jednym module w osobnej sesji; teksty wierszy z RAM)",
+ "row_format": "kolumna1 nazwa | kolumna2 'Node ID=<dec>' | kolumna3 'SW v<ver>' (tylko dla czesci klas przy samej identyfikacji) | kolumna4 'T=<temp>' (CAN IO 0-7 i CAN IO MINI 0: temperatura wewnetrzna, 5678 = brak danych)",
+ "unknown_fallback": "UNKNOWN (wpis tworzy sie dla kazdego Node ID bez klasy)",
+ "modules": {
+  "0x01": {
+   "node_id": 1,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x02": {
+   "node_id": 2,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x03": {
+   "node_id": 3,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x04": {
+   "node_id": 4,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x05": {
+   "node_id": 5,
+   "name": "SLAVE 1",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x06": {
+   "node_id": 6,
+   "name": "SLAVE 2",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x07": {
+   "node_id": 7,
+   "name": "SLAVE 3",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x08": {
+   "node_id": 8,
+   "name": "RADIO GATEWAY",
+   "shows_sw_with_identity_only": true,
+   "column4": null
+  },
+  "0x09": {
+   "node_id": 9,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x0A": {
+   "node_id": 10,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x0B": {
+   "node_id": 11,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x0C": {
+   "node_id": 12,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x0D": {
+   "node_id": 13,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x0E": {
+   "node_id": 14,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x0F": {
+   "node_id": 15,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x10": {
+   "node_id": 16,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x11": {
+   "node_id": 17,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x12": {
+   "node_id": 18,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x13": {
+   "node_id": 19,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x14": {
+   "node_id": 20,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x15": {
+   "node_id": 21,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x16": {
+   "node_id": 22,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x17": {
+   "node_id": 23,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x18": {
+   "node_id": 24,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x19": {
+   "node_id": 25,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x1A": {
+   "node_id": 26,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x1B": {
+   "node_id": 27,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x1C": {
+   "node_id": 28,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x1D": {
+   "node_id": 29,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x1E": {
+   "node_id": 30,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x1F": {
+   "node_id": 31,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x20": {
+   "node_id": 32,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x21": {
+   "node_id": 33,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x22": {
+   "node_id": 34,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x23": {
+   "node_id": 35,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x24": {
+   "node_id": 36,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x25": {
+   "node_id": 37,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x26": {
+   "node_id": 38,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x27": {
+   "node_id": 39,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x28": {
+   "node_id": 40,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x29": {
+   "node_id": 41,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x2A": {
+   "node_id": 42,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x2B": {
+   "node_id": 43,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x2C": {
+   "node_id": 44,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x2D": {
+   "node_id": 45,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x2E": {
+   "node_id": 46,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x2F": {
+   "node_id": 47,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x30": {
+   "node_id": 48,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x31": {
+   "node_id": 49,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x32": {
+   "node_id": 50,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x33": {
+   "node_id": 51,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x34": {
+   "node_id": 52,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x35": {
+   "node_id": 53,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x36": {
+   "node_id": 54,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x37": {
+   "node_id": 55,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x38": {
+   "node_id": 56,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x39": {
+   "node_id": 57,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x3A": {
+   "node_id": 58,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x3B": {
+   "node_id": 59,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x3C": {
+   "node_id": 60,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x3D": {
+   "node_id": 61,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x3E": {
+   "node_id": 62,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x3F": {
+   "node_id": 63,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x40": {
+   "node_id": 64,
+   "name": "CAN IO 0",
+   "shows_sw_with_identity_only": true,
+   "column4": "T=5678"
+  },
+  "0x41": {
+   "node_id": 65,
+   "name": "CAN IO 1",
+   "shows_sw_with_identity_only": true,
+   "column4": "T=5678"
+  },
+  "0x42": {
+   "node_id": 66,
+   "name": "CAN IO 2",
+   "shows_sw_with_identity_only": true,
+   "column4": "T=5678"
+  },
+  "0x43": {
+   "node_id": 67,
+   "name": "CAN IO 3",
+   "shows_sw_with_identity_only": true,
+   "column4": "T=5678"
+  },
+  "0x44": {
+   "node_id": 68,
+   "name": "CAN IO 4",
+   "shows_sw_with_identity_only": true,
+   "column4": "T=5678"
+  },
+  "0x45": {
+   "node_id": 69,
+   "name": "CAN IO 5",
+   "shows_sw_with_identity_only": true,
+   "column4": "T=5678"
+  },
+  "0x46": {
+   "node_id": 70,
+   "name": "CAN IO 6",
+   "shows_sw_with_identity_only": true,
+   "column4": "T=5678"
+  },
+  "0x47": {
+   "node_id": 71,
+   "name": "CAN IO 7",
+   "shows_sw_with_identity_only": true,
+   "column4": "T=5678"
+  },
+  "0x48": {
+   "node_id": 72,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x49": {
+   "node_id": 73,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x4A": {
+   "node_id": 74,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x4B": {
+   "node_id": 75,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x4C": {
+   "node_id": 76,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x4D": {
+   "node_id": 77,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x4E": {
+   "node_id": 78,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x4F": {
+   "node_id": 79,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x50": {
+   "node_id": 80,
+   "name": "MODUL LAMBDA",
+   "shows_sw_with_identity_only": true,
+   "column4": null
+  },
+  "0x51": {
+   "node_id": 81,
+   "name": "IO BOARD PRO",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x52": {
+   "node_id": 82,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x53": {
+   "node_id": 83,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x54": {
+   "node_id": 84,
+   "name": "FLOWMETER 1",
+   "shows_sw_with_identity_only": true,
+   "column4": null
+  },
+  "0x55": {
+   "node_id": 85,
+   "name": "FLOWMETER 2",
+   "shows_sw_with_identity_only": true,
+   "column4": null
+  },
+  "0x56": {
+   "node_id": 86,
+   "name": "CAN IO BIG",
+   "shows_sw_with_identity_only": true,
+   "column4": null
+  },
+  "0x57": {
+   "node_id": 87,
+   "name": "CAN IO BIG",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x58": {
+   "node_id": 88,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x59": {
+   "node_id": 89,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x5A": {
+   "node_id": 90,
+   "name": "VIDE GSM",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x5B": {
+   "node_id": 91,
+   "name": "VIDE NET WIFI",
+   "shows_sw_with_identity_only": true,
+   "column4": null
+  },
+  "0x5C": {
+   "node_id": 92,
+   "name": "VIDE NET",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x5D": {
+   "node_id": 93,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x5E": {
+   "node_id": 94,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x5F": {
+   "node_id": 95,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x60": {
+   "node_id": 96,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x61": {
+   "node_id": 97,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x62": {
+   "node_id": 98,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x63": {
+   "node_id": 99,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x64": {
+   "node_id": 100,
+   "name": "VIDE ROOM 1",
+   "shows_sw_with_identity_only": true,
+   "column4": null
+  },
+  "0x65": {
+   "node_id": 101,
+   "name": "VIDE ROOM 2",
+   "shows_sw_with_identity_only": true,
+   "column4": null
+  },
+  "0x66": {
+   "node_id": 102,
+   "name": "VIDE ROOM 3",
+   "shows_sw_with_identity_only": true,
+   "column4": null
+  },
+  "0x67": {
+   "node_id": 103,
+   "name": "VIDE ROOM 4",
+   "shows_sw_with_identity_only": true,
+   "column4": null
+  },
+  "0x68": {
+   "node_id": 104,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x69": {
+   "node_id": 105,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x6A": {
+   "node_id": 106,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x6B": {
+   "node_id": 107,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x6C": {
+   "node_id": 108,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x6D": {
+   "node_id": 109,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x6E": {
+   "node_id": 110,
+   "name": "CAN GATEWAY 0",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x6F": {
+   "node_id": 111,
+   "name": "CAN GATEWAY 1",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x70": {
+   "node_id": 112,
+   "name": "CAN GATEWAY 2",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x71": {
+   "node_id": 113,
+   "name": "CAN GATEWAY 3",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x72": {
+   "node_id": 114,
+   "name": "CAN GATEWAY 4",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x73": {
+   "node_id": 115,
+   "name": "CAN GATEWAY 5",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x74": {
+   "node_id": 116,
+   "name": "CAN GATEWAY 6",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x75": {
+   "node_id": 117,
+   "name": "CAN GATEWAY 7",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x76": {
+   "node_id": 118,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x77": {
+   "node_id": 119,
+   "name": "UNKNOWN",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x78": {
+   "node_id": 120,
+   "name": "CAN IO MINI 0",
+   "shows_sw_with_identity_only": true,
+   "column4": "T=5678"
+  },
+  "0x79": {
+   "node_id": 121,
+   "name": "CAN IO MINI 1",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x7A": {
+   "node_id": 122,
+   "name": "CAN IO MINI 2",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x7B": {
+   "node_id": 123,
+   "name": "CAN IO MINI 3",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x7C": {
+   "node_id": 124,
+   "name": "CAN IO MINI 4",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x7D": {
+   "node_id": 125,
+   "name": "CAN IO MINI 5",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x7E": {
+   "node_id": 126,
+   "name": "CAN IO MINI 6",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  },
+  "0x7F": {
+   "node_id": 127,
+   "name": "CAN IO MINI 7",
+   "shows_sw_with_identity_only": false,
+   "column4": null
+  }
+ },
+ "classes": {
+  "SLAVE": [
+   "0x05",
+   "0x06",
+   "0x07"
+  ],
+  "RADIO GATEWAY": [
+   "0x08"
+  ],
+  "CAN IO": [
+   "0x40",
+   "0x41",
+   "0x42",
+   "0x43",
+   "0x44",
+   "0x45",
+   "0x46",
+   "0x47"
+  ],
+  "MODUL LAMBDA": [
+   "0x50"
+  ],
+  "IO BOARD PRO": [
+   "0x51"
+  ],
+  "FLOWMETER": [
+   "0x54",
+   "0x55"
+  ],
+  "CAN IO BIG": [
+   "0x56",
+   "0x57"
+  ],
+  "VIDE GSM": [
+   "0x5A"
+  ],
+  "VIDE NET WIFI": [
+   "0x5B"
+  ],
+  "VIDE NET": [
+   "0x5C"
+  ],
+  "VIDE ROOM": [
+   "0x64",
+   "0x65",
+   "0x66",
+   "0x67"
+  ],
+  "CAN GATEWAY": [
+   "0x6E",
+   "0x6F",
+   "0x70",
+   "0x71",
+   "0x72",
+   "0x73",
+   "0x74",
+   "0x75"
+  ],
+  "CAN IO MINI": [
+   "0x78",
+   "0x79",
+   "0x7A",
+   "0x7B",
+   "0x7C",
+   "0x7D",
+   "0x7E",
+   "0x7F"
+  ]
+ },
+ "behaviour": {
+  "timeout": "wiersz zostaje po braku ramek (MEASURED, audyt 24.11)",
+  "order": "wg Node ID rosnaco (MEASURED: 0x45 przed 0x56)",
+  "slots": "8 wierszy"
+ },
+ "open": [
+  "dlaczego SW v0.0 widac tylko dla czesci klas (0x08,0x40-0x47,0x50,0x54-0x56,0x5B,0x64-0x67,0x78) - pozostale pokazuja tylko Node ID przy samej identyfikacji (brak innych danych: PDO1/rodzaj odpowiedzi)",
+  "prawdziwa wersja SW (niezerowa) z PDO1 bajty 0-1 - nie zmierzona",
+  "zachowanie przy pelnej tablicy (>8 modulow) i przy 3+ modulach jednoczesnie"
+ ]
+}
