@@ -1,5 +1,8 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
+### KONIEC POMIARU DIALOGOW LIST (2026-11-25): 135 z 166 wierszy zmierzone (81%), krok = 1 jednostka surowa
+Zrobilem: poprawka metody (zakres polozenia wiersza 55-255 px - gorne wiersze odrzucane przy progu 75) i dokonczenie pomiaru: **76 suwakow, 14 dialogow radio (z etykietami opcji), 45 wierszy bez dialogu (przelaczniki i liczniki tylko do odczytu)**; krok +1 = 1 surowa we wszystkich (60 x 1.0, 13 x 0.1 przy skali 0.1, 3 bez zmiany na granicy zakresu). Nie dotarlem do 31 wierszy gleboko na dlugich listach (Kociol 7-12, Palnik 6+...): przewijanie dragiem nie dociera do konca - zalozony krok 1 (INFERENCE). CO3/CO4 = jak CO1 (INFERENCE). Dane: `ui_model/list_dialogs.json`.
+
 ### ZAMKNIECIE (2026-11-25): ekrany i listy per konfiguracja zmierzone; projekt zamkniety na dzis
 Zrobilem: `tools/screens_config.py` (11 kombinacji): listy nastaw Kociola/Palnika/CO1 stale; schematy ekranow Kociol/CWU/Solary/Bufor zaleza od liczby obwodow CO (0x2105) i obecnosci CWU/solara/bufora; listy Solary i Bufor zaleza od CWU. Podglad SVG/CSS (jednorazowy). Stan: ~93% wiedzy o wygladzie i zachowaniu; TODO wlasciciela: ESPHome wykrywa konfiguracje kotla i udostepnia odpowiednie widoki (HANDOFF pkt 11). Niedokonczone: pomiar dialogow list (116/212), 2 komorki Konfiguracji (kaskada), Kopiuj/INTERNET kosmetyka.
 
