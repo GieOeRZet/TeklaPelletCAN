@@ -53,7 +53,7 @@ for key in keys:
         la = int(cand[0]["this"], 16); ok = False
         for _ in range(40):
             y = abs_y(la) + 12
-            if 75 <= y <= 225: ok = True; break
+            if 75 <= y <= 255: ok = True; break
             if y > 200:
                 if not s.drag_until_change(240, 235, 240, 175, attempts=4, ticks=240, pause_end=160): break
             elif not s.drag_until_change(240, 100, 240, 160, attempts=4, ticks=240, pause_end=160): break

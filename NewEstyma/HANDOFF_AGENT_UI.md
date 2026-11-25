@@ -63,3 +63,9 @@ Patrz `NewEstyma/PLAN_PRACY_AGENT_UI.md` (etapy E2-E7) i raportuj do `NewEstyma/
 ## 9. Stan na 2026-11-24 (koniec czatu 2) - czytaj RAPORT_POSTEPU.md (gora)
 Gotowe: E1-E6; E7 w toku. Karta: `web/estyma_prototype/` (README), karta Lovelace `web/estyma-panel-card.js` (iframe+postMessage, tylko odczyt), narzedzia: `export_card_screen.py`, `bind_screen.py`, `merge_bindings.py`, `list_labels.py`, `export_dialog_static.py`, `build_proto_model.py`, `coverage_gen.py|agg`, `run_coverage_par.sh`, `run_dialogs_par.sh`, `smoke_test.py`, `paths.py`. Otwarte: ALARMY L0 (OPEN#2), stan online, PROGRAM render z danych (artefakty), etykiety PL Konfiguracja/Statystyki, dialog radio dla enum tekstowych, edycja PROGRAM, test w prawdziwym HA.
 Pulapki: heredoc + `pkill` w jednym poleceniu bywa blokowany przez sandbox (uruchamiaj osobno); ListNav.build bywa niepelny (uzyj tap_incremental z coverage_gen.py).
+
+## 10. Ustalenia metodyczne (2026-11-25) - WAZNE dla emulatora
+- **Po `load_state` (punkt kontrolny wczytany w srodku sesji) przewiniecie listy + stukniecie NIE otwiera dialogu** (zmierzone: 0% zmiany obrazu vs 55.6% bez load_state). Do pomiarow wierszy list uzywaj swiezego rozruchu (`from_checkpoint(menu.state)` + nawigacja do wezla) na kazdy wiersz - `tools/list_dialogs.py`.
+- Stukniecie po przewinieciu: odczekaj >= 3000 tikow; polozenie wiersza bierz z RAM (suma pola y widgetu etykiety po rodzicach, +12 do srodka), nie z korelacji obrazow.
+- MENU: `ListNav.build` bywa niepelny; uzyj `tools/ui_nav.py` (`tap_incremental`, `tap_tail`).
+- Dane gotowe w `ui_model/`: `list_labels_pl.json` (212/213 wierszy), `enum_labels.json` (opcje tekstowe), `list_dialogs.json` (rodzaj/krok dialogu), `coverage_matrix_agent.json` (634 komorki), `coverage_matrix_online.json`, `pid_to_point.json`, `card_bindings/`.
