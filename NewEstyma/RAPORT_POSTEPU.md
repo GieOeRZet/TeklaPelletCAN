@@ -1,6 +1,12 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Diody HOME: obserwacja wlasciciela na prawdziwym panelu + emulator (zgodne)
+### 2026-11-25 - PIERWSZY ZAPIS NA ZYWYM KOTLE (na wyrazne polecenie wlasciciela): ilosc paliwa w zasobniku
+- Polecenie: zwiekszyc ilosc pelletu w zasobniku o 15 kg. Stan przed: 6.0 kg (HA, `sensor.*_zbiornik_paliwo`, pojemnosc 135, tryb mirror OFF, CAN OK).
+- Wykonane: JEDNO wywolanie `teklapelletcan.tekla_set_param {key: 47, value: 21}` (punkt 47 = 0x3601 'Zbiornik - ilosc paliwa [kg]', kodowanie Plain). Zadnego innego zapisu.
+- Weryfikacja: po ok. 5 s odczyt `zbiornik_paliwo` = 21.0 kg, zapelnienie 16%, alarm nieaktywny. MEASURED: zapis 0x3601 zwykla liczba kg przez integracje dziala na prawdziwym sterowniku (potwierdza kodowanie 'plain' dla tej nastawy).
+- Uwaga: stan zasobnika to licznik programowy (nie czujnik); wartosc 21 = 6 + 15 zgodnie z poleceniem.
+
+## 2026-11-25 - Diody HOME: obserwacja wlasciciela na prawdziwym panelu + emulator (zgodne)
 - Wlasciciel (prawdziwy panel): CO1 biala dioda (pompa dziala, obwod zamkniety termostatem), CWU biala dioda przy NIECZYNNEJ pompie. Odczyt HA (tylko odczyt): CO tryb Komfort, CWU tryb Komfort, pompa CO on, pompa CWU off, zgoda regulatora on, kociol wlaczony.
 - Emulator (sonda 655 PID): dioda CO1 widoczna gdy 0x2064 != 0, CO2 gdy 0x2065 != 0, CWU gdy 0x2014 != 0 (ukrywa sie przy 0x2005=0 i 0x2106=0), zasilanie gdy 0x2005 != 0; bitmapa stale 32 (biala), zasilanie 28 (zielona).
 - Wniosek (STRONG): biala dioda CO/CWU = obwod aktywny (program != Off), nie stan pompy. OPEN: zmiana koloru w innych trybach (Eko/Harmonogram) - do zobaczenia na panelu przy zmianie trybu (zmiany tylko przez wlasciciela).
