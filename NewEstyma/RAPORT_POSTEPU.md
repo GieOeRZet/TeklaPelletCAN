@@ -1,6 +1,12 @@
 # RAPORT POSTEPU agenta UI (najnowszy na gorze). Format: etap - zrobilem X z Y - pozostalo Z
 
-### 2026-11-25 - Bitmapy vs wektor (SVG/CSS): pomiar, co da sie odtworzyc
+### 2026-11-25 - Pelny zestaw grafik: trasowanie do SVG (vtracer) - pomiar
+- `tools/bitmap_trace.py` + `tools/render_svgs.js` -> `UI/bitmap_trace_fit.json` (3 presety x 188 bitmap, render Chromium 1x, porownanie pikseli). Pierwsza wersja renderu miala blad (obraz nie ladowal sie z about:blank -> wszystko RASTER, MAE identyczne dla presetow) - wykryty po identycznych wynikach, naprawiony (SVG otwierany bezposrednio).
+- Wynik (najlepszy preset na bitmape): WEKTOR 5, DOBRY (MAE<=6) 48, SLABY (<=12) 44, RASTER 91. Czyli 53 bitmapy dalo sie odtworzyc z bledem <=6, ale **SVG jest ok. 8x wieksze od PNG** (po gzip ok. 950 KB wobec 124 KB PNG) - oplacalne rozmiarowo tylko 14 (SVG gz <= 1.5x PNG: m.in. 65, 73-76, 96, 98, 114, 126, 132, 133, 135, 157, 166).
+- Razem z modelem parametrycznym (gradienty, 31 bitmap): ok. 38 bitmap mozna zastapic CSS/SVG przy akceptowalnym bledzie i rozmiarze; ikony i kotly (cieniowane, wiele kolorow) zostaja PNG - trasowanie daje duze SVG lub widoczna degradacje (SLABY).
+- Katalog SVG (ok. 12 MB) nie jest w repo (do regeneracji narzedziem).
+
+## 2026-11-25 - Bitmapy vs wektor (SVG/CSS): pomiar, co da sie odtworzyc
 - `tools/bitmap_vectorize.py` -> `UI/bitmap_vector_fit.json`, montaz `eksport_grafik/wektor_vs_bitmapa_montaz.png` (oryginal | odtworzenie | roznica x4). Modele: stala, gradient pionowy/poziomy, rozdzielny (profil Y+X), z zaokraglonymi rogami; blad liczony na pikselach (kompozyt na szarym i bialym tle).
 - Wynik na 188 bitmapach: WEKTOR 12 (MAE<=2.5, 30 KB PNG), PRZYBLIZONY 19 (MAE<=6, 48 KB), RASTER 157 (267 KB: ikony, kotly, grafiki). Czyli tla/gradienty/linie/przyciski/paski daja sie zastapic CSS/SVG (31 bitmap, ok. 78 KB PNG), reszta (ikony, schematy) zostaje PNG.
 - Przyblizone (kafle 73/74/75/76, przyciski 6/7, 102/103, listy 81): brak szumu/faktury i drobnych detali (np. ciemny slot LED w 74/75) - do dorysowania jako osobne elementy; wtedy blad spada.
