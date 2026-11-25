@@ -210,7 +210,8 @@
       "2": "bitmapa 107"
      },
      "owner_note": "wlasciciel: mieszacz ma dwa stany, na zdjeciu widac jeden",
-     "open": "ktory stan to otwieranie a ktory zamykanie - INFERENCE, do potwierdzenia zdjeciem"
+     "open": "ktora strzalka = otwieranie, a ktora = zamykanie (106 vs 107, stan 1 vs 2) - INFERENCE; do potwierdzenia zdjeciem + odczytem 0x216F",
+     "owner_note_2": "wlasciciel: dwa stany mieszacza (otwieranie/zamykanie) to strzalki; zgodne z bitmapami 106 i 107 (15x4)"
     }
    ]
   },
