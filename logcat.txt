@@ -1,0 +1,7 @@
+11-26 20:44:31.062 W/ziparchive( 2376): Unable to open '/data/app/~~TPOzMcWv6iksrdqcVTFCSA==/pl.gieoerzet.teklapelletcan-EZt4EvsTLCBJ3dgfThon_g==/base.dm': No such file or directory
+11-26 20:44:31.063 W/ziparchive( 2376): Unable to open '/data/app/~~TPOzMcWv6iksrdqcVTFCSA==/pl.gieoerzet.teklapelletcan-EZt4EvsTLCBJ3dgfThon_g==/base.dm': No such file or directory
+11-26 20:44:31.681 W/chromium( 1729): [1126/204431.681762:WARNING:dns_config_service_android.cc(81)] Failed to read DnsConfig.
+11-26 20:44:32.311 W/chromium( 2376): [WARNING:dns_config_service_android.cc(115)] Failed to read DnsConfig.
+11-26 20:44:34.697 W/ziparchive(  519): Unable to open '/data/app/~~TPOzMcWv6iksrdqcVTFCSA==/pl.gieoerzet.teklapelletcan-EZt4EvsTLCBJ3dgfThon_g==/base.dm': No such file or directory
+11-26 20:44:34.732 W/InputManager-JNI(  519): Input channel object '7cfaa5f Splash Screen pl.gieoerzet.teklapelletcan (client)' was disposed without first being removed with the input manager!
+11-26 20:44:39.562 W/cr_AWNetworkFetcherTask( 3269): 	at org.chromium.android_webview.nonembedded.NetworkFetcherTask.download(chromium-TrichromeWebViewGoogle6432.apk-stable-567263637:48)

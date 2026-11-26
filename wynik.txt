@@ -1,0 +1,26 @@
+OK   WebView z interfejsem aplikacji wystartował
+--- ekran startowy ---
+Urządzenia
+TeklaPelletCAN
+Sterowanie kotłem Tekla / Estyma
+MOJE URZĄDZENIA
+Brak zapisanych urządzeń. Dodaj znalezione poniżej albo wpisz adres IP.
+ZNALEZIONE W SIECI
+Nic nie znaleziono. Upewnij się, że telefon jest w tej samej sieci Wi‑Fi co urządzenie, albo dodaj adres ręcznie.
+Szukaj ponownie
+DODA
+OK   interfejs się wyrenderował (nie czarny ekran)
+OK   most natywny dostępny (TPCNative.state)
+OK   lista urządzeń widoczna
+OK   demo: pulpit pokazuje temperaturę z JNI
+OK   demo: stan palnika
+OK   zapis dziala bez PIN-u aplikacji
+OK   zły PIN aplikacji odrzucony
+OK   dobry PIN odblokowuje
+OK   nowa zadana odczytana z kotła
+OK   okno oryginalnej karty (demo.tpc) otwarte
+OK   blokada ręczna zamyka odblokowanie
+OK   brak wyjątków JS w interfejsie
+
+WSZYSTKO OK
+rc=0
