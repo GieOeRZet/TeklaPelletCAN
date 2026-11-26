@@ -693,5 +693,118 @@
    "53": "E (pusty)",
    "54": "duzy czerwony pojemnik (animacja tankowania)"
   }
+ },
+ "unseen_texts_classification_2026_11_26": {
+  "evidence": "STRONG (alarm_codes_verified.json, tabele stanow z binarki, przeszukanie kodu) + INFERENCE tam gdzie zaznaczono",
+  "alarm_teksty_nieuzywane_w_kodach_alarmow": {
+   "ids": [
+    271,
+    277,
+    278,
+    287,
+    288,
+    289,
+    290,
+    293,
+    294
+   ],
+   "teksty": [
+    "Przegrzanie procesora",
+    "Reset procesora",
+    "STB",
+    "Zwarcie czujnika CWU",
+    "Przerwa czujnika CWU",
+    "Zwarcie czujnika pokojowego",
+    "Przerwa czujnika pokojowego",
+    "Przegrzanie solarów",
+    "Zamarzanie solarów"
+   ],
+   "uwaga": "71 zweryfikowanych kodow alarmow (alarm_codes_verified.json) nie uzywa tych tekstow; resztki starszego zestawu alarmow (zwarcie/przerwa czujnika CWU i pokojowego, przegrzanie/zamarzanie solarow, reset/przegrzanie procesora) - martwe napisy w tej wersji"
+  },
+  "klawiatura_edytora": {
+   "ids": [
+    481,
+    482,
+    483,
+    484,
+    485,
+    486,
+    487,
+    488,
+    489,
+    490,
+    491
+   ],
+   "uwaga": "zestawy znakow edytora tekstu (cyfry, male i duze litery, symbole) - ekran INTERNET (SSID/haslo) i edytor nazwy obwodu"
+  },
+  "fragmenty_formatow": {
+   "ids": [
+    442,
+    443,
+    449,
+    467,
+    476
+   ],
+   "teksty": [
+    "\\x02s",
+    "\\x02",
+    "\\x02",
+    "\\x02mA",
+    "\\x02 = \\x02"
+   ],
+   "uwaga": "szablony z wildcardem (wartosc + jednostka) skladane w kodzie"
+  },
+  "dni_tygodnia": {
+   "ids": [
+    214,
+    215,
+    216,
+    217,
+    218
+   ],
+   "uwaga": "Wtorek-Sobota tytuly okna harmonogramu dnia (Poniedzialek i Niedziela widziane); ten sam dialog"
+  },
+  "powietrze_drewno": {
+   "ids": [
+    87,
+    88,
+    245
+   ],
+   "teksty": [
+    "Powietrze MIN (moc 20%)",
+    "Powietrze MIN (moc 100%)",
+    "Powietrze wtorne"
+   ],
+   "uwaga": "parametry powietrza (drewno/wtorne) - te same martwe wiersze co grupa 40 ukrytych parametrow"
+  },
+  "slowa_stanow": {
+   "ids": [
+    15,
+    19,
+    23,
+    24,
+    34
+   ],
+   "teksty": [
+    "Postoj",
+    "Przeplukiwanie",
+    "Wylaczone",
+    "Chlodzenie",
+    "Zrodlo blokuje"
+   ],
+   "uwaga": "stany z tabel statusow (palnik 9, solary 2/6/7, obwod CO 8) - opisane w status_tables_from_binary_2026_11_25"
+  },
+  "inne": {
+   "84 'Nastepny serwis'": "komunikat przypomnienia o serwisie; INFERENCE: zwiazany z PID 0x3719 'Confirm. service date timestamp' (nieopisany) - do sprawdzenia w kodzie",
+   "181 'CAN'": "opcja radio czujnika pokojowego/zewnetrznego (CAN) - opisana w firmware_row_table",
+   "346/347 'AIR[m/s]=' 'ETA[%]='": "etykiety diagnostyczne przeplywomierza na PALNIK (widgety bez pozycji, patrz palnik_widgety_bez_pozycji)",
+   "495 'Incalzire 1'": "rumunski ciag testowy ostatniego wpisu bazy tekstow"
+  }
+ },
+ "palnik_widgety_bez_pozycji_2026_11_26": {
+  "evidence": "MEASURED (odczyt obiektow widoku z RAM emulatora, view+offset z setterow)",
+  "wniosek": "widgety TextArea dla 0x2119 spaliny(2) (+0xE30), 0x228C wentylator wyciagowy (+0xC00), 0x300A powietrze wtorne (+0xDF8), 0x371A/0x362B przeplyw (+0xD18) sa skonstruowane, ale maja prostokat 0x0 (nigdy nie ustawione w pozycji) - w tej wersji nie sa wyswietlane",
+  "wyjatek": "0x300B 'Stop burning wood' (+0xF74): widget 52x36 z bitmapami 182/183 (palnik z roznika / z napisem STOP), prostokat 0,0 wzgledem rodzica - ikona dla trybu drewna, w tej wersji bez wlasnej pozycji",
+  "uwaga": "zgodne z 40 martwymi parametrami (wariant drewno/spaliny/przeplyw)"
  }
 }
