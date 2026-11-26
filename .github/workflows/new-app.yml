@@ -35,7 +35,9 @@ jobs:
   smoke:
     needs: build
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
+    env:
+      ANDROID_I_WANT_MY_TCG: 'yes'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -60,13 +62,25 @@ jobs:
             adb install -r new_app/app/build/outputs/apk/debug/app-debug.apk
             adb shell am start -n pl.gieoerzet.teklapelletcan.newapp/.MainActivity
             sleep 6
-            adb shell pidof pl.gieoerzet.teklapelletcan.newapp
+            test -n "$(adb shell pidof pl.gieoerzet.teklapelletcan.newapp)"
             adb shell dumpsys activity activities | grep -E 'mResumedActivity.*pl.gieoerzet.teklapelletcan.newapp/.MainActivity' || adb shell dumpsys activity activities | grep -q 'pl.gieoerzet.teklapelletcan.newapp'
             adb exec-out screencap -p > new_app_smoke.png
+      - name: Capture emulator diagnostics
+        if: always()
+        run: |
+          adb devices -l > adb_devices.txt || true
+          adb logcat -d -t 1500 > new_app_logcat.txt || true
+          adb shell dumpsys window windows > new_app_windows.txt || true
+          adb shell dumpsys activity activities > new_app_activities.txt || true
       - name: Upload smoke evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: TeklaPellet-NEW-smoke
-          path: new_app_smoke.png
+          path: |
+            new_app_smoke.png
+            adb_devices.txt
+            new_app_logcat.txt
+            new_app_windows.txt
+            new_app_activities.txt
           if-no-files-found: warn
