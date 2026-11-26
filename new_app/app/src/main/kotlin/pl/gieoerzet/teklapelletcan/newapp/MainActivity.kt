@@ -24,6 +24,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -214,6 +215,7 @@ class MainActivity : ComponentActivity() {
     onMdnsAdd: (MdnsFound) -> Unit, onBleDetails: (BleFound) -> Unit, onDemo: () -> Unit
 ) {
     var host by remember { mutableStateOf("") }
+    val context = LocalContext.current
     Column(Modifier.fillMaxSize().background(Bg).padding(horizontal = 18.dp, vertical = 12.dp).verticalScroll(rememberScrollState())) {
         TopBar("Dodaj moduł", "BLE • Wi‑Fi • mDNS")
         GlassCard {
