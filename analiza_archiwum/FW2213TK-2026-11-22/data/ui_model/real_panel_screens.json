@@ -339,7 +339,11 @@
     "0x2278": 257,
     "0x22B9": 256
    },
-   "open": "0x2254 = 0x013C -> mlodszy bajt 60 przy wylaczonym palniku: wentylator powinien byc widoczny z liczba 60 nad ikona (do potwierdzenia zdjeciem PALNIK)"
+   "odczyt_2026_11_26_03_56": {
+    "evidence": "MEASURED (HA, tylko odczyt) + obserwacja wlasciciela: palnik wylaczony -> belka PALNIK pusta",
+    "0x2254": 256,
+    "wniosek": "mlodszy bajt 0 -> wentylator ukryty, zgodne z reguly (SDO & 0xFF). Wczesniejszy odczyt 316 (20:30) = wentylator jeszcze pracowal po wylaczeniu palnika (wybieg)"
+   }
   },
   "pary_test_stan": {
    "evidence": "STRONG (nazwy PID w katalogu: 'X test' <-> 'X state'; kolejnosc wierszy TEST WYJSC z outputs_test.json MEASURED); NIE potwierdzone zapisem na kotle (zapis tylko na polecenie wlasciciela)",
