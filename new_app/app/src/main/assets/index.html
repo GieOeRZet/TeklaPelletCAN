@@ -1,13 +1,11 @@
-<!doctype html>
-<html lang="pl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>TeklaPellet NEW</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div id="app"></div>
-<script src="app.js"></script>
-</body>
-</html>
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>TeklaPelletCAN</title><link rel="stylesheet" href="style.css"></head><body><div id="app"><div style="padding:48px 24px;text-align:center;color:#9aa1b2">TeklaPelletCAN<br>Ładowanie…</div></div><div id="overlay"></div><div id="toast"></div><script type="module" src="js/main.js"></script><script>
+(function(){
+ function demoButton(){
+  if(!window.TPC_DEMO || !location.hash.startsWith('#/d/pulpit')) return;
+  var sc=document.querySelector('.scroll'); if(!sc || document.getElementById('newDemoAdd')) return;
+  var b=document.createElement('button'); b.id='newDemoAdd'; b.className='btn acc'; b.style.margin='0 0 10px'; b.textContent='＋ Dodaj moduł';
+  b.onclick=function(){ location.hash='#/devices'; };
+  sc.insertBefore(b,sc.firstChild);
+ }
+ addEventListener('hashchange',function(){setTimeout(demoButton,50)}); addEventListener('load',function(){setTimeout(demoButton,500)}); setTimeout(demoButton,1000);
+})();</script></body></html>
