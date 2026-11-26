@@ -2765,5 +2765,15 @@
    "typ 1/257 = przelacznik": "30 z 30 wierszy 'nie otwarto' to przelaczniki (stukniecie nie otwiera dialogu)"
   },
   "wyjatki": "14 wierszy typ 'liczba' bez dialogu = liczniki tylko do odczytu (lista STATYSTYKI)"
+ },
+ "analiza_uzycia_ukrytych_2026_11_26": {
+  "evidence": "STRONG (przeszukanie decompiled.c: zadna funkcja nie czyta ani nie zapisuje tych kluczy przez getter/setter modelu; jedyne wyjatki to 'Program' 0xAC/0xDC (okno harmonogramu) i 0x120 przeplywomierz (presenter PALNIK czyta 0x362B)); INFERENCE dla interpretacji",
+  "fakty": [
+   "40 wierszy ma pelny deskryptor (typ, opcje, tekst PL) i pelne zakresy/wartosci domyslne w tablicy parametrow panelu (np. Typ paliwa 0..2, Czas rozgrzewania zapalarki 0..300 s, domyslna 30 s), czyli firmware je zna",
+   "builder list NASTAW (0x0803e714) nie dodaje ich do zadnej listy przy poziomach 0-2; zaden kod panelu ich nie odczytuje - sa w tej wersji panelu martwe (bez ekranu)",
+   "wszystkie 354 parametry typu 'setting' maja synced=true, wiec synchronizacja nie odroznia tych 36",
+   "'Tryb kominiarz' 0x3750 jest komenda (mode=command, nie synchronizowana); bitmapa 173 (ikona kominiarza) istnieje w zasobach, ale zaden presenter jej nie uzywa"
+  ],
+  "interpretacja_INFERENCE": "wspolna baza kodu dla wielu wariantow urzadzenia (pellet/drewno, ruszt z regulacja napieciem, czujnik spalin, przeplywomierz powietrza) - funkcje obslugiwane przez sterownik (kociol), ktorych panel w tej wersji nie udostepnia; wlasciciel: dwa tryby nieaktywne"
  }
 }
