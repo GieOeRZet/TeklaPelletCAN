@@ -1,0 +1,85 @@
+name: TeklaPellet NEW APP
+
+on:
+  push:
+    branches:
+      - android-new-app
+    paths:
+      - 'new_app/**'
+      - '.github/workflows/new-app.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Build NEW APK
+        run: gradle -p new_app :app:assembleDebug --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: TeklaPellet-NEW-debug
+          path: new_app/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+
+  smoke:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Build APK for smoke test
+        run: gradle -p new_app :app:assembleDebug --no-daemon
+
+      - name: Android emulator smoke test
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: Pixel_6
+          script: |
+            adb install -r new_app/app/build/outputs/apk/debug/app-debug.apk
+            adb shell am start -n pl.gieoerzet.teklapelletcan.newapp/.MainActivity
+            sleep 5
+            adb exec-out screencap -p > new_app_smoke.png
+            adb logcat -d > new_app_logcat.txt
+            ! grep -q "FATAL EXCEPTION" new_app_logcat.txt
+
+      - name: Upload smoke evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: TeklaPellet-NEW-smoke
+          path: |
+            new_app_smoke.png
+            new_app_logcat.txt
