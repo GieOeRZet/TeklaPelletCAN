@@ -12,7 +12,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
-import androidx.core.content.ContextCompat
 import org.json.JSONObject
 
 data class BleFound(val name: String, val address: String, val rssi: Int)
@@ -23,8 +22,8 @@ class BleDiscovery(private val context: Context) {
     private var callback: ScanCallback? = null
 
     private fun allowed(): Boolean =
-        ContextCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED &&
-        ContextCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED
+        context.checkSelfPermission(Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED &&
+        context.checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED
 
     @SuppressLint("MissingPermission")
     fun start(onFound: (BleFound) -> Unit, onError: (String) -> Unit) {
