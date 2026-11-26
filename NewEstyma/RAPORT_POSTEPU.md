@@ -5,12 +5,21 @@
 - Sonda PDO (0x184-0x484 od wezla 4): brak wlaczen diod/ikon (`tools/pdo_sweep.py`, `UI/bind_raw/pdo_*.json`). Emulator animuje ikony bez bodzca; 0x216D=2 zwieksza animacje mieszacza.
 - Dla ESP: nie trzeba odtwarzac mechanizmu panelu - ESP czyta rejestry sterownika (pompy 0x2299/0x229A/0x2278, mieszacze 0x22B9/0x216D, dmuchawa 0x2254, zapalarka 0x2253, jasnosc 0x2250 - z katalogu starego projektu) i rysuje wlasne ikony. Do zrobienia: mapa komorka->rejestr z korelacji zdjec/nagran panelu z odczytami HA.
 
+## 2026-11-26 - domykanie luk z audytu binarki
+
+- 42 ukryte parametry: przeszukanie kodu - ZADNA funkcja panelu ich nie czyta ani nie zapisuje; maja pelne deskryptory i zakresy, ale builder list ich nie dodaje (martwe wiersze w tej wersji); wlasciciel: dwa tryby nieaktywne -> w specyfikacji ESP zablokowane (WE_BLOCKED).
+- PALNIK: widgety 0x2119, 0x228C, 0x300A, 0x371A/0x362B sa skonstruowane, ale maja prostokat 0x0 (nigdy nieumieszczone) - nie wyswietlane; 0x300B ma ikone 52x36 (bitmapy 182/183) bez pozycji. Pomiar: odczyt obiektow widoku z RAM (view+offset z setterow).
+- Teksty niewidziane (45): sklasyfikowane - 9 martwych napisow alarmow (starszy zestaw), 11 zestawow znakow klawiatury, 5 fragmentow formatow, 5 dni tygodnia (ten sam dialog), 3 teksty powietrza (drewno), slowa stanow z tabel, 'Nastepny serwis' (PID 0x3719 i tekst istnieja, zaden kod ich nie czyta).
+- Funkcje 0x0803EC18 i 0x0803EB4A to NIE osobne ekrany, tylko odswiezacze wierszy list NASTAW (callbacki rejestru wierszy, PASS 99).
+- Warstwa magistrali: poller 655 zadan SDO (0x604 -> odpowiedz 0x584), PDO z modulow IO (temperatury), stany wyjsc z SDO (mlodszy bajt) - opisane w `live_sources.json`, `poll_sequence_655.csv`; OPEN: okres pollera.
+- OPEN: ekran INTERNET w emulatorze; tempo klatek animacji; okres pollera (wymaga pomiaru na zywym panelu).
+
 ## 2026-11-25 - tabela wierszy list z binarki; zrodlo list NASTAW
 
 - WYKONANE: z binarki odczytano tabele deskryptorow wierszy (186 rekordow 16 B: klucz UI, id tekstu, typ, opcje radio) -> `ui_model/firmware_row_table.json`; typ: 0 liczba, 1 przelacznik, 3 radio (z etykietami opcji, np. Typ paliwa: pellet/drewno; IN17: brak/czujnik rezerwy/czujnik temp. spalin), 256 liczba x0.1, 257 przelacznik/komenda (INFERENCE). Odtworzono builder list NASTAW (`0x0803e714`): lista = wycinki tablicy kluczy zalezne od poziomu dostepu (0 / >=1 / >=2); lista PALNIK = 5+19+4 = 28 wierszy zgodnie z emulatorem.
 - WYNIK (po poprawce dlugosci tablicy kluczy; odtworzone listy zgodne z emulatorem dla WSZYSTKICH 13 list): 42 wiersze tabeli NIE wchodza do zadnej listy panelu (poziomy 0-2): drewno (0x3000/0x3005-0x3007), napiecia i pozycja rusztu (0x228E/0x228F/0x218C - poza katalogiem 655), spaliny 0x3701-0x3703/0x3707, przeplywomierz 0x362B, kominiarz 0x3750, tryb cichy 0x2151/0x216B, wtorne powietrze 0x3008/0x3009, przedmuch modulacji 0x3713/0x3714, zrodlo/cyrkulacja CWU 0x2214/0x374B/0x374C i in. To parametry serwisowe/wariantowe; odsloniecie konfiguracja (16 wariantow) i poziomem dostepu 4-9 nie dalo nowych wierszy.
 - WERYFIKACJA: validate PASS, smoke PASS; narzedzia `tools/list_reveal.py` (warianty konfiguracji + LR_ACCESS).
-- OPEN: gdzie panel pokazuje te 55 wierszy (inny wariant urzadzenia / menu serwisowe z innym PIN-em) - do sprawdzenia w kodzie.
+- OPEN: gdzie panel pokazuje te 42 wiersze (inny wariant urzadzenia / menu serwisowe z innym PIN-em) - do sprawdzenia w kodzie.
 
 ## 2026-11-25 - glebokie listy ustawien: przewijanie przez RAM
 
