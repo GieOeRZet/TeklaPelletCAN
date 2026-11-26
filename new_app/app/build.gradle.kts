@@ -17,7 +17,10 @@ android {
     kotlinOptions { jvmTarget = "17" }
 }
 tasks.register<Copy>("syncUiAssets") {
-    from(rootProject.projectDir.parentFile.resolve("android/ui"))
+    from(rootProject.projectDir.parentFile.resolve("android/ui")) {
+        exclude("index.html")
+        exclude("style.css")
+    }
     into(layout.buildDirectory.dir("generated/ui"))
 }
 tasks.named("preBuild").configure { dependsOn("syncUiAssets") }
