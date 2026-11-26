@@ -54,4 +54,18 @@ model = {"schema_version": "1.0", "firmware_sha256": mt["meta"].get("firmware_sh
          "alarms": {"evidence": (alv or {}).get("evidence", "STRONG (vendor_sdo_scada)"), "ring": vendor and vendor["alarms"]["registers"], "register_bits": vendor and vendor["alarms"]["alarm_register_bits"], "codes": (alv or {}).get("codes") or (vendor and vendor["alarms"]["codes"])},
          "modules": {"evidence": live["evidence"] if isinstance(live.get("evidence"), str) else "MEASURED", "transport": live["transport"], "items": live["modules"], "network_table": J("siec_modules")},
          "program": {"evidence": prog["evidence"], "encoding": prog["encoding"], "pids_by_circuit": (J("program_pids") or {}).get("pids") or prog["pids_read_on_open"], "day_dialog": prog["day_dialog"], "opens_from": prog["opens_from"]}, "outputs_test": {"evidence": outs["evidence"], "rows": outs["rows"]}, "info_screen": J("info_screen"), "internet_screen": J("internet_screen"), "home_indicators": J("home_indicators"), "real_panel_screens": J("real_panel_screens"), "presenter_widget_map": J("presenter_widget_map"), "firmware_row_table": J("firmware_row_table")}
+# Kodowanie zapisu dla PID-ow bez zmierzonej ramki (ta sama ramka 42 idx 01 u32LE; roznica tylko w przeliczeniu wartosci): evidence zawsze jawne
+def _add_pw(pid, enc, ev):
+    if pid in pids and "panel_write" not in pids[pid]: pids[pid]["panel_write"] = {"encoding": enc, "cmd": "0x42", "raw": None, "frame_hex": None, "evidence": ev}
+for circ, days in ((J("program_pids") or {}).get("pids") or {}).items():
+    for day, pid in days.items(): _add_pw(N(pid), "plain", "MEASURED (program_write_probe: ramka zapisu przy OK w dialogu dnia, maska 24 bit)")
+for pid in ("0x2064", "0x2065", "0x2066", "0x2067", "0x2014"): _add_pw(pid, "indeks opcji", "INFERENCE (tryb programu 0..3 jak zmierzone listy wyboru)")
+for key, rows in list_out.items():
+    for e in rows:
+        pid = e.get("pid")
+        if not pid: continue
+        sc = (pids.get(pid, {}).get("format") or {}).get("scale") or 1
+        if e.get("dialog") == "slider": _add_pw(pid, "plain" if sc == 1 else "raw = wyswietlana / scale (scale=%s)" % sc, "INFERENCE (suwak: kodowanie jak dla zmierzonych suwakow; krok dialogu 1 raw MEASURED)")
+        elif e.get("dialog") == "radio": _add_pw(pid, "indeks opcji", "INFERENCE (lista wyboru: indeks opcji jak dla zmierzonych)")
+        elif e.get("kind") == "switch": _add_pw(pid, "przelacznik 0/1 (stuk w wartosc, bez dialogu)", "INFERENCE (przelacznik 0/1 jak dla zmierzonych)")
 out = paths.UI_MODEL / "device_model.json"; out.write_text(json.dumps(model, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"); print("OK", out.stat().st_size // 1024, "KB; PID:", len(pids), "wierszy list:", rows_total, "rejestry konfiguracji:", len(cfg_regs))
