@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -76,8 +77,8 @@ class MainActivity : ComponentActivity() {
         store = DeviceStore(this)
         ble = BleDiscovery(this)
         mdns = MdnsDiscovery(this)
-        window.statusBarColor = Bg
-        window.navigationBarColor = Bg
+        window.statusBarColor = Bg.toArgb()
+        window.navigationBarColor = Bg.toArgb()
         setContent { TeklaPelletApp() }
     }
 
@@ -347,6 +348,6 @@ class MainActivity : ComponentActivity() {
 @Composable private fun StatusDot(label:String,on:Boolean){Row(verticalAlignment=Alignment.CenterVertically){Box(Modifier.size(9.dp).clip(CircleShape).background(if(on)Green else Color(0xFF343740)));Spacer(Modifier.width(6.dp));Text(label,color=Muted,fontSize=12.sp)}}
 @Composable private fun SmallCard(label:String,value:String,modifier:Modifier=Modifier,on:Boolean=false){Column(modifier.clip(RoundedCornerShape(18.dp)).background(Surface).border(1.dp,Line,RoundedCornerShape(18.dp)).padding(14.dp)){Text(label,color=Muted,fontSize=12.sp,fontWeight=FontWeight.Bold);Spacer(Modifier.height(12.dp));Text(value,fontSize=25.sp);if(on){Spacer(Modifier.height(5.dp));StatusDot("Aktywne",true)}}}
 @Composable private fun MenuRow(a:String,b:String){Row(Modifier.fillMaxWidth().padding(vertical=8.dp),horizontalArrangement=Arrangement.SpaceBetween){Text(a);Text(b,color=Muted,fontSize=12.sp)}}
-@Composable private fun DeviceRow(name:String,sub:String,on:Boolean,click:()->Unit){Row(Modifier.fillMaxWidth().padding(vertical=6.dp).clip(RoundedCornerShape(15.dp)).background(Surface2).clickable(onClick=click).padding(12.dp),verticalAlignment=Alignment.CenterVertically){Box(Modifier.size(10.dp).clip(CircleShape).background(if(on)Green else Muted));Spacer(Modifier.width(10.dp));Column(Modifier.weight(1f)){Text(name,maxLines=1,overflow=TextOverflow.Ellipsis,fontWeight=FontWeight.SemiBold);Text(sub,color=Muted,fontSize=12.sp)}Text("Dodaj",color=Orange,fontWeight=FontWeight.Bold)}}
+@Composable private fun DeviceRow(name:String,sub:String,on:Boolean,click:()->Unit){ Row(Modifier.fillMaxWidth().padding(vertical=6.dp).clip(RoundedCornerShape(15.dp)).background(Surface2).clickable(onClick=click).padding(12.dp),verticalAlignment=Alignment.CenterVertically){ Box(Modifier.size(10.dp).clip(CircleShape).background(if(on) Green else Muted)); Spacer(Modifier.width(10.dp)); Column(Modifier.weight(1f)){ Text(name,maxLines=1,overflow=TextOverflow.Ellipsis,fontWeight=FontWeight.SemiBold); Text(sub,color=Muted,fontSize=12.sp) }; Text("Dodaj",color=Orange,fontWeight=FontWeight.Bold) } }
 @Composable private fun MiniGraph(){Canvas(Modifier.fillMaxWidth().height(42.dp)){val pts=(0..40).map{i->androidx.compose.ui.geometry.Offset(i/40f*size.width,size.height*(.48f+.22f*sin(i*.35f)))};for(i in 0 until pts.lastIndex)drawLine(Orange,pts[i],pts[i+1],2.5f,StrokeCap.Round)}}
 private fun Double.one()=String.format("%.1f",this)
