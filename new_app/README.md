@@ -1,14 +1,13 @@
-# TeklaPellet NEW APP
+# TeklaPellet NEW
 
-Niezależna aplikacja Android budowana od zera w katalogu new_app.
+Nowa aplikacja Android budowana niezależnie od katalogu android/.
 
-Zasady:
-- nie korzysta z kodu android/ starej aplikacji;
-- ma własny applicationId pl.gieoerzet.teklapelletcan.newapp;
-- może być instalowana obok starej aplikacji;
-- DEMO nie jest zapisywane jako urządzenie;
-- brak urządzenia oznacza ekran „Brak dodanego modułu” z akcją dodania;
-- dodane urządzenie jest zapisywane lokalnie;
-- prawdziwe urządzenie jest sprawdzane przez GET /api/v1/info.
-
-To jest osobny tor rozwojowy. Integracja kolejnych funkcji ESP następuje dopiero po przejściu smoke testów.
+Architektura:
+- Kotlin + Jetpack Compose + Material 3 + własny Glass/industrial theme.
+- Brak WebView i brak zależności od starego Android UI.
+- BLE discovery dla urządzeń reklamujących TeklaPellet-*.
+- mDNS _teklapelletcan._tcp + ręczny adres IP.
+- REST API urządzenia po Wi-Fi.
+- Tryb DEMO wyłącznie przed dodaniem pierwszego prawdziwego modułu.
+- Po dodaniu modułu DEMO znika z UI.
+- Moduły Solar/Bufor/Kaskada/Magazyn są dynamiczne i dostępne z MENU; CO2 jest drugim obiegiem.
