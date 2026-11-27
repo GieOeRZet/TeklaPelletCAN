@@ -31,6 +31,9 @@ class MainActivity : Activity() {
                 override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest) = false
                 override fun onPageFinished(view: WebView, url: String) {
                     if (!prefs.getBoolean("real_module", false)) {
+                        selectedBase = "demo://"
+                        selectedName = "Demo – wirtualny kocioł"
+                        prefs.edit().putBoolean("real_module", false).putString("base", "demo://").putString("name", selectedName).apply()
                         view.evaluateJavascript("window.TPC_DEMO=true; location.hash='#/d/pulpit';", null)
                     }
                 }
@@ -67,10 +70,32 @@ class MainActivity : Activity() {
         @JavascriptInterface fun stopDiscovery() {}
         @JavascriptInterface fun deselect() { selectedBase = null; selectedName = null }
         @JavascriptInterface fun selectDevice(base: String, name: String) {
-            selectedBase = base; selectedName = name
-            prefs.edit().putBoolean("real_module", base != "demo://").putString("base", base).putString("name", name).apply()
+            val normalized = if (base == "demo" || base == "demo://") "demo://" else base
+            selectedBase = normalized; selectedName = name
+            prefs.edit().putBoolean("real_module", normalized != "demo://").putString("base", normalized).putString("name", name).apply()
         }
-        @JavascriptInterface fun ping(id: String, base: String) = true
+        @JavascriptInterface fun ping(id: String, base: String) {
+            if (base == "demo" || base == "demo://") {
+                web.post { web.evaluateJavascript("window.tpcPing && window.tpcPing(" + JSONObject.quote(id) + ", {id:'DEMO',fw:'DEMO'})", null) }
+                return
+            }
+            thread {
+                try {
+                    val conn = URL(base.trimEnd('/') + "/api/v1/info").openConnection() as HttpURLConnection
+                    conn.connectTimeout = 2000; conn.readTimeout = 2500
+                    val code = conn.responseCode
+                    val text = (if (code in 200..399) conn.inputStream else conn.errorStream)?.bufferedReader()?.readText() ?: "{}"
+                    val o = try { JSONObject(text) } catch (_: Exception) { JSONObject() }
+                    val info = JSONObject().apply {
+                        put("id", o.optString("id", ""))
+                        put("fw", o.optString("fw", o.optString("version", "")))
+                    }
+                    web.post { web.evaluateJavascript("window.tpcPing && window.tpcPing(" + JSONObject.quote(id) + ", " + info.toString() + ")", null) }
+                } catch (_: Exception) {
+                    web.post { web.evaluateJavascript("window.tpcPing && window.tpcPing(" + JSONObject.quote(id) + ", false)", null) }
+                }
+            }
+        }
         @JavascriptInterface fun setupPin(pin: String) = JSONObject().put("ok", true).toString()
         @JavascriptInterface fun changePin(a: String, b: String) = JSONObject().put("ok", true).toString()
         @JavascriptInterface fun unlockPin(pin: String) = JSONObject().put("ok", true).toString()
